@@ -1,0 +1,9 @@
+𝔸5.1.lemma.2059c57d9a7b@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜2059c57d9a7b198bfadc35a77687708d459d91fa4c8b8612211d9fbfa0260508; goal≜nat-add-assoc-thm; name≜nat_add_assoc_thm}
+⟦Σ:Stmt⟧{
+  stmt≜theorem nat_add_assoc_thm (a b c : Nat) : a + b + c = a + (b + c)
+}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
