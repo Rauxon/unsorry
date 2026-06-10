@@ -24,3 +24,15 @@ globs = ["Unsorry.+"]
 name = "UnsorryGoals"
 srcDir = "."
 globs = ["goals.+"]
+
+# Adversarial fixtures for the audit's own tests (SPEC-006-A). Never in
+# defaultTargets, never imported by UnsorryLibrary.
+[[lean_lib]]
+name = "AuditFixtures"
+srcDir = "."
+globs = ["AuditFixtures.+"]
+
+[[lean_exe]]
+name = "axiom_audit"
+root = "AxiomAudit.Main"
+supportInterpreter = true
