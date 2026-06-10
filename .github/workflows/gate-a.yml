@@ -87,13 +87,22 @@ jobs:
         if: needs.detect.outputs.lean == 'true'
         run: ./tools/gate_a/test_audit.sh
 
+      # Authoritative for the autoImplicit vector: the build/audit/leanchecker
+      # all PASS a vacuous theorem enabled by `set_option autoImplicit true`
+      # (it is sound, just meaningless), so for this vector the scan IS the bar.
+      # Whole-file + whitespace-collapsed, so line-splitting cannot evade it
+      # (W3 red-team PR #64). Self-tested by tools/gate_a/tests/.
+      - name: Forbidden elaboration options in library
+        if: needs.detect.outputs.lean == 'true'
+        run: python3 -m tools.gate_a.check_library_options library
+
       - name: Textual lint on library diff (belt only — the audit is the bar)
         if: needs.detect.outputs.lean == 'true' && github.event_name == 'pull_request'
         run: |
           set -euo pipefail
           base="${{ github.event.pull_request.base.sha }}"
           added=$(git diff "$base"...HEAD -- library/ | grep '^+' | grep -v '^+++' || true)
-          if echo "$added" | grep -nE '\b(sorry|admit|sorryAx|native_decide|axiom|unsafe|implemented_by|extern)\b|set_option[[:space:]]+autoImplicit[[:space:]]+true'; then
+          if echo "$added" | grep -nE '\b(sorry|admit|sorryAx|native_decide|axiom|unsafe|implemented_by|extern)\b'; then
             echo "::error::forbidden token added under library/ (see lines above)"
             exit 1
           fi
