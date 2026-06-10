@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜nat-le-trans
   phase≜translate
-  status≜open
+  status≜translated
   difficulty≜0
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,6 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜∅
-  sha≜∅
+  sha≜c66f1ad40bf5bcd156f568fce602815634444417c5e7bdf14f407ebde66984a1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
