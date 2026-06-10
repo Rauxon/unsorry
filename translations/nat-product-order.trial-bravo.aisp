@@ -1,0 +1,9 @@
+𝔸5.1.tr.nat-product-order.trial-bravo@2026-06-10
+γ≔unsorry.translation
+⟦Ω:Tr⟧{goal≜nat-product-order; agent≜trial-bravo}
+⟦Σ:Stmt⟧{
+  stmt≜∀x,y∈ℕ:x·y≡y·x
+}
+⟦Γ:Provenance⟧{src≜backlog/nat-product-order.md; independent≜⊤}
+⟦Λ:Norm⟧{norm≜tools/fidelity}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
