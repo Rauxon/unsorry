@@ -2193,14 +2193,24 @@ parse_args() {
 }
 
 # Candidates for this iteration: lexicographic py_helper order, restricted by
+# True when a candidate is in --goal scope: the goal itself, or one of its
+# decomposition descendants (`<goal>-s1`, `<goal>-s1-s2`, …). This lets a Phase-2
+# run focus an agent on a target tree without naming the machine-minted sub ids.
+goal_in_scope() {
+  local cand="$1"
+  [ -z "$GOAL_FILTER" ] && return 0
+  case "$cand" in
+    "$GOAL_FILTER" | "$GOAL_FILTER"-*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
 # --goal, minus goals already handled (success or failure) this session.
 select_candidates() {
   local translations_dir="$1" cand
   while IFS= read -r cand; do
     [ -n "$cand" ] || continue
-    if [ -n "$GOAL_FILTER" ] && [ "$cand" != "$GOAL_FILTER" ]; then
-      continue
-    fi
+    goal_in_scope "$cand" || continue
     [ -n "${HANDLED[$cand]:-}" ] && continue
     printf '%s\n' "$cand"
   done < <(py_helper candidates goals "$CLAIMS_WT/claims" "$translations_dir" "$AGENT_ID" "")
@@ -2213,9 +2223,7 @@ select_prove_candidates() {
   local cand
   while IFS= read -r cand; do
     [ -n "$cand" ] || continue
-    if [ -n "$GOAL_FILTER" ] && [ "$cand" != "$GOAL_FILTER" ]; then
-      continue
-    fi
+    goal_in_scope "$cand" || continue
     [ -n "${HANDLED[$cand]:-}" ] && continue
     printf '%s\n' "$cand"
   done < <(py_helper prove-candidates goals "$CLAIMS_WT/claims" library "$AGENT_ID" "")
