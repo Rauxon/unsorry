@@ -59,20 +59,26 @@ The kernel verifies the *proof*, not that a formalised statement faithfully capt
 
 ## Running an agent
 
-> **Status: pre-Phase-0.** The agent loop script lands with Phase 0; the interface below is the target.
+> **Status: Phase 1.** The loop is live. The kernel re-verifies every contribution in CI (Gate A), so you can run an agent against this repo without anyone trusting your machine.
+
+**Prerequisites:** [Claude Code](https://claude.com/claude-code) (headless `claude`, authenticated — a subscription works, no API key required), the [Lean toolchain](https://leanprover-community.github.io/get_started.html) via `elan` (the pinned version installs automatically from `lean-toolchain`), the [`gh`](https://cli.github.com/) CLI authenticated, and Python 3.12.
 
 ```bash
-git clone <this-repo> && cd unsorry
-lake build              # verify the current library locally
-./swarm/agent.sh        # run one agent cycle (requires Claude Code, headless)
+git clone https://github.com/agenticsnz/unsorry && cd unsorry
+lake exe cache get                       # fetch prebuilt mathlib (minutes; never builds from source)
+lake build                               # verify the current library locally
+python3 -m tools.gate_b validate .       # check coordination artifacts (Gate B)
+./swarm/agent.sh --prove --once          # claim a goal, prove it, open an auto-merge PR
 ```
 
-An agent session loads `swarm/protocol.aisp` (the coordination contract) plus the AISP grammar reference ([AI_GUIDE.md](https://github.com/bar181/aisp-open-core/blob/main/AI_GUIDE.md), ~19 KB) at start, then runs the loop above until its budget is spent.
+`--prove` claims an open `prove`-phase goal, drives `claude` to write a Lean proof, self-verifies it locally (`lake build --wfail` + the axiom audit) before opening a PR, and lets the gates decide. `--translate-only` runs the Phase-0/1 formalisation loop instead; `--dry-run` shows what would be claimed without claiming; `--once` runs a single cycle (omit it to loop until the budget is spent or no goal is claimable). Run `./swarm/agent.sh --self-test` to check your setup.
+
+An agent session loads `swarm/protocol.aisp` (the coordination contract) plus the AISP grammar reference ([AI_GUIDE.md](https://github.com/bar181/aisp-open-core/blob/main/AI_GUIDE.md), ~19 KB) at start. Note: from 2026-06-15, headless `claude -p` on subscription plans draws from a separate Agent SDK credit pool — size your run accordingly.
 
 ## Roadmap
 
 - [x] **Phase 0 — coordination skeleton** (no Lean toolchain): swarm contract, goal records, claims, Gate B in CI; concurrent agents doing translation-only work; claim-collision rate and statement-diff false-positive rate measured — [run 001 metrics](docs/metrics/phase0-run-001.md): 38/38 autonomous PR merges, fidelity FP rate under the 20% kill criterion (0/10 after the paren-normalization fix), 3/3 paraphrase pairs converged to identical content addresses
-- [ ] **Phase 1 — autoformalisation**: 20–50 known-true theorems in `backlog/`; 3–5 agents; fidelity gate on; Gate A live; measure merge rate, collision rate, fidelity-flag rate
+- [x] **Phase 1 — autoformalisation**: 20 known-true theorems in `backlog/`; concurrent agents; fidelity gate on; Gate A live and red-team-proven ([9/9 bypass vectors blocked](docs/metrics/gate-a-redteam-001.md)); first proofs merged autonomously by a non-author agent ([run 001 metrics](docs/metrics/phase1-run-001.md))
 - [ ] **Phase 2 — open lemmas and target theorems**: point the swarm at a chosen unformalised result and drive toward it by decomposition, with affinity-weighted goal selection fully on
 
 ## Contributing
@@ -84,7 +90,7 @@ Development follows the protocols in [docs/protocols.md](docs/protocols.md): eve
 ## References
 
 - **Architecture and rationale:** [docs/proposals/distributed-research-swarm-plan.md](docs/proposals/distributed-research-swarm-plan.md)
-- **Coordination format — AISP (AI Symbolic Protocol):** <https://github.com/bar181/aisp-open-core> · authoritative spec: [AI_GUIDE.md](https://github.com/bar181/aisp-open-core/blob/main/AI_GUIDE.md) · validator tooling: [aisp-validator (npm)](https://www.npmjs.com/package/aisp-validator), [aisp (crates.io)](https://crates.io/crates/aisp). Used here for goal records, claims, decomposition records, and the swarm contract (`swarm/protocol.aisp`, lands with Phase 0).
+- **Coordination format — AISP (AI Symbolic Protocol):** <https://github.com/bar181/aisp-open-core> · authoritative spec: [AI_GUIDE.md](https://github.com/bar181/aisp-open-core/blob/main/AI_GUIDE.md) · validator tooling: [aisp-validator (npm)](https://www.npmjs.com/package/aisp-validator), [aisp (crates.io)](https://crates.io/crates/aisp). Used here for goal records, claims, translation/decomposition records, and the swarm contract (`swarm/protocol.aisp`). Load-bearing validation is an in-repo deterministic validator ([`tools/gate_b`](tools/gate_b)); the upstream `aisp-validator` runs advisory-only (ADR-003).
 - **Library dependency:** [mathlib4](https://github.com/leanprover-community/mathlib4)
 
 ## License
