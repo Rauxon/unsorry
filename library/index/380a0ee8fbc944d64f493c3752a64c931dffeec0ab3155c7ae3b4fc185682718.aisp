@@ -1,0 +1,9 @@
+𝔸5.1.lemma.380a0ee8fbc9@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜380a0ee8fbc944d64f493c3752a64c931dffeec0ab3155c7ae3b4fc185682718; goal≜nat-add-left-cancel; name≜nat_add_left_cancel_thm}
+⟦Σ:Stmt⟧{
+  stmt≜theorem nat_add_left_cancel_thm (a b c : Nat) : a + b = a + c → b = c
+}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
