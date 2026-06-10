@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Phase-1 swarm run 001 (W4): 3 prover agents drove `claude` to write real Lean proofs; 3 theorems proved and merged into the verified library by a non-author agent (`prover-alpha`) end-to-end; metrics at `docs/metrics/phase1-run-001.{md,json}` (#75)
+- First merged proofs: `int_add_neg_thm`, `int_neg_neg_thm`, `and_comm_imp_thm` in `library/Unsorry/`
+
+### Fixed
+
+- Prove cycle recompiled mathlib from source: the PR worktree has no `.lake`, so verification rebuilt all of mathlib and blew the attempt budget (phase1-run-001). `run_proof` now restores the prebuilt cache (`lake exe cache get`, best-effort) in the worktree before the first build (SPEC-007-A)
+
+### Added
+
 - Phase-1 backlog: 20 known-true prove-phase goals (`goals/*.aisp` + statement `.lean` files carrying `sorry`) spanning Nat/Int algebra, order, divisibility, gcd, parity, list and propositional facts; minimal imports, all type-check, all audit clean under `--allow-sorry`
 
 ## [0.5.0] - 2026-06-10

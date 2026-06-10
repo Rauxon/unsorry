@@ -877,6 +877,15 @@ run_proof() {
   name="$(py_helper lean-name "$prwt/goals/$goal.lean")" || return 1
   stmt="$(py_helper lean-stmt "$prwt/goals/$goal.lean")" || return 1
   target="library/Unsorry/$camel.lean"
+  # The PR worktree is a fresh checkout with no .lake (it is gitignored), so
+  # the mathlib oleans are absent and `lake build UnsorryLibrary --wfail` would
+  # otherwise recompile all of mathlib from source and blow the attempt budget
+  # (observed in phase1-run-001). Restore the prebuilt cache once, up front.
+  # Best-effort: a warm global cache makes this a ~20s no-op; on failure the
+  # build still works, just slowly, so we warn rather than abort.
+  if ! ( cd "$prwt" && lake exe cache get ) >/dev/null 2>&1; then
+    log "warning: 'lake exe cache get' failed in the prove worktree for $goal — verification may be slow"
+  fi
   for attempt in $(seq 1 "$UNSORRY_ATTEMPTS"); do  # config.BUDGET_ATTEMPTS
     prompt="$(cat "$PROVE_PROMPT_FILE")
 $stmt
