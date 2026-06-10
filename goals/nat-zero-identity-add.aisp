@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜nat-zero-identity-add
   phase≜translate
-  status≜open
+  status≜flagged
   difficulty≜0
 }
 ⟦Σ:Source⟧{
