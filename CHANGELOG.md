@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Phase-2 plan (proposed): [`docs/proposals/phase2-plan.md`](docs/proposals/phase2-plan.md), candidate-target shortlist [`docs/phase2-targets.md`](docs/phase2-targets.md), and three ADRs — ADR-009 (goal decomposition on prove-budget exhaustion), ADR-010 (affinity-weighted gap-based selection), ADR-011 (statement-binding gate, closing the meaningfulness gap the W3 red team exposed)
+- README: "Why this matters" and "The goal, honestly" — the purpose, value, and honest limits of the work, with Phase-2 links
+
+
 ## [1.0.0] - 2026-06-10
 
 ### Added
