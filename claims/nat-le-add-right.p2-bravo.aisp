@@ -1,0 +1,7 @@
+𝔸5.1.claim.nat-le-add-right.p2-bravo@2026-06-10
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜nat-le-add-right; agent≜p2-bravo}
+⟦Σ:Times⟧{ts≜2026-06-10T18:52:37Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
