@@ -1,0 +1,9 @@
+𝔸5.1.tr.nat-add-assoc.trial-bravo@2026-06-10
+γ≔unsorry.translation
+⟦Ω:Tr⟧{goal≜nat-add-assoc; agent≜trial-bravo}
+⟦Σ:Stmt⟧{
+  stmt≜∀x,y,z∈ℕ:(x+(y+z))≡((x+y)+z)
+}
+⟦Γ:Provenance⟧{src≜backlog/nat-add-assoc.md; independent≜⊤}
+⟦Λ:Norm⟧{norm≜tools/fidelity}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
