@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-06-10
+
+### Added
+
+- Phase-1 rerun baseline `phase1-run-002` (post-cache-fix): merge_rate 0.889 (↑ from 0.6), 0 prove failures, 0 gate-a failures, goal-level close rate 1.0
+- Gate A binding red-team round 002 (`docs/metrics/gate-a-redteam-002.md`): 3/3 vacuity attacks blocked by the statement-binding gate, honest control passes
+
 ### Added
 
 - Phase-2 Stage D — statement-binding gate (ADR-011, SPEC-011-A): Gate A now regenerates, for every proved goal, a kernel obligation `theorem <name>_binding_check : <∀-goal-type> := <name>` and builds it under `--wfail`, so a proof of a weakened or vacuous statement under the goal's name (the #64 class) fails to inhabit the goal type and goes red. Non-bypassable (Gate A controls generation, not the contributor); covers decomposition sub-lemmas. `tools/lean_sig.py` extracted (shared Lean-signature parsing); 6 new tests
