@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-06-10
+
 ### Added
 
 - Phase-1 swarm run 001 (W4): 3 prover agents drove `claude` to write real Lean proofs; 3 theorems proved and merged into the verified library by a non-author agent (`prover-alpha`) end-to-end; metrics at `docs/metrics/phase1-run-001.{md,json}` (#75)
