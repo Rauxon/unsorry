@@ -1,7 +1,0 @@
-𝔸5.1.claim.nicomachus-sum-cubes.e-alpha@2026-06-10
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜nicomachus-sum-cubes; agent≜e-alpha}
-⟦Σ:Times⟧{ts≜2026-06-10T19:55:28Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
