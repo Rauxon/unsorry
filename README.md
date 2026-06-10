@@ -16,6 +16,24 @@ Three design decisions make this safe with untrusted, intermittent, rag-tag cont
 
 Why formal mathematics, the full selection criteria, the ranked comparison of eight alternative research domains, and the complete architecture: **[docs/proposals/distributed-research-swarm-plan.md](docs/proposals/distributed-research-swarm-plan.md)**.
 
+## Why this matters
+
+Machine-checked mathematics is a commons. [mathlib](https://github.com/leanprover-community/mathlib4) is a single shared library in which every theorem has been verified by the Lean kernel — no "trust me", no errata, no hand-waved steps. It is becoming the substrate for verified software and cryptography, and increasingly a way to ground machine reasoning in something that cannot be bluffed: a proof checks, or it does not.
+
+The bottleneck is labour. Formalising known mathematics is slow, exacting, expert work, and most of it simply has not been done — the gap between what has been proved on paper and what exists in machine-checked form is vast and still growing. That gap is the problem worth attacking.
+
+Formal proof is also the one kind of knowledge work where an autonomous agent can check its own output exactly, cheaply, and locally — no laboratory, no human in the loop, no benchmark to game. The kernel decides. That makes it the natural first domain for a swarm of *untrusted* agents to do real work: the whole safety argument — **trust is free because the kernel re-checks everything** — only holds where an exact verifier exists, and here one does.
+
+So a working swarm buys two things. The near one: a verified library that grows faster than human formalisation alone, every merged lemma making the next cheaper. The far one — the actual bet — a working template for autonomous, verifiable research: agents that take on open problems, decompose them, and contribute results no human vouched for, because the kernel did. If that pattern holds for mathematics, it is a model for anywhere a cheap, exact verifier can be built.
+
+## The goal, honestly
+
+Today the swarm proves things that did not need proving — `a + b = b + a`, already in mathlib, by a one-line citation of the very lemma that proves it. Those are not the product; they are the shakedown. Their job is to exercise and adversarially harden the loop — claim, prove, kernel-verify, merge under concurrency — until it can be trusted with work that matters.
+
+The destination is **Phase 2**: point the swarm at a result that is *not* already formalised and let it drive a verified proof to it by decomposition — splitting what it cannot prove directly into sub-lemmas that re-enter the queue, compounding the library toward the target. That is when a solved theorem becomes a genuine new artifact rather than a test fixture.
+
+Two limits, stated plainly because this project runs on verification rather than optimism. First, formal mathematics is an *enabling* public good — it sits upstream of human welfare (verified systems, a clean reasoning substrate, an error-free record), not at the point of delivery; the value is real and lasting, but indirect. Second, the kernel certifies that a proof is *sound*, not that its statement *means* what was intended — closing that gap (binding each theorem to the goal it claims to answer) is itself part of the Phase 2 work. The number we judge ourselves by is not "theorems proved" but **"first theorem proved that was not already in mathlib."** That one has not happened yet.
+
 ## How the loop works
 
 ```mermaid
