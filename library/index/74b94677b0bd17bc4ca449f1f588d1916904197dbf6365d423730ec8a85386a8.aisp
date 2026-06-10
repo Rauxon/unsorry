@@ -1,0 +1,9 @@
+𝔸5.1.lemma.74b94677b0bd@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜74b94677b0bd17bc4ca449f1f588d1916904197dbf6365d423730ec8a85386a8; goal≜nat-mul-one-thm; name≜nat_mul_one_thm}
+⟦Σ:Stmt⟧{
+  stmt≜theorem nat_mul_one_thm (n : Nat) : n * 1 = n
+}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜nat-mul-one-thm
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
