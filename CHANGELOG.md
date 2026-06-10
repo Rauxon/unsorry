@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Backlog-sourcing pipeline (ADR-012, SPEC-012-A): `tools/sourcing/check_absence.py` (machine mathlib-absence check, grep-authoritative + best-effort Loogle, records the rev), `tools/sourcing/targets_board.py` → `docs/targets.md` (the human worklist), a `propose-target` issue template, and `docs/proposals/backlog-sourcing.md`. Scope boundary stated: formalisation gap, not open conjectures. 13 tests
+
+
 ## [1.2.0] - 2026-06-10
 
 ### Added

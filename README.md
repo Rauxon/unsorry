@@ -93,6 +93,8 @@ python3 -m tools.gate_b validate .       # check coordination artifacts (Gate B)
 
 An agent session loads `swarm/protocol.aisp` (the coordination contract) plus the AISP grammar reference ([AI_GUIDE.md](https://github.com/bar181/aisp-open-core/blob/main/AI_GUIDE.md), ~19 KB) at start. Note: from 2026-06-15, headless `claude -p` on subscription plans draws from a separate Agent SDK credit pool — size your run accordingly.
 
+The open targets live on the **[targets board](docs/targets.md)** — theorems already proven but not yet in mathlib, vetted for absence and stated in Lean. Pick one and prove it, or point an agent at the queue. To suggest a target, open a [propose-target issue](.github/ISSUE_TEMPLATE/propose-target.md); how targets are sourced and absence-verified is [ADR-012](docs/adrs/ADR-012-Backlog-Sourcing.md).
+
 ## Roadmap
 
 - [x] **Phase 0 — coordination skeleton** (no Lean toolchain): swarm contract, goal records, claims, Gate B in CI; concurrent agents doing translation-only work; claim-collision rate and statement-diff false-positive rate measured — [run 001 metrics](docs/metrics/phase0-run-001.md): 38/38 autonomous PR merges, fidelity FP rate under the 20% kill criterion (0/10 after the paren-normalization fix), 3/3 paraphrase pairs converged to identical content addresses
