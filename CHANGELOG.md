@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Gate A red-team round 001 (W3): 9 adversarial bypass vectors as real PRs (#56–#64); 9/9 blocked after the autoImplicit fix. Evidence at `docs/metrics/gate-a-redteam-001.md` — checklist item (a)
+
 ### Fixed
 
 - Gate A autoImplicit bypass found by the W3 red team (PR #64): a `set_option autoImplicit true` split across lines defeated the per-line diff lint and let a vacuous (sound-but-meaningless) theorem into `library/`. New authoritative whole-file, whitespace-collapsed check `tools/gate_a/check_library_options.py` (12 tests) — `autoImplicit`/`relaxedAutoImplicit` re-enables in the verified library now fail Gate A regardless of source formatting (SPEC-006-B)
