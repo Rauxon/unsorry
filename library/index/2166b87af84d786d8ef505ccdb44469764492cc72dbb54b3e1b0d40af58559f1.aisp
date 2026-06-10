@@ -1,0 +1,9 @@
+𝔸5.1.lemma.2166b87af84d@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜2166b87af84d786d8ef505ccdb44469764492cc72dbb54b3e1b0d40af58559f1; goal≜nat-mul-add-distrib; name≜nat_mul_add_distrib}
+⟦Σ:Stmt⟧{
+  stmt≜theorem nat_mul_add_distrib (a b c : Nat) : a * (b + c) = a * b + a * c
+}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
