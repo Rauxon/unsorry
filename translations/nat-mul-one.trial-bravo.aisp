@@ -1,0 +1,9 @@
+𝔸5.1.tr.nat-mul-one.trial-bravo@2026-06-10
+γ≔unsorry.translation
+⟦Ω:Tr⟧{goal≜nat-mul-one; agent≜trial-bravo}
+⟦Σ:Stmt⟧{
+  stmt≜∀n∈ℕ:n·1≡n
+}
+⟦Γ:Provenance⟧{src≜backlog/nat-mul-one.md; independent≜⊤}
+⟦Λ:Norm⟧{norm≜tools/fidelity}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
