@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜nat-dvd-refl
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/nat-dvd-refl.lean
-  sha≜∅
+  sha≜21adbf537c7014e5d0b1acb4fde42656f289a08c499399b2556247d41f61bdc5
+  aff≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
