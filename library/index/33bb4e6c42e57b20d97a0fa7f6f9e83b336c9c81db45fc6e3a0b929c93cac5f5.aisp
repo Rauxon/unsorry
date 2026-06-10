@@ -1,0 +1,9 @@
+𝔸5.1.lemma.33bb4e6c42e5@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜33bb4e6c42e57b20d97a0fa7f6f9e83b336c9c81db45fc6e3a0b929c93cac5f5; goal≜nat-even-or-odd; name≜nat_even_or_odd_thm}
+⟦Σ:Stmt⟧{
+  stmt≜theorem nat_even_or_odd_thm (n : Nat) : Even n ∨ Odd n
+}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
