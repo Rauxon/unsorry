@@ -17,7 +17,8 @@ Determines whether the PR touches Lean-relevant paths: `library/**`, `goals/**/*
 - `lake build UnsorryLibrary --wfail` — verified: exits 1 on a sorried library module, fresh **and** replayed from Lake's warning cache; exits 0 clean.
 - `lake exe axiom_audit Unsorry.<each library module>` and `lake exe axiom_audit --allow-sorry goals.<each goal module>` (module lists enumerated from the tree; skip the goals call when no `.lean` goals exist). Authoritative (SPEC-006-A).
 - `lake env leanchecker Unsorry.<modules>` — kernel-replays the environment (anti-tampering).
-- Textual lint (belt only): fail if the PR diff under `library/` matches `\b(sorry|admit|sorryAx|native_decide|axiom|unsafe|implemented_by|extern)\b` or `set_option\s+autoImplicit\s+true`. Findings duplicate the audit; the value is a faster, louder failure.
+- **Forbidden elaboration options** (`python3 -m tools.gate_a.check_library_options library`) — **authoritative** for the autoImplicit vector, not a belt. The build, axiom audit and leanchecker all *pass* a vacuous theorem enabled by `set_option autoImplicit true` (it is sound, merely meaningless — verified in sandbox and by W3 red-team PR #64), so the scan is the only layer that catches it. It scans every `library/**/*.lean` whole-file with all whitespace collapsed, so splitting the option across lines cannot evade it (the exact #64 bypass). `autoImplicit`/`relaxedAutoImplicit` have no legitimate use in the verified library. Self-tested by `tools/gate_a/tests/`.
+- Textual lint (belt only): fail if the PR diff under `library/` matches `\b(sorry|admit|sorryAx|native_decide|axiom|unsafe|implemented_by|extern)\b`. Findings duplicate the audit; the value is a faster, louder failure.
 - Footprint publishing: upload the audit JSON as artifact `axiom-report` (durable evidence) and upsert a sticky PR comment (HTML marker `<!-- axiom-report -->`) with a per-declaration footprint table.
 
 ## Required-check configuration
