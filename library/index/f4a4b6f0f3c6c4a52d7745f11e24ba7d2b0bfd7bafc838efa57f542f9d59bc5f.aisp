@@ -1,0 +1,9 @@
+𝔸5.1.lemma.f4a4b6f0f3c6@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜f4a4b6f0f3c6c4a52d7745f11e24ba7d2b0bfd7bafc838efa57f542f9d59bc5f; goal≜int-add-neg; name≜int_add_neg_thm}
+⟦Σ:Stmt⟧{
+  stmt≜theorem int_add_neg_thm (n : Int) : n + (-n) = 0
+}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
