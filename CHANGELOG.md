@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-06-10
+
+### Added
+
+- **First unformalised-in-mathlib lemma proved**: Nicomachus's theorem `∑ k³ = (∑ k)²` (`nicomachus-sum-cubes`), verified mathlib-absent before the run, proved directly by the swarm with the statement-binding obligation satisfied — Phase 2's exit metric (#133)
+- Phase-2 target run `phase2-run-001` (`docs/metrics/phase2-run-001.{md,json}`): direct-proof path, decomposition available but not needed, binding held (#134)
+
 ## [1.1.0] - 2026-06-10
 
 ### Added
