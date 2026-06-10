@@ -12,6 +12,7 @@ green before auto-merge, and no metric run is ever pushed directly to `main`.
 | Run | Date | Trial | Records |
 |---|---|---|---|
 | `phase0-run-001` | 2026-06-10 | Phase-0 swarm trial W2 (3 supervised agents + 1 sweep agent, 10 backlog goals) | [phase0-run-001.json](phase0-run-001.json) · [phase0-run-001.md](phase0-run-001.md) |
+| `gate-a-redteam-001` | 2026-06-10 | Gate A red team W3 (9 adversarial bypass vectors, real PRs) | [gate-a-redteam-001.md](gate-a-redteam-001.md) |
 
 ## Machine-record JSON schema
 
