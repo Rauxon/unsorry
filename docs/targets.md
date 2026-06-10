@@ -4,14 +4,24 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**4 open · 17 proved · 21 total prove-goals.**
+**14 open · 17 proved · 31 total prove-goals.**
 
 | Goal | Status | Diff | Source | Reference |
 |------|--------|:----:|--------|-----------|
+| `alternating-sum-naturals` — For every natural n, the sum over i in 0..n-1 of (-1)^i (i+1) equals -(n/2) if n is even and (n/2)+1 if n is odd (integer division over ℤ). | open | 3 | classic identities | Standard arithmetic alternating-series partial sums (1-2+3-4+...); tabulated in Hardy, Divergent Series, Ch. 1; elementary induction exercise in discrete-math texts. |
+| `factorial-telescope-sum` — For every natural n, the sum over i in 0..n of i * (i!) equals (n+1)! - 1. | open | 2 | classic identities | Classic telescoping identity from i·i! = (i+1)! - i!; exercise in Graham, Knuth & Patashnik, Concrete Mathematics, 2nd ed., Ch. 2 (perturbation/telescoping). |
 | `nat-mul-one-thm` — One is a right identity for natural-number multiplication. | open | 1 | — | — |
 | `nat-mul-zero-thm` — Any natural number times zero is zero. | open | 1 | — | — |
 | `nat-zero-le` — Every natural number is at least zero. | open | 1 | — | — |
+| `nicomachus-sum-cubes-triangular` — For every natural n, the sum over i in 0..n of i^3 equals (n(n+1)/2)^2 (the explicit triangular-number form of Nicomachus' theorem). | open | 3 | Freek 100 / classic | Nicomachus of Gerasa, Introduction to Arithmetic, Book II, in explicit closed form; Graham, Knuth & Patashnik, Concrete Mathematics, §2.5 (∑k^3 = (n(n+1)/2)^2). |
+| `not-prime-pow-four-add-four` — For every natural n with n > 1, n^4 + 4 is not prime, via the Sophie Germain factorization n^4+4 = (n^2-2n+2)(n^2+2n+2). | open | 3 | classic identities | Sophie Germain's identity, compositeness corollary. Sierpiński, Elementary Theory of Numbers (PWN/North-Holland, 1988); standard olympiad result. |
 | `or-comm-imp` — Disjunction commutes. | open | 1 | — | — |
+| `platonic-schlafli-core` — For p,q >= 3, the only solutions to 1/p + 1/q > 1/2 are the five Schläfli pairs {3,3},{3,4},{4,3},{3,5},{5,3} — the bounded-arithmetic core of 'there are exactly five Platonic solids'. | open | 4 | Freek 100 (#50) | Freek Wiedijk's 100 Theorems #50 (The Number of Platonic Solids) — EMPTY in the Lean column (only HOL Light). Euclid, Elements XIII; Coxeter, Regular Polytopes, Ch. 1. The 1/p+1/q>1/2 reduction is… |
+| `sum-range-fib-sq` — For every natural n, the sum over i in 0..n of (fib i)^2 equals fib n * fib (n+1) (the telescoping identity F_0^2+...+F_n^2 = F_n F_{n+1}). | open | 2 | classic identities | Standard Fibonacci telescoping identity; Koshy, Fibonacci and Lucas Numbers with Applications, §5; Vajda, Fibonacci & Lucas Numbers, and the Golden Section. |
+| `sum-range-odd-eq-sq` — For every natural n, the sum over i in 0..n-1 of (2i+1) equals n^2 (i.e. 1+3+5+...+(2n-1) = n^2). | open | 1 | classic identities | Classical 'gnomon' identity (sum of consecutive odd numbers is a perfect square). Graham, Knuth & Patashnik, Concrete Mathematics, 2nd ed., §2.5; Rosen, Discrete Mathematics and Its Applications, 7th… |
+| `sum-range-pow-four-closed-form` — For every natural n, 30 * (sum of k^4 for k in 0..n) = n(n+1)(2n+1)(3n^2+3n-1), the integer (ℤ) form of the Faulhaber p=4 identity. | open | 2 | classic identities | Faulhaber's formula, case p=4. Conway & Guy, The Book of Numbers, Ch. 2; Knuth, 'Johann Faulhaber and sums of powers', Math. Comp. 61 (1993). |
+| `sum-range-sq-closed-form` — For every natural n, 6 * (sum of i^2 for i in 0..n) = n(n+1)(2n+1), the integer form of 1^2+...+n^2 = n(n+1)(2n+1)/6. | open | 2 | classic identities | Faulhaber's formula, case p=2 (square pyramidal number). Apostol, Calculus Vol. 1, 2nd ed., §I.4.2; Graham, Knuth & Patashnik, Concrete Mathematics, §2.5; Avigad/Massot, Mathematics in Lean, §5… |
+| `sum-range-sq-odd-closed-form` — For every natural n, 3 * (sum of (2i+1)^2 for i in 0..n-1) = n(2n-1)(2n+1); i.e. 1^2+3^2+...+(2n-1)^2 = n(2n-1)(2n+1)/3. | open | 2 | classic identities | Standard finite-sum identity ∑(2k-1)^2 = n(2n-1)(2n+1)/3; Concrete Mathematics §2.5 exercises; Gradshteyn & Ryzhik, Table of Integrals, Series, and Products (sums section). |
 | `and-comm-imp` — Conjunction commutes. | proved | 1 | — | — |
 | `int-add-neg` — Adding the negation of an integer yields zero. | proved | 1 | — | — |
 | `int-neg-neg` — Double negation of an integer is the identity. | proved | 1 | — | — |

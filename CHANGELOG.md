@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- First sourced target batch (ADR-012): 10 vetted unformalised-in-mathlib theorems admitted to the backlog — sum of odd numbers = n², Faulhaber k=2/k=4 closed forms, Nicomachus triangular form, Fibonacci sum-of-squares, a factorial telescoping sum, n⁴+4 compositeness (Sophie Germain), the sum-of-odd-squares form, an alternating natural sum, and the Platonic-solids Schläfli arithmetic core. Each build-checked (type-checks vs mathlib v4.30.0) and machine-absence-checked; surfaced on the `docs/targets.md` board
+
+
+### Added
+
 - Backlog-sourcing pipeline (ADR-012, SPEC-012-A): `tools/sourcing/check_absence.py` (machine mathlib-absence check, grep-authoritative + best-effort Loogle, records the rev), `tools/sourcing/targets_board.py` → `docs/targets.md` (the human worklist), a `propose-target` issue template, and `docs/proposals/backlog-sourcing.md`. Scope boundary stated: formalisation gap, not open conjectures. 13 tests
 
 
