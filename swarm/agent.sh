@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# swarm/agent.sh — Phase-0 translation-only agent loop (ADR-007, SPEC-007-A).
+# swarm/agent.sh — swarm agent loop (ADR-006, ADR-007, SPEC-007-A).
+# Phase-0 translate-only mode + Phase-1 prove mode.
 #
 # Usage:
 #   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
+#   ./swarm/agent.sh --prove [--once] [--goal <id>] [--dry-run]
 #   ./swarm/agent.sh --self-test
 #
 # Must be run from the repository root. Record parsing, claim liveness, the
@@ -36,10 +38,12 @@ usage() {
   cat <<'EOF'
 Usage:
   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
+  ./swarm/agent.sh --prove [--once] [--goal <id>] [--dry-run]
   ./swarm/agent.sh --self-test
 
 Flags:
   --translate-only  Phase-0 mode: only phase≡translate goals are candidates
+  --prove           Phase-1 mode: only phase≡prove, unproved goals are candidates
   --once            Run exactly one cycle then exit
   --goal <id>       Restrict selection to one goal (trial orchestration)
   --dry-run         Stop after selection: print the would-be claim, claim nothing
@@ -47,10 +51,11 @@ Flags:
 
 Environment:
   UNSORRY_AGENT_ID  Swarm identity (default: ~/.unsorry/agent-id, created on first run)
-  UNSORRY_MODEL     Model for translation calls (default: sonnet)
+  UNSORRY_MODEL     Model for translation/proof calls (default: sonnet)
   UNSORRY_WORKDIR   Claims worktree + metrics.jsonl home (default: ~/.unsorry/work)
   UNSORRY_WALL      Wall-clock seconds per claude call (default: 1800)
   UNSORRY_TTL       Claim TTL seconds (default: tools/gate_b/config.py TTL_SECONDS)
+  UNSORRY_ATTEMPTS  Prove build/audit attempts (default: config.py BUDGET_ATTEMPTS)
 EOF
 }
 
@@ -61,6 +66,8 @@ EOF
 
 py_helper() {
   python3 - "$@" <<'PY'
+import hashlib
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -113,8 +120,156 @@ def _translation_agents(translations_dir: str, goal: str) -> list[str]:
     return sorted(agents)
 
 
+# ── prove-cycle pure helpers (Phase 1, SPEC-007-A) ──────────────────────────
+# A prove goal carries no AISP statement — only goals/<id>.lean with a
+# `theorem <name> <signature> := by sorry`. The proof goes in a NEW library
+# module that re-states the SAME theorem and proves it; the library index is
+# keyed by the content address of the goal's Lean statement.
+
+
+def camel_name(goal: str) -> str:
+    """CamelCase library-module name from a goal id (the contract Id grammar
+    is `[a-z0-9][a-z0-9-]*`): split on '-', capitalize each part, join.
+    `nat-add-comm-thm` → `NatAddCommThm`. Deterministic and reversible enough
+    to be unique (the goal-id grammar forbids the only collision sources)."""
+    parts = [p for p in goal.split("-") if p]
+    if not parts:
+        sys.exit(f"py_helper: empty goal id {goal!r}")
+    return "".join(p[:1].upper() + p[1:] for p in parts)
+
+
+def lean_statement(lean_text: str) -> str:
+    """The canonical statement string of a goal's Lean file: drop `import`
+    and `--` comment lines, take the `theorem`/`lemma` declaration, cut the
+    proof (everything from the body `:=` onward), and collapse every run of
+    whitespace to a single space (strip ends). The theorem name and full
+    signature are retained — this string IS the content the index addresses."""
+    body = "\n".join(
+        ln for ln in lean_text.splitlines()
+        if not ln.lstrip().startswith(("--", "import"))
+    )
+    match = re.search(r"\b(?:theorem|lemma)\b", body)
+    if match is None:
+        sys.exit("py_helper: goal .lean has no theorem/lemma declaration")
+    decl = body[match.start():]
+    cut = decl.find(":=")
+    if cut == -1:
+        sys.exit("py_helper: goal .lean theorem has no ':=' proof separator")
+    return re.sub(r"\s+", " ", decl[:cut]).strip()
+
+
+def lean_theorem_name(lean_text: str) -> str:
+    """The declared name of a goal's `theorem <name> …`/`lemma <name> …`."""
+    match = re.search(r"\b(?:theorem|lemma)\s+([A-Za-z_][A-Za-z0-9_']*)", lean_text)
+    if match is None:
+        sys.exit("py_helper: goal .lean has no named theorem/lemma")
+    return match.group(1)
+
+
+def lean_statement_sha(lean_text: str) -> str:
+    """Content address of a goal's Lean statement: sha256 (lowercase hex) of
+    the UTF-8 bytes of `lean_statement`. This is the prove-cycle analogue of
+    `tools.fidelity` statement_sha for translate goals (which have an AISP
+    canonical statement to address); a prove goal has only its Lean text, so
+    the index is keyed by the sha of that normalized statement string."""
+    return hashlib.sha256(lean_statement(lean_text).encode("utf-8")).hexdigest()
+
+
+def _proved_goals(library_dir: str) -> set[str]:
+    """Goal ids that already have a merged proof: any library/index/<sha>.aisp
+    whose `goal≜` names them. The index entry is the authoritative 'proved'
+    marker (a goal is proved iff it has an index entry)."""
+    proved: set[str] = set()
+    index_dir = Path(library_dir) / "index"
+    if index_dir.is_dir():
+        for path in sorted(index_dir.glob("*.aisp")):
+            record = parse_record(path.read_text(encoding="utf-8"))
+            goal = record.fields.get("goal")
+            if goal:
+                proved.add(goal)
+    return proved
+
+
+def cmd_camel_name(args):
+    """camel-name <goal-id> — print the CamelCase module name."""
+    print(camel_name(args[0]))
+
+
+def cmd_lean_stmt(args):
+    """lean-stmt <goal.lean> — print the canonical Lean statement string."""
+    print(lean_statement(Path(args[0]).read_text(encoding="utf-8")))
+
+
+def cmd_lean_name(args):
+    """lean-name <goal.lean> — print the declared theorem/lemma name."""
+    print(lean_theorem_name(Path(args[0]).read_text(encoding="utf-8")))
+
+
+def cmd_lean_sha(args):
+    """lean-sha <goal.lean> — print the content address of the statement."""
+    print(lean_statement_sha(Path(args[0]).read_text(encoding="utf-8")))
+
+
+def cmd_prove_candidates(args):
+    """prove-candidates <goals-dir> <claims-dir> <library-dir> <agent> [<at>]
+
+    SPEC-007-A prove step 2: goals with phase≡prove, status≡open, fewer than
+    PROVE_CLAIM_CAP live claims by distinct other agents, no live claim by
+    self, and NOT already proved (no library/index entry). Lexicographic
+    goal-id order."""
+    goals_dir, claims_dir, library_dir, agent = args[:4]
+    now = _now(args[4] if len(args) > 4 else "")
+    proved = _proved_goals(library_dir)
+    for path in sorted(Path(goals_dir).glob("*.aisp")):
+        goal = path.stem
+        record = parse_record(path.read_text(encoding="utf-8"))
+        if record.fields.get("phase") != "prove":
+            continue
+        if record.fields.get("status") != "open":
+            continue
+        if goal in proved:
+            continue
+        others, live_self = _live_other_agents(claims_dir, goal, agent, now)
+        if live_self or len(others) >= config.PROVE_CLAIM_CAP:
+            continue
+        print(goal)
+
+
+def cmd_prove_claimable(args):
+    """prove-claimable <claims-dir> <goal> <agent> [<at>]
+
+    Post-rebase recheck (prove step 4): exit 0 while the goal still has fewer
+    live claims by distinct other agents than PROVE_CLAIM_CAP, 1 otherwise."""
+    claims_dir, goal, agent = args[:3]
+    now = _now(args[3] if len(args) > 3 else "")
+    others, _ = _live_other_agents(claims_dir, goal, agent, now)
+    sys.exit(0 if len(others) < config.PROVE_CLAIM_CAP else 1)
+
+
+def cmd_render_index(args):
+    """render-index <sha> <goal> <name> <stmt> — print a library/index entry
+    (SPEC-007-A prove step on success), same shape as the existing entries.
+    The date header is today UTC; tags and metrics start empty (the affinity
+    machine fills `use`/`aff` later; tags are curated by humans)."""
+    sha, goal, name, stmt = args[:4]
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    print(f"𝔸5.1.lemma.{sha[:12]}@{today}")
+    print("γ≔unsorry.lemma.index")
+    print(f"⟦Ω:Lemma⟧{{sha≜{sha}; goal≜{goal}; name≜{name}}}")
+    print("⟦Σ:Stmt⟧{")
+    print(f"  stmt≜{stmt}")
+    print("}")
+    print("⟦Γ:Tags⟧{tags≜⟨⟩}")
+    print("⟦Λ:Meta⟧{use≜0; aff≜0}")
+    print("⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩")
+
+
 def cmd_ttl(_args):
     print(config.TTL_SECONDS)
+
+
+def cmd_attempts(_args):
+    print(config.BUDGET_ATTEMPTS)
 
 
 def cmd_now(_args):
@@ -224,12 +379,20 @@ def cmd_rewrite_goal(args):
 
 COMMANDS = {
     "ttl": cmd_ttl,
+    "attempts": cmd_attempts,
     "now": cmd_now,
     "is-id": cmd_is_id,
     "candidates": cmd_candidates,
     "sweep": cmd_sweep,
     "claimable": cmd_claimable,
     "rewrite-goal": cmd_rewrite_goal,
+    "camel-name": cmd_camel_name,
+    "lean-stmt": cmd_lean_stmt,
+    "lean-name": cmd_lean_name,
+    "lean-sha": cmd_lean_sha,
+    "prove-candidates": cmd_prove_candidates,
+    "prove-claimable": cmd_prove_claimable,
+    "render-index": cmd_render_index,
 }
 
 if len(sys.argv) < 2 or sys.argv[1] not in COMMANDS:
@@ -667,6 +830,149 @@ check_in() {
   return 0
 }
 
+# ───────────────────────────── prove cycle (Phase 1) ─────────────────────────
+# Reuses the claim / PR / release plumbing above; the prove arm differs only
+# in the work (drive `claude` to write a Lean proof module) and verify
+# (lake build --wfail ∧ axiom_audit ∧ check_library_options) steps.
+
+PROVE_PROMPT_FILE="swarm/prompts/prove.md"
+
+# Prove step 5: one claude call constrained to write the target Lean module.
+# --max-turns does not exist on claude 2.1.170 (the translate cycle dropped it
+# for the same reason); the $UNSORRY_WALL timeout bounds the call instead.
+# Tools are limited to reading/editing/writing and the read-only lake/git
+# commands the prover needs to check its own work (build, env, exe, diff).
+call_claude_prove() {
+  local prompt="$1" workdir="$2"
+  ( cd "$workdir" \
+    && timeout "$UNSORRY_WALL" claude -p "$prompt" \
+         --model "$UNSORRY_MODEL" --output-format text \
+         --allowedTools \
+           "Read,Edit,Write,Bash(lake build *),Bash(lake env *),Bash(lake exe *),Bash(git diff *)" )
+}
+
+# Prove step 3: local soundness verification of a candidate proof tree, BEFORE
+# any PR (the agent self-verifying per ADR-006 / design-doc step 6). All three
+# must pass on the tree at <root> for module Unsorry.<camel>:
+#   1. lake build UnsorryLibrary --wfail   (zero-sorry, zero-warning bar)
+#   2. lake exe axiom_audit Unsorry.<camel> (whitelist only, NO --allow-sorry)
+#   3. python3 -m tools.gate_a.check_library_options <root>/library
+prove_local_verify() {
+  local root="$1" camel="$2"
+  ( cd "$root" \
+    && lake build UnsorryLibrary --wfail \
+    && lake exe axiom_audit "Unsorry.$camel" \
+    && python3 -m tools.gate_a.check_library_options library ) >/dev/null 2>&1
+}
+
+# Prove steps 5–6: drive `claude` to write library/Unsorry/<camel>.lean proving
+# the goal's theorem, then locally verify. Up to config.BUDGET_ATTEMPTS (2)
+# attempts: on a failed build/audit the error is fed back to a fresh call once,
+# then give up. The proof tree is a worktree at <prwt> branched from
+# origin/main; on success it carries the proved module ready for check-in.
+# Prints nothing; returns 0 with the verified module in place, 1 on failure.
+run_proof() {
+  local goal="$1" prwt="$2" camel="$3"
+  local stmt name target prompt attempt err=""
+  name="$(py_helper lean-name "$prwt/goals/$goal.lean")" || return 1
+  stmt="$(py_helper lean-stmt "$prwt/goals/$goal.lean")" || return 1
+  target="library/Unsorry/$camel.lean"
+  for attempt in $(seq 1 "$UNSORRY_ATTEMPTS"); do  # config.BUDGET_ATTEMPTS
+    prompt="$(cat "$PROVE_PROMPT_FILE")
+$stmt
+
+Target module file (relative to repo root): $target
+Lean module name (for the audit): Unsorry.$camel
+Theorem name to re-state and prove: $name"
+    if [ -n "$err" ]; then
+      prompt="$prompt
+
+A previous attempt's module did NOT pass local verification. The combined
+\`lake build UnsorryLibrary --wfail\` / \`lake exe axiom_audit Unsorry.$camel\`
+output was:
+$err
+Fix the module so both pass. Write the corrected $target."
+    fi
+    rm -f "$prwt/$target"
+    if ! call_claude_prove "$prompt" "$prwt" >/dev/null; then
+      log "claude prove call failed or timed out for $goal (attempt $attempt)"
+      err="(claude call failed or timed out)"
+      continue
+    fi
+    if [ ! -f "$prwt/$target" ]; then
+      log "prover did not write $target for $goal (attempt $attempt)"
+      err="(no file was written at $target)"
+      continue
+    fi
+    if prove_local_verify "$prwt" "$camel"; then
+      log "proof of $goal verified locally (attempt $attempt)"
+      return 0
+    fi
+    log "local verification of $goal failed (attempt $attempt)"
+    err="$( ( cd "$prwt" && lake build UnsorryLibrary --wfail \
+      && lake exe axiom_audit "Unsorry.$camel" ) 2>&1 | tail -n 40 )"
+  done
+  return 1
+}
+
+# Prove steps 7–9: on a verified proof, compute the goal's Lean-statement
+# content address, write library/index/<sha>.aisp, flip the goal record to
+# status≜proved + sha≜<sha>, and open an auto-merge PR carrying the library
+# module + index entry + goal edit. Reuses submit_pr_tree (Gate B validate,
+# commit, push, gh pr create/merge --auto --squash). The PR tree already holds
+# the verified module (run_proof wrote it into <prwt>).
+check_in_proof() {
+  local goal="$1" prwt="$2" camel="$3"
+  local name sha
+  name="$(py_helper lean-name "$prwt/goals/$goal.lean")" || return 1
+  sha="$(py_helper lean-sha "$prwt/goals/$goal.lean")" || return 1
+  local stmt
+  stmt="$(py_helper lean-stmt "$prwt/goals/$goal.lean")" || return 1
+
+  mkdir -p "$prwt/library/index" || return 1
+  py_helper render-index "$sha" "$goal" "$name" "$stmt" \
+    > "$prwt/library/index/$sha.aisp" || return 1
+  py_helper rewrite-goal "$prwt/goals/$goal.aisp" proved "$sha" || return 1
+
+  submit_pr_tree "$prwt" "$(git -C "$prwt" rev-parse --abbrev-ref HEAD)" \
+    "prove($goal): $name by $AGENT_ID" \
+    "Automated Phase-1 proof of goal \`$goal\` by agent \`$AGENT_ID\` (ADR-006, ADR-007, SPEC-007-A). New library module \`library/Unsorry/$camel.lean\` re-states and proves \`$name\`; built with \`lake build UnsorryLibrary --wfail\` and audited with \`lake exe axiom_audit Unsorry.$camel\` (whitelist only). Index entry keyed by the content address of the goal's Lean statement." \
+    library goals || return 1
+  emit_event proved "$goal"
+  emit_event pr-opened "$goal"
+  log "opened auto-merge prove PR for $goal (sha ${sha:0:12})"
+  return 0
+}
+
+# Prove cycle driver (steps 4–10 for one claimed prove goal): claim, open a
+# proof worktree, run_proof, check_in_proof, release. On any failure after the
+# claim: release the claim and emit prove-failed (Phase-1 keeps it simple — the
+# design doc's decomposition path is Phase-2). Returns 0 on a clean cycle.
+prove_goal() {
+  local goal="$1"
+  local camel prwt branch ok=0
+  camel="$(py_helper camel-name "$goal")" || return 1
+  branch="$(feature_branch prove "$goal")" || return 1
+  prwt="$UNSORRY_WORKDIR/prove-${goal}-${AGENT_ID}"
+
+  open_pr_worktree "$prwt" "$branch" || return 1
+  if run_proof "$goal" "$prwt" "$camel"; then
+    if check_in_proof "$goal" "$prwt" "$camel"; then
+      ok=1
+    fi
+  fi
+  git worktree remove --force "$prwt" >/dev/null 2>&1 || true
+  git branch -q -D "$branch" >/dev/null 2>&1 || true
+
+  release_claim "$goal" || true
+  if [ "$ok" -eq 1 ]; then
+    return 0
+  fi
+  emit_event prove-failed "$goal"
+  log "prove of $goal failed after $UNSORRY_ATTEMPTS attempt(s) — claim released, flagged"
+  return 1
+}
+
 # Step 10: remove the claim file, commit, push. Re-entrant like claim_goal:
 # every retry rebuilds the release commit from scratch on a freshly-fetched,
 # hard-reset origin/claims tip, and the final-failure path also hard-resets —
@@ -1066,6 +1372,194 @@ test_release_push_reentrancy() {
     || { log "  no released event emitted"; return 1; }
 }
 
+# ── prove-cycle pure-function tests (Phase 1) ───────────────────────────────
+# Hermetic: temp prove-goal fixtures, injected clock; no claude/gh/lake/network.
+
+# Write a minimal prove-phase goal (record + .lean) under <tree>/goals.
+make_prove_goal() {
+  local tree="$1" id="$2" decl="$3"
+  mkdir -p "$tree/goals" || return 1
+  cat > "$tree/goals/$id.aisp" <<EOF
+𝔸5.1.goal.$id@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜$id
+  phase≜prove
+  status≜open
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/$id.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/$id.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
+EOF
+  printf '%s := by\n  sorry\n' "$decl" > "$tree/goals/$id.lean"
+}
+
+test_camel_name() {
+  local got
+  for pair in \
+    "nat-add-comm-thm:NatAddCommThm" \
+    "int-neg-neg:IntNegNeg" \
+    "a0:A0" \
+    "list-reverse-reverse:ListReverseReverse"; do
+    got="$(py_helper camel-name "${pair%%:*}")" || return 1
+    [ "$got" = "${pair#*:}" ] \
+      || { log "  camel-name ${pair%%:*}: expected '${pair#*:}', got '$got'"; return 1; }
+  done
+}
+
+test_lean_statement_helpers() {
+  local tree decl name stmt
+  tree="$(mktemp -d "$SESSION_TMP/leanstmt.XXXXXX")" || return 1
+  decl="theorem nat_add_comm_thm (a b : Nat) : a + b = b + a"
+  make_prove_goal "$tree" nat-add-comm-thm "$decl" || return 1
+  name="$(py_helper lean-name "$tree/goals/nat-add-comm-thm.lean")" || return 1
+  [ "$name" = "nat_add_comm_thm" ] \
+    || { log "  lean-name: expected nat_add_comm_thm, got '$name'"; return 1; }
+  # The statement string drops the proof and collapses whitespace.
+  stmt="$(py_helper lean-stmt "$tree/goals/nat-add-comm-thm.lean")" || return 1
+  [ "$stmt" = "$decl" ] \
+    || { log "  lean-stmt: expected '$decl', got '$stmt'"; return 1; }
+}
+
+test_lean_sha_determinism() {
+  local tree a b spaced
+  tree="$(mktemp -d "$SESSION_TMP/leansha.XXXXXX")" || return 1
+  make_prove_goal "$tree" g1 "theorem t (n : Nat) : n + 0 = n" || return 1
+  a="$(py_helper lean-sha "$tree/goals/g1.lean")" || return 1
+  b="$(py_helper lean-sha "$tree/goals/g1.lean")" || return 1
+  [ "$a" = "$b" ] || { log "  lean-sha not deterministic ($a vs $b)"; return 1; }
+  [ "${#a}" -eq 64 ] || { log "  lean-sha is not a 64-hex digest: '$a'"; return 1; }
+  [[ "$a" =~ ^[0-9a-f]{64}$ ]] || { log "  lean-sha not lowercase hex: '$a'"; return 1; }
+  # Whitespace and the proof body are normalized out: a re-indented goal with
+  # a different proof but the same statement addresses to the same sha.
+  printf 'theorem t (n : Nat)  :   n + 0 = n  := by\n  simp\n' \
+    > "$tree/goals/g1.lean"
+  spaced="$(py_helper lean-sha "$tree/goals/g1.lean")" || return 1
+  [ "$spaced" = "$a" ] \
+    || { log "  lean-sha changed under whitespace/proof variation ($spaced)"; return 1; }
+}
+
+test_prove_candidate_filtering() {
+  local tree claims ttl got
+  tree="$(mktemp -d "$SESSION_TMP/provecand.XXXXXX")" || return 1
+  claims="$tree/claims"
+  mkdir -p "$claims" "$tree/library/index" || return 1
+  ttl="$(py_helper ttl)" || return 1
+  make_prove_goal "$tree" gamma "theorem g (n : Nat) : n + 0 = n" || return 1
+  make_prove_goal "$tree" alpha "theorem a (n : Nat) : 0 + n = n" || return 1
+  # A translate goal is never a prove candidate.
+  cp "$T_FIXTURES/valid_tree/goals/nat-add-comm.aisp" "$tree/goals/" || return 1
+
+  # A: two open prove goals, no claims — both candidates, lexicographic order.
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "$(printf 'alpha\ngamma')" ] \
+    || { log "  A: expected 'alpha gamma', got '$got'"; return 1; }
+
+  # B: one live claim by another agent on alpha — cap 1 reached, excluded.
+  render_claim_record alpha agent-other "$T_LIVE_TS" "$ttl" \
+    > "$claims/alpha.agent-other.aisp"
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "gamma" ] \
+    || { log "  B: expected 'gamma' (alpha capped), got '$got'"; return 1; }
+
+  # C: that claim expired — alpha is claimable again.
+  render_claim_record alpha agent-other "$T_OLD_TS" "$ttl" \
+    > "$claims/alpha.agent-other.aisp"
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "$(printf 'alpha\ngamma')" ] \
+    || { log "  C: expected 'alpha gamma', got '$got'"; return 1; }
+
+  # D: a live self-claim on alpha excludes it (no double-claim).
+  rm -f "$claims"/alpha.*.aisp
+  render_claim_record alpha agent-self "$T_LIVE_TS" "$ttl" \
+    > "$claims/alpha.agent-self.aisp"
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "gamma" ] \
+    || { log "  D: expected 'gamma' (self-claimed alpha), got '$got'"; return 1; }
+
+  # E: a status≜translated/non-open prove goal is excluded.
+  rm -f "$claims"/alpha.*.aisp
+  py_helper rewrite-goal "$tree/goals/alpha.aisp" blocked || return 1
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "gamma" ] \
+    || { log "  E: expected 'gamma' (alpha blocked), got '$got'"; return 1; }
+}
+
+test_already_proved_excluded() {
+  local tree claims sha got
+  tree="$(mktemp -d "$SESSION_TMP/proved.XXXXXX")" || return 1
+  claims="$tree/claims"
+  mkdir -p "$claims" "$tree/library/index" || return 1
+  make_prove_goal "$tree" delta "theorem d (n : Nat) : n + 0 = n" || return 1
+  make_prove_goal "$tree" gamma "theorem g (n : Nat) : 0 + n = n" || return 1
+
+  # Both open, no index — both candidates.
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "$(printf 'delta\ngamma')" ] \
+    || { log "  expected 'delta gamma', got '$got'"; return 1; }
+
+  # An index entry naming delta marks it proved ⇒ no longer a candidate, even
+  # though the goal record still reads status≜open (the merge edits both, but
+  # the index entry is the authoritative proved marker).
+  sha="$(py_helper lean-sha "$tree/goals/delta.lean")" || return 1
+  py_helper render-index "$sha" delta d \
+    "$(py_helper lean-stmt "$tree/goals/delta.lean")" \
+    > "$tree/library/index/$sha.aisp" || return 1
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "gamma" ] \
+    || { log "  expected 'gamma' (delta proved), got '$got'"; return 1; }
+}
+
+test_goal_proved_rewrite() {
+  # The exact prove step-8 machinery on a prove goal: status≜proved + sha.
+  local tree sha
+  tree="$(mktemp -d "$SESSION_TMP/proverewrite.XXXXXX")" || return 1
+  make_prove_goal "$tree" omega "theorem o (n : Nat) : n + 0 = n" || return 1
+  sha="$(py_helper lean-sha "$tree/goals/omega.lean")" || return 1
+  py_helper rewrite-goal "$tree/goals/omega.aisp" proved "$sha" || return 1
+  grep -qxF "  status≜proved" "$tree/goals/omega.aisp" \
+    || { log "  status not rewritten to proved"; return 1; }
+  grep -qxF "  sha≜$sha" "$tree/goals/omega.aisp" \
+    || { log "  sha line not set to the proof's content address"; return 1; }
+  # Nothing but status and sha changes (and the lean≜ artifact line survives).
+  grep -qxF "  lean≜goals/omega.lean" "$tree/goals/omega.aisp" \
+    || { log "  lean artifact line was disturbed"; return 1; }
+}
+
+test_render_index_gateb() {
+  # A rendered index entry + a proved goal validate under the real Gate B,
+  # given the goal's .lean and backlog src exist (as they do in a real PR
+  # tree branched from origin/main).
+  local tree sha stmt
+  tree="$(mktemp -d "$SESSION_TMP/idxgateb.XXXXXX")" || return 1
+  mkdir -p "$tree/library/index" "$tree/library/Unsorry" "$tree/backlog" || return 1
+  make_prove_goal "$tree" nat-add-zero-thm \
+    "theorem nat_add_zero_thm (n : Nat) : n + 0 = n" || return 1
+  printf '# nat-add-zero-thm\n\nAdding zero on the right leaves a natural unchanged.\n' \
+    > "$tree/backlog/nat-add-zero-thm.md"
+  # A library module must exist for the lib to be non-empty (its contents are
+  # not parsed by Gate B — soundness is Gate A's job).
+  cp "$T_FIXTURES/valid_tree/library/Unsorry/Basic.lean" "$tree/library/Unsorry/" \
+    2>/dev/null || printf 'theorem placeholder : True := trivial\n' \
+      > "$tree/library/Unsorry/Basic.lean"
+  sha="$(py_helper lean-sha "$tree/goals/nat-add-zero-thm.lean")" || return 1
+  stmt="$(py_helper lean-stmt "$tree/goals/nat-add-zero-thm.lean")" || return 1
+  py_helper render-index "$sha" nat-add-zero-thm nat_add_zero_thm "$stmt" \
+    > "$tree/library/index/$sha.aisp" || return 1
+  py_helper rewrite-goal "$tree/goals/nat-add-zero-thm.aisp" proved "$sha" || return 1
+  python3 -m tools.gate_b validate "$tree" >/dev/null \
+    || { log "  rendered index entry + proved goal failed Gate B"; return 1; }
+}
+
 run_self_tests() {
   local tests=(
     test_agent_id_generation
@@ -1080,6 +1574,13 @@ run_self_tests() {
     test_feature_branch_names
     test_claim_push_reentrancy
     test_release_push_reentrancy
+    test_camel_name
+    test_lean_statement_helpers
+    test_lean_sha_determinism
+    test_prove_candidate_filtering
+    test_already_proved_excluded
+    test_goal_proved_rewrite
+    test_render_index_gateb
   )
   local failures=0 t
   for t in "${tests[@]}"; do
@@ -1101,6 +1602,7 @@ run_self_tests() {
 # --------------------------------------------------------------------- main
 
 TRANSLATE_ONLY=0
+PROVE=0
 ONCE=0
 GOAL_FILTER=""
 DRY_RUN=0
@@ -1110,6 +1612,7 @@ parse_args() {
   while [ $# -gt 0 ]; do
     case "$1" in
       --translate-only) TRANSLATE_ONLY=1 ;;
+      --prove) PROVE=1 ;;
       --once) ONCE=1 ;;
       --goal)
         [ $# -ge 2 ] || { usage >&2; die_config "--goal requires a value"; }
@@ -1145,6 +1648,21 @@ select_candidates() {
   done < <(py_helper candidates goals "$CLAIMS_WT/claims" "$translations_dir" "$AGENT_ID" "")
 }
 
+# Prove candidates for this iteration: same --goal / HANDLED filtering as the
+# translate path, over the prove-candidate enumerator (phase≡prove, open,
+# uncapped, not already proved).
+select_prove_candidates() {
+  local cand
+  while IFS= read -r cand; do
+    [ -n "$cand" ] || continue
+    if [ -n "$GOAL_FILTER" ] && [ "$cand" != "$GOAL_FILTER" ]; then
+      continue
+    fi
+    [ -n "${HANDLED[$cand]:-}" ] && continue
+    printf '%s\n' "$cand"
+  done < <(py_helper prove-candidates goals "$CLAIMS_WT/claims" library "$AGENT_ID" "")
+}
+
 main() {
   parse_args "$@"
   require_repo_root
@@ -1158,8 +1676,11 @@ main() {
     run_self_tests
   fi
 
-  [ "$TRANSLATE_ONLY" -eq 1 ] \
-    || die_config "Phase 0 only supports --translate-only (or --self-test)"
+  if [ "$TRANSLATE_ONLY" -eq 1 ] && [ "$PROVE" -eq 1 ]; then
+    die_config "--translate-only and --prove are mutually exclusive"
+  fi
+  [ "$TRANSLATE_ONLY" -eq 1 ] || [ "$PROVE" -eq 1 ] \
+    || die_config "select a mode: --translate-only or --prove (or --self-test)"
 
   require_cmd git timeout date
   require_unsorry_origin
@@ -1175,6 +1696,9 @@ main() {
   UNSORRY_TTL="${UNSORRY_TTL:-$(py_helper ttl)}"
   [[ "$UNSORRY_TTL" =~ ^[0-9]+$ ]] \
     || die_config "UNSORRY_TTL '$UNSORRY_TTL' is not an integer"
+  UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-$(py_helper attempts)}"
+  [[ "$UNSORRY_ATTEMPTS" =~ ^[1-9][0-9]*$ ]] \
+    || die_config "UNSORRY_ATTEMPTS '$UNSORRY_ATTEMPTS' is not a positive integer"
   UNSORRY_WORKDIR="${UNSORRY_WORKDIR:-$HOME/.unsorry/work}"
   mkdir -p "$UNSORRY_WORKDIR" || die_config "cannot create UNSORRY_WORKDIR '$UNSORRY_WORKDIR'"
 
@@ -1182,9 +1706,11 @@ main() {
   if [ "$DRY_RUN" -eq 0 ]; then
     require_cmd claude gh
     gh auth status >/dev/null 2>&1 || die_config "gh is not authenticated"
+    [ "$PROVE" -eq 1 ] && require_cmd lake  # prove verify builds locally
   fi
 
-  log "agent $AGENT_ID starting (model=$UNSORRY_MODEL wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
+  local mode; [ "$PROVE" -eq 1 ] && mode=prove || mode=translate
+  log "agent $AGENT_ID starting ($mode; model=$UNSORRY_MODEL wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
 
   declare -A HANDLED=()
   declare -A SWEPT=()
@@ -1193,13 +1719,16 @@ main() {
   while :; do
     # Step 1 — pull main, refresh the claims worktree.
     sync_repo || { log "repository sync failed"; exit 1; }
-    translations_dir="$(main_translations_dir)" || exit 1
 
-    # Step 1b — convergence sweep: janitor work, claims nothing.
-    convergence_sweep "$translations_dir" || overall=1
-
-    # Steps 2–3 — enumerate and select.
-    candidates="$(select_candidates "$translations_dir")"
+    # Steps 1b–3 — enumerate and select (mode-specific). The convergence
+    # sweep is a translate-only janitor step; prove has no analogue in Phase 1.
+    if [ "$PROVE" -eq 1 ]; then
+      candidates="$(select_prove_candidates)"
+    else
+      translations_dir="$(main_translations_dir)" || exit 1
+      convergence_sweep "$translations_dir" || overall=1
+      candidates="$(select_candidates "$translations_dir")"
+    fi
     if [ -z "$candidates" ]; then
       log "no claimable goal — nothing to do"
       break
@@ -1207,8 +1736,8 @@ main() {
 
     if [ "$DRY_RUN" -eq 1 ]; then
       goal="$(printf '%s\n' "$candidates" | head -n 1)"
-      printf 'dry-run: would claim goal %s (translate; %d candidate(s): %s)\n' \
-        "$goal" "$(printf '%s\n' "$candidates" | wc -l)" \
+      printf 'dry-run: would claim goal %s (%s; %d candidate(s): %s)\n' \
+        "$goal" "$mode" "$(printf '%s\n' "$candidates" | wc -l)" \
         "$(printf '%s\n' "$candidates" | paste -sd ' ' -)"
       exit 0
     fi
@@ -1226,9 +1755,12 @@ main() {
       break
     fi
 
-    # Steps 5–10 — translate, check in, release.
+    # Steps 5–10 — work, check in, release (mode-specific). prove_goal owns
+    # its own release + prove-failed handling; the translate arm is unchanged.
     cycle_failed=0
-    if stmt="$(run_translation "$goal")"; then
+    if [ "$PROVE" -eq 1 ]; then
+      prove_goal "$goal" || cycle_failed=1
+    elif stmt="$(run_translation "$goal")"; then
       check_in "$goal" "$stmt" || cycle_failed=1
       release_claim "$goal" || cycle_failed=1
     else
