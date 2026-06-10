@@ -1,0 +1,19 @@
+𝔸5.1.goal.nat-le-add-right@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜nat-le-add-right
+  phase≜prove
+  status≜open
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/nat-le-add-right.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/nat-le-add-right.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

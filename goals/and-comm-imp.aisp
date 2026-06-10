@@ -1,0 +1,19 @@
+𝔸5.1.goal.and-comm-imp@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜and-comm-imp
+  phase≜prove
+  status≜open
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/and-comm-imp.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/and-comm-imp.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

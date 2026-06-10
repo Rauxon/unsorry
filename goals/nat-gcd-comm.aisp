@@ -1,0 +1,19 @@
+𝔸5.1.goal.nat-gcd-comm@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜nat-gcd-comm
+  phase≜prove
+  status≜open
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/nat-gcd-comm.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/nat-gcd-comm.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

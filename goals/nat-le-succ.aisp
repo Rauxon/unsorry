@@ -1,0 +1,19 @@
+𝔸5.1.goal.nat-le-succ@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜nat-le-succ
+  phase≜prove
+  status≜open
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/nat-le-succ.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/nat-le-succ.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

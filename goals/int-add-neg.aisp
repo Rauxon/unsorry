@@ -1,0 +1,19 @@
+𝔸5.1.goal.int-add-neg@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜int-add-neg
+  phase≜prove
+  status≜open
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/int-add-neg.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/int-add-neg.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

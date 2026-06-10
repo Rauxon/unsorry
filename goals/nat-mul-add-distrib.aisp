@@ -1,0 +1,19 @@
+𝔸5.1.goal.nat-mul-add-distrib@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜nat-mul-add-distrib
+  phase≜prove
+  status≜open
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/nat-mul-add-distrib.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/nat-mul-add-distrib.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
