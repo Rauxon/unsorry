@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜list-reverse-reverse
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,6 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/list-reverse-reverse.lean
-  sha≜∅
+  sha≜5000dc0c5697859b78f31e4174bac15885a37a19e2ded99ec0ede13b6a9e9459
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
