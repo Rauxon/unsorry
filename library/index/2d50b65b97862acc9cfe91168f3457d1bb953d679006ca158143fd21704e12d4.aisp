@@ -1,0 +1,9 @@
+𝔸5.1.lemma.2d50b65b9786@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜2d50b65b97862acc9cfe91168f3457d1bb953d679006ca158143fd21704e12d4; goal≜nat-add-comm-thm; name≜nat_add_comm_thm}
+⟦Σ:Stmt⟧{
+  stmt≜theorem nat_add_comm_thm (a b : Nat) : a + b = b + a
+}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
