@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Phase 3 roadmap proposal (`docs/proposals/phase3-roadmap.md`): the honest open frontier after Phase 2 — force decomposition end-to-end, drive to a chosen result through a dependency tree, upstream to mathlib, open the swarm at volume
+
+### Changed
+
+- README "The goal, honestly" reworked: the shakedown is over and Phase 2's bet paid off (first mathlib-absent lemma), reframed honestly — one elementary lemma is a proof of concept, not a research programme; the scale/compounding question is the Phase-3 frontier
+
+
+### Added
+
 - First sourced target batch (ADR-012): 10 vetted unformalised-in-mathlib theorems admitted to the backlog — sum of odd numbers = n², Faulhaber k=2/k=4 closed forms, Nicomachus triangular form, Fibonacci sum-of-squares, a factorial telescoping sum, n⁴+4 compositeness (Sophie Germain), the sum-of-odd-squares form, an alternating natural sum, and the Platonic-solids Schläfli arithmetic core. Each build-checked (type-checks vs mathlib v4.30.0) and machine-absence-checked; surfaced on the `docs/targets.md` board
 
 
