@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-06-10
+
+### Added
+
+- Contributor-readiness checklist evidence (`docs/metrics/checklist-evidence.md`): all six items (a)–(f) adversarially verified `sufficient` at high confidence; the public contributor invitation opens (#79)
+- README quickstart verified to run clean from a fresh clone (checklist item (f))
+
+
 ## [0.6.0] - 2026-06-10
 
 ### Added
