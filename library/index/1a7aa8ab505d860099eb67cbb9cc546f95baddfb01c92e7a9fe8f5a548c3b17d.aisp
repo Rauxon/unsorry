@@ -1,9 +1,7 @@
 𝔸5.1.lemma.1a7aa8ab505d@2026-06-10
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜1a7aa8ab505d860099eb67cbb9cc546f95baddfb01c92e7a9fe8f5a548c3b17d; goal≜sum-range-pow-four-closed-form; name≜sum_range_pow_four_closed}
-⟦Σ:Stmt⟧{
-  stmt≜theorem sum_range_pow_four_closed (n : ℕ) : 30 * (∑ k ∈ Finset.range (n + 1), (k : ℤ) ^ 4) = n * (n + 1) * (2 * n + 1) * (3 * n ^ 2 + 3 * n - 1)
-}
+⟦Σ:Source⟧{src≜goals/sum-range-pow-four-closed-form.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

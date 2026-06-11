@@ -14,6 +14,6 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/nat-succ-pos.lean
-  sha≜464ef57ab509beba93c01c02bfab4ddeb157675c3d8df8c253e353ab5c09f262
+  sha≜d323c440a444c648d0384a15f1eed675863b2bf11ea3e8e848d41dde586f94ff
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -393,17 +393,22 @@ def _validate_index(path: Path, record: Record, report: _Report) -> None:
         report.add(
             "GB006", path, f"sha field '{sha}' does not match index filename stem"
         )
-    stmt = (record.fields.get("stmt") or "").strip()
-    if not stmt:
-        report.add("GB006", path, "index entry has no stmt to hash")
-        return
-    digest = hashlib.sha256(stmt.encode("utf-8")).hexdigest()
-    if digest != stem:
-        report.add(
-            "GB006",
-            path,
-            f"SHA-256(stmt) = {digest} does not match index filename stem",
-        )
+    # The statement lives only in goals/<goal>.lean (single source of truth —
+    # embedding it would break the record grammar, which reserves {} for block
+    # delimiters and real Lean statements contain braces). When the goal file
+    # exists, the stem must be its statement's content address; grandfathered
+    # translate-era entries without a goal .lean keep the filename≡sha check
+    # only (the same policy as the Gate A binding generator).
+    goal = record.fields.get("goal")
+    lean_path = path.parent.parent.parent / "goals" / f"{goal}.lean"
+    if goal and lean_path.is_file():
+        digest = statement_sha(lean_path.read_text(encoding="utf-8"))
+        if digest != stem:
+            report.add(
+                "GB006",
+                path,
+                f"index sha does not match the statement in goals/{goal}.lean",
+            )
 
 
 # -------------------------------------------------------------- claim records

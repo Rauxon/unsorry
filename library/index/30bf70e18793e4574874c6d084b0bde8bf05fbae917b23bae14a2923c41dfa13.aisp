@@ -1,9 +1,7 @@
 𝔸5.1.lemma.30bf70e18793@2026-06-10
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜30bf70e18793e4574874c6d084b0bde8bf05fbae917b23bae14a2923c41dfa13; goal≜nat-add-zero-thm; name≜nat_add_zero_thm}
-⟦Σ:Stmt⟧{
-  stmt≜theorem nat_add_zero_thm (n : Nat) : n + 0 = n
-}
+⟦Σ:Source⟧{src≜goals/nat-add-zero-thm.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

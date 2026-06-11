@@ -345,3 +345,66 @@ def test_decomposition_malformed_sha_is_rejected(tmp_path):
     )
     report = run_validate(tree)
     assert any(v.code == "GB016" for v in report)
+
+
+# ------------------------------------------- index records (statement by sha)
+
+_INDEX_TMPL = """𝔸5.1.lemma.{sha12}@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{{sha≜{sha}; goal≜{goal}; name≜{name}}}
+⟦Σ:Source⟧{{src≜goals/{goal}.lean}}
+⟦Γ:Tags⟧{{tags≜⟨⟩}}
+⟦Λ:Meta⟧{{use≜0; aff≜0}}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
+"""
+
+
+def _write_index(tree: Path, goal: str, sha: str, name: str = "thm"):
+    (tree / "library" / "index").mkdir(parents=True, exist_ok=True)
+    (tree / "library" / "index" / f"{sha}.aisp").write_text(
+        _INDEX_TMPL.format(sha=sha, sha12=sha[:12], goal=goal, name=name),
+        encoding="utf-8",
+    )
+
+
+def test_index_brace_statement_round_trips(tmp_path):
+    # Index surface of the platonic-schlafli-core regression: a proved goal
+    # whose statement carries braces must index cleanly — the statement is
+    # referenced by content address, never embedded.
+    tree = tmp_path / "t"
+    _write_goal(tree, "bg")
+    (tree / "goals" / "bg.lean").write_text(
+        "theorem bg (p q : ℕ) : (p, q) ∈ ({(3,3),(3,4)} : Finset (ℕ × ℕ))"
+        " := by\n  sorry\n",
+        encoding="utf-8",
+    )
+    sha = _sub_sha(tree, "bg")
+    _write_index(tree, "bg", sha, name="bg")
+    report = run_validate(tree)
+    idx = [v for v in report if "library/index" in str(v.path)]
+    assert idx == [], [str(v) for v in idx]
+
+
+def test_index_sha_mismatch_with_goal_file_is_rejected(tmp_path):
+    tree = tmp_path / "t"
+    _write_goal(tree, "g1")
+    _write_index(tree, "g1", "0" * 64, name="g1")
+    report = run_validate(tree)
+    assert any(
+        v.code == "GB006" and "does not match the statement" in v.message
+        for v in report
+    )
+
+
+def test_index_without_goal_file_is_grandfathered(tmp_path):
+    # Translate-era entries (e.g. nat-zero-lt-succ) have no goals/<g>.lean —
+    # the filename≡sha≜ check still applies, recomputation is skipped.
+    tree = tmp_path / "t"
+    _write_goal(tree, "other")  # tree must be a goals tree
+    _write_index(tree, "ghost", "a" * 64, name="ghost")
+    report = run_validate(tree)
+    idx_sha = [
+        v for v in report
+        if "library/index" in str(v.path) and v.code == "GB006"
+    ]
+    assert idx_sha == [], [str(v) for v in idx_sha]
