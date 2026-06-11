@@ -1,7 +1,0 @@
-𝔸5.1.claim.platonic-schlafli-core-s2-s3.p3-alpha@2026-06-11
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜platonic-schlafli-core-s2-s3; agent≜p3-alpha}
-⟦Σ:Times⟧{ts≜2026-06-11T10:55:37Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
