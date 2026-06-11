@@ -1,0 +1,22 @@
+import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+import Mathlib.Algebra.Ring.Int.Defs
+import Mathlib.Algebra.Ring.Parity
+
+theorem alternating_sum_naturals (n : ℕ) : ∑ i ∈ Finset.range n, (-1 : ℤ) ^ i * (i + 1) = if Even n then - (n / 2 : ℤ) else (n / 2 : ℤ) + 1 := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    rcases Nat.even_or_odd n with hn | hn
+    · obtain ⟨k, rfl⟩ := hn
+      have he : Even (k + k) := ⟨k, rfl⟩
+      have ho : ¬Even (k + k + 1) := by rintro ⟨m, hm⟩; omega
+      have hpow : (-1 : ℤ) ^ (k + k) = 1 := he.neg_one_pow (α := ℤ)
+      rw [Finset.sum_range_succ, ih, if_pos he, if_neg ho, hpow]
+      omega
+    · obtain ⟨k, rfl⟩ := hn
+      have hodd : Odd (2 * k + 1) := ⟨k, rfl⟩
+      have ho : ¬Even (2 * k + 1) := by rintro ⟨m, hm⟩; omega
+      have he : Even (2 * k + 1 + 1) := ⟨k + 1, by omega⟩
+      have hpow : (-1 : ℤ) ^ (2 * k + 1) = -1 := hodd.neg_one_pow (α := ℤ)
+      rw [Finset.sum_range_succ, ih, if_neg ho, if_pos he, hpow]
+      omega
