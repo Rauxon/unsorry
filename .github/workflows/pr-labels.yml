@@ -1,0 +1,25 @@
+# Auto-label PRs from their title (docs/pr-labels.md). The classifier lives in
+# tools/repo/pr_labels.py — one source of truth for CI and the retro pass.
+# pull_request_target so fork PRs get labelled too; we check out the BASE ref
+# and never execute head code, so the elevated token is safe.
+name: pr-labels
+on:
+  pull_request_target:
+    types: [opened, edited, reopened]
+permissions:
+  pull-requests: write
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4   # base ref — never the PR head
+      - name: Classify and apply
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: ${{ github.event.pull_request.title }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          labels="$(python3 -m tools.repo.pr_labels classify "$TITLE" | paste -sd, -)"
+          if [ -n "$labels" ]; then
+            gh pr edit "$PR" --repo "$GITHUB_REPOSITORY" --add-label "$labels"
+          fi
