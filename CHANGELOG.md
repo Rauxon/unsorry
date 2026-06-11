@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Phase-3 roadmap (thread E): failure-notes idea — a one-line approach diagnosis on the demote path, surfaced to the next claimant, so failed attempts become transferable knowledge instead of re-walked dead ends
+
+
 ### Fixed
 
 - Decomposition records reference sub statements by content address (`sha≜`), never inline (SPEC-003-C): the record grammar reserves `{}` for block delimiters and real Lean statements contain braces — the first real decomposition (platonic-schlafli-core, Finset literal) broke the Σ-block parse and failed Gate B. Gate B now recomputes each sub's sha from `goals/<id>.lean` (GB016 on mismatch — strictly stronger integrity); `decompositions/` is created before first write (git tracks no empty dirs). 3 new regression tests

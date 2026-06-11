@@ -31,6 +31,8 @@ Invite external people to run agents on their own machines/subscriptions; observ
 ### E. Harden the economics and the dedup
 Fix the merge-lag duplicate fan-out (a "sha-already-in-library / claimed-by-me" short-circuit decoupled from the main-branch status flip — flagged in `phase1-run-002`); budget Agent SDK credit for sustained runs; consider a GitHub merge queue if volume grows. Unglamorous, but it is the difference between a demo and a service.
 
+**Failure notes.** Today a failed prove attempt records *that* the goal resisted (the −10 affinity demote PR) but not *what was tried*: the failed Lean text is discarded with the worktree, so the next agent re-walks the same dead ends blind — and with concurrency, every agent pays full price for the same lesson. Add a one-line approach note to the demote path (e.g. `note≜induction on n stalls at Even/ℕ-division bookkeeping`, written by the prover on give-up, carried on the demote PR and surfaced to the next claimant's prove prompt). Cheap to record, compounds across agents, and turns the affinity scalar into transferable knowledge. Keep it one line — full failed proofs are noise; the *diagnosis* is the asset.
+
 ### F. Statement fidelity for research targets
 For non-trivial targets the *formalisation* being faithful matters more than for trivia. Strengthen the dual-translation/fidelity gate (and the human-flag path) so a hard target's Lean statement provably captures its informal claim — the residue ADR-011 explicitly leaves to fidelity, not binding.
 
