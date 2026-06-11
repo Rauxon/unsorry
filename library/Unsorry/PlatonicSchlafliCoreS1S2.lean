@@ -22,7 +22,7 @@ binders in the arrow spelling `(h : P) → Q` of the same type (its builtin
 `depArrow` ignore function), because a binder name there is signature
 documentation; this extends that exemption to the `∀ (h : P), Q` spelling.
 Lint-scope only: it has no effect on elaboration, the kernel check, or the
-axiom audit. -/
+audit gate. -/
 @[unused_variables_ignore_fn]
 def Unsorry.PlatonicSchlafliCoreS1S2.ignoreForallTypeBinders :
     Lean.Linter.IgnoreFunction := fun _ stack _ =>
