@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Model/effort policy for proof runs (ADR-013, SPEC-013-A): prove and decompose `claude` calls default to the most capable model (`fable`) at `--effort max`, env-overridable via `UNSORRY_MODEL`/`UNSORRY_EFFORT`, with the effort flag dropped fail-soft on CLIs that lack it; translation stays on `sonnet`. Run config recorded in the startup log. 28 self-tests
+
+
+### Added
+
 - Phase 3 roadmap proposal (`docs/proposals/phase3-roadmap.md`): the honest open frontier after Phase 2 — force decomposition end-to-end, drive to a chosen result through a dependency tree, upstream to mathlib, open the swarm at volume
 
 ### Changed
