@@ -36,6 +36,14 @@ Fix the merge-lag duplicate fan-out (a "sha-already-in-library / claimed-by-me" 
 ### F. Statement fidelity for research targets
 For non-trivial targets the *formalisation* being faithful matters more than for trivia. Strengthen the dual-translation/fidelity gate (and the human-flag path) so a hard target's Lean statement provably captures its informal claim — the residue ADR-011 explicitly leaves to fidelity, not binding.
 
+### G. Benchmark AISP's value
+The coordination layer is written in AISP (ADR-003) on two claims — compactness in LLM context and drift-resistant machine validation — and neither has ever been *measured* against the boring alternative (JSON/YAML with a schema validator). Honest starting observation: most records are machine-rendered (`py_helper`) and machine-parsed (Gate B), so the LLM rarely touches AISP directly; where it does is the swarm contract (`protocol.aisp` + the ~19 KB grammar guide loaded into **every agent session**) and records quoted into prompts. The benchmark, in two layers:
+
+1. **Observational (free, always on):** instrument what already flows — tokens per record and per loaded contract vs a generated JSON mirror; Gate B first-try rejection rate per record type; render-retry counts in `metrics.jsonl`. Lands in every run report.
+2. **A/B trial (the real test):** a JSON mirror of the three record schemas plus a prose/JSON mirror of the swarm contract, semantically identical; run matched translate/prove cycles (same goals, same model) with `format=aisp` vs `format=json`; compare first-try record validity, protocol-discipline errors (claim/TTL misuse), end-to-end cycle success, and tokens consumed. → `docs/metrics/aisp-benchmark-001`.
+
+The honest possible outcome — AISP's value is marginal for machine-rendered records and real only as context compression — is exactly worth knowing **before** thread D invites contributors to learn a bespoke notation. If the benchmark says JSON does the job, that's a finding, not a failure; the validator and the gates, not the glyphs, were always the load-bearing part.
+
 ## Non-goals (unchanged)
 
 Still not open conjectures — the swarm formalises existing proofs, it does not discover research-frontier mathematics. Still upstream of welfare — an enabling public good, not a direct one.
