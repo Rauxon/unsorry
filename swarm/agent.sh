@@ -51,7 +51,9 @@ Flags:
 
 Environment:
   UNSORRY_AGENT_ID  Swarm identity (default: ~/.unsorry/agent-id, created on first run)
-  UNSORRY_MODEL     Model for translation/proof calls (default: sonnet)
+  UNSORRY_MODEL     Model for claude calls (default: fable in --prove, else sonnet; ADR-013)
+  UNSORRY_EFFORT    Effort for proof-surface calls (default: max in --prove, else unset;
+                    dropped fail-soft when the installed claude lacks --effort)
   UNSORRY_WORKDIR   Claims worktree + metrics.jsonl home (default: ~/.unsorry/work)
   UNSORRY_WALL      Wall-clock seconds per claude call (default: 1800)
   UNSORRY_TTL       Claim TTL seconds (default: tools/gate_b/config.py TTL_SECONDS)
@@ -1022,6 +1024,33 @@ DECOMPOSE_PROMPT_FILE="swarm/prompts/decompose.md"
 # reverts to the Phase-1 demote-only failure path.
 PROVE_DECOMPOSE="${UNSORRY_DECOMPOSE:-1}"
 
+# ADR-013 model/effort policy. Proof-surface calls (prove, decompose) default
+# to the most capable model at max effort — success-per-attempt is the lever
+# that dominates time-to-proved on hard targets; the kernel and gates make
+# model choice a performance knob, never a soundness one. Translation is not a
+# proof run and stays on the cheaper default. Pure resolver so the policy is
+# testable: prints "<model> <effort>" ("-" = no effort flag); the CLI help
+# text drives the --effort fail-soft probe (older CLIs lack the flag and
+# contributor agents must not break on it).
+resolve_model_effort() {
+  local mode="$1" model_env="$2" effort_env="$3" help_text="$4"
+  local model effort
+  if [ "$mode" = prove ]; then
+    model="${model_env:-fable}"
+    effort="${effort_env:-max}"
+  else
+    model="${model_env:-sonnet}"
+    effort="${effort_env:-}"
+  fi
+  if [ -n "$effort" ] && ! grep -q -- '--effort' <<<"$help_text"; then
+    effort=""
+  fi
+  printf '%s %s\n' "$model" "${effort:--}"
+}
+
+# --effort args for the proof-surface claude calls; resolved once in main().
+declare -a EFFORT_ARGS=()
+
 # Prove step 5: one claude call constrained to write the target Lean module.
 # --max-turns does not exist on claude 2.1.170 (the translate cycle dropped it
 # for the same reason); the $UNSORRY_WALL timeout bounds the call instead.
@@ -1031,7 +1060,7 @@ call_claude_prove() {
   local prompt="$1" workdir="$2"
   ( cd "$workdir" \
     && timeout "$UNSORRY_WALL" claude -p "$prompt" \
-         --model "$UNSORRY_MODEL" --output-format text \
+         --model "$UNSORRY_MODEL" "${EFFORT_ARGS[@]}" --output-format text \
          --allowedTools \
            "Read,Edit,Write,Bash(lake build *),Bash(lake env *),Bash(lake exe *),Bash(git diff *)" )
 }
@@ -1237,7 +1266,7 @@ PARENT THEOREM (the goal that resisted proof):
 $stmt
 
 Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` line." \
-    --model "$UNSORRY_MODEL" --output-format text --allowedTools "Read,Bash(lake build *),Bash(lake env *)" 2>/dev/null)"
+    --model "$UNSORRY_MODEL" "${EFFORT_ARGS[@]}" --output-format text --allowedTools "Read,Bash(lake build *),Bash(lake env *)" 2>/dev/null)"
 
   # Materialise the proposed subs into the PR tree.
   local -a sub_ids=() decomp_args=()
@@ -2088,6 +2117,33 @@ test_unblockable_detection() {
   [ "$got" = "parent" ] || { log "  all subs proved ⇒ unblockable; got '$got'"; return 1; }
 }
 
+test_model_effort_policy() {
+  local help_with='Options:
+  --model <model>                       Model for the current session
+  --effort <level>                      Effort level (low, medium, high, xhigh, max)'
+  local help_without='Options:
+  --model <model>                       Model for the current session'
+  local got
+  # ADR-013: prove mode defaults to the most capable model at max effort.
+  got="$(resolve_model_effort prove "" "" "$help_with")"
+  [ "$got" = "fable max" ] || { log "  prove defaults: want 'fable max', got '$got'"; return 1; }
+  # Translation is not a proof run: sonnet, no effort flag.
+  got="$(resolve_model_effort translate "" "" "$help_with")"
+  [ "$got" = "sonnet -" ] || { log "  translate defaults: want 'sonnet -', got '$got'"; return 1; }
+  # Env overrides win over both defaults.
+  got="$(resolve_model_effort prove sonnet high "$help_with")"
+  [ "$got" = "sonnet high" ] || { log "  env override: want 'sonnet high', got '$got'"; return 1; }
+  # Fail-soft: a CLI that does not advertise --effort drops the flag.
+  got="$(resolve_model_effort prove "" "" "$help_without")"
+  [ "$got" = "fable -" ] || { log "  fail-soft: want 'fable -', got '$got'"; return 1; }
+  # Explicit effort on translate is honoured when the CLI supports it.
+  got="$(resolve_model_effort translate "" xhigh "$help_with")"
+  [ "$got" = "sonnet xhigh" ] || { log "  explicit translate effort: want 'sonnet xhigh', got '$got'"; return 1; }
+  # Explicit effort is also dropped fail-soft on an old CLI.
+  got="$(resolve_model_effort translate "" xhigh "$help_without")"
+  [ "$got" = "sonnet -" ] || { log "  fail-soft explicit: want 'sonnet -', got '$got'"; return 1; }
+}
+
 test_render_decomp_gateb() {
   # A rendered decomposition record + its sub goal records validate under the
   # real Gate B (acyclic, subs are known goals, none re-emits the parent).
@@ -2138,6 +2194,7 @@ run_self_tests() {
     test_affinity_degrades_on_garbage
     test_decomp_caps_and_depth
     test_unblockable_detection
+    test_model_effort_policy
     test_render_decomp_gateb
   )
   local failures=0 t
@@ -2281,7 +2338,17 @@ main() {
       || die_config "--goal '$GOAL_FILTER' violates the Id grammar"
   fi
 
-  UNSORRY_MODEL="${UNSORRY_MODEL:-sonnet}"
+  # ADR-013: model + effort resolved per mode (prove → fable/max, translate →
+  # sonnet/none), env-overridable, --effort dropped fail-soft on older CLIs.
+  local mode; [ "$PROVE" -eq 1 ] && mode=prove || mode=translate
+  local resolved
+  resolved="$(resolve_model_effort "$mode" "${UNSORRY_MODEL:-}" "${UNSORRY_EFFORT:-}" \
+    "$(claude --help 2>/dev/null || true)")"
+  UNSORRY_MODEL="${resolved% *}"
+  UNSORRY_EFFORT="${resolved#* }"
+  [ "$UNSORRY_EFFORT" = "-" ] && UNSORRY_EFFORT=""
+  EFFORT_ARGS=()
+  [ -n "$UNSORRY_EFFORT" ] && EFFORT_ARGS=(--effort "$UNSORRY_EFFORT")
   UNSORRY_WALL="${UNSORRY_WALL:-1800}"
   [[ "$UNSORRY_WALL" =~ ^[0-9]+$ ]] \
     || die_config "UNSORRY_WALL '$UNSORRY_WALL' is not an integer"
@@ -2301,8 +2368,7 @@ main() {
     [ "$PROVE" -eq 1 ] && require_cmd lake  # prove verify builds locally
   fi
 
-  local mode; [ "$PROVE" -eq 1 ] && mode=prove || mode=translate
-  log "agent $AGENT_ID starting ($mode; model=$UNSORRY_MODEL wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
+  log "agent $AGENT_ID starting ($mode; model=$UNSORRY_MODEL effort=${UNSORRY_EFFORT:-default} wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
 
   declare -A HANDLED=()
   declare -A SWEPT=()
