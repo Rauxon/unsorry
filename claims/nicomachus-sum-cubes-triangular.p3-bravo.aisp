@@ -1,0 +1,7 @@
+𝔸5.1.claim.nicomachus-sum-cubes-triangular.p3-bravo@2026-06-11
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜nicomachus-sum-cubes-triangular; agent≜p3-bravo}
+⟦Σ:Times⟧{ts≜2026-06-11T05:20:59Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
