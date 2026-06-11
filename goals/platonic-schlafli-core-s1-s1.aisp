@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜platonic-schlafli-core-s1-s1
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,8 +14,8 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/platonic-schlafli-core-s1-s1.lean
-  sha≜∅
-  aff≜0
+  sha≜611ce2d280eae6c8d0882cbaaad51e633b9852b56a24e60bf773a83fb3f477f0
+  aff≜1
   depth≜2
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
