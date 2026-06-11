@@ -10,7 +10,7 @@
   src≜backlog/nicomachus-sum-cubes-triangular.md
 }
 ⟦Γ:Deps⟧{
-  deps≜⟨⟩
+  deps≜⟨nicomachus-sum-cubes⟩
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/nicomachus-sum-cubes-triangular.lean

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Cross-goal dependency reuse (ADR-014, SPEC-014-A): a goal's proved dependencies — declared `deps≜⟨…⟩` plus its own decomposition's subs — surface in the prove prompt as importable `Unsorry.*` modules with statements, so merged lemmas compound instead of being re-proved. Seeded the first dependency edge: `nicomachus-sum-cubes-triangular → nicomachus-sum-cubes` (thread B target)
+
+
 ### Fixed
 
 - Index records no longer embed the statement (same brace hazard as the decomposition fix): `⟦Σ:Stmt⟧` → `⟦Σ:Source⟧{src≜goals/<goal>.lean}`, with Gate B recomputing the sha from the goal file when it exists (GB006 on mismatch; grandfathered translate-era entries keep the filename≡sha check). All 20 existing index records migrated; caught before the first brace-statement lemma (the recomposed platonic-schlafli-core parent) would have failed its prove PR

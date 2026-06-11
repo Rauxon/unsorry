@@ -415,6 +415,56 @@ def cmd_render_decomp(args):
     print("⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩")
 
 
+def cmd_proved_deps(args):
+    """proved-deps <goal.aisp> <goals-dir> <library-dir> <decompositions-dir>
+    — ADR-014 dependency reuse. For each PROVED dependency of the goal —
+    its deps≜⟨…⟩ entries plus the subs of any decomposition record naming it
+    as parent (a recomposing parent reuses its own sub-lemmas) — print one
+    line `Unsorry.<Module>\\t<theorem-name>\\t<statement>`. The declaring
+    module is located by content (grandfathered lemmas live in Basic.lean, so
+    it is not always camel(goal)). Unproved deps are not surfaced; the gap
+    ranking (ADR-010) already routes those first."""
+    goal_path, goals_dir, library_dir, decomp_dir = args[:4]
+    record = parse_record(Path(goal_path).read_text(encoding="utf-8"))
+    goal_id = Path(goal_path).stem
+    wanted = list(_deps(record))
+    ddir = Path(decomp_dir)
+    if ddir.is_dir():
+        for dpath in sorted(ddir.glob(f"{goal_id}.*.aisp")):
+            for m in re.finditer(r"sub[^≜\s;]*≜⟨id≜([A-Za-z0-9-]+)", dpath.read_text(encoding="utf-8")):
+                if m.group(1) not in wanted:
+                    wanted.append(m.group(1))
+    if not wanted:
+        return
+    name_by_goal: dict = {}
+    index_dir = Path(library_dir) / "index"
+    if index_dir.is_dir():
+        for ipath in sorted(index_dir.glob("*.aisp")):
+            text = ipath.read_text(encoding="utf-8")
+            g = re.search(r"goal≜([A-Za-z0-9-]+)", text)
+            n = re.search(r"name≜([A-Za-z0-9_']+)", text)
+            if g and n:
+                name_by_goal[g.group(1)] = n.group(1)
+    modules = sorted((Path(library_dir) / "Unsorry").glob("*.lean"))
+    for dep in wanted:
+        name = name_by_goal.get(dep)
+        if not name:
+            continue  # not proved yet
+        module = next(
+            (p.stem for p in modules
+             if re.search(rf"^theorem {re.escape(name)}\b",
+                          p.read_text(encoding="utf-8"), re.MULTILINE)),
+            None,
+        )
+        if module is None:
+            continue
+        stmt = ""
+        lean = Path(goals_dir) / f"{dep}.lean"
+        if lean.is_file():
+            stmt = lean_statement(lean.read_text(encoding="utf-8"))
+        print(f"Unsorry.{module}\t{name}\t{stmt}")
+
+
 def cmd_unblockable(args):
     """unblockable <goals-dir> <decompositions-dir> <library-dir> — list blocked
     parent goals whose decomposition's sub-lemmas are ALL proved, so the parent
@@ -571,6 +621,7 @@ COMMANDS = {
     "goal-depth": cmd_goal_depth,
     "render-goal": cmd_render_goal,
     "render-decomp": cmd_render_decomp,
+    "proved-deps": cmd_proved_deps,
     "unblockable": cmd_unblockable,
     "camel-name": cmd_camel_name,
     "lean-stmt": cmd_lean_stmt,
@@ -1104,13 +1155,27 @@ run_proof() {
   if ! ( cd "$prwt" && lake exe cache get ) >/dev/null 2>&1; then
     log "warning: 'lake exe cache get' failed in the prove worktree for $goal — verification may be slow"
   fi
+  # ADR-014 dependency reuse: surface this goal's PROVED dependencies (declared
+  # deps + the subs of its own decomposition) as importable library modules, so
+  # merged work compounds instead of being re-proved.
+  local deps_prompt="" deps_lines
+  deps_lines="$(py_helper proved-deps "$prwt/goals/$goal.aisp" "$prwt/goals" \
+    "$prwt/library" "$prwt/decompositions" 2>/dev/null)" || deps_lines=""
+  if [ -n "$deps_lines" ]; then
+    deps_prompt="
+
+PROVED DEPENDENCIES (ADR-014) — these lemmas are already kernel-verified in
+THIS repository's library. Import their modules and use them; do not re-prove
+them. The import-tightness rule explicitly allows these Unsorry.* imports:
+$(printf '%s\n' "$deps_lines" | awk -F'\t' '{printf "- import %s\n    %s\n", $1, ($3 != "" ? $3 : "theorem " $2)}')"
+  fi
   for attempt in $(seq 1 "$UNSORRY_ATTEMPTS"); do  # config.BUDGET_ATTEMPTS
     prompt="$(cat "$PROVE_PROMPT_FILE")
 $stmt
 
 Target module file (relative to repo root): $target
 Lean module name (for the audit): Unsorry.$camel
-Theorem name to re-state and prove: $name"
+Theorem name to re-state and prove: $name$deps_prompt"
     if [ -n "$err" ]; then
       prompt="$prompt
 
@@ -2008,7 +2073,7 @@ test_gap_ranking() {
   # pool — so aaa is the sole candidate.
   local sha
   sha="$(py_helper lean-sha "$tree/goals/bbb.lean")" || return 1
-  py_helper render-index "$sha" bbb bbb "$(py_helper lean-stmt "$tree/goals/bbb.lean")" \
+  py_helper render-index "$sha" bbb bbb \
     > "$tree/library/index/$sha.aisp" || return 1
   got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
   [ "$got" = "aaa" ] \
@@ -2135,6 +2200,45 @@ test_unblockable_detection() {
   [ "$got" = "parent" ] || { log "  all subs proved ⇒ unblockable; got '$got'"; return 1; }
 }
 
+test_proved_deps_surfacing() {
+  # ADR-014: a goal's proved deps (declared + own-decomposition subs) surface
+  # as importable modules; unproved deps stay silent (gap routing owns those).
+  local tree got sha
+  tree="$(mktemp -d "$SESSION_TMP/depsurf.XXXXXX")" || return 1
+  mkdir -p "$tree/library/index" "$tree/library/Unsorry" "$tree/decompositions" || return 1
+  make_prove_goal "$tree" target-goal "theorem target_goal (n : Nat) : n = n" || return 1
+  make_prove_goal "$tree" dep-proved "theorem dep_proved (n : Nat) : n + 0 = n" || return 1
+  make_prove_goal "$tree" dep-open "theorem dep_open (n : Nat) : 0 + n = n" || return 1
+  set_goal_deps "$tree/goals/target-goal.aisp" dep-proved dep-open
+  # dep-proved is proved: index entry + a library module declaring it.
+  sha="$(py_helper lean-sha "$tree/goals/dep-proved.lean")" || return 1
+  py_helper render-index "$sha" dep-proved dep_proved \
+    > "$tree/library/index/$sha.aisp" || return 1
+  printf 'theorem dep_proved (n : Nat) : n + 0 = n := rfl\n' \
+    > "$tree/library/Unsorry/DepProved.lean"
+  got="$(py_helper proved-deps "$tree/goals/target-goal.aisp" "$tree/goals" \
+    "$tree/library" "$tree/decompositions")" || return 1
+  [ "$got" = "$(printf 'Unsorry.DepProved\tdep_proved\ttheorem dep_proved (n : Nat) : n + 0 = n')" ] \
+    || { log "  declared-dep surfacing wrong: '$got'"; return 1; }
+  # A decomposition naming target-goal as parent adds its proved subs too.
+  local s2sha
+  make_prove_goal "$tree" target-goal-s1 "theorem tg_s1 (n : Nat) : n * 1 = n" || return 1
+  s2sha="$(py_helper lean-sha "$tree/goals/target-goal-s1.lean")" || return 1
+  py_helper render-index "$s2sha" target-goal-s1 tg_s1 \
+    > "$tree/library/index/$s2sha.aisp" || return 1
+  printf 'theorem tg_s1 (n : Nat) : n * 1 = n := Nat.mul_one n\n' \
+    > "$tree/library/Unsorry/TgS1.lean"
+  py_helper render-decomp target-goal agent-x target-goal-s1 "$s2sha" \
+    > "$tree/decompositions/target-goal.agent-x.aisp" || return 1
+  got="$(py_helper proved-deps "$tree/goals/target-goal.aisp" "$tree/goals" \
+    "$tree/library" "$tree/decompositions")" || return 1
+  printf '%s' "$got" | grep -q 'Unsorry.TgS1	tg_s1' \
+    || { log "  decomposition-sub surfacing missing: '$got'"; return 1; }
+  printf '%s' "$got" | grep -q 'dep-open' \
+    && { log "  unproved dep was surfaced"; return 1; }
+  return 0
+}
+
 test_model_effort_policy() {
   local help_with='Options:
   --model <model>                       Model for the current session
@@ -2217,6 +2321,7 @@ run_self_tests() {
     test_affinity_degrades_on_garbage
     test_decomp_caps_and_depth
     test_unblockable_detection
+    test_proved_deps_surfacing
     test_model_effort_policy
     test_render_decomp_gateb
   )
