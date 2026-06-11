@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Decomposition records reference sub statements by content address (`sha≜`), never inline (SPEC-003-C): the record grammar reserves `{}` for block delimiters and real Lean statements contain braces — the first real decomposition (platonic-schlafli-core, Finset literal) broke the Σ-block parse and failed Gate B. Gate B now recomputes each sub's sha from `goals/<id>.lean` (GB016 on mismatch — strictly stronger integrity); `decompositions/` is created before first write (git tracks no empty dirs). 3 new regression tests
+
+
 ### Added
 
 - Thread C plan: `docs/proposals/mathlib-upstream-plan.md` — the mathlib upstream path, designed around mathlib's verified AI-contribution policy (disclosure + `LLM-generated` label + author-understands-everything): machine-prepared upstream packets, human-sponsored PRs, Zulip-first; autonomous PRs are an explicit non-goal. Current candidates: the two mathlib-absent lemmas

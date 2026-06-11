@@ -28,6 +28,7 @@ from .records import (
     parse_vector,
     prose_density,
 )
+from tools.lean_sig import statement_sha
 
 GOAL_PHASES = ("translate", "prove")
 GOAL_STATUSES = ("open", "flagged", "translated", "blocked", "proved")
@@ -41,7 +42,10 @@ _RECORD_TYPES = {
     "index": ("lemma", "unsorry.lemma.index"),
 }
 
-_SUB_RE = re.compile(r"(?P<label>sub[^≜\s;]*)≜⟨id≜(?P<id>[^,⟩\s]+)\s*,\s*stmt≜(?P<stmt>[^⟩]*)⟩")
+# Subs reference their statement by content address, never inline: the record
+# grammar reserves {} for block delimiters, and real Lean statements contain
+# braces (Finset literals — the platonic-schlafli-core regression).
+_SUB_RE = re.compile(r"(?P<label>sub[^≜\s;]*)≜⟨id≜(?P<id>[^,⟩\s]+)\s*,\s*sha≜(?P<sha>[^⟩\s]+)⟩")
 _EDGE_RE = re.compile(r"Post\((?P<src>[^)]*)\)\s*⊆\s*Pre\((?P<dst>[^)]*)\)")
 
 MAX_DECOMP_SUBS = config.MAX_DECOMP_SUBS
@@ -337,6 +341,23 @@ def _validate_decomposition(
             report.add(
                 "GB016", path, f"sub '{sub_id}' has no corresponding goal record"
             )
+        # GB016 — the sha must be the content address of the sub's statement
+        # (recomputed from goals/<id>.lean, the single source of truth).
+        sub_sha = sub.group("sha")
+        if not is_sha256(sub_sha):
+            report.add(
+                "GB016", path,
+                f"sub '{sub_id}' sha is not a SHA-256 content address",
+            )
+        else:
+            lean_path = path.parent.parent / "goals" / f"{sub_id}.lean"
+            if lean_path.is_file():
+                actual = statement_sha(lean_path.read_text(encoding="utf-8"))
+                if actual != sub_sha:
+                    report.add(
+                        "GB016", path,
+                        f"sub '{sub_id}' sha does not match goals/{sub_id}.lean",
+                    )
 
     edges_block = record.block("Γ")
     edge_pairs: list[tuple[str, str]] = []

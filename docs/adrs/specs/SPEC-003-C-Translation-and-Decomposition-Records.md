@@ -48,8 +48,10 @@ Committed when a prove attempt fails: the parent goal is split into claimable su
 γ≔unsorry.decomposition
 ⟦Ω:Decomp⟧{parent≜<parent-id>; agent≜<agent-id>}
 ⟦Σ:Subs⟧{
-  sub₁≜⟨id≜<new-goal-id>,stmt≜…⟩
-  sub₂≜⟨id≜<new-goal-id>,stmt≜…⟩
+  sub₁≜⟨id≜<new-goal-id>,sha≜<statement-sha256>⟩
+  sub₂≜⟨id≜<new-goal-id>,sha≜<statement-sha256>⟩
+
+> Subs reference statements by content address (Gate B recomputes from goals/<id>.lean; GB016 on mismatch) — the grammar reserves {} and statements contain braces.
 }
 ⟦Γ:Edges⟧{
   Post(sub₁)⊆Pre(sub₂); Post(sub₂)⊆Pre(parent)

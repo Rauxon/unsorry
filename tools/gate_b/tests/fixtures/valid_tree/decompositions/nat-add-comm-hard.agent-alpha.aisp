@@ -2,8 +2,8 @@
 γ≔unsorry.decomposition
 ⟦Ω:Decomp⟧{parent≜nat-add-comm-hard; agent≜agent-alpha}
 ⟦Σ:Subs⟧{
-  sub₁≜⟨id≜nat-add-zero-right,stmt≜∀x₁∈ℕ:x₁+0≡x₁⟩
-  sub₂≜⟨id≜nat-add-succ-right,stmt≜∀x₁,x₂∈ℕ:x₁+(x₂+1)≡(x₁+x₂)+1⟩
+  sub₁≜⟨id≜nat-add-zero-right,sha≜5821f0fdfd814b7168007f35b632213fff9f15c92b76bec27bd62ab0657cc070⟩
+  sub₂≜⟨id≜nat-add-succ-right,sha≜ea95d523903df2f5d70703fa5aa06d5bc8088e87585d5559ff24a72864e9cbea⟩
 }
 ⟦Γ:Edges⟧{
   Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)

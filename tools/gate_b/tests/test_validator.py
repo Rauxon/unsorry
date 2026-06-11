@@ -240,6 +240,12 @@ def test_has_cycle_unit():
     assert not _has_cycle([])
 
 
+def _sub_sha(tree: Path, gid: str) -> str:
+    from tools.lean_sig import statement_sha
+
+    return statement_sha((tree / "goals" / f"{gid}.lean").read_text(encoding="utf-8"))
+
+
 def test_decomposition_cycle_is_rejected(tmp_path):
     tree = tmp_path / "t"
     for gid in ("parent", "sa", "sb"):
@@ -248,7 +254,8 @@ def test_decomposition_cycle_is_rejected(tmp_path):
     (tree / "decompositions" / "parent.agent-x.aisp").write_text(
         _DECOMP_TMPL.format(
             parent="parent",
-            subs="  sub₁≜⟨id≜sa,stmt≜∀x₁∈ℕ:x₁≡x₁⟩\n  sub₂≜⟨id≜sb,stmt≜∀x₁∈ℕ:x₁+0≡x₁⟩",
+            subs=f"  sub₁≜⟨id≜sa,sha≜{_sub_sha(tree, 'sa')}⟩\n"
+            f"  sub₂≜⟨id≜sb,sha≜{_sub_sha(tree, 'sb')}⟩",
             # a cycle among the subs: sub₁→sub₂→sub₁
             edges="  Post(sub₁)⊆Pre(sub₂); Post(sub₂)⊆Pre(sub₁)",
         ),
@@ -266,10 +273,75 @@ def test_decomposition_sub_re_emitting_parent_is_rejected(tmp_path):
     (tree / "decompositions" / "parent.agent-x.aisp").write_text(
         _DECOMP_TMPL.format(
             parent="parent",
-            subs="  sub₁≜⟨id≜parent,stmt≜∀x₁∈ℕ:x₁≡x₁⟩\n  sub₂≜⟨id≜sb,stmt≜∀x₁∈ℕ:x₁+0≡x₁⟩",
+            subs=f"  sub₁≜⟨id≜parent,sha≜{_sub_sha(tree, 'parent')}⟩\n"
+            f"  sub₂≜⟨id≜sb,sha≜{_sub_sha(tree, 'sb')}⟩",
             edges="  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)",
         ),
         encoding="utf-8",
     )
     report = run_validate(tree)
     assert any(v.code == "GB016" and "re-emits the parent" in v.message for v in report)
+
+
+def test_decomposition_brace_statement_round_trips(tmp_path):
+    # The regression from the first real decomposition (platonic-schlafli-core):
+    # the record grammar reserves {} for block delimiters, so a sub whose Lean
+    # statement contains a Finset literal like ({(3,3),(3,4)} : Finset _) used
+    # to break the Σ-block parse when statements were embedded inline. Records
+    # now reference statements by sha; any statement round-trips.
+    tree = tmp_path / "t"
+    _write_goal(tree, "parent", src="decompositions/parent.agent-x.aisp")
+    _write_goal(tree, "sa", src="decompositions/parent.agent-x.aisp")
+    (tree / "goals" / "sa.lean").write_text(
+        "theorem sa_enum (p q : ℕ) : (p, q) ∈ ({(3,3),(3,4)} : Finset (ℕ × ℕ))"
+        " := by\n  sorry\n",
+        encoding="utf-8",
+    )
+    (tree / "decompositions").mkdir(parents=True, exist_ok=True)
+    (tree / "decompositions" / "parent.agent-x.aisp").write_text(
+        _DECOMP_TMPL.format(
+            parent="parent",
+            subs=f"  sub₁≜⟨id≜sa,sha≜{_sub_sha(tree, 'sa')}⟩",
+            edges="  Post(sub₁)⊆Pre(parent)",
+        ),
+        encoding="utf-8",
+    )
+    report = run_validate(tree)
+    decomp_violations = [v for v in report if "decompositions/" in str(v.path)]
+    assert decomp_violations == [], [str(v) for v in decomp_violations]
+
+
+def test_decomposition_sha_mismatch_is_rejected(tmp_path):
+    # The sha must be the content address of the sub's actual statement —
+    # a stale or fabricated sha is a GB016 integrity failure.
+    tree = tmp_path / "t"
+    _write_goal(tree, "parent", src="decompositions/parent.agent-x.aisp")
+    _write_goal(tree, "sa", src="decompositions/parent.agent-x.aisp")
+    (tree / "decompositions").mkdir(parents=True, exist_ok=True)
+    (tree / "decompositions" / "parent.agent-x.aisp").write_text(
+        _DECOMP_TMPL.format(
+            parent="parent",
+            subs=f"  sub₁≜⟨id≜sa,sha≜{'0' * 64}⟩",
+            edges="  Post(sub₁)⊆Pre(parent)",
+        ),
+        encoding="utf-8",
+    )
+    report = run_validate(tree)
+    assert any(v.code == "GB016" and "does not match" in v.message for v in report)
+
+
+def test_decomposition_malformed_sha_is_rejected(tmp_path):
+    tree = tmp_path / "t"
+    _write_goal(tree, "parent", src="decompositions/parent.agent-x.aisp")
+    _write_goal(tree, "sa", src="decompositions/parent.agent-x.aisp")
+    (tree / "decompositions").mkdir(parents=True, exist_ok=True)
+    (tree / "decompositions" / "parent.agent-x.aisp").write_text(
+        _DECOMP_TMPL.format(
+            parent="parent",
+            subs="  sub₁≜⟨id≜sa,sha≜nothex⟩",
+            edges="  Post(sub₁)⊆Pre(parent)",
+        ),
+        encoding="utf-8",
+    )
+    report = run_validate(tree)
+    assert any(v.code == "GB016" for v in report)

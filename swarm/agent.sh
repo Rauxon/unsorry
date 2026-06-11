@@ -386,10 +386,13 @@ def cmd_render_goal(args):
 
 
 def cmd_render_decomp(args):
-    """render-decomp <parent> <agent> <sub-id> <sub-stmt> [<sub-id> <sub-stmt>…]
-    — a SPEC-003-C decomposition record. Each sub gets an edge
-    Post(subN) ⊆ Pre(parent): every sub is a prerequisite of the parent (a
-    DAG; the parent still closes only through the kernel)."""
+    """render-decomp <parent> <agent> <sub-id> <sub-sha> [<sub-id> <sub-sha>…]
+    — a SPEC-003-C decomposition record. Subs reference their statement by
+    content address (sha of the statement in goals/<id>.lean): the record
+    grammar reserves {} for block delimiters and real Lean statements contain
+    braces (Finset literals). Each sub gets an edge Post(subN) ⊆ Pre(parent):
+    every sub is a prerequisite of the parent (a DAG; the parent still closes
+    only through the kernel)."""
     parent, agent = args[0], args[1]
     pairs = args[2:]
     subs = [(pairs[i], pairs[i + 1]) for i in range(0, len(pairs), 2)]
@@ -398,8 +401,8 @@ def cmd_render_decomp(args):
     print("γ≔unsorry.decomposition")
     print(f"⟦Ω:Decomp⟧{{parent≜{parent}; agent≜{agent}}}")
     print("⟦Σ:Subs⟧{")
-    for i, (sub_id, stmt) in enumerate(subs, 1):
-        print(f"  sub{_subscript(i)}≜⟨id≜{sub_id},stmt≜{stmt}⟩")
+    for i, (sub_id, sha) in enumerate(subs, 1):
+        print(f"  sub{_subscript(i)}≜⟨id≜{sub_id},sha≜{sha}⟩")
     print("}")
     print("⟦Γ:Edges⟧{")
     edges = "; ".join(
@@ -1270,7 +1273,7 @@ Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` 
 
   # Materialise the proposed subs into the PR tree.
   local -a sub_ids=() decomp_args=()
-  local subline substmt subid subnorm
+  local subline substmt subid subnorm subsha
   while IFS= read -r subline; do
     case "$subline" in
       SUB:*) ;;
@@ -1290,8 +1293,13 @@ Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` 
     fi
     py_helper render-goal "$subid" open "decompositions/$goal.$AGENT_ID.aisp" \
       "goals/$subid.lean" "$((depth + 1))" > "$prwt/goals/$subid.aisp"
+    # The record references the sub's statement by content address (the
+    # statement itself lives only in goals/<sub>.lean — single source of
+    # truth; raw statements contain braces the record grammar reserves).
+    subsha="$(py_helper lean-sha "$prwt/goals/$subid.lean")" || {
+      i=$((i - 1)); rm -f "$prwt/goals/$subid.lean" "$prwt/goals/$subid.aisp"; continue; }
     sub_ids+=("$subid")
-    decomp_args+=("$subid" "$subnorm")
+    decomp_args+=("$subid" "$subsha")
   done <<< "$out"
 
   if [ "${#sub_ids[@]}" -lt 2 ]; then
@@ -1301,11 +1309,11 @@ Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` 
     return 1
   fi
 
+  # decompositions/ may not exist in the tree yet (git tracks no empty dirs;
+  # this is the first write on a tree that has never decomposed).
+  mkdir -p "$prwt/decompositions"
   py_helper render-decomp "$goal" "$AGENT_ID" "${decomp_args[@]}" \
-    > "$prwt/decompositions/$goal.$AGENT_ID.aisp" 2>/dev/null || {
-      mkdir -p "$prwt/decompositions" \
-      && py_helper render-decomp "$goal" "$AGENT_ID" "${decomp_args[@]}" \
-        > "$prwt/decompositions/$goal.$AGENT_ID.aisp"; }
+    > "$prwt/decompositions/$goal.$AGENT_ID.aisp" || return 1
   py_helper rewrite-goal "$prwt/goals/$goal.aisp" blocked || return 1
 
   # The sub statements must type-check as sorried goals (guardrail: a split that
@@ -2157,9 +2165,14 @@ test_render_decomp_gateb() {
   printf 'theorem s1 (n : Nat) : n + 0 = n := by sorry\n' > "$tree/goals/parent-s1.lean"
   py_helper render-goal parent-s2 open decompositions/parent.agent-x.aisp \
     goals/parent-s2.lean 1 > "$tree/goals/parent-s2.aisp" || return 1
-  printf 'theorem s2 (a b : Nat) : a + b = b + a := by sorry\n' > "$tree/goals/parent-s2.lean"
+  # s2 carries braces in its statement — the platonic-schlafli-core regression:
+  # the record must reference it by sha, never embed it (grammar reserves {}).
+  printf 'theorem s2 (p q : Nat) : (p, q) ∈ ({(3,3),(3,4)} : Finset (Nat × Nat)) := by sorry\n' > "$tree/goals/parent-s2.lean"
+  local s1sha s2sha
+  s1sha="$(py_helper lean-sha "$tree/goals/parent-s1.lean")" || return 1
+  s2sha="$(py_helper lean-sha "$tree/goals/parent-s2.lean")" || return 1
   py_helper render-decomp parent agent-x \
-    parent-s1 "forall n, n + 0 = n" parent-s2 "forall a b, a + b = b + a" \
+    parent-s1 "$s1sha" parent-s2 "$s2sha" \
     > "$tree/decompositions/parent.agent-x.aisp" || return 1
   printf '# parent\n\nx\n' > "$tree/backlog/parent.md"
   python3 -m tools.gate_b validate "$tree" >/dev/null \
