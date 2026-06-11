@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜platonic-schlafli-core-s1-s1
   phase≜prove
-  status≜open
+  status≜blocked
   difficulty≜1
 }
 ⟦Σ:Source⟧{

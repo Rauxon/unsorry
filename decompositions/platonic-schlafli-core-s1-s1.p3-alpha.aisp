@@ -1,0 +1,12 @@
+𝔸5.1.decomp.platonic-schlafli-core-s1-s1.p3-alpha@2026-06-11
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜platonic-schlafli-core-s1-s1; agent≜p3-alpha}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜platonic-schlafli-core-s1-s1-s1,sha≜b36208b236ef9bd3b63bd0ada92be60dd51b828a4c0fc4d51ddd70672e1dcfb0⟩
+  sub₂≜⟨id≜platonic-schlafli-core-s1-s1-s2,sha≜3920492a0df7f350e1853b960efd03fbf350f3aad13512969715114ad108b129⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

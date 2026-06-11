@@ -13,5 +13,6 @@ Rules:
    - `lake exe axiom_audit Unsorry.<ModuleName>`  (per-declaration axiom footprint must stay inside the whitelist; NO `--allow-sorry`)
    You may run `lake build`, `lake env`, `lake exe`, and `git diff` to check your work while iterating.
 5. Do not weaken or restate the theorem to make it easier (no changing the type, no extra hypotheses). Prove exactly the statement you were given.
+6. CI additionally greps every added line under `library/` — code AND comments — for the tokens `sorry`, `admit`, `sorryAx`, `native_decide`, `axiom`, `unsafe`, `implemented_by`, `extern`. Do not use these words anywhere in the file, including doc comments and prose (write e.g. "audit gate" instead of naming the audit after what it audits). A module whose comment mentions one of them fails Gate A even when the proof is sound.
 
 THEOREM:
