@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Thread C plan: `docs/proposals/mathlib-upstream-plan.md` — the mathlib upstream path, designed around mathlib's verified AI-contribution policy (disclosure + `LLM-generated` label + author-understands-everything): machine-prepared upstream packets, human-sponsored PRs, Zulip-first; autonomous PRs are an explicit non-goal. Current candidates: the two mathlib-absent lemmas
+
+
+### Added
+
 - Model/effort policy for proof runs (ADR-013, SPEC-013-A): prove and decompose `claude` calls default to the most capable model (`fable`) at `--effort max`, env-overridable via `UNSORRY_MODEL`/`UNSORRY_EFFORT`, with the effort flag dropped fail-soft on CLIs that lack it; translation stays on `sonnet`. Run config recorded in the startup log. 28 self-tests
 
 
