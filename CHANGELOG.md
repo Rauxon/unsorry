@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Progressive effort escalation (ADR-015, SPEC-015-A, amends ADR-013): prove attempts now climb the effort ladder `high` → `xhigh` → `max` instead of running every attempt at static `max`, with the prove-mode attempt budget defaulting to 3 (one per rung) and decomposition always at the top rung. A set `UNSORRY_EFFORT` pins every attempt; fail-soft on CLIs without `--effort` unchanged. Each attempt's effort is logged for run reconstruction
+
 ### Added
 
 - Cross-goal dependency reuse (ADR-014, SPEC-014-A): a goal's proved dependencies — declared `deps≜⟨…⟩` plus its own decomposition's subs — surface in the prove prompt as importable `Unsorry.*` modules with statements, so merged lemmas compound instead of being re-proved. Seeded the first dependency edge: `nicomachus-sum-cubes-triangular → nicomachus-sum-cubes` (thread B target)

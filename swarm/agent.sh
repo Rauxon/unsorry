@@ -52,12 +52,15 @@ Flags:
 Environment:
   UNSORRY_AGENT_ID  Swarm identity (default: ~/.unsorry/agent-id, created on first run)
   UNSORRY_MODEL     Model for claude calls (default: fable in --prove, else sonnet; ADR-013)
-  UNSORRY_EFFORT    Effort for proof-surface calls (default: max in --prove, else unset;
-                    dropped fail-soft when the installed claude lacks --effort)
+  UNSORRY_EFFORT    Effort for proof-surface calls (default in --prove: the
+                    ADR-015 ladder, attempts climb high→xhigh→max; a set value
+                    pins every attempt; else unset; dropped fail-soft when the
+                    installed claude lacks --effort)
   UNSORRY_WORKDIR   Claims worktree + metrics.jsonl home (default: ~/.unsorry/work)
   UNSORRY_WALL      Wall-clock seconds per claude call (default: 1800)
   UNSORRY_TTL       Claim TTL seconds (default: tools/gate_b/config.py TTL_SECONDS)
-  UNSORRY_ATTEMPTS  Prove build/audit attempts (default: config.py BUDGET_ATTEMPTS)
+  UNSORRY_ATTEMPTS  Prove build/audit attempts (default: 3 in --prove, one per
+                    ADR-015 effort rung; else config.py BUDGET_ATTEMPTS)
 EOF
 }
 
@@ -1079,20 +1082,22 @@ DECOMPOSE_PROMPT_FILE="swarm/prompts/decompose.md"
 # reverts to the Phase-1 demote-only failure path.
 PROVE_DECOMPOSE="${UNSORRY_DECOMPOSE:-1}"
 
-# ADR-013 model/effort policy. Proof-surface calls (prove, decompose) default
-# to the most capable model at max effort — success-per-attempt is the lever
-# that dominates time-to-proved on hard targets; the kernel and gates make
-# model choice a performance knob, never a soundness one. Translation is not a
-# proof run and stays on the cheaper default. Pure resolver so the policy is
-# testable: prints "<model> <effort>" ("-" = no effort flag); the CLI help
-# text drives the --effort fail-soft probe (older CLIs lack the flag and
-# contributor agents must not break on it).
+# ADR-013/ADR-015 model/effort policy. Proof-surface calls (prove, decompose)
+# default to the most capable model — success-per-attempt is the lever that
+# dominates time-to-proved on hard targets; the kernel and gates make model
+# choice a performance knob, never a soundness one. Effort defaults to the
+# ADR-015 ladder (attempts climb high→xhigh→max, paying for deep reasoning
+# only on statements that resisted a cheaper pass); a set UNSORRY_EFFORT pins
+# every attempt. Translation is not a proof run and stays on the cheaper
+# default. Pure resolver so the policy is testable: prints "<model> <effort>"
+# ("-" = no effort flag); the CLI help text drives the --effort fail-soft
+# probe (older CLIs lack the flag and contributor agents must not break on it).
 resolve_model_effort() {
   local mode="$1" model_env="$2" effort_env="$3" help_text="$4"
   local model effort
   if [ "$mode" = prove ]; then
     model="${model_env:-fable}"
-    effort="${effort_env:-max}"
+    effort="${effort_env:-ladder}"
   else
     model="${model_env:-sonnet}"
     effort="${effort_env:-}"
@@ -1103,8 +1108,23 @@ resolve_model_effort() {
   printf '%s %s\n' "$model" "${effort:--}"
 }
 
-# --effort args for the proof-surface claude calls; resolved once in main().
-declare -a EFFORT_ARGS=()
+# ADR-015 progressive escalation: maps an attempt number to its effort token
+# ("" = no flag). On the ladder, attempt 1 → high, 2 → xhigh, 3+ → max (the
+# word "top" also lands on the last rung — used where the ladder is known to
+# be exhausted, e.g. decomposition). Anything but "ladder" pins every attempt:
+# an explicit UNSORRY_EFFORT passes through, the fail-soft empty stays empty.
+effort_for_attempt() {
+  local attempt="$1" effort="$2"
+  if [ "$effort" != "ladder" ]; then
+    printf '%s\n' "$effort"
+    return 0
+  fi
+  case "$attempt" in
+    1) echo high ;;
+    2) echo xhigh ;;
+    *) echo max ;;
+  esac
+}
 
 # Prove step 5: one claude call constrained to write the target Lean module.
 # --max-turns does not exist on claude 2.1.170 (the translate cycle dropped it
@@ -1112,10 +1132,12 @@ declare -a EFFORT_ARGS=()
 # Tools are limited to reading/editing/writing and the read-only lake/git
 # commands the prover needs to check its own work (build, env, exe, diff).
 call_claude_prove() {
-  local prompt="$1" workdir="$2"
+  local prompt="$1" workdir="$2" effort="$3"
+  local -a eff=()
+  [ -n "$effort" ] && eff=(--effort "$effort")
   ( cd "$workdir" \
     && timeout "$UNSORRY_WALL" claude -p "$prompt" \
-         --model "$UNSORRY_MODEL" "${EFFORT_ARGS[@]}" --output-format text \
+         --model "$UNSORRY_MODEL" "${eff[@]}" --output-format text \
          --allowedTools \
            "Read,Edit,Write,Bash(lake build *),Bash(lake env *),Bash(lake exe *),Bash(git diff *)" )
 }
@@ -1135,8 +1157,9 @@ prove_local_verify() {
 }
 
 # Prove steps 5–6: drive `claude` to write library/Unsorry/<camel>.lean proving
-# the goal's theorem, then locally verify. Up to config.BUDGET_ATTEMPTS (2)
-# attempts: on a failed build/audit the error is fed back to a fresh call once,
+# the goal's theorem, then locally verify. Up to UNSORRY_ATTEMPTS attempts
+# (default 3 in prove mode — one per ADR-015 effort rung, high→xhigh→max): on
+# a failed build/audit the error is fed back to a fresh call at the next rung,
 # then give up. The proof tree is a worktree at <prwt> branched from
 # origin/main; on success it carries the proved module ready for check-in.
 # Prints nothing; returns 0 with the verified module in place, 1 on failure.
@@ -1169,7 +1192,10 @@ THIS repository's library. Import their modules and use them; do not re-prove
 them. The import-tightness rule explicitly allows these Unsorry.* imports:
 $(printf '%s\n' "$deps_lines" | awk -F'\t' '{printf "- import %s\n    %s\n", $1, ($3 != "" ? $3 : "theorem " $2)}')"
   fi
-  for attempt in $(seq 1 "$UNSORRY_ATTEMPTS"); do  # config.BUDGET_ATTEMPTS
+  local eff_tok
+  for attempt in $(seq 1 "$UNSORRY_ATTEMPTS"); do  # ADR-015 ladder, default 3
+    eff_tok="$(effort_for_attempt "$attempt" "$UNSORRY_EFFORT")"
+    log "prove attempt $attempt/$UNSORRY_ATTEMPTS for $goal (effort ${eff_tok:-default})"
     prompt="$(cat "$PROVE_PROMPT_FILE")
 $stmt
 
@@ -1186,7 +1212,7 @@ $err
 Fix the module so both pass. Write the corrected $target."
     fi
     rm -f "$prwt/$target"
-    if ! call_claude_prove "$prompt" "$prwt" >/dev/null; then
+    if ! call_claude_prove "$prompt" "$prwt" "$eff_tok" >/dev/null; then
       log "claude prove call failed or timed out for $goal (attempt $attempt)"
       err="(claude call failed or timed out)"
       continue
@@ -1326,14 +1352,19 @@ decompose_goal() {
   fi
 
   # Drive claude to propose sub-lemmas. Each `SUB:` line is a complete Lean
-  # theorem signature (no proof). Other lines are ignored.
+  # theorem signature (no proof). Other lines are ignored. Decomposition only
+  # fires after the prove ladder is exhausted, so it runs at the top rung
+  # (ADR-015).
+  local eff_tok; eff_tok="$(effort_for_attempt top "$UNSORRY_EFFORT")"
+  local -a eff=()
+  [ -n "$eff_tok" ] && eff=(--effort "$eff_tok")
   out="$(cd "$prwt" && timeout "$UNSORRY_WALL" claude -p "$(cat "$DECOMPOSE_PROMPT_FILE")
 
 PARENT THEOREM (the goal that resisted proof):
 $stmt
 
 Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` line." \
-    --model "$UNSORRY_MODEL" "${EFFORT_ARGS[@]}" --output-format text --allowedTools "Read,Bash(lake build *),Bash(lake env *)" 2>/dev/null)"
+    --model "$UNSORRY_MODEL" "${eff[@]}" --output-format text --allowedTools "Read,Bash(lake build *),Bash(lake env *)" 2>/dev/null)"
 
   # Materialise the proposed subs into the PR tree.
   local -a sub_ids=() decomp_args=()
@@ -2246,9 +2277,10 @@ test_model_effort_policy() {
   local help_without='Options:
   --model <model>                       Model for the current session'
   local got
-  # ADR-013: prove mode defaults to the most capable model at max effort.
+  # ADR-013/ADR-015: prove mode defaults to the most capable model on the
+  # progressive effort ladder.
   got="$(resolve_model_effort prove "" "" "$help_with")"
-  [ "$got" = "fable max" ] || { log "  prove defaults: want 'fable max', got '$got'"; return 1; }
+  [ "$got" = "fable ladder" ] || { log "  prove defaults: want 'fable ladder', got '$got'"; return 1; }
   # Translation is not a proof run: sonnet, no effort flag.
   got="$(resolve_model_effort translate "" "" "$help_with")"
   [ "$got" = "sonnet -" ] || { log "  translate defaults: want 'sonnet -', got '$got'"; return 1; }
@@ -2264,6 +2296,31 @@ test_model_effort_policy() {
   # Explicit effort is also dropped fail-soft on an old CLI.
   got="$(resolve_model_effort translate "" xhigh "$help_without")"
   [ "$got" = "sonnet -" ] || { log "  fail-soft explicit: want 'sonnet -', got '$got'"; return 1; }
+}
+
+test_effort_ladder() {
+  local got
+  # ADR-015: on the ladder, attempts climb high → xhigh → max.
+  got="$(effort_for_attempt 1 ladder)"
+  [ "$got" = high ] || { log "  rung 1: want 'high', got '$got'"; return 1; }
+  got="$(effort_for_attempt 2 ladder)"
+  [ "$got" = xhigh ] || { log "  rung 2: want 'xhigh', got '$got'"; return 1; }
+  got="$(effort_for_attempt 3 ladder)"
+  [ "$got" = max ] || { log "  rung 3: want 'max', got '$got'"; return 1; }
+  # Attempts past the last rung stay at the top, as does the explicit word
+  # "top" (the decomposition call).
+  got="$(effort_for_attempt 7 ladder)"
+  [ "$got" = max ] || { log "  rung 7: want 'max', got '$got'"; return 1; }
+  got="$(effort_for_attempt top ladder)"
+  [ "$got" = max ] || { log "  top rung: want 'max', got '$got'"; return 1; }
+  # A pinned UNSORRY_EFFORT short-circuits the ladder at every attempt.
+  got="$(effort_for_attempt 1 xhigh)"
+  [ "$got" = xhigh ] || { log "  pinned attempt 1: want 'xhigh', got '$got'"; return 1; }
+  got="$(effort_for_attempt 3 xhigh)"
+  [ "$got" = xhigh ] || { log "  pinned attempt 3: want 'xhigh', got '$got'"; return 1; }
+  # The fail-soft empty value pins to "no flag" on every attempt.
+  got="$(effort_for_attempt 2 "")"
+  [ -z "$got" ] || { log "  fail-soft attempt: want '', got '$got'"; return 1; }
 }
 
 test_render_decomp_gateb() {
@@ -2323,6 +2380,7 @@ run_self_tests() {
     test_unblockable_detection
     test_proved_deps_surfacing
     test_model_effort_policy
+    test_effort_ladder
     test_render_decomp_gateb
   )
   local failures=0 t
@@ -2466,8 +2524,11 @@ main() {
       || die_config "--goal '$GOAL_FILTER' violates the Id grammar"
   fi
 
-  # ADR-013: model + effort resolved per mode (prove → fable/max, translate →
-  # sonnet/none), env-overridable, --effort dropped fail-soft on older CLIs.
+  # ADR-013/ADR-015: model + effort resolved per mode (prove → fable + the
+  # high→xhigh→max attempt ladder, translate → sonnet/none), env-overridable
+  # (a set UNSORRY_EFFORT pins every attempt), --effort dropped fail-soft on
+  # older CLIs. Per-attempt args are computed by effort_for_attempt at the
+  # call sites.
   local mode; [ "$PROVE" -eq 1 ] && mode=prove || mode=translate
   local resolved
   resolved="$(resolve_model_effort "$mode" "${UNSORRY_MODEL:-}" "${UNSORRY_EFFORT:-}" \
@@ -2475,15 +2536,18 @@ main() {
   UNSORRY_MODEL="${resolved% *}"
   UNSORRY_EFFORT="${resolved#* }"
   [ "$UNSORRY_EFFORT" = "-" ] && UNSORRY_EFFORT=""
-  EFFORT_ARGS=()
-  [ -n "$UNSORRY_EFFORT" ] && EFFORT_ARGS=(--effort "$UNSORRY_EFFORT")
   UNSORRY_WALL="${UNSORRY_WALL:-1800}"
   [[ "$UNSORRY_WALL" =~ ^[0-9]+$ ]] \
     || die_config "UNSORRY_WALL '$UNSORRY_WALL' is not an integer"
   UNSORRY_TTL="${UNSORRY_TTL:-$(py_helper ttl)}"
   [[ "$UNSORRY_TTL" =~ ^[0-9]+$ ]] \
     || die_config "UNSORRY_TTL '$UNSORRY_TTL' is not an integer"
-  UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-$(py_helper attempts)}"
+  # ADR-015: prove's default budget is one attempt per ladder rung.
+  if [ "$mode" = prove ]; then
+    UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-3}"
+  else
+    UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-$(py_helper attempts)}"
+  fi
   [[ "$UNSORRY_ATTEMPTS" =~ ^[1-9][0-9]*$ ]] \
     || die_config "UNSORRY_ATTEMPTS '$UNSORRY_ATTEMPTS' is not a positive integer"
   UNSORRY_WORKDIR="${UNSORRY_WORKDIR:-$HOME/.unsorry/work}"
@@ -2496,7 +2560,9 @@ main() {
     [ "$PROVE" -eq 1 ] && require_cmd lake  # prove verify builds locally
   fi
 
-  log "agent $AGENT_ID starting ($mode; model=$UNSORRY_MODEL effort=${UNSORRY_EFFORT:-default} wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
+  local effort_disp="${UNSORRY_EFFORT:-default}"
+  [ "$UNSORRY_EFFORT" = ladder ] && effort_disp="ladder(high→xhigh→max)"
+  log "agent $AGENT_ID starting ($mode; model=$UNSORRY_MODEL effort=$effort_disp attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
 
   declare -A HANDLED=()
   declare -A SWEPT=()
