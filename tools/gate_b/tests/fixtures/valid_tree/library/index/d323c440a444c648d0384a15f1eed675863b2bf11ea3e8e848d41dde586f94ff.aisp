@@ -1,0 +1,7 @@
+𝔸5.1.lemma.d323c440a444@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜d323c440a444c648d0384a15f1eed675863b2bf11ea3e8e848d41dde586f94ff; goal≜nat-succ-pos; name≜nat_succ_pos}
+⟦Σ:Source⟧{src≜goals/nat-succ-pos.lean}
+⟦Γ:Tags⟧{tags≜⟨nat,order⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

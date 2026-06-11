@@ -1,9 +1,7 @@
 𝔸5.1.lemma.7afe725357e7@2026-06-10
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜7afe725357e773f49eb16f788a140fd122636b23843995535a78cdc30c276ba5; goal≜nat-le-add-right; name≜nat_le_add_right_thm}
-⟦Σ:Stmt⟧{
-  stmt≜theorem nat_le_add_right_thm (a b : Nat) : a ≤ a + b
-}
+⟦Σ:Source⟧{src≜goals/nat-le-add-right.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

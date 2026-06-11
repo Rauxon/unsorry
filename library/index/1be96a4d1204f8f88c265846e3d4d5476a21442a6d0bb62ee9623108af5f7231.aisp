@@ -1,9 +1,7 @@
 𝔸5.1.lemma.1be96a4d1204@2026-06-10
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜1be96a4d1204f8f88c265846e3d4d5476a21442a6d0bb62ee9623108af5f7231; goal≜nicomachus-sum-cubes; name≜nicomachus_sum_cubes}
-⟦Σ:Stmt⟧{
-  stmt≜theorem nicomachus_sum_cubes (n : ℕ) : (∑ k ∈ Finset.range n, k ^ 3) = (∑ k ∈ Finset.range n, k) ^ 2
-}
+⟦Σ:Source⟧{src≜goals/nicomachus-sum-cubes.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

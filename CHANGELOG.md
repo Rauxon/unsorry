@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Index records no longer embed the statement (same brace hazard as the decomposition fix): `⟦Σ:Stmt⟧` → `⟦Σ:Source⟧{src≜goals/<goal>.lean}`, with Gate B recomputing the sha from the goal file when it exists (GB006 on mismatch; grandfathered translate-era entries keep the filename≡sha check). All 20 existing index records migrated; caught before the first brace-statement lemma (the recomposed platonic-schlafli-core parent) would have failed its prove PR
+
+
 ### Added
 
 - Phase-3 roadmap (thread G): AISP value benchmark — observational instrumentation (tokens/record, Gate B first-try rejection rate) plus an A/B trial against a JSON mirror of the schemas and contract, to measure the notation's claimed value before contributors are asked to learn it

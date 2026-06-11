@@ -300,18 +300,19 @@ def cmd_prove_claimable(args):
 
 
 def cmd_render_index(args):
-    """render-index <sha> <goal> <name> <stmt> — print a library/index entry
-    (SPEC-007-A prove step on success), same shape as the existing entries.
-    The date header is today UTC; tags and metrics start empty (the affinity
-    machine fills `use`/`aff` later; tags are curated by humans)."""
-    sha, goal, name, stmt = args[:4]
+    """render-index <sha> <goal> <name> — print a library/index entry
+    (SPEC-007-A prove step on success). The statement is NOT embedded: it
+    lives only in goals/<goal>.lean (the record grammar reserves {} for block
+    delimiters and Lean statements contain braces); the sha is its content
+    address and Gate B recomputes it from the goal file. Tags and metrics
+    start empty (the affinity machine fills `use`/`aff` later; tags are
+    curated by humans)."""
+    sha, goal, name = args[:3]
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     print(f"𝔸5.1.lemma.{sha[:12]}@{today}")
     print("γ≔unsorry.lemma.index")
     print(f"⟦Ω:Lemma⟧{{sha≜{sha}; goal≜{goal}; name≜{name}}}")
-    print("⟦Σ:Stmt⟧{")
-    print(f"  stmt≜{stmt}")
-    print("}")
+    print(f"⟦Σ:Source⟧{{src≜goals/{goal}.lean}}")
     print("⟦Γ:Tags⟧{tags≜⟨⟩}")
     print("⟦Λ:Meta⟧{use≜0; aff≜0}")
     print("⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩")
@@ -1173,11 +1174,9 @@ check_in_proof() {
   local name sha
   name="$(py_helper lean-name "$prwt/goals/$goal.lean")" || return 1
   sha="$(py_helper lean-sha "$prwt/goals/$goal.lean")" || return 1
-  local stmt
-  stmt="$(py_helper lean-stmt "$prwt/goals/$goal.lean")" || return 1
 
   mkdir -p "$prwt/library/index" || return 1
-  py_helper render-index "$sha" "$goal" "$name" "$stmt" \
+  py_helper render-index "$sha" "$goal" "$name" \
     > "$prwt/library/index/$sha.aisp" || return 1
   py_helper rewrite-goal "$prwt/goals/$goal.aisp" proved "$sha" || return 1
   # ⊕ a merge reinforces the goal's pattern (+1 affinity, ADR-010); folds
@@ -1938,12 +1937,23 @@ test_render_index_gateb() {
     2>/dev/null || printf 'theorem placeholder : True := trivial\n' \
       > "$tree/library/Unsorry/Basic.lean"
   sha="$(py_helper lean-sha "$tree/goals/nat-add-zero-thm.lean")" || return 1
-  stmt="$(py_helper lean-stmt "$tree/goals/nat-add-zero-thm.lean")" || return 1
-  py_helper render-index "$sha" nat-add-zero-thm nat_add_zero_thm "$stmt" \
+  py_helper render-index "$sha" nat-add-zero-thm nat_add_zero_thm \
     > "$tree/library/index/$sha.aisp" || return 1
   py_helper rewrite-goal "$tree/goals/nat-add-zero-thm.aisp" proved "$sha" || return 1
   python3 -m tools.gate_b validate "$tree" >/dev/null \
     || { log "  rendered index entry + proved goal failed Gate B"; return 1; }
+  # The platonic-schlafli-core regression, index-record surface: a proved goal
+  # whose statement carries braces must index + validate cleanly (statement by
+  # content address, never inline).
+  make_prove_goal "$tree" brace-goal \
+    "theorem brace_goal (p q : Nat) : (p, q) ∈ ({(3,3),(3,4)} : Finset (Nat × Nat))" || return 1
+  printf '# brace-goal\n\nx\n' > "$tree/backlog/brace-goal.md"
+  sha="$(py_helper lean-sha "$tree/goals/brace-goal.lean")" || return 1
+  py_helper render-index "$sha" brace-goal brace_goal \
+    > "$tree/library/index/$sha.aisp" || return 1
+  py_helper rewrite-goal "$tree/goals/brace-goal.aisp" proved "$sha" || return 1
+  python3 -m tools.gate_b validate "$tree" >/dev/null \
+    || { log "  brace-statement index entry failed Gate B"; return 1; }
 }
 
 # Set a prove goal's deps≜⟨⟩ to ⟨<csv>⟩ (test helper for gap ranking).
