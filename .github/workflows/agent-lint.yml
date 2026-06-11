@@ -16,8 +16,10 @@ jobs:
       - name: Install shellcheck
         run: sudo apt-get update && sudo apt-get install -y shellcheck
       - name: shellcheck
-        run: shellcheck swarm/agent.sh
+        run: shellcheck swarm/agent.sh swarm/supervise.sh
       - name: bash syntax check
-        run: bash -n swarm/agent.sh
+        run: bash -n swarm/agent.sh && bash -n swarm/supervise.sh
       - name: agent self-test
         run: ./swarm/agent.sh --self-test
+      - name: supervisor self-test
+        run: ./swarm/supervise.sh --self-test

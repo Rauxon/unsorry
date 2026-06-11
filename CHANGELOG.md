@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Swarm supervisor (ADR-017, SPEC-017-A): `swarm/supervise.sh` drives a goal tree to closure across infrastructure outages (exponential backoff on the ADR-016 exit-3 signal), cycle failures, and merge latency, terminating only when every goal in scope is `proved`. Each wait runs scope-limited PR hygiene: duplicate prove PRs (the claim-race symptom, #184/#185) are closed keeping the oldest, and CONFLICTING PRs are loudly flagged — GitHub runs no checks on a conflicted PR, so an armed auto-merge otherwise waits forever in silence (the #166 failure mode). Agent-side: prove selection now skips any goal whose prove PR is already open (the claim is released at PR-open, so the claims branch cannot see in-flight work). 3 supervisor self-tests + 1 agent self-test (32 total); agent-lint CI covers both scripts
+
+### Added
+
 - Infrastructure-failure guard (ADR-016, SPEC-016-A): a failed claude call that died in under `UNSORRY_FASTFAIL` seconds (default 240) and whose cheap-model health probe also fails is classified as an infrastructure failure — claim released with no `prove-failed` event, no decomposition, no demote, and the agent exits with code 3 for the orchestrator. Motivated by the two 2026-06-11 quota outages that each demoted a whole goal tree below τ_v. Prove prompt now also warns that Gate A's text lint greps comments for forbidden tokens (the word "axiom" in a doc comment failed an otherwise-sound proof)
 
 ### Changed

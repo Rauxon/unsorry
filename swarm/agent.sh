@@ -903,6 +903,20 @@ submit_pr_tree() {
 
 # ----------------------------------------------------------------- the cycle
 
+# ADR-017: a goal whose prove PR is already open is done being worked — the
+# claim was released when the PR opened, so the claims branch alone cannot
+# see it, and re-claiming only duplicates an expensive prove run and races
+# the goal record (the #166/#168 conflict, the #184/#185 duplicate).
+# Best-effort: a gh error means "unknown" (rc 1) and claiming proceeds —
+# selection must not depend on API health.
+open_prove_pr_exists() {
+  local goal="$1" n
+  n="$(gh pr list --state open --limit 5 \
+    --search "\"prove($goal):\" in:title" \
+    --json number --jq 'length' 2>/dev/null)" || return 1
+  [ "${n:-0}" -gt 0 ]
+}
+
 # Step 4: write + commit + push the claim; first-push-wins with retry. The
 # loop is re-entrant (SPEC-007-A): every retry rebuilds the claim commit from
 # scratch on a freshly-fetched, hard-reset origin/claims tip — no incremental
@@ -2408,6 +2422,27 @@ test_infra_failure_classifier() {
   [ "$got" = real ] || { log "  boundary: want 'real', got '$got'"; return 1; }
 }
 
+test_open_pr_claim_guard() {
+  local rc
+  # ADR-017: an open prove PR for the goal → skip it (rc 0). gh is stubbed —
+  # the suite stays hermetic.
+  gh() { echo 1; }
+  if ! open_prove_pr_exists some-goal; then
+    unset -f gh; log "  open PR not detected"; return 1
+  fi
+  # No open PR → proceed (rc 1).
+  gh() { echo 0; }
+  rc=0; open_prove_pr_exists some-goal || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  empty list treated as an open PR"; return 1; }
+  # A gh failure means "unknown" and must fail open (rc 1) — selection never
+  # depends on API health.
+  gh() { return 9; }
+  rc=0; open_prove_pr_exists some-goal || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  gh failure did not fail open"; return 1; }
+  unset -f gh
+  return 0
+}
+
 test_render_decomp_gateb() {
   # A rendered decomposition record + its sub goal records validate under the
   # real Gate B (acyclic, subs are known goals, none re-emits the parent).
@@ -2467,6 +2502,7 @@ run_self_tests() {
     test_model_effort_policy
     test_effort_ladder
     test_infra_failure_classifier
+    test_open_pr_claim_guard
     test_render_decomp_gateb
   )
   local failures=0 t
@@ -2685,9 +2721,15 @@ main() {
       exit 0
     fi
 
-    # Step 4 — claim, moving to the next candidate on collision.
+    # Step 4 — claim, moving to the next candidate on collision. In prove
+    # mode a candidate with an open prove PR is skipped (ADR-017): its claim
+    # was released at PR-open, but the work is in flight, not abandoned.
     goal=""
     while IFS= read -r cand; do
+      if [ "$PROVE" -eq 1 ] && [ "$DRY_RUN" -eq 0 ] && open_prove_pr_exists "$cand"; then
+        log "skipping $cand — an open prove PR is already in flight"
+        continue
+      fi
       if claim_goal "$cand"; then
         goal="$cand"
         break
