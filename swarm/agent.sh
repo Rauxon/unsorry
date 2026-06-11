@@ -2137,7 +2137,10 @@ test_render_index_gateb() {
 # Set a prove goal's deps≜⟨⟩ to ⟨<csv>⟩ (test helper for gap ranking).
 set_goal_deps() {
   local file="$1" csv="$2"
-  sed -i "s/  deps≜⟨⟩/  deps≜⟨$csv⟩/" "$file"
+  # ${csv} braced: bash 5.3 under UTF-8 locales pulls the ⟩ glyph into the
+  # identifier (csv⟩: unbound variable). Write+mv instead of sed -i: BSD sed
+  # (macOS) requires a backup-suffix argument, GNU sed does not.
+  sed "s/  deps≜⟨⟩/  deps≜⟨${csv}⟩/" "$file" > "$file.sedtmp" && mv "$file.sedtmp" "$file"
 }
 
 test_affinity_ranking() {
