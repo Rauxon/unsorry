@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-06-11
+
 ### Added
 
 - Swarm supervisor (ADR-017, SPEC-017-A): `swarm/supervise.sh` drives a goal tree to closure across infrastructure outages (exponential backoff on the ADR-016 exit-3 signal), cycle failures, and merge latency, terminating only when every goal in scope is `proved`. Each wait runs scope-limited PR hygiene: duplicate prove PRs (the claim-race symptom, #184/#185) are closed keeping the oldest, and CONFLICTING PRs are loudly flagged — GitHub runs no checks on a conflicted PR, so an armed auto-merge otherwise waits forever in silence (the #166 failure mode). Agent-side: prove selection now skips any goal whose prove PR is already open (the claim is released at PR-open, so the claims branch cannot see in-flight work). 3 supervisor self-tests + 1 agent self-test (32 total); agent-lint CI covers both scripts
