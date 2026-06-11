@@ -12,7 +12,9 @@
 # code Gate B and the reaper use) — this script never reimplements them.
 #
 # Exit codes: 0 success or nothing-to-do · 1 cycle failure · 2 configuration
-# error (not at repo root, missing tools, unauthenticated gh).
+# error (not at repo root, missing tools, unauthenticated gh) · 3
+# infrastructure failure (the claude CLI cannot run — quota, auth, network —
+# the agent stops without applying any queue penalty, ADR-016).
 #
 # shellcheck disable=SC2317  # test_* functions are invoked indirectly ("$t")
 set -euo pipefail
@@ -58,6 +60,9 @@ Environment:
                     installed claude lacks --effort)
   UNSORRY_WORKDIR   Claims worktree + metrics.jsonl home (default: ~/.unsorry/work)
   UNSORRY_WALL      Wall-clock seconds per claude call (default: 1800)
+  UNSORRY_FASTFAIL  Seconds under which a failed claude call is suspected to be
+                    an infrastructure failure rather than a real attempt
+                    (default: 240; confirmed by a health probe, ADR-016)
   UNSORRY_TTL       Claim TTL seconds (default: tools/gate_b/config.py TTL_SECONDS)
   UNSORRY_ATTEMPTS  Prove build/audit attempts (default: 3 in --prove, one per
                     ADR-015 effort rung; else config.py BUDGET_ATTEMPTS)
@@ -1126,6 +1131,31 @@ effort_for_attempt() {
   esac
 }
 
+# ADR-016 pure classifier: a failed claude call counts as an infrastructure
+# failure only when it died fast (a real prove attempt cannot fail in under
+# the fast-fail threshold — the model has to at least read the goal and try a
+# build) AND the follow-up health probe also failed (probe_rc != 0). Anything
+# else stays a real attempt. Infrastructure failures must never demote,
+# decompose or emit prove-failed: a CLI that never ran is zero evidence about
+# the goal — twice now a quota outage has demoted a whole tree below τ_v.
+classify_call_failure() {
+  local duration="$1" fastfail="$2" probe_rc="$3"
+  if [ "$duration" -lt "$fastfail" ] && [ "$probe_rc" -ne 0 ]; then
+    echo infra
+  else
+    echo real
+  fi
+}
+
+# ADR-016: a near-free call answering "can claude run at all right now?".
+# Deliberately the cheap model — the probe must not draw from the premium
+# budget whose exhaustion it is diagnosing. Only invoked after a fast-failed
+# call, so it costs nothing on the healthy path.
+cli_health_probe() {
+  timeout 90 claude -p "Reply with exactly: OK" --model sonnet \
+    --output-format text >/dev/null 2>&1
+}
+
 # Prove step 5: one claude call constrained to write the target Lean module.
 # --max-turns does not exist on claude 2.1.170 (the translate cycle dropped it
 # for the same reason); the $UNSORRY_WALL timeout bounds the call instead.
@@ -1192,7 +1222,7 @@ THIS repository's library. Import their modules and use them; do not re-prove
 them. The import-tightness rule explicitly allows these Unsorry.* imports:
 $(printf '%s\n' "$deps_lines" | awk -F'\t' '{printf "- import %s\n    %s\n", $1, ($3 != "" ? $3 : "theorem " $2)}')"
   fi
-  local eff_tok
+  local eff_tok t0 dur probe_rc
   for attempt in $(seq 1 "$UNSORRY_ATTEMPTS"); do  # ADR-015 ladder, default 3
     eff_tok="$(effort_for_attempt "$attempt" "$UNSORRY_EFFORT")"
     log "prove attempt $attempt/$UNSORRY_ATTEMPTS for $goal (effort ${eff_tok:-default})"
@@ -1212,7 +1242,17 @@ $err
 Fix the module so both pass. Write the corrected $target."
     fi
     rm -f "$prwt/$target"
+    t0="$(date +%s)"
     if ! call_claude_prove "$prompt" "$prwt" "$eff_tok" >/dev/null; then
+      dur=$(( $(date +%s) - t0 ))
+      # ADR-016: a call that died fast probably never reached the model.
+      if [ "$dur" -lt "$UNSORRY_FASTFAIL" ]; then
+        probe_rc=0; cli_health_probe || probe_rc=$?
+        if [ "$(classify_call_failure "$dur" "$UNSORRY_FASTFAIL" "$probe_rc")" = infra ]; then
+          log "claude call for $goal died in ${dur}s and the health probe failed — infrastructure failure, aborting cycle (ADR-016)"
+          return 2
+        fi
+      fi
       log "claude prove call failed or timed out for $goal (attempt $attempt)"
       err="(claude call failed or timed out)"
       continue
@@ -1294,13 +1334,14 @@ check_in_proof() {
 # design doc's decomposition path is Phase-2). Returns 0 on a clean cycle.
 prove_goal() {
   local goal="$1"
-  local camel prwt branch ok=0
+  local camel prwt branch ok=0 prc=0 drc=0
   camel="$(py_helper camel-name "$goal")" || return 1
   branch="$(feature_branch prove "$goal")" || return 1
   prwt="$UNSORRY_WORKDIR/prove-${goal}-${AGENT_ID}"
 
   open_pr_worktree "$prwt" "$branch" || return 1
-  if run_proof "$goal" "$prwt" "$camel"; then
+  run_proof "$goal" "$prwt" "$camel" || prc=$?
+  if [ "$prc" -eq 0 ]; then
     if check_in_proof "$goal" "$prwt" "$camel"; then
       ok=1
     fi
@@ -1312,17 +1353,31 @@ prove_goal() {
   if [ "$ok" -eq 1 ]; then
     return 0
   fi
+  # ADR-016: an infrastructure failure (the CLI never ran) is zero evidence
+  # about the goal — release with no event, no decomposition, no demote.
+  if [ "$prc" -eq 2 ]; then
+    log "infrastructure failure while proving $goal — claim released, no penalty (ADR-016)"
+    return 2
+  fi
   emit_event prove-failed "$goal"
   # ADR-009: a budget-exhausted goal is decomposed into claimable sub-lemmas and
   # parked `blocked`; the failed attempt now feeds the pool. If decomposition is
   # not possible (depth cap, or claude produced no usable split), fall back to
-  # the ADR-010 affinity demote so the goal is at least deprioritised.
-  if [ "$PROVE_DECOMPOSE" -eq 1 ] && decompose_goal "$goal"; then
-    log "prove of $goal failed — decomposed into sub-lemmas, parent blocked (ADR-009)"
-  else
-    demote_goal "$goal" || true
-    log "prove of $goal failed after $UNSORRY_ATTEMPTS attempt(s) — claim released, flagged, affinity -10"
+  # the ADR-010 affinity demote so the goal is at least deprioritised — unless
+  # the decompose call itself hit an infrastructure failure (ADR-016).
+  if [ "$PROVE_DECOMPOSE" -eq 1 ]; then
+    decompose_goal "$goal" || drc=$?
+    if [ "$drc" -eq 0 ]; then
+      log "prove of $goal failed — decomposed into sub-lemmas, parent blocked (ADR-009)"
+      return 1
+    fi
+    if [ "$drc" -eq 2 ]; then
+      log "infrastructure failure during decompose of $goal — no demote (ADR-016)"
+      return 2
+    fi
   fi
+  demote_goal "$goal" || true
+  log "prove of $goal failed after $UNSORRY_ATTEMPTS attempt(s) — claim released, flagged, affinity -10"
   return 1
 }
 
@@ -1335,7 +1390,7 @@ prove_goal() {
 # the depth cap is hit, claude produced nothing usable, the subs do not
 # type-check, or any guardrail (≤ cap, strictly-smaller) rejects the split.
 decompose_goal() {
-  local goal="$1" depth maxdepth prwt branch stmt out i=0
+  local goal="$1" depth maxdepth prwt branch stmt out i=0 d0 ddur probe_rc
   depth="$(py_helper goal-depth "goals/$goal.aisp")" || return 1
   maxdepth="$(py_helper max-decomp depth)" || return 1
   if [ "$depth" -ge "$maxdepth" ]; then
@@ -1358,6 +1413,7 @@ decompose_goal() {
   local eff_tok; eff_tok="$(effort_for_attempt top "$UNSORRY_EFFORT")"
   local -a eff=()
   [ -n "$eff_tok" ] && eff=(--effort "$eff_tok")
+  d0="$(date +%s)"
   out="$(cd "$prwt" && timeout "$UNSORRY_WALL" claude -p "$(cat "$DECOMPOSE_PROMPT_FILE")
 
 PARENT THEOREM (the goal that resisted proof):
@@ -1365,6 +1421,7 @@ $stmt
 
 Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` line." \
     --model "$UNSORRY_MODEL" "${eff[@]}" --output-format text --allowedTools "Read,Bash(lake build *),Bash(lake env *)" 2>/dev/null)"
+  ddur=$(( $(date +%s) - d0 ))
 
   # Materialise the proposed subs into the PR tree.
   local -a sub_ids=() decomp_args=()
@@ -1398,6 +1455,17 @@ Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` 
   done <<< "$out"
 
   if [ "${#sub_ids[@]}" -lt 2 ]; then
+    # ADR-016: an unusable split from a call that died fast is no evidence the
+    # goal cannot be decomposed — check the CLI before falling back to demote.
+    if [ "$ddur" -lt "$UNSORRY_FASTFAIL" ]; then
+      probe_rc=0; cli_health_probe || probe_rc=$?
+      if [ "$(classify_call_failure "$ddur" "$UNSORRY_FASTFAIL" "$probe_rc")" = infra ]; then
+        log "decompose($goal): claude call died in ${ddur}s and the health probe failed — infrastructure failure (ADR-016)"
+        git worktree remove --force "$prwt" >/dev/null 2>&1 || true
+        git branch -q -D "$branch" >/dev/null 2>&1 || true
+        return 2
+      fi
+    fi
     log "decompose($goal): claude produced ${#sub_ids[@]} usable sub(s) (need ≥2) — falling back"
     git worktree remove --force "$prwt" >/dev/null 2>&1 || true
     git branch -q -D "$branch" >/dev/null 2>&1 || true
@@ -2323,6 +2391,23 @@ test_effort_ladder() {
   [ -z "$got" ] || { log "  fail-soft attempt: want '', got '$got'"; return 1; }
 }
 
+test_infra_failure_classifier() {
+  local got
+  # ADR-016: fast death + failed probe = infrastructure, never goal evidence.
+  got="$(classify_call_failure 45 240 1)"
+  [ "$got" = infra ] || { log "  fast+probe-fail: want 'infra', got '$got'"; return 1; }
+  # A fast failure with a healthy CLI is a real (if odd) attempt.
+  got="$(classify_call_failure 45 240 0)"
+  [ "$got" = real ] || { log "  fast+probe-ok: want 'real', got '$got'"; return 1; }
+  # A slow failure is a real attempt even if the probe later fails — the model
+  # had its chance (e.g. wall timeout, then quota died afterwards).
+  got="$(classify_call_failure 1800 240 1)"
+  [ "$got" = real ] || { log "  slow+probe-fail: want 'real', got '$got'"; return 1; }
+  # Boundary: exactly the threshold is not "under" it.
+  got="$(classify_call_failure 240 240 1)"
+  [ "$got" = real ] || { log "  boundary: want 'real', got '$got'"; return 1; }
+}
+
 test_render_decomp_gateb() {
   # A rendered decomposition record + its sub goal records validate under the
   # real Gate B (acyclic, subs are known goals, none re-emits the parent).
@@ -2381,6 +2466,7 @@ run_self_tests() {
     test_proved_deps_surfacing
     test_model_effort_policy
     test_effort_ladder
+    test_infra_failure_classifier
     test_render_decomp_gateb
   )
   local failures=0 t
@@ -2539,6 +2625,9 @@ main() {
   UNSORRY_WALL="${UNSORRY_WALL:-1800}"
   [[ "$UNSORRY_WALL" =~ ^[0-9]+$ ]] \
     || die_config "UNSORRY_WALL '$UNSORRY_WALL' is not an integer"
+  UNSORRY_FASTFAIL="${UNSORRY_FASTFAIL:-240}"
+  [[ "$UNSORRY_FASTFAIL" =~ ^[0-9]+$ ]] \
+    || die_config "UNSORRY_FASTFAIL '$UNSORRY_FASTFAIL' is not an integer"
   UNSORRY_TTL="${UNSORRY_TTL:-$(py_helper ttl)}"
   [[ "$UNSORRY_TTL" =~ ^[0-9]+$ ]] \
     || die_config "UNSORRY_TTL '$UNSORRY_TTL' is not an integer"
@@ -2566,7 +2655,7 @@ main() {
 
   declare -A HANDLED=()
   declare -A SWEPT=()
-  local overall=0 translations_dir candidates goal cand stmt cycle_failed
+  local overall=0 translations_dir candidates goal cand stmt cycle_failed prc
 
   while :; do
     # Step 1 — pull main, refresh the claims worktree.
@@ -2613,7 +2702,15 @@ main() {
     # its own release + prove-failed handling; the translate arm is unchanged.
     cycle_failed=0
     if [ "$PROVE" -eq 1 ]; then
-      prove_goal "$goal" || cycle_failed=1
+      prc=0
+      prove_goal "$goal" || prc=$?
+      if [ "$prc" -eq 2 ]; then
+        # ADR-016: the CLI cannot run (quota, auth, network). Every further
+        # cycle would fail identically and poison the queue — stop cleanly.
+        log "stopping: claude CLI unavailable — no queue penalties applied (ADR-016)"
+        exit 3
+      fi
+      [ "$prc" -ne 0 ] && cycle_failed=1
     elif stmt="$(run_translation "$goal")"; then
       check_in "$goal" "$stmt" || cycle_failed=1
       release_claim "$goal" || cycle_failed=1

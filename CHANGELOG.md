@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Infrastructure-failure guard (ADR-016, SPEC-016-A): a failed claude call that died in under `UNSORRY_FASTFAIL` seconds (default 240) and whose cheap-model health probe also fails is classified as an infrastructure failure — claim released with no `prove-failed` event, no decomposition, no demote, and the agent exits with code 3 for the orchestrator. Motivated by the two 2026-06-11 quota outages that each demoted a whole goal tree below τ_v. Prove prompt now also warns that Gate A's text lint greps comments for forbidden tokens (the word "axiom" in a doc comment failed an otherwise-sound proof)
+
 ### Changed
 
 - Progressive effort escalation (ADR-015, SPEC-015-A, amends ADR-013): prove attempts now climb the effort ladder `high` → `xhigh` → `max` instead of running every attempt at static `max`, with the prove-mode attempt budget defaulting to 3 (one per rung) and decomposition always at the top rung. A set `UNSORRY_EFFORT` pins every attempt; fail-soft on CLIs without `--effort` unchanged. Each attempt's effort is logged for run reconstruction
