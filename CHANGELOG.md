@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Phase-3 roadmap (thread G): AISP value benchmark — observational instrumentation (tokens/record, Gate B first-try rejection rate) plus an A/B trial against a JSON mirror of the schemas and contract, to measure the notation's claimed value before contributors are asked to learn it
+
+
+### Added
+
 - PR labelling strategy (`docs/pr-labels.md`): 11 labels classified deterministically from the machine-generated titles (`tools/repo/pr_labels.py`, single source of truth), auto-applied by `.github/workflows/pr-labels.yml` on open/edit; all 145 historical PRs retroactively labelled. 5 classifier tests
 
 
