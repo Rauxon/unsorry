@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.1] - 2026-06-12
+
 ### Fixed
 
 - `agent.sh` self-test on macOS: under bash 5.3 with a UTF-8 locale, the unbraced `$csv` adjacent to the `⟩` glyph in `set_goal_deps` parses the multibyte character into the identifier and aborts the suite at test 20/32 (`csv: unbound variable` under `set -u`), silently skipping the last 12 tests; the same line's `sed -i` also requires a backup-suffix argument under BSD sed. Braced the expansion and replaced in-place sed with portable write+rename. Repro: `bash -uc 'csv=x; echo "$csv⟩"'` on macOS/bash 5.3.9. A full-script scan (`perl -ne 'print if /\$[A-Za-z_]\w*[^\x00-\x7F]/'`) confirms this was the only expansion/glyph adjacency; the live loop path is unaffected
