@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Statement-binding generator (ADR-011/SPEC-011-A): a goal whose statement has a named hypothesis binder following an implicit binder (e.g. `theorem t {n : ℕ} (hn : 1 < n) : …`) produced a binding obligation whose eta-expanded binder is flagged by `linter.unusedVariables`, failing the Gate A `--wfail` build for **any** correct proof of such a goal (first hit: `not-prime-pow-four-add-four`, PR #221). Generated bindings now carry `set_option linter.unusedVariables false in` — their force is the type-check, not lints, and the files are regenerated glue that never lands in a PR. Regression test added; all 38 current bindings rebuilt clean under `--wfail`
+
 ## [1.5.1] - 2026-06-12
 
 ### Fixed
