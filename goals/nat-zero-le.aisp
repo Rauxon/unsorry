@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜nat-zero-le
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/nat-zero-le.lean
-  sha≜∅
+  sha≜602dda5142dcdbf63321aec11798b1ba4163c778bbe95ea04334209ba294e2be
+  aff≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
