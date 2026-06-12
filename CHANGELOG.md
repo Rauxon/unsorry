@@ -11,9 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `agent.sh` self-test on macOS: under bash 5.3 with a UTF-8 locale, the unbraced `$csv` adjacent to the `⟩` glyph in `set_goal_deps` parses the multibyte character into the identifier and aborts the suite at test 20/32 (`csv: unbound variable` under `set -u`), silently skipping the last 12 tests; the same line's `sed -i` also requires a backup-suffix argument under BSD sed. Braced the expansion and replaced in-place sed with portable write+rename. Repro: `bash -uc 'csv=x; echo "$csv⟩"'` on macOS/bash 5.3.9. A full-script scan (`perl -ne 'print if /\$[A-Za-z_]\w*[^\x00-\x7F]/'`) confirms this was the only expansion/glyph adjacency; the live loop path is unaffected
 
+## [1.5.0] - 2026-06-12
+
 ### Added
 
 - **Thread B exit — first compounding** (`docs/metrics/phase3-run-002.{json,md}`): `sum_range_cube_eq_triangular_sq` proved in 4m57s on the first attempt by **importing and invoking the swarm's own `nicomachus_sum_cubes`** (#154) — the first merged-lemma reuse by mechanism (ADR-014: proved deps surfaced in the prove prompt as importable `Unsorry.*` modules). Run-001's four recompositions corroborate (same surfacing, parents importing their proved subs). Honest limits recorded: depth-1 tree, one declared edge; deep bottom-up routing remains open. README compounding claim updated
+
+## [1.4.0] - 2026-06-12
 
 ### Added
 
