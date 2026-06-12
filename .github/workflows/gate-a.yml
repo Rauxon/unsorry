@@ -9,6 +9,10 @@ permissions:
   contents: read
   pull-requests: write
 
+concurrency:
+  group: gate-a-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   # Always runs and always reports — a path-filtered required check would
   # leave non-Lean PRs permanently blocked on an "expected" status
@@ -82,27 +86,11 @@ jobs:
 
       - name: Axiom audit (authoritative)
         if: needs.detect.outputs.lean == 'true'
-        run: |
-          set -euo pipefail
-          lib_modules=$(find library -name '*.lean' | sed 's|^library/||; s|/|.|g; s|\.lean$||')
-          goal_modules=$(find goals -name '*.lean' 2>/dev/null | sed 's|/|.|g; s|\.lean$||' || true)
-          : > axiom-report.json
-          if [ -n "$lib_modules" ]; then
-            # shellcheck disable=SC2086
-            lake exe axiom_audit $lib_modules | tee -a axiom-report.json
-          fi
-          if [ -n "$goal_modules" ]; then
-            # shellcheck disable=SC2086
-            lake exe axiom_audit --allow-sorry $goal_modules | tee -a axiom-report.json
-          fi
+        run: python3 -m tools.gate_a.parallel_modules audit --jobs 4 --output axiom-report.json
 
       - name: Kernel replay (leanchecker)
         if: needs.detect.outputs.lean == 'true'
-        run: |
-          set -euo pipefail
-          lib_modules=$(find library -name '*.lean' | sed 's|^library/||; s|/|.|g; s|\.lean$||')
-          # shellcheck disable=SC2086
-          lake env leanchecker $lib_modules
+        run: python3 -m tools.gate_a.parallel_modules replay --jobs 4
 
       - name: Audit self-test (gate cannot rot silently)
         if: needs.detect.outputs.lean == 'true'

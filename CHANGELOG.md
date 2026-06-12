@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Gate A now executes the authoritative axiom audit and full-library `leanchecker` replay in four bounded chunks, preserving complete verification while using the hosted runner's available cores. Superseded runs for the same PR or `main` ref are cancelled, and axiom reports are emitted as one valid JSON array.
+
 - Status report (`docs/reports/status-2026-06-12.md`) updated in place through v1.6.2: the fifth mathlib-absent result (`not_prime_pow_four_add_four`, external machine binto-labs, #221) added to the results table; the first observed Gate A false negative it exposed recorded with its fix and canary guard (#231/#225/#233) plus a new honest-limits entry (the gate fails closed, not open); the ADR-021 sponsor draft-PR helper and the HEAD-stamped Nicomachus packet added to the upstream section; CONTRIBUTING/LICENSE noted; footer counts refreshed. README status line updated four → five
 
 ## [1.6.2] - 2026-06-12
