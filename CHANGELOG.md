@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Thread A exit — the chain, in anger** (`docs/metrics/phase3-run-001.{json,md}`): `platonic_schlafli_pairs` (the Platonic-solids Schläfli arithmetic core, mathlib-absent) kernel-verified on main **via** a forced depth-3 decompose → prove-subs → recompose chain — 13 goals, 4 decompositions, 4 recompositions, statement binding held throughout, the parent's proof literally composing its sub-lemmas (#149→#211). Honest record: stage-1 budget forcing, three quota outages (the third absorbed unattended by ADR-016/017), the #166 conflicted-PR silent stall, claim races and their bounded cost, ladder rung stats (11/13 proofs at the cheapest rung). README/roadmap updated: "demonstrated on paper, not in anger" retired
+
 ### Fixed
 
 - ADR-017 claim guard: GitHub title search tokenizes punctuation, so `"prove(<goal>):" in:title` also matched open PRs for sibling goals sharing the name's tokens — the leftover duplicate #198 (`...-s2-s2`) blocked both agents from claiming the recompose-ready parent. The verdict now comes from an exact title-prefix match over the search results; the regression (sibling↛parent, parent↛sub) is covered in `test_open_pr_claim_guard`

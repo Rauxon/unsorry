@@ -1,0 +1,84 @@
+{
+  "run_id": "phase3-run-001",
+  "date": "2026-06-11/12",
+  "trial": "Phase-3 thread A: force the decompose → prove-subs → recompose chain to carry a real proof end-to-end. Stage 1 deliberately strangled the first attempts (UNSORRY_ATTEMPTS=1, UNSORRY_WALL=420) against the hardest backlog target so prove-budget exhaustion would trigger ADR-009 decomposition; stage 2 ran normal budgets (WALL=1800, ladder attempts) over the resulting tree with two prover agents, later under the ADR-017 supervisor. The exit condition: the parent proved on main THROUGH the chain, gate-a green.",
+  "target": {
+    "goal": "platonic-schlafli-core",
+    "statement": "theorem platonic_schlafli_pairs (p q : ℕ) (hp : 3 ≤ p) (hq : 3 ≤ q) (h : (p : ℚ)⁻¹ + (q : ℚ)⁻¹ > 2⁻¹) : (p, q) ∈ ({(3,3),(3,4),(4,3),(3,5),(5,3)} : Finset (ℕ × ℕ))",
+    "description": "The Schläfli arithmetic core of the Platonic-solids classification: the convexity inequality 1/p + 1/q > 1/2 with p,q ≥ 3 admits exactly the five Platonic symbols.",
+    "mathlib_absent": true,
+    "mathlib_absence_basis": "backlog/platonic-schlafli-core.md, verified against pinned mathlib v4.30.0 before seeding (ADR-012 batch).",
+    "difficulty": 4
+  },
+  "agents": [
+    { "id": "p3-alpha", "model": "fable", "role": "prover", "effort": "max (stage 1, ADR-013) then ladder high→xhigh→max (ADR-015)" },
+    { "id": "p3-bravo", "model": "fable", "role": "prover", "effort": "ladder high→xhigh→max (ADR-015)" }
+  ],
+  "exit_metric": {
+    "question": "Did the decompose → prove-subs → recompose chain carry a real proof end-to-end (a target closed VIA the chain, not one-shot)?",
+    "target_reached": true,
+    "proof_path": "decomposition (3 levels deep, 13 goals total)",
+    "decomposition_exercised": true,
+    "binding_held": true,
+    "verdict": "MET. platonic-schlafli-core is kernel-verified on main (#211, gate-a green incl. the regenerated binding obligation). Its proof file imports Unsorry.PlatonicSchlafliCoreS2/S3/S4 and is literally the composition of the three sub-lemmas — the recompose is real, not ceremonial. Two interior nodes (s1, s1-s1) themselves recomposed from their own subs first. Honesty: the parent was FORCED to decompose by a strangled budget (1 attempt × 420s); a model this strong at full budget might have one-shot it. The chain, not the difficulty, was the thing under test."
+  },
+  "tree": {
+    "depth": 3,
+    "goals_total": 13,
+    "goals_proved": 13,
+    "decompositions": [
+      { "goal": "platonic-schlafli-core", "pr": 149, "subs": ["s1 (q⁻¹ bound chain)", "s2 platonic_schlafli_fst_lt_six", "s3 platonic_schlafli_snd_lt_six", "s4 platonic_schlafli_pairs_of_bounds (braced Finset literal)"] },
+      { "goal": "platonic-schlafli-core-s1", "pr": 152, "subs": ["s1-s1 rat_cast_six_le_of_six_le", "s1-s2 rat_inv_le_inv_six_of_six_le", "s1-s3 nat_six_le_of_not_lt_six"] },
+      { "goal": "platonic-schlafli-core-s2", "pr": 155, "subs": ["s2-s1 nat_inv_le_third_of_three_le", "s2-s2 rat_gt_sixth_of_add_gt_half", "s2-s3 nat_lt_six_of_sixth_lt_inv"] },
+      { "goal": "platonic-schlafli-core-s1-s1", "pr": 167, "subs": ["s1-s1-s1 nat_cast_le_rat_of_le", "s1-s1-s2 nat_cast_six_eq_rat_six"] }
+    ],
+    "recompositions": [
+      { "goal": "platonic-schlafli-core-s1-s1", "unblock_pr": 193, "prove_pr": 197, "rung": "xhigh" },
+      { "goal": "platonic-schlafli-core-s2", "unblock_pr": 200, "prove_pr": 202, "rung": "high" },
+      { "goal": "platonic-schlafli-core-s1", "unblock_pr": 203, "prove_pr": 207, "rung": "high (post-outage)" },
+      { "goal": "platonic-schlafli-core", "unblock_pr": 209, "prove_pr": 211, "rung": "high, 3m42s claim→proved" }
+    ]
+  },
+  "effort_ladder": {
+    "policy": "ADR-015: attempt 1 high, attempt 2 xhigh, attempt 3 max; decompose at top rung",
+    "rung_outcomes": {
+      "high_first_attempt_proofs": ["s1-s1-s1", "s1-s1-s2", "s2-s1", "s1-s3", "s2-s3", "s2-s2", "s3", "s2", "s4", "s1", "parent"],
+      "xhigh_second_attempt_proofs": ["s1-s2", "s1-s1"],
+      "ladder_exhausted_then_decomposed": ["s1-s1 (first pass, pre-#167)"],
+      "observation": "11 of 13 final proofs closed at the cheapest rung; the ladder paid max-effort prices only where cheaper passes had failed. Leaf proofs averaged ~3-8 minutes claim→PR."
+    }
+  },
+  "metrics": {
+    "target_proved": true,
+    "proof_path": "decomposition",
+    "decomposition_exercised": true,
+    "subs_total": 12,
+    "subs_proved": 12,
+    "binding_held": true,
+    "prove_prs_opened": 19,
+    "prove_prs_merged": 13,
+    "prove_prs_closed_duplicates": 6,
+    "decompose_prs_merged": 4,
+    "unblock_prs_merged": 4,
+    "library_modules_added": 13,
+    "gate_a_failures_on_merged_path": 1,
+    "gate_a_failure_detail": "#166 first failed the forbidden-token text lint on the word 'axiom' in a doc comment (kernel checks all green); reworded and merged.",
+    "spurious_demote_prs_from_outages": 17,
+    "affinity_restore_prs": 3
+  },
+  "incidents": [
+    { "id": "quota-outage-1", "window": "2026-06-11T05:48Z–09:40Z", "effect": "every claude call died in ~1min; 8 leaves demoted below τ_v (#156–#163); pool emptied; loop exited. Manual restore #165.", "fix_born": "diagnosis only" },
+    { "id": "quota-outage-2", "window": "2026-06-11T10:43Z–later", "effect": "9 more spurious demotes (#168–#181) incl. double-demotes from both agents; tree stalled again. Manual restore #183.", "fix_born": "ADR-016 infrastructure-failure guard (#182)" },
+    { "id": "pr-166-silent-stall", "window": "2026-06-11T10:24Z–18:56Z", "effect": "demote #168 raced bravo's open prove PR for the same goal record; the PR went CONFLICTING and GitHub runs NO checks on a conflicted PR — armed auto-merge waited in silence. Maintainer rebase + record resolution merged the real proof.", "fix_born": "ADR-017 claim guard (skip goals with open prove PRs) + supervisor CONFLICTING flag (#188)" },
+    { "id": "claim-races", "window": "2026-06-11T19:00Z–19:45Z", "effect": "pre-ADR-017 loops double-claimed leaves past PROVE_CLAIM_CAP=1 (interleave not reproduced); 6 duplicate prove PRs (#185, #189, #192, #196, #198, #199), all identical-content or redundant, all closed. Cost bounded to redundant runs — soundness untouched (gates idempotent).", "fix_born": "ADR-017 PR dedupe; root-cause race still open (known issue)" },
+    { "id": "quota-outage-3", "window": "2026-06-11T19:45Z–23:1xZ", "effect": "FIRST OUTAGE UNDER THE NEW GUARDS: alpha's s4 call died in 137s, probe failed → claim released, ZERO queue penalties, exit 3; supervisors rode it with 1h-capped exponential backoff (bravo: 7 consecutive infra failures absorbed) and resumed unattended when quota returned.", "fix_born": "validation of ADR-016/017" },
+    { "id": "claim-guard-false-positive", "window": "2026-06-11T23:4xZ–2026-06-12T00:14Z", "effect": "GitHub title search tokenizes punctuation: leftover duplicate #198 (…-s2-s2) matched the PARENT's guard query, both agents skipped the recompose-ready parent (~1h of 180s supervisor waits). Supervisor's CONFLICTING flag surfaced it; #198 closed; exact-prefix match shipped (#210).", "fix_born": "#210" }
+  ],
+  "known_issues": [
+    "Claim race past PROVE_CLAIM_CAP=1 (exact interleave unreproduced) — cost bounded by ADR-017 PR dedupe; root-cause fix open.",
+    "Conflicted-PR resolution stays manual by design (goal records can need semantic judgement); the supervisor only flags.",
+    "Decomposition subs are not absence-checked against mathlib (machine-minted helpers serve the parent; recorded, accepted)."
+  ],
+  "prs": { "first": 144, "last": 211, "trail": "decompose #149/#152/#155/#167 · prove #166/#184/#186/#187/#191/#194/#195/#197/#201/#202/#207/#208/#211 · unblock #193/#200/#203/#209 · infra ADRs #164/#182/#188/#210 · restores #146/#165/#183" },
+  "wall_clock": { "start": "2026-06-11T00:24Z (first strangled claim)", "end": "2026-06-12T00:30Z (#211 merged)", "elapsed_hours": 24.1, "of_which_quota_outages_hours": "~12", "note": "Healthy-quota proving time for all 13 goals plus 4 recomposes was ~3.5h." }
+}

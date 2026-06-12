@@ -8,7 +8,7 @@ This is a menu of the work that question breaks into, not a committed plan. The 
 
 ## The honest gaps Phase 2 leaves
 
-1. **Decomposition is demonstrated on paper, not in anger.** Nicomachus was proved *directly*; the decompose → prove-subs → recompose chain has unit tests and Gate-B guardrails but has never carried a proof the swarm couldn't one-shot. Until a real target forces it, "compounding" is a claim.
+1. **~~Decomposition is demonstrated on paper, not in anger.~~ CLOSED by [phase3-run-001](../metrics/phase3-run-001.md):** the Platonic–Schläfli core closed *via* a forced depth-3 decompose → prove-subs → recompose chain (13 goals, 4 recompositions, binding held throughout). Honest residue: the forcing was a strangled budget, so "decomposition beats one-shotting on merit" remains untested at the difficulty ceiling.
 2. **No target *result*, only isolated lemmas.** The design doc's Phase 2 was "drive toward a chosen unformalised result by decomposition." We built the machinery and proved standalone lemmas; we have not yet pointed the swarm at one *result* and watched a dependency tree fill toward it.
 3. **The library is unsorry's, not mathlib's.** The public good is only realised when a verified lemma lands *in the commons*. Right now nothing upstreams.
 4. **One model, a few agents, the maintainer's account.** The "rag-tag heterogeneous swarm" is still aspirational at volume; authorship is by orchestration trail, not cryptography (ADR-007).
@@ -16,8 +16,8 @@ This is a menu of the work that question breaks into, not a committed plan. The 
 
 ## Candidate threads
 
-### A. Force and prove decomposition (closest to done)
-Drive the swarm at a target hard enough that a direct proof fails and decomposition *must* fire, then show the full chain close through Gate A. The [hard-target run](../metrics/) (Sophie Germain `n⁴+4`, the Platonic–Schläfli arithmetic core, …) is the first probe. **Exit:** at least one target reached *via* decompose → recompose, recorded end-to-end. This is the single most important gap to close — it turns "compounding" from a design claim into an observed fact.
+### A. Force and prove decomposition — ✅ DONE (v1.4.0)
+Drive the swarm at a target hard enough that a direct proof fails and decomposition *must* fire, then show the full chain close through Gate A. **Exit met:** `platonic-schlafli-core` reached *via* decompose → recompose ([phase3-run-001](../metrics/phase3-run-001.md)) — a forced depth-3 tree, 13 goals proved, 4 recompositions, the parent's proof file literally composing its sub-lemmas. The run also forged the operational layer (ADR-015/016/017) that let it finish unattended through three quota outages.
 
 ### B. Drive to a chosen *result* through a dependency tree
 Pick one unformalised result whose proof genuinely needs several lemmas in order (e.g. a closed-form via its Gauss-sum dependency, or a number-theory result built on 3–4 sub-lemmas), seed the target plus its dependency edges, and let affinity/gap selection route the swarm bottom-up. **Exit:** a target closed where the merged sub-lemmas were *reused* as importable dependencies — the compounding the architecture is named for.
