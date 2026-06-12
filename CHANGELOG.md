@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Status report (`docs/reports/status-2026-06-12.md`, linked from the README): what unsorry has achieved against verified ground truth — four mathlib-absent results, both mechanisms demonstrated, three red-team rounds, the #190 review hardened, the upstream pipeline self-running — each claim stated with its honest limit
+- Gate-A goal-immutability red team, round 003 (`docs/metrics/gate-a-redteam-003.md`): a live adversarial PR replaying issue #190's CRITICAL same-PR goal-tampering attack at full consistency was rejected by the ADR-018 step alone (gate-a red, gate-b green) — proving goal-statement immutability is the sole load-bearing layer, not redundant with Gate B
+
 ### Security
 
 - Goal statements are create-only (ADR-018, SPEC-018-A — issue #190's CRITICAL finding): every statement-integrity layer derives from `goals/<id>.lean` in the PR's own tree (binding regeneration, Gate B sha recomputation), so a PR consistently rewriting {goal `.lean`, record sha, index entry, proof} passed every gate. A new gate-a step (`tools/gate_a/check_goal_immutability.py`, 10 tests) diffs `goals/` against the PR base ref and rejects any modify/delete/rename/typechange of an existing `goals/*.lean` — existence-at-base is the one anchor a PR cannot rewrite. A wrong statement now gets a new goal id; the old is abandoned, never edited
