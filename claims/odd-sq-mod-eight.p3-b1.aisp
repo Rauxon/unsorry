@@ -1,0 +1,7 @@
+𝔸5.1.claim.odd-sq-mod-eight.p3-b1@2026-06-12
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜odd-sq-mod-eight; agent≜p3-b1}
+⟦Σ:Times⟧{ts≜2026-06-12T07:20:42Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
