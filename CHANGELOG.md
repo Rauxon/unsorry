@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- ADR-017 claim guard: GitHub title search tokenizes punctuation, so `"prove(<goal>):" in:title` also matched open PRs for sibling goals sharing the name's tokens — the leftover duplicate #198 (`...-s2-s2`) blocked both agents from claiming the recompose-ready parent. The verdict now comes from an exact title-prefix match over the search results; the regression (sibling↛parent, parent↛sub) is covered in `test_open_pr_claim_guard`
+
 ## [1.3.0] - 2026-06-11
 
 ### Added

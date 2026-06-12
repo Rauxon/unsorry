@@ -907,14 +907,22 @@ submit_pr_tree() {
 # claim was released when the PR opened, so the claims branch alone cannot
 # see it, and re-claiming only duplicates an expensive prove run and races
 # the goal record (the #166/#168 conflict, the #184/#185 duplicate).
+# GitHub search tokenizes punctuation, so "prove(<goal>):" also matches
+# SIBLING goals sharing the name's tokens — an open PR for <goal>-s2-s2
+# blocked the parent's claim (#198) — so the search is only a coarse
+# pre-filter and the verdict comes from an exact title-prefix match.
 # Best-effort: a gh error means "unknown" (rc 1) and claiming proceeds —
 # selection must not depend on API health.
 open_prove_pr_exists() {
-  local goal="$1" n
-  n="$(gh pr list --state open --limit 5 \
+  local goal="$1" titles t
+  titles="$(gh pr list --state open --limit 30 \
     --search "\"prove($goal):\" in:title" \
-    --json number --jq 'length' 2>/dev/null)" || return 1
-  [ "${n:-0}" -gt 0 ]
+    --json title --jq '.[].title' 2>/dev/null)" || return 1
+  [ -n "$titles" ] || return 1
+  while IFS= read -r t; do
+    case "$t" in "prove($goal):"*) return 0 ;; esac
+  done <<< "$titles"
+  return 1
 }
 
 # Step 4: write + commit + push the claim; first-push-wins with retry. The
@@ -2424,14 +2432,23 @@ test_infra_failure_classifier() {
 
 test_open_pr_claim_guard() {
   local rc
-  # ADR-017: an open prove PR for the goal → skip it (rc 0). gh is stubbed —
-  # the suite stays hermetic.
-  gh() { echo 1; }
+  # ADR-017: an open prove PR for exactly this goal → skip it (rc 0). gh is
+  # stubbed — the suite stays hermetic.
+  gh() { printf 'prove(some-goal): thm_name by agent-x\n'; }
   if ! open_prove_pr_exists some-goal; then
     unset -f gh; log "  open PR not detected"; return 1
   fi
+  # A SIBLING goal's PR shares the name's search tokens but must not match
+  # (the #198 regression: an open PR for <goal>-s2-s2 blocked the parent).
+  gh() { printf 'prove(some-goal-s2-s2): other_thm by agent-x\n'; }
+  rc=0; open_prove_pr_exists some-goal || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  sibling PR matched the parent goal"; return 1; }
+  # ...and the parent's PR must not match a sub-goal either.
+  gh() { printf 'prove(some-goal): thm_name by agent-x\n'; }
+  rc=0; open_prove_pr_exists some-goal-s1 || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  parent PR matched a sub-goal"; return 1; }
   # No open PR → proceed (rc 1).
-  gh() { echo 0; }
+  gh() { :; }
   rc=0; open_prove_pr_exists some-goal || rc=$?
   [ "$rc" -eq 1 ] || { unset -f gh; log "  empty list treated as an open PR"; return 1; }
   # A gh failure means "unknown" and must fail open (rc 1) — selection never
