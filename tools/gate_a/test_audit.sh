@@ -48,6 +48,10 @@ expect_exit "allow-sorry: term sorryAx passes" 0 lake exe axiom_audit --allow-so
 expect_exit "allow-sorry: new axiom still fails" 1 lake exe axiom_audit --allow-sorry AuditFixtures.NewAxiom
 expect_exit "allow-sorry: native_decide still fails" 1 lake exe axiom_audit --allow-sorry AuditFixtures.NativeDecide
 
+# opaque constants are sound (kernel demands an Inhabited witness — no new
+# assumption) and must neither trip the audit nor crash it (#190 corpus item)
+expect_exit "opaque constant passes (no new axiom)" 0 lake exe axiom_audit AuditFixtures.Opaque
+
 # usage error
 expect_exit "no modules is usage error" 2 lake exe axiom_audit
 

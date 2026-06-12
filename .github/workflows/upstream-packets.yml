@@ -1,0 +1,76 @@
+name: upstream-packets
+
+# ADR-020 / SPEC-020-A automatic initiation: a target that becomes ready —
+# proved + ADR-012 absence-verified + not yet packeted — generates its
+# sponsor packet by itself. The sponsor's queue is the open packet PRs; no
+# human kick-off needed. Packets are mechanical facts (no model access).
+#
+# Token note: PRs created with the default GITHUB_TOKEN do not trigger other
+# workflows, so the gates would never run and auto-merge would never fire.
+# Set the UPSTREAM_PAT secret (repo-scoped PAT of the sponsor) to make packet
+# PRs flow like any other; without it the PR is still created and the gates
+# can be kicked by closing/reopening (documented in docs/security-checklist.md).
+
+on:
+  schedule:
+    - cron: "17 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  packets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+
+      - name: Scan for packet-eligible targets
+        id: scan
+        run: |
+          set -euo pipefail
+          eligible="$(python3 -m tools.upstream.eligible)"
+          echo "eligible<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$eligible" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          [ -n "$eligible" ] && echo "found=true" >> "$GITHUB_OUTPUT" || echo "found=false" >> "$GITHUB_OUTPUT"
+
+      - name: Clone mathlib master (dedup target)
+        if: steps.scan.outputs.found == 'true'
+        run: git clone --depth 1 https://github.com/leanprover-community/mathlib4 /tmp/mathlib4
+
+      - name: Generate packets
+        if: steps.scan.outputs.found == 'true'
+        run: |
+          set -euo pipefail
+          while IFS= read -r goal; do
+            [ -n "$goal" ] || continue
+            python3 -m tools.upstream.dedup_head --goal "$goal" \
+              --mathlib /tmp/mathlib4/Mathlib > "/tmp/dedup-$goal.json"
+            python3 -m tools.upstream.packet --goal "$goal" \
+              --dedup "/tmp/dedup-$goal.json" --sponsor "Chris Barlow"
+          done <<< "${{ steps.scan.outputs.eligible }}"
+
+      - name: Open the packet PR (assigned to the sponsor)
+        if: steps.scan.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.UPSTREAM_PAT || github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "upstream-packets[bot]"
+          git config user.email "noreply@github.com"
+          branch="docs/upstream-packets-$(date -u +%Y%m%d-%H%M)"
+          git switch -c "$branch"
+          git add docs/upstream
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -m "docs: upstream packets ($(date -u +%Y-%m-%d)) — auto-initiated (ADR-020)"
+          git push -u origin "$branch"
+          gh pr create --assignee cgbarlow \
+            --title "docs: upstream packets ($(date -u +%Y-%m-%d))" \
+            --body "Auto-initiated sponsor packets (ADR-020 / SPEC-020-A): dedup at mathlib HEAD + mechanical packet + applyable patch for every newly packet-eligible target. The sponsor owns everything after the packet — Zulip-first, in their own words (see docs/upstreaming.md). Per packet: (1) \`./tools/upstream/verify_head.sh <goal> --stamp\` to kernel-verify at mathlib HEAD, then (2) \`python3 -m tools.upstream.raise_pr --goal <goal> --fork <you> --understood\` to open the draft mathlib PR. The helper does the git plumbing; the narrative and the flip-to-ready stay yours."
+          gh pr merge --auto --squash "$branch" || echo "auto-merge not armed (default-token PRs trigger no checks — see workflow header note)"

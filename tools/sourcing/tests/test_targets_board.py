@@ -60,3 +60,17 @@ def test_check_mode_detects_drift(tmp_path):
     assert main(["--check", str(tmp_path)]) == 1  # docs/targets.md missing → stale
     (tmp_path / "docs" / "targets.md").write_text(render(tmp_path), encoding="utf-8")
     assert main(["--check", str(tmp_path)]) == 0
+
+
+def test_upstream_column_reads_packet_status(tmp_path):
+    # ADR-020: the board surfaces the packet's Status line; '—' without one.
+    _seed(tmp_path, "novel-lemma", "open", 2,
+          "# novel-lemma\n\nA lemma.\n\n- **Absence:** no-local-match\n")
+    assert rows(tmp_path)[0]["upstream"] == "—"
+    up = tmp_path / "docs" / "upstream"
+    up.mkdir(parents=True)
+    (up / "novel-lemma.md").write_text(
+        "# Upstream packet: `novel-lemma`\n\nStatus: packet-ready · generated\n",
+        encoding="utf-8")
+    assert rows(tmp_path)[0]["upstream"] == "packet-ready"
+    assert "[packet-ready](upstream/novel-lemma.md)" in render(tmp_path)
