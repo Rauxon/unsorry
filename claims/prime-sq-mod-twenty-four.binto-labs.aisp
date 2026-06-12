@@ -1,7 +1,0 @@
-𝔸5.1.claim.prime-sq-mod-twenty-four.binto-labs@2026-06-12
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜prime-sq-mod-twenty-four; agent≜binto-labs}
-⟦Σ:Times⟧{ts≜2026-06-12T08:11:46Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
