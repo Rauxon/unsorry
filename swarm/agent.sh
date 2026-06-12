@@ -5,11 +5,17 @@
 # Usage:
 #   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
 #   ./swarm/agent.sh --prove [--once] [--goal <id>] [--dry-run]
+#   ./swarm/agent.sh --prove-local --goal <id> [--provider claude|codex|gemini]
 #   ./swarm/agent.sh --self-test
 #
-# Must be run from the repository root. Record parsing, claim liveness, the
-# claim TTL and the translate claim cap all come from tools/gate_b (the same
-# code Gate B and the reaper use) — this script never reimplements them.
+# Must be run from the repository root. Swarm modes additionally require `main`
+# checked out and synchronized exactly to origin/main. Candidate selection reads
+# the checkout while all PR worktrees branch from origin/main, so accepting
+# another branch or local-only main commits would mix two queue snapshots.
+# `--prove-local` deliberately uses local HEAD instead. Record parsing, claim
+# liveness, the claim TTL and the translate claim cap all come from tools/gate_b
+# (the same code Gate B and the reaper use) — this script never reimplements
+# them.
 #
 # Exit codes: 0 success or nothing-to-do · 1 cycle failure · 2 configuration
 # error (not at repo root, missing tools, unauthenticated gh) · 3
@@ -41,24 +47,36 @@ usage() {
 Usage:
   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
   ./swarm/agent.sh --prove [--once] [--goal <id>] [--dry-run]
+  ./swarm/agent.sh --prove-local --goal <id> [--provider claude|codex|gemini]
   ./swarm/agent.sh --self-test
 
 Flags:
   --translate-only  Phase-0 mode: only phase≡translate goals are candidates
   --prove           Phase-1 mode: only phase≡prove, unproved goals are candidates
+  --prove-local     Prove one explicit goal from local HEAD without any remote,
+                    claim, PR, or GitHub operation; preserves its worktree
+  --provider <name> LLM CLI for --prove-local: claude (default), codex, or gemini
   --once            Run exactly one cycle then exit
   --goal <id>       Restrict selection to one goal (trial orchestration)
   --dry-run         Stop after selection: print the would-be claim, claim nothing
   --self-test       Run the built-in hermetic tests and exit (0 green / 1 red)
 
+Requirement:
+  Run from the repository root. Swarm modes require main checked out and equal
+  to origin/main; --prove-local instead tests committed local HEAD.
+
 Environment:
   UNSORRY_AGENT_ID  Swarm identity (default: ~/.unsorry/agent-id, created on first run)
+  UNSORRY_PROVIDER  Provider for --prove-local (default: claude)
   UNSORRY_MODEL     Model for claude calls (default: fable in --prove, else sonnet; ADR-013)
   UNSORRY_EFFORT    Effort for proof-surface calls (default in --prove: the
                     ADR-015 ladder, attempts climb high→xhigh→max; a set value
                     pins every attempt; else unset; dropped fail-soft when the
                     installed claude lacks --effort)
   UNSORRY_WORKDIR   Claims worktree + metrics.jsonl home (default: ~/.unsorry/work)
+  UNSORRY_LOCAL_WORKTREE
+                    Exact worktree path for --prove-local (default: a fresh
+                    directory under /tmp)
   UNSORRY_WALL      Wall-clock seconds per claude call (default: 1800)
   UNSORRY_FASTFAIL  Seconds under which a failed claude call is suspected to be
                     an infrastructure failure rather than a real attempt
@@ -813,6 +831,24 @@ require_unsorry_origin() {
   esac
 }
 
+require_main_checkout() {
+  local branch
+  branch="$(git symbolic-ref --quiet --short HEAD 2>/dev/null)" \
+    || die_config "must be run with main checked out (detached HEAD found)"
+  [ "$branch" = "main" ] \
+    || die_config "must be run with main checked out (current branch: $branch); merge feature-branch goals before claiming them"
+}
+
+require_main_matches_origin() {
+  local local_head origin_head
+  local_head="$(git rev-parse HEAD 2>/dev/null)" \
+    || die_config "cannot resolve local main"
+  origin_head="$(git rev-parse origin/main 2>/dev/null)" \
+    || die_config "cannot resolve origin/main"
+  [ "$local_head" = "$origin_head" ] \
+    || die_config "local main does not match origin/main after fetch; merge local goal changes through a PR before claiming them"
+}
+
 # ------------------------------------------------------------------- metrics
 
 # emit_event <event> <goal> [<key> <value>]... — extra pairs land as extra
@@ -834,11 +870,8 @@ emit_event() {
 # Step 1: pull main, ensure the claims worktree exists and is freshly pulled.
 sync_repo() {
   git fetch -q origin || return 1
-  local branch
-  branch="$(git rev-parse --abbrev-ref HEAD)" || return 1
-  if [ "$branch" = "main" ]; then
-    git merge -q --ff-only origin/main || return 1
-  fi
+  git merge -q --ff-only origin/main || return 1
+  require_main_matches_origin
   ensure_claims_worktree
 }
 
@@ -1168,6 +1201,30 @@ effort_for_attempt() {
   esac
 }
 
+# Codex uses a different upper effort vocabulary than Claude. Keep the
+# existing Claude ladder unchanged; the local Codex smoke ladder is
+# medium→high→xhigh.
+provider_effort_for_attempt() {
+  local provider="$1" attempt="$2" effort="$3"
+  if [ "$provider" = codex ] && [ "$effort" = ladder ]; then
+    case "$attempt" in
+      1) echo medium ;;
+      2) echo high ;;
+      *) echo xhigh ;;
+    esac
+    return 0
+  fi
+  if [ "$provider" = gemini ] && [ "$effort" = ladder ]; then
+    case "$attempt" in
+      1) echo high ;;
+      2) echo xhigh ;;
+      *) echo max ;;
+    esac
+    return 0
+  fi
+  effort_for_attempt "$attempt" "$effort"
+}
+
 # ADR-016 pure classifier: a failed claude call counts as an infrastructure
 # failure only when it died fast (a real prove attempt cannot fail in under
 # the fast-fail threshold — the model has to at least read the goal and try a
@@ -1189,8 +1246,24 @@ classify_call_failure() {
 # budget whose exhaustion it is diagnosing. Only invoked after a fast-failed
 # call, so it costs nothing on the healthy path.
 cli_health_probe() {
-  timeout 90 claude -p "Reply with exactly: OK" --model sonnet \
-    --output-format text >/dev/null 2>&1
+  case "$UNSORRY_PROVIDER" in
+    claude)
+      timeout 90 claude -p "Reply with exactly: OK" --model sonnet \
+        --output-format text >/dev/null 2>&1
+      ;;
+    codex)
+      PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
+        timeout 90 codex exec --sandbox read-only --ephemeral \
+          --ignore-user-config --ignore-rules -c 'approval_policy="never"' \
+          -c 'shell_environment_policy.inherit="all"' \
+          --color never "Reply with exactly: OK" >/dev/null 2>&1
+      ;;
+    gemini)
+      timeout 90 gemini --skip-trust --allowed-mcp-server-names none -p "Reply with exactly: OK" --model flash \
+        --output-format text >/dev/null 2>&1
+      ;;
+    *) return 1 ;;
+  esac
 }
 
 # Prove step 5: one claude call constrained to write the target Lean module.
@@ -1207,6 +1280,63 @@ call_claude_prove() {
          --model "$UNSORRY_MODEL" "${eff[@]}" --output-format text \
          --allowedTools \
            "Read,Edit,Write,Bash(lake build *),Bash(lake env *),Bash(lake exe *),Bash(git diff *)" )
+}
+
+call_codex_prove() {
+  local prompt="$1" workdir="$2" effort="$3"
+  local -a args=(
+    exec
+    --cd "$workdir"
+    --sandbox workspace-write
+    --ephemeral
+    --ignore-user-config
+    --ignore-rules
+    -c 'approval_policy="never"'
+    -c 'shell_environment_policy.inherit="all"'
+    --color never
+  )
+  [ -n "$UNSORRY_MODEL" ] && args+=(--model "$UNSORRY_MODEL")
+  [ -n "$effort" ] && args+=(-c "model_reasoning_effort=\"$effort\"")
+  PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
+    timeout "$UNSORRY_WALL" codex "${args[@]}" - <<<"$prompt"
+}
+
+call_gemini_prove() {
+  local prompt="$1" workdir="$2" effort="$3"
+  local -a eff=()
+  [ -n "$effort" ] && eff=(--effort "$effort")
+  local model="${UNSORRY_MODEL:-gemini-2.5-pro}"
+  ( cd "$workdir" \
+    && timeout "$UNSORRY_WALL" gemini --skip-trust --yolo --allowed-mcp-server-names none -p "$prompt" \
+         --model "$model" "${eff[@]}" --output-format text )
+}
+
+call_provider_prove() {
+  local prompt="$1" workdir="$2" effort="$3"
+  case "$UNSORRY_PROVIDER" in
+    claude) call_claude_prove "$prompt" "$workdir" "$effort" ;;
+    codex) call_codex_prove "$prompt" "$workdir" "$effort" ;;
+    gemini) call_gemini_prove "$prompt" "$workdir" "$effort" ;;
+    *) log "unsupported prove provider '$UNSORRY_PROVIDER'"; return 1 ;;
+  esac
+}
+
+# The provider receives a writable proof worktree, but the proof contract
+# permits exactly one changed path. Enforce that boundary after every model
+# call independently of provider-specific tool policy.
+prove_target_only_changed() {
+  local root="$1" target="$2" line path
+  while IFS= read -r line; do
+    [ -n "$line" ] || continue
+    path="${line:3}"
+    case "$path" in
+      *" -> "*) path="${path##* -> }" ;;
+    esac
+    if [ "$path" != "$target" ]; then
+      log "provider changed forbidden path '$path' (only '$target' is allowed)"
+      return 1
+    fi
+  done < <(git -C "$root" status --porcelain=v1 --untracked-files=all)
 }
 
 # Prove step 3: local soundness verification of a candidate proof tree, BEFORE
@@ -1261,7 +1391,7 @@ $(printf '%s\n' "$deps_lines" | awk -F'\t' '{printf "- import %s\n    %s\n", $1,
   fi
   local eff_tok t0 dur probe_rc
   for attempt in $(seq 1 "$UNSORRY_ATTEMPTS"); do  # ADR-015 ladder, default 3
-    eff_tok="$(effort_for_attempt "$attempt" "$UNSORRY_EFFORT")"
+    eff_tok="$(provider_effort_for_attempt "$UNSORRY_PROVIDER" "$attempt" "$UNSORRY_EFFORT")"
     log "prove attempt $attempt/$UNSORRY_ATTEMPTS for $goal (effort ${eff_tok:-default})"
     prompt="$(cat "$PROVE_PROMPT_FILE")
 $stmt
@@ -1280,19 +1410,23 @@ Fix the module so both pass. Write the corrected $target."
     fi
     rm -f "$prwt/$target"
     t0="$(date +%s)"
-    if ! call_claude_prove "$prompt" "$prwt" "$eff_tok" >/dev/null; then
+    if ! call_provider_prove "$prompt" "$prwt" "$eff_tok" >/dev/null; then
       dur=$(( $(date +%s) - t0 ))
       # ADR-016: a call that died fast probably never reached the model.
       if [ "$dur" -lt "$UNSORRY_FASTFAIL" ]; then
         probe_rc=0; cli_health_probe || probe_rc=$?
         if [ "$(classify_call_failure "$dur" "$UNSORRY_FASTFAIL" "$probe_rc")" = infra ]; then
-          log "claude call for $goal died in ${dur}s and the health probe failed — infrastructure failure, aborting cycle (ADR-016)"
+          log "$UNSORRY_PROVIDER call for $goal died in ${dur}s and the health probe failed — infrastructure failure, aborting cycle (ADR-016)"
           return 2
         fi
       fi
-      log "claude prove call failed or timed out for $goal (attempt $attempt)"
-      err="(claude call failed or timed out)"
+      log "$UNSORRY_PROVIDER prove call failed or timed out for $goal (attempt $attempt)"
+      err="($UNSORRY_PROVIDER call failed or timed out)"
       continue
+    fi
+    if ! prove_target_only_changed "$prwt" "$target"; then
+      log "provider path policy failed for $goal (attempt $attempt)"
+      return 1
     fi
     if [ ! -f "$prwt/$target" ]; then
       log "prover did not write $target for $goal (attempt $attempt)"
@@ -1420,6 +1554,45 @@ prove_goal() {
   fi
   demote_goal "$goal" || true
   log "prove of $goal failed after $UNSORRY_ATTEMPTS attempt(s) — claim released, flagged, affinity -10"
+  return 1
+}
+
+# Local provider smoke: create a detached worktree from local HEAD, run the
+# same proof generation and kernel verification as the swarm, then preserve
+# the tree for inspection. This path deliberately performs no fetch, claim,
+# push, PR, metrics, decomposition, affinity, or GitHub operation.
+prove_local_goal() {
+  local goal="$1" camel prwt prc=0 binding target
+  camel="$(py_helper camel-name "$goal")" || return 1
+  target="library/Unsorry/$camel.lean"
+  binding="library/Unsorry/${camel}Binding.lean"
+  prwt="${UNSORRY_LOCAL_WORKTREE:-}"
+  if [ -z "$prwt" ]; then
+    prwt="$(mktemp -d "${TMPDIR:-/tmp}/unsorry-prove-local-${goal}-${UNSORRY_PROVIDER}.XXXXXX")" \
+      || return 1
+    rmdir "$prwt" || return 1
+  elif [ -e "$prwt" ]; then
+    die_config "UNSORRY_LOCAL_WORKTREE '$prwt' already exists"
+  else
+    mkdir -p "$(dirname "$prwt")" || return 1
+  fi
+
+  git worktree add -q --detach "$prwt" HEAD || return 1
+  log "local proof worktree: $prwt"
+  run_proof "$goal" "$prwt" "$camel" || prc=$?
+  rm -f "$prwt/$binding"
+
+  if [ "$prc" -eq 0 ]; then
+    prove_target_only_changed "$prwt" "$target" || return 1
+    log "local proof verified; no remote operations were performed"
+    log "inspect with: git -C '$prwt' diff -- '$target'"
+    return 0
+  fi
+  if [ "$prc" -eq 2 ]; then
+    log "$UNSORRY_PROVIDER CLI unavailable; worktree preserved at $prwt"
+    return 3
+  fi
+  log "local proof did not verify; worktree preserved at $prwt"
   return 1
 }
 
@@ -1816,6 +1989,65 @@ fixture_git_id() {
   git -C "$1" config user.email agent@unsorry.test \
     && git -C "$1" config user.name agent-self \
     && git -C "$1" config commit.gpgsign false
+}
+
+test_require_main_checkout() {
+  local tmp rc=0
+  tmp="$(mktemp -d "$SESSION_TMP/main-checkout.XXXXXX")" || return 1
+  git init -q -b main "$tmp" || return 1
+  fixture_git_id "$tmp" || return 1
+  git -C "$tmp" commit -q --allow-empty -m seed || return 1
+  ( cd "$tmp" && require_main_checkout ) \
+    || { log "  main checkout was rejected"; return 1; }
+  git -C "$tmp" switch -q -c feature/test || return 1
+  ( cd "$tmp" && require_main_checkout ) >/dev/null 2>&1 || rc=$?
+  [ "$rc" -eq 2 ] \
+    || { log "  feature checkout returned $rc, expected config error 2"; return 1; }
+}
+
+test_require_main_matches_origin() {
+  local tmp rc=0
+  tmp="$(mktemp -d "$SESSION_TMP/main-origin.XXXXXX")" || return 1
+  git init -q -b main "$tmp" || return 1
+  fixture_git_id "$tmp" || return 1
+  git -C "$tmp" commit -q --allow-empty -m seed || return 1
+  git -C "$tmp" update-ref refs/remotes/origin/main HEAD || return 1
+  ( cd "$tmp" && require_main_matches_origin ) \
+    || { log "  matching main and origin/main were rejected"; return 1; }
+  git -C "$tmp" commit -q --allow-empty -m local-only || return 1
+  ( cd "$tmp" && require_main_matches_origin ) >/dev/null 2>&1 || rc=$?
+  [ "$rc" -eq 2 ] \
+    || { log "  local-only main returned $rc, expected config error 2"; return 1; }
+}
+
+test_provider_effort_ladder() {
+  [ "$(provider_effort_for_attempt codex 1 ladder)" = medium ] || return 1
+  [ "$(provider_effort_for_attempt codex 2 ladder)" = high ] || return 1
+  [ "$(provider_effort_for_attempt codex 3 ladder)" = xhigh ] || return 1
+  [ "$(provider_effort_for_attempt gemini 1 ladder)" = high ] || return 1
+  [ "$(provider_effort_for_attempt gemini 2 ladder)" = xhigh ] || return 1
+  [ "$(provider_effort_for_attempt gemini 3 ladder)" = max ] || return 1
+  [ "$(provider_effort_for_attempt claude 3 ladder)" = max ] || return 1
+  [ "$(provider_effort_for_attempt codex 2 low)" = low ] || return 1
+}
+
+test_prove_target_path_guard() {
+  local tmp target="library/Unsorry/Goal.lean"
+  tmp="$(mktemp -d "$SESSION_TMP/path-guard.XXXXXX")" || return 1
+  git init -q -b main "$tmp" || return 1
+  fixture_git_id "$tmp" || return 1
+  mkdir -p "$tmp/library/Unsorry" "$tmp/goals" || return 1
+  printf 'seed\n' > "$tmp/goals/g.lean"
+  git -C "$tmp" add goals/g.lean || return 1
+  git -C "$tmp" commit -q -m seed || return 1
+  printf 'theorem goal : True := by trivial\n' > "$tmp/$target"
+  prove_target_only_changed "$tmp" "$target" \
+    || { log "  target-only edit was rejected"; return 1; }
+  printf 'forbidden\n' > "$tmp/goals/extra"
+  if prove_target_only_changed "$tmp" "$target" >/dev/null 2>&1; then
+    log "  extra provider edit was accepted"
+    return 1
+  fi
 }
 
 # Local bare-origin fixture for the push re-entrancy tests: $1/origin.git is
@@ -2566,6 +2798,10 @@ run_self_tests() {
     test_goal_rewrite
     test_convergence_rewrite
     test_record_validation
+    test_require_main_checkout
+    test_require_main_matches_origin
+    test_provider_effort_ladder
+    test_prove_target_path_guard
     test_feature_branch_names
     test_claim_push_reentrancy
     test_release_push_reentrancy
@@ -2612,16 +2848,24 @@ run_self_tests() {
 
 TRANSLATE_ONLY=0
 PROVE=0
+PROVE_LOCAL=0
 ONCE=0
 GOAL_FILTER=""
 DRY_RUN=0
 SELF_TEST=0
+UNSORRY_PROVIDER="${UNSORRY_PROVIDER:-claude}"
 
 parse_args() {
   while [ $# -gt 0 ]; do
     case "$1" in
       --translate-only) TRANSLATE_ONLY=1 ;;
       --prove) PROVE=1 ;;
+      --prove-local) PROVE_LOCAL=1; PROVE=1; ONCE=1 ;;
+      --provider)
+        [ $# -ge 2 ] || { usage >&2; die_config "--provider requires a value"; }
+        UNSORRY_PROVIDER="$2"
+        shift
+        ;;
       --once) ONCE=1 ;;
       --goal)
         [ $# -ge 2 ] || { usage >&2; die_config "--goal requires a value"; }
@@ -2725,12 +2969,67 @@ main() {
   [ "$TRANSLATE_ONLY" -eq 1 ] || [ "$PROVE" -eq 1 ] \
     || die_config "select a mode: --translate-only or --prove (or --self-test)"
 
-  require_cmd git timeout date
-  require_unsorry_origin
   if [ -n "$GOAL_FILTER" ]; then
     py_helper is-id "$GOAL_FILTER" \
       || die_config "--goal '$GOAL_FILTER' violates the Id grammar"
   fi
+  case "$UNSORRY_PROVIDER" in
+    claude|codex|gemini) ;;
+    *) die_config "unsupported provider '$UNSORRY_PROVIDER' (expected claude, codex, or gemini)" ;;
+  esac
+
+  require_cmd git timeout date
+
+  if [ "$PROVE_LOCAL" -eq 1 ]; then
+    [ -n "$GOAL_FILTER" ] || die_config "--prove-local requires --goal <id>"
+    git cat-file -e "HEAD:goals/$GOAL_FILTER.lean" 2>/dev/null \
+      || die_config "goal statement goals/$GOAL_FILTER.lean does not exist at local HEAD"
+    git cat-file -e "HEAD:goals/$GOAL_FILTER.aisp" 2>/dev/null \
+      || die_config "goal record goals/$GOAL_FILTER.aisp does not exist at local HEAD"
+    # Non-login automation often sees an obsolete NVM Node first and omits
+    # elan entirely. Normalize both toolchain locations before probing or
+    # launching a provider; retain the caller's remaining PATH entries.
+    PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.elan/bin:$PATH"
+    export PATH
+    require_cmd lake
+    case "$UNSORRY_PROVIDER" in
+      claude) require_cmd claude ;;
+      codex) require_cmd codex ;;
+      gemini) require_cmd gemini ;;
+    esac
+    UNSORRY_MODEL="${UNSORRY_MODEL:-}"
+    if [ "$UNSORRY_PROVIDER" = claude ] || [ "$UNSORRY_PROVIDER" = gemini ]; then
+      local local_resolved cmd_help
+      if [ "$UNSORRY_PROVIDER" = claude ]; then
+        cmd_help="$(claude --help 2>/dev/null || true)"
+      else
+        cmd_help="$(gemini --help 2>/dev/null || true)"
+      fi
+      local_resolved="$(resolve_model_effort prove "$UNSORRY_MODEL" "${UNSORRY_EFFORT:-}" "$cmd_help")"
+      UNSORRY_MODEL="${local_resolved% *}"
+      UNSORRY_EFFORT="${local_resolved#* }"
+      [ "$UNSORRY_EFFORT" = "-" ] && UNSORRY_EFFORT=""
+    else
+      UNSORRY_EFFORT="${UNSORRY_EFFORT:-high}"
+    fi
+    UNSORRY_WALL="${UNSORRY_WALL:-1800}"
+    [[ "$UNSORRY_WALL" =~ ^[0-9]+$ ]] \
+      || die_config "UNSORRY_WALL '$UNSORRY_WALL' is not an integer"
+    UNSORRY_FASTFAIL="${UNSORRY_FASTFAIL:-240}"
+    [[ "$UNSORRY_FASTFAIL" =~ ^[0-9]+$ ]] \
+      || die_config "UNSORRY_FASTFAIL '$UNSORRY_FASTFAIL' is not an integer"
+    UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-1}"
+    [[ "$UNSORRY_ATTEMPTS" =~ ^[1-9][0-9]*$ ]] \
+      || die_config "UNSORRY_ATTEMPTS '$UNSORRY_ATTEMPTS' is not a positive integer"
+    log "local prover starting (provider=$UNSORRY_PROVIDER model=${UNSORRY_MODEL:-default} effort=${UNSORRY_EFFORT:-default} attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s; HEAD only, no remote operations)"
+    prove_local_goal "$GOAL_FILTER"
+    exit $?
+  fi
+
+  [ "$UNSORRY_PROVIDER" = claude ] \
+    || die_config "--provider $UNSORRY_PROVIDER is currently supported only with --prove-local"
+  require_unsorry_origin
+  require_main_checkout
 
   # ADR-013/ADR-015: model + effort resolved per mode (prove → fable + the
   # high→xhigh→max attempt ladder, translate → sonnet/none), env-overridable
