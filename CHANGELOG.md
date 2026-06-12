@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-06-12
+
 ### Added
 
 - Status report (`docs/reports/status-2026-06-12.md`, linked from the README): what unsorry has achieved against verified ground truth — four mathlib-absent results, both mechanisms demonstrated, three red-team rounds, the #190 review hardened, the upstream pipeline self-running — each claim stated with its honest limit
