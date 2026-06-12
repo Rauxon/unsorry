@@ -104,3 +104,5 @@ this repository.
    linter to want golfing (binder names, line length) — that editing is yours.
 4. Record the outcome on the targets board (`in-discussion → pr-open →
    merged | declined`). **Declined is a valid, recorded result.**
+
+**HEAD verification:** PASS at mathlib `68c609a0f0fdc49ba2e09efa25146c80e28bc895` (2026-06-12T03:27Z)
