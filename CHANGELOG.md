@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `CONTRIBUTING.md` (GitHub-recognised): the contributor guide — running an agent, proposing a target, the human-sponsored mathlib upstreaming process, and the development protocols/gates — moved out of the README, which now keeps a slim quickstart + pointer
+- `LICENSE`: the Apache-2.0 license text the README and every upstream-packet copyright header ("described in the file LICENSE") already referenced but which was missing from the tree
+
+### Fixed
+
+- Statement-binding generator (ADR-011/SPEC-011-A): a goal whose statement has a named hypothesis binder following an implicit binder (e.g. `theorem t {n : ℕ} (hn : 1 < n) : …`) produced a binding obligation whose eta-expanded binder is flagged by `linter.unusedVariables`, failing the Gate A `--wfail` build for **any** correct proof of such a goal (first hit: `not-prime-pow-four-add-four`, PR #221). Generated bindings now carry `set_option linter.unusedVariables false in` — their force is the type-check, not lints, and the files are regenerated glue that never lands in a PR. Regression test added; all 38 current bindings rebuilt clean under `--wfail`
+
+## [1.6.1] - 2026-06-12
+
+### Added
+
+- Sponsor PR helper (ADR-021, SPEC-021-A): `python3 -m tools.upstream.raise_pr --goal <id> --fork <you> --understood` opens a **draft** mathlib PR from a ready, HEAD-verified packet — clones master, applies the patch, pushes to your fork, and pre-fills the factual disclosure with a `SPONSOR: replace…` narrative placeholder. The policy boundary is enforced: refuses without `--understood` (your attestation that you've read the proof), refuses a non-`packet-ready`/unverified packet, opens a draft (never marks ready), writes no review reply. Closes the last-mile friction in [docs/upstreaming.md](docs/upstreaming.md) (the full sponsor process, linked from the README). 11 tests
+
+## [1.6.0] - 2026-06-12
+
+### Added
+
+- Status report (`docs/reports/status-2026-06-12.md`, linked from the README): what unsorry has achieved against verified ground truth — four mathlib-absent results, both mechanisms demonstrated, three red-team rounds, the #190 review hardened, the upstream pipeline self-running — each claim stated with its honest limit
+- Gate-A goal-immutability red team, round 003 (`docs/metrics/gate-a-redteam-003.md`): a live adversarial PR replaying issue #190's CRITICAL same-PR goal-tampering attack at full consistency was rejected by the ADR-018 step alone (gate-a red, gate-b green) — proving goal-statement immutability is the sole load-bearing layer, not redundant with Gate B
+
+### Security
+
+- CI supply-chain & workflow protection (ADR-019, SPEC-019-A — issue #190 HIGH/MEDIUM/LOW): every GitHub Action pinned to a commit SHA (`@<sha> # vX.Y.Z`) across all workflows; `.github/CODEOWNERS` over the trust-bearing paths (gates, audit, swarm, workflows); `docs/security-checklist.md` recording the repository-settings half (require-codeowner-review, force-push/tag protection) with the honest solo-maintainer trade-off and the "enable before opening to untrusted contributors" recommendation; and an `AuditFixtures/Opaque.lean` fixture pinning that `opaque` constants neither trip nor crash the axiom audit
+
+### Security
+
+- Goal statements are create-only (ADR-018, SPEC-018-A — issue #190's CRITICAL finding): every statement-integrity layer derives from `goals/<id>.lean` in the PR's own tree (binding regeneration, Gate B sha recomputation), so a PR consistently rewriting {goal `.lean`, record sha, index entry, proof} passed every gate. A new gate-a step (`tools/gate_a/check_goal_immutability.py`, 10 tests) diffs `goals/` against the PR base ref and rejects any modify/delete/rename/typechange of an existing `goals/*.lean` — existence-at-base is the one anchor a PR cannot rewrite. A wrong statement now gets a new goal id; the old is abandoned, never edited
+
 ## [1.5.1] - 2026-06-12
 
 ### Fixed

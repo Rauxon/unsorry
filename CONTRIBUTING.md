@@ -1,0 +1,115 @@
+# Contributing to unsorry
+
+Agents and humans contribute the same way: **claim a goal, open a PR, and let the
+gates decide.** Nobody has to trust your machine — the Lean kernel re-verifies every
+contribution in CI (Gate A), so a careless or even adversarial PR cannot poison the
+library. Human review, where it happens at all, is for naming and duplication, never
+for correctness.
+
+There are three ways to contribute, in rough order of involvement:
+
+1. [Run an agent](#running-an-agent) — point a Claude instance at the queue, or prove a goal yourself.
+2. [Propose a target](#proposing-a-target) — suggest a theorem worth proving.
+3. [Sponsor an upstream](#upstreaming-to-mathlib) — take a proved lemma into mathlib (the one task that requires a human, by mathlib policy).
+
+All work follows [`docs/protocols.md`](docs/protocols.md): an ADR for every significant
+decision, a spec per ADR, TDD, feature branches, and a changelog entry per release.
+
+---
+
+## Running an agent
+
+> **Status: live.** The loop is running and the swarm has proved theorems not already
+> in mathlib. Because the kernel re-checks everything in CI, you can run an agent
+> against this repo without anyone trusting your machine.
+
+**Prerequisites:** [Claude Code](https://claude.com/claude-code) (headless `claude`,
+authenticated — a subscription works, no API key required), the
+[Lean toolchain](https://leanprover-community.github.io/get_started.html) via `elan`
+(the pinned version installs automatically from `lean-toolchain`), the
+[`gh`](https://cli.github.com/) CLI authenticated, and Python 3.12.
+
+```bash
+git clone https://github.com/agenticsnz/unsorry && cd unsorry
+lake exe cache get                       # fetch prebuilt mathlib (minutes; never builds from source)
+lake build                               # verify the current library locally
+python3 -m tools.gate_b validate .       # check coordination artifacts (Gate B)
+./swarm/agent.sh --prove --once          # claim a goal, prove it, open an auto-merge PR
+```
+
+`--prove` claims an open `prove`-phase goal, drives `claude` to write a Lean proof,
+self-verifies it locally (`lake build --wfail` + the axiom audit) before opening a PR,
+and lets the gates decide. Other flags:
+
+- `--translate-only` — run the Phase-0/1 formalisation loop instead of proving.
+- `--dry-run` — show what would be claimed without claiming.
+- `--once` — run a single cycle (omit to loop until the budget is spent or no goal is claimable).
+- `--self-test` — check your setup (hermetic; no network, no `claude`).
+
+For unattended runs, **[`./swarm/supervise.sh --prove --goal <id>`](swarm/supervise.sh)**
+wraps the agent loop with backoff across infrastructure outages, in-flight waits for
+merges, and PR hygiene (ADR-017) — it drives a goal tree to closure with one command.
+
+An agent session loads `swarm/protocol.aisp` (the coordination contract) plus the AISP
+grammar reference ([AI_GUIDE.md](https://github.com/bar181/aisp-open-core/blob/main/AI_GUIDE.md),
+~19 KB) at start. Note: from 2026-06-15, headless `claude -p` on subscription plans draws
+from a separate Agent SDK credit pool — size your run accordingly.
+
+### Model & effort policy
+
+Proof-surface calls default to the most capable model (`fable`) on a progressive effort
+ladder (`high → xhigh → max`, one rung per attempt) — see
+[ADR-013](docs/adrs/ADR-013-Model-Effort-Policy.md) / [ADR-015](docs/adrs/ADR-015-Progressive-Effort-Escalation.md).
+Override with `UNSORRY_MODEL` / `UNSORRY_EFFORT`; both degrade fail-soft on CLIs without `--effort`.
+
+---
+
+## Proposing a target
+
+The open targets live on the **[targets board](docs/targets.md)** — theorems already
+proven somewhere but not yet in mathlib, vetted for absence and stated in Lean. Pick one
+and prove it, or point an agent at the queue.
+
+To suggest a new target, open a
+[propose-target issue](.github/ISSUE_TEMPLATE/propose-target.md). How targets are sourced
+and machine-checked for mathlib-absence is [ADR-012](docs/adrs/ADR-012-Backlog-Sourcing.md);
+absence is a grep **pre-filter**, not a proof — the definitive check is downstream (a target
+already in mathlib gets discharged by a one-line citation rather than a real proof).
+
+---
+
+## Upstreaming to mathlib
+
+Getting a proved lemma *into* mathlib is the one place a human is required, by
+[mathlib's AI-contribution policy](https://leanprover-community.github.io/contribute/index.html):
+AI use must be disclosed, the PR carries the `LLM-generated` label, and the author must
+understand the proof and write the PR and review replies **in their own words** —
+LLM-written conversation is not allowed, and autonomous LLM PRs get summarily closed.
+
+So unsorry splits the work along that line. The **machine** prepares an
+[upstream packet](docs/upstream/) (a `git apply`-able patch, gate evidence, a factual
+disclosure block) and a **[one-command draft-PR helper](docs/upstreaming.md#step-by-step-with-the-commands)**;
+a human **sponsor** owns the understanding, the Zulip thread, the PR narrative, and the
+vouching. The full step-by-step — what is automatic and what is irreducibly yours — is
+**[docs/upstreaming.md](docs/upstreaming.md)**. Autonomous unsorry→mathlib PRs are a
+permanent non-goal.
+
+---
+
+## Development protocols
+
+Every change, however small, follows [`docs/protocols.md`](docs/protocols.md):
+
+- **One ADR per significant decision** in [`docs/adrs/`](docs/adrs/), in the WH(Y) format, with rejected alternatives recorded; a **spec** per ADR captures the "how".
+- **TDD** — tests before implementation; the agent loop (`./swarm/agent.sh --self-test`), the supervisor (`./swarm/supervise.sh --self-test`), and the Python tools (`python3 -m pytest tools -q`) all stay green.
+- **Feature branch + PR** for everything; no direct commits to `main`.
+- **Changelog** entry under `[Unreleased]` for every user-facing change ([Keep a Changelog](https://keepachangelog.com/), SemVer).
+- **README accuracy** — features described must exist; docs change in the same branch as the code.
+
+The two CI gates that decide every PR:
+
+- **Gate A (soundness):** `lake build --wfail`, an axiom audit against the `{propext, Classical.choice, Quot.sound}` whitelist, leanchecker kernel replay, a regenerated statement-binding obligation ([ADR-011](docs/adrs/ADR-011-Statement-Binding-Gate.md)), and goal-statement immutability ([ADR-018](docs/adrs/ADR-018-Goal-Statement-Immutability.md)). Red-team-proven three times.
+- **Gate B (hygiene):** the deterministic AISP validator over coordination artifacts ([`tools/gate_b`](tools/gate_b)).
+
+By submitting a contribution you agree it is licensed under the project's
+[Apache-2.0 LICENSE](LICENSE).

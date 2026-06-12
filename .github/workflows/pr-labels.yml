@@ -12,7 +12,7 @@ jobs:
   label:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4   # base ref — never the PR head
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1 — base ref, never the PR head
       - name: Classify and apply
         env:
           GH_TOKEN: ${{ github.token }}

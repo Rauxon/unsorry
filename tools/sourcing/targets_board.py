@@ -71,8 +71,23 @@ def rows(root: Path) -> list[dict]:
             "source": fields.get("source", "—"),
             "reference": fields.get("reference", "—"),
             "absence": fields.get("absence", "—"),
+            "upstream": _upstream_status(root, goal),
         })
     return out
+
+
+_UPSTREAM_STATUS_RE = re.compile(r"^Status:\s*(\S+)", re.MULTILINE)
+
+
+def _upstream_status(root: Path, goal: str) -> str:
+    """The packet's Status line (ADR-020), '—' when no packet exists. The
+    sponsor advances it by editing the packet (candidate → packet-ready →
+    in-discussion → pr-open → merged | declined)."""
+    packet = root / "docs" / "upstream" / f"{goal}.md"
+    if not packet.is_file():
+        return "—"
+    m = _UPSTREAM_STATUS_RE.search(packet.read_text(encoding="utf-8"))
+    return m.group(1) if m else "packeted"
 
 
 _ORDER = {"open": 0, "blocked": 1, "flagged": 2, "translated": 3, "proved": 4}
@@ -94,15 +109,18 @@ def render(root: Path) -> str:
         "",
         f"**{n_open} open · {n_proved} proved · {len(data)} total prove-goals.**",
         "",
-        "| Goal | Status | Diff | Source | Reference |",
-        "|------|--------|:----:|--------|-----------|",
+        "| Goal | Status | Diff | Upstream | Source | Reference |",
+        "|------|--------|:----:|----------|--------|-----------|",
     ]
     for r in sorted(data, key=lambda r: (_ORDER.get(r["status"], 9), r["id"])):
         title = r["title"].replace("|", "\\|")
         ref = r["reference"].replace("|", "\\|")
         src = r["source"].replace("|", "\\|")
+        up = r["upstream"]
+        if up != "—":
+            up = f"[{up}](upstream/{r['id']}.md)"
         lines.append(
-            f"| `{r['id']}` — {title} | {r['status']} | {r['difficulty'] or '—'} | {src} | {ref} |"
+            f"| `{r['id']}` — {title} | {r['status']} | {r['difficulty'] or '—'} | {up} | {src} | {ref} |"
         )
     lines.append("")
     return "\n".join(lines)

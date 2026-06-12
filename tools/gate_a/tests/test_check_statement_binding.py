@@ -38,9 +38,27 @@ def test_generate_writes_canonical_binding(tmp_path):
     binding = tmp_path / "library" / "Unsorry" / "NatAddCommThmBinding.lean"
     assert binding.read_text(encoding="utf-8") == (
         "import Unsorry.NatAddCommThm\n\n"
+        "set_option linter.unusedVariables false in\n"
         "theorem nat_add_comm_thm_binding_check : "
         "∀ (a b : Nat), a + b = b + a := nat_add_comm_thm\n"
     )
+
+
+def test_generate_suppresses_unused_variable_lint(tmp_path):
+    # A named hypothesis binder after an implicit binder (the
+    # not-prime-pow-four-add-four shape) is eta-expanded by the elaborator and
+    # flagged by linter.unusedVariables, failing --wfail for any correct proof.
+    # The generated obligation must therefore disable that lint for itself.
+    _make_proved(tmp_path, "not-prime-pow-four-add-four",
+                 "theorem not_prime_pow_four_add_four {n : ℕ} (hn : 1 < n) : "
+                 "¬ Nat.Prime (n ^ 4 + 4)")
+    assert generate(tmp_path) == 0
+    binding = (tmp_path / "library" / "Unsorry"
+               / "NotPrimePowFourAddFourBinding.lean").read_text(encoding="utf-8")
+    assert "set_option linter.unusedVariables false in\n" in binding
+    assert ("theorem not_prime_pow_four_add_four_binding_check : "
+            "∀ {n : ℕ} (hn : 1 < n), ¬ Nat.Prime (n ^ 4 + 4) "
+            ":= not_prime_pow_four_add_four\n") in binding
 
 
 def test_generate_finds_module_by_theorem_name(tmp_path):

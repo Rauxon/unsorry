@@ -6,6 +6,7 @@ For each `library/index/<sha>.aisp` (a proved goal `<g>`), this writes
 `library/Unsorry/<Camel>Binding.lean`:
 
     import Unsorry.<Camel>
+    set_option linter.unusedVariables false in
     theorem <name>_binding_check : <∀-type of goals/<g>.lean> := <name>
 
 The asserted type is the goal's own statement (`tools.lean_sig.foralltype`);
@@ -85,8 +86,16 @@ def generate(tree: Path) -> int:
             errors += 1
             continue
         binding_path = unsorry_dir / f"{camel_name(goal)}{BINDING_SUFFIX}"
+        # linter.unusedVariables is suppressed because the obligation restates
+        # the goal's binders verbatim: a named hypothesis binder following an
+        # implicit binder (e.g. `∀ {n : ℕ} (hn : 1 < n), …`) is eta-expanded
+        # by the elaborator and flagged unused, failing the --wfail build for
+        # any correct proof of such a goal. The binding's force comes from
+        # type-checking, not lints; the file is regenerated glue, never
+        # committed (SPEC-011-A).
         binding_path.write_text(
             f"import {module}\n\n"
+            f"set_option linter.unusedVariables false in\n"
             f"theorem {name}_binding_check : {ftype} := {name}\n",
             encoding="utf-8",
         )

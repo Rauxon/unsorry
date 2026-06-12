@@ -1,0 +1,13 @@
+# ADR-019: the trust-bearing surfaces — the gates, the audit, the agent
+# tooling, and the workflows that run them — are owned. With the repository
+# setting "require review from Code Owners" enabled (docs/security-checklist.md),
+# a PR touching these paths cannot auto-merge on gate-green alone; swarm prove
+# PRs never touch them and are unaffected.
+/.github/        @cgbarlow
+/tools/gate_a/   @cgbarlow
+/tools/gate_b/   @cgbarlow
+/AxiomAudit/     @cgbarlow
+/AuditFixtures/  @cgbarlow
+/swarm/          @cgbarlow
+/lakefile.toml   @cgbarlow
+/lean-toolchain  @cgbarlow
