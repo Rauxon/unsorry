@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜or-comm-imp
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/or-comm-imp.lean
-  sha≜∅
+  sha≜a3b8137ff8c8b23a93a31ebd23d581c5c5f3db5a1893d6d551db699b5ed45370
+  aff≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
