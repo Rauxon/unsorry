@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+- CI supply-chain & workflow protection (ADR-019, SPEC-019-A — issue #190 HIGH/MEDIUM/LOW): every GitHub Action pinned to a commit SHA (`@<sha> # vX.Y.Z`) across all workflows; `.github/CODEOWNERS` over the trust-bearing paths (gates, audit, swarm, workflows); `docs/security-checklist.md` recording the repository-settings half (require-codeowner-review, force-push/tag protection) with the honest solo-maintainer trade-off and the "enable before opening to untrusted contributors" recommendation; and an `AuditFixtures/Opaque.lean` fixture pinning that `opaque` constants neither trip nor crash the axiom audit
+
+### Security
+
 - Goal statements are create-only (ADR-018, SPEC-018-A — issue #190's CRITICAL finding): every statement-integrity layer derives from `goals/<id>.lean` in the PR's own tree (binding regeneration, Gate B sha recomputation), so a PR consistently rewriting {goal `.lean`, record sha, index entry, proof} passed every gate. A new gate-a step (`tools/gate_a/check_goal_immutability.py`, 10 tests) diffs `goals/` against the PR base ref and rejects any modify/delete/rename/typechange of an existing `goals/*.lean` — existence-at-base is the one anchor a PR cannot rewrite. A wrong statement now gets a new goal id; the old is abandoned, never edited
 
 ## [1.5.1] - 2026-06-12

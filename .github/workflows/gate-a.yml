@@ -18,9 +18,9 @@ jobs:
     outputs:
       lean: ${{ steps.filter.outputs.lean }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - id: filter
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3.0.3
         with:
           filters: |
             lean:
@@ -43,7 +43,7 @@ jobs:
         if: needs.detect.outputs.lean != 'true'
         run: echo "No Lean-relevant paths touched — gate-a passes vacuously."
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         if: needs.detect.outputs.lean == 'true'
         with:
           fetch-depth: 0
@@ -62,7 +62,7 @@ jobs:
 
       - name: Build (lean-action, mathlib binary cache)
         if: needs.detect.outputs.lean == 'true'
-        uses: leanprover/lean-action@v1
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
           use-github-cache: true
           build-args: "UnsorryGoals"
@@ -130,7 +130,7 @@ jobs:
 
       - name: Upload axiom footprint artifact
         if: needs.detect.outputs.lean == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: axiom-report
           path: axiom-report.json
