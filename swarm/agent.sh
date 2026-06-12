@@ -933,14 +933,20 @@ open_prove_pr_exists() {
 # commits behind for the next cycle.
 claim_goal() {
   local goal="$1"
-  local file="claims/${goal}.${AGENT_ID}.aisp" ts attempt
+  local file="claims/${goal}.${AGENT_ID}.aisp" ts attempt recheck
+  # Post-fetch recheck helper (step 4): the cap is per-mode (SPEC-007-A —
+  # prove cap 1, translate cap 2), and a rejected push is most often the
+  # rival's claim landing first, so the wrong cap re-claims the same goal
+  # (the #184/#185 race).
+  recheck=claimable
+  [ "$PROVE" -eq 1 ] && recheck=prove-claimable
   for attempt in 1 2 3 4; do  # initial push + up to 3 from-scratch retries
     if [ "$attempt" -gt 1 ]; then
       log "claim push rejected for $goal (attempt $((attempt - 1))) — rebasing from scratch"
       git -C "$CLAIMS_WT" fetch -q origin claims 2>/dev/null || continue
       git -C "$CLAIMS_WT" reset --hard -q origin/claims || break
-      # Post-fetch recheck (step 4): withdraw when the cap filled meanwhile.
-      py_helper claimable "$CLAIMS_WT/claims" "$goal" "$AGENT_ID" || break
+      # Withdraw when the cap filled meanwhile.
+      py_helper "$recheck" "$CLAIMS_WT/claims" "$goal" "$AGENT_ID" || break
     fi
     ts="$(py_helper now)" || break
     render_claim_record "$goal" "$AGENT_ID" "$ts" "$UNSORRY_TTL" \
@@ -1822,10 +1828,10 @@ make_claims_fixture() {
 # state a cycle that died mid push-retry leaves behind (remote tip newer
 # than the local claims state).
 advance_claims_remote() {
-  local tmp="$1" ttl="$2" goal="$3"
+  local tmp="$1" ttl="$2" goal="$3" ts="${4:-$T_OLD_TS}"
   git -C "$tmp/seed" fetch -q origin claims || return 1
   git -C "$tmp/seed" reset --hard -q FETCH_HEAD || return 1
-  render_claim_record "$goal" agent-other "$T_OLD_TS" "$ttl" \
+  render_claim_record "$goal" agent-other "$ts" "$ttl" \
     > "$tmp/seed/claims/$goal.agent-other.aisp" || return 1
   git -C "$tmp/seed" add claims || return 1
   git -C "$tmp/seed" commit -q -m "advance: $goal" || return 1
@@ -1941,6 +1947,51 @@ test_release_push_reentrancy() {
     || { log "  local claims tip diverges from origin after release"; return 1; }
   grep -q '"event": "released", "goal": "nat-add-comm"' "$tmp/metrics.jsonl" \
     || { log "  no released event emitted"; return 1; }
+}
+
+# The #184/#185 claim race, reproduced live 2026-06-12: a rival's LIVE claim
+# on the SAME goal lands inside the push round-trip, so the first push is
+# rejected and the post-rebase recheck is the only cap-1 enforcement left
+# (claim filenames are per-agent — first-push-wins never collides on path).
+# Prove mode must withdraw (SPEC-007-A prove step 4: PROVE_CLAIM_CAP, cap 1);
+# translate mode must still claim (TRANSLATE_CLAIM_CAP, cap 2).
+test_claim_recheck_prove_cap() {
+  local AGENT_ID=agent-self UNSORRY_WORKDIR UNSORRY_TTL CLAIMS_WT PROVE
+  local tmp ttl now_ts
+  tmp="$(mktemp -d "$SESSION_TMP/proverecheck.XXXXXX")" || return 1
+  ttl="$(py_helper ttl)" || return 1
+  UNSORRY_WORKDIR="$tmp" UNSORRY_TTL="$ttl" CLAIMS_WT="$tmp/clone"
+  make_claims_fixture "$tmp" "$ttl" || { log "  fixture setup failed"; return 1; }
+
+  now_ts="$(py_helper now)" || return 1
+  advance_claims_remote "$tmp" "$ttl" nat-add-comm "$now_ts" \
+    || { log "  fixture advance failed"; return 1; }
+
+  PROVE=1
+  if claim_goal nat-add-comm; then
+    log "  prove-mode recheck re-claimed a goal with a live rival claim"
+    return 1
+  fi
+  if git -C "$tmp/origin.git" ls-tree -r --name-only claims \
+    | grep -qx "claims/nat-add-comm.agent-self.aisp"; then
+    log "  withdrawn claim still reached origin/claims"
+    return 1
+  fi
+  [ -z "$(git -C "$CLAIMS_WT" status --porcelain)" ] \
+    || { log "  withdrawal left the worktree dirty"; return 1; }
+  grep -q '"event": "collision", "goal": "nat-add-comm"' "$tmp/metrics.jsonl" \
+    || { log "  no collision event emitted"; return 1; }
+
+  # Same live rival, translate mode: cap 2 admits the second claim. Advance
+  # the remote again so the push is rejected and the recheck actually runs.
+  advance_claims_remote "$tmp" "$ttl" goal-ahead \
+    || { log "  second fixture advance failed"; return 1; }
+  PROVE=0
+  claim_goal nat-add-comm \
+    || { log "  translate-mode recheck refused a second claim under cap 2"; return 1; }
+  git -C "$tmp/origin.git" ls-tree -r --name-only claims \
+    | grep -qx "claims/nat-add-comm.agent-self.aisp" \
+    || { log "  translate-mode claim missing from origin/claims"; return 1; }
 }
 
 # ── prove-cycle pure-function tests (Phase 1) ───────────────────────────────
@@ -2504,6 +2555,7 @@ run_self_tests() {
     test_feature_branch_names
     test_claim_push_reentrancy
     test_release_push_reentrancy
+    test_claim_recheck_prove_cap
     test_camel_name
     test_lean_statement_helpers
     test_lean_sha_determinism
