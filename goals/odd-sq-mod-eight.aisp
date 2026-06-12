@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜odd-sq-mod-eight
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜2
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/odd-sq-mod-eight.lean
-  sha≜∅
+  sha≜d7504aba83806a67955bcd53e6a2074f81024ec73f2e94a0b9fb91a0715a3e89
+  aff≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
