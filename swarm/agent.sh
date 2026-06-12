@@ -142,6 +142,7 @@ def _translation_agents(translations_dir: str, goal: str) -> list[str]:
 from tools.lean_sig import (  # noqa: E402
     camel_name,
     foralltype as lean_foralltype,
+    open_lines as lean_open_lines,
     statement as lean_statement,
     statement_sha as lean_statement_sha,
     theorem_name as lean_theorem_name,
@@ -266,6 +267,13 @@ def cmd_lean_sha(args):
 def cmd_lean_foralltype(args):
     """lean-foralltype <goal.lean> — print the goal's ∀-closed type (ADR-011)."""
     print(lean_foralltype(Path(args[0]).read_text(encoding="utf-8")))
+
+
+def cmd_lean_opens(args):
+    """lean-opens <goal.lean> — print the goal's top-level `open` commands,
+    one per line (ADR-011: they travel with the type into the binding)."""
+    for line in lean_open_lines(Path(args[0]).read_text(encoding="utf-8")):
+        print(line)
 
 
 def cmd_prove_candidates(args):
@@ -636,6 +644,7 @@ COMMANDS = {
     "lean-name": cmd_lean_name,
     "lean-sha": cmd_lean_sha,
     "lean-foralltype": cmd_lean_foralltype,
+    "lean-opens": cmd_lean_opens,
     "prove-candidates": cmd_prove_candidates,
     "prove-claimable": cmd_prove_claimable,
     "render-index": cmd_render_index,
@@ -1313,11 +1322,16 @@ Fix the module so both pass. Write the corrected $target."
 # insertion; a weaker/vacuous one does not). Built under --wfail, so the kernel
 # itself performs the defeq binding — no metaprogram, no name clash.
 write_binding_module() {
-  local prwt="$1" goal="$2" camel="$3" name ftype
+  local prwt="$1" goal="$2" camel="$3" name ftype opens
   name="$(py_helper lean-name "$prwt/goals/$goal.lean")" || return 1
   ftype="$(py_helper lean-foralltype "$prwt/goals/$goal.lean")" || return 1
+  # The goal's own `open` commands travel with the type (a statement written
+  # under `open Finset` names `range` unqualified) — same as Gate A's
+  # regenerated obligation, so the local self-verify matches CI.
+  opens="$(py_helper lean-opens "$prwt/goals/$goal.lean")" || return 1
   {
     printf 'import Unsorry.%s\n\n' "$camel"
+    if [ -n "$opens" ]; then printf '%s\n' "$opens"; fi
     printf 'theorem %s_binding_check : %s := %s\n' "$name" "$ftype" "$name"
   } > "$prwt/library/Unsorry/${camel}Binding.lean"
 }
