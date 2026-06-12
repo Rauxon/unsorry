@@ -1,0 +1,7 @@
+𝔸5.1.lemma.d2881a0defcc@2026-06-12
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜d2881a0defccea540e05c51fd8fe498f6b4c5aad39b16a88ffc5593fd7380ca2; goal≜not-prime-pow-four-add-four; name≜not_prime_pow_four_add_four}
+⟦Σ:Source⟧{src≜goals/not-prime-pow-four-add-four.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
