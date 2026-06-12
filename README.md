@@ -18,7 +18,7 @@ Why formal mathematics, the full selection criteria, the ranked comparison of ei
 
 ## Status
 
-Where the project actually stands — four mathlib-absent results proved, both the decomposition chain and dependency reuse demonstrated end-to-end, three adversarial red-team rounds passed, the [external review](https://github.com/agenticsnz/unsorry/issues/190)'s findings hardened, and a policy-compliant mathlib-upstream pipeline built and self-running — each claim stated against its honest limit: **[docs/reports/status-2026-06-12.md](docs/reports/status-2026-06-12.md)**.
+Where the project actually stands — five mathlib-absent results proved, both the decomposition chain and dependency reuse demonstrated end-to-end, three adversarial red-team rounds passed, the [external review](https://github.com/agenticsnz/unsorry/issues/190)'s findings hardened, and a policy-compliant mathlib-upstream pipeline built and self-running — each claim stated against its honest limit: **[docs/reports/status-2026-06-12.md](docs/reports/status-2026-06-12.md)**.
 
 ## Why this matters
 
