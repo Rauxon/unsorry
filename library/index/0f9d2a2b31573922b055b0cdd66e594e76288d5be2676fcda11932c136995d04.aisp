@@ -1,6 +1,6 @@
 𝔸5.1.lemma.2d50b65b9786@2026-06-10
 γ≔unsorry.lemma.index
-⟦Ω:Lemma⟧{sha≜2d50b65b97862acc9cfe91168f3457d1bb953d679006ca158143fd21704e12d4; goal≜nat-add-comm-thm; name≜nat_add_comm_thm}
+⟦Ω:Lemma⟧{sha≜0f9d2a2b31573922b055b0cdd66e594e76288d5be2676fcda11932c136995d04; goal≜nat-add-comm-thm; name≜nat_add_comm_thm}
 ⟦Σ:Source⟧{src≜goals/nat-add-comm-thm.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
