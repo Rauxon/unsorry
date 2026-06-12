@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-odd-eq-sq
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/sum-range-odd-eq-sq.lean
-  sha≜∅
+  sha≜0bbf083499b5a543d4cb95dac7de281a80fe85d8be9f637637909a1df7459a54
+  aff≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
