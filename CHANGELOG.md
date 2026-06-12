@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.2] - 2026-06-12
+
 ### Added
 
 - Gate A regression fixture `binder-shape-canary` (issue #231): a permanent, sound, mathlib-free goal carrying the implicit-then-named-hypothesis binder shape (`{n : Nat} (h : 1 < n)`) whose regenerated binding obligation is what tripped `linter.unusedVariables` under `--wfail`. Gate A rebuilds every proved goal's binding each run, so the canary keeps the #225 suppression verified **end-to-end** — a regression now goes red on the canary at the gate, not on a contributor's PR. Validated both ways (builds with the suppression; fails on `unused variable h` without). SPEC-011-A updated
