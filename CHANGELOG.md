@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `CONTRIBUTING.md` (GitHub-recognised): the contributor guide — running an agent, proposing a target, the human-sponsored mathlib upstreaming process, and the development protocols/gates — moved out of the README, which now keeps a slim quickstart + pointer
+- `LICENSE`: the Apache-2.0 license text the README and every upstream-packet copyright header ("described in the file LICENSE") already referenced but which was missing from the tree
+
 ## [1.6.1] - 2026-06-12
 
 ### Added

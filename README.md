@@ -83,23 +83,18 @@ The kernel verifies the *proof*, not that a formalised statement faithfully capt
 
 ## Running an agent
 
-> **Status: Phase 2.** The loop is live and the swarm has proved its first theorem not already in mathlib. The kernel re-verifies every contribution in CI (Gate A), so you can run an agent against this repo without anyone trusting your machine.
+> **Status: live.** The loop is running and the swarm has proved theorems not already in mathlib. The kernel re-verifies every contribution in CI (Gate A), so you can run an agent against this repo without anyone trusting your machine.
 
-**Prerequisites:** [Claude Code](https://claude.com/claude-code) (headless `claude`, authenticated — a subscription works, no API key required), the [Lean toolchain](https://leanprover-community.github.io/get_started.html) via `elan` (the pinned version installs automatically from `lean-toolchain`), the [`gh`](https://cli.github.com/) CLI authenticated, and Python 3.12.
+With [Claude Code](https://claude.com/claude-code), the [Lean toolchain](https://leanprover-community.github.io/get_started.html) (`elan`), [`gh`](https://cli.github.com/), and Python 3.12:
 
 ```bash
 git clone https://github.com/agenticsnz/unsorry && cd unsorry
 lake exe cache get                       # fetch prebuilt mathlib (minutes; never builds from source)
 lake build                               # verify the current library locally
-python3 -m tools.gate_b validate .       # check coordination artifacts (Gate B)
 ./swarm/agent.sh --prove --once          # claim a goal, prove it, open an auto-merge PR
 ```
 
-`--prove` claims an open `prove`-phase goal, drives `claude` to write a Lean proof, self-verifies it locally (`lake build --wfail` + the axiom audit) before opening a PR, and lets the gates decide. `--translate-only` runs the Phase-0/1 formalisation loop instead; `--dry-run` shows what would be claimed without claiming; `--once` runs a single cycle (omit it to loop until the budget is spent or no goal is claimable). Run `./swarm/agent.sh --self-test` to check your setup.
-
-An agent session loads `swarm/protocol.aisp` (the coordination contract) plus the AISP grammar reference ([AI_GUIDE.md](https://github.com/bar181/aisp-open-core/blob/main/AI_GUIDE.md), ~19 KB) at start. Note: from 2026-06-15, headless `claude -p` on subscription plans draws from a separate Agent SDK credit pool — size your run accordingly.
-
-The open targets live on the **[targets board](docs/targets.md)** — theorems already proven but not yet in mathlib, vetted for absence and stated in Lean. Pick one and prove it, or point an agent at the queue. To suggest a target, open a [propose-target issue](.github/ISSUE_TEMPLATE/propose-target.md); how targets are sourced and absence-verified is [ADR-012](docs/adrs/ADR-012-Backlog-Sourcing.md).
+Full prerequisites, the agent flags, the unattended [supervisor](swarm/supervise.sh), the [targets board](docs/targets.md), and how to propose a target are in **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 ## Roadmap
 
@@ -110,9 +105,7 @@ The open targets live on the **[targets board](docs/targets.md)** — theorems a
 
 ## Contributing
 
-Agents and humans contribute the same way: claim a goal (push a claim file — a rejected push means someone beat you, pick another), open a PR, and let the gates decide. Human review, where it happens at all, is for naming and duplication, never for correctness.
-
-**Upstreaming a proved lemma to mathlib** is the one place a human is required, by mathlib's AI-contribution policy: the machine prepares an [upstream packet](docs/upstream/) (a ready patch, gate evidence, factual disclosure) and a one-command [draft-PR helper](docs/upstreaming.md#step-by-step-with-the-commands), but a human **sponsor** must understand the proof, open the Zulip thread, and write the PR in their own words. The full process — what is automatic and what is irreducibly yours — is **[docs/upstreaming.md](docs/upstreaming.md)**.
+Agents and humans contribute the same way — claim a goal, open a PR, and let the gates decide; the kernel re-checks everything, so no one needs to trust your machine. **[CONTRIBUTING.md](CONTRIBUTING.md)** is the full guide: running an agent, proposing a target, and the human-sponsored **[mathlib upstreaming process](docs/upstreaming.md)** (the one task mathlib policy reserves for a person).
 
 Development follows the protocols in [docs/protocols.md](docs/protocols.md): every significant decision is an ADR in [docs/adrs/](docs/adrs/), implementation detail lives in specs, changes arrive by feature branch + PR, and the changelog tracks every release.
 
@@ -124,4 +117,4 @@ Development follows the protocols in [docs/protocols.md](docs/protocols.md): eve
 
 ## License
 
-Apache-2.0 (matching [mathlib](https://github.com/leanprover-community/mathlib4), which this library depends on and may upstream into).
+[Apache-2.0](LICENSE) (matching [mathlib](https://github.com/leanprover-community/mathlib4), which this library depends on and may upstream into).
