@@ -48,6 +48,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      # ADR-018: goal statements are create-only — the pin against history.
+      # Every other layer (binding regeneration, Gate B shas) derives from
+      # goals/<id>.lean in THIS tree, so same-PR consistent tampering passes
+      # them all (#190 CRITICAL). Runs before the build: cheap, and a
+      # tampering PR must die fast. Any goals/*.lean change sets detect.lean,
+      # so the gate cannot be short-circuited around.
+      - name: Goal statements are create-only (ADR-018)
+        if: needs.detect.outputs.lean == 'true' && github.event_name == 'pull_request'
+        run: |
+          python3 -m tools.gate_a.check_goal_immutability \
+            --base "${{ github.event.pull_request.base.sha }}"
+
       - name: Build (lean-action, mathlib binary cache)
         if: needs.detect.outputs.lean == 'true'
         uses: leanprover/lean-action@v1
