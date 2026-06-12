@@ -98,7 +98,18 @@ this repository.
    likewise **must be rewritten in your own words** — mathlib policy forbids
    LLM-written conversation; only the lemma itself (disclosed) and the factual
    disclosure block above may be pasted.
-3. One lemma per PR; apply the patch to a fresh mathlib branch; expect the
-   linter to want golfing (binder names, line length) — that editing is yours.
-4. Record the outcome on the targets board (`in-discussion → pr-open →
+3. **Raise the draft PR with one command** once you've done 1–2 — from the
+   unsorry repo root:
+   ```
+   python3 -m tools.upstream.raise_pr --goal alternating-sum-naturals --fork <your-github-user> --understood
+   ```
+   It clones mathlib master, applies the patch to a fresh branch, pushes to
+   your fork, and opens a **draft** PR pre-filled with the factual disclosure
+   and a placeholder where your narrative goes. (`--understood` is your
+   attestation that you've read the proof; `--dry-run` shows the plan first.)
+   The machine never marks it ready and never writes a review reply.
+4. Write your narrative in the draft, apply the `LLM-generated` label, then
+   **you** flip draft → ready. Expect the linter to want golfing (binder
+   names, line length) — that editing is yours. See [docs/upstreaming.md](../upstreaming.md).
+5. Record the outcome on the targets board (`in-discussion → pr-open →
    merged | declined`). **Declined is a valid, recorded result.**

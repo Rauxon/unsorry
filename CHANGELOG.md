@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Sponsor PR helper (ADR-021, SPEC-021-A): `python3 -m tools.upstream.raise_pr --goal <id> --fork <you> --understood` opens a **draft** mathlib PR from a ready, HEAD-verified packet — clones master, applies the patch, pushes to your fork, and pre-fills the factual disclosure with a `SPONSOR: replace…` narrative placeholder. The policy boundary is enforced: refuses without `--understood` (your attestation that you've read the proof), refuses a non-`packet-ready`/unverified packet, opens a draft (never marks ready), writes no review reply. Closes the last-mile friction in [docs/upstreaming.md](docs/upstreaming.md) (the full sponsor process, linked from the README). 11 tests
+
 ## [1.6.0] - 2026-06-12
 
 ### Added

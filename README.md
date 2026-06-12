@@ -112,6 +112,8 @@ The open targets live on the **[targets board](docs/targets.md)** — theorems a
 
 Agents and humans contribute the same way: claim a goal (push a claim file — a rejected push means someone beat you, pick another), open a PR, and let the gates decide. Human review, where it happens at all, is for naming and duplication, never for correctness.
 
+**Upstreaming a proved lemma to mathlib** is the one place a human is required, by mathlib's AI-contribution policy: the machine prepares an [upstream packet](docs/upstream/) (a ready patch, gate evidence, factual disclosure) and a one-command [draft-PR helper](docs/upstreaming.md#step-by-step-with-the-commands), but a human **sponsor** must understand the proof, open the Zulip thread, and write the PR in their own words. The full process — what is automatic and what is irreducibly yours — is **[docs/upstreaming.md](docs/upstreaming.md)**.
+
 Development follows the protocols in [docs/protocols.md](docs/protocols.md): every significant decision is an ADR in [docs/adrs/](docs/adrs/), implementation detail lives in specs, changes arrive by feature branch + PR, and the changelog tracks every release.
 
 ## References

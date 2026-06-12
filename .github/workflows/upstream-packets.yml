@@ -72,5 +72,5 @@ jobs:
           git push -u origin "$branch"
           gh pr create --assignee cgbarlow \
             --title "docs: upstream packets ($(date -u +%Y-%m-%d))" \
-            --body "Auto-initiated sponsor packets (ADR-020 / SPEC-020-A): dedup at mathlib HEAD + mechanical packet + applyable patch for every newly packet-eligible target. The sponsor owns everything after the packet — Zulip-first, in their own words. HEAD kernel-verification: run \`./tools/upstream/verify_head.sh <goal> --stamp\` per packet (heavyweight; deliberate manual/dispatch step)."
+            --body "Auto-initiated sponsor packets (ADR-020 / SPEC-020-A): dedup at mathlib HEAD + mechanical packet + applyable patch for every newly packet-eligible target. The sponsor owns everything after the packet — Zulip-first, in their own words (see docs/upstreaming.md). Per packet: (1) \`./tools/upstream/verify_head.sh <goal> --stamp\` to kernel-verify at mathlib HEAD, then (2) \`python3 -m tools.upstream.raise_pr --goal <goal> --fork <you> --understood\` to open the draft mathlib PR. The helper does the git plumbing; the narrative and the flip-to-ready stay yours."
           gh pr merge --auto --squash "$branch" || echo "auto-merge not armed (default-token PRs trigger no checks — see workflow header note)"
