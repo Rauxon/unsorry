@@ -14,6 +14,6 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/nat-add-comm-thm.lean
-  sha≜2d50b65b97862acc9cfe91168f3457d1bb953d679006ca158143fd21704e12d4
+  sha≜0f9d2a2b31573922b055b0cdd66e594e76288d5be2676fcda11932c136995d04
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
