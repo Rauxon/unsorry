@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Thread-B depth-2 dependency chain (ADR-010/ADR-014 routing demonstration): `sq-mod-three` (leaf), `prime-sq-mod-twenty-four` (mid, deps ⟨odd-sq-mod-eight, sq-mod-three⟩ — the classic 24 ∣ p²−1 for primes p > 3), `prime-sq-sub-sq-div-twenty-four` (root, deps ⟨prime-sq-mod-twenty-four⟩). First sourced goals with a depth-2 declared dependency tree; gap-based selection should route the leaves first and surface proved deps to the mid and root provers (phase3-run-002's open item)
+
 - Second sourced target batch (ADR-012): 8 new prove goals in the classic-identities band, difficulty 2–3 — `sum-range-cube-odd`, `sum-range-pronic`, `sum-range-mul-two-pow`, `sum-range-recip-pronic`, `sum-range-pow-five-closed-form`, `three-cubes-div-nine`, `odd-sq-mod-eight`, `sum-range-sq-even`. Each statement type-checks against the pinned mathlib (rev c5ea00351c28) and is machine-absence-checked with flagged hits reviewed; provenance in `backlog/*.md`. Two candidates were dropped at the gate as already-in-mathlib (`Nat.fib_succ_eq_succ_sum`, Cassini's identity in `Mathlib/Data/Int/Fib/Lemmas.lean`) and three more at the probe stage (hockey stick `Nat.sum_Icc_choose`, weighted binomial row sum `sum_range_mul_choose`, Brahmagupta–Fibonacci in `Algebra/Ring/Identities`) — the ADR-012 Nicomachus discipline working as designed. The pool refills from empty to 8 open
 
 ### Changed
