@@ -1,14 +1,15 @@
 # SPEC-007-A: Agent Loop Script (`swarm/agent.sh`)
 
-Implements: [ADR-006](../ADR-006-Gate-A-Soundness-Enforcement.md), [ADR-007](../ADR-007-Agent-Identity-and-Budgets.md) · Status: Living · Updated: 2026-06-10
+Implements: [ADR-006](../ADR-006-Gate-A-Soundness-Enforcement.md), [ADR-007](../ADR-007-Agent-Identity-and-Budgets.md), [ADR-022](../ADR-022-Local-Provider-Smoke-Mode.md) · Status: Living · Updated: 2026-06-13
 
-Scope: **translation-only mode** (Phase 0) and **prove mode** (Phase 1). Both share the same skeleton — pull, select, claim, work, verify, check in, release, metrics; the claim/PR/release plumbing is identical (the prove arm reuses it verbatim). They differ only in the `work` step (translate ↦ one text-only `claude` call; prove ↦ drive `claude` to write a Lean proof module), the `verify` step (translate ↦ Gate B on a rendered record; prove ↦ `lake build --wfail` ∧ `axiom_audit` ∧ the library-options lint), and candidate selection (`phase ≡ translate` vs `phase ≡ prove`). The convergence sweep (step 1b) is translate-only — prove has no Phase-1 analogue.
+Scope: **translation-only mode** (Phase 0), **prove mode** (Phase 1), and a local-only proof-provider smoke mode. The two swarm modes share the pull, select, claim, work, verify, check-in, release, and metrics skeleton. The local smoke reuses only proof generation and verification; it has no coordination or remote side effects.
 
 ## Invocation
 
 ```
 ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
 ./swarm/agent.sh --prove [--once] [--goal <id>] [--dry-run]
+./swarm/agent.sh --prove-local --goal <id> [--provider claude|codex]
 ./swarm/agent.sh --self-test
 ```
 
@@ -16,6 +17,8 @@ Scope: **translation-only mode** (Phase 0) and **prove mode** (Phase 1). Both sh
 |---|---|
 | `--translate-only` | Phase-0 mode: only `phase ≡ translate`, `status ≡ open` goals are candidates |
 | `--prove` | Phase-1 mode: only `phase ≡ prove`, `status ≡ open`, not-already-proved goals are candidates. Mutually exclusive with `--translate-only`; exactly one mode (or `--self-test`) is required |
+| `--prove-local` | Prove the explicit `--goal` from local `HEAD` in a preserved detached worktree. Performs no fetch, claim, push, PR, GitHub, metrics, decomposition, or affinity operation |
+| `--provider <name>` | Provider for `--prove-local`: `claude` (default) or `codex`. Swarm modes remain Claude-only until provider trials establish equivalent operational policy |
 | `--once` | Run exactly one cycle then exit (default: loop until no claimable goal or budget spent) |
 | `--goal <id>` | Restrict selection to one goal (trial orchestration) |
 | `--dry-run` | Stop after selection: print the goal that would be claimed, claim nothing |
@@ -28,13 +31,30 @@ Must be run from the repository root (script verifies `swarm/protocol.aisp` exis
 | Var | Default | Meaning |
 |---|---|---|
 | `UNSORRY_AGENT_ID` | contents of `~/.unsorry/agent-id` (created on first run: `<short-hostname>-<4 hex>`) | Swarm identity (ADR-007) |
-| `UNSORRY_MODEL` | `sonnet` | Model for translation/proof calls |
+| `UNSORRY_PROVIDER` | `claude` | Provider for `--prove-local` |
+| `UNSORRY_MODEL` | `sonnet` for translation; `fable` for Claude prove; provider default for Codex local smoke | Model for translation/proof calls |
 | `UNSORRY_WORKDIR` | `~/.unsorry/work` | Holds the claims-branch worktree and `metrics.jsonl` |
+| `UNSORRY_LOCAL_WORKTREE` | fresh `/tmp/unsorry-prove-local-*` path | Exact preserved worktree path for `--prove-local` |
 | `UNSORRY_WALL` | `1800` | Wall-clock seconds per cycle (`timeout` around the claude call) |
 | `UNSORRY_TTL` | read from `tools/gate_b/config.py` (7200) | Claim TTL; the script reads the config value — never hardcodes it (DRY with the contract) |
 | `UNSORRY_ATTEMPTS` | read from `tools/gate_b/config.py` `BUDGET_ATTEMPTS` (2) | Prove build/audit attempts; the prover gets up to this many `claude` calls (the second fed the first's build/audit error). Read from config — never hardcoded |
 
 Authentication: whatever `claude` auth exists (subscription login or `ANTHROPIC_API_KEY`); `gh` must be authenticated for PR creation.
+
+Swarm execution requires the repository root with local `main` checked out and equal to the fetched `origin/main` tip. Candidate enumeration reads the local checkout, while proof, translation, convergence, decomposition, unblock, and affinity PR worktrees all branch from `origin/main`; rejecting feature branches and local-only `main` commits prevents an agent from claiming an unmerged goal that cannot exist in its PR worktree. Local smoke is exempt because it branches its worktree from local `HEAD` and never enters coordination.
+
+## Local provider smoke
+
+`--prove-local --goal <id>` is explicitly disconnected from the swarm lifecycle. It verifies that a provider can perform the proof work before that provider is trusted with claims or PRs:
+
+1. Validate that `goals/<id>.lean` and `.aisp` exist at local `HEAD`.
+2. Create a detached worktree from local `HEAD`; no `git fetch` occurs.
+3. Run the standard proof prompt through the selected provider. Claude keeps the existing restricted tool list. Codex runs non-interactively with `codex exec`, `workspace-write`, ephemeral session state, ignored user configuration/rules, and no approval prompts. The launcher prepends Homebrew paths so an obsolete NVM Node does not break the installed CLI.
+4. After every provider call, reject any changed or untracked path except `library/Unsorry/<CamelName>.lean`.
+5. Run the same cache restore, strict library build, axiom audit, generated statement-binding obligation, and library-options lint as swarm prove mode.
+6. Remove the generated binding helper and preserve the worktree whether the proof succeeds or fails. Print the path and an inspection command.
+
+Local smoke defaults to one attempt; `UNSORRY_ATTEMPTS` can raise it. Codex defaults to its configured model and `high` reasoning unless `UNSORRY_MODEL` or `UNSORRY_EFFORT` is set. A requested Codex `ladder` maps to `medium → high → xhigh`; Claude retains `high → xhigh → max`.
 
 ## Cycle (translate-only)
 
@@ -84,7 +104,7 @@ The two cases never collide in practice (different namespaces of content) and ea
 - All git interactions with `origin` are confined to: fetch/pull, push to `claims`, push of `feature/goal-*` branches, `gh pr` calls. The script never pushes to `main`.
 - Caps, TTL and budgets come from `tools/gate_b/config.py` (`TRANSLATE_CLAIM_CAP`, `PROVE_CLAIM_CAP`, `TTL_SECONDS`, `BUDGET_ATTEMPTS`) — never hardcoded (DRY with the contract; `tests/test_contract_constants.py` keeps config in lockstep with `swarm/protocol.aisp`).
 - Re-entrant push handling: no cycle exits leaving stranded local state for the next one — every claims-branch push failure (and every cycle start, step 1) ends with the claims worktree hard-reset to `origin/claims`, a worktree left mid-rebase by a killed cycle is recovered automatically, and per-cycle feature-branch suffixes make non-fast-forward collisions with the agent's own remote refs structurally impossible.
-- Exit codes: 0 success or nothing-to-do; 1 cycle failure; 2 configuration error (not at repo root, missing tools, unauthenticated `gh`).
+- Exit codes: 0 success or nothing-to-do; 1 cycle/proof failure; 2 configuration error (not at repo root, missing tools, unauthenticated `gh`); 3 provider infrastructure failure.
 
 ## Acceptance criteria
 
@@ -96,3 +116,4 @@ The two cases never collide in practice (different namespaces of content) and ea
 6. `--dry-run --prove` on the repo prints a candidate `prove` goal and claims nothing.
 7. `--self-test` covers the prove-cycle pure functions: CamelCase module naming, Lean statement/name extraction, index-sha determinism (stable under whitespace/proof variation), prove-candidate filtering (phase ≡ prove / open / uncapped by `PROVE_CLAIM_CAP` / not self-claimed), "already proved ⇒ not a candidate" (an index entry naming the goal excludes it), the goal→`proved` rewrite (`status≜proved` + `sha`, nothing else), and that a rendered index entry + proved goal pass Gate B — all hermetically (no `lake`).
 8. A full `--once --prove --goal <id>` run on a real `prove` goal produces: a claim on the claims branch, a new `library/Unsorry/<CamelName>.lean` that passes `lake build UnsorryLibrary --wfail` and `lake exe axiom_audit Unsorry.<CamelName>` (whitelist only), a `library/index/<sha>.aisp` entry, a goal flipped to `status≜proved`, a prove PR that passes Gate B, and a release commit — observable end-to-end (exercised live in the Stage-5 trial, W4, and against a local bare-origin fixture during development).
+9. `--prove-local --goal <id> --provider codex` makes no remote or coordination changes, preserves its detached worktree, rejects provider edits outside the target module, and returns 0 only after the standard local proof verification passes.

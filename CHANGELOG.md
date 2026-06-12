@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Gemini provider implementation guide (`docs/gemini-provider.md`): repository-specific adapter steps, deny-by-default policy template, effort/model handling, health and failure classification, hermetic tests, local acceptance smoke, and production-enablement criteria. The guide explicitly avoids `--yolo` and keeps Gemini local-only until its policy and failure behavior are demonstrated.
+
+- Local proof-provider smoke mode: `./swarm/agent.sh --prove-local --goal <id> --provider claude|codex` runs proof generation and the full local kernel/audit verification from a preserved detached `HEAD` worktree without fetches, claims, pushes, PRs, GitHub calls, decomposition, affinity edits, or metrics. Codex uses non-interactive `codex exec` with a workspace sandbox and normalized Homebrew Node path; every provider call is followed by a git path guard that permits only the target Lean module. Local smoke defaults to one attempt and supports model/effort overrides.
+
 - Third sourced target batch (ADR-012/Issue #257): 4 new harder open goals in the difficulty 3–4 band — `euclid-perfect-numbers` (Euclid-Euler perfect numbers), `sum-range-sq-mul-choose` (quadratic weighted sum of binomial coefficients), `sum-range-pentagonal-closed-form` (partial sums of pentagonal numbers), and `sq-add-sq-eq-three-mul-sq` (non-trivial integer solutions to $x^2 + y^2 = 3z^2$). Every statement type-checks against the pinned mathlib (rev c5ea00351c28) and is machine-absence-verified with provenance in `backlog/*.md`. This fulfills cgbarlow's request for harder targets to test the swarm's capabilities.
 
 - Thread-B depth-2 dependency chain (ADR-010/ADR-014 routing demonstration): `sq-mod-three` (leaf), `prime-sq-mod-twenty-four` (mid, deps ⟨odd-sq-mod-eight, sq-mod-three⟩ — the classic 24 ∣ p²−1 for primes p > 3), `prime-sq-sub-sq-div-twenty-four` (root, deps ⟨prime-sq-mod-twenty-four⟩). First sourced goals with a depth-2 declared dependency tree; gap-based selection should route the leaves first and surface proved deps to the mid and root provers (phase3-run-002's open item)

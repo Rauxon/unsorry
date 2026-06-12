@@ -44,7 +44,14 @@ and lets the gates decide. Other flags:
 - `--translate-only` — run the Phase-0/1 formalisation loop instead of proving.
 - `--dry-run` — show what would be claimed without claiming.
 - `--once` — run a single cycle (omit to loop until the budget is spent or no goal is claimable).
+- `--prove-local --goal <id> --provider claude|codex` — test proof generation
+  and the full local verification in a preserved worktree without fetching,
+  claiming, pushing, or opening a PR.
 - `--self-test` — check your setup (hermetic; no network, no `claude`).
+
+Gemini is not implemented yet. See
+[`docs/gemini-provider.md`](docs/gemini-provider.md) for the constrained
+local-first implementation and acceptance plan.
 
 For unattended runs, **[`./swarm/supervise.sh --prove --goal <id>`](swarm/supervise.sh)**
 wraps the agent loop with backoff across infrastructure outages, in-flight waits for
