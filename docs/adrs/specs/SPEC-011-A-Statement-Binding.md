@@ -1,6 +1,6 @@
 # SPEC-011-A: Statement-Binding Gate
 
-Implements: [ADR-011](../ADR-011-Statement-Binding-Gate.md) · Refines: [SPEC-006-B](SPEC-006-B-Gate-A-Workflow.md) · Status: Living · Updated: 2026-06-10
+Implements: [ADR-011](../ADR-011-Statement-Binding-Gate.md) · Refines: [SPEC-006-B](SPEC-006-B-Gate-A-Workflow.md) · Status: Living · Updated: 2026-06-12
 
 Closes the meaningfulness gap the W3 red team exposed (gate-a-redteam-001, PR #64): Gate A certifies a proof is *sound* but not that the merged declaration's *statement* is the one the goal asked for. This binds formal-statement → proof, alongside the dual-translation fidelity gate that binds English → formal.
 
@@ -19,6 +19,7 @@ theorem <name>_binding_check : <∀-type of goals/<g>.lean> := <name>
 - `<name>` = the goal theorem's name (`tools.lean_sig.theorem_name`).
 - `<∀-type>` = the goal's own statement as a closed ∀-expression (`tools.lean_sig.foralltype`: `theorem <n> <binders> : <prop>` → `∀ <binders>, <prop>`, split at the first depth-0 `:`).
 - The import targets the library module that actually declares `<name>`, located **by content** (`_module_declaring`) so a grandfathered module (e.g. `Basic.lean`) is handled, not only the `<Camel>.lean` convention.
+- The generated file is prefixed with `set_option linter.unusedVariables false in` (issue #231). A goal whose statement has a **named hypothesis binder after an implicit binder** (`∀ {n : ℕ} (hn : 1 < n), …`) is eta-expanded in the obligation and the eta-introduced binder is flagged unused, which the `--wfail` build promotes to an error — making *every* correct proof of such a goal fail Gate A. The suppression is **unconditional** (every generated binding carries it), so the whole class is covered, not only the shape that surfaced it; it disables a lint on regenerated, never-committed glue and leaves the type-check — the obligation's entire force — untouched, so soundness is unaffected.
 
 The obligation type-checks under `lake build UnsorryLibrary --wfail` **iff** the proved theorem's type is definitionally equal to (or more general than, via implicit insertion) the goal's type. A weakened, vacuous, or otherwise different statement under the goal's name cannot inhabit the goal type, so the binding build fails and Gate A goes red — verified in sandbox: the real proof's binding builds (exit 0), a `True`-vacuous restatement's binding fails (exit 1).
 
@@ -41,3 +42,8 @@ This gate binds the proof to the goal's *chosen formalisation*. A goal that mis-
 3. `test_generate_errors_when_no_module_declares_the_theorem` — a proved goal with no declaring module fails (exit 1).
 4. `test_foralltype_no_binders` / `test_foralltype_implicit_and_instance_binders` — `foralltype` handles `: P`, and `{…}`/`[…]`/`(…)` binders.
 5. Sandbox/CI: every existing proved goal's binding builds under `--wfail`; a weakened restatement's binding fails (red-team round 002, `gate-a-redteam-002`).
+6. `test_generate_suppresses_unused_variable_lint` — the obligation for an implicit-then-named-hypothesis goal carries the `set_option linter.unusedVariables false in` line (issue #231).
+
+## End-to-end regression guard (`binder-shape-canary`)
+
+The hermetic generator tests (1–6) check the obligation's *text*, never that it *builds* `--wfail`-clean — which is why #231 reached a contributor (#221) instead of CI. The permanent fixture goal **`binder-shape-canary`** closes that: a sound, mathlib-free lemma (`theorem binder_shape_canary {n : Nat} (h : 1 < n) : 0 < n`) carrying the exact problematic shape. Because Gate A regenerates and builds every proved goal's binding on every run, the canary's binding is built `--wfail` each time — so removing the suppression, or a future linter tripping the same shape, goes red **on the canary, at the gate**. Validated both ways: with the suppression the binding builds (exit 0); without it the build fails on `unused variable h`. The proof uses `h`, so the library module itself stays `--wfail`-clean — only the binding's eta-expansion exercises the lint. It carries no `Absence` provenance, so the upstream pipeline (ADR-020) never packets it.
