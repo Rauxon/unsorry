@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Second sourced target batch (ADR-012): 8 new prove goals in the classic-identities band, difficulty 2–3 — `sum-range-cube-odd`, `sum-range-pronic`, `sum-range-mul-two-pow`, `sum-range-recip-pronic`, `sum-range-pow-five-closed-form`, `three-cubes-div-nine`, `odd-sq-mod-eight`, `sum-range-sq-even`. Each statement type-checks against the pinned mathlib (rev c5ea00351c28) and is machine-absence-checked with flagged hits reviewed; provenance in `backlog/*.md`. Two candidates were dropped at the gate as already-in-mathlib (`Nat.fib_succ_eq_succ_sum`, Cassini's identity in `Mathlib/Data/Int/Fib/Lemmas.lean`) and three more at the probe stage (hockey stick `Nat.sum_Icc_choose`, weighted binomial row sum `sum_range_mul_choose`, Brahmagupta–Fibonacci in `Algebra/Ring/Identities`) — the ADR-012 Nicomachus discipline working as designed. The pool refills from empty to 8 open
+
 ### Changed
 
 - Status report (`docs/reports/status-2026-06-12.md`) updated in place through v1.6.2: the fifth mathlib-absent result (`not_prime_pow_four_add_four`, external machine binto-labs, #221) added to the results table; the first observed Gate A false negative it exposed recorded with its fix and canary guard (#231/#225/#233) plus a new honest-limits entry (the gate fails closed, not open); the ADR-021 sponsor draft-PR helper and the HEAD-stamped Nicomachus packet added to the upstream section; CONTRIBUTING/LICENSE noted; footer counts refreshed. README status line updated four → five
