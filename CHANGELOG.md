@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Thread B exit — first compounding** (`docs/metrics/phase3-run-002.{json,md}`): `sum_range_cube_eq_triangular_sq` proved in 4m57s on the first attempt by **importing and invoking the swarm's own `nicomachus_sum_cubes`** (#154) — the first merged-lemma reuse by mechanism (ADR-014: proved deps surfaced in the prove prompt as importable `Unsorry.*` modules). Run-001's four recompositions corroborate (same surfacing, parents importing their proved subs). Honest limits recorded: depth-1 tree, one declared edge; deep bottom-up routing remains open. README compounding claim updated
+
+### Added
+
 - **Thread A exit — the chain, in anger** (`docs/metrics/phase3-run-001.{json,md}`): `platonic_schlafli_pairs` (the Platonic-solids Schläfli arithmetic core, mathlib-absent) kernel-verified on main **via** a forced depth-3 decompose → prove-subs → recompose chain — 13 goals, 4 decompositions, 4 recompositions, statement binding held throughout, the parent's proof literally composing its sub-lemmas (#149→#211). Honest record: stage-1 budget forcing, three quota outages (the third absorbed unattended by ADR-016/017), the #166 conflicted-PR silent stall, claim races and their bounded cost, ladder rung stats (11/13 proofs at the cheapest rung). README/roadmap updated: "demonstrated on paper, not in anger" retired
 
 ### Fixed

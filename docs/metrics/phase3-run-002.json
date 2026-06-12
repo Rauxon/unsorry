@@ -1,0 +1,56 @@
+{
+  "run_id": "phase3-run-002",
+  "date": "2026-06-11",
+  "trial": "Phase-3 thread B: dependency-tree compounding. ADR-014 surfaced a goal's PROVED dependencies (declared deps + own-decomposition subs) in the prove prompt as importable Unsorry.* modules. The same PR seeded the first dependency edge: nicomachus-sum-cubes-triangular (the triangular closed form) declared deps≜⟨nicomachus-sum-cubes⟩ — the lemma the swarm proved in phase2-run-001. One prover agent ran the normal prove workflow at the seeded target. Exit condition: a parent merges whose proof file imports a listed Unsorry.* module and uses the lemma.",
+  "target": {
+    "goal": "nicomachus-sum-cubes-triangular",
+    "statement": "theorem sum_range_cube_eq_triangular_sq (n : ℕ) : ∑ i ∈ Finset.range (n + 1), i ^ 3 = (n * (n + 1) / 2) ^ 2",
+    "description": "The triangular-number closed form of Nicomachus: ∑_{i≤n} i³ = (n(n+1)/2)². Mathematically this IS nicomachus_sum_cubes composed with the Gauss sum — the textbook case for reuse.",
+    "mathlib_absent": true,
+    "mathlib_absence_basis": "backlog/nicomachus-sum-cubes-triangular.md (ADR-012 batch, pinned mathlib v4.30.0).",
+    "difficulty": 2,
+    "declared_deps": ["nicomachus-sum-cubes (proved phase2-run-001, #133)"]
+  },
+  "agents": [
+    { "id": "p3-bravo", "model": "fable", "role": "prover", "effort": "max (ADR-013; pre-dates the ADR-015 ladder by ~5h)" }
+  ],
+  "exit_metric": {
+    "question": "Did merged work get REUSED as an importable dependency (a proof that imports an Unsorry.* module and uses its lemma)?",
+    "target_reached": true,
+    "reuse_observed": true,
+    "binding_held": true,
+    "verdict": "MET. PR #154's module imports Unsorry.NicomachusSumCubes and its entire proof is a 4-step rewrite whose FIRST step is nicomachus_sum_cubes — the swarm's own phase-2 lemma, not re-derived but invoked. Claim→proved took 4m57s on the first attempt: the dependency hint turned a difficulty-2 target into a near-mechanical composition. This is the first time a merged unsorry lemma made a later proof cheaper by mechanism."
+  },
+  "proof": {
+    "pr": 154,
+    "merged_at": "2026-06-11T05:35:08Z",
+    "module": "library/Unsorry/NicomachusSumCubesTriangular.lean",
+    "imports": ["Unsorry.NicomachusSumCubes", "Mathlib.Algebra.BigOperators.Intervals"],
+    "body": "rw [nicomachus_sum_cubes (n + 1), Finset.sum_range_id, Nat.add_sub_cancel, Nat.mul_comm (n + 1) n]",
+    "claimed": "2026-06-11T05:21:01Z",
+    "proved": "2026-06-11T05:25:58Z",
+    "claim_to_proved_seconds": 297,
+    "attempts": 1
+  },
+  "mechanism": {
+    "adr": "ADR-014 (#153, merged 2026-06-11T05:20:25Z — 41 seconds before the claim)",
+    "surfacing": "py_helper proved-deps resolves declared deps + own-decomposition subs through the library index to their declaring modules; run_proof appends a PROVED DEPENDENCIES section to the prompt with import lines and statements, amending the import-tightness rule to allow them. Advisory only — the gates judge the result identically.",
+    "corroboration": "phase3-run-001's four recompositions are four more reuse instances of the same mechanism: each recomposing parent imported its own proved subs (surfaced as own-decomposition deps) rather than re-deriving them."
+  },
+  "metrics": {
+    "target_proved": true,
+    "proof_path": "direct-with-reuse",
+    "prove_prs_opened": 1,
+    "prove_prs_merged": 1,
+    "library_modules_added": 1,
+    "gate_a_failures_on_merged_path": 0,
+    "reuse_edges_exercised_this_run": 1,
+    "reuse_edges_exercised_including_run_001_recompositions": 5
+  },
+  "known_limits": [
+    "Depth-1 dependency tree: one declared edge. 'A chosen result through a SEVERAL-lemma dependency tree routed bottom-up by gap selection' (roadmap thread B's full ambition) remains open — this run proves the reuse mechanism, not deep routing.",
+    "Transitive dependency closure deliberately deferred (ADR-014) until a tree needs it.",
+    "The prover may still ignore the hint; nothing enforces reuse (by design — kernel and binding gate judge either way)."
+  ],
+  "wall_clock": { "start": "2026-06-11T05:20:25Z (#153 merged: machinery + seed)", "end": "2026-06-11T05:35:08Z (#154 merged)", "elapsed_minutes": 14.7 }
+}
