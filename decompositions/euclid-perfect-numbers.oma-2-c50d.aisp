@@ -1,0 +1,16 @@
+𝔸5.1.decomp.euclid-perfect-numbers.oma-2-c50d@2026-06-12
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜euclid-perfect-numbers; agent≜oma-2-c50d}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜euclid-perfect-numbers-s1,sha≜5c016da115386deab17eb55168242d26b1d957bd7b908531175ec5ea9581b58b⟩
+  sub₂≜⟨id≜euclid-perfect-numbers-s2,sha≜64bcc330b161389c93974a96453c3f6a190c49ee55222a9a47022d93378b8f59⟩
+  sub₃≜⟨id≜euclid-perfect-numbers-s3,sha≜8540c28548e54dd1ce6113a5ce0a36e74b3019b6ccd7ea46a965761f5a509424⟩
+  sub₄≜⟨id≜euclid-perfect-numbers-s4,sha≜2866d69a1e831bf17091218cac177dfea3dbf8bc4b93c1f12e4edc6f865cd20b⟩
+  sub₅≜⟨id≜euclid-perfect-numbers-s5,sha≜31c9b7e6c5f577789882ecd0b0189e74be703dedfb04437e0260cf31df90c4ed⟩
+  sub₆≜⟨id≜euclid-perfect-numbers-s6,sha≜5ad776c14c271e31f5ea863669d5adc15275c6494767bfb611a6e821da389ede⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent); Post(sub₄)⊆Pre(parent); Post(sub₅)⊆Pre(parent); Post(sub₆)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
