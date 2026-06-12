@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Gate A's regenerated binding obligation (ADR-011/SPEC-011-A) now carries the goal file's top-level `open …` commands, so a goal stated under `open Finset` (bare `range`, batch-3 shape) elaborates in its own namespace context instead of failing with `Unknown identifier`. Same fix mirrored in the agent loop's local self-verify (`write_binding_module`, new `lean-opens` helper); shared parsing in `tools.lean_sig.open_lines`. Surfaced by PR #259 (`sum-range-pentagonal-closed-form`); also unblocks `sum-range-sq-mul-choose`
+
 ### Added
 
 - Third sourced target batch (ADR-012/Issue #257): 4 new harder open goals in the difficulty 3–4 band — `euclid-perfect-numbers` (Euclid-Euler perfect numbers), `sum-range-sq-mul-choose` (quadratic weighted sum of binomial coefficients), `sum-range-pentagonal-closed-form` (partial sums of pentagonal numbers), and `sq-add-sq-eq-three-mul-sq` (non-trivial integer solutions to $x^2 + y^2 = 3z^2$). Every statement type-checks against the pinned mathlib (rev c5ea00351c28) and is machine-absence-verified with provenance in `backlog/*.md`. This fulfills cgbarlow's request for harder targets to test the swarm's capabilities.

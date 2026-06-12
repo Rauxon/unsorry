@@ -8,13 +8,15 @@ from tools.lean_sig import camel_name, foralltype, statement, theorem_name
 
 
 def _make_proved(tree: Path, goal: str, decl: str, proof: str = "by sorry",
-                 module: str | None = None):
+                 module: str | None = None, header: str = ""):
     """Create a proved goal: goals/<goal>.{aisp,lean}, a library proof module,
-    and the index entry that marks it proved."""
+    and the index entry that marks it proved. `header` is prepended to the
+    goal `.lean` (import/`open` lines)."""
     (tree / "goals").mkdir(parents=True, exist_ok=True)
     (tree / "library" / "Unsorry").mkdir(parents=True, exist_ok=True)
     (tree / "library" / "index").mkdir(parents=True, exist_ok=True)
-    (tree / "goals" / f"{goal}.lean").write_text(f"{decl} := by sorry\n", encoding="utf-8")
+    (tree / "goals" / f"{goal}.lean").write_text(
+        f"{header}{decl} := by sorry\n", encoding="utf-8")
     mod = module or camel_name(goal)
     (tree / "library" / "Unsorry" / f"{mod}.lean").write_text(
         f"import Mathlib\n\n{decl} := {proof}\n", encoding="utf-8"
@@ -59,6 +61,39 @@ def test_generate_suppresses_unused_variable_lint(tmp_path):
     assert ("theorem not_prime_pow_four_add_four_binding_check : "
             "∀ {n : ℕ} (hn : 1 < n), ¬ Nat.Prime (n ^ 4 + 4) "
             ":= not_prime_pow_four_add_four\n") in binding
+
+
+def test_generate_carries_goal_open_commands(tmp_path):
+    # A goal stated under `open Finset` (the batch-3 shape, PR #259) names
+    # `range` unqualified; the regenerated obligation must elaborate in the
+    # goal's own namespace context, so the goal file's `open` commands travel
+    # with the type — placed after the import, before the obligation.
+    _make_proved(
+        tmp_path, "sum-range-pentagonal-closed-form",
+        "theorem sum_range_pentagonal_closed_form (n : ℕ) : "
+        "2 * (∑ k ∈ range (n + 1), (3 * k^2 - k) / 2) = n^2 * (n + 1)",
+        header="import Mathlib.Algebra.BigOperators.Intervals\n\nopen Finset\n\n")
+    assert generate(tmp_path) == 0
+    binding = (tmp_path / "library" / "Unsorry"
+               / "SumRangePentagonalClosedFormBinding.lean").read_text(encoding="utf-8")
+    assert "open Finset\n" in binding
+    assert binding.index("import ") < binding.index("open Finset")
+    assert binding.index("open Finset") < binding.index(
+        "theorem sum_range_pentagonal_closed_form_binding_check")
+
+
+def test_generate_without_opens_is_byte_identical_to_canonical(tmp_path):
+    # No `open` in the goal file → the obligation keeps the exact canonical
+    # shape (regression guard for the pre-open generator output).
+    _make_proved(tmp_path, "nat-y", "theorem nat_y (n : Nat) : n = n", proof="rfl")
+    assert generate(tmp_path) == 0
+    binding = (tmp_path / "library" / "Unsorry" / "NatYBinding.lean").read_text(
+        encoding="utf-8")
+    assert binding == (
+        "import Unsorry.NatY\n\n"
+        "set_option linter.unusedVariables false in\n"
+        "theorem nat_y_binding_check : ∀ (n : Nat), n = n := nat_y\n"
+    )
 
 
 def test_generate_finds_module_by_theorem_name(tmp_path):

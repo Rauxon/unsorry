@@ -6,6 +6,7 @@ For each `library/index/<sha>.aisp` (a proved goal `<g>`), this writes
 `library/Unsorry/<Camel>Binding.lean`:
 
     import Unsorry.<Camel>
+    <open commands of goals/<g>.lean, if any>
     set_option linter.unusedVariables false in
     theorem <name>_binding_check : <∀-type of goals/<g>.lean> := <name>
 
@@ -29,7 +30,7 @@ import re
 import sys
 from pathlib import Path
 
-from tools.lean_sig import camel_name, foralltype, theorem_name
+from tools.lean_sig import camel_name, foralltype, open_lines, theorem_name
 
 _GOAL_RE = re.compile(r"goal≜([A-Za-z0-9][A-Za-z0-9-]*)")
 BINDING_SUFFIX = "Binding.lean"
@@ -86,6 +87,12 @@ def generate(tree: Path) -> int:
             errors += 1
             continue
         binding_path = unsorry_dir / f"{camel_name(goal)}{BINDING_SUFFIX}"
+        # The goal's own `open` commands travel with the type: a statement
+        # written under `open Finset` names `range` unqualified, and the
+        # obligation must elaborate in that same namespace context. The opens
+        # come from the ADR-018-immutable goal file, never from the prover's
+        # module, so this adds no tampering surface.
+        opens = "".join(f"{o}\n" for o in open_lines(text))
         # linter.unusedVariables is suppressed because the obligation restates
         # the goal's binders verbatim: a named hypothesis binder following an
         # implicit binder (e.g. `∀ {n : ℕ} (hn : 1 < n), …`) is eta-expanded
@@ -95,6 +102,7 @@ def generate(tree: Path) -> int:
         # committed (SPEC-011-A).
         binding_path.write_text(
             f"import {module}\n\n"
+            f"{opens}"
             f"set_option linter.unusedVariables false in\n"
             f"theorem {name}_binding_check : {ftype} := {name}\n",
             encoding="utf-8",

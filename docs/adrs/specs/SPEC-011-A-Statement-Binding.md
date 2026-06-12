@@ -13,12 +13,14 @@ For each proved goal `<g>` (a `library/index/<sha>.aisp` naming it), Gate A writ
 ```lean
 import <module declaring the proved theorem>
 
+<open commands of goals/<g>.lean, if any>
 theorem <name>_binding_check : <∀-type of goals/<g>.lean> := <name>
 ```
 
 - `<name>` = the goal theorem's name (`tools.lean_sig.theorem_name`).
 - `<∀-type>` = the goal's own statement as a closed ∀-expression (`tools.lean_sig.foralltype`: `theorem <n> <binders> : <prop>` → `∀ <binders>, <prop>`, split at the first depth-0 `:`).
 - The import targets the library module that actually declares `<name>`, located **by content** (`_module_declaring`) so a grandfathered module (e.g. `Basic.lean`) is handled, not only the `<Camel>.lean` convention.
+- The goal file's top-level `open …` commands (`tools.lean_sig.open_lines`) are carried into the generated module, after the import and before the obligation. A goal stated under `open Finset` names `range` unqualified; the obligation restates that type verbatim, so it must elaborate in the goal's own namespace context (surfaced by the batch-3 goals, PR #259). The opens come from the ADR-018-immutable goal file — never from the prover's module — so the gate's tamper surface is unchanged.
 - The generated file is prefixed with `set_option linter.unusedVariables false in` (issue #231). A goal whose statement has a **named hypothesis binder after an implicit binder** (`∀ {n : ℕ} (hn : 1 < n), …`) is eta-expanded in the obligation and the eta-introduced binder is flagged unused, which the `--wfail` build promotes to an error — making *every* correct proof of such a goal fail Gate A. The suppression is **unconditional** (every generated binding carries it), so the whole class is covered, not only the shape that surfaced it; it disables a lint on regenerated, never-committed glue and leaves the type-check — the obligation's entire force — untouched, so soundness is unaffected.
 
 The obligation type-checks under `lake build UnsorryLibrary --wfail` **iff** the proved theorem's type is definitionally equal to (or more general than, via implicit insertion) the goal's type. A weakened, vacuous, or otherwise different statement under the goal's name cannot inhabit the goal type, so the binding build fails and Gate A goes red — verified in sandbox: the real proof's binding builds (exit 0), a `True`-vacuous restatement's binding fails (exit 1).
@@ -33,7 +35,7 @@ Because the obligation is regenerated for **every** index entry, decomposition's
 
 This gate binds the proof to the goal's *chosen formalisation*. A goal that mis-formalises its informal target still yields a meaningful-looking proof of the wrong thing — that residue is the **fidelity gate's** job (dual independent translation, design doc §5), not this one. Stated honestly per ADR-011.
 
-`tools/lean_sig.py` holds the shared Lean-signature parsing (statement, name, sha, foralltype, camel) imported by both `swarm/agent.sh` and this check (DRY).
+`tools/lean_sig.py` holds the shared Lean-signature parsing (statement, name, sha, foralltype, open_lines, camel) imported by both `swarm/agent.sh` and this check (DRY).
 
 ## Acceptance criteria
 
@@ -43,6 +45,7 @@ This gate binds the proof to the goal's *chosen formalisation*. A goal that mis-
 4. `test_foralltype_no_binders` / `test_foralltype_implicit_and_instance_binders` — `foralltype` handles `: P`, and `{…}`/`[…]`/`(…)` binders.
 5. Sandbox/CI: every existing proved goal's binding builds under `--wfail`; a weakened restatement's binding fails (red-team round 002, `gate-a-redteam-002`).
 6. `test_generate_suppresses_unused_variable_lint` — the obligation for an implicit-then-named-hypothesis goal carries the `set_option linter.unusedVariables false in` line (issue #231).
+7. `test_generate_carries_goal_open_commands` — a goal stated under `open Finset` yields an obligation carrying that `open` between the import and the theorem; `test_generate_without_opens_is_byte_identical_to_canonical` — without opens the output keeps the exact pre-open canonical shape.
 
 ## End-to-end regression guard (`binder-shape-canary`)
 

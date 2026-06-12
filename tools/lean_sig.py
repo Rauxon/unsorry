@@ -47,6 +47,16 @@ def statement(lean_text: str) -> str:
     return re.sub(r"\s+", " ", decl[:cut]).strip()
 
 
+def open_lines(lean_text: str) -> list[str]:
+    """Top-level `open …` commands of a goal file, in order. A goal may state
+    its theorem under an `open` (e.g. `open Finset` + bare `range`); the
+    ADR-011 binding obligation restates the goal's type verbatim, so it must
+    elaborate in the goal's own namespace context — these commands travel with
+    the type into the generated binding module."""
+    return [ln.strip() for ln in lean_text.splitlines()
+            if ln.lstrip().startswith("open ")]
+
+
 def theorem_name(lean_text: str) -> str:
     """The declared name of `theorem <name> …` / `lemma <name> …`."""
     match = re.search(r"\b(?:theorem|lemma)\s+([A-Za-z_][A-Za-z0-9_']*)", lean_text)
