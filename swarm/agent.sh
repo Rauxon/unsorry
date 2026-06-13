@@ -4,8 +4,8 @@
 #
 # Usage:
 #   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
-#   ./swarm/agent.sh --prove [--once] [--goal <id>] [--dry-run]
-#   ./swarm/agent.sh --prove-local --goal <id> [--provider claude|codex|gemini]
+#   ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex] [--dry-run]
+#   ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai]
 #   ./swarm/agent.sh --self-test
 #
 # Must be run from the repository root. Swarm modes additionally require `main`
@@ -19,7 +19,7 @@
 #
 # Exit codes: 0 success or nothing-to-do · 1 cycle failure · 2 configuration
 # error (not at repo root, missing tools, unauthenticated gh) · 3
-# infrastructure failure (the claude CLI cannot run — quota, auth, network —
+# infrastructure failure (the selected proof CLI cannot run — quota, auth, network —
 # the agent stops without applying any queue penalty, ADR-016).
 #
 # shellcheck disable=SC2317  # test_* functions are invoked indirectly ("$t")
@@ -46,18 +46,19 @@ usage() {
   cat <<'EOF'
 Usage:
   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
-  ./swarm/agent.sh --prove [--once] [--goal <id>] [--dry-run]
-  ./swarm/agent.sh --prove-local --goal <id> [--provider claude|codex|gemini|openai]
+  ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex] [--dry-run]
+  ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai]
   ./swarm/agent.sh --self-test
 
 Flags:
   --translate-only  Phase-0 mode: only phase≡translate goals are candidates
   --prove           Phase-1 mode: only phase≡prove, unproved goals are candidates
-  --prove-local     Prove one explicit goal from local HEAD without any remote,
-                    claim, PR, or GitHub operation; preserves its worktree
-  --provider <name> LLM CLI for --prove-local: claude (default), codex, gemini, or openai
+  --prove-local     Prove one goal from local HEAD without any remote, claim,
+                    PR, or GitHub operation; auto-selects unless --goal is set
+  --provider <name> Proof provider: claude (default), codex, or local-only
+                    gemini/openai
   --once            Run exactly one cycle then exit
-  --goal <id>       Restrict selection to one goal (trial orchestration)
+  --goal <id>       Restrict or override automatic selection to one goal
   --dry-run         Stop after selection: print the would-be claim, claim nothing
   --self-test       Run the built-in hermetic tests and exit (0 green / 1 red)
 
@@ -67,7 +68,7 @@ Requirement:
 
 Environment:
   UNSORRY_AGENT_ID  Swarm identity (default: ~/.unsorry/agent-id, created on first run)
-  UNSORRY_PROVIDER  Provider for --prove-local (default: claude)
+  UNSORRY_PROVIDER  Provider for --prove or --prove-local (default: claude)
   UNSORRY_MODEL     Model for claude calls (default: fable in --prove, else sonnet; ADR-013)
                     For openai: gpt-4o (default), gpt-4o-mini, o1, o3-mini, etc.
   OPENAI_API_KEY    Required when using openai provider
@@ -1396,6 +1397,51 @@ call_provider_prove() {
   esac
 }
 
+call_claude_decompose() {
+  local prompt="$1" workdir="$2" effort="$3"
+  local -a eff=()
+  local model="$UNSORRY_MODEL"
+  [ -n "$effort" ] && eff=(--effort "$effort")
+
+  if [ "$model" = fable ] && ! claude_model_available fable; then
+    log "fable model not available, falling back to opus"
+    model=opus
+  fi
+
+  ( cd "$workdir" \
+    && timeout "$UNSORRY_WALL" claude -p "$prompt" \
+         --model "$model" "${eff[@]}" --output-format text \
+         --allowedTools "Read,Bash(lake build *),Bash(lake env *)" )
+}
+
+call_codex_decompose() {
+  local prompt="$1" workdir="$2" effort="$3"
+  local -a args=(
+    exec
+    --cd "$workdir"
+    --sandbox read-only
+    --ephemeral
+    --ignore-user-config
+    --ignore-rules
+    -c 'approval_policy="never"'
+    -c 'shell_environment_policy.inherit="all"'
+    --color never
+  )
+  [ -n "$UNSORRY_MODEL" ] && args+=(--model "$UNSORRY_MODEL")
+  [ -n "$effort" ] && args+=(-c "model_reasoning_effort=\"$effort\"")
+  PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
+    timeout "$UNSORRY_WALL" codex "${args[@]}" - <<<"$prompt"
+}
+
+call_provider_decompose() {
+  local prompt="$1" workdir="$2" effort="$3"
+  case "$UNSORRY_PROVIDER" in
+    claude) call_claude_decompose "$prompt" "$workdir" "$effort" ;;
+    codex) call_codex_decompose "$prompt" "$workdir" "$effort" ;;
+    *) log "unsupported decomposition provider '$UNSORRY_PROVIDER'"; return 1 ;;
+  esac
+}
+
 # The provider receives a writable proof worktree, but the proof contract
 # permits exactly one changed path. Enforce that boundary after every model
 # call independently of provider-specific tool policy.
@@ -1671,13 +1717,13 @@ prove_local_goal() {
   return 1
 }
 
-# ADR-009 / SPEC-009-A: on prove-budget exhaustion, drive `claude` to split the
+# ADR-009 / SPEC-009-A: on prove-budget exhaustion, drive the proof provider to split the
 # parent into 2..MAX_DECOMP_SUBS sub-lemmas, requeue each as a fresh open prove
 # goal (src = the decomposition record, depth = parent+1), and park the parent
 # `blocked`. Soundness is untouched: the parent only ever closes through Gate A
 # using the subs; a non-composing split just wastes effort. Returns 0 only if a
 # valid decomposition was committed as a PR; 1 (caller falls back to demote) if
-# the depth cap is hit, claude produced nothing usable, the subs do not
+# the depth cap is hit, the provider produced nothing usable, the subs do not
 # type-check, or any guardrail (≤ cap, strictly-smaller) rejects the split.
 decompose_goal() {
   local goal="$1" depth maxdepth prwt branch stmt out i=0 d0 ddur probe_rc
@@ -1696,29 +1742,20 @@ decompose_goal() {
     log "warning: 'lake exe cache get' failed in the decompose worktree for $goal"
   fi
 
-  # Drive claude to propose sub-lemmas. Each `SUB:` line is a complete Lean
+  # Drive the provider to propose sub-lemmas. Each `SUB:` line is a complete Lean
   # theorem signature (no proof). Other lines are ignored. Decomposition only
   # fires after the prove ladder is exhausted, so it runs at the top rung
   # (ADR-015).
-  local eff_tok; eff_tok="$(effort_for_attempt top "$UNSORRY_EFFORT")"
-  local -a eff=()
-  local model="$UNSORRY_MODEL"
-  [ -n "$eff_tok" ] && eff=(--effort "$eff_tok")
-  
-  # If model is fable, check availability and fall back to opus if needed
-  if [ "$model" = "fable" ] && ! claude_model_available "fable"; then
-    log "fable model not available, falling back to opus"
-    model="opus"
-  fi
-  
-  d0="$(date +%s)"
-  out="$(cd "$prwt" && timeout "$UNSORRY_WALL" claude -p "$(cat "$DECOMPOSE_PROMPT_FILE")
+  local eff_tok prompt
+  eff_tok="$(provider_effort_for_attempt "$UNSORRY_PROVIDER" top "$UNSORRY_EFFORT")"
+  prompt="$(cat "$DECOMPOSE_PROMPT_FILE")
 
 PARENT THEOREM (the goal that resisted proof):
 $stmt
 
-Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` line." \
-    --model "$model" "${eff[@]}" --output-format text --allowedTools "Read,Bash(lake build *),Bash(lake env *)" 2>/dev/null)"
+Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` line."
+  d0="$(date +%s)"
+  out="$(call_provider_decompose "$prompt" "$prwt" "$eff_tok" 2>/dev/null)"
   ddur=$(( $(date +%s) - d0 ))
 
   # Materialise the proposed subs into the PR tree.
@@ -1758,13 +1795,13 @@ Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` 
     if [ "$ddur" -lt "$UNSORRY_FASTFAIL" ]; then
       probe_rc=0; cli_health_probe || probe_rc=$?
       if [ "$(classify_call_failure "$ddur" "$UNSORRY_FASTFAIL" "$probe_rc")" = infra ]; then
-        log "decompose($goal): claude call died in ${ddur}s and the health probe failed — infrastructure failure (ADR-016)"
+        log "decompose($goal): $UNSORRY_PROVIDER call died in ${ddur}s and the health probe failed — infrastructure failure (ADR-016)"
         git worktree remove --force "$prwt" >/dev/null 2>&1 || true
         git branch -q -D "$branch" >/dev/null 2>&1 || true
         return 2
       fi
     fi
-    log "decompose($goal): claude produced ${#sub_ids[@]} usable sub(s) (need ≥2) — falling back"
+    log "decompose($goal): $UNSORRY_PROVIDER produced ${#sub_ids[@]} usable sub(s) (need ≥2) — falling back"
     git worktree remove --force "$prwt" >/dev/null 2>&1 || true
     git branch -q -D "$branch" >/dev/null 2>&1 || true
     return 1
@@ -2445,6 +2482,17 @@ test_prove_candidate_filtering() {
     || { log "  E: expected 'gamma' (alpha blocked), got '$got'"; return 1; }
 }
 
+test_local_prove_auto_selection() {
+  local tree got
+  tree="$(mktemp -d "$SESSION_TMP/localpick.XXXXXX")" || return 1
+  mkdir -p "$tree/claims" "$tree/library/index" || return 1
+  make_prove_goal "$tree" gamma "theorem g (n : Nat) : n + 0 = n" || return 1
+  make_prove_goal "$tree" alpha "theorem a (n : Nat) : 0 + n = n" || return 1
+  got="$(select_local_prove_goal "$tree/goals" "$tree/library" "$tree/claims")"
+  [ "$got" = "alpha" ] \
+    || { log "  expected automatic local selection 'alpha', got '$got'"; return 1; }
+}
+
 test_already_proved_excluded() {
   local tree claims sha got
   tree="$(mktemp -d "$SESSION_TMP/proved.XXXXXX")" || return 1
@@ -2893,6 +2941,7 @@ run_self_tests() {
     test_lean_statement_helpers
     test_lean_sha_determinism
     test_prove_candidate_filtering
+    test_local_prove_auto_selection
     test_already_proved_excluded
     test_goal_proved_rewrite
     test_render_index_gateb
@@ -3007,6 +3056,16 @@ select_prove_candidates() {
   done < <(py_helper prove-candidates goals "$CLAIMS_WT/claims" library "$AGENT_ID" "")
 }
 
+# Local smoke has no claims or coordination. Reuse the production prove ranking
+# over local HEAD and take its highest-ranked open, unproved goal.
+select_local_prove_goal() {
+  local goals_dir="${1:-goals}"
+  local library_dir="${2:-library}"
+  local claims_dir="${3:-$SESSION_TMP/local-no-claims}"
+  py_helper prove-candidates \
+    "$goals_dir" "$claims_dir" "$library_dir" local-provider "" | sed -n '1p'
+}
+
 # ADR-009 unblock sweep: re-open any blocked parent whose decomposition's
 # sub-lemmas are now all proved, so an agent can claim the parent and prove its
 # own signature with the subs available as imports. A small gated PR per parent
@@ -3057,14 +3116,21 @@ main() {
       || die_config "--goal '$GOAL_FILTER' violates the Id grammar"
   fi
   case "$UNSORRY_PROVIDER" in
-    claude|codex|gemini) ;;
-    *) die_config "unsupported provider '$UNSORRY_PROVIDER' (expected claude, codex, or gemini)" ;;
+    claude|codex|gemini|openai) ;;
+    *) die_config "unsupported provider '$UNSORRY_PROVIDER' (expected claude, codex, gemini, or openai)" ;;
   esac
 
   require_cmd git timeout date
 
   if [ "$PROVE_LOCAL" -eq 1 ]; then
-    [ -n "$GOAL_FILTER" ] || die_config "--prove-local requires --goal <id>"
+    if [ -z "$GOAL_FILTER" ]; then
+      GOAL_FILTER="$(select_local_prove_goal)"
+      if [ -z "$GOAL_FILTER" ]; then
+        log "no open, unproved local proof goals"
+        exit 0
+      fi
+      log "auto-selected local goal $GOAL_FILTER"
+    fi
     git cat-file -e "HEAD:goals/$GOAL_FILTER.lean" 2>/dev/null \
       || die_config "goal statement goals/$GOAL_FILTER.lean does not exist at local HEAD"
     git cat-file -e "HEAD:goals/$GOAL_FILTER.aisp" 2>/dev/null \
@@ -3079,6 +3145,7 @@ main() {
       claude) require_cmd claude ;;
       codex) require_cmd codex ;;
       gemini) require_cmd gemini ;;
+      openai) [ -n "${OPENAI_API_KEY:-}" ] || die_config "OPENAI_API_KEY is required for --provider openai" ;;
     esac
     UNSORRY_MODEL="${UNSORRY_MODEL:-}"
     if [ "$UNSORRY_PROVIDER" = claude ] || [ "$UNSORRY_PROVIDER" = gemini ]; then
@@ -3109,23 +3176,30 @@ main() {
     exit $?
   fi
 
-  [ "$UNSORRY_PROVIDER" = claude ] \
-    || die_config "--provider $UNSORRY_PROVIDER is currently supported only with --prove-local"
+  if [ "$PROVE" -eq 0 ] && [ "$UNSORRY_PROVIDER" != claude ]; then
+    die_config "--provider $UNSORRY_PROVIDER is supported only with --prove or --prove-local"
+  fi
+  if [ "$UNSORRY_PROVIDER" = gemini ] || [ "$UNSORRY_PROVIDER" = openai ]; then
+    die_config "--provider $UNSORRY_PROVIDER is currently supported only with --prove-local"
+  fi
   require_unsorry_origin
   require_main_checkout
 
-  # ADR-013/ADR-015: model + effort resolved per mode (prove → fable + the
-  # high→xhigh→max attempt ladder, translate → sonnet/none), env-overridable
-  # (a set UNSORRY_EFFORT pins every attempt), --effort dropped fail-soft on
-  # older CLIs. Per-attempt args are computed by effort_for_attempt at the
-  # call sites.
+  # ADR-013/ADR-015: Claude keeps its mode-specific model/effort resolver.
+  # Codex uses its configured default model unless explicitly overridden and
+  # maps the prove ladder to medium→high→xhigh.
   local mode; [ "$PROVE" -eq 1 ] && mode=prove || mode=translate
-  local resolved
-  resolved="$(resolve_model_effort "$mode" "${UNSORRY_MODEL:-}" "${UNSORRY_EFFORT:-}" \
-    "$(claude --help 2>/dev/null || true)")"
-  UNSORRY_MODEL="${resolved% *}"
-  UNSORRY_EFFORT="${resolved#* }"
-  [ "$UNSORRY_EFFORT" = "-" ] && UNSORRY_EFFORT=""
+  if [ "$UNSORRY_PROVIDER" = codex ]; then
+    UNSORRY_MODEL="${UNSORRY_MODEL:-}"
+    UNSORRY_EFFORT="${UNSORRY_EFFORT:-ladder}"
+  else
+    local resolved
+    resolved="$(resolve_model_effort "$mode" "${UNSORRY_MODEL:-}" "${UNSORRY_EFFORT:-}" \
+      "$(claude --help 2>/dev/null || true)")"
+    UNSORRY_MODEL="${resolved% *}"
+    UNSORRY_EFFORT="${resolved#* }"
+    [ "$UNSORRY_EFFORT" = "-" ] && UNSORRY_EFFORT=""
+  fi
   UNSORRY_WALL="${UNSORRY_WALL:-1800}"
   [[ "$UNSORRY_WALL" =~ ^[0-9]+$ ]] \
     || die_config "UNSORRY_WALL '$UNSORRY_WALL' is not an integer"
@@ -3148,14 +3222,28 @@ main() {
 
   resolve_agent_id
   if [ "$DRY_RUN" -eq 0 ]; then
-    require_cmd claude gh
+    require_cmd gh
+    case "$UNSORRY_PROVIDER" in
+      claude) require_cmd claude ;;
+      codex)
+        PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.elan/bin:$PATH"
+        export PATH
+        require_cmd codex
+        ;;
+    esac
     gh auth status >/dev/null 2>&1 || die_config "gh is not authenticated"
     [ "$PROVE" -eq 1 ] && require_cmd lake  # prove verify builds locally
   fi
 
   local effort_disp="${UNSORRY_EFFORT:-default}"
-  [ "$UNSORRY_EFFORT" = ladder ] && effort_disp="ladder(high→xhigh→max)"
-  log "agent $AGENT_ID starting ($mode; model=$UNSORRY_MODEL effort=$effort_disp attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
+  if [ "$UNSORRY_EFFORT" = ladder ]; then
+    if [ "$UNSORRY_PROVIDER" = codex ]; then
+      effort_disp="ladder(medium→high→xhigh)"
+    else
+      effort_disp="ladder(high→xhigh→max)"
+    fi
+  fi
+  log "agent $AGENT_ID starting ($mode; provider=$UNSORRY_PROVIDER model=${UNSORRY_MODEL:-default} effort=$effort_disp attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
 
   declare -A HANDLED=()
   declare -A SWEPT=()
@@ -3217,7 +3305,7 @@ main() {
       if [ "$prc" -eq 2 ]; then
         # ADR-016: the CLI cannot run (quota, auth, network). Every further
         # cycle would fail identically and poison the queue — stop cleanly.
-        log "stopping: claude CLI unavailable — no queue penalties applied (ADR-016)"
+        log "stopping: $UNSORRY_PROVIDER CLI unavailable — no queue penalties applied (ADR-016)"
         exit 3
       fi
       [ "$prc" -ne 0 ] && cycle_failed=1

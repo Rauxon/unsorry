@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Coordinated Codex proving: `./swarm/agent.sh --prove --provider codex` now uses Codex for proof attempts and decomposition while retaining the existing shared claims, local Lean verification, PR, and auto-merge lifecycle. Fork-only contributors continue to use the no-remote `--prove-local` path.
+
+- Local provider smoke mode now auto-selects the highest-ranked open, unproved goal when `--goal` is omitted; an explicit goal remains available as an override.
+
 - Gemini provider implementation guide (`docs/gemini-provider.md`): repository-specific adapter steps, deny-by-default policy template, effort/model handling, health and failure classification, hermetic tests, local acceptance smoke, and production-enablement criteria. The guide explicitly avoids `--yolo` and keeps Gemini local-only until its policy and failure behavior are demonstrated.
 
 - Local proof-provider smoke mode: `./swarm/agent.sh --prove-local --goal <id> --provider claude|codex` runs proof generation and the full local kernel/audit verification from a preserved detached `HEAD` worktree without fetches, claims, pushes, PRs, GitHub calls, decomposition, affinity edits, or metrics. Codex uses non-interactive `codex exec` with a workspace sandbox and normalized Homebrew Node path; every provider call is followed by a git path guard that permits only the target Lean module. Local smoke defaults to one attempt and supports model/effort overrides.
