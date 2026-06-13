@@ -37,11 +37,17 @@ def _run(
     solver: str = "perttu",
     provider: str = "codex",
     model: str = "gpt-5.1-codex",
+    lessons: int | None = None,
+    lesson_sig: str | None = None,
 ) -> None:
     agent = "oma-2-c50d"
     path = root / "proof-runs"
     path.mkdir(parents=True, exist_ok=True)
     sha = "a" * 64 if outcome == "proved" else "∅"
+    metrics = f"attempts≜{attempts}; solve_s≜{solve_s}; ended≜2026-06-13T12:00:00Z"
+    if lessons is not None:
+        metrics += f"; lessons≜{lessons}"
+    lesson_block = "" if lesson_sig is None else f"⟦Δ:Lesson⟧{{sig≜{lesson_sig}}}\n"
     (path / f"{goal}.{agent}.{run_id}.aisp").write_text(
         f"𝔸5.1.run.{goal}.{agent}.{run_id}@2026-06-13\n"
         "γ≔unsorry.proof.run\n"
@@ -49,9 +55,9 @@ def _run(
         f"outcome≜{outcome}}}\n"
         f"⟦Π:Provenance⟧{{solver≜{solver}; provider≜{provider}; model≜{model}; "
         "effort≜xhigh}\n"
-        f"⟦Λ:Metrics⟧{{attempts≜{attempts}; solve_s≜{solve_s}; "
-        "ended≜2026-06-13T12:00:00Z}\n"
+        f"⟦Λ:Metrics⟧{{{metrics}}}\n"
         f"⟦Σ:Artifact⟧{{sha≜{sha}}}\n"
+        f"{lesson_block}"
         "⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩\n",
         encoding="utf-8",
     )
@@ -116,6 +122,27 @@ def test_base_stats_derive_failure_and_efficiency_metrics(tmp_path):
     assert "Failed attempts | 4" in out
     assert "[@perttu](https://github.com/perttu) | 1 | 2 | 50.0% | 4 | 4" in out
     assert "`codex / gpt-5.1-codex` | 1 | 2 | 50.0% | 4" in out
+
+
+def test_lesson_telemetry_is_ignored_by_leaderboard(tmp_path):
+    # ADR-024: the optional lessons count and ⟦Δ:Lesson⟧ sig are advisory; the
+    # leaderboard must derive identical statistics with or without them.
+    plain = tmp_path / "plain"
+    laden = tmp_path / "laden"
+    for root in (plain, laden):
+        _goal(root, "g", 4, "blocked")
+    _run(plain, "g", "20260613t120000000000z-11111111", "failed", attempts=3, solve_s=90)
+    _run(
+        laden,
+        "g",
+        "20260613t120000000000z-11111111",
+        "failed",
+        attempts=3,
+        solve_s=90,
+        lessons=2,
+        lesson_sig="unsolved goals ⊢ n + 0 = n",
+    )
+    assert base_stats(plain) == base_stats(laden)
 
 
 def test_check_and_write_modes_cover_markdown_and_json(tmp_path):

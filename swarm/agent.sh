@@ -380,11 +380,39 @@ def cmd_run_id(_args):
     print(f"{moment}-{secrets.token_hex(4)}")
 
 
+#: AISP block/field delimiters and the quote char that must never appear inside
+#: a lesson signature: they would break record parsing or inflate the GB009
+#: quoted-prose density (ADR-024).
+_LESSON_STRIP = str.maketrans({c: None for c in "{};≜⟦⟧⟨⟩\""})
+
+
+def _lesson_signature(raw: str) -> str:
+    """Distil raw verifier output into one bounded, AISP-legal line (ADR-024).
+
+    Whitespace (including newlines) collapses to single spaces and the AISP
+    delimiters plus the quote char are removed, so the signature lives unquoted
+    inside ⟦Δ:Lesson⟧ without breaking the record grammar or counting toward
+    quoted-prose density. Lean error content that is not a delimiter (⊢, →, =,
+    identifiers) is preserved. Truncated to config.LESSON_SIG_MAX."""
+    collapsed = re.sub(r"\s+", " ", raw.translate(_LESSON_STRIP)).strip()
+    return collapsed[: config.LESSON_SIG_MAX]
+
+
+def cmd_lesson_sig(args):
+    """lesson-sig <raw> — print the sanitised single-line lesson signature of
+    the raw verifier text in argv[0] (ADR-024). Passed as an argument because
+    the py_helper heredoc occupies stdin."""
+    print(_lesson_signature(args[0] if args else ""))
+
+
 def cmd_render_run(args):
     """render-run <run-id> <goal> <agent> <outcome> <solver> <provider>
-    <attempts> <solve-s> <sha-or-empty> [--model M --effort E] — print one
+    <attempts> <solve-s> <sha-or-empty>
+    [--model M --effort E --lesson RAW --lessons-used N] — print one
     append-only terminal proof-run fact. Difficulty and current goal state are
-    joined from goals/ by analytics instead of copied into every run."""
+    joined from goals/ by analytics instead of copied into every run. A
+    non-proved run may carry a bounded ⟦Δ:Lesson⟧ failure signature and a
+    lessons≜<n> count of prior lessons injected into it (ADR-024)."""
     run_id, goal, agent, outcome, solver, provider, attempts, solve_s, sha = args[:9]
     optional = {}
     rest = args[9:]
@@ -403,11 +431,15 @@ def cmd_render_run(args):
         if optional.get(key):
             provenance.append(f"{key}≜{optional[key]}")
     print(f"⟦Π:Provenance⟧{{{'; '.join(provenance)}}}")
-    print(
-        f"⟦Λ:Metrics⟧{{attempts≜{attempts}; solve_s≜{solve_s}; "
-        f"ended≜{format_utc_z(now)}}}"
-    )
+    metrics = [f"attempts≜{attempts}", f"solve_s≜{solve_s}", f"ended≜{format_utc_z(now)}"]
+    used = optional.get("lessons-used")
+    if used not in (None, ""):
+        metrics.append(f"lessons≜{used}")
+    print(f"⟦Λ:Metrics⟧{{{'; '.join(metrics)}}}")
     print(f"⟦Σ:Artifact⟧{{sha≜{sha or '∅'}}}")
+    sig = _lesson_signature(optional.get("lesson", ""))
+    if outcome != "proved" and sig:
+        print(f"⟦Δ:Lesson⟧{{sig≜{sig}}}")
     print("⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩")
 
 
@@ -556,6 +588,42 @@ def cmd_proved_deps(args):
         if lean.is_file():
             stmt = lean_statement(lean.read_text(encoding="utf-8"))
         print(f"Unsorry.{module}\t{name}\t{stmt}")
+
+
+def cmd_prove_lessons(args):
+    """prove-lessons <goal> <proof-runs-dir> [<cap>] — ADR-024 lesson reuse.
+    Print up to <cap> (default config.LESSON_PROMPT_CAP) prior failure
+    signatures for the goal, most recent first and de-duplicated, one per line.
+    Only failed and decomposed runs carrying a non-empty ⟦Δ:Lesson⟧ sig count;
+    proved runs never carry one. Advisory prompt context, never a trust input."""
+    goal = args[0]
+    runs_dir = Path(args[1])
+    cap = int(args[2]) if len(args) > 2 and args[2] else config.LESSON_PROMPT_CAP
+    if not runs_dir.is_dir():
+        return
+    entries = []
+    for path in sorted(runs_dir.glob(f"{goal}.*.aisp")):
+        record = parse_record(path.read_text(encoding="utf-8"))
+        if record.fields.get("goal") != goal:
+            continue
+        if record.fields.get("outcome") not in ("failed", "decomposed"):
+            continue
+        sig = record.fields.get("sig", "").strip()
+        if not sig:
+            continue
+        entries.append((record.fields.get("ended", ""), sig))
+    # ended is ISO-8601 UTC, so lexicographic desc == most-recent-first.
+    entries.sort(key=lambda e: e[0], reverse=True)
+    seen: set = set()
+    shown = 0
+    for _, sig in entries:
+        if sig in seen:
+            continue
+        seen.add(sig)
+        print(sig)
+        shown += 1
+        if shown >= cap:
+            break
 
 
 def cmd_unblockable(args):
@@ -715,6 +783,8 @@ COMMANDS = {
     "render-goal": cmd_render_goal,
     "render-decomp": cmd_render_decomp,
     "proved-deps": cmd_proved_deps,
+    "prove-lessons": cmd_prove_lessons,
+    "lesson-sig": cmd_lesson_sig,
     "unblockable": cmd_unblockable,
     "camel-name": cmd_camel_name,
     "lean-stmt": cmd_lean_stmt,
@@ -1262,6 +1332,12 @@ DECOMPOSE_PROMPT_FILE="swarm/prompts/decompose.md"
 # reverts to the Phase-1 demote-only failure path.
 PROVE_DECOMPOSE="${UNSORRY_DECOMPOSE:-1}"
 
+# ADR-024 cross-cycle lesson memory: surface prior failed/decomposed lesson
+# signatures into the prove prompt and record this run's own failure signature.
+# On by default; UNSORRY_LESSONS=0 makes a run byte-identical to pre-ADR-024
+# behaviour, so the feature can be A/B measured.
+UNSORRY_LESSONS="${UNSORRY_LESSONS:-1}"
+
 # ADR-013/ADR-015 model/effort policy. Proof-surface calls (prove, decompose)
 # default to the most capable model — success-per-attempt is the lever that
 # dominates time-to-proved on hard targets; the kernel and gates make model
@@ -1570,6 +1646,8 @@ run_proof() {
   PROOF_EFFORT_USED=""
   PROOF_ATTEMPTS_USED=""
   PROOF_SOLVE_SECONDS=""
+  PROOF_LAST_ERROR=""
+  PROOF_LESSONS_USED=""
   proof_started="$(date +%s)"
   name="$(py_helper lean-name "$prwt/goals/$goal.lean")" || return 1
   stmt="$(py_helper lean-stmt "$prwt/goals/$goal.lean")" || return 1
@@ -1598,6 +1676,25 @@ THIS repository's library. Import their modules and use them; do not re-prove
 them. The import-tightness rule explicitly allows these Unsorry.* imports:
 $(printf '%s\n' "$deps_lines" | awk -F'\t' '{printf "- import %s\n    %s\n", $1, ($3 != "" ? $3 : "theorem " $2)}')"
   fi
+  # ADR-024 lesson reuse: surface prior failed/decomposed attempt signatures for
+  # THIS goal (merged onto origin/main, so cross-cycle and cross-agent) and count
+  # them for the run record. Gated by UNSORRY_LESSONS so the off-state matches
+  # pre-ADR-024 behaviour exactly.
+  local lessons_prompt="" lessons_lines
+  if [ "$UNSORRY_LESSONS" = 1 ]; then
+    lessons_lines="$(py_helper prove-lessons "$goal" "$prwt/proof-runs" 2>/dev/null)" || lessons_lines=""
+    if [ -n "$lessons_lines" ]; then
+      PROOF_LESSONS_USED="$(printf '%s\n' "$lessons_lines" | grep -c .)"
+      lessons_prompt="
+
+PRIOR FAILED ATTEMPTS (ADR-024) — earlier proof attempts on THIS goal failed
+with the local-verifier signatures below. Do NOT repeat these dead ends; choose
+a materially different approach:
+$(printf '%s\n' "$lessons_lines" | awk 'NF{print "- " $0}')"
+    else
+      PROOF_LESSONS_USED=0
+    fi
+  fi
   local eff_tok t0 dur probe_rc
   for attempt in $(seq 1 "$UNSORRY_ATTEMPTS"); do  # ADR-015 ladder, default 3
     eff_tok="$(provider_effort_for_attempt "$UNSORRY_PROVIDER" "$attempt" "$UNSORRY_EFFORT")"
@@ -1609,7 +1706,7 @@ $stmt
 
 Target module file (relative to repo root): $target
 Lean module name (for the audit): Unsorry.$camel
-Theorem name to re-state and prove: $name$deps_prompt"
+Theorem name to re-state and prove: $name$deps_prompt$lessons_prompt"
     if [ -n "$err" ]; then
       prompt="$prompt
 
@@ -1660,6 +1757,9 @@ Fix the module so both pass. Write the corrected $target."
       && lake exe axiom_audit "Unsorry.$camel" ) 2>&1 | tail -n 40 )"
   done
   PROOF_SOLVE_SECONDS=$(( $(date +%s) - proof_started ))
+  # ADR-024: the final attempt's verifier output becomes this run's lesson,
+  # consumed by write_proof_run_record on the failed/decomposed outcome.
+  PROOF_LAST_ERROR="$err"
   return 1
 }
 
@@ -1699,6 +1799,13 @@ write_proof_run_record() {
   local -a optional=()
   [ -n "$PROOF_MODEL_USED" ] && optional+=(--model "$PROOF_MODEL_USED")
   [ -n "$PROOF_EFFORT_USED" ] && optional+=(--effort "$PROOF_EFFORT_USED")
+  # ADR-024: record how many prior lessons this run consumed (the measurement
+  # hook) and, on a non-proved outcome, its own failure signature. render-run
+  # sanitises the raw error and omits an empty signature.
+  [ -n "$PROOF_LESSONS_USED" ] && optional+=(--lessons-used "$PROOF_LESSONS_USED")
+  if [ "$outcome" != proved ] && [ -n "$PROOF_LAST_ERROR" ]; then
+    optional+=(--lesson "$PROOF_LAST_ERROR")
+  fi
   py_helper render-run "$run_id" "$goal" "$AGENT_ID" "$outcome" \
     "$SOLVER" "$UNSORRY_PROVIDER" "$PROOF_ATTEMPTS_USED" \
     "$PROOF_SOLVE_SECONDS" "$sha" "${optional[@]}" > "$prwt/$path"
@@ -2773,6 +2880,86 @@ test_proof_run_render() {
     <<<"$got" || { log "  rendered proof-run metrics are missing"; return 1; }
   grep -qF "⟦Σ:Artifact⟧{sha≜$sha}" \
     <<<"$got" || { log "  rendered proof-run artifact is missing"; return 1; }
+  # ADR-024: a proved run never carries a lesson sig, even if one is passed.
+  grep -qF '⟦Δ:Lesson⟧' <<<"$got" \
+    && { log "  proved run leaked a lesson block"; return 1; }
+  grep -qF 'lessons≜' <<<"$got" \
+    && { log "  proved run emitted a lessons count it was not given"; return 1; }
+  # ADR-024: a failed run carries the injected-lesson count and a bounded sig.
+  got="$(py_helper render-run "$run_id" proof-goal oma-2-c50d failed \
+    perttu codex 3 900 "" --lessons-used 2 --lesson 'unsolved goals ⊢ n + 0 = n')"
+  grep -qF '; lessons≜2}' <<<"$got" \
+    || { log "  failed-run lessons count missing from metrics"; return 1; }
+  grep -qF '⟦Δ:Lesson⟧{sig≜unsolved goals ⊢ n + 0 = n}' <<<"$got" \
+    || { log "  failed-run lesson signature block missing"; return 1; }
+  # A delimiter-laden raw error is sanitised to a clean single-line sig.
+  got="$(py_helper render-run "$run_id" proof-goal oma-2-c50d failed \
+    perttu codex 1 5 "" --lesson "$(printf 'type mismatch\n{a};b≜c "q"')")"
+  grep -qF '⟦Δ:Lesson⟧{sig≜type mismatch abc q}' <<<"$got" \
+    || { log "  lesson sig was not sanitised: $got"; return 1; }
+}
+
+test_lesson_signature() {
+  # ADR-024: raw verifier output collapses to one bounded AISP-legal line;
+  # delimiters are stripped while Lean error content is preserved.
+  local got long
+  got="$(py_helper lesson-sig "$(printf 'error: unsolved goals\n⊢ n * 0 = 0\n{x};y≜z "q"')")"
+  case "$got" in
+    *'{'*|*'}'*|*';'*|*'"'*|*'≜'*|*'⟦'*|*'⟧'*)
+      log "  delimiter leaked into signature: '$got'"; return 1 ;;
+  esac
+  [ "$(printf '%s' "$got" | wc -l | tr -d ' ')" = 0 ] \
+    || { log "  signature is multi-line: '$got'"; return 1; }
+  printf '%s' "$got" | grep -q '⊢ n \* 0 = 0' \
+    || { log "  Lean error content lost: '$got'"; return 1; }
+  # Bounded length (config.LESSON_SIG_MAX = 280).
+  long="$(py_helper lesson-sig "$(printf 'x%.0s' {1..600})")"
+  [ "${#long}" -le 280 ] || { log "  signature not truncated: ${#long}"; return 1; }
+}
+
+_emit_run_record() {
+  # <dir> <goal> <agent> <run> <outcome> <ended> <sig> — write a minimal proof-run
+  # record with a controlled ended timestamp (render-run stamps now(), so the
+  # reader's recency ordering needs hand-authored timestamps to be testable).
+  local dir="$1" goal="$2" agent="$3" run="$4" outcome="$5" ended="$6" sig="$7"
+  {
+    printf '𝔸5.1.run.%s.%s.%s@2026-06-13\n' "$goal" "$agent" "$run"
+    printf 'γ≔unsorry.proof.run\n'
+    printf '⟦Ω:Run⟧{id≜%s; goal≜%s; agent≜%s; outcome≜%s}\n' "$run" "$goal" "$agent" "$outcome"
+    printf '⟦Λ:Metrics⟧{attempts≜3; solve_s≜100; ended≜%s}\n' "$ended"
+    printf '⟦Δ:Lesson⟧{sig≜%s}\n' "$sig"
+    printf '⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩\n'
+  } > "$dir/$goal.$agent.$run.aisp"
+}
+
+test_prove_lessons_surfacing() {
+  # ADR-024: prior failed/decomposed lessons for a goal surface most-recent
+  # first, de-duplicated and capped; proved runs never contribute.
+  local tree got dir
+  tree="$(mktemp -d "$SESSION_TMP/lessons.XXXXXX")" || return 1
+  dir="$tree/proof-runs"
+  mkdir -p "$dir" || return 1
+  _emit_run_record "$dir" g ag1 run-a failed     2026-06-13T12:00:00Z 'OLD unsolved goals A'
+  _emit_run_record "$dir" g ag2 run-b failed     2026-06-13T13:00:00Z 'NEW type mismatch B'
+  # Same sig as ag2 but more recent and decomposed — proves dedup + recency.
+  _emit_run_record "$dir" g ag3 run-c decomposed 2026-06-13T14:00:00Z 'NEW type mismatch B'
+  # A proved run must not contribute even when it carries a lesson block.
+  _emit_run_record "$dir" g ag4 run-d proved     2026-06-13T15:00:00Z 'should not appear'
+  # A different goal must not bleed in.
+  _emit_run_record "$dir" other ag5 run-e failed 2026-06-13T16:00:00Z 'OTHER goal sig'
+  got="$(py_helper prove-lessons g "$dir")"
+  [ "$got" = "$(printf 'NEW type mismatch B\nOLD unsolved goals A')" ] \
+    || { log "  prove-lessons wrong order/dedup: '$got'"; return 1; }
+  printf '%s' "$got" | grep -q 'should not appear' \
+    && { log "  proved-run lesson leaked"; return 1; }
+  printf '%s' "$got" | grep -q 'OTHER goal sig' \
+    && { log "  other goal's lesson leaked"; return 1; }
+  # Cap is honoured.
+  got="$(py_helper prove-lessons g "$dir" 1)"
+  [ "$got" = "NEW type mismatch B" ] || { log "  cap not honoured: '$got'"; return 1; }
+  # Missing dir is silent, not an error.
+  got="$(py_helper prove-lessons g "$tree/absent")" || { log "  missing dir errored"; return 1; }
+  [ -z "$got" ] || { log "  missing dir produced output: '$got'"; return 1; }
 }
 
 # Set a prove goal's deps≜⟨⟩ to ⟨<csv>⟩ (test helper for gap ranking).
@@ -3162,6 +3349,8 @@ run_self_tests() {
     test_decomp_caps_and_depth
     test_unblockable_detection
     test_proved_deps_surfacing
+    test_lesson_signature
+    test_prove_lessons_surfacing
     test_model_effort_policy
     test_effort_ladder
     test_infra_failure_classifier

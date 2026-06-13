@@ -530,6 +530,22 @@ def _validate_proof_run(
     elif sha not in (None, EMPTY):
         report.add("GB020", path, f"outcome≡{outcome} requires sha≜∅")
 
+    # ADR-024 optional lesson telemetry: a non-negative injected-lesson count and
+    # a bounded, non-empty failure signature. Advisory only — never a trust input.
+    lessons = fields.get("lessons")
+    if lessons is not None and not lessons.isdigit():
+        report.add("GB020", path, f"lessons '{lessons}' is not a non-negative integer")
+    if record.block("Δ") is not None:
+        sig = fields.get("sig", "")
+        if not sig:
+            report.add("GB020", path, "⟦Δ:Lesson⟧ requires a non-empty sig")
+        elif len(sig) > config.LESSON_SIG_MAX:
+            report.add(
+                "GB020",
+                path,
+                f"lesson sig length {len(sig)} exceeds {config.LESSON_SIG_MAX}",
+            )
+
 
 # -------------------------------------------------------------- claim records
 
