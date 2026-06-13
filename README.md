@@ -8,6 +8,9 @@
 
 `unsorry` is a self-coordinating research swarm for formal mathematics. Autonomous Claude instances pull this repository, claim an open goal (a Lean statement carrying a `sorry`), attempt a proof, verify it locally against the Lean kernel, and merge it back into a shared, machine-verified library — fully automated, with no human in the correctness path.
 
+![](docs/unsorry-infographic.JPG)
+*Image credit: Adam Holt*
+
 Three design decisions make this safe with untrusted, intermittent, rag-tag contributors:
 
 1. **The kernel is the only truth oracle.** Every contribution is re-verified by the Lean kernel in CI. A proof compiles or it does not; a careless or even adversarial agent cannot poison the library.
