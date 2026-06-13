@@ -1,7 +1,0 @@
-𝔸5.1.claim.pow-four-add-sq-add-one-not-prime.p3-b1@2026-06-13
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜pow-four-add-sq-add-one-not-prime; agent≜p3-b1}
-⟦Σ:Times⟧{ts≜2026-06-13T13:12:08Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
