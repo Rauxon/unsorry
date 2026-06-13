@@ -46,8 +46,8 @@ usage() {
   cat <<'EOF'
 Usage:
   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
-  ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex|gemini|openai] [-pi] [--dry-run]
-  ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai] [-pi]
+  ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex|gemini|openai] [-pi [<model>]] [--dry-run]
+  ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai] [-pi [<model>]]
   ./swarm/agent.sh --self-test
 
 Flags:
@@ -59,9 +59,10 @@ Flags:
   --once            Run exactly one cycle then exit
   --goal <id>       Restrict or override automatic selection to one goal
   --dry-run         Stop after selection: print the would-be claim, claim nothing
-  -pi               Use pi-coder's ~/.pi/agent/models.json: resolve UNSORRY_MODEL
-                    (a model name/id there) to its OpenAI-compatible endpoint+key
-                    and prove with it. Forces --provider openai (ADR-025)
+  -pi [<model>]     Use pi-coder's ~/.pi/agent/models.json: resolve the model
+                    name/id (the optional <model> arg, else UNSORRY_MODEL) to its
+                    OpenAI-compatible endpoint+key and prove with it. Forces
+                    --provider openai (ADR-025)
   --self-test       Run the built-in hermetic tests and exit (0 green / 1 red)
 
 Requirement:
@@ -3410,7 +3411,7 @@ PROOF_SOLVE_SECONDS=""
 # and the rest of the run is provider-openai with a custom base_url.
 resolve_pi_config() {
   [ -n "${UNSORRY_MODEL:-}" ] \
-    || die_config "-pi requires a model name via UNSORRY_MODEL (the name/id in ~/.pi/agent/models.json)"
+    || die_config "-pi requires a model name (as '-pi <model>' or UNSORRY_MODEL — the name/id in ~/.pi/agent/models.json)"
   local out
   out="$(python3 "$(dirname "$0")/../tools/llm_providers/pi_config.py" \
            resolve --model "$UNSORRY_MODEL" 2>&1)" \
@@ -3442,7 +3443,16 @@ parse_args() {
         shift
         ;;
       --dry-run) DRY_RUN=1 ;;
-      -pi) PI_MODE=1 ;;
+      -pi)
+        PI_MODE=1
+        # Optional model argument: `-pi <model>` sets the model to resolve from
+        # ~/.pi/agent/models.json (else falls back to UNSORRY_MODEL). The next
+        # token is taken only when it is not another flag.
+        if [ $# -ge 2 ] && [ "${2#-}" = "$2" ]; then
+          UNSORRY_MODEL="$2"
+          shift
+        fi
+        ;;
       --self-test) SELF_TEST=1 ;;
       -h|--help)
         usage

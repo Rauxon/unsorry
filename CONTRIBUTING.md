@@ -50,9 +50,10 @@ Other flags:
   generation and full local verification in a preserved worktree without
   fetching, claiming, pushing, or opening a PR. Without `--goal`, the script
   automatically selects the highest-ranked open local target.
-- `-pi` — use pi-coder's `~/.pi/agent/models.json`: resolve `UNSORRY_MODEL` (a model
-  name/id there) to its OpenAI-compatible endpoint, key, and id, and prove with it
-  (forces `--provider openai`; ADR-025). Works with `--prove-local` and `--prove`.
+- `-pi [<model>]` — use pi-coder's `~/.pi/agent/models.json`: resolve the model name/id
+  (the optional `<model>` arg, else `UNSORRY_MODEL`) to its OpenAI-compatible endpoint,
+  key, and id, and prove with it (forces `--provider openai`; ADR-025). Works with
+  `--prove-local` and `--prove` — e.g. `./swarm/agent.sh --prove --once -pi leanstral-2603`.
 - `--self-test` — check your setup (hermetic; no network, no `claude`).
 
 Coordinated `--prove` supports `--provider openai` (and `codex`); Gemini remains

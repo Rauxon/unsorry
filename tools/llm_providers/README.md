@@ -62,10 +62,12 @@ local model (e.g. Llama-3.1-Instruct, a Qwen-coder). Translation works on any mo
 ### `-pi` — reuse pi-coder's models.json
 
 If you already configure models in pi-coder's `~/.pi/agent/models.json`, the `-pi`
-toggle sources the endpoint, key, and model from it by the `UNSORRY_MODEL` name:
+flag sources the endpoint, key, and model from it by the model name/id — given as the
+optional `-pi <model>` argument, or via `UNSORRY_MODEL`:
 
 ```bash
-UNSORRY_MODEL="Llama 3.1 8B (Local)" ./swarm/agent.sh --prove-local -pi --goal <goal-id>
+./swarm/agent.sh --prove-local -pi "Llama 3.1 8B (Local)" --goal <goal-id>
+# or:  UNSORRY_MODEL="Llama 3.1 8B (Local)" ./swarm/agent.sh --prove-local -pi --goal <goal-id>
 ```
 
 `-pi` looks up `UNSORRY_MODEL` among every provider's `models[]` (by `name`, then `id`),
