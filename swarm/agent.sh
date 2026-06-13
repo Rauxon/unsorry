@@ -2527,6 +2527,46 @@ test_proof_attempt_cleanup() {
     || { log "  prior binding helper survived attempt cleanup"; return 1; }
 }
 
+test_run_proof_mock_provider_smoke() {
+  # End-to-end smoke of run_proof with a MOCK provider, no Lean toolchain: drives
+  # the real orchestration (prompt build, the provider call, the path guard, the
+  # statement-binding emit) while stubbing only the two seams that need Lean — the
+  # provider itself and the local kernel verify. The mock reproduces the #292
+  # shape (target + a stray root file + the harness attempt log) and the smoke
+  # must still succeed: target in place, stray cleaned, attempt log ignored.
+  local tree camel="GoalSmoke" rc=0
+  # Function-local (dynamic scope reaches run_proof) so the subshell holds only
+  # the function overrides — no subshell variable-modification noise.
+  local UNSORRY_ATTEMPTS=1 UNSORRY_PROVIDER=mock UNSORRY_EFFORT="" \
+    UNSORRY_LESSONS=0 UNSORRY_FASTFAIL=1 UNSORRY_WALL=5
+  tree="$(mktemp -d "$SESSION_TMP/run-proof-smoke.XXXXXX")" || return 1
+  git init -q -b main "$tree" || return 1
+  fixture_git_id "$tree" || return 1
+  printf 'prove-attempt-*.log\n' > "$tree/.gitignore"
+  mkdir -p "$tree/library/Unsorry" || return 1
+  make_prove_goal "$tree" goal-smoke "theorem goal_smoke (n : Nat) : n + 0 = n" || return 1
+  git -C "$tree" add -A || return 1
+  git -C "$tree" commit -q -m seed || return 1
+  (
+    # Mock provider: write the target proof, plus a stray root file. run_proof's
+    # own redirect writes prove-attempt-1.log into the worktree (the #292 shape).
+    call_provider_prove() {
+      printf 'theorem goal_smoke (n : Nat) : n + 0 = n := rfl\n' \
+        > "$2/library/Unsorry/GoalSmoke.lean"
+      printf 'scratch\n' > "$2/test.lean"
+      return 0
+    }
+    # Kernel verify needs Lean; stub it green so we exercise orchestration only.
+    prove_local_verify() { return 0; }
+    run_proof goal-smoke "$tree" "$camel"
+  ) || rc=$?
+  [ "$rc" -eq 0 ] || { log "  run_proof mock smoke returned $rc"; return 1; }
+  [ -f "$tree/library/Unsorry/GoalSmoke.lean" ] \
+    || { log "  target module missing after smoke"; return 1; }
+  [ -e "$tree/test.lean" ] && { log "  stray root file survived run_proof"; return 1; }
+  return 0
+}
+
 # Local bare-origin fixture for the push re-entrancy tests: $1/origin.git is
 # a bare remote whose default branch is claims, $1/seed is a second writer
 # used to move the remote tip, $1/clone is the agent's claims-worktree
@@ -3406,6 +3446,7 @@ run_self_tests() {
     test_provider_effort_ladder
     test_prove_target_path_guard
     test_prove_attempt_log_does_not_trip_guard
+    test_run_proof_mock_provider_smoke
     test_proof_attempt_cleanup
     test_feature_branch_names
     test_claim_push_reentrancy
