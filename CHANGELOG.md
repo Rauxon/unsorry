@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Gate A kernel replay (`leanchecker`) OOM-killed the runner again (exit 143, ~4 min in) once the library grew by the `euclid-perfect-numbers` recompose modules (#370): leanchecker holds ~all of mathlib resident, and that peak RSS crept past the 7 GB standard-runner limit. Chunk size does not move the ceiling (the cost is the mathlib image, not the few library oleans per chunk), so the gate-a job now allocates **12 GB of swap** before the replay step, letting leanchecker page cold olean regions rather than OOM. The job uses ~10 of its 60-min budget, so the extra paging is comfortably absorbed. The recompose proof itself was sound (build `--wfail` + axiom audit + ADR-011 binding all passed); only the kernel-replay step was resource-starved.
+
 ## [1.9.0] - 2026-06-13
 
 Headline: **trunk-discipline CI gates** — three new required checks make every PR's kind and scope unambiguous: PR-title conventions (ADR-026), proof/harness scope separation (ADR-027), and the spec-per-ADR protocol-compliance gate (ADR-028); plus a proposed domain-agnostic distributed-workload engine (ADR-030). On the reliability side: the Gate A leanchecker OOM is fixed by chunked-serial replay, decompose is now idempotent (no more re-decomposing a proved tree — the #364 euclid regression), CHANGELOG conflicts are gone via a `merge=union` driver, and the advisory aisp check no longer reddens every PR.
