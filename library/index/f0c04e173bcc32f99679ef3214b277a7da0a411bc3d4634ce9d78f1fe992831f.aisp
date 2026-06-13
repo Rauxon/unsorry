@@ -1,0 +1,8 @@
+𝔸5.1.lemma.f0c04e173bcc@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜f0c04e173bcc32f99679ef3214b277a7da0a411bc3d4634ce9d78f1fe992831f; goal≜odd-fourth-power-mod-sixteen; name≜odd_fourth_power_mod_sixteen}
+⟦Σ:Source⟧{src≜goals/odd-fourth-power-mod-sixteen.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-a1; provider≜claude; model≜opus; effort≜xhigh; attempts≜2; solve_s≜344}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
