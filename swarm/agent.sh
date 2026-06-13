@@ -644,6 +644,22 @@ def cmd_prove_lessons(args):
             break
 
 
+def cmd_has_decomposition(args):
+    """has-decomposition <goal> <decompositions-dir> — exit 0 if a decomposition
+    record already names <goal> as its parent, else 1. ADR-009 idempotency: a goal
+    is decomposed at most once. Re-decomposing a goal whose sub-lemmas are already
+    proved overwrites their goal records back to open/sha\u2254\u2205 (the #364 euclid
+    regression), so decompose_goal refuses when this returns 0."""
+    goal, decomp_dir = args[0], args[1]
+    ddir = Path(decomp_dir)
+    if ddir.is_dir():
+        for path in ddir.glob("*.aisp"):
+            record = parse_record(path.read_text(encoding="utf-8"))
+            if record.fields.get("parent") == goal:
+                sys.exit(0)
+    sys.exit(1)
+
+
 def cmd_unblockable(args):
     """unblockable <goals-dir> <decompositions-dir> <library-dir> — list blocked
     parent goals whose decomposition's sub-lemmas are ALL proved, so the parent
@@ -803,6 +819,7 @@ COMMANDS = {
     "proved-deps": cmd_proved_deps,
     "prove-lessons": cmd_prove_lessons,
     "lesson-sig": cmd_lesson_sig,
+    "has-decomposition": cmd_has_decomposition,
     "unblockable": cmd_unblockable,
     "camel-name": cmd_camel_name,
     "lean-stmt": cmd_lean_stmt,
@@ -2052,6 +2069,15 @@ decompose_goal() {
   maxdepth="$(py_helper max-decomp depth)" || return 1
   if [ "$depth" -ge "$maxdepth" ]; then
     log "decompose($goal): at depth $depth (cap $maxdepth) — not decomposing"
+    return 1
+  fi
+  # ADR-009 idempotency: never re-decompose a goal that already has a
+  # decomposition. When an unblock re-opens a parent whose sub-lemmas are proved
+  # and the recompose (prove) then fails, the fallback must NOT re-decompose \u2014
+  # that overwrites the proved sub-lemma goal records back to open (the #364
+  # euclid regression). Refuse; the caller demotes/releases instead.
+  if py_helper has-decomposition "$goal" decompositions; then
+    log "decompose($goal): already has a decomposition \u2014 refusing to re-decompose (ADR-009 idempotency)"
     return 1
   fi
   stmt="$(py_helper lean-stmt "goals/$goal.lean")" || return 1
@@ -3305,6 +3331,27 @@ test_decomp_caps_and_depth() {
     || { log "  render-goal depth not read back as 2"; return 1; }
 }
 
+test_has_decomposition() {
+  # ADR-009 idempotency: a goal with an existing decomposition record must be
+  # detected, so decompose_goal refuses to re-decompose it (the #364 regression).
+  local tree
+  tree="$(mktemp -d "$SESSION_TMP/hasdecomp.XXXXXX")" || return 1
+  mkdir -p "$tree/goals" "$tree/decompositions" || return 1
+  make_prove_goal "$tree" parent "theorem p (a b : Nat) : a + b = b + a" || return 1
+  make_prove_goal "$tree" parent-s1 "theorem s1 (n : Nat) : n + 0 = n" || return 1
+  if py_helper has-decomposition parent "$tree/decompositions"; then
+    log "  no decomposition record yet, but helper reported one"; return 1
+  fi
+  py_helper render-decomp parent agent-x \
+    parent-s1 "$(py_helper lean-stmt "$tree/goals/parent-s1.lean")" \
+    > "$tree/decompositions/parent.agent-x.aisp" || return 1
+  py_helper has-decomposition parent "$tree/decompositions" \
+    || { log "  parent IS decomposed, but helper reported none"; return 1; }
+  if py_helper has-decomposition other "$tree/decompositions"; then
+    log "  'other' has no decomposition, but helper reported one"; return 1
+  fi
+}
+
 test_unblockable_detection() {
   # A blocked parent whose decomposition subs are all proved is unblockable;
   # if any sub is unproved, it is not (ADR-009).
@@ -3545,6 +3592,7 @@ run_self_tests() {
     test_affinity_bump_math
     test_affinity_degrades_on_garbage
     test_decomp_caps_and_depth
+    test_has_decomposition
     test_unblockable_detection
     test_proved_deps_surfacing
     test_lesson_signature
