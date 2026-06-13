@@ -1,0 +1,13 @@
+𝔸5.1.decomp.euclid-perfect-numbers-s3.oma-2-c50d@2026-06-13
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜euclid-perfect-numbers-s3; agent≜oma-2-c50d}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜euclid-perfect-numbers-s3-s1,sha≜89ccc0eeebedcb6b3bf4ccdf4112b7ce33ccd92bd34243aec4fc9cce4265bbde⟩
+  sub₂≜⟨id≜euclid-perfect-numbers-s3-s2,sha≜543d6424481a1bc9b2341f9c3eb24d242702d9a1e8120fc907c5136454e0fe43⟩
+  sub₃≜⟨id≜euclid-perfect-numbers-s3-s3,sha≜cdd4936342e085492cf2df681ca8d90435ae79963fa98a1e175937e8e333122e⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
