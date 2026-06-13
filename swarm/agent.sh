@@ -1442,6 +1442,15 @@ call_provider_decompose() {
   esac
 }
 
+# Every proof attempt starts from provider-owned output only. Verification
+# creates the binding helper after the provider returns; remove residue from a
+# failed verification before the next provider call so the strict path guard
+# does not misattribute that agent-generated file to the provider.
+prepare_proof_attempt() {
+  local root="$1" target="$2" binding="$3"
+  rm -f "$root/$target" "$root/$binding"
+}
+
 # The provider receives a writable proof worktree, but the proof contract
 # permits exactly one changed path. Enforce that boundary after every model
 # call independently of provider-specific tool policy.
@@ -1483,10 +1492,11 @@ prove_local_verify() {
 # Prints nothing; returns 0 with the verified module in place, 1 on failure.
 run_proof() {
   local goal="$1" prwt="$2" camel="$3"
-  local stmt name target prompt attempt err=""
+  local stmt name target binding prompt attempt err=""
   name="$(py_helper lean-name "$prwt/goals/$goal.lean")" || return 1
   stmt="$(py_helper lean-stmt "$prwt/goals/$goal.lean")" || return 1
   target="library/Unsorry/$camel.lean"
+  binding="library/Unsorry/${camel}Binding.lean"
   # The PR worktree is a fresh checkout with no .lake (it is gitignored), so
   # the mathlib oleans are absent and `lake build UnsorryLibrary --wfail` would
   # otherwise recompile all of mathlib from source and blow the attempt budget
@@ -1529,7 +1539,7 @@ output was:
 $err
 Fix the module so both pass. Write the corrected $target."
     fi
-    rm -f "$prwt/$target"
+    prepare_proof_attempt "$prwt" "$target" "$binding"
     t0="$(date +%s)"
     if ! call_provider_prove "$prompt" "$prwt" "$eff_tok" >/dev/null; then
       dur=$(( $(date +%s) - t0 ))
@@ -2168,6 +2178,21 @@ test_prove_target_path_guard() {
     log "  extra provider edit was accepted"
     return 1
   fi
+}
+
+test_proof_attempt_cleanup() {
+  local tmp target="library/Unsorry/Goal.lean"
+  local binding="library/Unsorry/GoalBinding.lean"
+  tmp="$(mktemp -d "$SESSION_TMP/attempt-cleanup.XXXXXX")" || return 1
+  mkdir -p "$tmp/library/Unsorry" || return 1
+  printf 'failed proof\n' > "$tmp/$target"
+  printf 'generated binding\n' > "$tmp/$binding"
+
+  prepare_proof_attempt "$tmp" "$target" "$binding" || return 1
+  [ ! -e "$tmp/$target" ] \
+    || { log "  prior proof target survived attempt cleanup"; return 1; }
+  [ ! -e "$tmp/$binding" ] \
+    || { log "  prior binding helper survived attempt cleanup"; return 1; }
 }
 
 # Local bare-origin fixture for the push re-entrancy tests: $1/origin.git is
@@ -2933,6 +2958,7 @@ run_self_tests() {
     test_require_main_matches_origin
     test_provider_effort_ladder
     test_prove_target_path_guard
+    test_proof_attempt_cleanup
     test_feature_branch_names
     test_claim_push_reentrancy
     test_release_push_reentrancy
@@ -3179,17 +3205,14 @@ main() {
   if [ "$PROVE" -eq 0 ] && [ "$UNSORRY_PROVIDER" != claude ]; then
     die_config "--provider $UNSORRY_PROVIDER is supported only with --prove or --prove-local"
   fi
-  if [ "$UNSORRY_PROVIDER" = gemini ] || [ "$UNSORRY_PROVIDER" = openai ]; then
-    die_config "--provider $UNSORRY_PROVIDER is currently supported only with --prove-local"
-  fi
   require_unsorry_origin
   require_main_checkout
 
   # ADR-013/ADR-015: Claude keeps its mode-specific model/effort resolver.
-  # Codex uses its configured default model unless explicitly overridden and
-  # maps the prove ladder to medium→high→xhigh.
+  # Codex, Gemini, and OpenAI use their default models unless overridden and
+  # map the prove ladder.
   local mode; [ "$PROVE" -eq 1 ] && mode=prove || mode=translate
-  if [ "$UNSORRY_PROVIDER" = codex ]; then
+  if [ "$UNSORRY_PROVIDER" = codex ] || [ "$UNSORRY_PROVIDER" = gemini ] || [ "$UNSORRY_PROVIDER" = openai ]; then
     UNSORRY_MODEL="${UNSORRY_MODEL:-}"
     UNSORRY_EFFORT="${UNSORRY_EFFORT:-ladder}"
   else
@@ -3229,6 +3252,11 @@ main() {
         PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.elan/bin:$PATH"
         export PATH
         require_cmd codex
+        ;;
+      gemini)
+        PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.elan/bin:$PATH"
+        export PATH
+        require_cmd gemini
         ;;
     esac
     gh auth status >/dev/null 2>&1 || die_config "gh is not authenticated"
