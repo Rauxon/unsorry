@@ -61,6 +61,13 @@ so it requires write access to the shared repository. From a fork without that
 access, use `--prove-local`; it works from committed local `HEAD` and performs
 no remote operations.
 
+New verified proofs record optional leaderboard provenance in their
+content-addressed library index entry: the authenticated GitHub solver, swarm
+agent, provider, effective model when known, final effort, attempts, and local
+proof/verification time. Override the credited GitHub handle with
+`UNSORRY_SOLVER`; historical proofs remain unattributed. See the generated
+**[proof leaderboard](docs/leaderboard.md)**.
+
 For unattended runs, **[`./swarm/supervise.sh --prove --goal <id>`](swarm/supervise.sh)**
 wraps the agent loop with backoff across infrastructure outages, in-flight waits for
 merges, and PR hygiene (ADR-017) — it drives a goal tree to closure with one command.

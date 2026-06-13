@@ -408,3 +408,27 @@ def test_index_without_goal_file_is_grandfathered(tmp_path):
         if "library/index" in str(v.path) and v.code == "GB006"
     ]
     assert idx_sha == [], [str(v) for v in idx_sha]
+
+
+def test_index_optional_provenance_is_backward_compatible_and_validated(tmp_path):
+    tree = tmp_path / "t"
+    _write_goal(tree, "g1")
+    sha = _sub_sha(tree, "g1")
+    _write_index(tree, "g1", sha, name="g1")
+    path = tree / "library" / "index" / f"{sha}.aisp"
+
+    # Historical entry without provenance remains valid.
+    assert not [v for v in run_validate(tree) if v.code == "GB019"]
+
+    text = path.read_text(encoding="utf-8").replace(
+        "⟦Ε⟧",
+        "⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; "
+        "provider≜codex; model≜gpt-5.1-codex; effort≜xhigh; "
+        "attempts≜2; solve_s≜842}\n⟦Ε⟧",
+    )
+    path.write_text(text, encoding="utf-8")
+    assert not [v for v in run_validate(tree) if v.code == "GB019"]
+
+    path.write_text(text.replace("attempts≜2", "attempts≜zero"), encoding="utf-8")
+    assert any(v.code == "GB019" and "attempts" in v.message
+               for v in run_validate(tree))

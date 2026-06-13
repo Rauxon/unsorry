@@ -68,6 +68,7 @@ Requirement:
 
 Environment:
   UNSORRY_AGENT_ID  Swarm identity (default: ~/.unsorry/agent-id, created on first run)
+  UNSORRY_SOLVER    GitHub handle credited for verified proofs (default: gh api user)
   UNSORRY_PROVIDER  Provider for --prove or --prove-local (default: claude)
   UNSORRY_MODEL     Model for claude calls (default: fable in --prove, else sonnet; ADR-013)
                     For openai: gpt-4o (default), gpt-4o-mini, o1, o3-mini, etc.
@@ -337,14 +338,21 @@ def cmd_prove_claimable(args):
 
 
 def cmd_render_index(args):
-    """render-index <sha> <goal> <name> — print a library/index entry
+    """render-index <sha> <goal> <name> [--solver S --agent A --provider P
+    --model M --effort E --attempts N --solve-s N] — print an index entry
     (SPEC-007-A prove step on success). The statement is NOT embedded: it
     lives only in goals/<goal>.lean (the record grammar reserves {} for block
     delimiters and Lean statements contain braces); the sha is its content
     address and Gate B recomputes it from the goal file. Tags and metrics
     start empty (the affinity machine fills `use`/`aff` later; tags are
-    curated by humans)."""
+    curated by humans). Optional proof provenance is additive so historical
+    index entries remain valid."""
     sha, goal, name = args[:3]
+    provenance = {}
+    rest = args[3:]
+    for i, token in enumerate(rest):
+        if token.startswith("--") and i + 1 < len(rest):
+            provenance[token[2:]] = rest[i + 1]
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     print(f"𝔸5.1.lemma.{sha[:12]}@{today}")
     print("γ≔unsorry.lemma.index")
@@ -352,6 +360,17 @@ def cmd_render_index(args):
     print(f"⟦Σ:Source⟧{{src≜goals/{goal}.lean}}")
     print("⟦Γ:Tags⟧{tags≜⟨⟩}")
     print("⟦Λ:Meta⟧{use≜0; aff≜0}")
+    if all(provenance.get(key) for key in ("solver", "agent", "provider")):
+        fields = [
+            f"solver≜{provenance['solver']}",
+            f"agent≜{provenance['agent']}",
+            f"provider≜{provenance['provider']}",
+        ]
+        for key in ("model", "effort", "attempts", "solve-s"):
+            if provenance.get(key):
+                field = "solve_s" if key == "solve-s" else key
+                fields.append(f"{field}≜{provenance[key]}")
+        print(f"⟦Π:Provenance⟧{{{'; '.join(fields)}}}")
     print("⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩")
 
 
@@ -810,6 +829,17 @@ resolve_agent_id() {
   fi
   py_helper is-id "$id" || die_config "agent id '$id' violates the Id grammar"
   AGENT_ID="$id"
+}
+
+resolve_solver() {
+  local solver="${UNSORRY_SOLVER:-}"
+  if [ -z "$solver" ]; then
+    solver="$(gh api user --jq .login 2>/dev/null)" \
+      || die_config "cannot resolve GitHub solver handle; set UNSORRY_SOLVER"
+  fi
+  [[ "$solver" =~ ^[A-Za-z0-9]([A-Za-z0-9-]{0,37}[A-Za-z0-9])?$ ]] \
+    || die_config "UNSORRY_SOLVER '$solver' is not a valid GitHub handle"
+  SOLVER="$solver"
 }
 
 require_cmd() {
@@ -1331,6 +1361,7 @@ call_claude_prove() {
     log "fable model not available, falling back to opus"
     model="opus"
   fi
+  PROOF_MODEL_USED="$model"
   
   ( cd "$workdir" \
     && timeout "$UNSORRY_WALL" claude -p "$prompt" \
@@ -1354,6 +1385,7 @@ call_codex_prove() {
   )
   [ -n "$UNSORRY_MODEL" ] && args+=(--model "$UNSORRY_MODEL")
   [ -n "$effort" ] && args+=(-c "model_reasoning_effort=\"$effort\"")
+  PROOF_MODEL_USED="${UNSORRY_MODEL:-}"
   PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
     timeout "$UNSORRY_WALL" codex "${args[@]}" - <<<"$prompt"
 }
@@ -1363,6 +1395,7 @@ call_gemini_prove() {
   local -a eff=()
   [ -n "$effort" ] && eff=(--effort "$effort")
   local model="${UNSORRY_MODEL:-gemini-2.5-pro}"
+  PROOF_MODEL_USED="$model"
   ( cd "$workdir" \
     && timeout "$UNSORRY_WALL" gemini --skip-trust --yolo --allowed-mcp-server-names none -p "$prompt" \
          --model "$model" "${eff[@]}" --output-format text )
@@ -1374,6 +1407,7 @@ call_gemini_prove() {
 call_openai_prove() {
   local prompt="$1" workdir="$2" effort="$3"
   local model="${UNSORRY_MODEL:-gpt-4o}"
+  PROOF_MODEL_USED="$model"
   
   # Check for API key
   if [ -z "${OPENAI_API_KEY:-}" ]; then
@@ -1492,7 +1526,12 @@ prove_local_verify() {
 # Prints nothing; returns 0 with the verified module in place, 1 on failure.
 run_proof() {
   local goal="$1" prwt="$2" camel="$3"
-  local stmt name target binding prompt attempt err=""
+  local stmt name target binding prompt attempt err="" proof_started
+  PROOF_MODEL_USED=""
+  PROOF_EFFORT_USED=""
+  PROOF_ATTEMPTS_USED=""
+  PROOF_SOLVE_SECONDS=""
+  proof_started="$(date +%s)"
   name="$(py_helper lean-name "$prwt/goals/$goal.lean")" || return 1
   stmt="$(py_helper lean-stmt "$prwt/goals/$goal.lean")" || return 1
   target="library/Unsorry/$camel.lean"
@@ -1523,6 +1562,8 @@ $(printf '%s\n' "$deps_lines" | awk -F'\t' '{printf "- import %s\n    %s\n", $1,
   local eff_tok t0 dur probe_rc
   for attempt in $(seq 1 "$UNSORRY_ATTEMPTS"); do  # ADR-015 ladder, default 3
     eff_tok="$(provider_effort_for_attempt "$UNSORRY_PROVIDER" "$attempt" "$UNSORRY_EFFORT")"
+    PROOF_EFFORT_USED="$eff_tok"
+    PROOF_ATTEMPTS_USED="$attempt"
     log "prove attempt $attempt/$UNSORRY_ATTEMPTS for $goal (effort ${eff_tok:-default})"
     prompt="$(cat "$PROVE_PROMPT_FILE")
 $stmt
@@ -1570,6 +1611,7 @@ Fix the module so both pass. Write the corrected $target."
     # vacuous statement under the goal's name fails here, not just in review.
     write_binding_module "$prwt" "$goal" "$camel" || { err="(could not emit binding obligation)"; continue; }
     if prove_local_verify "$prwt" "$camel"; then
+      PROOF_SOLVE_SECONDS=$(( $(date +%s) - proof_started ))
       log "proof of $goal verified locally — statement bound (attempt $attempt)"
       return 0
     fi
@@ -1610,11 +1652,20 @@ write_binding_module() {
 check_in_proof() {
   local goal="$1" prwt="$2" camel="$3"
   local name sha
+  local -a provenance=(
+    --solver "$SOLVER"
+    --agent "$AGENT_ID"
+    --provider "$UNSORRY_PROVIDER"
+    --effort "$PROOF_EFFORT_USED"
+    --attempts "$PROOF_ATTEMPTS_USED"
+    --solve-s "$PROOF_SOLVE_SECONDS"
+  )
+  [ -n "$PROOF_MODEL_USED" ] && provenance+=(--model "$PROOF_MODEL_USED")
   name="$(py_helper lean-name "$prwt/goals/$goal.lean")" || return 1
   sha="$(py_helper lean-sha "$prwt/goals/$goal.lean")" || return 1
 
   mkdir -p "$prwt/library/index" || return 1
-  py_helper render-index "$sha" "$goal" "$name" \
+  py_helper render-index "$sha" "$goal" "$name" "${provenance[@]}" \
     > "$prwt/library/index/$sha.aisp" || return 1
   py_helper rewrite-goal "$prwt/goals/$goal.aisp" proved "$sha" || return 1
   # ⊕ a merge reinforces the goal's pattern (+1 affinity, ADR-010); folds
@@ -1924,6 +1975,21 @@ test_agent_id_validation() {
       return 1
     fi
   done
+}
+
+test_solver_resolution() {
+  local UNSORRY_SOLVER=perttu SOLVER=""
+  resolve_solver || return 1
+  [ "$SOLVER" = perttu ] \
+    || { log "  solver override was not used"; return 1; }
+
+  UNSORRY_SOLVER=""
+  SOLVER=""
+  gh() { [ "$1 $2 $3" = "api user --jq" ] && printf 'github-user\n'; }
+  resolve_solver || { unset -f gh; return 1; }
+  unset -f gh
+  [ "$SOLVER" = github-user ] \
+    || { log "  authenticated GitHub solver was not resolved"; return 1; }
 }
 
 test_claim_render_golden() {
@@ -2595,6 +2661,22 @@ test_render_index_gateb() {
     || { log "  brace-statement index entry failed Gate B"; return 1; }
 }
 
+test_index_provenance_render() {
+  local sha got legacy
+  sha="$(printf 'a%.0s' {1..64})"
+  got="$(py_helper render-index "$sha" proof-goal proof_goal \
+    --solver perttu --agent oma-2-c50d --provider codex \
+    --model gpt-5.1-codex --effort xhigh --attempts 2 --solve-s 842)"
+  grep -qF '⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; model≜gpt-5.1-codex; effort≜xhigh; attempts≜2; solve_s≜842}' \
+    <<<"$got" || { log "  rendered index provenance is missing or malformed"; return 1; }
+
+  legacy="$(py_helper render-index "$sha" proof-goal proof_goal)"
+  if grep -qF '⟦Π:Provenance⟧' <<<"$legacy"; then
+    log "  legacy index render unexpectedly gained provenance"
+    return 1
+  fi
+}
+
 # Set a prove goal's deps≜⟨⟩ to ⟨<csv>⟩ (test helper for gap ranking).
 set_goal_deps() {
   local file="$1" csv="$2"
@@ -2947,6 +3029,7 @@ run_self_tests() {
   local tests=(
     test_agent_id_generation
     test_agent_id_validation
+    test_solver_resolution
     test_claim_render_golden
     test_translation_render_golden
     test_candidate_filtering
@@ -2971,6 +3054,7 @@ run_self_tests() {
     test_already_proved_excluded
     test_goal_proved_rewrite
     test_render_index_gateb
+    test_index_provenance_render
     test_affinity_ranking
     test_gap_ranking
     test_viability_skip
@@ -3012,6 +3096,11 @@ GOAL_FILTER=""
 DRY_RUN=0
 SELF_TEST=0
 UNSORRY_PROVIDER="${UNSORRY_PROVIDER:-claude}"
+SOLVER=""
+PROOF_MODEL_USED=""
+PROOF_EFFORT_USED=""
+PROOF_ATTEMPTS_USED=""
+PROOF_SOLVE_SECONDS=""
 
 parse_args() {
   while [ $# -gt 0 ]; do
@@ -3258,6 +3347,7 @@ main() {
         ;;
     esac
     gh auth status >/dev/null 2>&1 || die_config "gh is not authenticated"
+    [ "$PROVE" -eq 1 ] && resolve_solver
     [ "$PROVE" -eq 1 ] && require_cmd lake  # prove verify builds locally
   fi
 

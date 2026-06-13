@@ -97,7 +97,9 @@ lake build                               # verify the current library locally
 ./swarm/agent.sh --prove --once          # claim a goal, prove it, open an auto-merge PR
 ```
 
-Full prerequisites, the agent flags, the unattended [supervisor](swarm/supervise.sh), the [targets board](docs/targets.md), and how to propose a target are in **[CONTRIBUTING.md](CONTRIBUTING.md)**.
+Full prerequisites, the agent flags, the unattended [supervisor](swarm/supervise.sh),
+the [targets board](docs/targets.md), the [proof leaderboard](docs/leaderboard.md),
+and how to propose a target are in **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 ## Roadmap
 

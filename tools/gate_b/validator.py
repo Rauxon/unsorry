@@ -49,6 +49,8 @@ _SUB_RE = re.compile(r"(?P<label>sub[^≜\s;]*)≜⟨id≜(?P<id>[^,⟩\s]+)\s*,
 _EDGE_RE = re.compile(r"Post\((?P<src>[^)]*)\)\s*⊆\s*Pre\((?P<dst>[^)]*)\)")
 
 MAX_DECOMP_SUBS = config.MAX_DECOMP_SUBS
+GITHUB_LOGIN_RE = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?")
+PROVENANCE_TOKEN_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._:+/-]*")
 
 
 def _has_cycle(edges: list[tuple[str, str]]) -> bool:
@@ -409,6 +411,35 @@ def _validate_index(path: Path, record: Record, report: _Report) -> None:
                 path,
                 f"index sha does not match the statement in goals/{goal}.lean",
             )
+
+    # GB019 — optional proof provenance. Historical entries omit the block and
+    # remain valid; when present, its identity fields are complete and its
+    # telemetry is syntactically bounded. This metadata is leaderboard-only
+    # and never participates in proof admission or content addressing.
+    provenance = record.block("Π")
+    if provenance is None:
+        return
+    fields = record.fields
+    for key in ("solver", "agent", "provider"):
+        if not fields.get(key):
+            report.add("GB019", path, f"proof provenance requires '{key}'")
+    solver = fields.get("solver", "")
+    if solver and GITHUB_LOGIN_RE.fullmatch(solver) is None:
+        report.add("GB019", path, f"solver '{solver}' is not a GitHub handle")
+    for key in ("agent", "provider"):
+        value = fields.get(key, "")
+        if value and not is_id(value):
+            report.add("GB019", path, f"{key} '{value}' violates the Id grammar")
+    for key in ("model", "effort"):
+        value = fields.get(key, "")
+        if value and PROVENANCE_TOKEN_RE.fullmatch(value) is None:
+            report.add("GB019", path, f"{key} '{value}' is not a provenance token")
+    attempts = fields.get("attempts")
+    if attempts is not None and (not attempts.isdigit() or int(attempts) < 1):
+        report.add("GB019", path, f"attempts '{attempts}' is not a positive integer")
+    solve_s = fields.get("solve_s")
+    if solve_s is not None and not solve_s.isdigit():
+        report.add("GB019", path, f"solve_s '{solve_s}' is not a non-negative integer")
 
 
 # -------------------------------------------------------------- claim records
