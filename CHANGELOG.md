@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Fourth sourced target batch (ADR-012) — the **power-sum tower**, a deliberately compounding set where each rung stands on the one below (difficulty 2–4): `sum-range-cube-even` (∑(2i)³ = 2n²(n−1)², a corollary of the proved `nicomachus-sum-cubes`), `sum-range-pow-six-closed-form` and `sum-range-pow-seven-closed-form` (Faulhaber p=6, p=7 — the next rungs above the proved p=2..p=5), and the **crown** `sum-range-pow-five-add-pow-seven` (∑k⁵+∑k⁷ = 2(∑k)⁴, depending on the p=5 and p=7 closed forms — a depth-1 stack within the batch). Every statement type-checks against the pinned mathlib (rev c5ea00351c28), is machine-absence-verified (the `i^6`/`i^7` flags adjudicated against Weierstrass-℘ / elliptic-curve code, not Faulhaber; mathlib carries only the general Bernoulli formula), and every identity was numerically verified before sourcing. Dependency edges (`deps≜`) wire the compounding so gap-selection routes the rungs before the crown. Fulfils cgbarlow's interest in how proofs stack toward harder, higher-value targets.
+
 ### Fixed
 
 - Gate A's regenerated binding obligation (ADR-011/SPEC-011-A) now carries the goal file's top-level `open …` commands, so a goal stated under `open Finset` (bare `range`, batch-3 shape) elaborates in its own namespace context instead of failing with `Unknown identifier`. Same fix mirrored in the agent loop's local self-verify (`write_binding_module`, new `lean-opens` helper); shared parsing in `tools.lean_sig.open_lines`. Surfaced by PR #259 (`sum-range-pentagonal-closed-form`); also unblocks `sum-range-sq-mul-choose`
