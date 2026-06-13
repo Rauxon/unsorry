@@ -3297,12 +3297,13 @@ test_goal_override_bypasses_viability() {
   make_prove_goal "$tree" ok "theorem ok (n : Nat) : n + 0 = n" || return 1
   make_prove_goal "$tree" bad "theorem bad (n : Nat) : 0 + n = n" || return 1
   py_helper aff-bump "$tree/goals/bad.aisp" -10 || return 1   # below τ_v = -5
-  make_prove_goal "$tree" done "theorem d (n : Nat) : n = n" || return 1
+  # ('solved', not 'done' — 'done' is a bash reserved word, trips SC1010.)
+  make_prove_goal "$tree" solved "theorem d (n : Nat) : n = n" || return 1
 
-  # Baseline (no --force): the sub-viable 'bad' is dropped; 'done'/'ok' remain.
+  # Baseline (no --force): the sub-viable 'bad' is dropped; 'ok'/'solved' remain.
   got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
-  [ "$got" = "$(printf 'done\nok')" ] \
-    || { log "  baseline: expected 'done ok' (bad below τ_v), got '$got'"; return 1; }
+  [ "$got" = "$(printf 'ok\nsolved')" ] \
+    || { log "  baseline: expected 'ok solved' (bad below τ_v), got '$got'"; return 1; }
 
   # --force surfaces the sub-viable goal without dropping the normal candidates.
   got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT" --force bad)"
@@ -3313,10 +3314,10 @@ test_goal_override_bypasses_viability() {
 
   # Hard guard holds: a proved goal is never forced back into candidacy.
   sha="dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-  py_helper render-index "$sha" done done_thm > "$tree/library/index/$sha.aisp" || return 1
-  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT" --force done)"
-  printf '%s\n' "$got" | grep -qx done \
-    && { log "  guard: --force resurrected the proved goal 'done'"; return 1; }
+  py_helper render-index "$sha" solved solved_thm > "$tree/library/index/$sha.aisp" || return 1
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT" --force solved)"
+  printf '%s\n' "$got" | grep -qx solved \
+    && { log "  guard: --force resurrected the proved goal 'solved'"; return 1; }
   return 0
 }
 
