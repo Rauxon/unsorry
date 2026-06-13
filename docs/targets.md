@@ -4,13 +4,18 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**3 open · 56 proved · 59 total prove-goals.**
+**7 open · 57 proved · 65 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
-| `euclid-perfect-numbers` — Euclid's theorem on perfect numbers: if $2^p - 1$ is prime (a Mersenne prime), then $2^{p-1} \cdot (2^p - 1)$ is perfect. | open | 3 | — | Euclid, Elements IX.36 | https://en.wikipedia.org/wiki/Euclid%E2%80%93Euler_theorem |
+| `euclid-perfect-numbers-s1` — euclid-perfect-numbers-s1 | open | 1 | — | — | — |
+| `euclid-perfect-numbers-s2` — euclid-perfect-numbers-s2 | open | 1 | — | — | — |
+| `euclid-perfect-numbers-s3` — euclid-perfect-numbers-s3 | open | 1 | — | — | — |
+| `euclid-perfect-numbers-s4` — euclid-perfect-numbers-s4 | open | 1 | — | — | — |
+| `euclid-perfect-numbers-s5` — euclid-perfect-numbers-s5 | open | 1 | — | — | — |
+| `euclid-perfect-numbers-s6` — euclid-perfect-numbers-s6 | open | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | open | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
-| `sum-range-sq-mul-choose` — Weighted sum of squares of binomial coefficients: $4 \sum_{k=0}^n k^2 \binom{n}{k} = n(n+1)2^n$. | open | 3 | — | classic combinatorial identities | Standard combinatorial identity for the second moment of binomial coefficients, derived from differentiating the binomial theorem twice. |
+| `euclid-perfect-numbers` — Euclid's theorem on perfect numbers: if $2^p - 1$ is prime (a Mersenne prime), then $2^{p-1} \cdot (2^p - 1)$ is perfect. | blocked | 3 | — | Euclid, Elements IX.36 | https://en.wikipedia.org/wiki/Euclid%E2%80%93Euler_theorem |
 | `alternating-sum-naturals` — For every natural n, the sum over i in 0..n-1 of (-1)^i (i+1) equals -(n/2) if n is even and (n/2)+1 if n is odd (integer division over ℤ). | proved | 3 | [packet-ready](upstream/alternating-sum-naturals.md) | classic identities | Standard arithmetic alternating-series partial sums (1-2+3-4+...); tabulated in Hardy, Divergent Series, Ch. 1; elementary induction exercise in discrete-math texts. |
 | `and-comm-imp` — Conjunction commutes. | proved | 1 | — | — | — |
 | `binder-shape-canary` — A **Gate A regression fixture**, not a mathematical target. It carries the | proved | 1 | — | Gate A regression fixture (issue #231) | — |
@@ -65,5 +70,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-range-recip-pronic` — For every natural n, the sum over i in 0..n-1 of 1/((i+1)(i+2)) equals n/(n+1) (over ℚ); the classic telescoping sum 1/(1·2) + 1/(2·3) + ... + 1/(n(n+1)) = n/(n+1). | proved | 3 | — | classic identities | Classic telescoping/partial-fractions identity ∑ 1/(k(k+1)) = n/(n+1); Graham, Knuth & Patashnik, Concrete Mathematics, §2.5 (partial fractions); standard first-year analysis exercise. |
 | `sum-range-sq-closed-form` — For every natural n, 6 * (sum of i^2 for i in 0..n) = n(n+1)(2n+1), the integer form of 1^2+...+n^2 = n(n+1)(2n+1)/6. | proved | 2 | [packet-ready](upstream/sum-range-sq-closed-form.md) | classic identities | Faulhaber's formula, case p=2 (square pyramidal number). Apostol, Calculus Vol. 1, 2nd ed., §I.4.2; Graham, Knuth & Patashnik, Concrete Mathematics, §2.5; Avigad/Massot, Mathematics in Lean, §5… |
 | `sum-range-sq-even` — For every natural n, 3 * (sum of (2i)^2 for i in 0..n-1) = 2n(n-1)(2n-1); the sum of the squares of the first n even numbers 0^2 + 2^2 + ... + (2n-2)^2 in closed form. | proved | 2 | — | classic identities | Even-square sums ∑(2k)^2 = 2m(m+1)(2m+1)/3 (here reindexed from 0); CRC Standard Mathematical Tables (sums of powers); companion of the proved sum-range-sq-odd-closed-form. |
+| `sum-range-sq-mul-choose` — Weighted sum of squares of binomial coefficients: $4 \sum_{k=0}^n k^2 \binom{n}{k} = n(n+1)2^n$. | proved | 3 | — | classic combinatorial identities | Standard combinatorial identity for the second moment of binomial coefficients, derived from differentiating the binomial theorem twice. |
 | `sum-range-sq-odd-closed-form` — For every natural n, 3 * (sum of (2i+1)^2 for i in 0..n-1) = n(2n-1)(2n+1); i.e. 1^2+3^2+...+(2n-1)^2 = n(2n-1)(2n+1)/3. | proved | 2 | — | classic identities | Standard finite-sum identity ∑(2k-1)^2 = n(2n-1)(2n+1)/3; Concrete Mathematics §2.5 exercises; Gradshteyn & Ryzhik, Table of Integrals, Series, and Products (sums section). |
 | `three-cubes-div-nine` — For every natural n, 9 divides n^3 + (n+1)^3 + (n+2)^3; the sum of any three consecutive cubes is divisible by 9. | proved | 2 | — | classic identities | Classic introductory number-theory / olympiad exercise; Engel, Problem-Solving Strategies (divisibility chapter); Sierpiński, Elementary Theory of Numbers (PWN/North-Holland, 1988). |
