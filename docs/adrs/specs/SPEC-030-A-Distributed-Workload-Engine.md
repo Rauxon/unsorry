@@ -113,7 +113,9 @@ implementation, not asserted here:
    domain) onboards by implementing only §3, with zero engine edits — the
    acceptance test for "is this actually a template."
 
-## 7. Explicitly out of scope (separate decisions)
+## 7. Out of scope
+
+### 7.1 Separate decisions (each gets its own ADR)
 
 - **Deduplication & claim-at-merge** — preventing two agents from racing the
   same unit and wasting verification (a recurring, observed cost). Its own ADR.
@@ -123,3 +125,37 @@ implementation, not asserted here:
   when git-as-database contention demands it (ADR-004 stands until measured).
 - **Contributor onboarding / client packaging** — the container/BYO-key client
   that makes "more users" practical.
+
+### 7.2 Noted, not yet scoped
+
+These are not decided here and have no ADR yet, but are recorded so they are not
+lost when this seam is built out:
+
+- **Plugin trust boundary.** `verify` (§3) is *the* trust kernel: a plugin that
+  lies in its `Verdict` (e.g. returns `accepted=true` for an unchecked
+  candidate) breaks soundness for that domain. First-party plugins (Lean) are
+  trusted by code review; **third-party plugins are not trusted** until there is
+  sandboxing, an independent re-verification path, or a signed/audited plugin
+  registry. Generalization must never let a plugin lower a domain's soundness
+  bar (cf. ADR-030's "trust model unchanged").
+- **`verify` reproducibility.** A deterministic verdict must hold across
+  machines and over time; each plugin needs the per-domain analog of ADR-002
+  (mathlib/toolchain pinning), or a verdict could differ by environment.
+- **Compute cost model.** Who pays for candidate generation (LLM inference) and
+  verification. The natural analog of SETI's donated CPU is a contributor's
+  BYO provider key (already supported); pooled credits, sponsorship, and
+  per-contributor quotas are unspecified.
+- **Central CI cost & DoS surface.** Verification runs centrally per PR today
+  (expensive). Volunteers already self-verify; pushing authoritative
+  verification toward the contributor and keeping a cheap central re-check
+  (e.g. kernel replay only) bounds both cost and abuse. Tied to §7.1's
+  coordination-at-scale and anti-abuse decisions.
+- **Work-unit ingestion.** Where units come from and how they are admitted
+  (today: `backlog/` + translation, ADR-007). A general template needs a
+  pluggable problem-source contract and a way to vet/scope submitted problems.
+- **Corpus governance & licensing.** Ownership, license, and provenance of
+  results merged into the canonical corpus, and how credit accrues across
+  projects (ADR-023 already flags cross-project credits as needing an anti-abuse
+  design first).
+- **Work-unit sensitivity / privacy.** The engine assumes public, world-readable
+  units today; some domains carry private or sensitive specs.
