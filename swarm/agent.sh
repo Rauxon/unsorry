@@ -313,12 +313,23 @@ def cmd_lean_opens(args):
 
 
 def cmd_prove_candidates(args):
-    """prove-candidates <goals-dir> <claims-dir> <library-dir> <agent> [<at>]
+    """prove-candidates <goals-dir> <claims-dir> <library-dir> <agent> [<at>] [--force <goal>]
 
     SPEC-007-A prove step 2: goals with phase≡prove, status≡open, fewer than
     PROVE_CLAIM_CAP live claims by distinct other agents, no live claim by
     self, and NOT already proved (no library/index entry). Ordered by
-    affinity-weighted, gap-based ranking (ADR-010 / SPEC-010-A)."""
+    affinity-weighted, gap-based ranking (ADR-010 / SPEC-010-A).
+
+    ``--force <goal>`` (set when the operator named one via --goal): that goal
+    is surfaced even if ranking would drop it below the viability floor — an
+    explicit --goal overrides the "awaiting re-decomposition" default. It is
+    only forced if it still cleared the hard claimability filter above, so a
+    proved, self-claimed, capped, blocked, or non-prove goal is never forced."""
+    force = None
+    if "--force" in args:
+        i = args.index("--force")
+        force = args[i + 1] if i + 1 < len(args) else None
+        args = args[:i] + args[i + 2 :]
     goals_dir, claims_dir, library_dir, agent = args[:4]
     now = _now(args[4] if len(args) > 4 else "")
     proved = _proved_goals(library_dir)
@@ -336,7 +347,10 @@ def cmd_prove_candidates(args):
         if live_self or len(others) >= config.PROVE_CLAIM_CAP:
             continue
         survivors.append((goal, record))
-    for goal in _rank(survivors, proved):
+    ranked = _rank(survivors, proved)
+    if force and force not in ranked and any(g == force for g, _ in survivors):
+        print(force)  # explicit --goal overrides the viability floor only
+    for goal in ranked:
         print(goal)
 
 
@@ -3272,6 +3286,40 @@ test_viability_skip() {
     || { log "  at τ_v should be viable but rank below ok; expected 'ok bad', got '$got'"; return 1; }
 }
 
+test_goal_override_bypasses_viability() {
+  # An explicit --goal (passed as --force) surfaces a goal ranked below τ_v —
+  # the operator overrides the "awaiting re-decomposition" default — but never
+  # one a HARD guard excluded (proved/claimed/capped/blocked/non-prove).
+  local tree claims got sha
+  tree="$(mktemp -d "$SESSION_TMP/forceviab.XXXXXX")" || return 1
+  claims="$tree/claims"
+  mkdir -p "$claims" "$tree/library/index" || return 1
+  make_prove_goal "$tree" ok "theorem ok (n : Nat) : n + 0 = n" || return 1
+  make_prove_goal "$tree" bad "theorem bad (n : Nat) : 0 + n = n" || return 1
+  py_helper aff-bump "$tree/goals/bad.aisp" -10 || return 1   # below τ_v = -5
+  make_prove_goal "$tree" done "theorem d (n : Nat) : n = n" || return 1
+
+  # Baseline (no --force): the sub-viable 'bad' is dropped; 'done'/'ok' remain.
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "$(printf 'done\nok')" ] \
+    || { log "  baseline: expected 'done ok' (bad below τ_v), got '$got'"; return 1; }
+
+  # --force surfaces the sub-viable goal without dropping the normal candidates.
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT" --force bad)"
+  printf '%s\n' "$got" | grep -qx bad \
+    || { log "  force: --force did not surface sub-viable 'bad', got '$got'"; return 1; }
+  printf '%s\n' "$got" | grep -qx ok \
+    || { log "  force: --force dropped normal candidate 'ok', got '$got'"; return 1; }
+
+  # Hard guard holds: a proved goal is never forced back into candidacy.
+  sha="dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  py_helper render-index "$sha" done done_thm > "$tree/library/index/$sha.aisp" || return 1
+  got="$(py_helper prove-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT" --force done)"
+  printf '%s\n' "$got" | grep -qx done \
+    && { log "  guard: --force resurrected the proved goal 'done'"; return 1; }
+  return 0
+}
+
 test_affinity_bump_math() {
   # aff-bump inserts when absent, accumulates when present, and reflects the
   # configured +1 / −10 deltas.
@@ -3594,6 +3642,7 @@ run_self_tests() {
     test_affinity_ranking
     test_gap_ranking
     test_viability_skip
+    test_goal_override_bypasses_viability
     test_affinity_bump_math
     test_affinity_degrades_on_garbage
     test_decomp_caps_and_depth
@@ -3734,12 +3783,16 @@ select_candidates() {
 # uncapped, not already proved).
 select_prove_candidates() {
   local cand
+  # An explicit --goal is an override of auto-selection: pass it as --force so a
+  # named-but-sub-viable goal is still surfaced (ids are space-free, validated
+  # by is-id, so the unquoted expansion splits into exactly two args).
   while IFS= read -r cand; do
     [ -n "$cand" ] || continue
     goal_in_scope "$cand" || continue
     [ -n "${HANDLED[$cand]:-}" ] && continue
     printf '%s\n' "$cand"
-  done < <(py_helper prove-candidates goals "$CLAIMS_WT/claims" library "$AGENT_ID" "")
+  done < <(py_helper prove-candidates goals "$CLAIMS_WT/claims" library "$AGENT_ID" "" \
+             ${GOAL_FILTER:+--force "$GOAL_FILTER"})
 }
 
 # Local smoke has no claims or coordination. Reuse the production prove ranking
