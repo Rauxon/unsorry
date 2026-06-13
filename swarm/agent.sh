@@ -1009,10 +1009,19 @@ claim_goal() {
 
 # Step 5: one claude call. The prompt is translate.md + the statement body;
 # --tools "" enforces SPEC-007-A's "no tools are allowed for translation".
+# Falls back from fable to opus if fable is not available.
 call_claude() {
   local prompt="$1"
+  local model="$UNSORRY_MODEL"
+  
+  # If model is fable, check availability and fall back to opus if needed
+  if [ "$model" = "fable" ] && ! claude_model_available "fable"; then
+    log "fable model not available, falling back to opus"
+    model="opus"
+  fi
+  
   timeout "$UNSORRY_WALL" claude -p "$prompt" \
-    --model "$UNSORRY_MODEL" --output-format text --tools ""
+    --model "$model" --output-format text --tools ""
 }
 
 # Steps 5–6: translate with sanity checks; one retry, then give up.
@@ -1266,18 +1275,35 @@ cli_health_probe() {
   esac
 }
 
+# Check if a specific Claude model is available.
+# Returns 0 if available, 1 otherwise.
+claude_model_available() {
+  local model="$1"
+  timeout 30 claude -p "Reply with exactly: OK" --model "$model" \
+    --output-format text >/dev/null 2>&1
+}
+
 # Prove step 5: one claude call constrained to write the target Lean module.
 # --max-turns does not exist on claude 2.1.170 (the translate cycle dropped it
 # for the same reason); the $UNSORRY_WALL timeout bounds the call instead.
 # Tools are limited to reading/editing/writing and the read-only lake/git
 # commands the prover needs to check its own work (build, env, exe, diff).
+# Falls back from fable to opus if fable is not available.
 call_claude_prove() {
   local prompt="$1" workdir="$2" effort="$3"
   local -a eff=()
+  local model="$UNSORRY_MODEL"
   [ -n "$effort" ] && eff=(--effort "$effort")
+  
+  # If model is fable, check availability and fall back to opus if needed
+  if [ "$model" = "fable" ] && ! claude_model_available "fable"; then
+    log "fable model not available, falling back to opus"
+    model="opus"
+  fi
+  
   ( cd "$workdir" \
     && timeout "$UNSORRY_WALL" claude -p "$prompt" \
-         --model "$UNSORRY_MODEL" "${eff[@]}" --output-format text \
+         --model "$model" "${eff[@]}" --output-format text \
          --allowedTools \
            "Read,Edit,Write,Bash(lake build *),Bash(lake env *),Bash(lake exe *),Bash(git diff *)" )
 }
@@ -1627,7 +1653,15 @@ decompose_goal() {
   # (ADR-015).
   local eff_tok; eff_tok="$(effort_for_attempt top "$UNSORRY_EFFORT")"
   local -a eff=()
+  local model="$UNSORRY_MODEL"
   [ -n "$eff_tok" ] && eff=(--effort "$eff_tok")
+  
+  # If model is fable, check availability and fall back to opus if needed
+  if [ "$model" = "fable" ] && ! claude_model_available "fable"; then
+    log "fable model not available, falling back to opus"
+    model="opus"
+  fi
+  
   d0="$(date +%s)"
   out="$(cd "$prwt" && timeout "$UNSORRY_WALL" claude -p "$(cat "$DECOMPOSE_PROMPT_FILE")
 
@@ -1635,7 +1669,7 @@ PARENT THEOREM (the goal that resisted proof):
 $stmt
 
 Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` line." \
-    --model "$UNSORRY_MODEL" "${eff[@]}" --output-format text --allowedTools "Read,Bash(lake build *),Bash(lake env *)" 2>/dev/null)"
+    --model "$model" "${eff[@]}" --output-format text --allowedTools "Read,Bash(lake build *),Bash(lake env *)" 2>/dev/null)"
   ddur=$(( $(date +%s) - d0 ))
 
   # Materialise the proposed subs into the PR tree.
