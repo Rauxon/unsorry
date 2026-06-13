@@ -438,6 +438,11 @@ def cmd_render_run(args):
         if optional.get(key):
             provenance.append(f"{key}≜{optional[key]}")
     print(f"⟦Π:Provenance⟧{{{'; '.join(provenance)}}}")
+    # ⟦Γ⟧ is one of the five canonical AISP-5.1 blocks (Ω/Σ/Γ/Λ/Ε). Carrying the
+    # goal link here keeps a proof-run record valid under the generic upstream
+    # validator (aisp-validator, ADR-003), which rejects a record missing Γ — the
+    # advisory cross-check stays clean instead of flagging every run.
+    print(f"⟦Γ:Goal⟧{{goal≜{goal}}}")
     metrics = [f"attempts≜{attempts}", f"solve_s≜{solve_s}", f"ended≜{format_utc_z(now)}"]
     used = optional.get("lessons-used")
     if used not in (None, ""):
@@ -2924,6 +2929,10 @@ test_proof_run_render() {
     <<<"$got" || { log "  rendered proof-run metrics are missing"; return 1; }
   grep -qF "⟦Σ:Artifact⟧{sha≜$sha}" \
     <<<"$got" || { log "  rendered proof-run artifact is missing"; return 1; }
+  # The canonical ⟦Γ⟧ block keeps the record valid under the upstream AISP
+  # validator (goals/decompositions carry it; proof-runs must too).
+  grep -qF '⟦Γ:Goal⟧{goal≜proof-goal}' \
+    <<<"$got" || { log "  rendered proof-run is missing the ⟦Γ⟧ goal-link block"; return 1; }
   # ADR-024: a proved run never carries a lesson sig, even if one is passed.
   grep -qF '⟦Δ:Lesson⟧' <<<"$got" \
     && { log "  proved run leaked a lesson block"; return 1; }
