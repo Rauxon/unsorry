@@ -1,0 +1,9 @@
+𝔸5.1.run.fourth-power-mod-five.p3-b1.20260613t122602634742z-1043f64d@2026-06-13
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260613t122602634742z-1043f64d; goal≜fourth-power-mod-five; agent≜p3-b1; outcome≜decomposed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜max}
+⟦Γ:Goal⟧{goal≜fourth-power-mod-five}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜1227; ended≜2026-06-13T12:26:02Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜⚠ [1056/1240] Replaying Unsorry.FourthPowerModFiveBinding trace: .> LEAN_PATH=/workspaces/p3-b1-work/prove-fourth-power-mod-five-p3-b1/.lake/packages/Cli/.lake/build/lib/lean:/workspaces/p3-b1-work/prove-fourth-power-mod-five-p3-b1/.lake/packages/batteries/.lake/build/lib/lean:/w}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

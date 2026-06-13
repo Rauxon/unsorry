@@ -1,0 +1,24 @@
+# Protocol-compliance gate (ADR-028): a newly added ADR must ship with its spec
+# (docs/protocols.md). Only ADDED files are checked, so historical unpaired ADRs
+# are untouched. pull_request_target on the BASE ref (the trusted tool + the base
+# ADR/spec tree); added files come from the PR API.
+name: pr-protocol
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  protocol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1 — base ref, never the PR head
+      - name: Require a spec for every newly added ADR (ADR-028)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$PR/files" --paginate \
+            --jq '.[] | select(.status=="added") | .filename' \
+            | python3 -m tools.repo.pr_protocol check

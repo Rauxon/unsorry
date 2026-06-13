@@ -136,6 +136,8 @@ Every change, however small, follows [`docs/protocols.md`](docs/protocols.md):
 - **One ADR per significant decision** in [`docs/adrs/`](docs/adrs/), in the WH(Y) format, with rejected alternatives recorded; a **spec** per ADR captures the "how".
 - **TDD** — tests before implementation; the agent loop (`./swarm/agent.sh --self-test`), the supervisor (`./swarm/supervise.sh --self-test`), and the Python tools (`python3 -m pytest tools -q`) all stay green.
 - **Feature branch + PR** for everything; no direct commits to `main`.
+- **One logical change per PR (trunk-based).** A proof is a proof; a fix is a fix; a feature is a feature — never bundle (e.g. a harness fix must not ride along a proof PR). One short-lived branch off `main`, squash-merged on green gates, deleted after.
+- **Conventional, enforced PR titles** ([`docs/pr-labels.md`](docs/pr-labels.md), [ADR-026](docs/adrs/ADR-026-PR-Convention-Enforcement.md)). The `pr-conventions` check fails any title that matches no known shape. Use a Conventional-Commits prefix (`feat:`, `fix:`, `docs:`, `chore:`, `ci:`, `test:`, `refactor:`, `perf:`, `build:`; scope optional, `:` required), or a swarm shape: `prove(<goal>):` (theorem **proved**), `decompose(<goal>):` / `affinity(<goal>):` (theorem **not** proved — split / demoted), `tr(<goal>):`, `converge(<goal>):`. Branch prefixes mirror the kind (`feat/`, `fix/`, `docs/`, `ci/`, `test/`).
 - **Changelog** entry under `[Unreleased]` for every user-facing change ([Keep a Changelog](https://keepachangelog.com/), SemVer).
 - **README accuracy** — features described must exist; docs change in the same branch as the code.
 

@@ -33,10 +33,16 @@ proof-runs/<goal>.<agent>.<run-id>.aisp
 γ≔unsorry.proof.run
 ⟦Ω:Run⟧{id≜<run-id>; goal≜<goal>; agent≜<agent>; outcome≜proved|decomposed|failed}
 ⟦Π:Provenance⟧{solver≜<github-login>; provider≜<provider>; model≜<optional>; effort≜<optional>}
+⟦Γ:Goal⟧{goal≜<goal>}
 ⟦Λ:Metrics⟧{attempts≜<positive-int>; solve_s≜<non-negative-int>; ended≜<ISO-8601-UTC>}
 ⟦Σ:Artifact⟧{sha≜<proved-index-sha-or-empty>}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
 ```
+
+The `⟦Γ:Goal⟧` goal-link is one of the five canonical AISP-5.1 blocks
+(Ω/Σ/Γ/Λ/Ε); carrying it keeps the record valid under the generic upstream
+validator (`aisp-validator`, ADR-003) — without it the advisory cross-check
+rejects every run for a missing Γ block.
 
 The fact is committed in the proof PR, accepted decomposition PR, or
 affinity-demotion PR. If proof attempts were exhausted but decomposition then

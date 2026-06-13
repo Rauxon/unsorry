@@ -1,0 +1,12 @@
+𝔸5.1.decomp.fourth-power-mod-five.p3-b1@2026-06-13
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜fourth-power-mod-five; agent≜p3-b1}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜fourth-power-mod-five-s1,sha≜83626e8d3b39be6c229eb83469a138c066c4d88e57b6e56bcd5b1e7424a530f9⟩
+  sub₂≜⟨id≜fourth-power-mod-five-s2,sha≜191b2663e40dfa31ad8d44e422c028a19c27056984f21d982d6ec1a0f1aa8197⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

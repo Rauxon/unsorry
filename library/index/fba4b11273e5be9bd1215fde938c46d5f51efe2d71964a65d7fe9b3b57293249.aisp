@@ -1,0 +1,8 @@
+𝔸5.1.lemma.fba4b11273e5@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜fba4b11273e5be9bd1215fde938c46d5f51efe2d71964a65d7fe9b3b57293249; goal≜sum-range-fall-mul-choose; name≜sum_range_fall_mul_choose}
+⟦Σ:Source⟧{src≜goals/sum-range-fall-mul-choose.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-a1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜295}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
