@@ -50,11 +50,18 @@ Other flags:
   generation and full local verification in a preserved worktree without
   fetching, claiming, pushing, or opening a PR. Without `--goal`, the script
   automatically selects the highest-ranked open local target.
+- `-pi` — use pi-coder's `~/.pi/agent/models.json`: resolve `UNSORRY_MODEL` (a model
+  name/id there) to its OpenAI-compatible endpoint, key, and id, and prove with it
+  (forces `--provider openai`; ADR-025). Works with `--prove-local` and `--prove`.
 - `--self-test` — check your setup (hermetic; no network, no `claude`).
 
-Gemini and the OpenAI API provider are currently local-only. See
-[`docs/gemini-provider.md`](docs/gemini-provider.md) for the constrained
-production-enablement plan.
+Coordinated `--prove` supports `--provider openai` (and `codex`); Gemini remains
+local-only for now. Point the OpenAI provider at any OpenAI-compatible server
+(Ollama / vLLM / LM Studio / proxy) with `OPENAI_BASE_URL` — on a custom endpoint the
+model allow-list is bypassed, so any local model id works (note the `--prove` loop needs
+a tool-capable model). `-pi` is the shortcut that fills `OPENAI_BASE_URL`/key/model from
+your pi config. See [`tools/llm_providers/README.md`](tools/llm_providers/README.md) and
+[`docs/gemini-provider.md`](docs/gemini-provider.md).
 
 Coordinated `--prove` pushes claims, feature branches, and PRs through `origin`,
 so it requires write access to the shared repository. From a fork without that

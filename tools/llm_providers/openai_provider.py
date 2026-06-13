@@ -60,7 +60,11 @@ class OpenAIProvider:
         if not self.api_key:
             raise OpenAIError("OPENAI_API_KEY environment variable required")
         
-        self.base_url = base_url or self.DEFAULT_BASE_URL
+        # Precedence: explicit arg → OPENAI_BASE_URL env → OpenAI's endpoint.
+        # A non-default base_url is a custom OpenAI-compatible endpoint (local
+        # Ollama/vLLM/LM Studio or a proxy); see ADR-025.
+        self.base_url = base_url or os.environ.get("OPENAI_BASE_URL") or self.DEFAULT_BASE_URL
+        self.custom_endpoint = self.base_url.rstrip("/") != self.DEFAULT_BASE_URL.rstrip("/")
         self.timeout = self.DEFAULT_TIMEOUT
         self.session = requests.Session()
         self.session.headers.update({
@@ -93,7 +97,10 @@ class OpenAIProvider:
         Raises:
             OpenAIError: On API errors
         """
-        if model not in self.MODELS.values():
+        # The allow-list guards typos against the real OpenAI endpoint. On a
+        # custom endpoint (ADR-025) the operator's model id is authoritative —
+        # local model ids like "llama3.1:8b" are arbitrary — so pass it through.
+        if not self.custom_endpoint and model not in self.MODELS.values():
             raise OpenAIError(f"Unknown model: {model}")
         
         messages = []
@@ -118,8 +125,10 @@ class OpenAIProvider:
         if temperature is not None and model not in self.REASONING_MODELS:
             request_data["temperature"] = temperature
         
-        # Add tools if supported
-        if tools and model in self.TOOL_MODELS:
+        # Add tools when the model is a known tool-capable model, or when a
+        # custom endpoint is in effect (we trust the operator's model to speak
+        # OpenAI tool-calling; ADR-025). The prove path bypasses this entirely.
+        if tools and (self.custom_endpoint or model in self.TOOL_MODELS):
             request_data["tools"] = tools
             request_data["tool_choice"] = "auto"
         
