@@ -1,0 +1,7 @@
+𝔸5.1.run.sum-range-fall-mul-choose.p3-a1.20260613t134300137087z-2b5c31d2@2026-06-13
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260613t134300137087z-2b5c31d2; goal≜sum-range-fall-mul-choose; agent≜p3-a1; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜295; ended≜2026-06-13T13:43:00Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜fba4b11273e5be9bd1215fde938c46d5f51efe2d71964a65d7fe9b3b57293249}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
