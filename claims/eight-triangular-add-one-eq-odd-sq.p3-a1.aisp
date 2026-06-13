@@ -1,0 +1,7 @@
+𝔸5.1.claim.eight-triangular-add-one-eq-odd-sq.p3-a1@2026-06-13
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜eight-triangular-add-one-eq-odd-sq; agent≜p3-a1}
+⟦Σ:Times⟧{ts≜2026-06-13T12:01:33Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
