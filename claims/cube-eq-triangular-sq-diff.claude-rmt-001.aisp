@@ -1,7 +1,0 @@
-𝔸5.1.claim.cube-eq-triangular-sq-diff.claude-rmt-001@2026-06-13
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜cube-eq-triangular-sq-diff; agent≜claude-rmt-001}
-⟦Σ:Times⟧{ts≜2026-06-13T12:36:06Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
