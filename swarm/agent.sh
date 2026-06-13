@@ -100,6 +100,7 @@ py_helper() {
   python3 - "$@" <<'PY'
 import hashlib
 import re
+import secrets
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -371,6 +372,42 @@ def cmd_render_index(args):
                 field = "solve_s" if key == "solve-s" else key
                 fields.append(f"{field}≜{provenance[key]}")
         print(f"⟦Π:Provenance⟧{{{'; '.join(fields)}}}")
+    print("⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩")
+
+
+def cmd_run_id(_args):
+    moment = datetime.now(timezone.utc).strftime("%Y%m%dt%H%M%S%fz")
+    print(f"{moment}-{secrets.token_hex(4)}")
+
+
+def cmd_render_run(args):
+    """render-run <run-id> <goal> <agent> <outcome> <solver> <provider>
+    <attempts> <solve-s> <sha-or-empty> [--model M --effort E] — print one
+    append-only terminal proof-run fact. Difficulty and current goal state are
+    joined from goals/ by analytics instead of copied into every run."""
+    run_id, goal, agent, outcome, solver, provider, attempts, solve_s, sha = args[:9]
+    optional = {}
+    rest = args[9:]
+    for i, token in enumerate(rest):
+        if token.startswith("--") and i + 1 < len(rest):
+            optional[token[2:]] = rest[i + 1]
+    now = datetime.now(timezone.utc)
+    print(f"𝔸5.1.run.{goal}.{agent}.{run_id}@{now:%Y-%m-%d}")
+    print("γ≔unsorry.proof.run")
+    print(
+        f"⟦Ω:Run⟧{{id≜{run_id}; goal≜{goal}; agent≜{agent}; "
+        f"outcome≜{outcome}}}"
+    )
+    provenance = [f"solver≜{solver}", f"provider≜{provider}"]
+    for key in ("model", "effort"):
+        if optional.get(key):
+            provenance.append(f"{key}≜{optional[key]}")
+    print(f"⟦Π:Provenance⟧{{{'; '.join(provenance)}}}")
+    print(
+        f"⟦Λ:Metrics⟧{{attempts≜{attempts}; solve_s≜{solve_s}; "
+        f"ended≜{format_utc_z(now)}}}"
+    )
+    print(f"⟦Σ:Artifact⟧{{sha≜{sha or '∅'}}}")
     print("⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩")
 
 
@@ -688,6 +725,8 @@ COMMANDS = {
     "prove-candidates": cmd_prove_candidates,
     "prove-claimable": cmd_prove_claimable,
     "render-index": cmd_render_index,
+    "run-id": cmd_run_id,
+    "render-run": cmd_render_run,
 }
 
 if len(sys.argv) < 2 or sys.argv[1] not in COMMANDS:
@@ -1598,6 +1637,7 @@ Fix the module so both pass. Write the corrected $target."
     fi
     if ! prove_target_only_changed "$prwt" "$target"; then
       log "provider path policy failed for $goal (attempt $attempt)"
+      PROOF_SOLVE_SECONDS=$(( $(date +%s) - proof_started ))
       return 1
     fi
     if [ ! -f "$prwt/$target" ]; then
@@ -1619,6 +1659,7 @@ Fix the module so both pass. Write the corrected $target."
     err="$( ( cd "$prwt" && lake build UnsorryLibrary --wfail \
       && lake exe axiom_audit "Unsorry.$camel" ) 2>&1 | tail -n 40 )"
   done
+  PROOF_SOLVE_SECONDS=$(( $(date +%s) - proof_started ))
   return 1
 }
 
@@ -1641,6 +1682,44 @@ write_binding_module() {
     if [ -n "$opens" ]; then printf '%s\n' "$opens"; fi
     printf 'theorem %s_binding_check : %s := %s\n' "$name" "$ftype" "$name"
   } > "$prwt/library/Unsorry/${camel}Binding.lean"
+}
+
+# Persist one terminal proof-run fact in the same PR as its durable outcome.
+# Infrastructure failures are deliberately excluded: they provide no evidence
+# about goal or model performance (ADR-016). Runs that fail before a provider
+# attempt are also omitted because attempts≜0 is not comparable telemetry.
+write_proof_run_record() {
+  local prwt="$1" goal="$2" outcome="$3" sha="${4:-}"
+  local run_id path
+  [ -n "$PROOF_ATTEMPTS_USED" ] || return 0
+  [ -n "$PROOF_SOLVE_SECONDS" ] || return 0
+  run_id="$(py_helper run-id)" || return 1
+  path="proof-runs/$goal.$AGENT_ID.$run_id.aisp"
+  mkdir -p "$prwt/proof-runs" || return 1
+  local -a optional=()
+  [ -n "$PROOF_MODEL_USED" ] && optional+=(--model "$PROOF_MODEL_USED")
+  [ -n "$PROOF_EFFORT_USED" ] && optional+=(--effort "$PROOF_EFFORT_USED")
+  py_helper render-run "$run_id" "$goal" "$AGENT_ID" "$outcome" \
+    "$SOLVER" "$UNSORRY_PROVIDER" "$PROOF_ATTEMPTS_USED" \
+    "$PROOF_SOLVE_SECONDS" "$sha" "${optional[@]}" > "$prwt/$path"
+}
+
+# A proof budget may be genuinely exhausted even when the subsequent
+# decomposition call hits infrastructure. Preserve that evidence without
+# applying the ADR-010 demotion or pretending decomposition completed.
+check_in_failed_run_only() {
+  local goal="$1" prwt branch
+  branch="$(feature_branch telemetry "$goal")" || return 1
+  prwt="$UNSORRY_WORKDIR/telemetry-${goal}-${AGENT_ID}"
+  open_pr_worktree "$prwt" "$branch" || return 1
+  if write_proof_run_record "$prwt" "$goal" failed; then
+    submit_pr_tree "$prwt" "$branch" \
+      "chore: record failed proof run for $goal by $AGENT_ID" \
+      "Automated terminal-run telemetry (ADR-023, SPEC-023-A): proof attempts for \`$goal\` exhausted their budget, but the subsequent decomposition call hit an infrastructure failure. This records the proof evidence only; it does not demote, block, or otherwise change the goal." \
+      proof-runs || true
+  fi
+  git worktree remove --force "$prwt" >/dev/null 2>&1 || true
+  git branch -q -D "$branch" >/dev/null 2>&1 || true
 }
 
 # Prove steps 7–9: on a verified proof, compute the goal's Lean-statement
@@ -1667,6 +1746,7 @@ check_in_proof() {
   mkdir -p "$prwt/library/index" || return 1
   py_helper render-index "$sha" "$goal" "$name" "${provenance[@]}" \
     > "$prwt/library/index/$sha.aisp" || return 1
+  write_proof_run_record "$prwt" "$goal" proved "$sha" || return 1
   py_helper rewrite-goal "$prwt/goals/$goal.aisp" proved "$sha" || return 1
   # ⊕ a merge reinforces the goal's pattern (+1 affinity, ADR-010); folds
   # into the same gated prove PR.
@@ -1679,7 +1759,7 @@ check_in_proof() {
   submit_pr_tree "$prwt" "$(git -C "$prwt" rev-parse --abbrev-ref HEAD)" \
     "prove($goal): $name by $AGENT_ID" \
     "Automated Phase-1 proof of goal \`$goal\` by agent \`$AGENT_ID\` (ADR-006, ADR-007, SPEC-007-A). New library module \`library/Unsorry/$camel.lean\` re-states and proves \`$name\`; built with \`lake build UnsorryLibrary --wfail\` and audited with \`lake exe axiom_audit Unsorry.$camel\` (whitelist only). Index entry keyed by the content address of the goal's Lean statement." \
-    library goals || return 1
+    library goals proof-runs || return 1
   emit_event proved "$goal"
   emit_event pr-opened "$goal"
   log "opened auto-merge prove PR for $goal (sha ${sha:0:12})"
@@ -1730,6 +1810,7 @@ prove_goal() {
       return 1
     fi
     if [ "$drc" -eq 2 ]; then
+      check_in_failed_run_only "$goal" || true
       log "infrastructure failure during decompose of $goal — no demote (ADR-016)"
       return 2
     fi
@@ -1884,10 +1965,11 @@ Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` 
     return 1
   fi
 
+  write_proof_run_record "$prwt" "$goal" decomposed || return 1
   if submit_pr_tree "$prwt" "$branch" \
       "decompose($goal): ${#sub_ids[@]} sub-lemmas by $AGENT_ID" \
       "Automated decomposition (ADR-009, SPEC-009-A): goal \`$goal\` resisted proof within budget, so it is split into ${#sub_ids[@]} claimable sub-lemmas (depth $((depth + 1))) and parked \`blocked\`. The parent re-opens once its subs are proved and still closes only through Gate A — the dependency edges are advisory, never a trust path." \
-      goals decompositions; then
+      goals decompositions proof-runs; then
     emit_event decomposed "$goal"
     git worktree remove --force "$prwt" >/dev/null 2>&1 || true
     git branch -q -D "$branch" >/dev/null 2>&1 || true
@@ -1909,10 +1991,12 @@ demote_goal() {
   prwt="$UNSORRY_WORKDIR/demote-${goal}-${AGENT_ID}"
   open_pr_worktree "$prwt" "$branch" || return 1
   if py_helper aff-bump "$prwt/goals/$goal.aisp" "$(py_helper aff-delta fail)"; then
-    submit_pr_tree "$prwt" "$branch" \
-      "affinity($goal): -10 after a failed prove attempt by $AGENT_ID" \
-      "Automated affinity penalty (ADR-010, SPEC-010-A): goal \`$goal\` resisted proof within budget, so its pattern is demoted by 10. Advisory queue state only — never trust-bearing." \
-      goals || true
+    if write_proof_run_record "$prwt" "$goal" failed; then
+      submit_pr_tree "$prwt" "$branch" \
+        "affinity($goal): -10 after a failed prove attempt by $AGENT_ID" \
+        "Automated affinity penalty (ADR-010, SPEC-010-A): goal \`$goal\` resisted proof within budget, so its pattern is demoted by 10. Advisory queue state only — never trust-bearing." \
+        goals proof-runs || true
+    fi
   fi
   git worktree remove --force "$prwt" >/dev/null 2>&1 || true
   git branch -q -D "$branch" >/dev/null 2>&1 || true
@@ -2677,6 +2761,20 @@ test_index_provenance_render() {
   fi
 }
 
+test_proof_run_render() {
+  local got run_id sha
+  run_id="20260613t120000000000z-1234abcd"
+  sha="$(printf 'a%.0s' {1..64})"
+  got="$(py_helper render-run "$run_id" proof-goal oma-2-c50d proved \
+    perttu codex 2 842 "$sha" --model gpt-5.1-codex --effort xhigh)"
+  grep -qF "⟦Ω:Run⟧{id≜$run_id; goal≜proof-goal; agent≜oma-2-c50d; outcome≜proved}" \
+    <<<"$got" || { log "  rendered proof-run identity is missing"; return 1; }
+  grep -qF '⟦Λ:Metrics⟧{attempts≜2; solve_s≜842; ended≜' \
+    <<<"$got" || { log "  rendered proof-run metrics are missing"; return 1; }
+  grep -qF "⟦Σ:Artifact⟧{sha≜$sha}" \
+    <<<"$got" || { log "  rendered proof-run artifact is missing"; return 1; }
+}
+
 # Set a prove goal's deps≜⟨⟩ to ⟨<csv>⟩ (test helper for gap ranking).
 set_goal_deps() {
   local file="$1" csv="$2"
@@ -3055,6 +3153,7 @@ run_self_tests() {
     test_goal_proved_rewrite
     test_render_index_gateb
     test_index_provenance_render
+    test_proof_run_render
     test_affinity_ranking
     test_gap_ranking
     test_viability_skip

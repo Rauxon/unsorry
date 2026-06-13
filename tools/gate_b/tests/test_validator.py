@@ -432,3 +432,53 @@ def test_index_optional_provenance_is_backward_compatible_and_validated(tmp_path
     path.write_text(text.replace("attempts≜2", "attempts≜zero"), encoding="utf-8")
     assert any(v.code == "GB019" and "attempts" in v.message
                for v in run_validate(tree))
+
+
+# ---------------------------------------------------------- proof-run records
+
+_RUN_ID = "20260613t120000000000z-1234abcd"
+
+
+def _write_proof_run(
+    tree: Path,
+    goal: str,
+    outcome: str,
+    *,
+    attempts: str = "2",
+    sha: str = "∅",
+) -> Path:
+    agent = "oma-2-c50d"
+    path = tree / "proof-runs" / f"{goal}.{agent}.{_RUN_ID}.aisp"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        f"𝔸5.1.run.{goal}.{agent}.{_RUN_ID}@2026-06-13\n"
+        "γ≔unsorry.proof.run\n"
+        f"⟦Ω:Run⟧{{id≜{_RUN_ID}; goal≜{goal}; agent≜{agent}; "
+        f"outcome≜{outcome}}}\n"
+        "⟦Π:Provenance⟧{solver≜perttu; provider≜codex; "
+        "model≜gpt-5.1-codex; effort≜xhigh}\n"
+        f"⟦Λ:Metrics⟧{{attempts≜{attempts}; solve_s≜90; "
+        "ended≜2026-06-13T12:00:00Z}\n"
+        f"⟦Σ:Artifact⟧{{sha≜{sha}}}\n"
+        "⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩\n",
+        encoding="utf-8",
+    )
+    return path
+
+
+def test_valid_proof_run_links_to_goal_and_proved_artifact(tmp_path):
+    tree = tmp_path / "t"
+    _write_goal(tree, "g1")
+    sha = _sub_sha(tree, "g1")
+    _write_index(tree, "g1", sha, name="g1")
+    _write_proof_run(tree, "g1", "proved", sha=sha)
+    assert not [v for v in run_validate(tree) if v.code == "GB020"]
+
+
+def test_failed_proof_run_requires_valid_attempts_and_empty_artifact(tmp_path):
+    tree = tmp_path / "t"
+    _write_goal(tree, "g1")
+    _write_proof_run(tree, "g1", "failed", attempts="zero", sha="a" * 64)
+    violations = [v for v in run_validate(tree) if v.code == "GB020"]
+    assert any("attempts" in v.message for v in violations)
+    assert any("requires sha≜∅" in v.message for v in violations)
