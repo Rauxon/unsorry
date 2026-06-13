@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Proof retries now remove the agent-generated statement-binding helper from a failed verification attempt before invoking the provider again, preventing the strict provider path guard from misclassifying `*Binding.lean` as a forbidden Codex edit.
+
 - Gate A's regenerated binding obligation (ADR-011/SPEC-011-A) now carries the goal file's top-level `open …` commands, so a goal stated under `open Finset` (bare `range`, batch-3 shape) elaborates in its own namespace context instead of failing with `Unknown identifier`. Same fix mirrored in the agent loop's local self-verify (`write_binding_module`, new `lean-opens` helper); shared parsing in `tools.lean_sig.open_lines`. Surfaced by PR #259 (`sum-range-pentagonal-closed-form`); also unblocks `sum-range-sq-mul-choose`
 
 ### Added
