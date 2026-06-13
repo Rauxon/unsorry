@@ -86,11 +86,11 @@ jobs:
 
       - name: Axiom audit (authoritative)
         if: needs.detect.outputs.lean == 'true'
-        run: python3 -m tools.gate_a.parallel_modules audit --jobs 4 --output axiom-report.json
+        run: python3 -m tools.gate_a.parallel_modules audit --jobs 2 --output axiom-report.json
 
       - name: Kernel replay (leanchecker)
         if: needs.detect.outputs.lean == 'true'
-        run: python3 -m tools.gate_a.parallel_modules replay --jobs 4
+        run: python3 -m tools.gate_a.parallel_modules replay --jobs 2
 
       - name: Audit self-test (gate cannot rot silently)
         if: needs.detect.outputs.lean == 'true'

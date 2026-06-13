@@ -26,7 +26,7 @@ Model edits are strictly target-bounded to minimize diff pollution and simplify 
 ## 4. Model Handling & Effort Policy
 
 Gemini model execution adheres to a progressive effort ladder and fallback policy optimized for mathematical proof search:
-- **Model Standard:** Defaults to `gemini-2.5-pro` for deep proof search and complex tactic synthesis.
+- **Model Standard:** Defaults to `gemini-3.1-pro-preview` for deep proof search and complex tactic synthesis.
 - **Progressive Effort Ladder:** Adapts calling parameters across multiple attempts (e.g., controlling temperature, token budgets, and search breadth on a scaling ladder similar to ADR-015).
 - **Graceful Degrade:** On CLI configurations that do not support dynamic effort flags, the provider gracefully falls back to standard parameter sets without interrupting the execution loop.
 
