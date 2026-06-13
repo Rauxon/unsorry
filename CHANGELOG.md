@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-06-13
+
+Headline: **trunk-discipline CI gates** — three new required checks make every PR's kind and scope unambiguous: PR-title conventions (ADR-026), proof/harness scope separation (ADR-027), and the spec-per-ADR protocol-compliance gate (ADR-028); plus a proposed domain-agnostic distributed-workload engine (ADR-030). On the reliability side: the Gate A leanchecker OOM is fixed by chunked-serial replay, decompose is now idempotent (no more re-decomposing a proved tree — the #364 euclid regression), CHANGELOG conflicts are gone via a `merge=union` driver, and the advisory aisp check no longer reddens every PR.
+
 ### Added
 
 - Proposed ADR-030/SPEC-030-A: a domain-agnostic distributed-workload engine with a narrow plugin seam (`workunit` schema; `generate`/`verify`/`decompose`/`assimilate`), so the swarm can be reused as a template for crowdsourced verifiable work ("SETI@home for verifiable work") with Lean as the first plugin. Captures the key distinction from SETI/BOINC — self-verifying results need no redundancy — via a verifiability spectrum (`VERIFIED`/`SCORED`/`CONSENSUS`). Status **Proposed** (design target, no implementation yet); deduplication, identity/anti-abuse, coordination-at-scale, and onboarding are called out as separate follow-up decisions.
