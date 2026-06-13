@@ -46,8 +46,8 @@ usage() {
   cat <<'EOF'
 Usage:
   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
-  ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex] [--dry-run]
-  ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai]
+  ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex|gemini|openai] [-pi [<model>]] [--dry-run]
+  ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai] [-pi [<model>]]
   ./swarm/agent.sh --self-test
 
 Flags:
@@ -55,11 +55,14 @@ Flags:
   --prove           Phase-1 mode: only phase≡prove, unproved goals are candidates
   --prove-local     Prove one goal from local HEAD without any remote, claim,
                     PR, or GitHub operation; auto-selects unless --goal is set
-  --provider <name> Proof provider: claude (default), codex, or local-only
-                    gemini/openai
+  --provider <name> Proof provider: claude (default), codex, gemini, or openai
   --once            Run exactly one cycle then exit
   --goal <id>       Restrict or override automatic selection to one goal
   --dry-run         Stop after selection: print the would-be claim, claim nothing
+  -pi [<model>]     Use pi-coder's ~/.pi/agent/models.json: resolve the model
+                    name/id (the optional <model> arg, else UNSORRY_MODEL) to its
+                    OpenAI-compatible endpoint+key and prove with it. Forces
+                    --provider openai (ADR-025)
   --self-test       Run the built-in hermetic tests and exit (0 green / 1 red)
 
 Requirement:
@@ -71,8 +74,12 @@ Environment:
   UNSORRY_SOLVER    GitHub handle credited for verified proofs (default: gh api user)
   UNSORRY_PROVIDER  Provider for --prove or --prove-local (default: claude)
   UNSORRY_MODEL     Model for claude calls (default: fable in --prove, else sonnet; ADR-013)
-                    For openai: gpt-4o (default), gpt-4o-mini, o1, o3-mini, etc.
+                    For openai: gpt-4o (default), gpt-4o-mini, o1, o3-mini, etc.;
+                    on a custom endpoint (OPENAI_BASE_URL / -pi) any model id
   OPENAI_API_KEY    Required when using openai provider
+  OPENAI_BASE_URL   OpenAI-compatible endpoint for local/self-hosted models
+                    (Ollama/vLLM/LM Studio/proxy). Bypasses the model allow-list;
+                    set by -pi from ~/.pi/agent/models.json (ADR-025)
   UNSORRY_EFFORT    Effort for proof-surface calls (default in --prove: the
                     ADR-015 ladder, attempts climb high→xhigh→max; a set value
                     pins every attempt; else unset; dropped fail-soft when the
@@ -1444,8 +1451,13 @@ cli_health_probe() {
         --output-format text >/dev/null 2>&1
       ;;
     openai)
+      # On a custom OpenAI-compatible endpoint (OPENAI_BASE_URL / -pi, ADR-025)
+      # the cheap default model won't exist; probe with the configured model so
+      # a real failure isn't misclassified as infrastructure (ADR-016).
+      local probe_model="gpt-4o-mini"
+      [ -n "${OPENAI_BASE_URL:-}" ] && probe_model="${UNSORRY_MODEL:-gpt-4o-mini}"
       timeout 90 python3 "$(dirname "$0")/../tools/llm_providers/openai_cli.py" \
-        -p "Reply with exactly: OK" --model gpt-4o-mini --output-format text >/dev/null 2>&1
+        -p "Reply with exactly: OK" --model "$probe_model" --output-format text >/dev/null 2>&1
       ;;
     *) return 1 ;;
   esac
@@ -1509,11 +1521,11 @@ call_gemini_prove() {
   local prompt="$1" workdir="$2" effort="$3"
   local -a eff=()
   [ -n "$effort" ] && eff=(--effort "$effort")
-  local model="${UNSORRY_MODEL:-gemini-2.5-pro}"
+  local model="${UNSORRY_MODEL:-gemini-3.1-pro-preview}"
   PROOF_MODEL_USED="$model"
   ( cd "$workdir" \
     && timeout "$UNSORRY_WALL" gemini --skip-trust --yolo --allowed-mcp-server-names none -p "$prompt" \
-         --model "$model" "${eff[@]}" --output-format text )
+         --model "$model" "${eff[@]}" --output-format text < /dev/null )
 }
 
 # OpenAI API provider for Unsorry
@@ -1601,20 +1613,36 @@ prepare_proof_attempt() {
 }
 
 # The provider receives a writable proof worktree, but the proof contract
-# permits exactly one changed path. Enforce that boundary after every model
-# call independently of provider-specific tool policy.
+# permits exactly one changed path: the target module. Enforce that boundary
+# after every model call independently of provider-specific tool policy.
+#
+# One tolerated exception keeps an otherwise-sound proof from being discarded
+# over provider litter: a ROOT-LEVEL untracked scratch file (some providers,
+# notably gemini, drop a `test.lean` beside the repo root despite the prompt).
+# It sits outside every Lean package glob (goals/, library/) and is never
+# staged for check-in, so it is removed and tolerated — soundness is unaffected
+# because a proof written into the wrong file still fails the missing-target
+# check, and a tracked-file edit or an untracked file inside any package / spec
+# / tooling tree remains a hard violation. (The agent loop's own
+# prove-attempt-*.log lives in the worktree too, but .gitignore keeps it out of
+# this status output rather than having it deleted here.)
 prove_target_only_changed() {
-  local root="$1" target="$2" line path
+  local root="$1" target="$2" line code path
   while IFS= read -r line; do
     [ -n "$line" ] || continue
+    code="${line:0:2}"
     path="${line:3}"
     case "$path" in
       *" -> "*) path="${path##* -> }" ;;
     esac
-    if [ "$path" != "$target" ]; then
-      log "provider changed forbidden path '$path' (only '$target' is allowed)"
-      return 1
+    [ "$path" = "$target" ] && continue
+    if [ "$code" = "??" ] && [ "$path" = "${path##*/}" ]; then
+      log "removed stray root-level provider file '$path' (only '$target' is the proof target)"
+      rm -f -- "$root/$path"
+      continue
     fi
+    log "provider changed forbidden path '$path' (only '$target' is allowed)"
+    return 1
   done < <(git -C "$root" status --porcelain=v1 --untracked-files=all)
 }
 
@@ -1718,7 +1746,8 @@ Fix the module so both pass. Write the corrected $target."
     fi
     prepare_proof_attempt "$prwt" "$target" "$binding"
     t0="$(date +%s)"
-    if ! call_provider_prove "$prompt" "$prwt" "$eff_tok" >/dev/null; then
+    log "running proof generation (logging to $prwt/prove-attempt-$attempt.log)..."
+    if ! call_provider_prove "$prompt" "$prwt" "$eff_tok" > "$prwt/prove-attempt-$attempt.log" 2>&1; then
       dur=$(( $(date +%s) - t0 ))
       # ADR-016: a call that died fast probably never reached the model.
       if [ "$dur" -lt "$UNSORRY_FASTFAIL" ]; then
@@ -2427,12 +2456,27 @@ test_prove_target_path_guard() {
   printf 'seed\n' > "$tmp/goals/g.lean"
   git -C "$tmp" add goals/g.lean || return 1
   git -C "$tmp" commit -q -m seed || return 1
+  # target-only edit passes.
   printf 'theorem goal : True := by trivial\n' > "$tmp/$target"
   prove_target_only_changed "$tmp" "$target" \
     || { log "  target-only edit was rejected"; return 1; }
+  # a root-level stray scratch file is removed and tolerated (e.g. gemini drops
+  # a test.lean beside the repo root) — the proof must not be discarded over it.
+  printf 'scratch\n' > "$tmp/test.lean"
+  prove_target_only_changed "$tmp" "$target" \
+    || { log "  root-level stray file was rejected"; return 1; }
+  [ -e "$tmp/test.lean" ] && { log "  stray root file was not cleaned up"; return 1; }
+  # an untracked file inside a package/spec tree is still a hard violation.
   printf 'forbidden\n' > "$tmp/goals/extra"
   if prove_target_only_changed "$tmp" "$target" >/dev/null 2>&1; then
-    log "  extra provider edit was accepted"
+    log "  untracked file in goals/ was accepted"
+    return 1
+  fi
+  rm -f "$tmp/goals/extra"
+  # modifying a tracked file is a hard violation.
+  printf 'tampered\n' > "$tmp/goals/g.lean"
+  if prove_target_only_changed "$tmp" "$target" >/dev/null 2>&1; then
+    log "  tracked-file modification was accepted"
     return 1
   fi
 }
@@ -3383,12 +3427,34 @@ ONCE=0
 GOAL_FILTER=""
 DRY_RUN=0
 SELF_TEST=0
+PI_MODE=0
 UNSORRY_PROVIDER="${UNSORRY_PROVIDER:-claude}"
 SOLVER=""
 PROOF_MODEL_USED=""
 PROOF_EFFORT_USED=""
 PROOF_ATTEMPTS_USED=""
 PROOF_SOLVE_SECONDS=""
+
+# -pi (ADR-025): source endpoint/key/model from pi-coder's ~/.pi/agent/models.json
+# by the existing UNSORRY_MODEL name, then drive the OpenAI-compatible path. The
+# seam to the existing OpenAI provider is environment variables only — this sets
+# OPENAI_BASE_URL / OPENAI_API_KEY / UNSORRY_PROVIDER=openai / UNSORRY_MODEL=<id>
+# and the rest of the run is provider-openai with a custom base_url.
+resolve_pi_config() {
+  [ -n "${UNSORRY_MODEL:-}" ] \
+    || die_config "-pi requires a model name (as '-pi <model>' or UNSORRY_MODEL — the name/id in ~/.pi/agent/models.json)"
+  local out
+  out="$(python3 "$(dirname "$0")/../tools/llm_providers/pi_config.py" \
+           resolve --model "$UNSORRY_MODEL" 2>&1)" \
+    || die_config "-pi: $out"
+  # three lines, in the order pi_config.main() prints them
+  OPENAI_BASE_URL="$(printf '%s\n' "$out" | sed -n '1p')"
+  OPENAI_API_KEY="$(printf '%s\n' "$out" | sed -n '2p')"
+  UNSORRY_MODEL="$(printf '%s\n' "$out" | sed -n '3p')"
+  export OPENAI_BASE_URL OPENAI_API_KEY
+  UNSORRY_PROVIDER=openai
+  log "-pi: provider=openai model=$UNSORRY_MODEL base_url=$OPENAI_BASE_URL"
+}
 
 parse_args() {
   while [ $# -gt 0 ]; do
@@ -3408,6 +3474,16 @@ parse_args() {
         shift
         ;;
       --dry-run) DRY_RUN=1 ;;
+      -pi)
+        PI_MODE=1
+        # Optional model argument: `-pi <model>` sets the model to resolve from
+        # ~/.pi/agent/models.json (else falls back to UNSORRY_MODEL). The next
+        # token is taken only when it is not another flag.
+        if [ $# -ge 2 ] && [ "${2#-}" = "$2" ]; then
+          UNSORRY_MODEL="$2"
+          shift
+        fi
+        ;;
       --self-test) SELF_TEST=1 ;;
       -h|--help)
         usage
@@ -3514,6 +3590,12 @@ main() {
   [ "$TRANSLATE_ONLY" -eq 1 ] || [ "$PROVE" -eq 1 ] \
     || die_config "select a mode: --translate-only or --prove (or --self-test)"
 
+  # -pi resolves to provider=openai with a custom base_url before provider
+  # validation and before either prove branch, so both modes inherit it.
+  if [ "${PI_MODE:-0}" -eq 1 ]; then
+    resolve_pi_config
+  fi
+
   if [ -n "$GOAL_FILTER" ]; then
     py_helper is-id "$GOAL_FILTER" \
       || die_config "--goal '$GOAL_FILTER' violates the Id grammar"
@@ -3582,17 +3664,14 @@ main() {
   if [ "$PROVE" -eq 0 ] && [ "$UNSORRY_PROVIDER" != claude ]; then
     die_config "--provider $UNSORRY_PROVIDER is supported only with --prove or --prove-local"
   fi
-  if [ "$UNSORRY_PROVIDER" = gemini ] || [ "$UNSORRY_PROVIDER" = openai ]; then
-    die_config "--provider $UNSORRY_PROVIDER is currently supported only with --prove-local"
-  fi
   require_unsorry_origin
   require_main_checkout
 
   # ADR-013/ADR-015: Claude keeps its mode-specific model/effort resolver.
-  # Codex uses its configured default model unless explicitly overridden and
-  # maps the prove ladder to medium→high→xhigh.
+  # Codex, Gemini, and OpenAI use their default models unless overridden and
+  # map the prove ladder.
   local mode; [ "$PROVE" -eq 1 ] && mode=prove || mode=translate
-  if [ "$UNSORRY_PROVIDER" = codex ]; then
+  if [ "$UNSORRY_PROVIDER" = codex ] || [ "$UNSORRY_PROVIDER" = gemini ] || [ "$UNSORRY_PROVIDER" = openai ]; then
     UNSORRY_MODEL="${UNSORRY_MODEL:-}"
     UNSORRY_EFFORT="${UNSORRY_EFFORT:-ladder}"
   else
@@ -3632,6 +3711,11 @@ main() {
         PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.elan/bin:$PATH"
         export PATH
         require_cmd codex
+        ;;
+      gemini)
+        PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.elan/bin:$PATH"
+        export PATH
+        require_cmd gemini
         ;;
     esac
     gh auth status >/dev/null 2>&1 || die_config "gh is not authenticated"

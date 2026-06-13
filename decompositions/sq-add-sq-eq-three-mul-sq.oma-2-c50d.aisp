@@ -1,0 +1,14 @@
+𝔸5.1.decomp.sq-add-sq-eq-three-mul-sq.oma-2-c50d@2026-06-13
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜sq-add-sq-eq-three-mul-sq; agent≜oma-2-c50d}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜sq-add-sq-eq-three-mul-sq-s1,sha≜0e04d60940ee055bf8867921a5a818713830c381653f853c22a9079cf835aed2⟩
+  sub₂≜⟨id≜sq-add-sq-eq-three-mul-sq-s2,sha≜ae1ab2e1dafd58fcd72aa5ed785e58b04a82de971eda0fffeda083df09dc900b⟩
+  sub₃≜⟨id≜sq-add-sq-eq-three-mul-sq-s3,sha≜a208dffb482ae3af6231be1033876d233bcd63364da694db9217824ff190e168⟩
+  sub₄≜⟨id≜sq-add-sq-eq-three-mul-sq-s4,sha≜e2ef781120694ca39335ec14e32f1d9edfd27660427b318132b9957589f1bb30⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent); Post(sub₄)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

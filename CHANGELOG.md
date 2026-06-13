@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-06-13
+
+Headline: **OpenAI-compatible local endpoints + pi-coder config (ADR-025)** — the swarm can now prove against any OpenAI Chat-Completions-compatible server (Ollama / vLLM / LM Studio / a proxy or a local model) via `OPENAI_BASE_URL`, with a `-pi [<model>]` flag that sources the endpoint/key/model from pi-coder's `~/.pi/agent/models.json`. Plus the prove-path-guard fix that had been blocking all proof merges. The sourced target batches in this window are content, not release-worthy on their own, and are listed for the record.
+
+### Fixed
+
+- Prove path guard no longer discards a sound proof over harness or provider litter — a regression that blocked **all** proof merges after the in-worktree attempt log was introduced (#292). The agent loop writes `prove-attempt-<n>.log` into the proof worktree, which `prove_target_only_changed` then flagged as a forbidden path; `prove-attempt-*.log` is now gitignored so the loop's own log is invisible to the guard (and preserved on disk for inspection). Additionally, a root-level untracked scratch file (e.g. the stray `test.lean` some providers, notably gemini, drop beside the repo root) is removed and tolerated. Edits to tracked files and untracked files inside any package/spec/tooling tree remain hard violations, and a proof written into the wrong file still fails the missing-target check — so soundness is unchanged.
+
+### Added
+
+- OpenAI-compatible local endpoints and pi-coder config (ADR-025/SPEC-025-A): the OpenAI provider now honours `OPENAI_BASE_URL` and accepts arbitrary model ids on a custom endpoint, so any OpenAI Chat-Completions-compatible server (Ollama / vLLM / LM Studio or a proxy) can drive proving and translation. A new `-pi [<model>]` flag on `./swarm/agent.sh` sources the endpoint, key, and model from pi-coder's `~/.pi/agent/models.json` by the model name/id (the optional `-pi <model>` argument, else `UNSORRY_MODEL`), via a pure-stdlib resolver `tools/llm_providers/pi_config.py`, and works in both `--prove-local` and coordinated `--prove`. New hermetic tests under `tools/llm_providers/tests/` run in CI (gate-b). Kernel re-verification (Gate A) remains the only trust input, independent of endpoint. Limitation: the `--prove` tool loop needs a function-calling-capable model; translation works on any model.
+
+- Sourced target batches 5–9 (ADR-012) — 17 new open goals, each compounding on already-proved library lemmas; every identity numerically verified before sourcing, type-checked against pinned mathlib (rev c5ea00351c28), and machine-absence-checked:
+  - **Faulhaber-in-T** (batch 5): power sums as polynomials in the triangular number T=∑k — `sum-range-sq-triangular-form`, `sum-range-pow-four-triangular-form`, `sum-range-pow-five-faulhaber-triangular`, `sum-range-pow-seven-faulhaber-triangular`. The p=5 and p=7 rungs sum to the power-tower crown (3∑k⁵+3∑k⁷ = 6T⁴).
+  - **Fourth-power congruences** (batch 6): `odd-fourth-power-mod-sixteen`, `fourth-power-mod-three`, `fourth-power-mod-five` → root `prime-fourth-power-mod-240` (p>5 prime → p⁴≡1 mod 240) — a depth-2 tree extending the proved 24∣p²−1 chain one power up.
+  - **Binomial moments** (batch 7): `sum-range-cube-mul-choose`, `sum-range-fall-mul-choose`, `sum-range-choose-mul-two-pow` — compounding on the proved `sum-range-sq-mul-choose`.
+  - **Triangular-number gems** (batch 8): `eight-triangular-add-one-eq-odd-sq`, `consecutive-triangular-eq-square`, `cube-eq-triangular-sq-diff` — compounding on the Gauss sum / Nicomachus.
+  - **Compositeness via factorization** (batch 9): `pow-four-add-sq-add-one-factor` → `pow-four-add-sq-add-one-not-prime`, plus `one-add-four-b-fourth-not-prime` — paralleling the proved `not-prime-pow-four-add-four`.
+  - The gate dropped four from-memory duplicates already in mathlib (`sum_range_choose_sq`, the Sophie Germain identity, fib partial sums, Cassini) — the ADR-012 Nicomachus discipline working as designed. Board: 24 open / 61 proved / 86 total.
+
 ## [1.7.0] - 2026-06-13
 
 Catch-up release folding in the feature and infrastructure work merged since v1.6.2: heterogeneous proof providers (Codex coordinated; Gemini and the OpenAI API local-only), the proof-provenance leaderboard and cross-cycle lesson memory, and two Gate A fixes plus an agent claim-race fix. The sourced target batches and individual proofs in this window are content, not release-worthy on their own, and are listed here only for the record.
