@@ -1,9 +1,9 @@
-𝔸5.1.goal.euclid-perfect-numbers-s6@2026-06-12
+𝔸5.1.goal.euclid-perfect-numbers-s6@2026-06-13
 γ≔unsorry.goal
 ⟦Ω:Goal⟧{
   id≜euclid-perfect-numbers-s6
   phase≜prove
-  status≜proved
+  status≜open
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,8 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/euclid-perfect-numbers-s6.lean
-  sha≜5ad776c14c271e31f5ea863669d5adc15275c6494767bfb611a6e821da389ede
-  aff≜1
+  sha≜∅
   depth≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜euclid-perfect-numbers
   phase≜prove
-  status≜open
+  status≜blocked
   difficulty≜3
 }
 ⟦Σ:Source⟧{

@@ -1,0 +1,9 @@
+𝔸5.1.run.euclid-perfect-numbers.oma-2-c50d.20260613t161401192575z-e48a558d@2026-06-13
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260613t161401192575z-e48a558d; goal≜euclid-perfect-numbers; agent≜oma-2-c50d; outcome≜decomposed}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜euclid-perfect-numbers}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜927; ended≜2026-06-13T16:14:01Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜⚠ [8564/8566] Replaying Unsorry.EuclidPerfectNumbersBinding trace: .> LEAN_PATH=/Users/perttu/.unsorry/work/prove-euclid-perfect-numbers-oma-2-c50d/.lake/packages/Cli/.lake/build/lib/lean:/Users/perttu/.unsorry/work/prove-euclid-perfect-numbers-oma-2-c50d/.lake/packages/batteries}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
