@@ -1,0 +1,7 @@
+𝔸5.1.run.sum-range-cube-mul-choose.p3-b1.20260613t134600451135z-f8a20e52@2026-06-13
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260613t134600451135z-f8a20e52; goal≜sum-range-cube-mul-choose; agent≜p3-b1; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜556; ended≜2026-06-13T13:46:00Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜5cf1cc9f3fe556fea6bbede7c85c34fbdbcdecec308d7b1eda8a329d0ea68e27}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

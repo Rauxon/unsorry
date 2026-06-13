@@ -1,0 +1,8 @@
+𝔸5.1.lemma.6966eb26f194@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜6966eb26f19411aab291d60d30ab126aec253f0efc358a38dad8246b0c7342fd; goal≜pow-four-add-sq-add-one-factor; name≜pow_four_add_sq_add_one_factor}
+⟦Σ:Source⟧{src≜goals/pow-four-add-sq-add-one-factor.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-b1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜202}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

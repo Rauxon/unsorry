@@ -28,8 +28,14 @@ jobs:
           pytest tools/llm_providers -q
 
   aisp-advisory:
-    # Advisory cross-check with the upstream generic AISP validator,
-    # pinned at 0.3.0 (ADR-003). Never blocks: continue-on-error.
+    # Advisory cross-check with the upstream generic AISP validator, pinned at
+    # 0.3.0 (ADR-003). Never blocks: continue-on-error at the job level. The
+    # swarm contract is validated strictly (a real, if non-blocking, signal); the
+    # per-record loop is advisory-only and never reddens the check, because the
+    # in-repo Gate B is the load-bearing validator and our coordination records
+    # legitimately carry shapes newer than 0.3.0 (e.g. the ADR-024 ⟦Δ:Lesson⟧
+    # block) that the pinned upstream rejects. Resolving that drift (upstream the
+    # block or bump the pin) is tracked in issue #318.
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -39,16 +45,21 @@ jobs:
           node-version: "20"
       - name: Validate swarm contract
         run: npx --yes aisp-validator@0.3.0 validate swarm/protocol.aisp
-      - name: Validate coordination records
+      - name: Validate coordination records (advisory; never reddens the check)
         run: |
-          found=0
+          found=0 flagged=0
           while IFS= read -r -d '' record; do
             found=1
             echo "::group::${record}"
-            npx --yes aisp-validator@0.3.0 validate "${record}"
+            npx --yes aisp-validator@0.3.0 validate "${record}" || {
+              flagged=$((flagged + 1))
+              echo "  advisory: upstream validator flagged this record (ADR-003 / issue #318)"
+            }
             echo "::endgroup::"
           done < <(find goals translations decompositions library/index proof-runs \
                      -name '*.aisp' -type f -print0 2>/dev/null)
           if [ "${found}" -eq 0 ]; then
             echo "no coordination records on this tree — nothing to validate"
+          elif [ "${flagged}" -gt 0 ]; then
+            echo "advisory: ${flagged} record(s) flagged by upstream aisp-validator@0.3.0 — non-blocking (ADR-003); see issue #318"
           fi

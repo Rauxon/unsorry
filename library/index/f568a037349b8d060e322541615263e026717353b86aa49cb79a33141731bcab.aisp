@@ -1,0 +1,8 @@
+𝔸5.1.lemma.f568a037349b@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜f568a037349b8d060e322541615263e026717353b86aa49cb79a33141731bcab; goal≜one-add-four-b-fourth-not-prime; name≜one_add_four_b_fourth_not_prime}
+⟦Σ:Source⟧{src≜goals/one-add-four-b-fourth-not-prime.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-a1; provider≜claude; model≜opus; effort≜xhigh; attempts≜2; solve_s≜547}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

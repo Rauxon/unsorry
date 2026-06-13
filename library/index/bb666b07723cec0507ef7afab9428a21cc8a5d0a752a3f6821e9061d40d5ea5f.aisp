@@ -1,0 +1,8 @@
+𝔸5.1.lemma.bb666b07723c@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜bb666b07723cec0507ef7afab9428a21cc8a5d0a752a3f6821e9061d40d5ea5f; goal≜eight-triangular-add-one-eq-odd-sq; name≜eight_triangular_add_one_eq_odd_sq}
+⟦Σ:Source⟧{src≜goals/eight-triangular-add-one-eq-odd-sq.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-a1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜238}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

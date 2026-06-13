@@ -1,0 +1,7 @@
+𝔸5.1.run.consecutive-triangular-eq-square.p3-b1.20260613t140045923690z-ceac7cac@2026-06-13
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260613t140045923690z-ceac7cac; goal≜consecutive-triangular-eq-square; agent≜p3-b1; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜256; ended≜2026-06-13T14:00:45Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜bdee60636207e29a4cece20e18aa05bf8bd265a7bfd25686452d7fe95562f1f4}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

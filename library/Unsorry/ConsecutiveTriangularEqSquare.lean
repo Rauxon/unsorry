@@ -1,0 +1,14 @@
+import Mathlib.Algebra.BigOperators.Intervals
+import Mathlib.Tactic.Ring
+
+theorem consecutive_triangular_eq_square (n : ℕ) :
+    (∑ i ∈ Finset.range (n + 1), i) + (∑ i ∈ Finset.range n, i) = n ^ 2 := by
+  induction n with
+  | zero => simp
+  | succ k ih =>
+    have e1 : (∑ i ∈ Finset.range (k + 1 + 1), i)
+        = (∑ i ∈ Finset.range (k + 1), i) + (k + 1) := Finset.sum_range_succ _ _
+    have e2 : (∑ i ∈ Finset.range (k + 1), i)
+        = (∑ i ∈ Finset.range k, i) + k := Finset.sum_range_succ _ _
+    have hk : (k + 1) ^ 2 = k ^ 2 + 2 * k + 1 := by ring
+    omega

@@ -1,0 +1,8 @@
+𝔸5.1.lemma.bdee60636207@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜bdee60636207e29a4cece20e18aa05bf8bd265a7bfd25686452d7fe95562f1f4; goal≜consecutive-triangular-eq-square; name≜consecutive_triangular_eq_square}
+⟦Σ:Source⟧{src≜goals/consecutive-triangular-eq-square.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-b1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜256}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
