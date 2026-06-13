@@ -231,11 +231,13 @@ def main():
     parser.add_argument("--workdir", help="Working directory for file operations")
     parser.add_argument("--tools", help="Comma-separated list of allowed tools")
     parser.add_argument("--allowedTools", dest="allowed_tools", help="Allowed tools (alias)")
-    
+    parser.add_argument("--base-url", default=os.environ.get("OPENAI_BASE_URL"),
+                        help="OpenAI-compatible base URL (overrides OPENAI_BASE_URL env; ADR-025)")
+
     args = parser.parse_args()
-    
+
     try:
-        provider = OpenAIProvider()
+        provider = OpenAIProvider(base_url=args.base_url)
         workdir = args.workdir or os.getcwd()
         
         if args.prove:

@@ -21,6 +21,11 @@ jobs:
         run: pytest tools/gate_b -q
       - name: Validate repository tree
         run: python3 -m tools.gate_b validate .
+      - name: LLM provider tests (ADR-025)
+        # The OpenAI provider imports `requests`; the resolver tests are pure stdlib.
+        run: |
+          pip install -r tools/llm_providers/requirements.txt
+          pytest tools/llm_providers -q
 
   aisp-advisory:
     # Advisory cross-check with the upstream generic AISP validator,

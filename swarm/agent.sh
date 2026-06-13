@@ -46,8 +46,8 @@ usage() {
   cat <<'EOF'
 Usage:
   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
-  ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex] [--dry-run]
-  ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai]
+  ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex|gemini|openai] [-pi] [--dry-run]
+  ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai] [-pi]
   ./swarm/agent.sh --self-test
 
 Flags:
@@ -55,11 +55,13 @@ Flags:
   --prove           Phase-1 mode: only phase≡prove, unproved goals are candidates
   --prove-local     Prove one goal from local HEAD without any remote, claim,
                     PR, or GitHub operation; auto-selects unless --goal is set
-  --provider <name> Proof provider: claude (default), codex, or local-only
-                    gemini/openai
+  --provider <name> Proof provider: claude (default), codex, gemini, or openai
   --once            Run exactly one cycle then exit
   --goal <id>       Restrict or override automatic selection to one goal
   --dry-run         Stop after selection: print the would-be claim, claim nothing
+  -pi               Use pi-coder's ~/.pi/agent/models.json: resolve UNSORRY_MODEL
+                    (a model name/id there) to its OpenAI-compatible endpoint+key
+                    and prove with it. Forces --provider openai (ADR-025)
   --self-test       Run the built-in hermetic tests and exit (0 green / 1 red)
 
 Requirement:
@@ -71,8 +73,12 @@ Environment:
   UNSORRY_SOLVER    GitHub handle credited for verified proofs (default: gh api user)
   UNSORRY_PROVIDER  Provider for --prove or --prove-local (default: claude)
   UNSORRY_MODEL     Model for claude calls (default: fable in --prove, else sonnet; ADR-013)
-                    For openai: gpt-4o (default), gpt-4o-mini, o1, o3-mini, etc.
+                    For openai: gpt-4o (default), gpt-4o-mini, o1, o3-mini, etc.;
+                    on a custom endpoint (OPENAI_BASE_URL / -pi) any model id
   OPENAI_API_KEY    Required when using openai provider
+  OPENAI_BASE_URL   OpenAI-compatible endpoint for local/self-hosted models
+                    (Ollama/vLLM/LM Studio/proxy). Bypasses the model allow-list;
+                    set by -pi from ~/.pi/agent/models.json (ADR-025)
   UNSORRY_EFFORT    Effort for proof-surface calls (default in --prove: the
                     ADR-015 ladder, attempts climb high→xhigh→max; a set value
                     pins every attempt; else unset; dropped fail-soft when the
@@ -1444,8 +1450,13 @@ cli_health_probe() {
         --output-format text >/dev/null 2>&1
       ;;
     openai)
+      # On a custom OpenAI-compatible endpoint (OPENAI_BASE_URL / -pi, ADR-025)
+      # the cheap default model won't exist; probe with the configured model so
+      # a real failure isn't misclassified as infrastructure (ADR-016).
+      local probe_model="gpt-4o-mini"
+      [ -n "${OPENAI_BASE_URL:-}" ] && probe_model="${UNSORRY_MODEL:-gpt-4o-mini}"
       timeout 90 python3 "$(dirname "$0")/../tools/llm_providers/openai_cli.py" \
-        -p "Reply with exactly: OK" --model gpt-4o-mini --output-format text >/dev/null 2>&1
+        -p "Reply with exactly: OK" --model "$probe_model" --output-format text >/dev/null 2>&1
       ;;
     *) return 1 ;;
   esac
@@ -3384,12 +3395,34 @@ ONCE=0
 GOAL_FILTER=""
 DRY_RUN=0
 SELF_TEST=0
+PI_MODE=0
 UNSORRY_PROVIDER="${UNSORRY_PROVIDER:-claude}"
 SOLVER=""
 PROOF_MODEL_USED=""
 PROOF_EFFORT_USED=""
 PROOF_ATTEMPTS_USED=""
 PROOF_SOLVE_SECONDS=""
+
+# -pi (ADR-025): source endpoint/key/model from pi-coder's ~/.pi/agent/models.json
+# by the existing UNSORRY_MODEL name, then drive the OpenAI-compatible path. The
+# seam to the existing OpenAI provider is environment variables only — this sets
+# OPENAI_BASE_URL / OPENAI_API_KEY / UNSORRY_PROVIDER=openai / UNSORRY_MODEL=<id>
+# and the rest of the run is provider-openai with a custom base_url.
+resolve_pi_config() {
+  [ -n "${UNSORRY_MODEL:-}" ] \
+    || die_config "-pi requires a model name via UNSORRY_MODEL (the name/id in ~/.pi/agent/models.json)"
+  local out
+  out="$(python3 "$(dirname "$0")/../tools/llm_providers/pi_config.py" \
+           resolve --model "$UNSORRY_MODEL" 2>&1)" \
+    || die_config "-pi: $out"
+  # three lines, in the order pi_config.main() prints them
+  OPENAI_BASE_URL="$(printf '%s\n' "$out" | sed -n '1p')"
+  OPENAI_API_KEY="$(printf '%s\n' "$out" | sed -n '2p')"
+  UNSORRY_MODEL="$(printf '%s\n' "$out" | sed -n '3p')"
+  export OPENAI_BASE_URL OPENAI_API_KEY
+  UNSORRY_PROVIDER=openai
+  log "-pi: provider=openai model=$UNSORRY_MODEL base_url=$OPENAI_BASE_URL"
+}
 
 parse_args() {
   while [ $# -gt 0 ]; do
@@ -3409,6 +3442,7 @@ parse_args() {
         shift
         ;;
       --dry-run) DRY_RUN=1 ;;
+      -pi) PI_MODE=1 ;;
       --self-test) SELF_TEST=1 ;;
       -h|--help)
         usage
@@ -3514,6 +3548,12 @@ main() {
   fi
   [ "$TRANSLATE_ONLY" -eq 1 ] || [ "$PROVE" -eq 1 ] \
     || die_config "select a mode: --translate-only or --prove (or --self-test)"
+
+  # -pi resolves to provider=openai with a custom base_url before provider
+  # validation and before either prove branch, so both modes inherit it.
+  if [ "${PI_MODE:-0}" -eq 1 ]; then
+    resolve_pi_config
+  fi
 
   if [ -n "$GOAL_FILTER" ]; then
     py_helper is-id "$GOAL_FILTER" \
