@@ -1,0 +1,8 @@
+𝔸5.1.lemma.83626e8d3b39@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜83626e8d3b39be6c229eb83469a138c066c4d88e57b6e56bcd5b1e7424a530f9; goal≜fourth-power-mod-five-s1; name≜fourth_power_mod_five_reduce}
+⟦Σ:Source⟧{src≜goals/fourth-power-mod-five-s1.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-a1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜388}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
