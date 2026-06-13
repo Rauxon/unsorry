@@ -1,0 +1,7 @@
+𝔸5.1.run.fourth-power-mod-five.p3-a1.20260613t124224285154z-13cc13d6@2026-06-13
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260613t124224285154z-13cc13d6; goal≜fourth-power-mod-five; agent≜p3-a1; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜xhigh}
+⟦Λ:Metrics⟧{attempts≜2; solve_s≜1071; ended≜2026-06-13T12:42:24Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜eae2747eca614d2d8cbd997f59d40dd4a2c597fa37a6c71ba446143571267f8e}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
