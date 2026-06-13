@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-pow-five-add-pow-seven
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜4
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/sum-range-pow-five-add-pow-seven.lean
-  sha≜∅
+  sha≜5eef0bff85cd4b8b9ddd4314c88126e935e21b70aa76c5bee783fbb06451b7e0
+  aff≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
