@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- The advisory `aisp-advisory` check no longer reddens every PR. Its per-record loop validated the whole `.aisp` tree with the pinned upstream `aisp-validator@0.3.0` and aborted on the first record carrying a shape newer than 0.3.0 (the ADR-024 `⟦Δ:Lesson⟧` proof-run block), so the job went red on every PR even when the PR did not touch coordination records. The per-record loop is now advisory-only (it logs which records the upstream flags and how many, but never fails the step), while the swarm-contract validation stays strict. Still non-blocking (ADR-003); the in-repo Gate B remains the load-bearing validator. Resolving the upstream drift is tracked in #318.
+
 ## [1.8.0] - 2026-06-13
 
 Headline: **OpenAI-compatible local endpoints + pi-coder config (ADR-025)** — the swarm can now prove against any OpenAI Chat-Completions-compatible server (Ollama / vLLM / LM Studio / a proxy or a local model) via `OPENAI_BASE_URL`, with a `-pi [<model>]` flag that sources the endpoint/key/model from pi-coder's `~/.pi/agent/models.json`. Plus the prove-path-guard fix that had been blocking all proof merges. The sourced target batches in this window are content, not release-worthy on their own, and are listed for the record.
