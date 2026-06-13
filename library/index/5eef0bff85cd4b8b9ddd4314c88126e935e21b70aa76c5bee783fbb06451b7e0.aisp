@@ -1,0 +1,8 @@
+𝔸5.1.lemma.5eef0bff85cd@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜5eef0bff85cd4b8b9ddd4314c88126e935e21b70aa76c5bee783fbb06451b7e0; goal≜sum-range-pow-five-add-pow-seven; name≜sum_range_pow_five_add_pow_seven}
+⟦Σ:Source⟧{src≜goals/sum-range-pow-five-add-pow-seven.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-a1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜342}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
