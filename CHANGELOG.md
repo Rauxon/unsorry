@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Prove path guard no longer discards a sound proof over harness or provider litter — a regression that blocked **all** proof merges after the in-worktree attempt log was introduced (#292). The agent loop writes `prove-attempt-<n>.log` into the proof worktree, which `prove_target_only_changed` then flagged as a forbidden path; `prove-attempt-*.log` is now gitignored so the loop's own log is invisible to the guard (and preserved on disk for inspection). Additionally, a root-level untracked scratch file (e.g. the stray `test.lean` some providers, notably gemini, drop beside the repo root) is removed and tolerated. Edits to tracked files and untracked files inside any package/spec/tooling tree remain hard violations, and a proof written into the wrong file still fails the missing-target check — so soundness is unchanged.
+
 ### Added
 
 - OpenAI-compatible local endpoints and pi-coder config (ADR-025/SPEC-025-A): the OpenAI provider now honours `OPENAI_BASE_URL` and accepts arbitrary model ids on a custom endpoint, so any OpenAI Chat-Completions-compatible server (Ollama / vLLM / LM Studio or a proxy) can drive proving and translation. A new `-pi` toggle on `./swarm/agent.sh` sources the endpoint, key, and model from pi-coder's `~/.pi/agent/models.json` by the existing `UNSORRY_MODEL` name (DRY — no new model flag), via a pure-stdlib resolver `tools/llm_providers/pi_config.py`, and works in both `--prove-local` and coordinated `--prove`. New hermetic tests under `tools/llm_providers/tests/` run in CI (gate-b). Kernel re-verification (Gate A) remains the only trust input, independent of endpoint. Limitation: the `--prove` tool loop needs a function-calling-capable model; translation works on any model.

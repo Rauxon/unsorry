@@ -1612,20 +1612,36 @@ prepare_proof_attempt() {
 }
 
 # The provider receives a writable proof worktree, but the proof contract
-# permits exactly one changed path. Enforce that boundary after every model
-# call independently of provider-specific tool policy.
+# permits exactly one changed path: the target module. Enforce that boundary
+# after every model call independently of provider-specific tool policy.
+#
+# One tolerated exception keeps an otherwise-sound proof from being discarded
+# over provider litter: a ROOT-LEVEL untracked scratch file (some providers,
+# notably gemini, drop a `test.lean` beside the repo root despite the prompt).
+# It sits outside every Lean package glob (goals/, library/) and is never
+# staged for check-in, so it is removed and tolerated — soundness is unaffected
+# because a proof written into the wrong file still fails the missing-target
+# check, and a tracked-file edit or an untracked file inside any package / spec
+# / tooling tree remains a hard violation. (The agent loop's own
+# prove-attempt-*.log lives in the worktree too, but .gitignore keeps it out of
+# this status output rather than having it deleted here.)
 prove_target_only_changed() {
-  local root="$1" target="$2" line path
+  local root="$1" target="$2" line code path
   while IFS= read -r line; do
     [ -n "$line" ] || continue
+    code="${line:0:2}"
     path="${line:3}"
     case "$path" in
       *" -> "*) path="${path##* -> }" ;;
     esac
-    if [ "$path" != "$target" ]; then
-      log "provider changed forbidden path '$path' (only '$target' is allowed)"
-      return 1
+    [ "$path" = "$target" ] && continue
+    if [ "$code" = "??" ] && [ "$path" = "${path##*/}" ]; then
+      log "removed stray root-level provider file '$path' (only '$target' is the proof target)"
+      rm -f -- "$root/$path"
+      continue
     fi
+    log "provider changed forbidden path '$path' (only '$target' is allowed)"
+    return 1
   done < <(git -C "$root" status --porcelain=v1 --untracked-files=all)
 }
 
@@ -2439,12 +2455,27 @@ test_prove_target_path_guard() {
   printf 'seed\n' > "$tmp/goals/g.lean"
   git -C "$tmp" add goals/g.lean || return 1
   git -C "$tmp" commit -q -m seed || return 1
+  # target-only edit passes.
   printf 'theorem goal : True := by trivial\n' > "$tmp/$target"
   prove_target_only_changed "$tmp" "$target" \
     || { log "  target-only edit was rejected"; return 1; }
+  # a root-level stray scratch file is removed and tolerated (e.g. gemini drops
+  # a test.lean beside the repo root) — the proof must not be discarded over it.
+  printf 'scratch\n' > "$tmp/test.lean"
+  prove_target_only_changed "$tmp" "$target" \
+    || { log "  root-level stray file was rejected"; return 1; }
+  [ -e "$tmp/test.lean" ] && { log "  stray root file was not cleaned up"; return 1; }
+  # an untracked file inside a package/spec tree is still a hard violation.
   printf 'forbidden\n' > "$tmp/goals/extra"
   if prove_target_only_changed "$tmp" "$target" >/dev/null 2>&1; then
-    log "  extra provider edit was accepted"
+    log "  untracked file in goals/ was accepted"
+    return 1
+  fi
+  rm -f "$tmp/goals/extra"
+  # modifying a tracked file is a hard violation.
+  printf 'tampered\n' > "$tmp/goals/g.lean"
+  if prove_target_only_changed "$tmp" "$target" >/dev/null 2>&1; then
+    log "  tracked-file modification was accepted"
     return 1
   fi
 }

@@ -3,3 +3,9 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .lake/
+
+# Per-attempt provider logs the agent loop writes into the proof worktree.
+# Ignored so they are never staged for check-in and do not trip the prove
+# path guard (prove_target_only_changed), while remaining on disk for
+# inspection in preserved --prove-local worktrees.
+prove-attempt-*.log
