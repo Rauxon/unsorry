@@ -2486,6 +2486,32 @@ test_prove_target_path_guard() {
   fi
 }
 
+test_prove_attempt_log_does_not_trip_guard() {
+  # Regression lock for the #292 break: run_proof writes prove-attempt-<n>.log
+  # INTO the proof worktree, and the path guard runs over that same worktree.
+  # Unless the log is gitignored, the harness's own log trips its own guard and
+  # blocks every proof (which is exactly what happened). This reproduces the
+  # real interaction — repo .gitignore + a written attempt log — and asserts the
+  # guard passes and the log is preserved for inspection.
+  local tmp target="library/Unsorry/Goal.lean"
+  tmp="$(mktemp -d "$SESSION_TMP/attempt-log-guard.XXXXXX")" || return 1
+  git init -q -b main "$tmp" || return 1
+  fixture_git_id "$tmp" || return 1
+  mkdir -p "$tmp/library/Unsorry" || return 1
+  # The repo ships this ignore (see .gitignore); the guard must honour it.
+  printf 'prove-attempt-*.log\n' > "$tmp/.gitignore"
+  printf 'seed\n' > "$tmp/seed.txt"
+  git -C "$tmp" add .gitignore seed.txt || return 1
+  git -C "$tmp" commit -q -m seed || return 1
+  # The provider wrote only the target; the harness wrote its attempt log.
+  printf 'theorem goal : True := by trivial\n' > "$tmp/$target"
+  printf 'YOLO mode is enabled.\n[ERROR] Invalid stream\n' > "$tmp/prove-attempt-1.log"
+  prove_target_only_changed "$tmp" "$target" \
+    || { log "  attempt log tripped the guard (the #292 regression)"; return 1; }
+  [ -e "$tmp/prove-attempt-1.log" ] \
+    || { log "  attempt log was deleted; it must be preserved for inspection"; return 1; }
+}
+
 test_proof_attempt_cleanup() {
   local tmp target="library/Unsorry/Goal.lean"
   local binding="library/Unsorry/GoalBinding.lean"
@@ -3379,6 +3405,7 @@ run_self_tests() {
     test_require_main_matches_origin
     test_provider_effort_ladder
     test_prove_target_path_guard
+    test_prove_attempt_log_does_not_trip_guard
     test_proof_attempt_cleanup
     test_feature_branch_names
     test_claim_push_reentrancy
