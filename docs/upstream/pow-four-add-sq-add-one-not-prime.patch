@@ -1,0 +1,18 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/PowFourAddSqAddOneNotPrime.lean
+@@ -0,0 +1,15 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.Data.Nat.Prime.Basic
++import Mathlib.Tactic.Ring
++
++theorem pow_four_add_sq_add_one_not_prime (n : ℕ) (hn : 1 < n) :
++    ¬ Nat.Prime (n ^ 4 + n ^ 2 + 1) := by
++  obtain ⟨m, rfl⟩ : ∃ m, n = m + 2 := ⟨n - 2, by omega⟩
++  have h : (m + 2) ^ 4 + (m + 2) ^ 2 + 1
++      = (m ^ 2 + 5 * m + 7) * (m ^ 2 + 3 * m + 3) := by ring
++  rw [h]
++  exact Nat.not_prime_mul (by omega) (by omega)
