@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Enforced PR-title conventions (ADR-026/SPEC-026-A): the title taxonomy (`tools/repo/pr_labels.py`, the single source of truth) is now a required CI gate — a new `pr-conventions` check fails any PR whose title matches no known shape, so a PR's kind is unambiguous from its title. Accepted shapes are the full Conventional-Commits set (`feat/fix/docs/chore/ci/test/refactor/perf/build`, scope optional, `:` required) plus the swarm shapes (`prove(<goal>):`, `decompose(<goal>):`, `affinity(<goal>):`, `tr(<goal>):`, `converge(<goal>):`, `redteam<n>(<vector>):` — colon required), where `prove(...)` means the theorem **passed** and `decompose(...)` / `affinity(...)` mean it **did not** (split / demoted). The labeler self-creates any missing labels from the table. `CONTRIBUTING.md` and `docs/pr-labels.md` document the canonical trunk-based, one-logical-change-per-PR workflow (a proof is a proof, a fix is a fix). Mixed-content blocking, a harness-regression test, and a protocol-compliance gate are tracked as follow-ups in issue #302.
+
 ### Fixed
 
 - Gate A kernel replay (`leanchecker`) now runs in bounded **serial** chunks instead of one process over the whole library. #294 made replay serial, but the library has since grown past a single leanchecker's memory headroom and the step OOM-killed the runner again (exit 143, ~13 min in — axiom audit clean, so it was resource exhaustion, not a bad proof). Replay now splits the library into `REPLAY_CHUNK_SIZE`-sized chunks run one at a time (never two mathlib images at once), and the gate-a job timeout is widened 40→60 min to absorb the per-chunk reloads. Regression test asserts a large library splits into multiple serial chunks covering every module.

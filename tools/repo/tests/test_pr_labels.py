@@ -2,7 +2,7 @@
 exists in the repo's PR history)."""
 from __future__ import annotations
 
-from tools.repo.pr_labels import classify
+from tools.repo.pr_labels import classify, is_conforming
 
 
 def test_swarm_surfaces():
@@ -33,5 +33,47 @@ def test_conventional():
     assert classify("chore: restore platonic-schlafli-core affinity (spurious demote)") == ["chore"]
 
 
+def test_extended_conventional_types_and_scopes():
+    # ADR-026: the full Conventional-Commits set is first-class so machinery PRs
+    # are not rejected by the convention gate.
+    assert classify("ci: enforce PR title conventions (ADR-026)") == ["ci"]
+    assert classify("test: cover run_proof path guard end to end") == ["test"]
+    assert classify("refactor: extract the provider adapter") == ["refactor"]
+    assert classify("perf: parallelise the axiom audit") == ["perf"]
+    assert classify("build: bump the pinned toolchain") == ["build"]
+    assert classify("feat(swarm): with a scope") == ["feat"]
+    assert classify("fix!: a breaking fix") == ["fix"]
+
+
+def test_conventional_requires_the_colon():
+    # A prose title that merely starts with a type word is not a typed change.
+    assert classify("fixed the flaky test") == []
+    assert classify("featuring a new idea") == []
+
+
+def test_swarm_and_redteam_require_the_colon():
+    # The documented contract is `prove(<goal>): …`; a missing colon is malformed
+    # and must be rejected by the gate, not silently accepted.
+    assert classify("prove(goal)") == []
+    assert classify("prove(goal) no colon here") == []
+    assert classify("decompose(goal) missing colon") == []
+    assert classify("redteam(vector) no colon") == []
+    assert not is_conforming("prove(goal)")
+    assert is_conforming("prove(goal): the_thm by agent-1")
+
+
 def test_unknown_title_gets_no_labels():
     assert classify("something nonconforming entirely") == []
+
+
+def test_enforce_gate_accepts_known_shapes_rejects_prose():
+    # ADR-026: the CI gate is exactly "classify is non-empty".
+    assert is_conforming("prove(nat-add-comm): nat_add_comm by agent-1")
+    assert is_conforming("decompose(hard-goal): split into 3 subs by agent-2")
+    assert is_conforming("affinity(hard-goal): -10 after a failed prove attempt by agent-2")
+    assert is_conforming("fix: a real bug")
+    assert is_conforming("ci: a new gate")
+    assert is_conforming("docs(v2.0.0): release")
+    assert not is_conforming("random unscoped title")
+    assert not is_conforming("update stuff")
+    assert not is_conforming("")

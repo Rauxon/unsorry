@@ -8,7 +8,9 @@ conventional-commit shaped (`feat:`, `fix:`, `chore:`, `docs:`, with
 title to labels; the CI auto-labeler (.github/workflows/pr-labels.yml) and the
 retro pass both call it, so the rules live in exactly one place.
 
-Usage:  python3 -m tools.repo.pr_labels classify "<pr title>"   # one label per line
+Usage:
+  python3 -m tools.repo.pr_labels classify "<pr title>"   # one label per line
+  python3 -m tools.repo.pr_labels enforce  "<pr title>"   # exit 1 if nonconforming (ADR-026)
 """
 from __future__ import annotations
 
@@ -28,6 +30,11 @@ LABELS: dict[str, tuple[str, str]] = {
     "feat": ("a2eeef", "New machinery"),
     "fix": ("d73a4a", "Bug fix"),
     "chore": ("fef2c0", "Housekeeping"),
+    "ci": ("bfdadc", "CI/CD and automation"),
+    "test": ("bfdadc", "Tests"),
+    "refactor": ("d4c5f9", "Refactor (no behaviour change)"),
+    "perf": ("d4c5f9", "Performance"),
+    "build": ("d4c5f9", "Build system / dependencies"),
 }
 
 _SWARM = {
@@ -37,10 +44,20 @@ _SWARM = {
     "decompose": "swarm:decompose",
     "affinity": "swarm:demote",
 }
-_SWARM_RE = re.compile(r"^(?P<kind>tr|converge|prove|decompose|affinity)\(")
-_REDTEAM_RE = re.compile(r"^redteam\d*\(")
-_RELEASE_RE = re.compile(r"^docs\(v\d")
+#: Swarm / red-team / release shapes all carry a `(<scope>):` — require the
+#: closing `):` so a malformed `prove(goal)` (no colon) is rejected by the gate,
+#: matching the documented `prove(<goal>): …` contract (ADR-026).
+_SWARM_RE = re.compile(r"^(?P<kind>tr|converge|prove|decompose|affinity)\([^()]*\):")
+_REDTEAM_RE = re.compile(r"^redteam\d*\([^()]*\):")
+_RELEASE_RE = re.compile(r"^docs\(v[\d.]+\):")
 _METRICS_RE = re.compile(r"\(run \d+\)|metrics|red-team round \d+", re.IGNORECASE)
+#: Conventional-Commits prefix with optional scope and breaking-change `!`,
+#: requiring the `:` so a prose title ("fixed the thing") is NOT mistaken for a
+#: typed change. Covers the full standard set so machinery PRs (ci/test/…) are
+#: first-class, not rejected by the convention gate (ADR-026).
+_CONVENTIONAL_RE = re.compile(
+    r"^(?P<type>build|chore|ci|docs|feat|fix|perf|refactor|test)(?:\([^)]*\))?!?:"
+)
 
 
 def classify(title: str) -> list[str]:
@@ -53,15 +70,34 @@ def classify(title: str) -> list[str]:
         return ["red-team"]
     if _RELEASE_RE.match(title):
         return ["release"]
-    if title.startswith("docs"):
-        labels = ["docs"]
-        if _METRICS_RE.search(title):
-            labels.append("metrics")
-        return labels
-    for prefix in ("feat", "fix", "chore"):
-        if title.startswith(prefix):
-            return [prefix]
+    c = _CONVENTIONAL_RE.match(title)
+    if c:
+        kind = c.group("type")
+        if kind == "docs":
+            labels = ["docs"]
+            if _METRICS_RE.search(title):
+                labels.append("metrics")
+            return labels
+        return [kind]
     return []
+
+
+def is_conforming(title: str) -> bool:
+    """True iff the title matches a known shape (swarm, red-team, release, or a
+    Conventional-Commits type). The CI gate (.github/workflows/pr-conventions.yml,
+    ADR-026) requires this — a nonconforming title fails the PR. The contract is
+    title discipline: fix the title, not the classifier."""
+    return bool(classify(title))
+
+
+#: Human-readable catalogue of accepted shapes, shown when the gate rejects.
+VALID_SHAPES = (
+    "Conventional Commits (scope optional): "
+    "feat: / fix: / docs: / chore: / ci: / test: / refactor: / perf: / build: ;  "
+    "swarm: prove(<goal>): [theorem proved] / decompose(<goal>): & affinity(<goal>): "
+    "[theorem not proved — split / demoted] / tr(<goal>): / converge(<goal>): ;  "
+    "red-team: redteam<n>(<vector>): ;  release: docs(vX.Y.Z):"
+)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -74,7 +110,18 @@ def main(argv: list[str] | None = None) -> int:
         for name, (colour, desc) in LABELS.items():
             print(f"{name}\t{colour}\t{desc}")
         return 0
-    print("usage: pr_labels.py classify '<title>' | labels", file=sys.stderr)
+    if len(argv) == 2 and argv[0] == "enforce":
+        if is_conforming(argv[1]):
+            return 0
+        print(
+            f"PR title does not match any allowed shape:\n  {argv[1].strip()!r}\n\n"
+            f"Use one of — {VALID_SHAPES}\n\n"
+            "See docs/pr-labels.md and ADR-026. One logical change per PR; "
+            "do not mix a proof with harness/tooling changes.",
+            file=sys.stderr,
+        )
+        return 1
+    print("usage: pr_labels.py classify '<title>' | enforce '<title>' | labels", file=sys.stderr)
     return 2
 
 
