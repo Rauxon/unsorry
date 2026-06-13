@@ -4,14 +4,12 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**3 open · 87 proved · 92 total prove-goals.**
+**2 open · 89 proved · 92 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
-| `euclid-perfect-numbers-s3` — euclid-perfect-numbers-s3 | open | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | open | 1 | — | — | — |
 | `sum-range-pow-seven-faulhaber-triangular` — For every natural n, 3·(sum of i⁷ for i in 0..n) = (sum of i for i in 0..n)²·(6·(sum of i for i in 0..n)²−4·(sum of i for i in 0..n)+1); i.e. ∑k⁷ = T²(6T²−4T+1)/3 where T = ∑k. The seventh-power sum as a pure polynomial in the triangular number. | open | 4 | — | classic identities (Faulhaber-in-T tower — the **capstone** odd-power rung; compounds on `sum-range-pow-seven-closed-form`) | Faulhaber's theorem for p=7: ∑k⁷ = (6T⁴−4T³+T²)/3 = T²(6T²−4T+1)/3. Knuth, "Johann Faulhaber and sums of powers", Math. Comp. 61 (1993). |
-| `euclid-perfect-numbers` — Euclid's theorem on perfect numbers: if $2^p - 1$ is prime (a Mersenne prime), then $2^{p-1} \cdot (2^p - 1)$ is perfect. | blocked | 3 | — | Euclid, Elements IX.36 | https://en.wikipedia.org/wiki/Euclid%E2%80%93Euler_theorem |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | blocked | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
 | `alternating-sum-naturals` — For every natural n, the sum over i in 0..n-1 of (-1)^i (i+1) equals -(n/2) if n is even and (n/2)+1 if n is odd (integer division over ℤ). | proved | 3 | [packet-ready](upstream/alternating-sum-naturals.md) | classic identities | Standard arithmetic alternating-series partial sums (1-2+3-4+...); tabulated in Hardy, Divergent Series, Ch. 1; elementary induction exercise in discrete-math texts. |
 | `and-comm-imp` — Conjunction commutes. | proved | 1 | — | — | — |
@@ -19,8 +17,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `consecutive-triangular-eq-square` — For every natural n, Tₙ + Tₙ₋₁ = n², where Tₙ = ∑_{i≤n} i; the sum of two consecutive triangular numbers is a perfect square. | proved | 2 | — | classic identities (triangular-number gems — compounds on the Gauss sum) | Theon of Smyrna's classical observation that consecutive triangular numbers sum to a square (Tₙ₋₁ + Tₙ = n²). Conway & Guy, The Book of Numbers; Heath, A History of Greek Mathematics. |
 | `cube-eq-triangular-sq-diff` — For every natural n, Tₙ₋₁² + n³ = Tₙ², where Tₙ = ∑_{i≤n} i; equivalently n³ = Tₙ² − Tₙ₋₁², the per-term form of Nicomachus's theorem (the n-th cube is the n-th difference of squared triangular numbers). | proved | 2 | — | classic identities (triangular-number gems — the term-wise Nicomachus; compounds on `nicomachus-sum-cubes`) | The telescoping core of Nicomachus's identity ∑k³ = (∑k)² = Tₙ²: each cube n³ = Tₙ² − Tₙ₋₁². Conway & Guy, The Book of Numbers; Mathematics in Lean §5 (the Nicomachus exercise). |
 | `eight-triangular-add-one-eq-odd-sq` — For every natural n, 8·Tₙ + 1 = (2n+1)², where Tₙ = ∑_{i≤n} i is the n-th triangular number; the classic "8T+1 is a perfect (odd) square" test for triangular numbers. | proved | 2 | — | classic identities (triangular-number gems — compounds on the Gauss sum) | The triangular-number characterisation: m is triangular iff 8m+1 is a perfect square (the forward direction). Conway & Guy, The Book of Numbers; standard recreational/elementary number theory. |
+| `euclid-perfect-numbers` — Euclid's theorem on perfect numbers: if $2^p - 1$ is prime (a Mersenne prime), then $2^{p-1} \cdot (2^p - 1)$ is perfect. | proved | 3 | — | Euclid, Elements IX.36 | https://en.wikipedia.org/wiki/Euclid%E2%80%93Euler_theorem |
 | `euclid-perfect-numbers-s1` — euclid-perfect-numbers-s1 | proved | 1 | — | — | — |
 | `euclid-perfect-numbers-s2` — euclid-perfect-numbers-s2 | proved | 1 | — | — | — |
+| `euclid-perfect-numbers-s3` — euclid-perfect-numbers-s3 | proved | 1 | — | — | — |
 | `euclid-perfect-numbers-s4` — euclid-perfect-numbers-s4 | proved | 1 | — | — | — |
 | `euclid-perfect-numbers-s5` — euclid-perfect-numbers-s5 | proved | 1 | — | — | — |
 | `euclid-perfect-numbers-s6` — euclid-perfect-numbers-s6 | proved | 1 | — | — | — |

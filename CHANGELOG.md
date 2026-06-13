@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- The generated targets board (`docs/targets.md`) no longer silently drifts (#377). It is meant to be regenerated in every goal-mutating PR with a `--check` CI drift guard (SPEC-012-A), but **both halves were missing**: `swarm/agent.sh` never regenerated it (`submit_pr_tree` staged `library goals proof-runs`, not the board), and the `--check` guard was wired into no workflow — so a merged proof like the `euclid-perfect-numbers` recompose (#370) flipped the goal to `proved` while the board still showed it `blocked`. Now `submit_pr_tree` (the single commit path behind prove/decompose/affinity/recompose) regenerates and stages the board, and gate-b runs `targets_board --check .` so any stale board reddens the PR. The board is regenerated to clear the existing euclid drift.
+
 - Gate A kernel replay (`leanchecker`) OOM-killed the runner again (exit 143, ~4 min in) once the library grew by the `euclid-perfect-numbers` recompose modules (#370): leanchecker holds ~all of mathlib resident, and that peak RSS crept past the 7 GB standard-runner limit. Chunk size does not move the ceiling (the cost is the mathlib image, not the few library oleans per chunk), so the gate-a job now allocates **12 GB of swap** before the replay step, letting leanchecker page cold olean regions rather than OOM. The job uses ~10 of its 60-min budget, so the extra paging is comfortably absorbed. The recompose proof itself was sound (build `--wfail` + axiom audit + ADR-011 binding all passed); only the kernel-replay step was resource-starved.
 
 ### Added
