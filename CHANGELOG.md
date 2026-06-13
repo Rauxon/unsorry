@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Gate A kernel replay (`leanchecker`) now runs in bounded **serial** chunks instead of one process over the whole library. #294 made replay serial, but the library has since grown past a single leanchecker's memory headroom and the step OOM-killed the runner again (exit 143, ~13 min in — axiom audit clean, so it was resource exhaustion, not a bad proof). Replay now splits the library into `REPLAY_CHUNK_SIZE`-sized chunks run one at a time (never two mathlib images at once), and the gate-a job timeout is widened 40→60 min to absorb the per-chunk reloads. Regression test asserts a large library splits into multiple serial chunks covering every module.
+
 - The advisory `aisp-advisory` check no longer reddens every PR. Its per-record loop validated the whole `.aisp` tree with the pinned upstream `aisp-validator@0.3.0` and aborted on the first record carrying a shape newer than 0.3.0 (the ADR-024 `⟦Δ:Lesson⟧` proof-run block), so the job went red on every PR even when the PR did not touch coordination records. The per-record loop is now advisory-only (it logs which records the upstream flags and how many, but never fails the step), while the swarm-contract validation stays strict. Still non-blocking (ADR-003); the in-repo Gate B remains the load-bearing validator. Resolving the upstream drift is tracked in #318.
 
 ## [1.8.0] - 2026-06-13

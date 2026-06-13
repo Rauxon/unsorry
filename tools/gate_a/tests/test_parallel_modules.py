@@ -69,10 +69,10 @@ def test_replay_propagates_a_chunk_failure(tmp_path: Path):
 
 
 def test_replay_is_serial_regardless_of_jobs(tmp_path: Path):
-    # leanchecker holds ~all of mathlib resident per process, so even two
-    # concurrent invocations OOM-kill a standard CI runner (exit 143 in the
-    # replay step, observed repo-wide after #264). Replay must run as a single
-    # serial leanchecker over every module, regardless of the --jobs request.
+    # leanchecker holds mathlib resident per process, so concurrent invocations
+    # OOM-kill a standard CI runner (exit 143). A small library fits one serial
+    # leanchecker; chunking only kicks in past REPLAY_CHUNK_SIZE. Either way the
+    # --jobs request is ignored — replay never runs two leancheckers at once.
     (tmp_path / "library" / "Unsorry").mkdir(parents=True)
     for name in ("One", "Two", "Three", "Four", "Five"):
         (tmp_path / "library" / "Unsorry" / f"{name}.lean").write_text("")
@@ -89,3 +89,27 @@ def test_replay_is_serial_regardless_of_jobs(tmp_path: Path):
     assert len(calls) == 1
     assert calls[0][:3] == ("lake", "env", "leanchecker")
     assert {"Unsorry.One", "Unsorry.Five"} <= set(calls[0])
+
+
+def test_replay_chunks_a_large_library_serially(tmp_path: Path):
+    # As the library grows past REPLAY_CHUNK_SIZE, one leanchecker over every
+    # module OOMs even serially (#294 was not enough). Replay splits into
+    # bounded chunks run one at a time, and every module is still replayed.
+    from tools.gate_a.parallel_modules import REPLAY_CHUNK_SIZE
+    (tmp_path / "library" / "Unsorry").mkdir(parents=True)
+    names = [f"M{i}" for i in range(REPLAY_CHUNK_SIZE * 2 + 5)]
+    for n in names:
+        (tmp_path / "library" / "Unsorry" / f"{n}.lean").write_text("")
+
+    calls: list[tuple[str, ...]] = []
+
+    def runner(argv, **_kwargs):
+        argv = tuple(argv)
+        calls.append(argv)
+        return completed(argv, returncode=0)
+
+    assert replay(tmp_path, 4, runner) == 0
+    assert len(calls) >= 3  # split into multiple chunks
+    assert all(c[:3] == ("lake", "env", "leanchecker") for c in calls)
+    covered = {m for c in calls for m in c[3:]}
+    assert covered == {f"Unsorry.{n}" for n in names}  # every module replayed

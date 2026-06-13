@@ -16,6 +16,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Sequence
 
+# Modules per serial leanchecker invocation in replay (ADR-006): bounds peak
+# memory so the replay step does not OOM the runner as the library grows.
+REPLAY_CHUNK_SIZE = 30
+
 
 @dataclass(frozen=True)
 class Command:
@@ -200,18 +204,19 @@ def replay(root: Path, jobs: int, runner: Runner = subprocess.run) -> int:
     # `jobs` argument is accepted for CLI symmetry with `audit` but ignored
     # here; audit (collectAxioms, far lighter) keeps its parallelism.
     _ = jobs
-    replay_jobs = 1
+    n_chunks = max(1, (len(library) + REPLAY_CHUNK_SIZE - 1) // REPLAY_CHUNK_SIZE)
     commands = [
         Command(
             ("lake", "env", "leanchecker", *chunk),
-            f"kernel replay chunk {index}",
+            f"kernel replay chunk {index}/{n_chunks}",
         )
-        for index, chunk in enumerate(split_evenly(library, replay_jobs), 1)
+        for index, chunk in enumerate(split_evenly(library, n_chunks), 1)
     ]
-    results = run_commands(commands, replay_jobs, runner)
+    # parallelism 1: chunks run one after another, never concurrently.
+    results = run_commands(commands, 1, runner)
     if report_failures(commands, results):
         return 1
-    print(f"replayed {len(library)} library module(s) in {len(commands)} chunk(s)")
+    print(f"replayed {len(library)} library module(s) serially in {len(commands)} chunk(s)")
     return 0
 
 
