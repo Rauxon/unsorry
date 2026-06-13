@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-06-13
+
+Headline: **OpenAI-compatible local endpoints + pi-coder config (ADR-025)** — the swarm can now prove against any OpenAI Chat-Completions-compatible server (Ollama / vLLM / LM Studio / a proxy or a local model) via `OPENAI_BASE_URL`, with a `-pi [<model>]` flag that sources the endpoint/key/model from pi-coder's `~/.pi/agent/models.json`. Plus the prove-path-guard fix that had been blocking all proof merges. The sourced target batches in this window are content, not release-worthy on their own, and are listed for the record.
+
 ### Fixed
 
 - Prove path guard no longer discards a sound proof over harness or provider litter — a regression that blocked **all** proof merges after the in-worktree attempt log was introduced (#292). The agent loop writes `prove-attempt-<n>.log` into the proof worktree, which `prove_target_only_changed` then flagged as a forbidden path; `prove-attempt-*.log` is now gitignored so the loop's own log is invisible to the guard (and preserved on disk for inspection). Additionally, a root-level untracked scratch file (e.g. the stray `test.lean` some providers, notably gemini, drop beside the repo root) is removed and tolerated. Edits to tracked files and untracked files inside any package/spec/tooling tree remain hard violations, and a proof written into the wrong file still fails the missing-target check — so soundness is unchanged.
