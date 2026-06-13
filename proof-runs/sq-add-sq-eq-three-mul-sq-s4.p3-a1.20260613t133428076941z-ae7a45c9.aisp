@@ -2,6 +2,7 @@
 γ≔unsorry.proof.run
 ⟦Ω:Run⟧{id≜20260613t133428076941z-ae7a45c9; goal≜sq-add-sq-eq-three-mul-sq-s4; agent≜p3-a1; outcome≜failed}
 ⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜max}
+⟦Γ:Goal⟧{goal≜sq-add-sq-eq-three-mul-sq-s4}
 ⟦Λ:Metrics⟧{attempts≜3; solve_s≜897; ended≜2026-06-13T13:34:28Z; lessons≜0}
 ⟦Σ:Artifact⟧{sha≜∅}
 ⟦Δ:Lesson⟧{sig≜(no file was written at library/Unsorry/SqAddSqEqThreeMulSqS4.lean)}

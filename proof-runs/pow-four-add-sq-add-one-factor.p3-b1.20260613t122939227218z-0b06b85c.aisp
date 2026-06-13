@@ -2,6 +2,7 @@
 γ≔unsorry.proof.run
 ⟦Ω:Run⟧{id≜20260613t122939227218z-0b06b85c; goal≜pow-four-add-sq-add-one-factor; agent≜p3-b1; outcome≜proved}
 ⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜pow-four-add-sq-add-one-factor}
 ⟦Λ:Metrics⟧{attempts≜1; solve_s≜202; ended≜2026-06-13T12:29:39Z; lessons≜0}
 ⟦Σ:Artifact⟧{sha≜6966eb26f19411aab291d60d30ab126aec253f0efc358a38dad8246b0c7342fd}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
