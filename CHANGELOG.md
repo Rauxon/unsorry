@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Optional proof provenance, terminal-run telemetry, and deterministic community statistics (ADR-023): newly verified index entries record the GitHub solver, swarm agent, provider, effective model when available, final effort, attempts, and local solve time; append-only `proof-runs/` facts also retain decomposed and terminally failed runs. `python3 -m tools.leaderboard --write` derives leaderboard, success/failure and attempt rates, timing distributions, queue state, difficulty calibration, provider/model and effort-rung efficiency, daily cohorts, and unresolved-goal effort while preserving all earlier work as historical/unknown.
+
 - Coordinated Codex proving: `./swarm/agent.sh --prove --provider codex` now uses Codex for proof attempts and decomposition while retaining the existing shared claims, local Lean verification, PR, and auto-merge lifecycle. Fork-only contributors continue to use the no-remote `--prove-local` path.
 
 - Local provider smoke mode now auto-selects the highest-ranked open, unproved goal when `--goal` is omitted; an explicit goal remains available as an override.
