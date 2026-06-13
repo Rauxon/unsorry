@@ -1,0 +1,15 @@
+# Draft statement
+For each natural number n, n ≤ n.
+
+# Proof attempt
+```lean4
+import Mathlib.Data.Nat.Basic
+
+theorem nat_leq_self (n : Nat) : n ≤ n := by simp [Nat.le_refl]
+```
+
+# Verification
+This is a simple theorem that should be provable with minimal effort.
+
+# Coordination
+This draft is part of the unsorry workflow and will be validated by Gate B.
