@@ -159,14 +159,17 @@ def replay(root: Path, jobs: int, runner: Runner = subprocess.run) -> int:
     if not library:
         print("no library modules found", file=sys.stderr)
         return 2
+    # leanchecker is memory-intensive; limit parallelism to avoid OOM kills in CI.
+    # Use at most 2 parallel jobs for replay, regardless of --jobs setting.
+    replay_jobs = min(jobs, 2)
     commands = [
         Command(
             ("lake", "env", "leanchecker", *chunk),
             f"kernel replay chunk {index}",
         )
-        for index, chunk in enumerate(split_evenly(library, jobs), 1)
+        for index, chunk in enumerate(split_evenly(library, replay_jobs), 1)
     ]
-    results = run_commands(commands, jobs, runner)
+    results = run_commands(commands, replay_jobs, runner)
     if report_failures(commands, results):
         return 1
     print(f"replayed {len(library)} library module(s) in {len(commands)} chunk(s)")
