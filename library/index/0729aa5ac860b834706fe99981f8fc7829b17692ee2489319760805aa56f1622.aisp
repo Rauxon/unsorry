@@ -1,0 +1,8 @@
+𝔸5.1.lemma.0729aa5ac860@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜0729aa5ac860b834706fe99981f8fc7829b17692ee2489319760805aa56f1622; goal≜sum-range-choose-mul-two-pow; name≜sum_range_choose_mul_two_pow}
+⟦Σ:Source⟧{src≜goals/sum-range-choose-mul-two-pow.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-a1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜188}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
