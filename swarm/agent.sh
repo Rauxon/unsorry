@@ -2269,8 +2269,9 @@ test_git_identity_resolution() {
   [ "$GIT_AUTHOR_NAME" = "Perttu Isotalo" ] \
     || { log "  derived name wrong: '$GIT_AUTHOR_NAME'"; return 1; }
   [ "$GIT_COMMITTER_EMAIL" = "$GIT_AUTHOR_EMAIL" ] \
-    && [ "$GIT_COMMITTER_NAME" = "$GIT_AUTHOR_NAME" ] \
-    || { log "  committer identity not set to match author"; return 1; }
+    || { log "  committer email not set to match author"; return 1; }
+  [ "$GIT_COMMITTER_NAME" = "$GIT_AUTHOR_NAME" ] \
+    || { log "  committer name not set to match author"; return 1; }
 
   # A user with no display name falls back to the login.
   GIT_AUTHOR_NAME=""; GIT_AUTHOR_EMAIL=""
@@ -2286,8 +2287,10 @@ test_git_identity_resolution() {
   gh() { log "  gh must not be called when both overrides are set"; return 99; }
   resolve_git_identity || { unset -f gh; return 1; }
   unset -f gh
-  [ "$GIT_AUTHOR_EMAIL" = "bot@example.org" ] && [ "$GIT_AUTHOR_NAME" = "Team Bot" ] \
-    || { log "  explicit identity overrides were not honored"; return 1; }
+  [ "$GIT_AUTHOR_EMAIL" = "bot@example.org" ] \
+    || { log "  explicit email override was not honored: '$GIT_AUTHOR_EMAIL'"; return 1; }
+  [ "$GIT_AUTHOR_NAME" = "Team Bot" ] \
+    || { log "  explicit name override was not honored: '$GIT_AUTHOR_NAME'"; return 1; }
 }
 
 test_claim_render_golden() {
