@@ -47,7 +47,7 @@ usage() {
 Usage:
   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
   ./swarm/agent.sh --prove [--once] [--goal <id>] [--dry-run]
-  ./swarm/agent.sh --prove-local --goal <id> [--provider claude|codex|gemini]
+  ./swarm/agent.sh --prove-local --goal <id> [--provider claude|codex|gemini|openai]
   ./swarm/agent.sh --self-test
 
 Flags:
@@ -55,7 +55,7 @@ Flags:
   --prove           Phase-1 mode: only phase≡prove, unproved goals are candidates
   --prove-local     Prove one explicit goal from local HEAD without any remote,
                     claim, PR, or GitHub operation; preserves its worktree
-  --provider <name> LLM CLI for --prove-local: claude (default), codex, or gemini
+  --provider <name> LLM CLI for --prove-local: claude (default), codex, gemini, or openai
   --once            Run exactly one cycle then exit
   --goal <id>       Restrict selection to one goal (trial orchestration)
   --dry-run         Stop after selection: print the would-be claim, claim nothing
@@ -69,6 +69,8 @@ Environment:
   UNSORRY_AGENT_ID  Swarm identity (default: ~/.unsorry/agent-id, created on first run)
   UNSORRY_PROVIDER  Provider for --prove-local (default: claude)
   UNSORRY_MODEL     Model for claude calls (default: fable in --prove, else sonnet; ADR-013)
+                    For openai: gpt-4o (default), gpt-4o-mini, o1, o3-mini, etc.
+  OPENAI_API_KEY    Required when using openai provider
   UNSORRY_EFFORT    Effort for proof-surface calls (default in --prove: the
                     ADR-015 ladder, attempts climb high→xhigh→max; a set value
                     pins every attempt; else unset; dropped fail-soft when the
@@ -1024,6 +1026,30 @@ call_claude() {
     --model "$model" --output-format text --tools ""
 }
 
+# OpenAI translation call (no tools, similar to claude translate)
+call_openai_translate() {
+  local prompt="$1"
+  local model="${UNSORRY_MODEL:-gpt-4o-mini}"
+  
+  if [ -z "${OPENAI_API_KEY:-}" ]; then
+    log "Error: OPENAI_API_KEY environment variable required for OpenAI provider"
+    return 1
+  fi
+  
+  python3 "$(dirname "$0")/../tools/llm_providers/openai_cli.py" \
+    -p "$prompt" --model "$model" --output-format text
+}
+
+# Unified translate call that dispatches to the configured provider
+call_translate() {
+  local prompt="$1"
+  case "${UNSORRY_TRANSLATE_PROVIDER:-$UNSORRY_PROVIDER}" in
+    claude) call_claude "$prompt" ;;
+    openai) call_openai_translate "$prompt" ;;
+    *) call_claude "$prompt" ;;  # Default to claude
+  esac
+}
+
 # Steps 5–6: translate with sanity checks; one retry, then give up.
 # Prints the accepted statement on success.
 run_translation() {
@@ -1034,8 +1060,8 @@ run_translation() {
   prompt="$(cat "$TRANSLATE_PROMPT_FILE")
 $body"
   for attempt in 1 2; do
-    if ! raw="$(call_claude "$prompt")"; then
-      log "claude call failed or timed out for $goal (attempt $attempt)"
+    if ! raw="$(call_translate "$prompt")"; then
+      log "translate call failed or timed out for $goal (attempt $attempt)"
       continue
     fi
     if ! stmt="$(single_nonempty_line "$raw")"; then
@@ -1271,6 +1297,10 @@ cli_health_probe() {
       timeout 90 gemini --skip-trust --allowed-mcp-server-names none -p "Reply with exactly: OK" --model flash \
         --output-format text >/dev/null 2>&1
       ;;
+    openai)
+      timeout 90 python3 "$(dirname "$0")/../tools/llm_providers/openai_cli.py" \
+        -p "Reply with exactly: OK" --model gpt-4o-mini --output-format text >/dev/null 2>&1
+      ;;
     *) return 1 ;;
   esac
 }
@@ -1337,12 +1367,31 @@ call_gemini_prove() {
          --model "$model" "${eff[@]}" --output-format text )
 }
 
+# OpenAI API provider for Unsorry
+# Supports GPT-4o, o1, o3-mini, and other OpenAI models
+# Requires OPENAI_API_KEY environment variable
+call_openai_prove() {
+  local prompt="$1" workdir="$2" effort="$3"
+  local model="${UNSORRY_MODEL:-gpt-4o}"
+  
+  # Check for API key
+  if [ -z "${OPENAI_API_KEY:-}" ]; then
+    log "Error: OPENAI_API_KEY environment variable required for OpenAI provider"
+    return 1
+  fi
+  
+  ( cd "$workdir" \
+    && timeout "$UNSORRY_WALL" python3 "$(dirname "$0")/../tools/llm_providers/openai_cli.py" \
+         -p "$prompt" --model "$model" --prove --workdir "$workdir" --output-format text )
+}
+
 call_provider_prove() {
   local prompt="$1" workdir="$2" effort="$3"
   case "$UNSORRY_PROVIDER" in
     claude) call_claude_prove "$prompt" "$workdir" "$effort" ;;
     codex) call_codex_prove "$prompt" "$workdir" "$effort" ;;
     gemini) call_gemini_prove "$prompt" "$workdir" "$effort" ;;
+    openai) call_openai_prove "$prompt" "$workdir" "$effort" ;;
     *) log "unsupported prove provider '$UNSORRY_PROVIDER'"; return 1 ;;
   esac
 }
