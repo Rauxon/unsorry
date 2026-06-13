@@ -1,0 +1,8 @@
+𝔸5.1.lemma.4302fd87a983@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜4302fd87a983f47d11f923ddf0524b51959e005d534e8c8c4e51e1aa09c9afb7; goal≜cube-eq-triangular-sq-diff; name≜cube_eq_triangular_sq_diff}
+⟦Σ:Source⟧{src≜goals/cube-eq-triangular-sq-diff.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-a1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜191}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
