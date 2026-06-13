@@ -1,0 +1,8 @@
+𝔸5.1.lemma.c8e63b53fff3@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜c8e63b53fff3b35cc1bbf189956a539b795c5ace1ed0972dd695465cc8092dcc; goal≜pow-four-add-sq-add-one-not-prime; name≜pow_four_add_sq_add_one_not_prime}
+⟦Σ:Source⟧{src≜goals/pow-four-add-sq-add-one-not-prime.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-b1; provider≜claude; model≜opus; effort≜max; attempts≜3; solve_s≜1458}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

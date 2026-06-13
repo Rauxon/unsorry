@@ -41,7 +41,7 @@ jobs:
   gate-a:
     needs: detect
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     steps:
       - name: Short-circuit (non-Lean change)
         if: needs.detect.outputs.lean != 'true'

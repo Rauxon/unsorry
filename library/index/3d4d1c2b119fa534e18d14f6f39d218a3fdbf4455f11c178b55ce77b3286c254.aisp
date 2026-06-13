@@ -1,0 +1,8 @@
+𝔸5.1.lemma.3d4d1c2b119f@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜3d4d1c2b119fa534e18d14f6f39d218a3fdbf4455f11c178b55ce77b3286c254; goal≜prime-fourth-power-mod-240; name≜prime_fourth_power_mod_240}
+⟦Σ:Source⟧{src≜goals/prime-fourth-power-mod-240.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-b1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜287}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

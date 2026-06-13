@@ -1,0 +1,8 @@
+𝔸5.1.lemma.0e04d60940ee@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜0e04d60940ee055bf8867921a5a818713830c381653f853c22a9079cf835aed2; goal≜sq-add-sq-eq-three-mul-sq-s1; name≜int_sq_mod_three_eq_zero_or_one}
+⟦Σ:Source⟧{src≜goals/sq-add-sq-eq-three-mul-sq-s1.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-b1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜420}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,24 @@
+# Block PRs that mix the proof surface with the harness surface (ADR-027) — a
+# proof is a proof; a fix is a fix. Keeps a harness regression from hiding inside
+# a proof PR and untangles the queue (issue #302). pull_request_target on the
+# BASE ref (never PR head) with a read-only token; the changed-file list comes
+# from the API, so no head code runs.
+name: pr-scope
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  scope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1 — base ref, never the PR head
+      - name: Reject mixed proof/harness PRs (ADR-027)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json files --jq '.files[].path' \
+            | python3 -m tools.repo.pr_scope check

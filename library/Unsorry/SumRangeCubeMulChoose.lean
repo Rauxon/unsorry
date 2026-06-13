@@ -1,0 +1,64 @@
+import Mathlib.Data.Nat.Choose.Basic
+import Mathlib.Data.Nat.Choose.Sum
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
+import Unsorry.SumRangeSqMulChoose
+
+theorem sum_range_cube_mul_choose (n : ℕ) :
+    8 * ∑ k ∈ Finset.range (n + 1), k ^ 3 * n.choose k
+      = n ^ 2 * (n + 3) * 2 ^ n := by
+  cases n with
+  | zero => norm_num
+  | succ m =>
+    have hterm : ∀ i ∈ Finset.range (m + 1),
+        (i + 1) ^ 3 * (m + 1).choose (i + 1)
+          = (m + 1) * (i ^ 2 * m.choose i + 2 * (i * m.choose i) + m.choose i) := by
+      intro i _
+      have habs : (m + 1) * m.choose i = (m + 1).choose (i + 1) * (i + 1) :=
+        Nat.add_one_mul_choose_eq m i
+      calc (i + 1) ^ 3 * (m + 1).choose (i + 1)
+          = (m + 1).choose (i + 1) * (i + 1) * (i + 1) ^ 2 := by ring
+        _ = (m + 1) * m.choose i * (i + 1) ^ 2 := by rw [habs]
+        _ = (m + 1) * (i ^ 2 * m.choose i + 2 * (i * m.choose i) + m.choose i) := by ring
+    have h1 : ∑ k ∈ Finset.range (m + 1 + 1), k ^ 3 * (m + 1).choose k
+        = (∑ i ∈ Finset.range (m + 1), (i + 1) ^ 3 * (m + 1).choose (i + 1))
+          + 0 ^ 3 * (m + 1).choose 0 :=
+      Finset.sum_range_succ' (fun k => k ^ 3 * (m + 1).choose k) (m + 1)
+    have h2 : (∑ i ∈ Finset.range (m + 1), (i + 1) ^ 3 * (m + 1).choose (i + 1))
+        = ∑ i ∈ Finset.range (m + 1),
+            (m + 1) * (i ^ 2 * m.choose i + 2 * (i * m.choose i) + m.choose i) :=
+      Finset.sum_congr rfl hterm
+    have h3 : (∑ i ∈ Finset.range (m + 1),
+            (m + 1) * (i ^ 2 * m.choose i + 2 * (i * m.choose i) + m.choose i))
+        = (m + 1) * ∑ i ∈ Finset.range (m + 1),
+            (i ^ 2 * m.choose i + 2 * (i * m.choose i) + m.choose i) :=
+      (Finset.mul_sum _ _ _).symm
+    have h4 : (∑ i ∈ Finset.range (m + 1),
+            (i ^ 2 * m.choose i + 2 * (i * m.choose i) + m.choose i))
+        = (∑ i ∈ Finset.range (m + 1), i ^ 2 * m.choose i)
+          + 2 * (∑ i ∈ Finset.range (m + 1), i * m.choose i)
+          + ∑ i ∈ Finset.range (m + 1), m.choose i := by
+      rw [Finset.sum_add_distrib, Finset.sum_add_distrib, ← Finset.mul_sum]
+    rw [h1, h2, h3, h4, Nat.sum_range_mul_choose, Nat.sum_range_choose]
+    cases m with
+    | zero => norm_num [Finset.sum_range_succ, Finset.sum_range_zero]
+    | succ j =>
+      have hT2 := sum_range_sq_mul_choose (j + 1)
+      have hj : j + 1 - 1 = j := by omega
+      rw [hj]
+      have e1 : (2 : ℕ) ^ (j + 1) = 2 * 2 ^ j := by rw [pow_succ]; ring
+      have e2 : (2 : ℕ) ^ (j + 1 + 1) = 4 * 2 ^ j := by rw [pow_succ, pow_succ]; ring
+      rw [e1] at hT2
+      rw [e1, e2]
+      set P := (2 : ℕ) ^ j with hP
+      set S := ∑ k ∈ Finset.range (j + 1 + 1), k ^ 2 * (j + 1).choose k with hS
+      have key2 : 8 * (j + 1 + 1) * S = 4 * (j + 1 + 1) ^ 2 * (j + 1) * P := by
+        calc 8 * (j + 1 + 1) * S = 2 * (j + 1 + 1) * (4 * S) := by ring
+          _ = 2 * (j + 1 + 1) * ((j + 1) * (j + 1 + 1) * (2 * P)) := by rw [hT2]
+          _ = 4 * (j + 1 + 1) ^ 2 * (j + 1) * P := by ring
+      calc 8 * ((j + 1 + 1) * (S + 2 * ((j + 1) * P) + 2 * P))
+          = 8 * (j + 1 + 1) * S
+              + (16 * (j + 1 + 1) * (j + 1) * P + 16 * (j + 1 + 1) * P) := by ring
+        _ = 4 * (j + 1 + 1) ^ 2 * (j + 1) * P
+              + (16 * (j + 1 + 1) * (j + 1) * P + 16 * (j + 1 + 1) * P) := by rw [key2]
+        _ = (j + 1 + 1) ^ 2 * (j + 1 + 1 + 3) * (4 * P) := by ring

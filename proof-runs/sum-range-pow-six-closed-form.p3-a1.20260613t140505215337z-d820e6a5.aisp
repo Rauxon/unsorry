@@ -1,0 +1,7 @@
+𝔸5.1.run.sum-range-pow-six-closed-form.p3-a1.20260613t140505215337z-d820e6a5@2026-06-13
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260613t140505215337z-d820e6a5; goal≜sum-range-pow-six-closed-form; agent≜p3-a1; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜417; ended≜2026-06-13T14:05:05Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜76c42f425f31999ea0ce4f4b0833a682bb80a0ca706cd1fa0d106a2714a28bf3}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

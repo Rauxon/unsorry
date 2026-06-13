@@ -438,6 +438,11 @@ def cmd_render_run(args):
         if optional.get(key):
             provenance.append(f"{key}≜{optional[key]}")
     print(f"⟦Π:Provenance⟧{{{'; '.join(provenance)}}}")
+    # ⟦Γ⟧ is one of the five canonical AISP-5.1 blocks (Ω/Σ/Γ/Λ/Ε). Carrying the
+    # goal link here keeps a proof-run record valid under the generic upstream
+    # validator (aisp-validator, ADR-003), which rejects a record missing Γ — the
+    # advisory cross-check stays clean instead of flagging every run.
+    print(f"⟦Γ:Goal⟧{{goal≜{goal}}}")
     metrics = [f"attempts≜{attempts}", f"solve_s≜{solve_s}", f"ended≜{format_utc_z(now)}"]
     used = optional.get("lessons-used")
     if used not in (None, ""):
@@ -2481,6 +2486,32 @@ test_prove_target_path_guard() {
   fi
 }
 
+test_prove_attempt_log_does_not_trip_guard() {
+  # Regression lock for the #292 break: run_proof writes prove-attempt-<n>.log
+  # INTO the proof worktree, and the path guard runs over that same worktree.
+  # Unless the log is gitignored, the harness's own log trips its own guard and
+  # blocks every proof (which is exactly what happened). This reproduces the
+  # real interaction — repo .gitignore + a written attempt log — and asserts the
+  # guard passes and the log is preserved for inspection.
+  local tmp target="library/Unsorry/Goal.lean"
+  tmp="$(mktemp -d "$SESSION_TMP/attempt-log-guard.XXXXXX")" || return 1
+  git init -q -b main "$tmp" || return 1
+  fixture_git_id "$tmp" || return 1
+  mkdir -p "$tmp/library/Unsorry" || return 1
+  # The repo ships this ignore (see .gitignore); the guard must honour it.
+  printf 'prove-attempt-*.log\n' > "$tmp/.gitignore"
+  printf 'seed\n' > "$tmp/seed.txt"
+  git -C "$tmp" add .gitignore seed.txt || return 1
+  git -C "$tmp" commit -q -m seed || return 1
+  # The provider wrote only the target; the harness wrote its attempt log.
+  printf 'theorem goal : True := by trivial\n' > "$tmp/$target"
+  printf 'YOLO mode is enabled.\n[ERROR] Invalid stream\n' > "$tmp/prove-attempt-1.log"
+  prove_target_only_changed "$tmp" "$target" \
+    || { log "  attempt log tripped the guard (the #292 regression)"; return 1; }
+  [ -e "$tmp/prove-attempt-1.log" ] \
+    || { log "  attempt log was deleted; it must be preserved for inspection"; return 1; }
+}
+
 test_proof_attempt_cleanup() {
   local tmp target="library/Unsorry/Goal.lean"
   local binding="library/Unsorry/GoalBinding.lean"
@@ -2494,6 +2525,46 @@ test_proof_attempt_cleanup() {
     || { log "  prior proof target survived attempt cleanup"; return 1; }
   [ ! -e "$tmp/$binding" ] \
     || { log "  prior binding helper survived attempt cleanup"; return 1; }
+}
+
+test_run_proof_mock_provider_smoke() {
+  # End-to-end smoke of run_proof with a MOCK provider, no Lean toolchain: drives
+  # the real orchestration (prompt build, the provider call, the path guard, the
+  # statement-binding emit) while stubbing only the two seams that need Lean — the
+  # provider itself and the local kernel verify. The mock reproduces the #292
+  # shape (target + a stray root file + the harness attempt log) and the smoke
+  # must still succeed: target in place, stray cleaned, attempt log ignored.
+  local tree camel="GoalSmoke" rc=0
+  # Function-local (dynamic scope reaches run_proof) so the subshell holds only
+  # the function overrides — no subshell variable-modification noise.
+  local UNSORRY_ATTEMPTS=1 UNSORRY_PROVIDER=mock UNSORRY_EFFORT="" \
+    UNSORRY_LESSONS=0 UNSORRY_FASTFAIL=1 UNSORRY_WALL=5
+  tree="$(mktemp -d "$SESSION_TMP/run-proof-smoke.XXXXXX")" || return 1
+  git init -q -b main "$tree" || return 1
+  fixture_git_id "$tree" || return 1
+  printf 'prove-attempt-*.log\n' > "$tree/.gitignore"
+  mkdir -p "$tree/library/Unsorry" || return 1
+  make_prove_goal "$tree" goal-smoke "theorem goal_smoke (n : Nat) : n + 0 = n" || return 1
+  git -C "$tree" add -A || return 1
+  git -C "$tree" commit -q -m seed || return 1
+  (
+    # Mock provider: write the target proof, plus a stray root file. run_proof's
+    # own redirect writes prove-attempt-1.log into the worktree (the #292 shape).
+    call_provider_prove() {
+      printf 'theorem goal_smoke (n : Nat) : n + 0 = n := rfl\n' \
+        > "$2/library/Unsorry/GoalSmoke.lean"
+      printf 'scratch\n' > "$2/test.lean"
+      return 0
+    }
+    # Kernel verify needs Lean; stub it green so we exercise orchestration only.
+    prove_local_verify() { return 0; }
+    run_proof goal-smoke "$tree" "$camel"
+  ) || rc=$?
+  [ "$rc" -eq 0 ] || { log "  run_proof mock smoke returned $rc"; return 1; }
+  [ -f "$tree/library/Unsorry/GoalSmoke.lean" ] \
+    || { log "  target module missing after smoke"; return 1; }
+  [ -e "$tree/test.lean" ] && { log "  stray root file survived run_proof"; return 1; }
+  return 0
 }
 
 # Local bare-origin fixture for the push re-entrancy tests: $1/origin.git is
@@ -2924,6 +2995,10 @@ test_proof_run_render() {
     <<<"$got" || { log "  rendered proof-run metrics are missing"; return 1; }
   grep -qF "⟦Σ:Artifact⟧{sha≜$sha}" \
     <<<"$got" || { log "  rendered proof-run artifact is missing"; return 1; }
+  # The canonical ⟦Γ⟧ block keeps the record valid under the upstream AISP
+  # validator (goals/decompositions carry it; proof-runs must too).
+  grep -qF '⟦Γ:Goal⟧{goal≜proof-goal}' \
+    <<<"$got" || { log "  rendered proof-run is missing the ⟦Γ⟧ goal-link block"; return 1; }
   # ADR-024: a proved run never carries a lesson sig, even if one is passed.
   grep -qF '⟦Δ:Lesson⟧' <<<"$got" \
     && { log "  proved run leaked a lesson block"; return 1; }
@@ -3370,6 +3445,8 @@ run_self_tests() {
     test_require_main_matches_origin
     test_provider_effort_ladder
     test_prove_target_path_guard
+    test_prove_attempt_log_does_not_trip_guard
+    test_run_proof_mock_provider_smoke
     test_proof_attempt_cleanup
     test_feature_branch_names
     test_claim_push_reentrancy

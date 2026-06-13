@@ -8,11 +8,23 @@ on:
     types: [opened, edited, reopened]
 permissions:
   pull-requests: write
+  issues: write
 jobs:
   label:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1 — base ref, never the PR head
+      - name: Ensure labels exist (sync from the source-of-truth table)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Idempotently create/update every label in the classifier's table so
+          # a conforming title (e.g. ci:/test:/refactor:) never fails --add-label
+          # on a missing label (ADR-026).
+          python3 -m tools.repo.pr_labels labels | while IFS=$'\t' read -r name colour desc; do
+            gh label create "$name" --repo "$GITHUB_REPOSITORY" \
+              --color "$colour" --description "$desc" --force
+          done
       - name: Classify and apply
         env:
           GH_TOKEN: ${{ github.token }}

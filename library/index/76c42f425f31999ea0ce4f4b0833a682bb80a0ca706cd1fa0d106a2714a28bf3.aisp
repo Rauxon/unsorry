@@ -1,0 +1,8 @@
+𝔸5.1.lemma.76c42f425f31@2026-06-13
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜76c42f425f31999ea0ce4f4b0833a682bb80a0ca706cd1fa0d106a2714a28bf3; goal≜sum-range-pow-six-closed-form; name≜sum_range_pow_six_closed_form}
+⟦Σ:Source⟧{src≜goals/sum-range-pow-six-closed-form.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-a1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜417}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,20 @@
+# Enforce the PR-title taxonomy (docs/pr-labels.md, ADR-026). A title that does
+# not match a known shape fails this required check — title discipline is the
+# contract, and the same classifier (tools/repo/pr_labels.py) drives labelling,
+# so the rules live in exactly one place. pull_request_target on the BASE ref
+# (never the PR head) so fork PRs are checked with trusted code; read-only token.
+name: pr-conventions
+on:
+  pull_request_target:
+    types: [opened, edited, reopened, synchronize]
+permissions:
+  contents: read
+jobs:
+  pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1 — base ref, never the PR head
+      - name: Enforce PR title convention (ADR-026)
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: python3 -m tools.repo.pr_labels enforce "$TITLE"
