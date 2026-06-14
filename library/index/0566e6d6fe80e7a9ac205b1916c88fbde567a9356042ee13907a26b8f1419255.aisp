@@ -1,0 +1,8 @@
+𝔸5.1.lemma.0566e6d6fe80@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜0566e6d6fe80e7a9ac205b1916c88fbde567a9356042ee13907a26b8f1419255; goal≜twelve-dvd-pow-four-sub-sq; name≜twelve_dvd_pow_four_sub_sq}
+⟦Σ:Source⟧{src≜goals/twelve-dvd-pow-four-sub-sq.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜285}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,8 @@
+𝔸5.1.run.twelve-dvd-pow-four-sub-sq.oma-2-c50d.20260614t211322844068z-fdf66a7f@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t211322844068z-fdf66a7f; goal≜twelve-dvd-pow-four-sub-sq; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜twelve-dvd-pow-four-sub-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜285; ended≜2026-06-14T21:13:22Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜0566e6d6fe80e7a9ac205b1916c88fbde567a9356042ee13907a26b8f1419255}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
