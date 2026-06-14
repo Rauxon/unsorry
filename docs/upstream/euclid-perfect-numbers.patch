@@ -1,0 +1,19 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/EuclidPerfectNumbers.lean
+@@ -0,0 +1,16 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.NumberTheory.Divisors
++
++theorem perfect_of_mersenne_prime (p : ℕ) (hp : Nat.Prime (2 ^ p - 1)) :
++    Nat.Perfect (2 ^ (p - 1) * (2 ^ p - 1)) := by
++  have hp1 : 1 ≤ p := mersenne_prime_one_le_exp p hp
++  have hqpos : 0 < 2 ^ p - 1 := by have := hp.two_le; omega
++  have hpos : 0 < 2 ^ (p - 1) * (2 ^ p - 1) := Nat.mul_pos (by positivity) hqpos
++  rw [Nat.perfect_iff_sum_divisors_eq_two_mul hpos,
++    sum_divisors_mul_of_coprime _ _ (coprime_two_pow_mersenne p),
++    sum_divisors_two_pow (p - 1), sum_divisors_eq_succ_of_prime _ hp]
++  exact two_pow_pred_mersenne_arith p hp1

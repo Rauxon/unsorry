@@ -1,0 +1,12 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/FourMulProdLeSqSum.lean
+@@ -0,0 +1,9 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib
++
++theorem four_mul_prod_le_sq_sum (a b : ℝ) : 4 * (a * b) ≤ (a + b) ^ 2 := by
++  nlinarith [sq_nonneg (a - b)]

@@ -1,0 +1,15 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/SumRangeChooseMulTwoPow.lean
+@@ -0,0 +1,12 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.Data.Nat.Choose.Sum
++
++theorem sum_range_choose_mul_two_pow (n : ℕ) :
++    ∑ k ∈ Finset.range (n + 1), n.choose k * 2 ^ k = 3 ^ n := by
++  rw [show (3 : ℕ) = 2 + 1 by norm_num, add_pow]
++  simp only [one_pow, mul_one]
++  exact Finset.sum_congr rfl fun k _ => Nat.mul_comm _ _

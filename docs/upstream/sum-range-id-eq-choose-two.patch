@@ -1,0 +1,14 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/SumRangeIdEqChooseTwo.lean
+@@ -0,0 +1,11 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.Algebra.BigOperators.Intervals
++import Mathlib.Data.Nat.Choose.Basic
++
++theorem sum_range_id_eq_choose_two (n : ℕ) :
++    ∑ i ∈ Finset.range n, i = Nat.choose n 2 := by
++  rw [Finset.sum_range_id, Nat.choose_two_right]

@@ -1,0 +1,18 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/OddFourthPowerModSixteen.lean
+@@ -0,0 +1,15 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.Tactic.Ring
++
++theorem odd_fourth_power_mod_sixteen (n : ℕ) (h : Odd n) : n ^ 4 % 16 = 1 := by
++  have h8 : n ^ 2 % 8 = 1 := odd_sq_mod_eight n h
++  obtain ⟨j, hj⟩ : ∃ j, n ^ 2 = 8 * j + 1 := ⟨n ^ 2 / 8, by omega⟩
++  have hpow : n ^ 4 = 16 * (4 * j ^ 2 + j) + 1 := by
++    have e : n ^ 4 = (n ^ 2) ^ 2 := by ring
++    rw [e, hj]; ring
++  rw [hpow]
++  omega

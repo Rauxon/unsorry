@@ -1,0 +1,13 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/SumThreeSquaresGeSumProducts.lean
+@@ -0,0 +1,10 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib
++
++theorem sum_three_squares_ge_sum_products (a b c : ℝ) :
++    a * b + b * c + c * a ≤ a ^ 2 + b ^ 2 + c ^ 2 := by
++  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (c - a)]
