@@ -4,23 +4,23 @@
 
 Verified output comes from `library/index`; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**107 verified proofs · 25 attributed · 82 historical/unknown · 54 logged terminal runs.**
+**107 verified proofs · 25 attributed · 82 historical/unknown · 55 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
 | Successful terminal runs | 23 |
-| Failed terminal runs | 31 |
+| Failed terminal runs | 32 |
 | Decomposed after failure | 8 |
-| Failed without decomposition | 23 |
-| Run success rate | 42.6% |
-| Provider attempts | 78 |
-| Failed attempts | 55 |
-| Attempt yield | 29.5% |
-| Recorded run time | 8h 52m |
-| Median / p90 run time | 5m 0s / 24m 18s |
-| Verified successes per recorded hour | 2.59 |
+| Failed without decomposition | 24 |
+| Run success rate | 41.8% |
+| Provider attempts | 79 |
+| Failed attempts | 56 |
+| Attempt yield | 29.1% |
+| Recorded run time | 8h 55m |
+| Median / p90 run time | 4m 57s / 24m 18s |
+| Verified successes per recorded hour | 2.58 |
 | Proofs with run telemetry | 23 (21.5%) |
 
 ## Work Queue
@@ -31,7 +31,7 @@ Verified output comes from `library/index`; append-only terminal-run telemetry c
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 16 | 6 | 37.5% | 19 | 6m 1s |
+| 1 | 17 | 6 | 35.3% | 20 | 5m 3s |
 | 2 | 17 | 5 | 29.4% | 17 | 4m 13s |
 | 3 | 13 | 8 | 61.5% | 13 | 9m 7s |
 | 4 | 8 | 4 | 50.0% | 6 | 5m 18s |
@@ -57,7 +57,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 61 | 19 | 42 | 43 | 44.2% | 101 | 11625 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 61 | 19 | 42 | 44 | 43.2% | 101 | 11625 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 30 | 0 | 30 | 0 | — | 61 | 6850 |
 | 3 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 4 | [@perttu](https://github.com/perttu) | 4 | 4 | 0 | 7 | 57.1% | 7 | 800 |
@@ -77,12 +77,13 @@ Git add-author attribution covers 107 of 107 proof index files. It is used only 
 | `claude / opus` | 19 | 21 | 90.5% | 14 | 1 | 7m 0s | 5.13 |
 | `codex / unknown` | 4 | 11 | 36.4% | 15 | 2 | 4m 17s | 3.10 |
 | `manual / gpt-5.5` | 2 | 0 | — | 0 | 1 | — | — |
-| `openai / leanstral-2603` | 0 | 22 | 0.0% | 26 | 1 | 4m 48s | 0.00 |
+| `openai / leanstral-2603` | 0 | 23 | 0.0% | 27 | 1 | 4m 44s | 0.00 |
 
 ## Recent Terminal Runs
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-14T13:10:47Z` | `cube-sum-ge-three-prod-s1` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 2m 55s |
 | `2026-06-14T13:06:12Z` | `cube-sum-ge-three-prod` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 4m 44s |
 | `2026-06-14T12:59:45Z` | `am-gm-three-cube-s2` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 32m 44s |
 | `2026-06-14T12:51:42Z` | `cube-sum-ge-three-prod` | [@perttu](https://github.com/perttu) | `codex / unknown` | `decomposed` | 3 | 3 | 12m 16s |
@@ -102,7 +103,6 @@ Git add-author attribution covers 107 of 107 proof index files. It is used only 
 | `2026-06-14T10:37:28Z` | `descartes-total-angular-defect` | [@perttu](https://github.com/perttu) | `codex / unknown` | `proved` | 3 | 2 | 19m 50s |
 | `2026-06-14T10:32:19Z` | `four-var-cyclic-sos` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 5m 24s |
 | `2026-06-14T10:24:59Z` | `forty-two-dvd-pow-seven-sub-self` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 4m 4s |
-| `2026-06-14T10:19:02Z` | `descartes-total-angular-defect` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 4m 54s |
 
 ## Interpretation
 
