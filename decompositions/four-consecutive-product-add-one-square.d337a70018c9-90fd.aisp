@@ -1,0 +1,13 @@
+𝔸5.1.decomp.four-consecutive-product-add-one-square.d337a70018c9-90fd@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜four-consecutive-product-add-one-square; agent≜d337a70018c9-90fd}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜four-consecutive-product-add-one-square-s1,sha≜169fb2bd83f20aa40dd746bf842f0a61f005856e765389b8e0ec0e462fba5960⟩
+  sub₂≜⟨id≜four-consecutive-product-add-one-square-s2,sha≜0267f22a7eeb9ef0015673c705e448865011d81469b2e892d4b1051cfb0ae578⟩
+  sub₃≜⟨id≜four-consecutive-product-add-one-square-s3,sha≜ee43e9e8df6eb690673a32fb7a9a756fdf24f550d3f6a871fc683c7d83d1a94f⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
