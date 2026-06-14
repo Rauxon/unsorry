@@ -1,4 +1,0 @@
-# Auto-union concurrent CHANGELOG additions so parallel PRs do not conflict
-# on the shared [Unreleased] section (a git merge/rebase driver; keeps both
-# sides). Occasional duplicate section headers are tidied at release time.
-CHANGELOG.md merge=union
