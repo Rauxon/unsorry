@@ -66,8 +66,13 @@ Flags:
   --self-test       Run the built-in hermetic tests and exit (0 green / 1 red)
 
 Requirement:
-  Run from the repository root. Swarm modes require main checked out and equal
-  to origin/main; --prove-local instead tests committed local HEAD.
+  Run from a checkout of the repository. By default (ADR-042) swarm modes
+  relocate into a dedicated per-agent worktree pinned to origin/main, so the
+  launch dir is left untouched (edit proofs/the harness there freely) and
+  concurrent agents do not share a tree; the launch dir need not be on main.
+  With UNSORRY_NO_ISOLATE=1 the agent runs in place and the launch dir must be
+  on main and equal to origin/main. --prove-local always tests the caller's
+  committed local HEAD in place.
 
 Environment:
   UNSORRY_AGENT_ID  Swarm identity (default: ~/.unsorry/agent-id, created on first run)
@@ -91,6 +96,15 @@ Environment:
                     pins every attempt; else unset; dropped fail-soft when the
                     installed claude lacks --effort)
   UNSORRY_WORKDIR   Claims worktree + metrics.jsonl home (default: ~/.unsorry/work)
+  UNSORRY_NO_ISOLATE
+                    Set to 1 to run the swarm loop in the launch dir instead of
+                    relocating into a per-agent worktree (ADR-042). The launch
+                    dir must then be on main and equal to origin/main
+  UNSORRY_AGENT_WORKTREE
+                    Override the per-agent worktree path (ADR-042; default:
+                    $UNSORRY_WORKDIR/agent-main-<agent-id>). Reused across cycles
+                    so its .lake build cache is paid once. Reset with
+                    'git worktree remove --force <path>'
   UNSORRY_LOCAL_WORKTREE
                     Exact worktree path for --prove-local (default: a fresh
                     directory under /tmp)
@@ -1089,6 +1103,11 @@ require_unsorry_origin() {
 }
 
 require_main_checkout() {
+  # ADR-042: inside an isolated agent worktree the checkout is a detached HEAD
+  # pinned to origin/main by sync_repo every cycle, so the branch-name check
+  # doesn't apply. The real invariant — HEAD == origin/main — is enforced by
+  # require_main_matches_origin (called in sync_repo) in both modes.
+  [ "${UNSORRY_IN_WT:-0}" = 1 ] && return 0
   local branch
   branch="$(git symbolic-ref --quiet --short HEAD 2>/dev/null)" \
     || die_config "must be run with main checked out (detached HEAD found)"
@@ -1125,9 +1144,17 @@ emit_event() {
 # ------------------------------------------------------------- git plumbing
 
 # Step 1: pull main, ensure the claims worktree exists and is freshly pulled.
+# ADR-042: an isolated agent worktree is a throwaway detached checkout, so it is
+# hard-reset to origin/main (re-entrant: clears anything a dead cycle left
+# behind, like the claims worktree does). The non-isolated path keeps the
+# conservative --ff-only merge of the operator's own main checkout.
 sync_repo() {
   git fetch -q origin || return 1
-  git merge -q --ff-only origin/main || return 1
+  if [ "${UNSORRY_IN_WT:-0}" = 1 ]; then
+    git reset --hard -q origin/main || return 1
+  else
+    git merge -q --ff-only origin/main || return 1
+  fi
   require_main_matches_origin
   ensure_claims_worktree
 }
@@ -1148,6 +1175,55 @@ maybe_reexec_on_harness_update() {
     log "harness updated on origin/main (${_HARNESS_SHA} → ${current}) — re-exec'ing to run the latest code (#428)"
     exec "${BASH_SOURCE[0]}" ${_ORIG_ARGV[@]+"${_ORIG_ARGV[@]}"}
   fi
+}
+
+# ADR-042: ensure a dedicated per-agent worktree exists at <wt>, a detached
+# checkout of origin/main. Reused across cycles so its .lake/mathlib build cache
+# is paid once, not per run. Mirrors ensure_claims_worktree's ownership guard:
+# refuse to adopt a path that belongs to a different clone, prune stale registry
+# entries before creating a fresh one.
+ensure_agent_worktree() {
+  local wt="$1"
+  if [ -e "$wt" ]; then
+    local theirs ours
+    theirs="$(git -C "$wt" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)" \
+      || die_config "$wt exists but is not a git worktree"
+    ours="$(git rev-parse --path-format=absolute --git-common-dir)"
+    [ "$theirs" = "$ours" ] \
+      || die_config "$wt belongs to another clone ($theirs)"
+  else
+    git worktree prune >/dev/null 2>&1 || true
+    git worktree add -q --detach "$wt" origin/main \
+      || die_config "cannot create agent worktree at $wt"
+  fi
+}
+
+# ADR-042: relocate the running agent into its own worktree before any work, so
+# the operator's launch dir is never synced/built/claimed in (they can edit
+# proofs and the harness there freely) and two agents on one host don't share a
+# tree. Opt out with UNSORRY_NO_ISOLATE=1; override the path with
+# UNSORRY_AGENT_WORKTREE. No-op once already inside the worktree (UNSORRY_IN_WT).
+# Like the #428 re-exec, this runs origin/main's agent.sh — the swarm loop must
+# act on merged code, not the operator's working copy.
+relocate_into_agent_worktree() {
+  [ "${UNSORRY_IN_WT:-0}" = 1 ] && return 0
+  [ "${UNSORRY_NO_ISOLATE:-0}" = 1 ] && return 0
+
+  require_unsorry_origin
+  git fetch -q origin || die_config "cannot fetch origin before relocating into an isolated worktree"
+
+  local workdir wt
+  workdir="${UNSORRY_WORKDIR:-$HOME/.unsorry/work}"
+  [ -n "${AGENT_ID:-}" ] || resolve_agent_id
+  wt="${UNSORRY_AGENT_WORKTREE:-$workdir/agent-main-$AGENT_ID}"
+
+  mkdir -p "$workdir" || die_config "cannot create UNSORRY_WORKDIR '$workdir'"
+  ensure_agent_worktree "$wt"
+
+  log "relocating into isolated agent worktree $wt (ADR-042); launch dir left untouched"
+  cd "$wt" || die_config "cannot enter agent worktree $wt"
+  export UNSORRY_IN_WT=1
+  exec "$wt/swarm/agent.sh" ${_ORIG_ARGV[@]+"${_ORIG_ARGV[@]}"}
 }
 
 ensure_claims_worktree() {
@@ -2676,6 +2752,67 @@ test_harness_is_stale() {
   return 0
 }
 
+# ADR-042: relocation is a no-op once already isolated or explicitly opted out —
+# in both cases it must return 0 without touching git or exec'ing (the guards
+# short-circuit before require_unsorry_origin / fetch).
+test_relocate_into_worktree_noop() {
+  ( UNSORRY_IN_WT=1 relocate_into_agent_worktree ) \
+    || { log "  relocate did not no-op when already inside the worktree"; return 1; }
+  ( UNSORRY_IN_WT=0 UNSORRY_NO_ISOLATE=1 relocate_into_agent_worktree ) \
+    || { log "  relocate did not no-op when isolation was opted out"; return 1; }
+  return 0
+}
+
+# ADR-042: require_main_checkout's branch-name gate is bypassed inside an
+# isolated worktree (UNSORRY_IN_WT=1), where HEAD is a detached origin/main that
+# require_main_matches_origin polices instead.
+test_require_main_checkout_isolated() {
+  local tmp rc=0
+  tmp="$(mktemp -d "$SESSION_TMP/iso-checkout.XXXXXX")" || return 1
+  git init -q -b main "$tmp" || return 1
+  fixture_git_id "$tmp" || return 1
+  git -C "$tmp" commit -q --allow-empty -m seed || return 1
+  git -C "$tmp" switch -q -c feature/wip || return 1
+  # On a feature branch the strict check still rejects (regression guard)...
+  ( cd "$tmp" && require_main_checkout ) >/dev/null 2>&1 || rc=$?
+  [ "$rc" -eq 2 ] \
+    || { log "  non-isolated feature checkout returned $rc, expected 2"; return 1; }
+  # ...but inside the worktree the same branch is accepted.
+  ( cd "$tmp" && UNSORRY_IN_WT=1 require_main_checkout ) \
+    || { log "  isolated worktree checkout was rejected"; return 1; }
+}
+
+# ADR-042: ensure_agent_worktree creates a detached origin/main worktree, reuses
+# it idempotently, and refuses to adopt a path owned by a foreign clone.
+test_ensure_agent_worktree() {
+  local tmp wt rc=0
+  tmp="$(mktemp -d "$SESSION_TMP/agentwt.XXXXXX")" || return 1
+  git init -q -b main "$tmp/repo" || return 1
+  fixture_git_id "$tmp/repo" || return 1
+  git -C "$tmp/repo" commit -q --allow-empty -m seed || return 1
+  git -C "$tmp/repo" update-ref refs/remotes/origin/main HEAD || return 1
+  wt="$tmp/agent-wt"   # outside the repo, like the real $UNSORRY_WORKDIR path
+
+  ( cd "$tmp/repo" && ensure_agent_worktree "$wt" ) \
+    || { log "  ensure_agent_worktree failed to create the worktree"; return 1; }
+  [ -e "$wt" ] || { log "  worktree path was not created"; return 1; }
+  [ "$(git -C "$wt" rev-parse HEAD)" = "$(git -C "$tmp/repo" rev-parse origin/main)" ] \
+    || { log "  worktree HEAD is not at origin/main"; return 1; }
+  git -C "$wt" symbolic-ref -q HEAD >/dev/null 2>&1 \
+    && { log "  worktree HEAD is not detached"; return 1; }
+
+  # Idempotent reuse: a second call on the existing worktree succeeds.
+  ( cd "$tmp/repo" && ensure_agent_worktree "$wt" ) \
+    || { log "  ensure_agent_worktree did not reuse the existing worktree"; return 1; }
+
+  # Ownership guard: a plain directory (not a worktree) outside the repo, like a
+  # path owned by another clone, is rejected rather than adopted.
+  mkdir -p "$tmp/not-a-wt" || return 1
+  ( cd "$tmp/repo" && ensure_agent_worktree "$tmp/not-a-wt" ) >/dev/null 2>&1 || rc=$?
+  [ "$rc" -eq 2 ] \
+    || { log "  adopting a non-worktree path returned $rc, expected config error 2"; return 1; }
+}
+
 test_provider_effort_ladder() {
   [ "$(provider_effort_for_attempt codex 1 ladder)" = medium ] || return 1
   [ "$(provider_effort_for_attempt codex 2 ladder)" = high ] || return 1
@@ -3890,6 +4027,9 @@ run_self_tests() {
     test_require_main_checkout
     test_require_main_matches_origin
     test_harness_is_stale
+    test_relocate_into_worktree_noop
+    test_require_main_checkout_isolated
+    test_ensure_agent_worktree
     test_provider_effort_ladder
     test_prove_attempt_budget_default
     test_gemini_prove_mutes_cli_effort
@@ -4129,6 +4269,14 @@ main() {
   fi
   [ "$TRANSLATE_ONLY" -eq 1 ] || [ "$PROVE" -eq 1 ] \
     || die_config "select a mode: --translate-only or --prove (or --self-test)"
+
+  # ADR-042: relocate into a dedicated per-agent worktree before any provider,
+  # auth, or model resolution, so all of it runs once in the isolated tree.
+  # --self-test exits above; --prove-local operates on the caller's committed
+  # HEAD by design, so neither relocates.
+  if [ "$PROVE_LOCAL" -eq 0 ]; then
+    relocate_into_agent_worktree
+  fi
 
   # -pi resolves to provider=openai with a custom base_url before provider
   # validation and before either prove branch, so both modes inherit it.
