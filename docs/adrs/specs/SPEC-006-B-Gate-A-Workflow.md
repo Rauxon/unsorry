@@ -12,6 +12,7 @@ Determines whether the PR touches Lean-relevant paths: `library/**`, `goals/**/*
 **Why not `on.paths`:** a required check that is path-filtered never reports on non-matching PRs, leaving them permanently blocked on an "expected" status. The `detect`-job pattern keeps `gate-a` required while letting claims/docs/coordination PRs pass in ~30 s.
 
 ### 2. `gate-a` (the required context)
+- Runs on a Namespace managed (ephemeral) runner via the `namespace-profile-unsorry-1` profile (currently 4 vCPU / 16 GB). At 16 GB this is memory parity with the GitHub-hosted runner, so the `leanchecker` replay stays **serial** and the swap-headroom step is **best-effort** (Namespace disallows `swapon`; its RAM covers the replay). Sizing the profile up (e.g. 8x32) would let replay re-parallelize. Profile-backed keeps the runner ephemeral (no self-hosted tampering surface). `detect` and the non-Lean gates stay on free GitHub-hosted runners.
 - If `detect` says non-Lean: exits green immediately (the *job* still reports, which is the point).
 - Else: `leanprover/lean-action@v1` (`use-mathlib-cache: auto`, `use-github-cache: true`, `build-args: "UnsorryGoals"`) — the action installs elan per `lean-toolchain` and restores the mathlib olean cache (guaranteed published for release tags, ADR-002).
 - `lake build UnsorryLibrary --wfail` — verified: exits 1 on a sorried library module, fresh **and** replayed from Lake's warning cache; exits 0 clean.

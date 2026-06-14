@@ -40,7 +40,14 @@ jobs:
 
   gate-a:
     needs: detect
-    runs-on: ubuntu-latest
+    # Namespace managed (ephemeral) runner via the `namespace-profile-unsorry-1`
+    # profile — currently 4 vCPU / 16 GB. Memory parity with the GitHub-hosted
+    # runner, so the leanchecker replay stays serial (16 GB can't hold two
+    # mathlib images; see SPEC-006-B). Profile-backed ⇒ ephemeral, no
+    # self-hosted tampering surface; sizing the profile up (e.g. 8x32) in the
+    # Namespace UI would let replay re-parallelize. detect and the non-Lean
+    # gates stay on free GitHub-hosted runners.
+    runs-on: namespace-profile-unsorry-1
     timeout-minutes: 60
     steps:
       - name: Short-circuit (non-Lean change)
@@ -60,16 +67,28 @@ jobs:
       # the few library oleans in a chunk), so give leanchecker swap to page cold
       # regions instead of OOM. The job uses ~10 of its 60 min, so paging is well
       # within budget. /mnt has tens of GB free on GitHub-hosted ubuntu runners.
-      - name: Add swap headroom for leanchecker
+      - name: Add swap headroom for leanchecker (best-effort)
         if: needs.detect.outputs.lean == 'true'
+        # Best-effort: GitHub-hosted runners allow swapon, so leanchecker pages
+        # cold mathlib regions instead of OOMing on a constrained runner.
+        # Namespace managed runners disallow swapon ("Operation not permitted");
+        # there the larger RAM (namespace-profile-unsorry-1 is 16 GB) covers the
+        # replay, so any failure in this step is a warning, not a gate failure.
         run: |
-          sudo fallocate -l 12G /mnt/swapfile \
-            || sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=12288
-          sudo chmod 600 /mnt/swapfile
-          sudo mkswap /mnt/swapfile
-          sudo swapon /mnt/swapfile
-          echo "--- memory after adding swap ---"
-          free -h
+          if sudo fallocate -l 12G /mnt/swapfile \
+               || sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=12288; then
+            sudo chmod 600 /mnt/swapfile
+            sudo mkswap /mnt/swapfile
+            if sudo swapon /mnt/swapfile; then
+              echo "--- memory after adding swap ---"
+              free -h
+            else
+              echo "::warning::swapon not permitted on this runner — continuing on RAM + serial replay"
+              sudo rm -f /mnt/swapfile || true
+            fi
+          else
+            echo "::warning::could not allocate a swapfile — continuing on RAM + serial replay"
+          fi
 
       # ADR-018: goal statements are create-only — the pin against history.
       # Every other layer (binding regeneration, Gate B shas) derives from
@@ -113,9 +132,21 @@ jobs:
         if: needs.detect.outputs.lean == 'true'
         run: python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json
 
+      # Incremental on PRs (ADR-033): replay only the changed library modules
+      # and their reverse-import closure — the rest are byte-identical to and
+      # already verified on main. On push to main, BASE_SHA is empty → a FULL
+      # replay runs as the post-merge backstop. The tool falls back to full
+      # replay if the diff can't be computed or a global-impact file changed.
       - name: Kernel replay (leanchecker)
         if: needs.detect.outputs.lean == 'true'
-        run: python3 -m tools.gate_a.parallel_modules replay --jobs 2
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
+        run: |
+          if [ -n "$BASE_SHA" ]; then
+            python3 -m tools.gate_a.parallel_modules replay --jobs 2 --base "$BASE_SHA"
+          else
+            python3 -m tools.gate_a.parallel_modules replay --jobs 2
+          fi
 
       - name: Audit self-test (gate cannot rot silently)
         if: needs.detect.outputs.lean == 'true'

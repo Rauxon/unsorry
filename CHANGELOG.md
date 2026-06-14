@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2026-06-14
+
+Headline: **the proofs-and-contributors visualiser** (issue #371, ADR-032) — an interactive map of the swarm's proof graph: a Mermaid forest of the decomposition lineage, a full table of every goal, and *who solved each one* (solving agent, PR and the merging GitHub user, resolved from the `prove(…)` commits). Ships a GitHub-rendered `docs/proofs-contributors-visualisation.md` and a standalone interactive `docs/proofs-contributors-visualisation.html` (mermaid.js with pan/zoom, a click-to-detail panel, and a filterable table). Also: the staged **Freek #50** roadmap (ADR-031) and a serial Gate A axiom audit that keeps the runner's olean cache hot.
+
 ### Changed
+
+- Gate A's kernel replay (`leanchecker`) is now **incremental on PRs** (ADR-033/SPEC-033-A): it replays only the library modules changed in the PR plus their transitive **reverse-import closure**, instead of the whole library. Measurements drove this — `leanchecker`'s cost scales with the import union of the module set (1 module ≈ 10 s / 1.4 GB; a 30-module chunk ≈ 127 s / 12.5 GB; ~180 modules OOMs a 16 GB runner), while a typical proof PR changes 1–3 modules and re-replayed the unchanged rest for nothing. In CI every olean is rebuilt from the PR's sources, so a module whose source and entire import closure are unchanged rebuilds byte-identically to the olean already kernel-replayed when it merged; only changed modules and anything importing them (incl. their generated `*Binding` modules, which import their base) can differ. Result: a typical PR's replay drops from ~20 min / 12 GB-plus-swap to **~10–30 s / <2 GB**. Conservative full-replay fallbacks cover push-to-`main` (the post-merge backstop), an uncomputable diff, and global-impact changes (`lean-toolchain`/`lakefile`/`lake-manifest`/`tools/gate_a/**`/the gate-a workflow). Unit-tested (`test_parallel_modules.py`); amends SPEC-006-B's full-library replay scope.
 
 - Gate A's axiom audit now runs serially (`--jobs 1`). Each `axiom_audit` process holds a full mathlib image (~6–7 GB), so two concurrent ones peaked ~13 GB on a 16 GB runner — not an OOM, but enough to evict the `.olean` page cache, and the re-reads showed up as high CPU I/O wait (the parallel run thrashed rather than ran faster). One image at a time keeps the cache hot. This matches the already-serial `leanchecker` replay (both heavy kernel passes hold a fixed mathlib image, so concurrency hurts on a 16 GB runner). The `--jobs` knob is retained for runners with materially more RAM (a 32 GB profile can raise audit back to `--jobs 2` and re-parallelize replay). SPEC-006-B updated.
 
@@ -20,6 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.9.1] - 2026-06-13
 
 Headline: **reliability bugfixes** — the Gate A `leanchecker` OOM that was blocking the `euclid-perfect-numbers` recompose is fixed with 12 GB of swap headroom; the generated targets board (`docs/targets.md`) no longer silently drifts (it is regenerated in every goal-mutating PR and a gate-b `--check` guard enforces it); and an explicit `--goal` now overrides the viability floor, so a named sub-viable goal is claimable by `--prove`.
+### Changed
+
+- The required `gate-a` job now runs on a Namespace managed (ephemeral) runner via the `namespace-profile-unsorry-1` profile (currently 4 vCPU / 16 GB) instead of a GitHub-hosted runner (SPEC-006-B). At 16 GB this is memory parity with GitHub, so the `leanchecker` replay stays serial and the swap-headroom step is now **best-effort** (Namespace disallows `swapon`; its RAM covers the replay) — a failure there no longer fails the gate. Sizing the profile up (e.g. 8x32) would let replay re-parallelize. Only the heavy `gate-a` job moves; `detect` and the non-Lean gates (gate-b, pr-*, agent-lint, reaper) stay on free GitHub-hosted runners. Profile-backed keeps the runner ephemeral (no self-hosted tampering surface).
 
 ### Fixed
 

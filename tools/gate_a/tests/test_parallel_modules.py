@@ -2,7 +2,16 @@ import json
 import subprocess
 from pathlib import Path
 
-from tools.gate_a.parallel_modules import audit, module_names, replay, split_evenly
+from tools.gate_a.parallel_modules import (
+    audit,
+    forces_full_replay,
+    import_graph,
+    library_module_for_path,
+    module_names,
+    replay,
+    replay_scope,
+    split_evenly,
+)
 
 
 def completed(
@@ -113,3 +122,103 @@ def test_replay_chunks_a_large_library_serially(tmp_path: Path):
     assert all(c[:3] == ("lake", "env", "leanchecker") for c in calls)
     covered = {m for c in calls for m in c[3:]}
     assert covered == {f"Unsorry.{n}" for n in names}  # every module replayed
+
+
+# --- incremental replay (ADR-033) -------------------------------------------
+
+def _write_lib(tmp_path: Path, modules: dict[str, list[str]]) -> None:
+    """modules: {name: [imported Unsorry module names]}."""
+    d = tmp_path / "library" / "Unsorry"
+    d.mkdir(parents=True, exist_ok=True)
+    for name, imports in modules.items():
+        body = "".join(f"import Unsorry.{imp}\n" for imp in imports)
+        (d / f"{name}.lean").write_text(body + "theorem t : True := trivial\n")
+
+
+def _runner_for(tmp_path, changed_stdout, *, git_rc=0):
+    """A runner that answers `git diff` with changed_stdout and records the
+    module lists passed to leanchecker."""
+    replayed: set[str] = set()
+
+    def runner(argv, **_kwargs):
+        argv = tuple(argv)
+        if argv[0] == "git" and "diff" in argv:
+            return completed(argv, returncode=git_rc, stdout=changed_stdout)
+        if argv[:3] == ("lake", "env", "leanchecker"):
+            replayed.update(argv[3:])
+        return completed(argv)
+
+    return runner, replayed
+
+
+def test_library_module_for_path():
+    assert library_module_for_path("library/Unsorry/Foo.lean") == "Unsorry.Foo"
+    assert library_module_for_path("library/Unsorry/Sub/Bar.lean") == "Unsorry.Sub.Bar"
+    assert library_module_for_path("goals/x.lean") is None
+    assert library_module_for_path("docs/readme.md") is None
+
+
+def test_forces_full_replay():
+    assert forces_full_replay(["library/Unsorry/A.lean"]) is None
+    assert forces_full_replay(["lean-toolchain"]) == "lean-toolchain"
+    assert forces_full_replay(["lakefile.toml"]) == "lakefile.toml"
+    assert forces_full_replay(["x", "tools/gate_a/check.py"]) == "tools/gate_a/check.py"
+    assert forces_full_replay([".github/workflows/gate-a.yml"]) == ".github/workflows/gate-a.yml"
+
+
+def test_replay_scope_reverse_closure(tmp_path):
+    _write_lib(tmp_path, {"A": [], "B": ["A"], "C": ["B"], "ABinding": ["A"], "Unrel": []})
+    graph = import_graph(tmp_path)
+    # changing A pulls in everything that transitively imports A (incl. its binding)
+    assert set(replay_scope(["Unsorry.A"], graph)) == {
+        "Unsorry.A", "Unsorry.B", "Unsorry.C", "Unsorry.ABinding"
+    }
+    # a leaf only replays itself
+    assert replay_scope(["Unsorry.C"], graph) == ["Unsorry.C"]
+    assert replay_scope(["Unsorry.Unrel"], graph) == ["Unsorry.Unrel"]
+
+
+def test_replay_incremental_changed_plus_dependents_only(tmp_path):
+    _write_lib(tmp_path, {"A": [], "B": ["A"], "C": [], "ABinding": ["A"]})
+    runner, replayed = _runner_for(tmp_path, "library/Unsorry/A.lean\n")
+    assert replay(tmp_path, 2, runner, base="origin/main") == 0
+    # A changed -> A + B + ABinding (import A); C untouched and skipped
+    assert replayed == {"Unsorry.A", "Unsorry.B", "Unsorry.ABinding"}
+
+
+def test_replay_incremental_no_library_change_skips(tmp_path):
+    _write_lib(tmp_path, {"A": []})
+    runner, replayed = _runner_for(tmp_path, "docs/readme.md\nCHANGELOG.md\n")
+    assert replay(tmp_path, 2, runner, base="origin/main") == 0
+    assert replayed == set()  # leanchecker never invoked
+
+
+def test_replay_global_impact_forces_full(tmp_path):
+    _write_lib(tmp_path, {"A": [], "B": ["A"]})
+    runner, replayed = _runner_for(tmp_path, "lean-toolchain\nlibrary/Unsorry/A.lean\n")
+    assert replay(tmp_path, 2, runner, base="origin/main") == 0
+    assert replayed == {"Unsorry.A", "Unsorry.B"}  # FULL replay
+
+
+def test_replay_git_failure_falls_back_to_full(tmp_path):
+    _write_lib(tmp_path, {"A": [], "B": []})
+    runner, replayed = _runner_for(tmp_path, "", git_rc=128)
+    assert replay(tmp_path, 2, runner, base="deadbeef") == 0
+    assert replayed == {"Unsorry.A", "Unsorry.B"}  # FULL replay on git failure
+
+
+def test_replay_without_base_is_full(tmp_path):
+    _write_lib(tmp_path, {"A": [], "B": ["A"]})
+    calls: list[tuple[str, ...]] = []
+
+    def runner(argv, **_kwargs):
+        argv = tuple(argv)
+        if argv[0] == "git":
+            raise AssertionError("full replay must not consult git")
+        if argv[:3] == ("lake", "env", "leanchecker"):
+            calls.append(argv)
+        return completed(argv)
+
+    assert replay(tmp_path, 2, runner) == 0  # no base -> full, no git
+    replayed = {m for c in calls for m in c[3:]}
+    assert replayed == {"Unsorry.A", "Unsorry.B"}
