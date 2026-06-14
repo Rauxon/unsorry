@@ -1,0 +1,19 @@
+𝔸5.1.goal.descartes-total-angular-defect@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜descartes-total-angular-defect
+  phase≜prove
+  status≜open
+  difficulty≜4
+}
+⟦Σ:Source⟧{
+  src≜backlog/descartes-total-angular-defect.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/descartes-total-angular-defect.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
