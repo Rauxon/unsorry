@@ -1,0 +1,12 @@
+𝔸5.1.decomp.am-gm-three-cube-s2.oma-2-c50d@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜am-gm-three-cube-s2; agent≜oma-2-c50d}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜am-gm-three-cube-s2-s1,sha≜2b51707606223ad44f43c6294ba1f67cafd8b5f3b1ad780e3f8cb46c4a9c33b8⟩
+  sub₂≜⟨id≜am-gm-three-cube-s2-s2,sha≜dc8432bcd7d41f9a5a6d6349a6680b24ba292cee188c6f63741cb94bfbf9c097⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
