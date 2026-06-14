@@ -22,6 +22,7 @@ bites when the corresponding setting is on.
 | 3 | Block force pushes + deletions on `main` and `claims` | rulesets | ☐ |
 | 4 | Restrict who can edit Actions settings / disable "Allow all actions" in favour of allow-list | Settings → Actions | ☐ optional belt |
 | 5 | Tag protection on `v*` (releases are the public record) | rulesets | ☐ |
+| 6 | **`REFRESH_TOKEN` secret** — the shared sponsor/admin PAT that lets CI push to `main` and open PRs. Required scopes: **`contents: write`** (post-merge artifact refreshes push to `main` — they bypass the required checks because the rule has `enforce_admins: false`, #417) **and `pull-requests: write`** (the `upstream-packets` workflow opens + auto-merges a packet PR). A classic repo-scope PAT covers both; a fine-grained one needs both permissions. Used by `targets-board.yml`, `leaderboard.yml`, `proofs-visualisation.yml`, and `upstream-packets.yml`. | Settings → Secrets and variables → Actions | ☐ set (replaces the old `UPSTREAM_PAT`) |
 
 ## The honest trade-off on #2
 
