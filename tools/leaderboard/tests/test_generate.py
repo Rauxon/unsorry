@@ -8,6 +8,7 @@ from tools.leaderboard.generate import (
     base_stats,
     main,
     proofs,
+    provenance_phantoms,
     render,
     render_attribution_gaps_json,
     render_json,
@@ -361,3 +362,75 @@ def test_docs_leaderboard_html_consumes_generated_ui_json():
     assert "LocalDataStore" not in html
     assert "seedData" not in html
     assert "pravatar" not in html
+
+
+# --- Phantom-solver guard (ADR-037) ------------------------------------------
+
+_PHANTOM = (
+    "⟦Π:Provenance⟧{{solver≜{solver}; agent≜x; provider≜manual; "
+    "model≜m; effort≜manual; attempts≜1}}\n"
+)
+
+
+def test_phantom_solver_is_flagged(tmp_path):
+    # solver≜ matches no proof-run, no alias, and not the git author → phantom.
+    _git(tmp_path, "init")
+    _goal(tmp_path, "some-goal", 3, status="proved")
+    _index(tmp_path, "b" * 64, "some-goal", provenance=_PHANTOM.format(solver="ghost"))
+    _git(tmp_path, "add", "goals", "library/index")
+    _git(tmp_path, "commit", "-m", "prove(some-goal)", author="Real Solver <real@e.com>")
+    phantoms = provenance_phantoms(tmp_path)
+    assert [p["solver"] for p in phantoms] == ["ghost"]
+    assert phantoms[0]["goal"] == "some-goal"
+    assert phantoms[0]["git_author_name"] == "Real Solver"
+
+
+def test_solver_corroborated_by_proof_run(tmp_path):
+    _git(tmp_path, "init")
+    _goal(tmp_path, "some-goal", 3, status="proved")
+    _index(tmp_path, "b" * 64, "some-goal", provenance=_PHANTOM.format(solver="realboy"))
+    _run(tmp_path, "some-goal", "r1", "proved", attempts=1, solve_s=10, solver="realboy")
+    _git(tmp_path, "add", "goals", "library/index", "proof-runs")
+    _git(tmp_path, "commit", "-m", "prove", author="Someone Else <e@e.com>")
+    assert provenance_phantoms(tmp_path) == []
+
+
+def test_solver_corroborated_by_alias(tmp_path):
+    _git(tmp_path, "init")
+    _goal(tmp_path, "some-goal", 3, status="proved")
+    _index(tmp_path, "b" * 64, "some-goal", provenance=_PHANTOM.format(solver="octocat"))
+    _alias(tmp_path, "Git Name <g@e.com>", "octocat", "Octo Cat")
+    _git(tmp_path, "add", "goals", "library/index", "docs")
+    _git(tmp_path, "commit", "-m", "prove", author="Git Name <g@e.com>")
+    assert provenance_phantoms(tmp_path) == []
+
+
+def test_solver_corroborated_by_git_author(tmp_path):
+    _git(tmp_path, "init")
+    _goal(tmp_path, "some-goal", 3, status="proved")
+    _index(tmp_path, "b" * 64, "some-goal", provenance=_PHANTOM.format(solver="binto"))
+    _git(tmp_path, "add", "goals", "library/index")
+    _git(tmp_path, "commit", "-m", "prove", author="binto <b@e.com>")
+    assert provenance_phantoms(tmp_path) == []
+
+
+def test_missing_solver_is_not_a_phantom(tmp_path):
+    # No solver≜ at all is a *missing-provenance* gap, not a phantom.
+    _git(tmp_path, "init")
+    _goal(tmp_path, "some-goal", 3, status="proved")
+    _index(tmp_path, "b" * 64, "some-goal")
+    _git(tmp_path, "add", "goals", "library/index")
+    _git(tmp_path, "commit", "-m", "prove", author="Real <r@e.com>")
+    assert provenance_phantoms(tmp_path) == []
+
+
+def test_audit_provenance_cli_exit_codes(tmp_path):
+    _git(tmp_path, "init")
+    _goal(tmp_path, "some-goal", 3, status="proved")
+    _index(tmp_path, "b" * 64, "some-goal", provenance=_PHANTOM.format(solver="ghost"))
+    _git(tmp_path, "add", "goals", "library/index")
+    _git(tmp_path, "commit", "-m", "prove", author="Real <r@e.com>")
+    assert main(["--audit-provenance", str(tmp_path)]) == 1
+    # Correct the attribution → audit is clean.
+    _index(tmp_path, "b" * 64, "some-goal", provenance=_PHANTOM.format(solver="real"))
+    assert main(["--audit-provenance", str(tmp_path)]) == 0

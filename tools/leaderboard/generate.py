@@ -484,6 +484,89 @@ def attribution_gaps_payload(root: Path) -> dict:
     }
 
 
+def _corroborated_handles(root: Path, data: Dataset) -> set[str]:
+    """Casefolded solver handles backed by a *real* contributor footprint (ADR-037).
+
+    A handle is corroborated by: a proof-runs telemetry record (the agent's
+    machine-captured solver), or a contributor-aliases `github` mapping. The
+    per-proof git add-author is checked separately (it is proof-specific).
+    """
+    handles = {run.solver.casefold() for run in data.runs if run.solver}
+    for value in contributor_aliases(root).values():
+        github = _valid_github_handle(str(value.get("github") or ""))
+        if github:
+            handles.add(github.casefold())
+    return handles
+
+
+def provenance_phantoms(root: Path, data: Dataset | None = None) -> list[dict]:
+    """Proof-index records whose explicit ``solver≜`` is corroborated by nothing
+    real (ADR-037).
+
+    The leaderboard credits the self-reported ``solver≜`` (ADR-023). A handle that
+    appears *only* as that field — with no matching proof-run, no matching git
+    add-author, and no contributor-alias — is almost certainly a typo or a
+    placeholder (e.g. the ``solver≜kev`` that mis-credited Adam Holt's proofs),
+    and it silently steals credit from the real solver. This flags them.
+    """
+    data = load_dataset(root) if data is None else data
+    aliases = contributor_aliases(root)
+    authors_by_path = git_add_authors(root, data.proofs)
+    corroborated = _corroborated_handles(root, data)
+    phantoms = []
+    for proof in sorted(data.proofs, key=lambda item: item.path):
+        if not proof.solver:
+            continue
+        handle = proof.solver.casefold()
+        author = authors_by_path.get(proof.path)
+        _, github = _alias_for(aliases, author)
+        if (
+            handle in corroborated
+            or (github is not None and handle == github.casefold())
+            or (author is not None and handle == author.name.casefold())
+        ):
+            continue
+        phantoms.append(
+            {
+                "path": proof.path,
+                "sha": proof.sha,
+                "goal": proof.goal,
+                "solver": proof.solver,
+                "git_author": author.key if author else None,
+                "git_author_name": author.name if author else None,
+                "git_add_commit": author.commit if author else None,
+            }
+        )
+    return phantoms
+
+
+def _run_provenance_audit(root: Path) -> int:
+    phantoms = provenance_phantoms(root)
+    if not phantoms:
+        print("provenance audit: every solver≜ is corroborated (ADR-037)")
+        return 0
+    print(
+        f"provenance audit: {len(phantoms)} uncorroborated solver attribution(s) "
+        "(ADR-037) — a solver≜ with no proof-run, git add-author, or contributor-"
+        "alias footprint (likely a typo or placeholder stealing real credit):",
+        file=sys.stderr,
+    )
+    for phantom in phantoms:
+        print(
+            f"  {phantom['path']}: solver≜{phantom['solver']}  "
+            f"(goal {phantom['goal']}; git add-author "
+            f"{phantom['git_author_name'] or '?'})",
+            file=sys.stderr,
+        )
+    print(
+        "Fix: set solver≜ to the real solver's handle (cross-check the goal's "
+        "proof-runs/ telemetry and the prove commit's git author), or add a "
+        "contributor-alias.",
+        file=sys.stderr,
+    )
+    return 1
+
+
 def _rate(numerator: int, denominator: int) -> float | None:
     return round(numerator / denominator, 4) if denominator else None
 
@@ -1034,6 +1117,9 @@ def render_attribution_gaps_json(root: Path) -> str:
 
 def main(argv: list[str] | None = None) -> int:
     argv = sys.argv[1:] if argv is None else argv
+    if "--audit-provenance" in argv:
+        rest = [arg for arg in argv if arg != "--audit-provenance"]
+        return _run_provenance_audit(Path(rest[0]) if rest else Path.cwd())
     modes = [flag for flag in ("--check", "--write", "--json") if flag in argv]
     if len(modes) > 1:
         print("--check, --write, and --json are mutually exclusive", file=sys.stderr)

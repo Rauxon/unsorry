@@ -1,0 +1,68 @@
+name: attribution-advisory
+
+# Advisory backstop for ADR-037 / SPEC-037-A. Flags a proof-index record whose
+# `solver≜` is a *phantom* — a handle corroborated by no proof-run, no git
+# add-author, and no contributor-alias (a typo/placeholder that silently steals
+# a real solver's leaderboard credit, e.g. the `solver≜kev` that mis-credited
+# Adam Holt's proofs). NON-BLOCKING by design: it posts a sticky advisory
+# comment and always exits 0 — do NOT add it to branch-protection's required
+# checks. A pure-Python audit (no Lean build), so it is cheap to run on every
+# PR that touches the provenance inputs.
+
+on:
+  pull_request:
+    paths:
+      - "library/index/**"
+      - "proof-runs/**"
+      - "docs/metrics/contributor-aliases.json"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0 # git add-author corroboration reads history
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+      - name: Audit solver provenance (advisory)
+        id: audit
+        run: |
+          set +e
+          out=$(python3 -m tools.leaderboard --audit-provenance . 2>&1)
+          code=$?
+          {
+            echo '<!-- attribution-advisory -->'
+            echo '### Solver-provenance audit (advisory · ADR-037)'
+            echo ''
+            if [ "$code" -eq 0 ]; then
+              echo 'Every `solver≜` is corroborated by a proof-run, git add-author, or contributor-alias. ✅'
+            else
+              echo 'Uncorroborated `solver≜` attribution(s) — a handle with **no** proof-run, git add-author, or contributor-alias footprint (likely a typo or placeholder stealing a real solver'"'"'s credit):'
+              echo ''
+              echo '```'
+              printf '%s\n' "$out"
+              echo '```'
+              echo ''
+              echo '_Advisory only — not a merge blocker. Set `solver≜` to the real solver'"'"'s handle (cross-check the goal'"'"'s `proof-runs/` telemetry and the prove commit'"'"'s git author), or add a contributor-alias in `docs/metrics/contributor-aliases.json`._'
+            fi
+          } > comment.md
+          echo "phantoms=$code" >> "$GITHUB_OUTPUT"
+      - name: Sticky advisory comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          existing=$(gh api "repos/${{ github.repository }}/issues/$PR/comments" \
+            --jq '.[] | select(.body | startswith("<!-- attribution-advisory -->")) | .id' | head -1)
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/$existing" -F body=@comment.md >/dev/null
+          else
+            gh api "repos/${{ github.repository }}/issues/$PR/comments" -F body=@comment.md >/dev/null
+          fi
