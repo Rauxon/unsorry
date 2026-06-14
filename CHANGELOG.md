@@ -7,12 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
-
-- Gate A now routes its Namespace runner by **replay workload**: a normal proof PR (incremental, light replay — ADR-033) runs on `namespace-profile-unsorry-1` as before, while a **full** replay — a gate/infra change (`tools/gate_a/**`, the gate-a workflow, `lean-toolchain`, `lakefile*`, `lake-manifest.json`) or any push to `main` — runs on `namespace-profile-unsorry-2`. The `detect` job picks the profile (via a new `infra` paths-filter) and `gate-a` reads it through `runs-on: ${{ needs.detect.outputs.profile }}`. Both profiles are 4 vCPU / 16 GB; the split keeps the slow ~20-min full replay (triggered by `ci:`/gate changes) in its own pool so it never blocks the frequent, fast proof PRs. SPEC-006-B updated.
-### Added
-
-- The swarm agent (`swarm/agent.sh`) **re-execs itself when the harness updates** (ADR-039/SPEC-039-A, issue #428). `sync_repo` already `--ff-only`-advances the working tree to `origin/main` every cycle, but a long-lived bash process keeps running the `agent.sh` it was launched with — a merged harness fix landed on disk but never in memory. The agent now captures its launch argv + the script's `git hash-object` at startup and, at the top of each cycle (after `sync_repo`, before any goal is claimed), re-`exec`s with the original argv when its own sha changed — so a merged harness change reaches running agents within one cycle, no operator restart. Keys only on `agent.sh` (Python `tools/` re-import per call); a git-hash failure never triggers a re-exec. Self-test `test_harness_is_stale`.
+<!-- Unreleased changes accumulate as one-file-per-change fragments under
+`changelog.d/` (ADR-040) — do NOT edit this section by hand. Preview with
+`python3 -m tools.changelog --preview`; a release folds them in here with
+`python3 -m tools.changelog --release <version> <date>`. -->
 
 ## [1.12.0] - 2026-06-14
 
