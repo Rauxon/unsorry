@@ -1,0 +1,8 @@
+𝔸5.1.lemma.ae55a884322d@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜ae55a884322dcbff38a8dca5faf3777c2b91c68b579abd8904c2131082a7b3de; goal≜eight-dvd-consecutive-odd-sq-diff; name≜eight_dvd_consecutive_odd_sq_diff}
+⟦Σ:Source⟧{src≜goals/eight-dvd-consecutive-odd-sq-diff.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜297}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

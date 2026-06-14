@@ -1,0 +1,8 @@
+𝔸5.1.run.eight-dvd-consecutive-odd-sq-diff.afnz-zbook-b336.20260614t133418257490z-09f48f51@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t133418257490z-09f48f51; goal≜eight-dvd-consecutive-odd-sq-diff; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜eight-dvd-consecutive-odd-sq-diff}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜297; ended≜2026-06-14T13:34:18Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜ae55a884322dcbff38a8dca5faf3777c2b91c68b579abd8904c2131082a7b3de}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
