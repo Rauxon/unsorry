@@ -11,6 +11,7 @@ import pytest
 
 from tools.sourcing.check_triviality import (
     TACTIC_BATTERY,
+    audit,
     classify,
     main,
     override_reason,
@@ -98,6 +99,12 @@ def test_classify_unsolved_is_non_trivial():
 def test_classify_elaboration_error_is_probe_error():
     assert classify(1, "error: unknown identifier 'foo'") == "probe-error"
     assert classify(1, "error: unexpected token ':'") == "probe-error"
+    # #410: an unresolved typeclass in the statement is an elaboration error,
+    # not a non-trivial goal — it must be surfaced, never admitted.
+    assert classify(
+        1, "error: failed to synthesize instance\n  Inv ℕ"
+    ) == "probe-error"
+    assert classify(1, "error: failed to synthesize\n  OfNat") == "probe-error"
 
 
 # ---- probe() orchestration with a mocked runner ----
@@ -197,3 +204,26 @@ def test_json_verdict_deterministic(tmp_path):
     b = probe(g, runner=FakeRunner(1, "unsolved goals"), root=tmp_path)
     assert a == b
     assert a["battery"] == list(TACTIC_BATTERY)
+
+
+# ---- audit() two-pass efficiency (#411) ----
+
+def test_audit_combined_first_reprobes_only_trivial(tmp_path):
+    # Pass 1 is the combined `first | …` probe (one build/goal); only a goal that
+    # comes back trivial is re-probed per-tactic to recover closed_by.
+    _manifest(tmp_path)
+    _goal(tmp_path, "hard", "theorem hard (n : Nat) : n + 1 = n + 1")
+    _goal(tmp_path, "triv", "theorem triv : True")
+    runner = FakeRunner(1, "unsolved goals", by_source={
+        "theorem hard": (1, "unsolved goals"),  # combined fails → non-trivial
+        "first |": (0, ""),                     # triv combined closes → trivial
+        "triv": (0, ""),                        # triv per-tactic re-probe closes
+    })
+    reports = {r["goal"]: r for r in audit(tmp_path, runner=runner)}
+    assert reports["hard"]["verdict"] == "non-trivial"
+    assert reports["triv"]["verdict"] == "trivial"
+    assert reports["triv"]["closed_by"] is not None          # recovered via re-probe
+    # hard ran exactly one build (combined; no per-tactic re-probe).
+    assert sum("theorem hard" in s for s in runner.sources) == 1
+    # triv ran the combined build + at least one per-tactic re-probe build.
+    assert sum("theorem triv" in s for s in runner.sources) >= 2

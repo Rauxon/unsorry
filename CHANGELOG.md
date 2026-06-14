@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 `changelog.d/` (ADR-040) — do NOT edit this section by hand. Preview with
 `python3 -m tools.changelog --preview`; a release folds them in here with
 `python3 -m tools.changelog --release <version> <date>`. -->
+### Fixed
+
+- The triviality probe (`tools/sourcing/check_triviality.py`, ADR-035) now classifies a `failed to synthesize` elaboration error as **`probe-error`**, not `non-trivial` (issue #410). An unresolved typeclass in a goal's *statement* is a broken probe, not evidence of non-triviality — the old `_ELAB_ERROR_RE` omitted it, so such a statement could be silently admitted. Added to the regex; TDD.
+- The `check_triviality --all` retro-audit is no longer ~11 builds/goal (issue #411). It ran the per-tactic probe (one build per battery tactic) over every goal, so ~100 goals × ~11 builds timed the audit out at 90 min. It now does the fast combined `first | …` probe (one build/goal) first and re-probes only the goals that come back `trivial` per-tactic to recover `closed_by` — ~1 build/goal plus a small handful, bringing the retro-audit into tractable wall-clock.
 
 ## [1.12.0] - 2026-06-14
 

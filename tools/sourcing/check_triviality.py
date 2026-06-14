@@ -72,7 +72,7 @@ ALLOWLIST = Path(__file__).with_name("triviality_allowlist.txt")
 _ELAB_ERROR_RE = re.compile(
     r"unknown identifier|unknown constant|unknown tactic|unexpected token"
     r"|unexpected identifier|function expected|unknown package|unknown namespace"
-    r"|invalid field|expected type must be known",
+    r"|invalid field|expected type must be known|failed to synthesize",
 )
 
 
@@ -207,11 +207,25 @@ def _goal_files(root: Path) -> list[Path]:
 
 
 def audit(root: Path, *, runner: Runner | None = None, timeout: float = 180.0) -> list[dict]:
-    """Probe every goal (``--per-tactic`` for diagnostics). Report-only — the
-    caller decides what to do with flagged goals; this never mutates anything."""
+    """Report-only probe of every goal, in two passes for a tractable wall-clock
+    (#411). Pass 1 is the fast combined ``first | …`` probe — one build per goal.
+    Pass 2 re-probes only the goals that came back ``trivial`` with
+    ``--per-tactic``, to recover which tactic closed them (``closed_by``). That is
+    ~1 build/goal plus a re-probe for the trivial handful, instead of ~11/goal
+    (which timed the retro-audit out at 90 min over ~100 goals). Never mutates
+    anything."""
     runner = runner or subprocess.run
-    return [probe(g, runner=runner, root=root, timeout=timeout, per_tactic=True)
-            for g in _goal_files(root)]
+    reports = []
+    for goal in _goal_files(root):
+        report = probe(goal, runner=runner, root=root, timeout=timeout)
+        if report["verdict"] == "trivial":
+            # rc==0 on the combined battery ⇒ some tactic closes it; re-probe
+            # per-tactic to name it. (Allowlisted/override are already admitted —
+            # no re-probe; probe-error/non-trivial never closed.)
+            report = probe(goal, runner=runner, root=root, timeout=timeout,
+                           per_tactic=True)
+        reports.append(report)
+    return reports
 
 
 def main(argv: list[str] | None = None) -> int:
