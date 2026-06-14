@@ -1581,8 +1581,10 @@ cli_health_probe() {
           --color never "Reply with exactly: OK" >/dev/null 2>&1
       ;;
     gemini)
-      timeout 90 gemini --skip-trust --allowed-mcp-server-names none -p "Reply with exactly: OK" --model flash \
-        --output-format text >/dev/null 2>&1
+      # The Gemini CLI can leave model-prompt probe children stopped, which
+      # prevents `timeout` from returning. For ADR-016 we only need to know the
+      # local CLI is callable; avoid a network/model prompt in the health path.
+      timeout 10 gemini --version >/dev/null 2>&1
       ;;
     openai)
       # On a custom OpenAI-compatible endpoint (OPENAI_BASE_URL / -pi, ADR-025)
@@ -1728,11 +1730,22 @@ call_codex_decompose() {
     timeout "$UNSORRY_WALL" codex "${args[@]}" - <<<"$prompt"
 }
 
+call_gemini_decompose() {
+  local prompt="$1" workdir="$2" _effort="$3"
+  local model="${UNSORRY_MODEL:-gemini-3.1-pro-preview}"
+  # Gemini CLI has no --effort flag; decomposition still runs at the top
+  # logical ladder rung for telemetry, but the CLI argv stays effort-free.
+  ( cd "$workdir" \
+    && timeout "$UNSORRY_WALL" gemini --skip-trust --allowed-mcp-server-names none -p "$prompt" \
+         --model "$model" --output-format text < /dev/null )
+}
+
 call_provider_decompose() {
   local prompt="$1" workdir="$2" effort="$3"
   case "$UNSORRY_PROVIDER" in
     claude) call_claude_decompose "$prompt" "$workdir" "$effort" ;;
     codex) call_codex_decompose "$prompt" "$workdir" "$effort" ;;
+    gemini) call_gemini_decompose "$prompt" "$workdir" "$effort" ;;
     *) log "unsupported decomposition provider '$UNSORRY_PROVIDER'"; return 1 ;;
   esac
 }
@@ -2690,6 +2703,62 @@ test_gemini_prove_mutes_cli_effort() {
     || { log "  gemini prove omitted --model"; return 1; }
   grep -qx -- 'gemini-test' "$args" \
     || { log "  gemini prove omitted configured model"; return 1; }
+}
+
+test_gemini_decompose_mutes_cli_effort() {
+  local tmp args out
+  tmp="$(mktemp -d "$SESSION_TMP/gemini-decompose.XXXXXX")" || return 1
+  mkdir -p "$tmp/bin" "$tmp/work" || return 1
+  args="$tmp/args"
+  # shellcheck disable=SC2016  # fake helper must receive literal "$@" / env vars
+  printf '%s\n' \
+    '#!/bin/sh' \
+    'printf "%s\n" "$@" > "$GEMINI_ARGS_OUT"' \
+    'printf "%s\n" "SUB: theorem sub_one : True" "SUB: theorem sub_two : True"' \
+    'exit 0' > "$tmp/bin/gemini" || return 1
+  chmod +x "$tmp/bin/gemini" || return 1
+
+  out="$(GEMINI_ARGS_OUT="$args" \
+    PATH="$tmp/bin:$PATH" \
+    UNSORRY_MODEL=gemini-test \
+    UNSORRY_WALL=5 \
+    call_gemini_decompose "split something" "$tmp/work" max)" \
+    || { log "  fake gemini decompose call failed"; return 1; }
+
+  printf '%s' "$out" | grep -q '^SUB: theorem sub_one : True$' \
+    || { log "  gemini decompose did not return provider output"; return 1; }
+  ! grep -qx -- '--effort' "$args" \
+    || { log "  gemini decompose forwarded unsupported --effort"; return 1; }
+  grep -qx -- '--model' "$args" \
+    || { log "  gemini decompose omitted --model"; return 1; }
+  grep -qx -- 'gemini-test' "$args" \
+    || { log "  gemini decompose omitted configured model"; return 1; }
+}
+
+test_gemini_health_probe_uses_version() {
+  local tmp args
+  tmp="$(mktemp -d "$SESSION_TMP/gemini-probe.XXXXXX")" || return 1
+  mkdir -p "$tmp/bin" || return 1
+  args="$tmp/args"
+  # shellcheck disable=SC2016  # fake helper must receive literal "$@" / env vars
+  printf '%s\n' \
+    '#!/bin/sh' \
+    'printf "%s\n" "$@" > "$GEMINI_ARGS_OUT"' \
+    'exit 0' > "$tmp/bin/gemini" || return 1
+  chmod +x "$tmp/bin/gemini" || return 1
+
+  GEMINI_ARGS_OUT="$args" \
+    PATH="$tmp/bin:$PATH" \
+    UNSORRY_PROVIDER=gemini \
+    cli_health_probe \
+    || { log "  fake gemini health probe failed"; return 1; }
+
+  grep -qx -- '--version' "$args" \
+    || { log "  gemini health probe did not use --version"; return 1; }
+  ! grep -qx -- '-p' "$args" \
+    || { log "  gemini health probe used a model prompt"; return 1; }
+  ! grep -qx -- '--model' "$args" \
+    || { log "  gemini health probe used a model call"; return 1; }
 }
 
 test_prove_target_path_guard() {
@@ -3789,6 +3858,8 @@ run_self_tests() {
     test_provider_effort_ladder
     test_prove_attempt_budget_default
     test_gemini_prove_mutes_cli_effort
+    test_gemini_decompose_mutes_cli_effort
+    test_gemini_health_probe_uses_version
     test_prove_target_path_guard
     test_prove_attempt_log_does_not_trip_guard
     test_run_proof_mock_provider_smoke
