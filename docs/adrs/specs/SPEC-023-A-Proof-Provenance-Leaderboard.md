@@ -22,9 +22,9 @@ Existing index entries remain valid and are reported as historical/unknown.
 `solver` defaults to the authenticated `gh api user` login and can be
 overridden with `UNSORRY_SOLVER`. Unknown models are omitted, never guessed.
 
-Historical git add-author attribution may be generated for contributor
-visibility, but it remains separate from solver-provenance credit. It must not
-populate or rewrite `solver≜`.
+Historical git add-author attribution may be generated for gamified proof
+credit when a proof index record lacks solver provenance. Explicit `solver≜`
+provenance wins; git-derived credit must not populate or rewrite `solver≜`.
 
 ## Terminal-run fact table
 
@@ -94,8 +94,8 @@ The base statistics include:
   total/median/p90 solve time, and successes per recorded run hour;
 - queue status and difficulty distributions;
 - contributor, provider/model, effort-rung, difficulty, and daily cohorts;
-- historical proof index contributors from git add-author history, separated
-  from solver-provenance ranking;
+- credited contributor ranking that combines explicit solver provenance with
+  inferred git add-author credit only when `solver≜` is missing;
 - goal-level accumulated runs, failed attempts, and recorded time;
 - the latest terminal runs for operational inspection.
 

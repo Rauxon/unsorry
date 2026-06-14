@@ -126,9 +126,8 @@ def test_historical_entries_are_unknown_not_guessed(tmp_path):
     data = proofs(tmp_path)
     assert data[0].solver is None
     assert "1 historical/unknown" in render(tmp_path)
-    assert "No attributed work yet" in render(tmp_path)
+    assert "No credited work yet" in render(tmp_path)
     assert ui_payload(tmp_path)["contributors"] == []
-    assert ui_payload(tmp_path)["historical_contributors"] == []
 
 
 def test_git_add_author_is_historical_visibility_not_solver_credit(tmp_path):
@@ -158,7 +157,17 @@ def test_git_add_author_is_historical_visibility_not_solver_credit(tmp_path):
     payload = ui_payload(tmp_path)
     assert payload["summary"]["git_attributed_index_files"] == 1
     assert payload["summary"]["historical_contributors"] == 1
-    assert payload["contributors"] == []
+    assert payload["summary"]["credited_proofs"] == 1
+    assert payload["summary"]["explicit_solver_proofs"] == 0
+    assert payload["summary"]["inferred_git_proofs"] == 1
+    assert payload["summary"]["uncredited_proofs"] == 0
+    assert payload["contributors"][0]["display_name"] == "@ada"
+    assert payload["contributors"][0]["verified_proofs"] == 1
+    assert payload["contributors"][0]["credited_proofs"] == 1
+    assert payload["contributors"][0]["explicit_solver_proofs"] == 0
+    assert payload["contributors"][0]["inferred_git_proofs"] == 1
+    assert payload["contributors"][0]["credit_source_summary"] == "inferred"
+    assert payload["contributors"][0]["score"] == 425
     assert payload["historical_contributors"][0]["profile_url"] == "https://github.com/ada"
     assert payload["historical_contributors"][0]["solver_credit"] is False
 
@@ -172,11 +181,10 @@ def test_git_add_author_is_historical_visibility_not_solver_credit(tmp_path):
     assert gaps["missing_solver_provenance"][0]["mapped_github"] == "ada"
     assert json.loads(render_attribution_gaps_json(tmp_path)) == gaps
     svg = render_svg(tmp_path)
-    assert "No attributed proofs yet." in svg
-    assert "Historical proof index contributors" in svg
     assert "@ada" in svg
-    assert "1 index files" in svg
-    assert "1 need solver review" in svg
+    assert "1 proofs" in svg
+    assert "0 explicit" in svg
+    assert "1 inferred" in svg
 
 
 def test_base_stats_derive_failure_and_efficiency_metrics(tmp_path):
@@ -227,7 +235,7 @@ def test_base_stats_derive_failure_and_efficiency_metrics(tmp_path):
     out = render(tmp_path)
     assert "Run success rate | 50.0%" in out
     assert "Failed attempts | 4" in out
-    assert "[@perttu](https://github.com/perttu) | 1 | 2 | 50.0% | 4 | 4" in out
+    assert "[@perttu](https://github.com/perttu) | 1 | 1 | 0 | 2 | 50.0% | 4 | 425" in out
     assert "`codex / gpt-5.1-codex` | 1 | 2 | 50.0% | 4" in out
 
 
@@ -281,9 +289,12 @@ def test_ui_payload_is_stable_browser_contract(tmp_path):
     assert payload["generated_at"] == "2026-06-13T12:00:00Z"
     assert payload["summary"]["verified_proofs"] == 2
     assert payload["summary"]["historical_unknown_proofs"] == 0
+    assert payload["summary"]["credited_proofs"] == 2
+    assert payload["summary"]["explicit_solver_proofs"] == 2
+    assert payload["summary"]["inferred_git_proofs"] == 0
+    assert payload["summary"]["uncredited_proofs"] == 0
     assert payload["summary"]["git_attributed_index_files"] == 0
     assert payload["summary"]["historical_contributors"] == 0
-    assert payload["historical_contributors"] == []
 
     first = payload["contributors"][0]
     assert first["rank"] == 1
@@ -292,6 +303,10 @@ def test_ui_payload_is_stable_browser_contract(tmp_path):
     assert first["profile_url"] == "https://github.com/perttu"
     assert first["avatar_url"] == "https://github.com/perttu.png?size=96"
     assert first["score"] == 425
+    assert first["credited_proofs"] == 1
+    assert first["explicit_solver_proofs"] == 1
+    assert first["inferred_git_proofs"] == 0
+    assert first["credit_source_summary"] == "explicit"
     assert first["badges"] == {
         "proofs": 1,
         "difficulty": 4,
@@ -305,7 +320,6 @@ def test_ui_payload_is_stable_browser_contract(tmp_path):
     assert json.loads(render_ui_json(tmp_path)) == payload
     svg = render_svg(tmp_path)
     assert "Unsorry Leaderboard" in svg
-    assert "Solver-provenance leaderboard" in svg
     assert "@perttu" in svg
     assert "425 pts" in svg
     assert "href=\"https://github.com/perttu\"" in svg
@@ -315,9 +329,8 @@ def test_svg_has_empty_state(tmp_path):
     _goal(tmp_path, "old-goal", 4)
     _index(tmp_path, "a" * 64, "old-goal")
     svg = render_svg(tmp_path)
-    assert "No attributed proofs yet." in svg
-    assert "1 verified proofs" in svg
-    assert "Historical proof index contributors" in svg
+    assert "No credited proofs yet." in svg
+    assert "0 credited proofs" in svg
 
 
 def test_check_and_write_modes_cover_markdown_json_ui_json_and_svg(tmp_path):
@@ -342,8 +355,9 @@ def test_docs_leaderboard_html_consumes_generated_ui_json():
     assert "metrics/leaderboard-ui.json" in html
     assert "schema_version" in html
     assert "leaderboardData = normalizeRows(payload.contributors)" in html
-    assert "historical_contributors" in html
-    assert "renderHistoricalContributors" in html
+    assert "explicit_solver_proofs" in html
+    assert "inferred_git_proofs" in html
+    assert "renderHistoricalContributors" not in html
     assert "LocalDataStore" not in html
     assert "seedData" not in html
     assert "pravatar" not in html

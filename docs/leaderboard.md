@@ -42,24 +42,22 @@ Verified output comes from `library/index`; append-only terminal-run telemetry c
 |------|--------|-----------:|-----:|----------------:|--------------:|
 | `sq-add-sq-eq-three-mul-sq-s4` | `open` | 1 | 2 | 6 | 54m 47s |
 
-## Contributors
+## Contributor Leaderboard
 
-These rows are strict solver-provenance credit from explicit `solver≜...` records.
+Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; older proof records without solver provenance use git add-author attribution as inferred historical credit.
 
-| Rank | GitHub solver | Verified proofs | Runs | Run success | Failed attempts | Difficulty points | Median time |
-|-----:|---------------|----------------:|-----:|------------:|----------------:|------------------:|------------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 19 | 23 | 82.6% | 20 | 49 | 9m 7s |
+| Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
+|-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 60 | 19 | 41 | 23 | 82.6% | 98 | 11300 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 20 | 0 | 20 | 0 | — | 39 | 4400 |
+| 3 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
+| 4 | [@OceanLi](https://github.com/OceanLi) | 1 | 0 | 1 | 0 | — | 3 | 325 |
 
-## Historical Proof Index Contributors
+## Attribution Notes
 
-These rows come from git add-author history for `library/index/*.aisp`. They provide contributor visibility for older proof artifacts and are not solver-provenance ranking.
+**19 explicit solver credits · 71 inferred git credits · 0 uncredited proof records.**
 
-| Contributor | Index files added | Missing solver provenance | Solver-provenance proofs | Difficulty points | Source |
-|-------------|------------------:|--------------------------:|-------------------------:|------------------:|--------|
-| [@cgbarlow](https://github.com/cgbarlow) | 60 | 41 | 19 | 98 | `git-add-author` |
-| [@chat-bit-01](https://github.com/chat-bit-01) | 20 | 20 | 0 | 39 | `git-add-author` |
-| [@binto](https://github.com/binto) | 9 | 9 | 0 | 19 | `git-add-author` |
-| [@OceanLi](https://github.com/OceanLi) | 1 | 1 | 0 | 3 | `git-add-author` |
+Git add-author attribution covers 90 of 90 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 

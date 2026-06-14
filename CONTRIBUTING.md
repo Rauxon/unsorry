@@ -77,8 +77,10 @@ final effort, attempts, completion time, and local proof/verification duration.
 Before coordinated proof runs, make sure `gh auth status` shows the GitHub
 account that should receive solver credit, or set
 `UNSORRY_SOLVER=<github-handle>`. Git commit authorship and solver credit are
-intentionally separate: historical proof index authors are shown for visibility,
-but old `solver≜` fields are not guessed from git history. See the generated
+intentionally separate: the leaderboard ranks credited verified proofs using
+explicit solver provenance first, and falls back to git add-author attribution
+for older proof index records that lack `solver≜`. Old source records are not
+rewritten from git history. See the generated
 **[community proof statistics](docs/leaderboard.md)**, the
 **[visual leaderboard](docs/leaderboard.html)**, and machine-readable
 `docs/metrics/community-stats.json`,

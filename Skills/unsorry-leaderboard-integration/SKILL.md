@@ -32,13 +32,13 @@ If the change touches interactive proof graph data, also read `docs/adrs/ADR-032
 - Visual page: `docs/leaderboard.html`.
 - README preview: `docs/leaderboard.svg`.
 
-Do not infer solver credit from git authors, PR mergers, or squash commits. Historical git add-author attribution may be shown as a separate visibility layer only when the generated data labels it separately from `solver≜...` provenance. Do not use leaderboard values in Gate A, Gate B admission, or queue selection.
+Do not rewrite `solver≜` from git authors, PR mergers, or squash commits. The gamified leaderboard may infer proof credit from git add-author history only when explicit solver provenance is missing, and the generated data must keep explicit/inferred counts visible. Do not use leaderboard values in Gate A, Gate B admission, or queue selection.
 
 ## Implementation Pattern
 
 1. Preserve `tools.leaderboard.generate.base_stats(root)` as the statistical source.
 2. Add a UI adapter that derives display-only fields from core stats: rank, score, GitHub profile URL, avatar URL, badges, and summary.
-3. Keep solver-provenance rows and historical git-attribution rows separate. `contributors` is ranked solver credit; `historical_contributors` is contributor visibility only.
+3. Keep one gamified `contributors` ranking. Each row should expose `explicit_solver_proofs`, `inferred_git_proofs`, and `credit_source_summary` so inferred credit is visible without splitting the leaderboard.
 4. Keep the browser page presentation-only. It should fetch generated JSON, validate basic shape, render rows, and show empty/error states.
 5. Make `python3 -m tools.leaderboard --write .` refresh every generated leaderboard artifact.
 6. Make `python3 -m tools.leaderboard --check .` detect drift for every generated leaderboard artifact.

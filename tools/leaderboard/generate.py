@@ -23,8 +23,8 @@ from tools.gate_b.records import parse_record
 
 
 SCORE_POLICY = (
-    "rank by verified_proofs desc, difficulty_points desc; "
-    "score = difficulty_points * 100 + verified_proofs * 25"
+    "rank by credited verified proofs desc, difficulty_points desc; "
+    "score = difficulty_points * 100 + credited_proofs * 25"
 )
 
 
@@ -349,6 +349,93 @@ def historical_attribution(root: Path, data: Dataset | None = None) -> dict:
     }
 
 
+def credited_contributors(
+    root: Path,
+    data: Dataset,
+    contributor_runs: dict[str, list[Run]],
+) -> list[dict]:
+    aliases = contributor_aliases(root)
+    authors_by_path = git_add_authors(root, data.proofs)
+    rows: dict[str, dict] = {}
+
+    for proof in data.proofs:
+        source = "explicit-solver"
+        github = _valid_github_handle(proof.solver)
+        display_name = f"@{github}" if github else None
+        key = github
+        git_author = None
+
+        if key is None:
+            author = authors_by_path.get(proof.path)
+            if author is None:
+                continue
+            display, mapped_github = _alias_for(aliases, author)
+            github = mapped_github
+            display_name = f"@{mapped_github}" if mapped_github else display
+            key = mapped_github or f"git:{author.key}"
+            git_author = author.key
+            source = "inferred-git-add-author"
+
+        row = rows.setdefault(
+            key,
+            {
+                "solver": github,
+                "github": github,
+                "display_name": display_name or str(key),
+                "profile_url": _profile_url(github),
+                "avatar_url": _avatar_url(github),
+                "git_author": git_author,
+                "verified_proofs": 0,
+                "credited_proofs": 0,
+                "explicit_solver_proofs": 0,
+                "inferred_git_proofs": 0,
+                "difficulty_points": 0,
+                "credit_sources": [],
+            },
+        )
+        if row["github"] is None and github:
+            row["solver"] = github
+            row["github"] = github
+            row["profile_url"] = _profile_url(github)
+            row["avatar_url"] = _avatar_url(github)
+        if row["display_name"].startswith("git:") and display_name:
+            row["display_name"] = display_name
+        if git_author and not row.get("git_author"):
+            row["git_author"] = git_author
+
+        row["verified_proofs"] += 1
+        row["credited_proofs"] += 1
+        row["difficulty_points"] += proof.difficulty
+        if source == "explicit-solver":
+            row["explicit_solver_proofs"] += 1
+        else:
+            row["inferred_git_proofs"] += 1
+        if source not in row["credit_sources"]:
+            row["credit_sources"].append(source)
+
+    for row in rows.values():
+        handle = row.get("github") or row.get("solver")
+        run_stats = _group_stats(contributor_runs.get(str(handle), []))
+        row.update(run_stats)
+        row["credit_sources"].sort()
+        if row["explicit_solver_proofs"] and row["inferred_git_proofs"]:
+            row["credit_source_summary"] = "explicit + inferred"
+        elif row["explicit_solver_proofs"]:
+            row["credit_source_summary"] = "explicit"
+        else:
+            row["credit_source_summary"] = "inferred"
+
+    result = list(rows.values())
+    result.sort(
+        key=lambda row: (
+            -int(row["credited_proofs"]),
+            -int(row["difficulty_points"]),
+            str(row["display_name"]).lower(),
+        )
+    )
+    return result
+
+
 def attribution_gaps_payload(root: Path) -> dict:
     data = load_dataset(root)
     aliases = contributor_aliases(root)
@@ -480,6 +567,17 @@ def base_stats(root: Path) -> dict:
             str(row["solver"]).lower(),
         )
     )
+    credited = credited_contributors(root, data, contributor_runs)
+    credit_summary = {
+        "credited_proofs": sum(int(row["credited_proofs"]) for row in credited),
+        "explicit_solver_proofs": sum(
+            int(row["explicit_solver_proofs"]) for row in credited
+        ),
+        "inferred_git_proofs": sum(int(row["inferred_git_proofs"]) for row in credited),
+        "uncredited_proofs": len(data.proofs)
+        - sum(int(row["credited_proofs"]) for row in credited),
+        "credited_contributors": len(credited),
+    }
 
     models = []
     for label in sorted(set(model_runs) | set(model_proofs)):
@@ -549,6 +647,8 @@ def base_stats(root: Path) -> dict:
             ),
         },
         "contributors": contributors,
+        "credited_contributors": credited,
+        "credit": credit_summary,
         "models": models,
         "difficulty": difficulty,
         "effort": effort,
@@ -666,49 +766,43 @@ def render(root: Path) -> str:
 
     lines.extend([
         "",
-        "## Contributors",
+        "## Contributor Leaderboard",
         "",
-        "These rows are strict solver-provenance credit from explicit `solver≜...` records.",
+        "Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; "
+        "older proof records without solver provenance use git add-author attribution "
+        "as inferred historical credit.",
         "",
-        "| Rank | GitHub solver | Verified proofs | Runs | Run success | Failed attempts | Difficulty points | Median time |",
-        "|-----:|---------------|----------------:|-----:|------------:|----------------:|------------------:|------------:|",
+        "| Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |",
+        "|-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|",
     ])
-    if not stats["contributors"]:
-        lines.append("| — | No attributed work yet | — | — | — | — | — | — |")
-    for rank, row in enumerate(stats["contributors"], 1):
-        lines.append(
-            f"| {rank} | [@{row['solver']}](https://github.com/{row['solver']}) | "
-            f"{row['verified_proofs']} | {row['runs']} | "
-            f"{_percent(row['run_success_rate'])} | {row['failed_attempts']} | "
-            f"{row['difficulty_points']} | {_duration(row['median_solve_s'])} |"
-        )
-
-    historical = stats["historical_attribution"]
-    lines.extend([
-        "",
-        "## Historical Proof Index Contributors",
-        "",
-        "These rows come from git add-author history for `library/index/*.aisp`. "
-        "They provide contributor visibility for older proof artifacts and are not "
-        "solver-provenance ranking.",
-        "",
-        "| Contributor | Index files added | Missing solver provenance | Solver-provenance proofs | Difficulty points | Source |",
-        "|-------------|------------------:|--------------------------:|-------------------------:|------------------:|--------|",
-    ])
-    if not historical["authors"]:
-        lines.append("| No git add-author attribution available | — | — | — | — | — |")
-    for row in historical["authors"]:
+    if not stats["credited_contributors"]:
+        lines.append("| — | No credited work yet | — | — | — | — | — | — | — |")
+    for rank, row in enumerate(stats["credited_contributors"], 1):
         contributor = (
             f"[@{row['github']}]({row['profile_url']})"
             if row.get("github") and row.get("profile_url")
             else str(row["display_name"])
         )
         lines.append(
-            f"| {contributor} | {row['index_files_added']} | "
-            f"{row['missing_solver_provenance']} | "
-            f"{row['solver_provenance_proofs']} | {row['difficulty_points']} | "
-            f"`{row['attribution_source']}` |"
+            f"| {rank} | {contributor} | {row['credited_proofs']} | "
+            f"{row['explicit_solver_proofs']} | {row['inferred_git_proofs']} | "
+            f"{row['runs']} | {_percent(row['run_success_rate'])} | "
+            f"{row['difficulty_points']} | {_score(row)} |"
         )
+
+    historical = stats["historical_attribution"]
+    lines.extend([
+        "",
+        "## Attribution Notes",
+        "",
+        f"**{stats['credit']['explicit_solver_proofs']} explicit solver credits · "
+        f"{stats['credit']['inferred_git_proofs']} inferred git credits · "
+        f"{stats['credit']['uncredited_proofs']} uncredited proof records.**",
+        "",
+        f"Git add-author attribution covers {historical['git_attributed_index_files']} "
+        f"of {historical['records']} proof index files. It is used only where explicit "
+        "`solver≜` provenance is missing.",
+    ])
 
     lines.extend([
         "",
@@ -774,17 +868,20 @@ def ui_payload(root: Path) -> dict:
     coverage = stats["coverage"]
     historical = stats["historical_attribution"]
     contributors = []
-    for rank, row in enumerate(stats["contributors"], 1):
-        solver = str(row["solver"])
+    for rank, row in enumerate(stats["credited_contributors"], 1):
         contributors.append(
             {
                 "rank": rank,
-                "solver": solver,
-                "display_name": f"@{solver}",
-                "profile_url": f"https://github.com/{solver}",
-                "avatar_url": f"https://github.com/{solver}.png?size=96",
+                "solver": row["solver"],
+                "github": row["github"],
+                "display_name": row["display_name"],
+                "profile_url": row["profile_url"],
+                "avatar_url": row["avatar_url"],
                 "score": _score(row),
-                "verified_proofs": row["verified_proofs"],
+                "verified_proofs": row["credited_proofs"],
+                "credited_proofs": row["credited_proofs"],
+                "explicit_solver_proofs": row["explicit_solver_proofs"],
+                "inferred_git_proofs": row["inferred_git_proofs"],
                 "difficulty_points": row["difficulty_points"],
                 "runs": row["runs"],
                 "successes": row["successes"],
@@ -792,8 +889,10 @@ def ui_payload(root: Path) -> dict:
                 "attempt_yield": row["attempt_yield"],
                 "failed_attempts": row["failed_attempts"],
                 "median_solve_s": row["median_solve_s"],
+                "credit_sources": row["credit_sources"],
+                "credit_source_summary": row["credit_source_summary"],
                 "badges": {
-                    "proofs": row["verified_proofs"],
+                    "proofs": row["credited_proofs"],
                     "difficulty": row["difficulty_points"],
                     "success_rate_percent": _success_rate_percent(row["run_success_rate"]),
                 },
@@ -831,6 +930,11 @@ def ui_payload(root: Path) -> dict:
             "historical_unknown_proofs": coverage["historical_unknown_proofs"],
             "terminal_runs": coverage["terminal_runs"],
             "proof_run_coverage": coverage["proof_run_coverage"],
+            "credited_proofs": stats["credit"]["credited_proofs"],
+            "explicit_solver_proofs": stats["credit"]["explicit_solver_proofs"],
+            "inferred_git_proofs": stats["credit"]["inferred_git_proofs"],
+            "uncredited_proofs": stats["credit"]["uncredited_proofs"],
+            "credited_contributors": stats["credit"]["credited_contributors"],
             "git_attributed_index_files": historical["git_attributed_index_files"],
             "historical_contributors": historical["author_count"],
             "attribution_gap_count": coverage["historical_unknown_proofs"],
@@ -847,109 +951,74 @@ def render_ui_json(root: Path) -> str:
 def render_svg(root: Path) -> str:
     payload = ui_payload(root)
     contributors = payload["contributors"][:5]
-    historical = payload["historical_contributors"][:5]
     width = 900
-    solver_row_h = 62
-    historical_row_h = 46
-    solver_top = 120
-    solver_rows = max(1, len(contributors))
-    historical_heading_y = solver_top + solver_rows * solver_row_h + 34
-    historical_top = historical_heading_y + 14
-    historical_rows = max(1, len(historical))
-    height = historical_top + historical_rows * historical_row_h + 34
+    row_h = 64
+    top = 112
+    rows = max(1, len(contributors))
+    height = top + rows * row_h + 54
     max_score = max([int(row["score"]) for row in contributors] + [100])
     summary = payload["summary"]
-    historical_count = summary["historical_contributors"]
     lines = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         "<title id=\"title\">Unsorry leaderboard</title>",
-        "<desc id=\"desc\">Top verified Unsorry contributors plus historical proof-index contributor visibility.</desc>",
+        "<desc id=\"desc\">Gamified Unsorry contributor leaderboard ranked by credited verified proofs and difficulty points.</desc>",
         "<rect width=\"900\" height=\"100%\" rx=\"18\" fill=\"#ffffff\"/>",
         "<rect x=\"0.5\" y=\"0.5\" width=\"899\" height=\"{h}\" rx=\"18\" fill=\"none\" stroke=\"#e2e8f0\"/>".format(h=height - 1),
         "<text x=\"32\" y=\"44\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"28\" font-weight=\"700\" fill=\"#334155\">Unsorry Leaderboard</text>",
         (
             "<text x=\"32\" y=\"72\" font-family=\"Inter, system-ui, sans-serif\" "
             "font-size=\"13\" fill=\"#64748b\">"
-            f"{summary['verified_proofs']} verified proofs · "
-            f"{summary['attributed_proofs']} solver-attributed · "
-            f"{summary['historical_unknown_proofs']} historical · "
-            f"{historical_count} git authors"
+            f"{summary['credited_proofs']} credited proofs · "
+            f"{summary['explicit_solver_proofs']} explicit · "
+            f"{summary['inferred_git_proofs']} inferred from git · "
+            f"{summary['credited_contributors']} contributors"
             "</text>"
         ),
-        "<text x=\"32\" y=\"104\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"13\" font-weight=\"650\" fill=\"#334155\">Solver-provenance leaderboard</text>",
     ]
     if not contributors:
         lines.extend([
-            f"<rect x=\"32\" y=\"{solver_top}\" width=\"836\" height=\"58\" rx=\"10\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/>",
-            f"<text x=\"56\" y=\"{solver_top + 36}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"16\" fill=\"#64748b\">No attributed proofs yet.</text>",
+            f"<rect x=\"32\" y=\"{top}\" width=\"836\" height=\"58\" rx=\"10\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/>",
+            f"<text x=\"56\" y=\"{top + 36}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"16\" fill=\"#64748b\">No credited proofs yet.</text>",
         ])
     for index, row in enumerate(contributors):
-        y = solver_top + index * solver_row_h
+        y = top + index * row_h
         bar_w = max(6, int(390 * int(row["score"]) / max_score))
         rank_color = "#fbbf24" if row["rank"] == 1 else "#94a3b8" if row["rank"] == 2 else "#b45309" if row["rank"] == 3 else "#cbd5e1"
         solver = html_escape(str(row["display_name"]))
-        profile = html_escape(str(row["profile_url"]))
-        lines.extend([
-            f"<text x=\"34\" y=\"{y + 36}\" font-family=\"Georgia, serif\" font-size=\"24\" font-style=\"italic\" font-weight=\"700\" fill=\"{rank_color}\">{row['rank']}</text>",
-            f"<a href=\"{profile}\">",
-            f"<text x=\"82\" y=\"{y + 28}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"17\" font-weight=\"650\" fill=\"#334155\">{solver}</text>",
-            "</a>",
-            (
-                f"<text x=\"82\" y=\"{y + 48}\" font-family=\"Inter, system-ui, sans-serif\" "
-                f"font-size=\"12\" fill=\"#64748b\">{row['verified_proofs']} proofs · "
-                f"{row['difficulty_points']} difficulty · {row['runs']} runs</text>"
-            ),
-            f"<rect x=\"320\" y=\"{y + 15}\" width=\"420\" height=\"26\" rx=\"13\" fill=\"#f1f5f9\"/>",
-            f"<rect x=\"320\" y=\"{y + 15}\" width=\"{bar_w}\" height=\"26\" rx=\"13\" fill=\"#e0f2fe\"/>",
-            f"<text x=\"760\" y=\"{y + 34}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"14\" font-weight=\"700\" fill=\"#334155\">{row['score']} pts</text>",
-        ])
-    lines.extend([
-        f"<text x=\"32\" y=\"{historical_heading_y}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"13\" font-weight=\"650\" fill=\"#334155\">Historical proof index contributors</text>",
-        (
-            f"<text x=\"272\" y=\"{historical_heading_y}\" font-family=\"Inter, system-ui, sans-serif\" "
-            f"font-size=\"12\" fill=\"#64748b\">{summary['git_attributed_index_files']} git-attributed index files · "
-            f"{summary['attribution_gap_count']} records missing explicit solver provenance</text>"
-        ),
-    ])
-    if not historical:
-        lines.extend([
-            f"<rect x=\"32\" y=\"{historical_top}\" width=\"836\" height=\"40\" rx=\"10\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/>",
-            f"<text x=\"56\" y=\"{historical_top + 26}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"14\" fill=\"#64748b\">No historical git attribution available.</text>",
-        ])
-    max_index_files = max([int(row["index_files_added"]) for row in historical] + [1])
-    for index, row in enumerate(historical):
-        y = historical_top + index * historical_row_h
-        count = int(row["index_files_added"])
-        bar_w = max(6, int(260 * count / max_index_files))
-        github = row.get("github")
-        display = f"@{github}" if github else str(row["display_name"])
-        name = html_escape(display)
         profile = row.get("profile_url")
         profile = html_escape(str(profile)) if profile else None
+        source = html_escape(str(row["credit_source_summary"]))
+        explicit = int(row["explicit_solver_proofs"])
+        inferred = int(row["inferred_git_proofs"])
         lines.extend([
-            f"<text x=\"36\" y=\"{y + 27}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#64748b\">{index + 1}</text>",
+            f"<text x=\"34\" y=\"{y + 36}\" font-family=\"Georgia, serif\" font-size=\"24\" font-style=\"italic\" font-weight=\"700\" fill=\"{rank_color}\">{row['rank']}</text>",
         ])
         if profile:
             lines.extend([
                 f"<a href=\"{profile}\">",
-                f"<text x=\"82\" y=\"{y + 20}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"15\" font-weight=\"650\" fill=\"#334155\">{name}</text>",
+                f"<text x=\"82\" y=\"{y + 26}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"17\" font-weight=\"650\" fill=\"#334155\">{solver}</text>",
                 "</a>",
             ])
         else:
             lines.append(
-                f"<text x=\"82\" y=\"{y + 20}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"15\" font-weight=\"650\" fill=\"#334155\">{name}</text>"
+                f"<text x=\"82\" y=\"{y + 26}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"17\" font-weight=\"650\" fill=\"#334155\">{solver}</text>"
             )
         lines.extend([
             (
-                f"<text x=\"82\" y=\"{y + 38}\" font-family=\"Inter, system-ui, sans-serif\" "
-                f"font-size=\"11\" fill=\"#64748b\">{count} index files · "
-                f"{row['missing_solver_provenance']} need solver review · "
-                f"{row['difficulty_points']} difficulty</text>"
+                f"<text x=\"82\" y=\"{y + 46}\" font-family=\"Inter, system-ui, sans-serif\" "
+                f"font-size=\"12\" fill=\"#64748b\">{row['credited_proofs']} proofs · "
+                f"{row['difficulty_points']} difficulty · {explicit} explicit · "
+                f"{inferred} inferred · {row['runs']} runs</text>"
             ),
-            f"<rect x=\"430\" y=\"{y + 12}\" width=\"280\" height=\"18\" rx=\"9\" fill=\"#f1f5f9\"/>",
-            f"<rect x=\"430\" y=\"{y + 12}\" width=\"{bar_w}\" height=\"18\" rx=\"9\" fill=\"#dcfce7\"/>",
-            f"<text x=\"732\" y=\"{y + 26}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#334155\">git history</text>",
+            f"<rect x=\"320\" y=\"{y + 15}\" width=\"420\" height=\"26\" rx=\"13\" fill=\"#f1f5f9\"/>",
+            f"<rect x=\"320\" y=\"{y + 15}\" width=\"{bar_w}\" height=\"26\" rx=\"13\" fill=\"#e0f2fe\"/>",
+            f"<text x=\"760\" y=\"{y + 34}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"14\" font-weight=\"700\" fill=\"#334155\">{row['score']} pts</text>",
+            f"<text x=\"760\" y=\"{y + 50}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"10\" fill=\"#64748b\">{source}</text>",
         ])
+    footer_y = top + rows * row_h + 22
+    lines.append(
+        f"<text x=\"32\" y=\"{footer_y}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"12\" fill=\"#64748b\">Inferred credits use git add-author history only when explicit solver provenance is missing.</text>"
+    )
     lines.append("</svg>")
     return "\n".join(lines) + "\n"
 

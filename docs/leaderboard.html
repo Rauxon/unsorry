@@ -94,23 +94,19 @@
             <div class="flex flex-wrap gap-3">
                 <div class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium">
                     <span id="summary-verified">0</span>
-                    <span>verified</span>
+                    <span>credited</span>
                 </div>
                 <div class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium">
                     <span id="summary-attributed">0</span>
-                    <span>attributed</span>
+                    <span>explicit</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium">
+                    <span id="summary-inferred">0</span>
+                    <span>inferred</span>
                 </div>
                 <div class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium">
                     <span id="summary-runs">0</span>
                     <span>runs</span>
-                </div>
-                <div class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium">
-                    <span id="summary-history-authors">0</span>
-                    <span>history authors</span>
-                </div>
-                <div class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium">
-                    <span id="summary-gaps">0</span>
-                    <span>needs review</span>
                 </div>
             </div>
         </header>
@@ -147,17 +143,6 @@
                 <!-- Data rows will be injected here -->
             </div>
         </div>
-
-        <section class="mt-10 pt-8 border-t border-slate-100">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-2 mb-4">
-                <div>
-                    <h2 class="text-xl font-semibold text-slate-700">Historical proof index contributors</h2>
-                    <p class="text-sm text-brand-muted mt-1">Git add-author visibility for proof index files; separate from solver ranking.</p>
-                </div>
-                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">review queue</span>
-            </div>
-            <div id="historical-list" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-        </section>
 
     </main>
 
@@ -230,28 +215,18 @@
             verifiedProofs: Number(row.verified_proofs || 0),
             difficultyPoints: Number(row.difficulty_points || 0),
             runSuccessRate: row.run_success_rate,
+            explicitProofs: Number(row.explicit_solver_proofs || 0),
+            inferredProofs: Number(row.inferred_git_proofs || 0),
+            creditSource: row.credit_source_summary || 'unknown',
             badges: row.badges || { proofs: 0, difficulty: 0, success_rate_percent: null },
-        }));
-
-        const normalizeHistoricalRows = (contributors) => contributors.map((row) => ({
-            name: row.display_name,
-            github: row.github,
-            profileUrl: row.profile_url,
-            avatar: row.avatar_url,
-            indexFilesAdded: Number(row.index_files_added || 0),
-            missingSolverProvenance: Number(row.missing_solver_provenance || 0),
-            solverProvenanceProofs: Number(row.solver_provenance_proofs || 0),
-            difficultyPoints: Number(row.difficulty_points || 0),
-            attributionSource: row.attribution_source || 'git-add-author',
         }));
 
         const updateSummary = (payload) => {
             const summary = payload.summary || {};
-            setText('summary-verified', formatNumber(summary.verified_proofs));
-            setText('summary-attributed', formatNumber(summary.attributed_proofs));
+            setText('summary-verified', formatNumber(summary.credited_proofs));
+            setText('summary-attributed', formatNumber(summary.explicit_solver_proofs));
+            setText('summary-inferred', formatNumber(summary.inferred_git_proofs));
             setText('summary-runs', formatNumber(summary.terminal_runs));
-            setText('summary-history-authors', formatNumber(summary.historical_contributors));
-            setText('summary-gaps', formatNumber(summary.attribution_gap_count));
             setText('generated-at', payload.generated_at ? `Updated ${payload.generated_at.slice(0, 10)}` : 'Generated proof stats');
         };
 
@@ -274,50 +249,11 @@
             const payload = await response.json();
             if (
                 payload.schema_version !== 1 ||
-                !Array.isArray(payload.contributors) ||
-                !Array.isArray(payload.historical_contributors)
+                !Array.isArray(payload.contributors)
             ) {
                 throw new Error('unsupported leaderboard data');
             }
             return payload;
-        };
-
-        const renderHistoricalContributors = (payload) => {
-            const container = document.getElementById('historical-list');
-            const rows = normalizeHistoricalRows(payload.historical_contributors);
-            if (!rows.length) {
-                container.innerHTML = '<div class="state-panel md:col-span-2">No historical git attribution available.</div>';
-                return;
-            }
-            container.innerHTML = '';
-            rows.forEach((user) => {
-                const safeName = escapeHTML(user.name);
-                const safeProfileUrl = user.profileUrl ? escapeHTML(user.profileUrl) : '';
-                const safeAvatar = user.avatar ? escapeHTML(user.avatar) : '';
-                const initials = escapeHTML(String(user.name || '?').slice(0, 2).toUpperCase());
-                const avatarMarkup = user.profileUrl && user.avatar
-                    ? `<a href="${safeProfileUrl}" aria-label="${safeName} on GitHub"><img src="${safeAvatar}" class="w-10 h-10 rounded-full border border-slate-200 object-cover" alt="${safeName}"></a>`
-                    : `<div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500">${initials}</div>`;
-                const nameMarkup = user.profileUrl
-                    ? `<a href="${safeProfileUrl}" class="font-medium text-slate-700 hover:text-slate-900">${safeName}</a>`
-                    : `<span class="font-medium text-slate-700">${safeName}</span>`;
-                const node = document.createElement('div');
-                node.className = 'flex items-center justify-between gap-4 rounded-2xl border border-slate-100 bg-slate-50/70 px-4 py-3';
-                node.innerHTML = `
-                    <div class="flex items-center gap-3 min-w-0">
-                        ${avatarMarkup}
-                        <div class="min-w-0">
-                            <div class="truncate">${nameMarkup}</div>
-                            <div class="text-xs text-brand-muted">${formatNumber(user.indexFilesAdded)} index files · ${formatNumber(user.missingSolverProvenance)} need solver review</div>
-                        </div>
-                    </div>
-                    <div class="text-right flex-shrink-0">
-                        <div class="text-sm font-bold text-slate-700">${formatNumber(user.difficultyPoints)}</div>
-                        <div class="text-[10px] uppercase tracking-wider text-slate-400">difficulty</div>
-                    </div>
-                `;
-                container.appendChild(node);
-            });
         };
 
         const renderLeaderboard = (payload) => {
@@ -325,11 +261,10 @@
             const timelineContainer = document.getElementById('timeline-avatars');
             const leaderboardData = normalizeRows(payload.contributors);
             updateSummary(payload);
-            renderHistoricalContributors(payload);
 
             if (!leaderboardData.length) {
                 updateScale(100);
-                showState('No attributed proofs yet.');
+                showState('No credited proofs yet.');
                 return;
             }
 
@@ -373,6 +308,7 @@
                         <div class="flex flex-col min-w-0">
                             <a href="${safeProfileUrl}" class="text-sm md:text-base font-medium text-slate-700 truncate max-w-[120px] md:max-w-[160px] hover:text-slate-900">${safeName}</a>
                             ${renderBadges(user.badges)}
+                            <span class="hidden md:block text-[10px] uppercase tracking-wider text-slate-400 mt-1">${formatNumber(user.explicitProofs)} explicit · ${formatNumber(user.inferredProofs)} inferred · ${escapeHTML(user.creditSource)}</span>
                         </div>
                     </div>
 

@@ -11,7 +11,7 @@
 - [ ] Replace placeholder seed data with generated JSON fetch.
 - [ ] Link contributor names or avatars to GitHub profiles.
 - [ ] Use deterministic avatar URLs, not GitHub API calls.
-- [ ] Keep historical git-attribution rows separate from ranked solver-provenance rows.
+- [ ] Keep explicit and inferred proof-credit counts visible in each ranked row.
 - [ ] Preserve historical/unknown attribution without rewriting `solver≜`.
 - [ ] Run `python3 -m pytest tools/leaderboard -q`.
 - [ ] Run `python3 -m tools.gate_b validate .`.

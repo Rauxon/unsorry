@@ -7,8 +7,8 @@ Use committed repository records as the source of truth:
 - `goals/*.aisp`: goal id, status, difficulty.
 - `library/index/*.aisp`: verified proof existence and optional successful-proof provenance.
 - `proof-runs/*.aisp`: append-only terminal coordinated run facts.
-- git add-author history for `library/index/*.aisp`: historical contributor
-  visibility only, never solver credit.
+- git add-author history for `library/index/*.aisp`: inferred proof credit only
+  when explicit solver provenance is missing.
 
 `tools.leaderboard.generate.base_stats(root)` is the current aggregation function.
 
@@ -50,10 +50,10 @@ Generators should derive:
 
 ## Historical Attribution Boundary
 
-The ranked leaderboard uses explicit `solver≜...` proof/run telemetry only.
-Historical git attribution answers a different question: who added a proof index
-file to git. That can restore community visibility for older proof artifacts, but
-it must stay outside solver-provenance ranking.
+The ranked leaderboard uses credited verified proofs. Explicit `solver≜...`
+proof telemetry wins. If a proof index record lacks solver provenance, git
+add-author attribution may provide inferred historical credit. Generated rows
+must keep explicit and inferred counts visible.
 
 Use:
 
@@ -61,8 +61,8 @@ Use:
   handle mappings;
 - `docs/metrics/attribution-gaps.json` as the review queue for proof index files
   missing explicit solver provenance;
-- `historical_contributors` in `docs/metrics/leaderboard-ui.json` for browser
-  display of historical proof index authors.
+- `contributors` in `docs/metrics/leaderboard-ui.json` as the unified gamified
+  ranking, including explicit and inferred proof-credit counts.
 
 Do not write `solver≜` from git attribution automatically. Only backfill a
 source proof record after human review establishes the actual solver.
