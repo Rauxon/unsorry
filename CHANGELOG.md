@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.0] - 2026-06-14
+
+Headline: **machine-enforced non-trivial targets** (ADR-035, #387) — every admitted target now passes a triviality probe (elaborate the statement under `import Mathlib` against a battery of one-shot tactics; reject anything `simp`/`aesop`/`decide`/… closes, which also catches a lemma already in mathlib under another name), complementing the name-grep absence check. Plus a swarm-reliability fix: a failed recompose no longer buries a proved subtree below viability (ADR-034), and a post-merge workflow keeps the proofs-and-contributors visualisation current.
+
 ### Added
 
 - ADR-035/SPEC-035-A: a **triviality probe** (`tools/sourcing/check_triviality.py`, issue #387) that machine-enforces target non-triviality — the gap the name-grep absence check (ADR-012) can't see. It elaborates a goal's closed statement under `import Mathlib` against a fixed tactic battery (`first | rfl | trivial | decide | norm_num | omega | simp | simp_all | aesop | ring | linarith | tauto`): if any closes it the target is one-shot-trivial, and because the whole library is in scope `simp`/`aesop` also discharge a lemma **already in mathlib under a different name** — so the probe is a *semantic* complement to absence. Reuses the ADR-011 binding-module template + `tools.lean_sig` (`foralltype`/`open_lines`), with an injectable runner so the verdict logic is hermetically tested. Verdict trichotomy `trivial`/`non-trivial`/`probe-error` (an elaboration failure is never mistaken for non-triviality); rev-dated like an absence claim; false positives handled by a per-goal `- **Nontrivial-override:**` backlog field + a `triviality_allowlist.txt`. Gates **sourcing admission** (advisory-first, then block), an **advisory `triviality.yml` CI** check on changed goals only (non-blocking sticky comment; full-Mathlib elaboration is gate-a-weight), and a **report-only retro-audit** (`check_triviality --all`) — proved-but-trivial work is flagged for human review, never auto-deleted.
