@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜sum-four-sq-ge-two-cross
   phase≜prove
-  status≜blocked
+  status≜open
   difficulty≜2
 }
 ⟦Σ:Source⟧{
