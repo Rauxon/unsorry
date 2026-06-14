@@ -1,0 +1,68 @@
+# Keep the proofs-and-contributors visualisation up to date (issue #371, ADR-032).
+#
+# Unlike the targets board, the visualisation's "who solved it" attribution is
+# derived from the `prove(<goal>): … by <agent> (#PR)` *squash-merge commit*,
+# which only exists on `main` AFTER a proof merges. So a PR-time `--check`
+# cannot include the goal a PR is about to prove (it would spuriously redden the
+# *next* PR). This runs **post-merge**: on every push to `main` that could change
+# the graph it runs `--check`, and on drift regenerates the two `docs/` outputs
+# and commits them straight back to `main` (the standard generated-artifact
+# exception — a single docs-only, `[skip ci]` commit, not a human/agent change).
+#
+# Requirement (code-owner to confirm on review): the GitHub Actions token must be
+# permitted to push to `main`. If branch protection blocks the token push, either
+# allow `github-actions[bot]` to bypass for this path, or swap the final step for
+# a PAT-driven refresh PR (a `GITHUB_TOKEN`-opened PR would not trigger the
+# required checks, so a plain auto-PR cannot self-merge).
+name: proofs-visualisation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "goals/**"
+      - "library/**"
+      - "proof-runs/**"
+      - "decompositions/**"
+      - "tools/visualiser/**"
+      - ".github/workflows/proofs-visualisation.yml"
+  workflow_dispatch:
+
+# Coalesce bursts of merges into one refresh; never cancel a push mid-commit.
+concurrency:
+  group: proofs-visualisation-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0 # full history — attribution reads the prove(…) commits
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+      - name: Check for drift (ADR-032)
+        id: check
+        run: |
+          if python3 -m tools.visualiser --check .; then
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Regenerate and commit on drift
+        if: steps.check.outputs.stale == 'true'
+        run: |
+          set -euo pipefail
+          python3 -m tools.visualiser --write .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/proofs-contributors-visualisation.md docs/proofs-contributors-visualisation.html
+          # `[skip ci]` + the docs-only paths (outside this workflow's triggers)
+          # mean the refresh commit never re-fires CI.
+          git commit -m "docs: refresh proofs-contributors-visualisation [skip ci]"
+          git push origin HEAD:main

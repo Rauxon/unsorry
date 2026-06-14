@@ -11,6 +11,8 @@
 ![](docs/unsorry-infographic.JPG)
 *Image credit: Adam Holt*
 
+Check out the proofs the team has delivered so far: [Proof graph](docs/proofs-contributors-visualisation.html)
+
 Three design decisions make this safe with untrusted, intermittent, rag-tag contributors:
 
 1. **The kernel is the only truth oracle.** Every contribution is re-verified by the Lean kernel in CI. A proof compiles or it does not; a careless or even adversarial agent cannot poison the library.
@@ -100,7 +102,7 @@ lake build                               # verify the current library locally
 Full prerequisites, the agent flags, the unattended [supervisor](swarm/supervise.sh),
 the [targets board](docs/targets.md), the
 [community proof statistics](docs/leaderboard.md), the
-[proof graph](docs/graph.md), and how to propose a target
+[proofs & contributors visualisation](docs/proofs-contributors-visualisation.md), and how to propose a target
 are in **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 ## Roadmap

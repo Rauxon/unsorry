@@ -39,7 +39,7 @@ decompositions) are dropped.
 
 The git read (`parse_prove_log` is the pure, tested parser; `git_provenance`
 the thin wrapper) is the generator's only impurity and degrades to empty outside
-a checkout. Because `docs/graph.md` then tracks the proof-commit history, it must
+a checkout. Because `docs/proofs-contributors-visualisation.md` then tracks the proof-commit history, it must
 be regenerated when proofs merge — as the targets board already is — before the
 `--check` drift guard is wired into CI.
 
@@ -54,7 +54,7 @@ Graph = { nodes, edges }
 `--json` emits `{ source, nodes, edges }` for Phase-2 consumers (the interactive
 HTML page and the leaderboard) to share one feed.
 
-## Output: `docs/graph.md`
+## Output: `docs/proofs-contributors-visualisation.md`
 
 1. **Header + summary** — total goals and per-status counts.
 2. **Dependency lineage** — a fenced ```` ```mermaid ```` `flowchart LR`:
@@ -70,7 +70,7 @@ HTML page and the leaderboard) to share one feed.
 
 Node keys are sanitised (`g_` + `[^0-9a-z]→_`) because goal ids carry hyphens.
 
-## Output: `docs/graph.html` (Phase 2)
+## Output: `docs/proofs-contributors-visualisation.html` (Phase 2)
 
 A standalone interactive page generated from the same graph model:
 
@@ -93,7 +93,7 @@ shows source (view via Pages or locally).
 * default → markdown to stdout
 * `--html [root]` → interactive HTML to stdout
 * `--json [root]` → graph model as JSON
-* `--write [root]` → write **both** `docs/graph.md` and `docs/graph.html`
+* `--write [root]` → write **both** `docs/proofs-contributors-visualisation.md` and `docs/proofs-contributors-visualisation.html`
   (creating `docs/` if absent)
 * `--check [root]` → exit 1 if **either** artifact differs from a fresh render
 * the modes are mutually exclusive (exit 2 otherwise)
@@ -108,9 +108,24 @@ placeholders), `--html`/`--write`/`--check`/mutual-exclusion behaviour (both
 artifacts), the pure `parse_prove_log` agent/PR/date/merged-by parser, and graceful
 degradation when the tree is not a git checkout.
 
-## Deferred (issue #371)
+## Staying current (CI)
 
-* Wiring `tools.visualiser --check` into a CI workflow and regenerating
-  `docs/graph.{md,html}` in the prove path (so the proof-commit-derived attribution
-  cannot drift) — lands via a separate code-owner-reviewed PR (touches `.github/`,
-  ADR-019).
+`docs/proofs-contributors-visualisation.{md,html}` are kept up to date by the
+`proofs-visualisation` workflow (`.github/workflows/proofs-visualisation.yml`).
+
+The attribution is derived from the `prove(<goal>): … by <agent> (#PR)`
+**squash-merge commit**, which exists only on `main` *after* a proof merges — so
+a PR-time `--check` cannot include the goal a PR is about to prove (it would
+spuriously redden the *next* PR). The workflow therefore runs **post-merge**: on
+each push to `main` touching `goals/`, `library/`, `proof-runs/`,
+`decompositions/`, or `tools/visualiser/`, it runs `--check`, and on drift
+regenerates the outputs and commits them straight back to `main` as a single
+docs-only `[skip ci]` commit (the standard generated-artifact exception — not a
+human/agent change). The commit touches only `docs/`, outside the trigger paths,
+so it does not re-fire; `[skip ci]` also short-circuits the unfiltered gates.
+`workflow_dispatch` allows a manual refresh.
+
+This needs the Actions token to be allowed to push to `main` (a code-owner
+setting). A `GITHUB_TOKEN`-opened PR would *not* trigger the required checks, so
+a plain auto-PR could never self-merge; if a direct push is undesirable, the
+fallback is a PAT-driven refresh PR.

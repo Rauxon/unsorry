@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜abstract-regular-polyhedron-classification
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜3
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/abstract-regular-polyhedron-classification.lean
-  sha≜∅
+  sha≜43c6cfe1c583ff785c5d33e86a729be8136309d2795858aeb733de8d2284e9e8
+  aff≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
