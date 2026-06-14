@@ -4,11 +4,10 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**14 open · 100 proved · 118 total prove-goals.**
+**13 open · 101 proved · 118 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
-| `four-consecutive-product-add-one-square-s1` — four-consecutive-product-add-one-square-s1 | open | 1 | — | — | — |
 | `four-consecutive-product-add-one-square-s2` — four-consecutive-product-add-one-square-s2 | open | 1 | — | — | — |
 | `nat-sq-lt-two-pow-s1` — nat-sq-lt-two-pow-s1 | open | 1 | — | — | — |
 | `nat-sq-lt-two-pow-s2` — nat-sq-lt-two-pow-s2 | open | 1 | — | — | — |
@@ -41,6 +40,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `euclid-perfect-numbers-s5` — euclid-perfect-numbers-s5 | proved | 1 | — | — | — |
 | `euclid-perfect-numbers-s6` — euclid-perfect-numbers-s6 | proved | 1 | — | — | — |
 | `factorial-telescope-sum` — For every natural n, the sum over i in 0..n of i * (i!) equals (n+1)! - 1. | proved | 2 | [packet-ready](upstream/factorial-telescope-sum.md) | classic identities | Classic telescoping identity from i·i! = (i+1)! - i!; exercise in Graham, Knuth & Patashnik, Concrete Mathematics, 2nd ed., Ch. 2 (perturbation/telescoping). |
+| `four-consecutive-product-add-one-square-s1` — four-consecutive-product-add-one-square-s1 | proved | 1 | — | — | — |
 | `four-consecutive-product-add-one-square-s3` — four-consecutive-product-add-one-square-s3 | proved | 1 | — | — | — |
 | `fourth-power-mod-five` — The fourth power of any natural number not divisible by 5 leaves remainder 1 on division by 5: if n % 5 ≠ 0 then n⁴ % 5 = 1. | proved | 3 | — | classic identities (fourth-power congruence tower — leaf; the Fermat case p=5) | Fermat's little theorem at the prime 5: a⁴ ≡ 1 (mod 5) for gcd(a,5)=1. Hardy & Wright, An Introduction to the Theory of Numbers. The mod-5 leaf that the others (mod 16, mod 3) do not cover. |
 | `fourth-power-mod-five-s1` — fourth-power-mod-five-s1 | proved | 1 | — | — | — |
