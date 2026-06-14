@@ -1,0 +1,8 @@
+𝔸5.1.lemma.cb5a5f88a2d7@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜cb5a5f88a2d7a7a8d31ecc6f16b588f269d01221895429e8a582919ad4753db7; goal≜sum-four-pow-ge-sq-prod-s2; name≜cyclic_half_sum_fourth_eq_sum_fourth}
+⟦Σ:Source⟧{src≜goals/sum-four-pow-ge-sq-prod-s2.lean}
+⟦Γ:Tags⟧{tags≜⟨algebra,ring_nf⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜adam91holt; agent≜adam91holt; provider≜manual; model≜gpt-5.5; effort≜manual; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
