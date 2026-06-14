@@ -1024,6 +1024,17 @@ def ui_payload(root: Path) -> dict:
         },
         "contributors": contributors,
         "historical_contributors": historical_contributors,
+        # Model distribution across solved proofs (ADR-023 provider/model cohort),
+        # trimmed for the leaderboard UI's "Model distribution" section.
+        "models": [
+            {
+                "provider_model": model["provider_model"],
+                "verified_proofs": model["verified_proofs"],
+                "runs": model["runs"],
+                "run_success_rate": model["run_success_rate"],
+            }
+            for model in stats["models"]
+        ],
     }
 
 

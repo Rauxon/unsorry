@@ -147,6 +147,15 @@
             </div>
         </div>
 
+        <!-- Model Distribution Section (populated by JS) -->
+        <section id="models-section" class="mt-12 pt-8 border-t border-slate-100 hidden">
+            <div class="flex items-baseline justify-between mb-5">
+                <h2 class="text-lg font-bold text-slate-700">Model distribution</h2>
+                <span class="text-xs text-slate-400 uppercase tracking-wider">verified proofs by solver model</span>
+            </div>
+            <div id="models-list" class="flex flex-col gap-3"></div>
+        </section>
+
     </main>
 
     <!-- Templates for SVGs to keep logic clean -->
@@ -262,7 +271,10 @@
         const renderLeaderboard = (payload) => {
             const listContainer = document.getElementById('leaderboard-list');
             const timelineContainer = document.getElementById('timeline-avatars');
-            const leaderboardData = normalizeRows(payload.contributors);
+            // Sort by points (score) descending so the order matches the bar
+            // lengths and the "pts" labels; rank is the position in this order.
+            const leaderboardData = normalizeRows(payload.contributors)
+                .sort((a, b) => b.score - a.score);
             updateSummary(payload);
 
             if (!leaderboardData.length) {
@@ -276,8 +288,8 @@
             listContainer.innerHTML = '';
             timelineContainer.innerHTML = '';
 
-            leaderboardData.forEach((user) => {
-                const rank = user.rank;
+            leaderboardData.forEach((user, index) => {
+                const rank = index + 1;
                 const widthPercent = Math.max(2, (user.score / maxScore) * 100);
                 const safeName = escapeHTML(user.name);
                 const safeProfileUrl = escapeHTML(user.profileUrl);
@@ -315,10 +327,9 @@
                         </div>
                     </div>
 
-                    <div class="flex-grow flex items-center relative h-12 md:h-14">
-                        <div class="h-8 md:h-10 bg-brand-blue rounded-r-3xl flex items-center justify-end px-4 progress-bar-fill shadow-sm" style="width: 0%;" data-target-width="${Math.min(widthPercent, 100)}%">
-                            <span class="text-brand-text font-bold text-sm md:text-base whitespace-nowrap opacity-0 transition-opacity duration-500 delay-500">${formatScore(user.score)}</span>
-                        </div>
+                    <div class="flex-grow flex items-center relative h-12 md:h-14 min-w-0">
+                        <div class="h-8 md:h-10 bg-brand-blue rounded-r-3xl progress-bar-fill shadow-sm flex-shrink-0" style="width: 0%;" data-target-width="${Math.min(widthPercent, 100)}%"></div>
+                        <span class="text-brand-text font-bold text-sm md:text-base whitespace-nowrap ml-3 opacity-0 transition-opacity duration-500 delay-500">${formatScore(user.score)}</span>
                     </div>
                 `;
 
@@ -326,16 +337,59 @@
             });
 
             setTimeout(() => {
-                document.querySelectorAll('.progress-bar-fill').forEach(bar => {
+                document.querySelectorAll('#leaderboard-list .progress-bar-fill').forEach(bar => {
                     bar.style.width = bar.getAttribute('data-target-width');
-                    bar.querySelector('span').classList.remove('opacity-0');
+                    const label = bar.nextElementSibling;
+                    if (label) label.classList.remove('opacity-0');
+                });
+            }, 100);
+        };
+
+        const renderModels = (models) => {
+            const section = document.getElementById('models-section');
+            const list = document.getElementById('models-list');
+            if (!section || !list) return;
+            const solved = (Array.isArray(models) ? models : [])
+                .map((model) => ({
+                    label: model.provider_model,
+                    proofs: Number(model.verified_proofs || 0),
+                }))
+                .filter((model) => model.proofs > 0)
+                .sort((a, b) => b.proofs - a.proofs);
+            if (!solved.length) {
+                section.classList.add('hidden');
+                return;
+            }
+            const maxProofs = Math.max(...solved.map((model) => model.proofs));
+            const totalProofs = solved.reduce((sum, model) => sum + model.proofs, 0);
+            list.innerHTML = '';
+            solved.forEach((model) => {
+                const widthPercent = Math.min(100, Math.max(4, (model.proofs / maxProofs) * 100));
+                const share = totalProofs ? (model.proofs / totalProofs) * 100 : 0;
+                const row = document.createElement('div');
+                row.className = 'flex items-center w-full gap-3';
+                row.innerHTML = `
+                    <div class="w-36 md:w-52 flex-shrink-0 text-sm font-medium text-slate-700 truncate" title="${escapeHTML(model.label)}">${escapeHTML(model.label)}</div>
+                    <div class="flex-grow flex items-center min-w-0">
+                        <div class="h-7 md:h-8 bg-brand-blue rounded-r-2xl progress-bar-fill shadow-sm flex-shrink-0" style="width: 0%;" data-target-width="${widthPercent}%"></div>
+                        <span class="ml-3 text-sm font-semibold text-slate-600 whitespace-nowrap">${formatNumber(model.proofs)} <span class="font-normal text-slate-400">proofs · ${percentFormatter.format(share)}%</span></span>
+                    </div>
+                `;
+                list.appendChild(row);
+            });
+            section.classList.remove('hidden');
+            setTimeout(() => {
+                list.querySelectorAll('.progress-bar-fill').forEach((bar) => {
+                    bar.style.width = bar.getAttribute('data-target-width');
                 });
             }, 100);
         };
 
         async function initApp() {
             try {
-                renderLeaderboard(await loadPayload());
+                const payload = await loadPayload();
+                renderLeaderboard(payload);
+                renderModels(payload.models);
             } catch (error) {
                 console.error(error);
                 updateScale(100);

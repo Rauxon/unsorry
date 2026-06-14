@@ -318,6 +318,21 @@ def test_ui_payload_is_stable_browser_contract(tmp_path):
     assert second["solver"] == "ada"
     assert second["score"] == 125
     assert second["badges"]["success_rate_percent"] is None
+
+    # Model distribution for the "Model distribution" section (ADR-023 cohort).
+    models = payload["models"]
+    assert isinstance(models, list)
+    codex = next(m for m in models if m["provider_model"] == "codex / gpt-5.1-codex")
+    # Both indexed proofs carry model≜gpt-5.1-codex provenance.
+    assert codex["verified_proofs"] == 2
+    assert codex["runs"] == 1
+    assert set(codex.keys()) == {
+        "provider_model",
+        "verified_proofs",
+        "runs",
+        "run_success_rate",
+    }
+
     assert json.loads(render_ui_json(tmp_path)) == payload
     svg = render_svg(tmp_path)
     assert "Unsorry Leaderboard" in svg
@@ -359,6 +374,10 @@ def test_docs_leaderboard_html_consumes_generated_ui_json():
     assert "explicit_solver_proofs" in html
     assert "inferred_git_proofs" in html
     assert "renderHistoricalContributors" not in html
+    # Model distribution section consumes payload.models.
+    assert "renderModels" in html
+    assert "models-section" in html
+    assert "payload.models" in html
     assert "LocalDataStore" not in html
     assert "seedData" not in html
     assert "pravatar" not in html
