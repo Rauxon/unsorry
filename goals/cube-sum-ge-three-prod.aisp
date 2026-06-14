@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜cube-sum-ge-three-prod
   phase≜prove
-  status≜open
+  status≜blocked
   difficulty≜2
 }
 ⟦Σ:Source⟧{
