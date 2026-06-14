@@ -1,0 +1,8 @@
+𝔸5.1.run.cube-sum-ge-three-prod-s3.afnz-zbook-b336.20260614t132221081370z-bb02e098@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t132221081370z-bb02e098; goal≜cube-sum-ge-three-prod-s3; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜cube-sum-ge-three-prod-s3}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜406; ended≜2026-06-14T13:22:21Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜567a289ceaf0c41a210287e4edf0117e7d720ce7a2b756122edd1821dad1c2ca}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

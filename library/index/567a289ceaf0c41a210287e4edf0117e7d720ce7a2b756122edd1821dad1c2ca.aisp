@@ -1,0 +1,8 @@
+𝔸5.1.lemma.567a289ceaf0@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜567a289ceaf0c41a210287e4edf0117e7d720ce7a2b756122edd1821dad1c2ca; goal≜cube-sum-ge-three-prod-s3; name≜cyclic_sum_sq_nonneg}
+⟦Σ:Source⟧{src≜goals/cube-sum-ge-three-prod-s3.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜406}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
