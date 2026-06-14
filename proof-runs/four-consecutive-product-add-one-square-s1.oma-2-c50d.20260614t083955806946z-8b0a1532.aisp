@@ -1,0 +1,8 @@
+𝔸5.1.run.four-consecutive-product-add-one-square-s1.oma-2-c50d.20260614t083955806946z-8b0a1532@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t083955806946z-8b0a1532; goal≜four-consecutive-product-add-one-square-s1; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜four-consecutive-product-add-one-square-s1}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜297; ended≜2026-06-14T08:39:55Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜169fb2bd83f20aa40dd746bf842f0a61f005856e765389b8e0ec0e462fba5960}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

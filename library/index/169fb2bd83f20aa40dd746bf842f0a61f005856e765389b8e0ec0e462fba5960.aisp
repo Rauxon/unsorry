@@ -1,0 +1,8 @@
+𝔸5.1.lemma.169fb2bd83f2@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜169fb2bd83f20aa40dd746bf842f0a61f005856e765389b8e0ec0e462fba5960; goal≜four-consecutive-product-add-one-square-s1; name≜four_consecutive_product_rearrange}
+⟦Σ:Source⟧{src≜goals/four-consecutive-product-add-one-square-s1.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜297}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
