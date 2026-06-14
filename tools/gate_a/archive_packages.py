@@ -166,6 +166,9 @@ def validate_archive_package(
     targets = default_targets(package_root)
     build_argv = ("lake", "build", *targets, "--wfail") if targets else ("lake", "build", "--wfail")
     try:
+        cache = run_step(f"{rel} Mathlib cache", ("lake", "exe", "cache", "get"), cwd=package_root, runner=runner)
+        if cache != 0:
+            return cache
         build = run_step(f"{rel} Lake build", build_argv, cwd=package_root, runner=runner)
         if build != 0:
             return build

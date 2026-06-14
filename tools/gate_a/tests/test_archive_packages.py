@@ -114,6 +114,7 @@ def test_validate_archive_package_runs_soundness_steps(tmp_path: Path):
         "--goals-root",
         "packages/unsorry-archive-0001",
     ) in argv_only
+    assert ("lake", "exe", "cache", "get") in argv_only
     assert ("lake", "build", "UnsorryArchive0001", "--wfail") in argv_only
     assert ("lake", "env", "leanchecker", "Unsorry.One", "Unsorry.OneBinding") in argv_only
 
