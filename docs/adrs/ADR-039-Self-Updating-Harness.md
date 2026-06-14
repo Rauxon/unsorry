@@ -1,8 +1,8 @@
-# ADR-038: Re-exec the Agent When the Harness Updates
+# ADR-039: Re-exec the Agent When the Harness Updates
 
 | Field | Value |
 |-------|-------|
-| **Decision ID** | ADR-038 |
+| **Decision ID** | ADR-039 |
 | **Initiative** | unsorry — swarm-agent freshness |
 | **Proposed By** | unsorry maintainers |
 | **Date** | 2026-06-14 |
@@ -59,7 +59,7 @@ all proof/goal content are read fresh from the synced tree each cycle).
 
 | Reference ID | Title | Type | Location |
 |--------------|-------|------|----------|
-| REF-1 | Re-exec spec | Specification | specs/SPEC-038-A-Self-Updating-Harness.md |
+| REF-1 | Re-exec spec | Specification | specs/SPEC-039-A-Self-Updating-Harness.md |
 | REF-2 | The cycle's repo sync | Code | `swarm/agent.sh::sync_repo` |
 | REF-3 | Tracking issue | Issue | https://github.com/agenticsnz/unsorry/issues/428 |
 

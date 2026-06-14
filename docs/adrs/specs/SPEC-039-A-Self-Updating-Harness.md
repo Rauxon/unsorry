@@ -1,6 +1,6 @@
-# SPEC-038-A: Self-Updating Harness (Re-exec on agent.sh change)
+# SPEC-039-A: Self-Updating Harness (Re-exec on agent.sh change)
 
-Implements: [ADR-038](../ADR-038-Self-Updating-Harness.md) · Status: Living · Updated: 2026-06-14
+Implements: [ADR-039](../ADR-039-Self-Updating-Harness.md) · Status: Living · Updated: 2026-06-14
 
 ## Behaviour
 
