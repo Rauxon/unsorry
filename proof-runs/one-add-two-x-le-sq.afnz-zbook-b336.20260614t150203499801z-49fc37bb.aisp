@@ -1,0 +1,9 @@
+𝔸5.1.run.one-add-two-x-le-sq.afnz-zbook-b336.20260614t150203499801z-49fc37bb@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t150203499801z-49fc37bb; goal≜one-add-two-x-le-sq; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜one-add-two-x-le-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜259; ended≜2026-06-14T15:02:03Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8586/8588] Building Unsorry.OneAddTwoXLeSq (982ms) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-one-add-two-x-le-sq-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-one-add-two-x-le-sq-afnz-zbook-b336/.lake/packages/batteries/.lake}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
