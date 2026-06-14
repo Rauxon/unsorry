@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜sum-four-pow-ge-sq-prod-s2
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,8 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/sum-four-pow-ge-sq-prod-s2.lean
-  sha≜∅
+  sha≜cb5a5f88a2d7a7a8d31ecc6f16b588f269d01221895429e8a582919ad4753db7
+  aff≜1
   depth≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
