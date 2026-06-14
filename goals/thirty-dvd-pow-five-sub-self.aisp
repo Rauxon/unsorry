@@ -1,0 +1,19 @@
+𝔸5.1.goal.thirty-dvd-pow-five-sub-self@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜thirty-dvd-pow-five-sub-self
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/thirty-dvd-pow-five-sub-self.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/thirty-dvd-pow-five-sub-self.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
