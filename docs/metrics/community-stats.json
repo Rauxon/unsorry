@@ -1234,15 +1234,15 @@
     "difficulty_counts": {
       "0": 10,
       "1": 62,
-      "2": 56,
+      "2": 61,
       "3": 31,
       "4": 13,
       "5": 1
     },
-    "goals": 173,
+    "goals": 178,
     "status_counts": {
       "blocked": 4,
-      "open": 55,
+      "open": 60,
       "proved": 104,
       "translated": 10
     }
