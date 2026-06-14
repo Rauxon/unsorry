@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜nat-sq-lt-two-pow-s2
   phase≜prove
-  status≜open
+  status≜blocked
   difficulty≜1
 }
 ⟦Σ:Source⟧{

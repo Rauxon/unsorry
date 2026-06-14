@@ -1,0 +1,13 @@
+𝔸5.1.decomp.nat-sq-lt-two-pow-s2.oma-2-c50d@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜nat-sq-lt-two-pow-s2; agent≜oma-2-c50d}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜nat-sq-lt-two-pow-s2-s1,sha≜ee77f8c093e95f538a7c7f3c3cb884b54635adc138c1a01ee7a30519e49b5f69⟩
+  sub₂≜⟨id≜nat-sq-lt-two-pow-s2-s2,sha≜0b64e3510c97eaef1c92c2b12f8fc30a975d134f50c936b4f0e0f5bd324baf96⟩
+  sub₃≜⟨id≜nat-sq-lt-two-pow-s2-s3,sha≜deb0475cc5476db2dd3f91fb99a1af7b470fc905d30b30c41262a797ffe53367⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
