@@ -1,0 +1,19 @@
+𝔸5.1.goal.am-hm-two-var@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜am-hm-two-var
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/am-hm-two-var.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/am-hm-two-var.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,19 @@
+𝔸5.1.goal.one-add-three-x-le-cube@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜one-add-three-x-le-cube
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/one-add-three-x-le-cube.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/one-add-three-x-le-cube.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
