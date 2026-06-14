@@ -1,0 +1,101 @@
+name: triviality
+
+# Advisory backstop for ADR-035 / SPEC-035-A. The real block is at sourcing
+# admission (human-paced); this catches a trivial goal that reaches a PR by
+# another route. NON-BLOCKING by design: it posts a sticky advisory comment and
+# always exits 0 — do NOT add it to branch-protection's required checks. Scoped
+# to CHANGED goals only because each probe is a full-Mathlib elaboration
+# (gate-a-weight).
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      goals: ${{ steps.filter.outputs.goals }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - id: filter
+        uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3.0.3
+        with:
+          filters: |
+            goals:
+              - 'goals/**/*.lean'
+
+  triviality:
+    needs: detect
+    if: needs.detect.outputs.goals == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+
+      # Each probe holds ~all of mathlib resident (like gate-a replay); give it
+      # swap headroom so a changed-goal sweep can't OOM the runner.
+      - name: Add swap headroom (full-Mathlib elaboration)
+        run: |
+          sudo fallocate -l 12G /mnt/swapfile \
+            || sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=12288
+          sudo chmod 600 /mnt/swapfile
+          sudo mkswap /mnt/swapfile
+          sudo swapon /mnt/swapfile
+
+      - name: Build (mathlib binary cache)
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          use-github-cache: true
+          build-args: "UnsorryGoals"
+
+      - name: Probe changed goals (advisory)
+        id: probe
+        run: |
+          set +e
+          base="${{ github.event.pull_request.base.sha }}"
+          changed=$(git diff --name-only "$base"...HEAD -- 'goals/**/*.lean')
+          {
+            echo '<!-- triviality-advisory -->'
+            echo '### Triviality probe (advisory · ADR-035)'
+          } > comment.md
+          flagged=0
+          for f in $changed; do
+            [ -f "$f" ] || continue
+            out=$(python3 -m tools.sourcing.check_triviality "$f" --per-tactic --json 2>/dev/null)
+            verdict=$(printf '%s' "$out" | python3 -c "import sys,json;print(json.load(sys.stdin).get('verdict','?'))" 2>/dev/null)
+            closed=$(printf '%s' "$out" | python3 -c "import sys,json;print(json.load(sys.stdin).get('closed_by') or '')" 2>/dev/null)
+            if [ "$verdict" = "trivial" ]; then
+              flagged=$((flagged + 1))
+              echo "- ⚠️ \`$f\` — **trivial** (closed by \`$closed\`)" >> comment.md
+            fi
+          done
+          if [ "$flagged" -eq 0 ]; then
+            echo "All changed goals are non-trivial (or allow-listed / overridden). ✅" >> comment.md
+          else
+            echo "" >> comment.md
+            echo "_Advisory only — not a merge blocker. If a flag is a genuine-but-automatable theorem, add a \`- **Nontrivial-override:**\` line to its \`backlog/<id>.md\`._" >> comment.md
+          fi
+          echo "flagged=$flagged" >> "$GITHUB_OUTPUT"
+
+      - name: Sticky advisory comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          existing=$(gh api "repos/${{ github.repository }}/issues/$PR/comments" \
+            --jq '.[] | select(.body | startswith("<!-- triviality-advisory -->")) | .id' | head -1)
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/$existing" -F body=@comment.md >/dev/null
+          else
+            gh api "repos/${{ github.repository }}/issues/$PR/comments" -F body=@comment.md >/dev/null
+          fi

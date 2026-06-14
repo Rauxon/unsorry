@@ -108,9 +108,24 @@ placeholders), `--html`/`--write`/`--check`/mutual-exclusion behaviour (both
 artifacts), the pure `parse_prove_log` agent/PR/date/merged-by parser, and graceful
 degradation when the tree is not a git checkout.
 
-## Deferred (issue #371)
+## Staying current (CI)
 
-* Wiring `tools.visualiser --check` into a CI workflow and regenerating
-  `docs/proofs-contributors-visualisation.{md,html}` in the prove path (so the proof-commit-derived attribution
-  cannot drift) — lands via a separate code-owner-reviewed PR (touches `.github/`,
-  ADR-019).
+`docs/proofs-contributors-visualisation.{md,html}` are kept up to date by the
+`proofs-visualisation` workflow (`.github/workflows/proofs-visualisation.yml`).
+
+The attribution is derived from the `prove(<goal>): … by <agent> (#PR)`
+**squash-merge commit**, which exists only on `main` *after* a proof merges — so
+a PR-time `--check` cannot include the goal a PR is about to prove (it would
+spuriously redden the *next* PR). The workflow therefore runs **post-merge**: on
+each push to `main` touching `goals/`, `library/`, `proof-runs/`,
+`decompositions/`, or `tools/visualiser/`, it runs `--check`, and on drift
+regenerates the outputs and commits them straight back to `main` as a single
+docs-only `[skip ci]` commit (the standard generated-artifact exception — not a
+human/agent change). The commit touches only `docs/`, outside the trigger paths,
+so it does not re-fire; `[skip ci]` also short-circuits the unfiltered gates.
+`workflow_dispatch` allows a manual refresh.
+
+This needs the Actions token to be allowed to push to `main` (a code-owner
+setting). A `GITHUB_TOKEN`-opened PR would *not* trigger the required checks, so
+a plain auto-PR could never self-merge; if a direct push is undesirable, the
+fallback is a PAT-driven refresh PR.
