@@ -1,0 +1,66 @@
+# Keep the generated targets board (docs/targets.md) up to date POST-MERGE
+# (ADR-036, issue #415).
+#
+# The board is regenerated from goals/ + library/index by
+# `tools.sourcing.targets_board`. Regenerating it *in every PR* (the #377/#378
+# approach) made any two concurrent goal PRs conflict on the file — during a
+# proving burst a freshly-sourced batch could never land. So the board moves to
+# the same post-merge model as the proofs visualisation (#395): on every push to
+# `main` that could change goal state it runs `--check`, and on drift it
+# regenerates and commits the board straight back to `main` as a single
+# docs-only `[skip ci]` commit (the standard generated-artifact exception).
+#
+# Requirement (same as proofs-visualisation.yml): the GitHub Actions token must
+# be permitted to push to `main`.
+
+name: targets-board
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "goals/**"
+      - "library/index/**"
+      - "backlog/**"
+      - "tools/sourcing/targets_board.py"
+      - ".github/workflows/targets-board.yml"
+  workflow_dispatch:
+
+# Coalesce bursts of merges into one refresh; never cancel a push mid-commit.
+concurrency:
+  group: targets-board-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+      - name: Check for board drift (ADR-012 / ADR-036)
+        id: check
+        run: |
+          if python3 -m tools.sourcing.targets_board --check .; then
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Regenerate and commit on drift
+        if: steps.check.outputs.stale == 'true'
+        run: |
+          set -euo pipefail
+          python3 -m tools.sourcing.targets_board > docs/targets.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/targets.md
+          # `[skip ci]` + docs-only path (outside this workflow's triggers) means
+          # the refresh commit never re-fires CI.
+          git commit -m "docs: refresh targets board [skip ci]"
+          git push origin HEAD:main

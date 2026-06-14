@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- The generated targets board (`docs/targets.md`) is now refreshed **post-merge** instead of in every PR (ADR-036/SPEC-036-A, #415). The #377/#378 board-sync regenerated the board in every goal-mutating PR and gated it with a gate-b `--check` — which made any two concurrent goal PRs **conflict on the board**, so during a proving burst a freshly-sourced batch repeatedly went DIRTY and could never land (e.g. #404 / earlier #376). The in-PR regen (`submit_pr_tree`) and the `--check` gate are removed; a new `targets-board.yml` workflow regenerates and commits the board on push to `main` (mirroring the proofs-visualisation post-merge workflow, #395). Goal PRs no longer touch the board, so they stop colliding; `main`'s board stays fresh within one workflow run of any merge.
+
 ## [1.11.0] - 2026-06-14
 
 Headline: **machine-enforced non-trivial targets** (ADR-035, #387) — every admitted target now passes a triviality probe (elaborate the statement under `import Mathlib` against a battery of one-shot tactics; reject anything `simp`/`aesop`/`decide`/… closes, which also catches a lemma already in mathlib under another name), complementing the name-grep absence check. Plus a swarm-reliability fix: a failed recompose no longer buries a proved subtree below viability (ADR-034), and a post-merge workflow keeps the proofs-and-contributors visualisation current.
