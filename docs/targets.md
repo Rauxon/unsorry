@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**59 open · 114 proved · 182 total prove-goals.**
+**58 open · 115 proved · 182 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -52,7 +52,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sq-sum-le-two-mul-sum-sq` — For all real a,b, (a+b)² ≤ 2(a²+b²). | open | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For all real a,b, (a+b)² ≤ 2(a²+b²). Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `square-of-sum-ge-three-pairwise` — For all real a,b,c, (a+b+c)² ≥ 3(ab+bc+ca). | open | 2 | — | Classic real inequality (library-growth batch, #400 plan Phase 3). The project had almost no inequalities; this seeds the SOS/nlinarith family. | For all real a,b,c, (a+b+c)² ≥ 3(ab+bc+ca). mathlib has the abstract Cauchy–Schwarz / power-mean lemmas but not this concrete polynomial form as a named lemma. |
 | `sum-four-pow-ge-sq-prod` — For all real a,b,c, a⁴+b⁴+c⁴ ≥ a²b²+b²c²+c²a². | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c, a⁴+b⁴+c⁴ ≥ a²b²+b²c²+c²a². Not a named mathlib lemma in this form. |
-| `sum-four-sq-ge-two-cross-s2` — sum-four-sq-ge-two-cross-s2 | open | 1 | — | — | — |
 | `sum-icc-choose-hockey-stick-s1` — sum-icc-choose-hockey-stick-s1 | open | 1 | — | — | — |
 | `sum-icc-choose-hockey-stick-s2` — sum-icc-choose-hockey-stick-s2 | open | 1 | — | — | — |
 | `sum-icc-choose-hockey-stick-s3` — sum-icc-choose-hockey-stick-s3 | open | 1 | — | — | — |
@@ -159,6 +158,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-four-pow-ge-sq-prod-s1` — sum-four-pow-ge-sq-prod-s1 | proved | 1 | — | — | — |
 | `sum-four-pow-ge-sq-prod-s2` — sum-four-pow-ge-sq-prod-s2 | proved | 1 | — | — | — |
 | `sum-four-sq-ge-two-cross-s1` — sum-four-sq-ge-two-cross-s1 | proved | 1 | — | — | — |
+| `sum-four-sq-ge-two-cross-s2` — sum-four-sq-ge-two-cross-s2 | proved | 1 | — | — | — |
 | `sum-range-choose-mul-two-pow` — For every natural n, the sum over k in 0..n of C(n,k)·2ᵏ equals 3ⁿ; the binomial theorem at x=2: ∑C(n,k)2ᵏ = (1+2)ⁿ = 3ⁿ. | proved | 2 | — | classic identities (binomial-moment tower — the weighted row sum) | Specialisation of the binomial theorem (1+x)ⁿ = ∑C(n,k)xᵏ at x=2. Standard; Concrete Mathematics, Ch. 5. |
 | `sum-range-cube-even` — For every natural n, the sum of the cubes of the first n even numbers equals 2n²(n−1)²; i.e. (2·0)³+2³+4³+…+(2(n−1))³ = 2n²(n−1)². | proved | 2 | — | classic identities (power-sum tower — compounds on `nicomachus-sum-cubes`) | Even-cube sums ∑(2k)³ = 8∑k³ = 8·(n(n−1)/2)²; immediate corollary of Nicomachus's theorem (∑k³ = (∑k)²) scaled by 8. CRC Standard Mathematical Tables (sums of powers); companion of the proved `sum-range-cube-odd`. |
 | `sum-range-cube-mul-choose` — For every natural n, 8·(sum of k³·C(n,k) for k in 0..n) = n²(n+3)·2ⁿ; the third binomial moment ∑k³C(n,k) = n²(n+3)2^(n−3). | proved | 3 | — | classic identities (binomial-moment tower — compounds on the proved `sum-range-sq-mul-choose`) | The third moment of the binomial distribution scaled by 2ⁿ; Graham, Knuth & Patashnik, Concrete Mathematics, Ch. 5 (binomial coefficients / generating-function moments); Riordan, Combinatorial Identities. |
