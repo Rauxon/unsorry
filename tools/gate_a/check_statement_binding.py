@@ -30,7 +30,7 @@ import re
 import sys
 from pathlib import Path
 
-from tools.lean_sig import camel_name, foralltype, open_lines, theorem_name
+from tools.lean_sig import camel_name, foralltype, import_lines, open_lines, theorem_name
 
 _GOAL_RE = re.compile(r"goal≜([A-Za-z0-9][A-Za-z0-9-]*)")
 _STATUS_RE = re.compile(r"status≜([A-Za-z0-9-]+)")
@@ -104,6 +104,7 @@ def generate(tree: Path) -> int:
         # obligation must elaborate in that same namespace context. The opens
         # come from the ADR-018-immutable goal file, never from the prover's
         # module, so this adds no tampering surface.
+        imports = "".join(f"{i}\n" for i in import_lines(text))
         opens = "".join(f"{o}\n" for o in open_lines(text))
         # linter.unusedVariables is suppressed because the obligation restates
         # the goal's binders verbatim: a named hypothesis binder following an
@@ -113,6 +114,7 @@ def generate(tree: Path) -> int:
         # type-checking, not lints; the file is regenerated glue, never
         # committed (SPEC-011-A).
         binding_path.write_text(
+            f"{imports}"
             f"import {module}\n\n"
             f"{opens}"
             f"set_option linter.unusedVariables false in\n"

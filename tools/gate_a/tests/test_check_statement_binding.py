@@ -87,6 +87,29 @@ def test_generate_carries_goal_open_commands(tmp_path):
         "theorem sum_range_pentagonal_closed_form_binding_check")
 
 
+def test_generate_carries_goal_imports_before_proof_module(tmp_path):
+    # Regression: a goal may state its type using notation provided by its own
+    # imports (`ℕ` from Mathlib), while the proof module proves the same theorem
+    # with core names (`Nat`) and therefore does not import Mathlib. The binding
+    # restates the goal's type, so it must carry the goal imports too.
+    _make_proved(
+        tmp_path, "nat-pow-helper",
+        "theorem nat_pow_helper (n : ℕ) : n = n",
+        proof="rfl",
+        header="import Mathlib\n\n",
+    )
+    (tmp_path / "library" / "Unsorry" / "NatPowHelper.lean").write_text(
+        "theorem nat_pow_helper (n : Nat) : n = n := rfl\n",
+        encoding="utf-8",
+    )
+
+    assert generate(tmp_path) == 0
+    binding = (tmp_path / "library" / "Unsorry" / "NatPowHelperBinding.lean").read_text(
+        encoding="utf-8"
+    )
+    assert binding.startswith("import Mathlib\nimport Unsorry.NatPowHelper\n\n")
+
+
 def test_generate_without_opens_is_byte_identical_to_canonical(tmp_path):
     # No `open` in the goal file → the obligation keeps the exact canonical
     # shape (regression guard for the pre-open generator output).
