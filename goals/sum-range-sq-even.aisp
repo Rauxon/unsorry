@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-sq-even
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-sq-even.md
+  src≜packages/unsorry-archive-0001/backlog/sum-range-sq-even.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-sq-even.lean
+  lean≜packages/unsorry-archive-0001/goals/sum-range-sq-even.lean
   sha≜3f96ef8423cdd06ed8834f1d03de4c394c1dede085dbf8cbd60336942e862142
   aff≜1
 }
