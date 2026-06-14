@@ -2,7 +2,7 @@
   "block_id": "unsorry-archive-0001",
   "target_size": 40,
   "proof_count": 40,
-  "status": "draft",
+  "status": "frozen",
   "source_commit": "a5dc131f20a90b56d35b471c0afe0b6d645d2ab2",
   "validation_commit": null,
   "pins": {
@@ -11,50 +11,170 @@
   },
   "notes": [
     "Initial ADR-041 proof archive block.",
-    "This draft copies the selected proofs and provenance metadata but does not remove them from the active package.",
-    "Validation remains pending until archive-boundary Gate A support lands."
+    "Active package proof modules, goal Lean files, backlog entries, and active index entries for this block have been retired.",
+    "Active goal records remain as archived metadata and point at this archive package for their source and Lean statement files."
   ],
   "goals": [
-    {"goal": "alternating-sum-naturals", "module": "Unsorry.AlternatingSumNaturals"},
-    {"goal": "and-comm-imp", "module": "Unsorry.AndCommImp"},
-    {"goal": "factorial-telescope-sum", "module": "Unsorry.FactorialTelescopeSum"},
-    {"goal": "int-add-neg", "module": "Unsorry.IntAddNeg"},
-    {"goal": "int-neg-neg", "module": "Unsorry.IntNegNeg"},
-    {"goal": "int-sub-eq-add-neg", "module": "Unsorry.IntSubEqAddNeg"},
-    {"goal": "list-reverse-reverse", "module": "Unsorry.ListReverseReverse"},
-    {"goal": "nat-add-assoc-thm", "module": "Unsorry.NatAddAssocThm"},
-    {"goal": "nat-add-comm-thm", "module": "Unsorry.NatAddCommThm"},
-    {"goal": "nat-add-left-cancel", "module": "Unsorry.NatAddLeftCancel"},
-    {"goal": "nat-add-zero-thm", "module": "Unsorry.NatAddZeroThm"},
-    {"goal": "nat-dvd-refl", "module": "Unsorry.NatDvdRefl"},
-    {"goal": "nat-even-or-odd", "module": "Unsorry.NatEvenOrOdd"},
-    {"goal": "nat-gcd-comm", "module": "Unsorry.NatGcdComm"},
-    {"goal": "nat-le-add-right", "module": "Unsorry.NatLeAddRight"},
-    {"goal": "nat-le-succ", "module": "Unsorry.NatLeSucc"},
-    {"goal": "nat-mul-add-distrib", "module": "Unsorry.NatMulAddDistrib"},
-    {"goal": "nat-mul-comm-thm", "module": "Unsorry.NatMulCommThm"},
-    {"goal": "nat-mul-one-thm", "module": "Unsorry.NatMulOneThm"},
-    {"goal": "nat-mul-zero-thm", "module": "Unsorry.NatMulZeroThm"},
-    {"goal": "nat-zero-le", "module": "Unsorry.NatZeroLe"},
-    {"goal": "nicomachus-sum-cubes", "module": "Unsorry.NicomachusSumCubes"},
-    {"goal": "nicomachus-sum-cubes-triangular", "module": "Unsorry.NicomachusSumCubesTriangular"},
-    {"goal": "cube-eq-triangular-sq-diff", "module": "Unsorry.CubeEqTriangularSqDiff"},
-    {"goal": "sum-range-cube-even", "module": "Unsorry.SumRangeCubeEven"},
-    {"goal": "not-prime-pow-four-add-four", "module": "Unsorry.NotPrimePowFourAddFour"},
-    {"goal": "or-comm-imp", "module": "Unsorry.OrCommImp"},
-    {"goal": "sum-range-fib-sq", "module": "Unsorry.SumRangeFibSq"},
-    {"goal": "sum-range-odd-eq-sq", "module": "Unsorry.SumRangeOddEqSq"},
-    {"goal": "sum-range-pow-four-closed-form", "module": "Unsorry.SumRangePowFourClosedForm"},
-    {"goal": "sum-range-pow-four-triangular-form", "module": "Unsorry.SumRangePowFourTriangularForm"},
-    {"goal": "sum-range-sq-closed-form", "module": "Unsorry.SumRangeSqClosedForm"},
-    {"goal": "sum-range-sq-triangular-form", "module": "Unsorry.SumRangeSqTriangularForm"},
-    {"goal": "sum-range-sq-odd-closed-form", "module": "Unsorry.SumRangeSqOddClosedForm"},
-    {"goal": "binder-shape-canary", "module": "Unsorry.BinderShapeCanary"},
-    {"goal": "sum-range-cube-odd", "module": "Unsorry.SumRangeCubeOdd"},
-    {"goal": "sum-range-mul-two-pow", "module": "Unsorry.SumRangeMulTwoPow"},
-    {"goal": "sum-range-pentagonal-closed-form", "module": "Unsorry.SumRangePentagonalClosedForm"},
-    {"goal": "sum-range-pronic", "module": "Unsorry.SumRangePronic"},
-    {"goal": "sum-range-sq-even", "module": "Unsorry.SumRangeSqEven"}
+    {
+      "goal": "alternating-sum-naturals",
+      "module": "Unsorry.AlternatingSumNaturals"
+    },
+    {
+      "goal": "and-comm-imp",
+      "module": "Unsorry.AndCommImp"
+    },
+    {
+      "goal": "factorial-telescope-sum",
+      "module": "Unsorry.FactorialTelescopeSum"
+    },
+    {
+      "goal": "int-add-neg",
+      "module": "Unsorry.IntAddNeg"
+    },
+    {
+      "goal": "int-neg-neg",
+      "module": "Unsorry.IntNegNeg"
+    },
+    {
+      "goal": "int-sub-eq-add-neg",
+      "module": "Unsorry.IntSubEqAddNeg"
+    },
+    {
+      "goal": "list-reverse-reverse",
+      "module": "Unsorry.ListReverseReverse"
+    },
+    {
+      "goal": "nat-add-assoc-thm",
+      "module": "Unsorry.NatAddAssocThm"
+    },
+    {
+      "goal": "nat-add-comm-thm",
+      "module": "Unsorry.NatAddCommThm"
+    },
+    {
+      "goal": "nat-add-left-cancel",
+      "module": "Unsorry.NatAddLeftCancel"
+    },
+    {
+      "goal": "nat-add-zero-thm",
+      "module": "Unsorry.NatAddZeroThm"
+    },
+    {
+      "goal": "nat-dvd-refl",
+      "module": "Unsorry.NatDvdRefl"
+    },
+    {
+      "goal": "nat-even-or-odd",
+      "module": "Unsorry.NatEvenOrOdd"
+    },
+    {
+      "goal": "nat-gcd-comm",
+      "module": "Unsorry.NatGcdComm"
+    },
+    {
+      "goal": "nat-le-add-right",
+      "module": "Unsorry.NatLeAddRight"
+    },
+    {
+      "goal": "nat-le-succ",
+      "module": "Unsorry.NatLeSucc"
+    },
+    {
+      "goal": "nat-mul-add-distrib",
+      "module": "Unsorry.NatMulAddDistrib"
+    },
+    {
+      "goal": "nat-mul-comm-thm",
+      "module": "Unsorry.NatMulCommThm"
+    },
+    {
+      "goal": "nat-mul-one-thm",
+      "module": "Unsorry.NatMulOneThm"
+    },
+    {
+      "goal": "nat-mul-zero-thm",
+      "module": "Unsorry.NatMulZeroThm"
+    },
+    {
+      "goal": "nat-zero-le",
+      "module": "Unsorry.NatZeroLe"
+    },
+    {
+      "goal": "nicomachus-sum-cubes",
+      "module": "Unsorry.NicomachusSumCubes"
+    },
+    {
+      "goal": "nicomachus-sum-cubes-triangular",
+      "module": "Unsorry.NicomachusSumCubesTriangular"
+    },
+    {
+      "goal": "cube-eq-triangular-sq-diff",
+      "module": "Unsorry.CubeEqTriangularSqDiff"
+    },
+    {
+      "goal": "sum-range-cube-even",
+      "module": "Unsorry.SumRangeCubeEven"
+    },
+    {
+      "goal": "not-prime-pow-four-add-four",
+      "module": "Unsorry.NotPrimePowFourAddFour"
+    },
+    {
+      "goal": "or-comm-imp",
+      "module": "Unsorry.OrCommImp"
+    },
+    {
+      "goal": "sum-range-fib-sq",
+      "module": "Unsorry.SumRangeFibSq"
+    },
+    {
+      "goal": "sum-range-odd-eq-sq",
+      "module": "Unsorry.SumRangeOddEqSq"
+    },
+    {
+      "goal": "sum-range-pow-four-closed-form",
+      "module": "Unsorry.SumRangePowFourClosedForm"
+    },
+    {
+      "goal": "sum-range-pow-four-triangular-form",
+      "module": "Unsorry.SumRangePowFourTriangularForm"
+    },
+    {
+      "goal": "sum-range-sq-closed-form",
+      "module": "Unsorry.SumRangeSqClosedForm"
+    },
+    {
+      "goal": "sum-range-sq-triangular-form",
+      "module": "Unsorry.SumRangeSqTriangularForm"
+    },
+    {
+      "goal": "sum-range-sq-odd-closed-form",
+      "module": "Unsorry.SumRangeSqOddClosedForm"
+    },
+    {
+      "goal": "binder-shape-canary",
+      "module": "Unsorry.BinderShapeCanary"
+    },
+    {
+      "goal": "sum-range-cube-odd",
+      "module": "Unsorry.SumRangeCubeOdd"
+    },
+    {
+      "goal": "sum-range-mul-two-pow",
+      "module": "Unsorry.SumRangeMulTwoPow"
+    },
+    {
+      "goal": "sum-range-pentagonal-closed-form",
+      "module": "Unsorry.SumRangePentagonalClosedForm"
+    },
+    {
+      "goal": "sum-range-pronic",
+      "module": "Unsorry.SumRangePronic"
+    },
+    {
+      "goal": "sum-range-sq-even",
+      "module": "Unsorry.SumRangeSqEven"
+    }
   ],
   "deferred_groups": [
     [
