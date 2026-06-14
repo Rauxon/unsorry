@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-mul-add-distrib
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-mul-add-distrib.md
+  src≜packages/unsorry-archive-0001/backlog/nat-mul-add-distrib.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-mul-add-distrib.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-mul-add-distrib.lean
   sha≜2166b87af84d786d8ef505ccdb44469764492cc72dbb54b3e1b0d40af58559f1
   aff≜1
 }
