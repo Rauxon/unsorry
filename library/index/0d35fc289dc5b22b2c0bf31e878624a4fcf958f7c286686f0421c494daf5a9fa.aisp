@@ -1,0 +1,8 @@
+𝔸5.1.lemma.0d35fc289dc5@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜0d35fc289dc5b22b2c0bf31e878624a4fcf958f7c286686f0421c494daf5a9fa; goal≜prod-range-one-add-inv; name≜prod_range_one_add_inv}
+⟦Σ:Source⟧{src≜goals/prod-range-one-add-inv.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high; attempts≜1; solve_s≜393}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
