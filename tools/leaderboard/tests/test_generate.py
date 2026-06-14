@@ -31,6 +31,19 @@ def _index(root: Path, sha: str, goal: str, provenance: str = "") -> None:
     )
 
 
+def _archive_index(root: Path, sha: str, goal: str, provenance: str = "") -> None:
+    path = root / "packages" / "unsorry-archive-0001" / "library" / "index"
+    path.mkdir(parents=True, exist_ok=True)
+    (path / f"{sha}.aisp").write_text(
+        f"𝔸5.1.lemma.{sha[:12]}@2026-06-13\n"
+        "γ≔unsorry.lemma.index\n"
+        f"⟦Ω:Lemma⟧{{sha≜{sha}; goal≜{goal}; name≜{goal}}}\n"
+        f"{provenance}"
+        "⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩\n",
+        encoding="utf-8",
+    )
+
+
 def _goal(root: Path, goal: str, difficulty: int, status: str = "open") -> None:
     path = root / "goals"
     path.mkdir(parents=True, exist_ok=True)
@@ -186,6 +199,87 @@ def test_git_add_author_is_historical_visibility_not_solver_credit(tmp_path):
     assert "1 proofs" in svg
     assert "0 explicit" in svg
     assert "1 inferred" in svg
+
+
+def test_archived_index_files_keep_original_active_attribution(tmp_path):
+    _git(tmp_path, "init")
+    _goal(tmp_path, "retired-goal", 2, "archived")
+    _index(tmp_path, "a" * 64, "retired-goal")
+    _git(tmp_path, "add", "goals", "library/index")
+    _git(
+        tmp_path,
+        "commit",
+        "-m",
+        "prove(retired-goal): original proof",
+        author="Ada Lovelace <ada@example.test>",
+    )
+    _alias(tmp_path, "Ada Lovelace <ada@example.test>", "ada", "Ada Lovelace")
+
+    _archive_index(tmp_path, "a" * 64, "retired-goal")
+    (tmp_path / "library" / "index" / f"{'a' * 64}.aisp").unlink()
+    _git(tmp_path, "add", "-A", "library/index", "packages", "docs")
+    _git(
+        tmp_path,
+        "commit",
+        "-m",
+        "chore(archive): retire active copies",
+        author="Archive Runner <archive@example.test>",
+    )
+
+    proof_data = proofs(tmp_path)
+    assert len(proof_data) == 1
+    assert proof_data[0].path == (
+        f"packages/unsorry-archive-0001/library/index/{'a' * 64}.aisp"
+    )
+
+    stats = base_stats(tmp_path)
+    assert stats["coverage"]["verified_proofs"] == 1
+    assert stats["credit"]["credited_proofs"] == 1
+    assert stats["credit"]["inferred_git_proofs"] == 1
+    assert stats["credited_contributors"][0]["display_name"] == "@ada"
+    assert stats["credited_contributors"][0]["git_author"] == (
+        "Ada Lovelace <ada@example.test>"
+    )
+    assert stats["historical_attribution"]["records"] == 1
+    assert stats["historical_attribution"]["git_attributed_index_files"] == 1
+    assert stats["historical_attribution"]["authors"][0]["display_name"] == (
+        "Ada Lovelace"
+    )
+
+    gaps = attribution_gaps_payload(tmp_path)
+    assert gaps["summary"] == {
+        "git_attributed_missing_solver": 1,
+        "mapped_missing_solver": 1,
+        "missing_solver_provenance": 1,
+        "unmapped_missing_solver": 0,
+    }
+    assert gaps["missing_solver_provenance"][0]["git_author"] == (
+        "Ada Lovelace <ada@example.test>"
+    )
+
+
+def test_archive_index_duplicate_is_skipped_while_active_index_exists(tmp_path):
+    _git(tmp_path, "init")
+    _goal(tmp_path, "not-yet-retired", 3, "proved")
+    _index(tmp_path, "b" * 64, "not-yet-retired")
+    _archive_index(tmp_path, "b" * 64, "not-yet-retired")
+    _git(tmp_path, "add", "goals", "library/index", "packages")
+    _git(
+        tmp_path,
+        "commit",
+        "-m",
+        "prove(not-yet-retired): active proof",
+        author="Ada Lovelace <ada@example.test>",
+    )
+
+    proof_data = proofs(tmp_path)
+    assert len(proof_data) == 1
+    assert proof_data[0].path == f"library/index/{'b' * 64}.aisp"
+
+    stats = base_stats(tmp_path)
+    assert stats["coverage"]["verified_proofs"] == 1
+    assert stats["historical_attribution"]["records"] == 1
+    assert stats["historical_attribution"]["git_attributed_index_files"] == 1
 
 
 def test_base_stats_derive_failure_and_efficiency_metrics(tmp_path):

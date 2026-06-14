@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-even-or-odd
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-even-or-odd.md
+  src≜packages/unsorry-archive-0001/backlog/nat-even-or-odd.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-even-or-odd.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-even-or-odd.lean
   sha≜33bb4e6c42e57b20d97a0fa7f6f9e83b336c9c81db45fc6e3a0b929c93cac5f5
   aff≜1
 }
