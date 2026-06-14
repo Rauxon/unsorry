@@ -1,7 +1,0 @@
-𝔸5.1.claim.sq-lt-cube-of-one-lt.afnz-zbook-b336@2026-06-14
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜sq-lt-cube-of-one-lt; agent≜afnz-zbook-b336}
-⟦Σ:Times⟧{ts≜2026-06-14T18:41:20Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
