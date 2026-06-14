@@ -59,6 +59,7 @@ These protocols must be followed when using plan mode. They are non-negotiable.
 - Move unreleased changelog entries to the new version heading
 - Each release must pass all tests and quality checks
 - Release notes reference the relevant ADRs and specs
+- Always publish releases after they are tagged.
 
 ## 7. Context7 MCP for Language Research
 
