@@ -66,6 +66,8 @@ jobs:
         if: needs.detect.outputs.gate_b == 'true'
         # Stdlib only (absence grep + triviality probe use a mocked runner).
         run: pytest tools/sourcing -q
+      - name: Archive planner test suite (ADR-041)
+        run: pytest tools/archive -q
       - name: Validate repository tree
         if: needs.detect.outputs.gate_b == 'true'
         run: python3 -m tools.gate_b validate .
