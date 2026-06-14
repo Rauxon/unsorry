@@ -1,7 +1,0 @@
-𝔸5.1.lemma.a1c6628bf10e@2026-06-10
-γ≔unsorry.lemma.index
-⟦Ω:Lemma⟧{sha≜a1c6628bf10e862c744894950d49d9bb68e9c66518efee4d7f969f362ddb9385; goal≜nat-mul-comm-thm; name≜nat_mul_comm_thm}
-⟦Σ:Source⟧{src≜goals/nat-mul-comm-thm.lean}
-⟦Γ:Tags⟧{tags≜⟨⟩}
-⟦Λ:Meta⟧{use≜0; aff≜0}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

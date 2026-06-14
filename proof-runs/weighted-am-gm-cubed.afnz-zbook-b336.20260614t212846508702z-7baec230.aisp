@@ -1,0 +1,9 @@
+𝔸5.1.run.weighted-am-gm-cubed.afnz-zbook-b336.20260614t212846508702z-7baec230@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t212846508702z-7baec230; goal≜weighted-am-gm-cubed; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜weighted-am-gm-cubed}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜458; ended≜2026-06-14T21:28:46Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜⚠ [8592/8595] Replaying Unsorry.WeightedAmGmCubedBinding trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-weighted-am-gm-cubed-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-weighted-am-gm-cubed-afnz-zbook-b336/.lake/packages/batteries/}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -5,7 +5,7 @@ Your job: write a complete, sound Lean 4 proof of the theorem below into ONE new
 You will be given the goal's Lean statement and the exact target file path under `library/Unsorry/`. The target module must re-state the SAME theorem — same theorem name, same signature — and prove it.
 
 Rules:
-1. Write ONLY by creating/editing the target file. Output no prose; your result is the file on disk. Do not touch any other file (not the goal under `goals/`, not the lakefile, not the index).
+1. Write ONLY into the target file. If your runtime exposes Write/Edit tools, create the target file with them and output no prose — your result is the file on disk. If your runtime cannot emit tool calls, instead return the COMPLETE target module as a single fenced ```lean code block and nothing else; the harness extracts that block into the target file (the audit gate re-checks it the same either way). Either way, do not touch any other file (not the goal under `goals/`, not the lakefile, not the index).
 2. The file must `import` exactly the mathlib modules the proof needs and no more — keep imports tight. Mathlib is available (the lakefile pins it); prefer existing mathlib lemmas over hand-rolled inductions.
 3. The proof must be sound. Absolutely forbidden anywhere in the file: `sorry`, `admit`, `native_decide`, `set_option autoImplicit true`, `set_option relaxedAutoImplicit true`, any new `axiom` declaration, and any `@[implemented_by]`/`@[extern]` trickery. The only axioms permitted in the final footprint are mathlib's standard three: `propext`, `Classical.choice`, `Quot.sound`.
 4. The module must build clean and pass the audit. Concretely, from the repository root these must both succeed:
