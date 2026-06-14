@@ -1,7 +1,0 @@
-𝔸5.1.claim.sum-range-pow-seven-faulhaber-triangular.d337a70018c9-90fd@2026-06-14
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜sum-range-pow-seven-faulhaber-triangular; agent≜d337a70018c9-90fd}
-⟦Σ:Times⟧{ts≜2026-06-14T05:35:29Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
