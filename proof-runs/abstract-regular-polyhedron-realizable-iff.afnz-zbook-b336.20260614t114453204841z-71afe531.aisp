@@ -1,0 +1,9 @@
+𝔸5.1.run.abstract-regular-polyhedron-realizable-iff.afnz-zbook-b336.20260614t114453204841z-71afe531@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t114453204841z-71afe531; goal≜abstract-regular-polyhedron-realizable-iff; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜abstract-regular-polyhedron-realizable-iff}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜841; ended≜2026-06-14T11:44:53Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [849/974] Running Mathlib.Tactic.Decide error: no such file or directory (error code: 4294967294) file: /home/chris/.unsorry/work/prove-abstract-regular-polyhedron-realizable-iff-afnz-zbook-b336/.lake/packages/mathlib/Mathlib/Tactic/Decide.lean ✖ [850/974] Running Unsorry.Abstr}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
