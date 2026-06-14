@@ -1,0 +1,19 @@
+𝔸5.1.goal.two-abs-le-sq-add-one@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜two-abs-le-sq-add-one
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/two-abs-le-sq-add-one.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/two-abs-le-sq-add-one.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
