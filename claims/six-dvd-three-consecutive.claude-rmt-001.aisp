@@ -1,7 +1,0 @@
-𝔸5.1.claim.six-dvd-three-consecutive.claude-rmt-001@2026-06-14
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜six-dvd-three-consecutive; agent≜claude-rmt-001}
-⟦Σ:Times⟧{ts≜2026-06-14T04:45:16Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
