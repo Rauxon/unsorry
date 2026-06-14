@@ -1,7 +1,0 @@
-𝔸5.1.claim.no-nat-sq-eq-two-mul-sq.d337a70018c9-90fd@2026-06-14
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜no-nat-sq-eq-two-mul-sq; agent≜d337a70018c9-90fd}
-⟦Σ:Times⟧{ts≜2026-06-14T07:16:01Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
