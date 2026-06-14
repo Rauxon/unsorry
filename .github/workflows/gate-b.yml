@@ -20,6 +20,7 @@ jobs:
             gate_b:
               - '.github/workflows/gate-b.yml'
               - 'tools/gate_b/**'
+              - 'tools/archive/**'
               - 'tools/sourcing/**'
               - 'tools/llm_providers/**'
               - 'goals/**/*.aisp'
@@ -67,6 +68,7 @@ jobs:
         # Stdlib only (absence grep + triviality probe use a mocked runner).
         run: pytest tools/sourcing -q
       - name: Archive planner test suite (ADR-041)
+        if: needs.detect.outputs.gate_b == 'true'
         run: pytest tools/archive -q
       - name: Validate repository tree
         if: needs.detect.outputs.gate_b == 'true'
