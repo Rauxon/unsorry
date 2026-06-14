@@ -1,0 +1,9 @@
+𝔸5.1.run.nesbitt-inequality.d337a70018c9-90fd.20260614t072156422296z-646c583b@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t072156422296z-646c583b; goal≜nesbitt-inequality; agent≜d337a70018c9-90fd; outcome≜decomposed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜nesbitt-inequality}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜163; ended≜2026-06-14T07:21:56Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(no file was written at library/Unsorry/NesbittInequality.lean)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

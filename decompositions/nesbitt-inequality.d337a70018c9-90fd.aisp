@@ -1,0 +1,14 @@
+𝔸5.1.decomp.nesbitt-inequality.d337a70018c9-90fd@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜nesbitt-inequality; agent≜d337a70018c9-90fd}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜nesbitt-inequality-s1,sha≜3a578dcc1d941c9ce2f6dd78c23b2b9211ccab10f640a7a068e3b72980242a1a⟩
+  sub₂≜⟨id≜nesbitt-inequality-s2,sha≜c825189d82bd965f2f4b82bc256e324bc03f7af5755e13aab5046ef0fec9092f⟩
+  sub₃≜⟨id≜nesbitt-inequality-s3,sha≜18f34251bf3e4a8f684e74bd30fbeaaebff4910136ba55fea7fb4dbd6764a17f⟩
+  sub₄≜⟨id≜nesbitt-inequality-s4,sha≜d4f52c047396fdfaf148e99cac9c3af96b0577ad2f0746a46558856814040ee0⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent); Post(sub₄)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
