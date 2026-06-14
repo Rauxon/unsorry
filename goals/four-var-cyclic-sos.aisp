@@ -1,0 +1,19 @@
+𝔸5.1.goal.four-var-cyclic-sos@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜four-var-cyclic-sos
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/four-var-cyclic-sos.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/four-var-cyclic-sos.lean
+  sha≜∅
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
