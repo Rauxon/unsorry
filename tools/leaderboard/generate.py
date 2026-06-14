@@ -847,10 +847,16 @@ def render_ui_json(root: Path) -> str:
 def render_svg(root: Path) -> str:
     payload = ui_payload(root)
     contributors = payload["contributors"][:5]
+    historical = payload["historical_contributors"][:5]
     width = 900
-    row_h = 62
-    top = 104
-    height = top + max(1, len(contributors)) * row_h + 72
+    solver_row_h = 62
+    historical_row_h = 46
+    solver_top = 120
+    solver_rows = max(1, len(contributors))
+    historical_heading_y = solver_top + solver_rows * solver_row_h + 34
+    historical_top = historical_heading_y + 14
+    historical_rows = max(1, len(historical))
+    height = historical_top + historical_rows * historical_row_h + 34
     max_score = max([int(row["score"]) for row in contributors] + [100])
     summary = payload["summary"]
     historical_count = summary["historical_contributors"]
@@ -870,14 +876,15 @@ def render_svg(root: Path) -> str:
             f"{historical_count} git authors"
             "</text>"
         ),
+        "<text x=\"32\" y=\"104\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"13\" font-weight=\"650\" fill=\"#334155\">Solver-provenance leaderboard</text>",
     ]
     if not contributors:
         lines.extend([
-            "<rect x=\"32\" y=\"104\" width=\"836\" height=\"58\" rx=\"10\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/>",
-            "<text x=\"56\" y=\"140\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"16\" fill=\"#64748b\">No attributed proofs yet.</text>",
+            f"<rect x=\"32\" y=\"{solver_top}\" width=\"836\" height=\"58\" rx=\"10\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/>",
+            f"<text x=\"56\" y=\"{solver_top + 36}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"16\" fill=\"#64748b\">No attributed proofs yet.</text>",
         ])
     for index, row in enumerate(contributors):
-        y = top + index * row_h
+        y = solver_top + index * solver_row_h
         bar_w = max(6, int(390 * int(row["score"]) / max_score))
         rank_color = "#fbbf24" if row["rank"] == 1 else "#94a3b8" if row["rank"] == 2 else "#b45309" if row["rank"] == 3 else "#cbd5e1"
         solver = html_escape(str(row["display_name"]))
@@ -896,15 +903,53 @@ def render_svg(root: Path) -> str:
             f"<rect x=\"320\" y=\"{y + 15}\" width=\"{bar_w}\" height=\"26\" rx=\"13\" fill=\"#e0f2fe\"/>",
             f"<text x=\"760\" y=\"{y + 34}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"14\" font-weight=\"700\" fill=\"#334155\">{row['score']} pts</text>",
         ])
-    footer_y = top + max(1, len(contributors)) * row_h + 28
     lines.extend([
-        f"<text x=\"32\" y=\"{footer_y}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"13\" font-weight=\"650\" fill=\"#334155\">Historical proof index contributors</text>",
+        f"<text x=\"32\" y=\"{historical_heading_y}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"13\" font-weight=\"650\" fill=\"#334155\">Historical proof index contributors</text>",
         (
-            f"<text x=\"32\" y=\"{footer_y + 20}\" font-family=\"Inter, system-ui, sans-serif\" "
+            f"<text x=\"272\" y=\"{historical_heading_y}\" font-family=\"Inter, system-ui, sans-serif\" "
             f"font-size=\"12\" fill=\"#64748b\">{summary['git_attributed_index_files']} git-attributed index files · "
             f"{summary['attribution_gap_count']} records missing explicit solver provenance</text>"
         ),
     ])
+    if not historical:
+        lines.extend([
+            f"<rect x=\"32\" y=\"{historical_top}\" width=\"836\" height=\"40\" rx=\"10\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/>",
+            f"<text x=\"56\" y=\"{historical_top + 26}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"14\" fill=\"#64748b\">No historical git attribution available.</text>",
+        ])
+    max_index_files = max([int(row["index_files_added"]) for row in historical] + [1])
+    for index, row in enumerate(historical):
+        y = historical_top + index * historical_row_h
+        count = int(row["index_files_added"])
+        bar_w = max(6, int(260 * count / max_index_files))
+        github = row.get("github")
+        display = f"@{github}" if github else str(row["display_name"])
+        name = html_escape(display)
+        profile = row.get("profile_url")
+        profile = html_escape(str(profile)) if profile else None
+        lines.extend([
+            f"<text x=\"36\" y=\"{y + 27}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#64748b\">{index + 1}</text>",
+        ])
+        if profile:
+            lines.extend([
+                f"<a href=\"{profile}\">",
+                f"<text x=\"82\" y=\"{y + 20}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"15\" font-weight=\"650\" fill=\"#334155\">{name}</text>",
+                "</a>",
+            ])
+        else:
+            lines.append(
+                f"<text x=\"82\" y=\"{y + 20}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"15\" font-weight=\"650\" fill=\"#334155\">{name}</text>"
+            )
+        lines.extend([
+            (
+                f"<text x=\"82\" y=\"{y + 38}\" font-family=\"Inter, system-ui, sans-serif\" "
+                f"font-size=\"11\" fill=\"#64748b\">{count} index files · "
+                f"{row['missing_solver_provenance']} need solver review · "
+                f"{row['difficulty_points']} difficulty</text>"
+            ),
+            f"<rect x=\"430\" y=\"{y + 12}\" width=\"280\" height=\"18\" rx=\"9\" fill=\"#f1f5f9\"/>",
+            f"<rect x=\"430\" y=\"{y + 12}\" width=\"{bar_w}\" height=\"18\" rx=\"9\" fill=\"#dcfce7\"/>",
+            f"<text x=\"732\" y=\"{y + 26}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#334155\">git history</text>",
+        ])
     lines.append("</svg>")
     return "\n".join(lines) + "\n"
 

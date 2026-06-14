@@ -171,6 +171,12 @@ def test_git_add_author_is_historical_visibility_not_solver_credit(tmp_path):
     }
     assert gaps["missing_solver_provenance"][0]["mapped_github"] == "ada"
     assert json.loads(render_attribution_gaps_json(tmp_path)) == gaps
+    svg = render_svg(tmp_path)
+    assert "No attributed proofs yet." in svg
+    assert "Historical proof index contributors" in svg
+    assert "@ada" in svg
+    assert "1 index files" in svg
+    assert "1 need solver review" in svg
 
 
 def test_base_stats_derive_failure_and_efficiency_metrics(tmp_path):
@@ -299,6 +305,7 @@ def test_ui_payload_is_stable_browser_contract(tmp_path):
     assert json.loads(render_ui_json(tmp_path)) == payload
     svg = render_svg(tmp_path)
     assert "Unsorry Leaderboard" in svg
+    assert "Solver-provenance leaderboard" in svg
     assert "@perttu" in svg
     assert "425 pts" in svg
     assert "href=\"https://github.com/perttu\"" in svg

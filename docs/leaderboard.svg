@@ -1,18 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="238" viewBox="0 0 900 238" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="448" viewBox="0 0 900 448" role="img" aria-labelledby="title desc">
 <title id="title">Unsorry leaderboard</title>
 <desc id="desc">Top verified Unsorry contributors plus historical proof-index contributor visibility.</desc>
 <rect width="900" height="100%" rx="18" fill="#ffffff"/>
-<rect x="0.5" y="0.5" width="899" height="237" rx="18" fill="none" stroke="#e2e8f0"/>
+<rect x="0.5" y="0.5" width="899" height="447" rx="18" fill="none" stroke="#e2e8f0"/>
 <text x="32" y="44" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="#334155">Unsorry Leaderboard</text>
 <text x="32" y="72" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#64748b">90 verified proofs · 19 solver-attributed · 71 historical · 4 git authors</text>
-<text x="34" y="140" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#fbbf24">1</text>
+<text x="32" y="104" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="650" fill="#334155">Solver-provenance leaderboard</text>
+<text x="34" y="156" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#fbbf24">1</text>
 <a href="https://github.com/cgbarlow">
-<text x="82" y="132" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@cgbarlow</text>
+<text x="82" y="148" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@cgbarlow</text>
 </a>
-<text x="82" y="152" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">19 proofs · 49 difficulty · 23 runs</text>
-<rect x="320" y="119" width="420" height="26" rx="13" fill="#f1f5f9"/>
-<rect x="320" y="119" width="390" height="26" rx="13" fill="#e0f2fe"/>
-<text x="760" y="138" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">5375 pts</text>
-<text x="32" y="194" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="650" fill="#334155">Historical proof index contributors</text>
-<text x="32" y="214" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">90 git-attributed index files · 71 records missing explicit solver provenance</text>
+<text x="82" y="168" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">19 proofs · 49 difficulty · 23 runs</text>
+<rect x="320" y="135" width="420" height="26" rx="13" fill="#f1f5f9"/>
+<rect x="320" y="135" width="390" height="26" rx="13" fill="#e0f2fe"/>
+<text x="760" y="154" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">5375 pts</text>
+<text x="32" y="216" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="650" fill="#334155">Historical proof index contributors</text>
+<text x="272" y="216" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">90 git-attributed index files · 71 records missing explicit solver provenance</text>
+<text x="36" y="257" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#64748b">1</text>
+<a href="https://github.com/cgbarlow">
+<text x="82" y="250" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="650" fill="#334155">@cgbarlow</text>
+</a>
+<text x="82" y="268" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#64748b">60 index files · 41 need solver review · 98 difficulty</text>
+<rect x="430" y="242" width="280" height="18" rx="9" fill="#f1f5f9"/>
+<rect x="430" y="242" width="260" height="18" rx="9" fill="#dcfce7"/>
+<text x="732" y="256" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155">git history</text>
+<text x="36" y="303" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#64748b">2</text>
+<a href="https://github.com/chat-bit-01">
+<text x="82" y="296" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="650" fill="#334155">@chat-bit-01</text>
+</a>
+<text x="82" y="314" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#64748b">20 index files · 20 need solver review · 39 difficulty</text>
+<rect x="430" y="288" width="280" height="18" rx="9" fill="#f1f5f9"/>
+<rect x="430" y="288" width="86" height="18" rx="9" fill="#dcfce7"/>
+<text x="732" y="302" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155">git history</text>
+<text x="36" y="349" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#64748b">3</text>
+<a href="https://github.com/binto">
+<text x="82" y="342" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="650" fill="#334155">@binto</text>
+</a>
+<text x="82" y="360" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#64748b">9 index files · 9 need solver review · 19 difficulty</text>
+<rect x="430" y="334" width="280" height="18" rx="9" fill="#f1f5f9"/>
+<rect x="430" y="334" width="39" height="18" rx="9" fill="#dcfce7"/>
+<text x="732" y="348" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155">git history</text>
+<text x="36" y="395" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#64748b">4</text>
+<a href="https://github.com/OceanLi">
+<text x="82" y="388" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="650" fill="#334155">@OceanLi</text>
+</a>
+<text x="82" y="406" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#64748b">1 index files · 1 need solver review · 3 difficulty</text>
+<rect x="430" y="380" width="280" height="18" rx="9" fill="#f1f5f9"/>
+<rect x="430" y="380" width="6" height="18" rx="9" fill="#dcfce7"/>
+<text x="732" y="394" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#334155">git history</text>
 </svg>
