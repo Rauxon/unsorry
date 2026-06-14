@@ -1132,6 +1132,24 @@ sync_repo() {
   ensure_claims_worktree
 }
 
+# #428: sync_repo advances the *working tree* to origin/main, but this running
+# bash process still holds the agent.sh it was launched with — a newer harness
+# is on disk yet not in memory. At the top of a cycle (before any goal is
+# claimed, so no in-flight work is lost) re-exec when our own script changed, so
+# the next cycle runs the latest code.
+harness_is_stale() {  # <running-sha> <current-sha> → 0 (stale) iff they differ and current is known
+  [ "$2" != "unknown" ] && [ "$1" != "$2" ]
+}
+
+maybe_reexec_on_harness_update() {
+  local current
+  current="$(git hash-object "${BASH_SOURCE[0]}" 2>/dev/null || echo unknown)"
+  if harness_is_stale "${_HARNESS_SHA:-unknown}" "$current"; then
+    log "harness updated on origin/main (${_HARNESS_SHA} → ${current}) — re-exec'ing to run the latest code (#428)"
+    exec "${BASH_SOURCE[0]}" ${_ORIG_ARGV[@]+"${_ORIG_ARGV[@]}"}
+  fi
+}
+
 ensure_claims_worktree() {
   CLAIMS_WT="$UNSORRY_WORKDIR/claims-branch"
   if [ -e "$CLAIMS_WT" ]; then
@@ -2619,6 +2637,15 @@ test_require_main_matches_origin() {
     || { log "  local-only main returned $rc, expected config error 2"; return 1; }
 }
 
+# #428: the re-exec decision — stale iff the running and on-disk shas differ and
+# the current sha is known (a git-hash failure must never trigger a re-exec).
+test_harness_is_stale() {
+  harness_is_stale abc abc && { log "  identical shas treated as stale"; return 1; }
+  harness_is_stale abc unknown && { log "  unknown current sha treated as stale"; return 1; }
+  harness_is_stale abc def || { log "  differing shas not detected as stale"; return 1; }
+  return 0
+}
+
 test_provider_effort_ladder() {
   [ "$(provider_effort_for_attempt codex 1 ladder)" = medium ] || return 1
   [ "$(provider_effort_for_attempt codex 2 ladder)" = high ] || return 1
@@ -3758,6 +3785,7 @@ run_self_tests() {
     test_record_validation
     test_require_main_checkout
     test_require_main_matches_origin
+    test_harness_is_stale
     test_provider_effort_ladder
     test_prove_attempt_budget_default
     test_gemini_prove_mutes_cli_effort
@@ -3973,6 +4001,10 @@ unblock_sweep() {
 }
 
 main() {
+  # #428: remember the argv and the on-disk sha of the script this process was
+  # launched with, so the cycle can re-exec the latest harness after sync_repo.
+  _ORIG_ARGV=("$@")
+  _HARNESS_SHA="$(git hash-object "${BASH_SOURCE[0]}" 2>/dev/null || echo unknown)"
   parse_args "$@"
   require_repo_root
   require_cmd python3
@@ -4140,8 +4172,10 @@ main() {
   local overall=0 translations_dir candidates goal cand stmt cycle_failed prc
 
   while :; do
-    # Step 1 — pull main, refresh the claims worktree.
+    # Step 1 — pull main, refresh the claims worktree, then re-exec if main
+    # brought a newer agent.sh (so the cycle runs the latest code, #428).
     sync_repo || { log "repository sync failed"; exit 1; }
+    maybe_reexec_on_harness_update
 
     # Steps 1b–3 — enumerate and select (mode-specific). The convergence
     # sweep is a translate-only janitor step; the unblock sweep is its prove
