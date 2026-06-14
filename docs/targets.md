@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**62 open · 106 proved · 175 total prove-goals.**
+**61 open · 107 proved · 175 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -19,7 +19,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `cube-sum-ge-mul-sq` — For nonneg reals a,b, a³+b³ ≥ a²b+ab² (since a³+b³−a²b−ab² = (a+b)(a−b)²). | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For nonneg reals a,b, a³+b³ ≥ a²b+ab² (since a³+b³−a²b−ab² = (a+b)(a−b)²). Not a named mathlib lemma in this form. |
 | `cube-sum-ge-three-prod-s1` — cube-sum-ge-three-prod-s1 | open | 1 | — | — | — |
 | `cube-sum-ge-three-prod-s2` — cube-sum-ge-three-prod-s2 | open | 1 | — | — | — |
-| `cube-sum-ge-three-prod-s3` — cube-sum-ge-three-prod-s3 | open | 1 | — | — | — |
 | `discriminant-nonneg` — If a>0 and b²≤4ac, then ax²+bx+c ≥ 0 for all x (the discriminant nonnegativity criterion). | open | 3 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | If a>0 and b²≤4ac, then ax²+bx+c ≥ 0 for all x (the discriminant nonnegativity criterion). Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `eight-dvd-consecutive-odd-sq-diff` — For every integer n, 8 ∣ (2n+3)² − (2n+1)² (difference of consecutive odd squares). | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For every integer n, 8 ∣ (2n+3)² − (2n+1)² (difference of consecutive odd squares). Not a named mathlib lemma in this concrete form. |
 | `forty-two-dvd-pow-seven-sub-self` — For every integer n, 42 ∣ n⁷ − n (Fermat: 2,3,7 each divide n⁷−n). | open | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 42 ∣ n⁷ − n (Fermat: 2,3,7 each divide n⁷−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
@@ -83,6 +82,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `binder-shape-canary` — A **Gate A regression fixture**, not a mathematical target. It carries the | proved | 1 | — | Gate A regression fixture (issue #231) | — |
 | `consecutive-triangular-eq-square` — For every natural n, Tₙ + Tₙ₋₁ = n², where Tₙ = ∑_{i≤n} i; the sum of two consecutive triangular numbers is a perfect square. | proved | 2 | — | classic identities (triangular-number gems — compounds on the Gauss sum) | Theon of Smyrna's classical observation that consecutive triangular numbers sum to a square (Tₙ₋₁ + Tₙ = n²). Conway & Guy, The Book of Numbers; Heath, A History of Greek Mathematics. |
 | `cube-eq-triangular-sq-diff` — For every natural n, Tₙ₋₁² + n³ = Tₙ², where Tₙ = ∑_{i≤n} i; equivalently n³ = Tₙ² − Tₙ₋₁², the per-term form of Nicomachus's theorem (the n-th cube is the n-th difference of squared triangular numbers). | proved | 2 | — | classic identities (triangular-number gems — the term-wise Nicomachus; compounds on `nicomachus-sum-cubes`) | The telescoping core of Nicomachus's identity ∑k³ = (∑k)² = Tₙ²: each cube n³ = Tₙ² − Tₙ₋₁². Conway & Guy, The Book of Numbers; Mathematics in Lean §5 (the Nicomachus exercise). |
+| `cube-sum-ge-three-prod-s3` — cube-sum-ge-three-prod-s3 | proved | 1 | — | — | — |
 | `descartes-total-angular-defect` — Descartes' theorem: the total angular defect of an abstract regular {p,q} polyhedron is 4π — V(2π − q·(p−2)/p·π) = 4π. | proved | 4 | — | Freek #50 combinatorial classification, Track-1 completion (ADR-031; #400 plan Phase 1). | Descartes' theorem: the total angular defect of an abstract regular {p,q} polyhedron is 4π — V(2π − q·(p−2)/p·π) = 4π. Not in mathlib (no abstract-regular-polyhedron theory). |
 | `eight-triangular-add-one-eq-odd-sq` — For every natural n, 8·Tₙ + 1 = (2n+1)², where Tₙ = ∑_{i≤n} i is the n-th triangular number; the classic "8T+1 is a perfect (odd) square" test for triangular numbers. | proved | 2 | — | classic identities (triangular-number gems — compounds on the Gauss sum) | The triangular-number characterisation: m is triangular iff 8m+1 is a perfect square (the forward direction). Conway & Guy, The Book of Numbers; standard recreational/elementary number theory. |
 | `euclid-perfect-numbers` — Euclid's theorem on perfect numbers: if $2^p - 1$ is prime (a Mersenne prime), then $2^{p-1} \cdot (2^p - 1)$ is perfect. | proved | 3 | — | Euclid, Elements IX.36 | https://en.wikipedia.org/wiki/Euclid%E2%80%93Euler_theorem |
