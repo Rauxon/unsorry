@@ -4,13 +4,16 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**2 open · 96 proved · 99 total prove-goals.**
+**4 open · 96 proved · 102 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | open | 1 | — | — | — |
-| `sum-range-pow-seven-faulhaber-triangular` — For every natural n, 3·(sum of i⁷ for i in 0..n) = (sum of i for i in 0..n)²·(6·(sum of i for i in 0..n)²−4·(sum of i for i in 0..n)+1); i.e. ∑k⁷ = T²(6T²−4T+1)/3 where T = ∑k. The seventh-power sum as a pure polynomial in the triangular number. | open | 4 | — | classic identities (Faulhaber-in-T tower — the **capstone** odd-power rung; compounds on `sum-range-pow-seven-closed-form`) | Faulhaber's theorem for p=7: ∑k⁷ = (6T⁴−4T³+T²)/3 = T²(6T²−4T+1)/3. Knuth, "Johann Faulhaber and sums of powers", Math. Comp. 61 (1993). |
+| `sum-range-pow-seven-faulhaber-triangular-s1` — sum-range-pow-seven-faulhaber-triangular-s1 | open | 1 | — | — | — |
+| `sum-range-pow-seven-faulhaber-triangular-s2` — sum-range-pow-seven-faulhaber-triangular-s2 | open | 1 | — | — | — |
+| `sum-range-pow-seven-faulhaber-triangular-s3` — sum-range-pow-seven-faulhaber-triangular-s3 | open | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | blocked | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
+| `sum-range-pow-seven-faulhaber-triangular` — For every natural n, 3·(sum of i⁷ for i in 0..n) = (sum of i for i in 0..n)²·(6·(sum of i for i in 0..n)²−4·(sum of i for i in 0..n)+1); i.e. ∑k⁷ = T²(6T²−4T+1)/3 where T = ∑k. The seventh-power sum as a pure polynomial in the triangular number. | blocked | 4 | — | classic identities (Faulhaber-in-T tower — the **capstone** odd-power rung; compounds on `sum-range-pow-seven-closed-form`) | Faulhaber's theorem for p=7: ∑k⁷ = (6T⁴−4T³+T²)/3 = T²(6T²−4T+1)/3. Knuth, "Johann Faulhaber and sums of powers", Math. Comp. 61 (1993). |
 | `abstract-regular-polyhedron-classification` — For an abstract regular polyhedron — V vertices, E edges, F faces that are p-gons, vertices of degree q — with the two handshakes p·F = 2E and q·V = 2E and Euler's relation V + F = E + 2, the pair (p, q) is one of the five Platonic Schläfli pairs {(3,3),(3,4),(4,3),(3,5),(5,3)}. The classification (⟹) half of Freek #50 in combinatorial/Euler form. | proved | 3 | — | Freek 100 (#50), combinatorial form (ADR-031 / SPEC-031-A, Track 1) | The classification half of 'there are exactly five Platonic solids', reusing the proved `platonic_schlafli_pairs` as keystone (Euler + handshake ⟹ 1/p+1/q > 1/2 ⟹ the five pairs). Coxeter, Regular Polytopes, Ch. 1. NOT the geometric Freek #50 (that is Track 2, gated on a mathlib polytope face lattice + Euler–Poincaré). |
 | `alternating-sum-naturals` — For every natural n, the sum over i in 0..n-1 of (-1)^i (i+1) equals -(n/2) if n is even and (n/2)+1 if n is odd (integer division over ℤ). | proved | 3 | [packet-ready](upstream/alternating-sum-naturals.md) | classic identities | Standard arithmetic alternating-series partial sums (1-2+3-4+...); tabulated in Hardy, Divergent Series, Ch. 1; elementary induction exercise in discrete-math texts. |
 | `and-comm-imp` — Conjunction commutes. | proved | 1 | — | — | — |

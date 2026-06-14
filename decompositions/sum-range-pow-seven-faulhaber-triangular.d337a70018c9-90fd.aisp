@@ -1,0 +1,13 @@
+𝔸5.1.decomp.sum-range-pow-seven-faulhaber-triangular.d337a70018c9-90fd@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜sum-range-pow-seven-faulhaber-triangular; agent≜d337a70018c9-90fd}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜sum-range-pow-seven-faulhaber-triangular-s1,sha≜3913c2452b3644a7f50102404eaae4713cb4938a70498868bec2a3f26f0a6912⟩
+  sub₂≜⟨id≜sum-range-pow-seven-faulhaber-triangular-s2,sha≜4cb86407be8fb729c4c73f9117b4442f6969fecb1db6d00d080d7a31a7306f3a⟩
+  sub₃≜⟨id≜sum-range-pow-seven-faulhaber-triangular-s3,sha≜c5b7e6aebf162d72b7ef1cf7708616f4e043191555477f7767f1955b14fad3e6⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
