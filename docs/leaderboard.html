@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsorry Leaderboard</title>
+    <!-- Using the existing leaderboard template styling as the project visual base. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            blue: '#e0f2fe',
+                            text: '#334155',
+                            muted: '#64748b',
+                            gold: '#fbbf24',
+                            silver: '#94a3b8',
+                            bronze: '#b45309'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafbfc; /* Very soft off-white background */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Background grid lines for the chart area */
+        .chart-grid {
+            background-image: repeating-linear-gradient(to right, transparent, transparent calc(25% - 1px), #f1f5f9 calc(25% - 1px), #f1f5f9 25%);
+            position: relative;
+        }
+
+        /* The midpoint reference line */
+        .goal-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background-color: #cbd5e1;
+            z-index: 0;
+        }
+
+        /* Smooth animation for bars loading */
+        .progress-bar-fill {
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Timeline top bar gradient */
+        .timeline-gradient {
+            background: linear-gradient(to right, #38bdf8 0%, #a3e635 50%, #fb923c 100%);
+            border-radius: 999px;
+        }
+
+        .state-panel {
+            border: 1px dashed #cbd5e1;
+            border-radius: 18px;
+            padding: 22px;
+            color: #64748b;
+            background: #f8fafc;
+        }
+
+        /* Custom Scrollbar for a polished look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="text-brand-text p-4 md:p-8 flex justify-center items-start min-h-screen">
+
+    <main class="w-full max-w-6xl bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 md:p-10 border border-slate-100 relative overflow-hidden">
+        
+        <!-- Header Section -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+            <div class="flex flex-col">
+                <h1 class="text-5xl md:text-7xl font-bold text-slate-200 tracking-tighter leading-none mb-2">Unsorry</h1>
+                <div class="inline-flex items-center bg-slate-100 rounded-full px-4 py-1 text-xs font-semibold text-slate-600 uppercase tracking-wider w-max">
+                    <span id="generated-at">Loading proof stats</span>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-3">
+                <div class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium">
+                    <span id="summary-verified">0</span>
+                    <span>verified</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium">
+                    <span id="summary-attributed">0</span>
+                    <span>attributed</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium">
+                    <span id="summary-runs">0</span>
+                    <span>runs</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Top Progress Timeline Area -->
+        <div class="relative w-full h-24 mb-8 hidden md:block">
+            <!-- Labels -->
+            <div class="absolute top-12 left-0 right-0 flex justify-between text-xs text-brand-muted font-medium px-2">
+                <span id="scale-0">0</span>
+                <span id="scale-25">0</span>
+                <span id="scale-50" class="text-brand-text font-bold text-sm">0</span>
+                <span id="scale-75">0</span>
+                <span id="scale-100">0</span>
+            </div>
+            <!-- The Line -->
+            <div class="absolute top-8 left-0 right-0 h-1.5 timeline-gradient"></div>
+            <!-- Goal Marker -->
+            <div class="absolute top-4 left-[50%] flex flex-col items-center -translate-x-1/2">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Mid</span>
+                <div class="w-0.5 h-6 bg-slate-300"></div>
+            </div>
+            
+            <!-- Avatars on Timeline container (populated by JS) -->
+            <div id="timeline-avatars" class="absolute top-2 left-0 right-0 h-12"></div>
+        </div>
+
+        <!-- Leaderboard List Section -->
+        <div class="relative chart-grid pt-2">
+            <!-- Goal Vertical Line -->
+            <div class="goal-line hidden md:block"></div>
+            
+            <!-- List Container (populated by JS) -->
+            <div id="leaderboard-list" class="flex flex-col gap-4 relative z-10">
+                <!-- Data rows will be injected here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Templates for SVGs to keep logic clean -->
+    <template id="svg-kudos">
+        <svg class="w-3.5 h-3.5 text-brand-gold inline" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+    </template>
+    <template id="svg-trend">
+        <svg class="w-3.5 h-3.5 text-orange-400 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+    </template>
+    <template id="svg-trophy">
+        <svg class="w-3.5 h-3.5 text-brand-gold inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+    </template>
+
+    <script>
+        const DATA_URL = 'metrics/leaderboard-ui.json';
+
+        const numberFormatter = new Intl.NumberFormat('en-US');
+        const percentFormatter = new Intl.NumberFormat('en-US', {
+            maximumFractionDigits: 1,
+        });
+
+        const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;',
+        })[char]);
+
+        const formatNumber = (value) => numberFormatter.format(Number(value || 0));
+        const formatScore = (value) => `${formatNumber(value)} pts`;
+        const formatPercent = (value) => value == null ? 'n/a' : `${percentFormatter.format(value)}%`;
+
+        const getRankWreathSvg = (rank) => {
+            const color = rank === 1 ? 'text-brand-gold' : rank === 2 ? 'text-brand-silver' : 'text-brand-bronze';
+            return `<svg class="w-10 h-10 ${color} absolute -left-2 -top-1 opacity-20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>`;
+        };
+
+        const renderBadges = (badges) => {
+            const proofSvg = document.getElementById('svg-kudos').innerHTML;
+            const rateSvg = document.getElementById('svg-trend').innerHTML;
+            const difficultySvg = document.getElementById('svg-trophy').innerHTML;
+            return `
+                <div class="hidden md:flex items-center gap-3 mt-1 opacity-70">
+                    <span class="flex items-center gap-1 text-[11px] font-medium">${proofSvg} ${formatNumber(badges.proofs)} proofs</span>
+                    <span class="flex items-center gap-1 text-[11px] font-medium">${difficultySvg} ${formatNumber(badges.difficulty)} diff</span>
+                    <span class="flex items-center gap-1 text-[11px] font-medium">${rateSvg} ${formatPercent(badges.success_rate_percent)}</span>
+                </div>
+            `;
+        };
+
+        const setText = (id, value) => {
+            const node = document.getElementById(id);
+            if (node) node.textContent = value;
+        };
+
+        const showState = (message) => {
+            const listContainer = document.getElementById('leaderboard-list');
+            listContainer.innerHTML = `<div class="state-panel">${escapeHTML(message)}</div>`;
+        };
+
+        const normalizeRows = (contributors) => contributors.map((row) => ({
+            id: row.solver,
+            name: row.display_name,
+            profileUrl: row.profile_url,
+            avatar: row.avatar_url,
+            score: Number(row.score || 0),
+            rank: Number(row.rank || 0),
+            verifiedProofs: Number(row.verified_proofs || 0),
+            difficultyPoints: Number(row.difficulty_points || 0),
+            runSuccessRate: row.run_success_rate,
+            badges: row.badges || { proofs: 0, difficulty: 0, success_rate_percent: null },
+        }));
+
+        const updateSummary = (payload) => {
+            const summary = payload.summary || {};
+            setText('summary-verified', formatNumber(summary.verified_proofs));
+            setText('summary-attributed', formatNumber(summary.attributed_proofs));
+            setText('summary-runs', formatNumber(summary.terminal_runs));
+            setText('generated-at', payload.generated_at ? `Updated ${payload.generated_at.slice(0, 10)}` : 'Generated proof stats');
+        };
+
+        const updateScale = (maxScore) => {
+            const labels = [
+                ['scale-0', 0],
+                ['scale-25', maxScore * 0.25],
+                ['scale-50', maxScore * 0.5],
+                ['scale-75', maxScore * 0.75],
+                ['scale-100', maxScore],
+            ];
+            labels.forEach(([id, value]) => setText(id, formatScore(Math.round(value))));
+        };
+
+        const loadPayload = async () => {
+            const response = await fetch(DATA_URL, { cache: 'no-store' });
+            if (!response.ok) {
+                throw new Error(`stats fetch failed: ${response.status}`);
+            }
+            const payload = await response.json();
+            if (payload.schema_version !== 1 || !Array.isArray(payload.contributors)) {
+                throw new Error('unsupported leaderboard data');
+            }
+            return payload;
+        };
+
+        const renderLeaderboard = (payload) => {
+            const listContainer = document.getElementById('leaderboard-list');
+            const timelineContainer = document.getElementById('timeline-avatars');
+            const leaderboardData = normalizeRows(payload.contributors);
+            updateSummary(payload);
+
+            if (!leaderboardData.length) {
+                updateScale(100);
+                showState('No attributed proofs yet.');
+                return;
+            }
+
+            const maxScore = Math.max(...leaderboardData.map((user) => user.score), 100);
+            updateScale(maxScore);
+            listContainer.innerHTML = '';
+            timelineContainer.innerHTML = '';
+
+            leaderboardData.forEach((user) => {
+                const rank = user.rank;
+                const widthPercent = Math.max(2, (user.score / maxScore) * 100);
+                const safeName = escapeHTML(user.name);
+                const safeProfileUrl = escapeHTML(user.profileUrl);
+                const safeAvatar = escapeHTML(user.avatar);
+
+                if (user.score > 0) {
+                    const avatarNode = document.createElement('a');
+                    avatarNode.href = user.profileUrl;
+                    avatarNode.className = 'absolute transform -translate-x-1/2 -top-1 w-8 h-8 rounded-full border-2 border-white shadow-sm overflow-hidden z-10 transition-transform hover:scale-110';
+                    avatarNode.style.left = `${Math.min(widthPercent, 100)}%`;
+                    avatarNode.innerHTML = `<img src="${safeAvatar}" alt="${safeName}" class="w-full h-full object-cover">`;
+                    timelineContainer.appendChild(avatarNode);
+                }
+
+                const row = document.createElement('div');
+                row.className = 'flex items-center w-full py-1 group';
+                const isTop3 = rank <= 3;
+                const rankDisplay = isTop3
+                    ? `<div class="relative flex items-center justify-center w-8 h-8 font-serif italic text-xl font-bold ${rank===1?'text-brand-gold':rank===2?'text-brand-silver':'text-brand-bronze'}">
+                        ${rank}
+                        ${getRankWreathSvg(rank)}
+                       </div>`
+                    : `<div class="w-8 text-center text-slate-300 font-medium text-lg italic">${rank}</div>`;
+
+                row.innerHTML = `
+                    <div class="flex items-center w-48 md:w-64 flex-shrink-0 gap-3 z-20 bg-white md:bg-transparent pr-4">
+                        ${rankDisplay}
+                        <a href="${safeProfileUrl}" class="relative" aria-label="${safeName} on GitHub">
+                            <img src="${safeAvatar}" class="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 ${isTop3 ? 'border-brand-gold/30 p-0.5' : 'border-transparent'} object-cover shadow-sm" alt="${safeName}">
+                        </a>
+                        <div class="flex flex-col min-w-0">
+                            <a href="${safeProfileUrl}" class="text-sm md:text-base font-medium text-slate-700 truncate max-w-[120px] md:max-w-[160px] hover:text-slate-900">${safeName}</a>
+                            ${renderBadges(user.badges)}
+                        </div>
+                    </div>
+
+                    <div class="flex-grow flex items-center relative h-12 md:h-14">
+                        <div class="h-8 md:h-10 bg-brand-blue rounded-r-3xl flex items-center justify-end px-4 progress-bar-fill shadow-sm" style="width: 0%;" data-target-width="${Math.min(widthPercent, 100)}%">
+                            <span class="text-brand-text font-bold text-sm md:text-base whitespace-nowrap opacity-0 transition-opacity duration-500 delay-500">${formatScore(user.score)}</span>
+                        </div>
+                    </div>
+                `;
+
+                listContainer.appendChild(row);
+            });
+
+            setTimeout(() => {
+                document.querySelectorAll('.progress-bar-fill').forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-target-width');
+                    bar.querySelector('span').classList.remove('opacity-0');
+                });
+            }, 100);
+        };
+
+        async function initApp() {
+            try {
+                renderLeaderboard(await loadPayload());
+            } catch (error) {
+                console.error(error);
+                updateScale(100);
+                showState('Leaderboard data is unavailable.');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

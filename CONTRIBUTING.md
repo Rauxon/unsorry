@@ -76,8 +76,12 @@ authenticated GitHub solver, swarm agent, provider, effective model when known,
 final effort, attempts, completion time, and local proof/verification duration.
 Override the credited GitHub handle with `UNSORRY_SOLVER`; historical work
 remains unknown rather than guessed. See the generated
-**[community proof statistics](docs/leaderboard.md)** and machine-readable
-`docs/metrics/community-stats.json`.
+**[community proof statistics](docs/leaderboard.md)**, the
+**[visual leaderboard](docs/leaderboard.html)**, and machine-readable
+`docs/metrics/community-stats.json` / `docs/metrics/leaderboard-ui.json`.
+When changing `library/index/` or `proof-runs/` outside the agent loop, refresh
+the generated views with `python3 -m tools.leaderboard --write .` and verify
+them with `python3 -m tools.leaderboard --check .`.
 
 For unattended runs, **[`./swarm/supervise.sh --prove --goal <id>`](swarm/supervise.sh)**
 wraps the agent loop with backoff across infrastructure outages, in-flight waits for

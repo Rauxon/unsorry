@@ -1149,16 +1149,17 @@ open_pr_worktree() {
 submit_pr_tree() {
   local prwt="$1" branch="$2" title="$3" body="$4"
   shift 4
-  # docs/targets.md is generated (SPEC-012-A): regenerate it from this tree and
-  # stage it so every goal-mutating PR (prove/decompose/affinity/recompose, all
-  # of which funnel through here) carries a fresh board instead of drifting it.
-  # Idempotent when no goal status changed; the gate-b --check guard enforces it.
+  # Generated docs: every goal/proof-run/index mutating PR that funnels through
+  # here carries fresh boards instead of drifting them. Idempotent when source
+  # records did not change; Gate B checks enforce freshness.
   python3 -m tools.sourcing.targets_board "$prwt" > "$prwt/docs/targets.md" || return 1
+  python3 -m tools.leaderboard --write "$prwt" || return 1
   if ! python3 -m tools.gate_b validate "$prwt" >/dev/null; then
     log "PR tree on $branch fails Gate B — not pushing"
     return 1
   fi
-  git -C "$prwt" add "$@" docs/targets.md || return 1
+  git -C "$prwt" add "$@" docs/targets.md docs/leaderboard.md docs/leaderboard.svg \
+    docs/metrics/community-stats.json docs/metrics/leaderboard-ui.json || return 1
   git -C "$prwt" commit -q -m "$title" || return 1
   git -C "$prwt" push -q origin "$branch" || return 1
   (

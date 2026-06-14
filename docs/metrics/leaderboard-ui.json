@@ -1,0 +1,36 @@
+{
+  "contributors": [
+    {
+      "attempt_yield": 0.4872,
+      "avatar_url": "https://github.com/cgbarlow.png?size=96",
+      "badges": {
+        "difficulty": 49,
+        "proofs": 19,
+        "success_rate_percent": 82.61
+      },
+      "difficulty_points": 49,
+      "display_name": "@cgbarlow",
+      "failed_attempts": 20,
+      "median_solve_s": 547,
+      "profile_url": "https://github.com/cgbarlow",
+      "rank": 1,
+      "run_success_rate": 0.8261,
+      "runs": 23,
+      "score": 5375,
+      "solver": "cgbarlow",
+      "successes": 19,
+      "verified_proofs": 19
+    }
+  ],
+  "generated_at": "2026-06-14T00:05:59Z",
+  "generated_from": "docs/metrics/community-stats.json",
+  "schema_version": 1,
+  "score_policy": "rank by verified_proofs desc, difficulty_points desc; score = difficulty_points * 100 + verified_proofs * 25",
+  "summary": {
+    "attributed_proofs": 19,
+    "historical_unknown_proofs": 71,
+    "proof_run_coverage": 0.2111,
+    "terminal_runs": 23,
+    "verified_proofs": 90
+  }
+}

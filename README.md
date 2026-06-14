@@ -11,7 +11,9 @@
 ![](docs/unsorry-infographic.JPG)
 *Image credit: Adam Holt*
 
-Check out the proofs the team has delivered so far: [Proof graph](docs/proofs-contributors-visualisation.html)
+Check out the proofs the team has delivered so far: [Proof graph](docs/proofs-contributors-visualisation.html) · [Visual leaderboard](docs/leaderboard.html)
+
+[![Unsorry leaderboard](docs/leaderboard.svg)](docs/leaderboard.html)
 
 Three design decisions make this safe with untrusted, intermittent, rag-tag contributors:
 
@@ -102,6 +104,7 @@ lake build                               # verify the current library locally
 Full prerequisites, the agent flags, the unattended [supervisor](swarm/supervise.sh),
 the [targets board](docs/targets.md), the
 [community proof statistics](docs/leaderboard.md), the
+[visual leaderboard](docs/leaderboard.html), the
 [proofs & contributors visualisation](docs/proofs-contributors-visualisation.md), and how to propose a target
 are in **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 

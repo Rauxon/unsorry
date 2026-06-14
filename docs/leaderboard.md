@@ -4,58 +4,81 @@
 
 Verified output comes from `library/index`; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**62 verified proofs · 0 attributed · 62 historical/unknown · 0 logged terminal runs.**
+**90 verified proofs · 19 attributed · 71 historical/unknown · 23 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 0 |
-| Failed terminal runs | 0 |
-| Decomposed after failure | 0 |
-| Failed without decomposition | 0 |
-| Run success rate | — |
-| Provider attempts | 0 |
-| Failed attempts | 0 |
-| Attempt yield | — |
-| Recorded run time | 0s |
-| Median / p90 run time | — / — |
-| Verified successes per recorded hour | — |
-| Proofs with run telemetry | 0 (0.0%) |
+| Successful terminal runs | 19 |
+| Failed terminal runs | 4 |
+| Decomposed after failure | 1 |
+| Failed without decomposition | 3 |
+| Run success rate | 82.6% |
+| Provider attempts | 39 |
+| Failed attempts | 20 |
+| Attempt yield | 48.7% |
+| Recorded run time | 4h 36m |
+| Median / p90 run time | 9m 7s / 24m 18s |
+| Verified successes per recorded hour | 4.12 |
+| Proofs with run telemetry | 19 (21.1%) |
 
 ## Work Queue
 
-**79 goals · 1 blocked · 7 open · 61 proved · 10 translated.**
+**109 goals · 1 blocked · 9 open · 89 proved · 10 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| — | No logged runs yet | — | — | — | — |
+| 1 | 5 | 3 | 60.0% | 9 | 16m 48s |
+| 2 | 6 | 5 | 83.3% | 4 | 4m 7s |
+| 3 | 9 | 8 | 88.9% | 7 | 9m 16s |
+| 4 | 3 | 3 | 100.0% | 0 | 5m 42s |
 
 ## Unresolved Effort
 
 | Goal | Status | Difficulty | Runs | Failed attempts | Recorded time |
 |------|--------|-----------:|-----:|----------------:|--------------:|
-| No logged unresolved effort yet | — | — | — | — | — |
+| `sq-add-sq-eq-three-mul-sq-s4` | `open` | 1 | 2 | 6 | 54m 47s |
 
 ## Contributors
 
 | Rank | GitHub solver | Verified proofs | Runs | Run success | Failed attempts | Difficulty points | Median time |
 |-----:|---------------|----------------:|-----:|------------:|----------------:|------------------:|------------:|
-| — | No attributed work yet | — | — | — | — | — | — |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 19 | 23 | 82.6% | 20 | 49 | 9m 7s |
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
-| No attributed work yet | — | — | — | — | — | — | — |
+| `claude / opus` | 19 | 21 | 90.5% | 14 | 1 | 7m 0s | 5.13 |
+| `openai / leanstral-2603` | 0 | 2 | 0.0% | 6 | 1 | 27m 19s | 0.00 |
 
 ## Recent Terminal Runs
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
-| No logged runs yet | — | — | — | — | — | — | — |
+| `2026-06-14T00:05:59Z` | `sq-add-sq-eq-three-mul-sq-s4` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 3 | 3 | 39m 50s |
+| `2026-06-13T20:34:29Z` | `euclid-perfect-numbers` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 2 | 1 | 18m 23s |
+| `2026-06-13T14:11:05Z` | `sum-range-pow-five-add-pow-seven` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 5m 42s |
+| `2026-06-13T14:05:50Z` | `prime-fourth-power-mod-240` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 4m 47s |
+| `2026-06-13T14:05:05Z` | `sum-range-pow-six-closed-form` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 6m 57s |
+| `2026-06-13T14:00:45Z` | `consecutive-triangular-eq-square` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 4m 16s |
+| `2026-06-13T13:57:51Z` | `sum-range-pow-seven-closed-form` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 9m 29s |
+| `2026-06-13T13:56:15Z` | `sum-range-pow-four-triangular-form` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 9m 58s |
+| `2026-06-13T13:48:06Z` | `sum-range-pow-five-faulhaber-triangular` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 4m 52s |
+| `2026-06-13T13:46:00Z` | `sum-range-cube-mul-choose` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 9m 16s |
+| `2026-06-13T13:43:00Z` | `sum-range-fall-mul-choose` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 4m 55s |
+| `2026-06-13T13:37:46Z` | `sum-range-choose-mul-two-pow` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 3m 8s |
+| `2026-06-13T13:36:28Z` | `pow-four-add-sq-add-one-not-prime` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 3 | 2 | 24m 18s |
+| `2026-06-13T13:34:28Z` | `sq-add-sq-eq-three-mul-sq-s4` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `failed` | 3 | 3 | 14m 57s |
+| `2026-06-13T13:11:54Z` | `sq-add-sq-eq-three-mul-sq-s2` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 3 | 2 | 34m 41s |
+| `2026-06-13T12:59:29Z` | `sq-add-sq-eq-three-mul-sq-s3` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 2 | 1 | 16m 48s |
+| `2026-06-13T12:36:56Z` | `sq-add-sq-eq-three-mul-sq-s1` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 7m 0s |
+| `2026-06-13T12:29:39Z` | `pow-four-add-sq-add-one-factor` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 3m 22s |
+| `2026-06-13T12:26:02Z` | `fourth-power-mod-five` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `decomposed` | 3 | 3 | 20m 27s |
+| `2026-06-13T12:24:18Z` | `one-add-four-b-fourth-not-prime` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 2 | 1 | 9m 7s |
 
 ## Interpretation
 

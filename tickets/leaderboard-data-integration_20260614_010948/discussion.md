@@ -405,7 +405,7 @@ Cons:
 - screenshot determinism must be handled carefully;
 - fonts/network avatars can make image output unstable unless controlled.
 
-Engineering recommendation: ship Phase 1 without image generation. Add `docs/leaderboard.svg` as the first README-preview renderer if the README image remains important. Add PNG screenshotting only if the project accepts the browser tooling cost.
+Engineering decision for this ticket: include `docs/leaderboard.svg` as the README-preview renderer after the data-backed HTML lands. Defer PNG screenshotting unless the project explicitly accepts the browser tooling cost in a later ticket.
 
 ## CI and Drift
 
@@ -452,6 +452,7 @@ Proceed with the first part now:
 - connect real generated data to a static HTML leaderboard;
 - add GitHub profile/avatar links;
 - make the generated data deterministic and drift-checked;
-- leave README image generation as a documented Phase 2.
+- include deterministic SVG rendering for README;
+- leave PNG/browser screenshot generation as a documented follow-up.
 
 This gives the project a useful contributor-facing leaderboard without adding a backend or browser-based CI dependency.

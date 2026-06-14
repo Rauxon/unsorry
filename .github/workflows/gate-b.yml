@@ -25,6 +25,11 @@ jobs:
         # docs/targets.md is generated from goals + library/index; fail if it has
         # drifted (the guard that was specified but never wired — issue #377).
         run: python3 -m tools.sourcing.targets_board --check .
+      - name: Leaderboard artifacts in sync (ADR-023)
+        # docs/leaderboard.md, docs/metrics/community-stats.json,
+        # docs/metrics/leaderboard-ui.json, and docs/leaderboard.svg are
+        # generated from goals + library/index + proof-runs.
+        run: python3 -m tools.leaderboard --check .
       - name: LLM provider tests (ADR-025)
         # The OpenAI provider imports `requests`; the resolver tests are pure stdlib.
         run: |

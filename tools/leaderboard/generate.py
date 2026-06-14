@@ -14,9 +14,16 @@ import statistics
 import sys
 from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
+from html import escape as html_escape
 from pathlib import Path
 
 from tools.gate_b.records import parse_record
+
+
+SCORE_POLICY = (
+    "rank by verified_proofs desc, difficulty_points desc; "
+    "score = difficulty_points * 100 + verified_proofs * 25"
+)
 
 
 @dataclass(frozen=True)
@@ -487,6 +494,121 @@ def render_json(root: Path) -> str:
     return json.dumps(base_stats(root), ensure_ascii=False, indent=2, sort_keys=True) + "\n"
 
 
+def _score(row: dict) -> int:
+    return int(row["difficulty_points"]) * 100 + int(row["verified_proofs"]) * 25
+
+
+def _success_rate_percent(value: float | None) -> float | None:
+    return None if value is None else round(value * 100, 2)
+
+
+def ui_payload(root: Path) -> dict:
+    stats = base_stats(root)
+    coverage = stats["coverage"]
+    contributors = []
+    for rank, row in enumerate(stats["contributors"], 1):
+        solver = str(row["solver"])
+        contributors.append(
+            {
+                "rank": rank,
+                "solver": solver,
+                "display_name": f"@{solver}",
+                "profile_url": f"https://github.com/{solver}",
+                "avatar_url": f"https://github.com/{solver}.png?size=96",
+                "score": _score(row),
+                "verified_proofs": row["verified_proofs"],
+                "difficulty_points": row["difficulty_points"],
+                "runs": row["runs"],
+                "successes": row["successes"],
+                "run_success_rate": row["run_success_rate"],
+                "attempt_yield": row["attempt_yield"],
+                "failed_attempts": row["failed_attempts"],
+                "median_solve_s": row["median_solve_s"],
+                "badges": {
+                    "proofs": row["verified_proofs"],
+                    "difficulty": row["difficulty_points"],
+                    "success_rate_percent": _success_rate_percent(row["run_success_rate"]),
+                },
+            }
+        )
+    return {
+        "schema_version": 1,
+        "generated_from": "docs/metrics/community-stats.json",
+        # Deterministic by design: this is the latest recorded terminal-run
+        # timestamp, not wall-clock generation time.
+        "generated_at": (
+            stats["recent_runs"][0]["ended"] if stats["recent_runs"] else None
+        ),
+        "score_policy": SCORE_POLICY,
+        "summary": {
+            "verified_proofs": coverage["verified_proofs"],
+            "attributed_proofs": coverage["attributed_proofs"],
+            "historical_unknown_proofs": coverage["historical_unknown_proofs"],
+            "terminal_runs": coverage["terminal_runs"],
+            "proof_run_coverage": coverage["proof_run_coverage"],
+        },
+        "contributors": contributors,
+    }
+
+
+def render_ui_json(root: Path) -> str:
+    return json.dumps(ui_payload(root), ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+
+
+def render_svg(root: Path) -> str:
+    payload = ui_payload(root)
+    contributors = payload["contributors"][:5]
+    width = 900
+    row_h = 62
+    top = 104
+    height = top + max(1, len(contributors)) * row_h + 42
+    max_score = max([int(row["score"]) for row in contributors] + [100])
+    summary = payload["summary"]
+    lines = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
+        "<title id=\"title\">Unsorry leaderboard</title>",
+        "<desc id=\"desc\">Top verified Unsorry contributors ranked by proof count and difficulty points.</desc>",
+        "<rect width=\"900\" height=\"100%\" rx=\"18\" fill=\"#ffffff\"/>",
+        "<rect x=\"0.5\" y=\"0.5\" width=\"899\" height=\"{h}\" rx=\"18\" fill=\"none\" stroke=\"#e2e8f0\"/>".format(h=height - 1),
+        "<text x=\"32\" y=\"44\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"28\" font-weight=\"700\" fill=\"#334155\">Unsorry Leaderboard</text>",
+        (
+            "<text x=\"32\" y=\"72\" font-family=\"Inter, system-ui, sans-serif\" "
+            "font-size=\"13\" fill=\"#64748b\">"
+            f"{summary['verified_proofs']} verified proofs · "
+            f"{summary['attributed_proofs']} attributed · "
+            f"{summary['terminal_runs']} terminal runs"
+            "</text>"
+        ),
+    ]
+    if not contributors:
+        lines.extend([
+            "<rect x=\"32\" y=\"104\" width=\"836\" height=\"58\" rx=\"10\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\"/>",
+            "<text x=\"56\" y=\"140\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"16\" fill=\"#64748b\">No attributed proofs yet.</text>",
+        ])
+    for index, row in enumerate(contributors):
+        y = top + index * row_h
+        bar_w = max(6, int(390 * int(row["score"]) / max_score))
+        rank_color = "#fbbf24" if row["rank"] == 1 else "#94a3b8" if row["rank"] == 2 else "#b45309" if row["rank"] == 3 else "#cbd5e1"
+        solver = html_escape(str(row["display_name"]))
+        profile = html_escape(str(row["profile_url"]))
+        lines.extend([
+            f"<text x=\"34\" y=\"{y + 36}\" font-family=\"Georgia, serif\" font-size=\"24\" font-style=\"italic\" font-weight=\"700\" fill=\"{rank_color}\">{row['rank']}</text>",
+            f"<a href=\"{profile}\">",
+            f"<text x=\"82\" y=\"{y + 28}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"17\" font-weight=\"650\" fill=\"#334155\">{solver}</text>",
+            "</a>",
+            (
+                f"<text x=\"82\" y=\"{y + 48}\" font-family=\"Inter, system-ui, sans-serif\" "
+                f"font-size=\"12\" fill=\"#64748b\">{row['verified_proofs']} proofs · "
+                f"{row['difficulty_points']} difficulty · {row['runs']} runs</text>"
+            ),
+            f"<rect x=\"320\" y=\"{y + 15}\" width=\"420\" height=\"26\" rx=\"13\" fill=\"#f1f5f9\"/>",
+            f"<rect x=\"320\" y=\"{y + 15}\" width=\"{bar_w}\" height=\"26\" rx=\"13\" fill=\"#e0f2fe\"/>",
+            f"<text x=\"760\" y=\"{y + 34}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"14\" font-weight=\"700\" fill=\"#334155\">{row['score']} pts</text>",
+        ])
+    lines.append("</svg>")
+    return "\n".join(lines) + "\n"
+
+
 def main(argv: list[str] | None = None) -> int:
     argv = sys.argv[1:] if argv is None else argv
     modes = [flag for flag in ("--check", "--write", "--json") if flag in argv]
@@ -498,14 +620,22 @@ def main(argv: list[str] | None = None) -> int:
     root = Path(rest[0]) if rest else Path.cwd()
     markdown = render(root)
     payload = render_json(root)
+    ui_payload_json = render_ui_json(root)
+    svg = render_svg(root)
     markdown_path = root / "docs" / "leaderboard.md"
     json_path = root / "docs" / "metrics" / "community-stats.json"
+    ui_json_path = root / "docs" / "metrics" / "leaderboard-ui.json"
+    svg_path = root / "docs" / "leaderboard.svg"
     if mode == "--check":
         stale = []
         if not markdown_path.is_file() or markdown_path.read_text(encoding="utf-8") != markdown:
             stale.append(markdown_path.relative_to(root).as_posix())
         if not json_path.is_file() or json_path.read_text(encoding="utf-8") != payload:
             stale.append(json_path.relative_to(root).as_posix())
+        if not ui_json_path.is_file() or ui_json_path.read_text(encoding="utf-8") != ui_payload_json:
+            stale.append(ui_json_path.relative_to(root).as_posix())
+        if not svg_path.is_file() or svg_path.read_text(encoding="utf-8") != svg:
+            stale.append(svg_path.relative_to(root).as_posix())
         if stale:
             print(
                 f"{', '.join(stale)} stale — regenerate with "
@@ -519,6 +649,8 @@ def main(argv: list[str] | None = None) -> int:
         json_path.parent.mkdir(parents=True, exist_ok=True)
         markdown_path.write_text(markdown, encoding="utf-8")
         json_path.write_text(payload, encoding="utf-8")
+        ui_json_path.write_text(ui_payload_json, encoding="utf-8")
+        svg_path.write_text(svg, encoding="utf-8")
         return 0
     sys.stdout.write(payload if mode == "--json" else markdown)
     return 0

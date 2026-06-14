@@ -249,7 +249,7 @@ The best automation target is to make `tools.leaderboard --write` the single com
 
 Investigate a static generated asset for README use. GitHub README markdown cannot execute JavaScript, so the interactive HTML cannot be embedded directly.
 
-Preferred low-dependency option:
+Chosen low-dependency option for this ticket:
 
 - Generate `docs/leaderboard.svg` from the same stats using pure Python string rendering.
 - Embed it in the README:
@@ -263,7 +263,7 @@ Alternative richer option:
 - Use Playwright or another headless browser in CI to screenshot `docs/leaderboard.html` into `docs/leaderboard.png`.
 - This produces the closest match to the HTML design but adds browser tooling and CI complexity.
 
-Phase 2 should be implemented only after Phase 1 is stable.
+The SVG preview is in scope for full completion. The PNG/browser screenshot renderer is deferred unless a later ticket explicitly accepts the dependency and determinism work.
 
 ## Scoring Recommendation
 
@@ -294,7 +294,7 @@ Keep failures and attempts visible as badges/secondary metrics, but do not let f
 - Tests cover the UI data adapter or generator path.
 - `python3 -m tools.gate_b validate .` validates proof-run and index provenance records used by the leaderboard.
 - `python3 -m tools.leaderboard --check .` passes after regeneration.
-- README image generation is either implemented as a follow-up or explicitly deferred with a documented path.
+- README image generation is implemented as a deterministic SVG preview; PNG/browser screenshot generation is deferred with a documented path.
 
 ## Open Questions
 
@@ -303,7 +303,7 @@ Keep failures and attempts visible as badges/secondary metrics, but do not let f
 - Should `tools.leaderboard --write` own `docs/leaderboard.html`, or should the HTML be manually maintained while only the JSON is generated?
 - Should proof/decomposition PR creation automatically regenerate leaderboard artifacts, or should CI only detect drift and require a follow-up generated-artifacts PR?
 - Should score be displayed as an explicit "points" number, or should rank remain proof-first with points only used for bar width?
-- Should `docs/leaderboard.svg` be generated in Phase 1 as a simple README preview, or deferred until after the interactive page lands?
+- Should a future `docs/leaderboard.png` browser screenshot renderer be added after the SVG preview proves useful?
 - Should leaderboard drift checking be added to an existing CI workflow, and does that touch CODEOWNERS-protected workflow surfaces?
 
 ## Suggested Validation

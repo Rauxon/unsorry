@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="208" viewBox="0 0 900 208" role="img" aria-labelledby="title desc">
+<title id="title">Unsorry leaderboard</title>
+<desc id="desc">Top verified Unsorry contributors ranked by proof count and difficulty points.</desc>
+<rect width="900" height="100%" rx="18" fill="#ffffff"/>
+<rect x="0.5" y="0.5" width="899" height="207" rx="18" fill="none" stroke="#e2e8f0"/>
+<text x="32" y="44" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="#334155">Unsorry Leaderboard</text>
+<text x="32" y="72" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#64748b">90 verified proofs · 19 attributed · 23 terminal runs</text>
+<text x="34" y="140" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#fbbf24">1</text>
+<a href="https://github.com/cgbarlow">
+<text x="82" y="132" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@cgbarlow</text>
+</a>
+<text x="82" y="152" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">19 proofs · 49 difficulty · 23 runs</text>
+<rect x="320" y="119" width="420" height="26" rx="13" fill="#f1f5f9"/>
+<rect x="320" y="119" width="390" height="26" rx="13" fill="#e0f2fe"/>
+<text x="760" y="138" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">5375 pts</text>
+</svg>
