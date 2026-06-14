@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Leaderboard</title>
+    <!-- Using Tailwind CSS for clean, utility-first styling consistent with modern corporate web apps -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Soft, pastel corporate palette
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            blue: '#e0f2fe', // Pastel blue for bars
+                            text: '#334155', // Slate 700 for main text
+                            muted: '#64748b', // Slate 500 for secondary text
+                            gold: '#fbbf24',
+                            silver: '#94a3b8',
+                            bronze: '#b45309'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafbfc; /* Very soft off-white background */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Background grid lines for the chart area */
+        .chart-grid {
+            background-image: repeating-linear-gradient(to right, transparent, transparent calc(25% - 1px), #f1f5f9 calc(25% - 1px), #f1f5f9 25%);
+            position: relative;
+        }
+
+        /* The main $10k goal line */
+        .goal-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%; /* Assuming 50% represents the goal in the scale */
+            width: 1px;
+            background-color: #cbd5e1;
+            z-index: 0;
+        }
+
+        /* Smooth animation for bars loading */
+        .progress-bar-fill {
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Timeline top bar gradient */
+        .timeline-gradient {
+            background: linear-gradient(to right, #38bdf8 0%, #a3e635 50%, #fb923c 100%);
+            border-radius: 999px;
+        }
+
+        /* Custom Scrollbar for a polished look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="text-brand-text p-4 md:p-8 flex justify-center items-start min-h-screen">
+
+    <main class="w-full max-w-6xl bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 md:p-10 border border-slate-100 relative overflow-hidden">
+        
+        <!-- Header Section -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+            <div class="flex flex-col">
+                <h1 class="text-5xl md:text-7xl font-bold text-slate-200 tracking-tighter leading-none mb-2">Aug 14-18</h1>
+                <div class="inline-flex items-center bg-slate-100 rounded-full px-4 py-1 text-xs font-semibold text-slate-600 uppercase tracking-wider w-max">
+                    This Week
+                </div>
+            </div>
+            
+            <div class="flex gap-3">
+                <button class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium hover:bg-slate-50 transition-colors">
+                    This Week
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <button class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium hover:bg-slate-50 transition-colors">
+                    Annual Volume
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Top Progress Timeline Area -->
+        <div class="relative w-full h-24 mb-8 hidden md:block">
+            <!-- Labels -->
+            <div class="absolute top-12 left-0 right-0 flex justify-between text-xs text-brand-muted font-medium px-2">
+                <span>$0</span>
+                <span>$5,000</span>
+                <span class="text-brand-text font-bold text-sm">$10,000</span>
+                <span>$15,000</span>
+                <span>$20,000</span>
+            </div>
+            <!-- The Line -->
+            <div class="absolute top-8 left-0 right-0 h-1.5 timeline-gradient"></div>
+            <!-- Goal Marker -->
+            <div class="absolute top-4 left-[50%] flex flex-col items-center -translate-x-1/2">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Goal</span>
+                <div class="w-0.5 h-6 bg-slate-300"></div>
+            </div>
+            
+            <!-- Avatars on Timeline container (populated by JS) -->
+            <div id="timeline-avatars" class="absolute top-2 left-0 right-0 h-12"></div>
+        </div>
+
+        <!-- Leaderboard List Section -->
+        <div class="relative chart-grid pt-2">
+            <!-- Goal Vertical Line -->
+            <div class="goal-line hidden md:block"></div>
+            
+            <!-- List Container (populated by JS) -->
+            <div id="leaderboard-list" class="flex flex-col gap-4 relative z-10">
+                <!-- Data rows will be injected here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Templates for SVGs to keep logic clean -->
+    <template id="svg-kudos">
+        <svg class="w-3.5 h-3.5 text-brand-gold inline" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+    </template>
+    <template id="svg-trend">
+        <svg class="w-3.5 h-3.5 text-orange-400 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+    </template>
+    <template id="svg-trophy">
+        <svg class="w-3.5 h-3.5 text-brand-gold inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+    </template>
+
+    <script>
+        /**
+         * 1. DATA LAYER (DynamoDB-like interface over IndexedDB)
+         */
+
+        /**
+         * @typedef {Object} LeaderboardRecord Schema Definition
+         * @property {string} id - Partition Key
+         * @property {string} name - User's full name
+         * @property {string} avatar - URL to avatar image
+         * @property {number} volume - The metric value (e.g., $18,000)
+         * @property {boolean} isCurrentUser - Flag for the viewing user
+         * @property {Object} badges - Nested document for stats
+         * @property {number} badges.kudos
+         * @property {number} badges.trend
+         * @property {number} badges.trophies
+         */
+
+        class LocalDataStore {
+            constructor(dbName = 'CorporateLeaderboardDB', version = 1) {
+                this.dbName = dbName;
+                this.version = version;
+                this.tableName = 'LeaderboardStats';
+                this.db = null;
+            }
+
+            // Initializes DB and defines Schema/Indexes
+            async connect() {
+                return new Promise((resolve, reject) => {
+                    const request = indexedDB.open(this.dbName, this.version);
+
+                    request.onupgradeneeded = (event) => {
+                        const db = event.target.result;
+                        if (!db.objectStoreNames.contains(this.tableName)) {
+                            // Creating table with 'id' as hash key
+                            const store = db.createObjectStore(this.tableName, { keyPath: 'id' });
+                            // Creating a Global Secondary Index on 'volume' for sorting
+                            store.createIndex('volumeIdx', 'volume', { unique: false });
+                        }
+                    };
+
+                    request.onsuccess = (event) => {
+                        this.db = event.target.result;
+                        resolve(this.db);
+                    };
+
+                    request.onerror = (event) => reject(event.target.error);
+                });
+            }
+
+            // DynamoDB 'PutItem' equivalent
+            async put(item) {
+                return new Promise((resolve, reject) => {
+                    const transaction = this.db.transaction([this.tableName], 'readwrite');
+                    const store = transaction.objectStore(this.tableName);
+                    const request = store.put(item);
+                    request.onsuccess = () => resolve(true);
+                    request.onerror = (e) => reject(e.target.error);
+                });
+            }
+
+            // DynamoDB 'Scan' with Index sorting equivalent
+            async scanSortedDesc() {
+                return new Promise((resolve, reject) => {
+                    const transaction = this.db.transaction([this.tableName], 'readonly');
+                    const store = transaction.objectStore(this.tableName);
+                    const index = store.index('volumeIdx');
+                    
+                    const request = index.openCursor(null, 'prev'); // 'prev' sorts descending
+                    const results = [];
+
+                    request.onsuccess = (event) => {
+                        const cursor = event.target.result;
+                        if (cursor) {
+                            results.push(cursor.value);
+                            cursor.continue();
+                        } else {
+                            resolve(results);
+                        }
+                    };
+                    request.onerror = (e) => reject(e.target.error);
+                });
+            }
+        }
+
+        /**
+         * 2. APPLICATION LOGIC & UI RENDERING
+         */
+
+        const MAX_SCALE_VALUE = 20000; // Represents 100% width on the grid
+
+        // Initial Data payload to populate the DB
+        const seedData = [
+            { id: 'usr_1', name: 'Alfredo Gouse', avatar: 'https://i.pravatar.cc/150?img=11', volume: 18000, isCurrentUser: false, badges: { kudos: 10, trend: 5, trophies: 10 } },
+            { id: 'usr_2', name: 'Marcus Kenter', avatar: 'https://i.pravatar.cc/150?img=12', volume: 16000, isCurrentUser: false, badges: { kudos: 10, trend: 5, trophies: 8 } },
+            { id: 'usr_3', name: 'Alex Gilev', avatar: 'https://i.pravatar.cc/150?img=13', volume: 14000, isCurrentUser: true, badges: { kudos: 10, trend: 7, trophies: 5 } },
+            { id: 'usr_4', name: 'Lincoln Aminoff', avatar: 'https://i.pravatar.cc/150?img=14', volume: 10000, isCurrentUser: false, badges: { kudos: 10, trend: 5, trophies: 8 } },
+            { id: 'usr_5', name: 'Craig Franci', avatar: 'https://i.pravatar.cc/150?img=15', volume: 10000, isCurrentUser: false, badges: { kudos: 3, trend: 8, trophies: 2 } },
+            { id: 'usr_6', name: 'Zaire Arcand', avatar: 'https://i.pravatar.cc/150?img=16', volume: 6000, isCurrentUser: false, badges: { kudos: 10, trend: 0, trophies: 8 } },
+            { id: 'usr_7', name: 'Nolan Stanton', avatar: 'https://i.pravatar.cc/150?img=17', volume: 3000, isCurrentUser: false, badges: { kudos: 10, trend: 5, trophies: 0 } },
+            { id: 'usr_8', name: 'Charles Miller', avatar: 'https://i.pravatar.cc/150?img=18', volume: 2400, isCurrentUser: false, badges: { kudos: 3, trend: 0, trophies: 0 } },
+        ];
+
+        // UI Helpers
+        const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
+        
+        const getRankWreathSvg = (rank) => {
+            const color = rank === 1 ? 'text-brand-gold' : rank === 2 ? 'text-brand-silver' : 'text-brand-bronze';
+            // Clean, geometric laurel wreath abstraction
+            return `<svg class="w-10 h-10 ${color} absolute -left-2 -top-1 opacity-20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>`;
+        };
+
+        const renderBadges = (badges) => {
+            const kudosSvg = document.getElementById('svg-kudos').innerHTML;
+            const trendSvg = document.getElementById('svg-trend').innerHTML;
+            const trophySvg = document.getElementById('svg-trophy').innerHTML;
+            
+            // Progressive Disclosure: Hidden on mobile (hidden md:flex)
+            return `
+                <div class="hidden md:flex items-center gap-3 mt-1 opacity-70">
+                    ${badges.kudos ? `<span class="flex items-center gap-1 text-[11px] font-medium">${kudosSvg} ${badges.kudos}</span>` : ''}
+                    ${badges.trophies ? `<span class="flex items-center gap-1 text-[11px] font-medium">${trophySvg} ${badges.trophies}</span>` : ''}
+                    ${badges.trend ? `<span class="flex items-center gap-1 text-[11px] font-medium">${trendSvg} ${badges.trend}</span>` : ''}
+                </div>
+            `;
+        };
+
+        async function initApp() {
+            const db = new LocalDataStore();
+            await db.connect();
+
+            // Seed Data (simulate backend initialization)
+            for (const item of seedData) {
+                await db.put(item);
+            }
+
+            // Fetch Data
+            const leaderboardData = await db.scanSortedDesc();
+            
+            const listContainer = document.getElementById('leaderboard-list');
+            const timelineContainer = document.getElementById('timeline-avatars');
+
+            leaderboardData.forEach((user, index) => {
+                const rank = index + 1;
+                const widthPercent = (user.volume / MAX_SCALE_VALUE) * 100;
+                
+                // 1. Render Timeline Avatars (Top Section)
+                if (user.volume > 0) {
+                    const avatarNode = document.createElement('div');
+                    avatarNode.className = `absolute transform -translate-x-1/2 -top-1 w-8 h-8 rounded-full border-2 border-white shadow-sm overflow-hidden z-10 transition-transform hover:scale-110`;
+                    avatarNode.style.left = `${Math.min(widthPercent, 100)}%`; // Cap at 100% visual width
+                    avatarNode.innerHTML = `<img src="${user.avatar}" alt="${user.name}" class="w-full h-full object-cover">`;
+                    timelineContainer.appendChild(avatarNode);
+                }
+
+                // 2. Render List Rows
+                const row = document.createElement('div');
+                row.className = 'flex items-center w-full py-1 group';
+                
+                // Styling logic for top 3 vs others
+                const isTop3 = rank <= 3;
+                const rankDisplay = isTop3 
+                    ? `<div class="relative flex items-center justify-center w-8 h-8 font-serif italic text-xl font-bold ${rank===1?'text-brand-gold':rank===2?'text-brand-silver':'text-brand-bronze'}">
+                        ${rank}
+                        ${getRankWreathSvg(rank)}
+                       </div>`
+                    : `<div class="w-8 text-center text-slate-300 font-medium text-lg italic">${rank}</div>`;
+
+                const nameStyle = user.isCurrentUser ? 'font-bold text-slate-800' : 'font-medium text-slate-700';
+                const nameSuffix = user.isCurrentUser ? '<span class="text-slate-400 font-normal ml-1">(You)</span>' : '';
+
+                // Row HTML Structure
+                row.innerHTML = `
+                    <!-- Rank & Profile Info Area -->
+                    <div class="flex items-center w-48 md:w-64 flex-shrink-0 gap-3 z-20 bg-white md:bg-transparent pr-4">
+                        ${rankDisplay}
+                        <div class="relative">
+                            <img src="${user.avatar}" class="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 ${isTop3 ? 'border-brand-gold/30 p-0.5' : 'border-transparent'} object-cover shadow-sm">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-sm md:text-base ${nameStyle} truncate max-w-[120px] md:max-w-[160px]">${user.name}${nameSuffix}</span>
+                            ${renderBadges(user.badges)}
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar Area -->
+                    <div class="flex-grow flex items-center relative h-12 md:h-14">
+                        <div class="h-8 md:h-10 bg-brand-blue rounded-r-3xl flex items-center justify-end px-4 progress-bar-fill shadow-sm" style="width: 0%;" data-target-width="${widthPercent}%">
+                            <span class="text-brand-text font-bold text-sm md:text-base whitespace-nowrap opacity-0 transition-opacity duration-500 delay-500">${formatCurrency(user.volume)}</span>
+                        </div>
+                    </div>
+                `;
+
+                listContainer.appendChild(row);
+            });
+
+            // Trigger animations after render
+            setTimeout(() => {
+                document.querySelectorAll('.progress-bar-fill').forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-target-width');
+                    bar.querySelector('span').classList.remove('opacity-0');
+                });
+            }, 100);
+        }
+
+        // Run application
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

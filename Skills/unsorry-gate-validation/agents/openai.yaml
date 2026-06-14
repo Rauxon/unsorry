@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unsorry Gate Validation"
+  short_description: "Run Unsorry gates and metadata checks."
+  default_prompt: "Use this skill to inspect Gate A, Gate B, sourcing, leaderboard, and CI validation paths before changing validation-sensitive files."

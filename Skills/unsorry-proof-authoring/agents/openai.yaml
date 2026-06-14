@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unsorry Proof Authoring"
+  short_description: "Prove Unsorry goals safely."
+  default_prompt: "Use this skill to choose a goal, inspect its Lean statement and AISP metadata, write or repair the verified library proof, update proof metadata, and run the relevant local checks."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unsorry Swarm Operations"
+  short_description: "Use Unsorry swarm and run telemetry."
+  default_prompt: "Use this skill to work with the Unsorry swarm protocol, agent scripts, provider adapters, prompts, and proof-run telemetry without disturbing validation gates."

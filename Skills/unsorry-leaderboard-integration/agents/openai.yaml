@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unsorry Leaderboard Integration"
+  short_description: "Wire Unsorry leaderboard data and UI."
+  default_prompt: "Use this skill to connect Unsorry proof-run and index telemetry to generated leaderboard data, HTML views, GitHub profile links, and README-ready preview artifacts."

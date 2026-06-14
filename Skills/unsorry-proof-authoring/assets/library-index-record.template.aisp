@@ -1,0 +1,19 @@
+𝔸5.1.index.<sha>@<yyyy-mm-dd>
+γ≔unsorry.index
+⟦Ω:Index⟧{
+  sha≜<64-lowercase-hex-sha>
+  goal≜<goal-id>
+  stmt≜"<canonical-statement>"
+}
+⟦Λ:Artifact⟧{
+  lean≜library/Unsorry/<file>.lean
+  theorem≜<theorem_name>
+}
+⟦Π:Provenance⟧{
+  solver≜<github-handle-or-unknown>
+  agent≜<agent-id-or-unknown>
+  provider≜<provider-or-unknown>
+  model≜<model-or-unknown>
+  attempts≜<integer>
+}
+⟦Ε⟧⟨δ≜0.80;τ≜◊⁺⟩

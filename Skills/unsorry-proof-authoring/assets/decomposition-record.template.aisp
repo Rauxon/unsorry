@@ -1,0 +1,13 @@
+𝔸5.1.decomposition.<parent-goal-id>@<yyyy-mm-dd>
+γ≔unsorry.decomposition
+⟦Ω:Decomposition⟧{
+  parent≜<parent-goal-id>
+  subs≜⟨<child-goal-id-1>,<child-goal-id-2>⟩
+}
+⟦Γ:Edges⟧{
+  edges≜⟨<parent-goal-id>→<child-goal-id-1>,<parent-goal-id>→<child-goal-id-2>⟩
+}
+⟦Ρ:Rationale⟧{
+  why≜"<why these subgoals compose back into the parent>"
+}
+⟦Ε⟧⟨δ≜0.70;τ≜◊⁺⟩
