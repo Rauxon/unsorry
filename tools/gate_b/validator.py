@@ -33,8 +33,8 @@ from .records import (
 from tools.lean_sig import statement_sha
 
 GOAL_PHASES = ("translate", "prove")
-GOAL_STATUSES = ("open", "flagged", "translated", "blocked", "proved")
-SHA_REQUIRED_STATUSES = ("translated", "proved")
+GOAL_STATUSES = ("open", "flagged", "translated", "blocked", "proved", "archived")
+SHA_REQUIRED_STATUSES = ("translated", "proved", "archived")
 
 _RECORD_TYPES = {
     "goal": ("goal", "unsorry.goal"),
@@ -128,6 +128,18 @@ def _load_goal_records(tree_root: Path) -> dict[str, Record]:
 def _safe_relative(value: str) -> bool:
     parts = Path(value).parts
     return bool(parts) and not Path(value).is_absolute() and ".." not in parts
+
+
+def _proof_index_exists(root: Path, sha: str) -> bool:
+    if (root / "library" / "index" / f"{sha}.aisp").is_file():
+        return True
+    packages = root / "packages"
+    if not packages.is_dir():
+        return False
+    return any(
+        path.is_file()
+        for path in packages.glob(f"unsorry-archive-*/library/index/{sha}.aisp")
+    )
 
 
 # ------------------------------------------------------------- shared checks
@@ -252,10 +264,11 @@ def _validate_goal(
             "GB005", path, f"status≡{status} requires sha as 64 lowercase hex"
         )
 
-    # GB006 — proved goals are indexed
-    if status == "proved" and sha is not None and is_sha256(sha):
-        if not (root / "library" / "index" / f"{sha}.aisp").is_file():
-            report.add("GB006", path, f"library/index/{sha}.aisp does not exist")
+    # GB006 — terminal proof artifacts are indexed either in the active
+    # library or in an immutable archive package.
+    if status in ("proved", "archived") and sha is not None and is_sha256(sha):
+        if not _proof_index_exists(root, sha):
+            report.add("GB006", path, f"proof artifact index/{sha}.aisp does not exist")
 
     # GB007 — dep existence
     deps_raw = fields.get("deps")
@@ -525,8 +538,8 @@ def _validate_proof_run(
     if outcome == "proved":
         if sha is None or not is_sha256(sha):
             report.add("GB020", path, "outcome≡proved requires a SHA-256 artifact")
-        elif not (path.parent.parent / "library" / "index" / f"{sha}.aisp").is_file():
-            report.add("GB020", path, f"proved artifact library/index/{sha}.aisp is absent")
+        elif not _proof_index_exists(path.parent.parent, sha):
+            report.add("GB020", path, f"proved artifact index/{sha}.aisp is absent")
     elif sha not in (None, EMPTY):
         report.add("GB020", path, f"outcome≡{outcome} requires sha≜∅")
 

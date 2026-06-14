@@ -33,6 +33,7 @@ from pathlib import Path
 from tools.lean_sig import camel_name, foralltype, open_lines, theorem_name
 
 _GOAL_RE = re.compile(r"goal≜([A-Za-z0-9][A-Za-z0-9-]*)")
+_STATUS_RE = re.compile(r"status≜([A-Za-z0-9-]+)")
 BINDING_SUFFIX = "Binding.lean"
 
 
@@ -59,10 +60,21 @@ def proved_goals(tree: Path):
                 yield m.group(1)
 
 
+def goal_status(tree: Path, goal: str) -> str | None:
+    path = tree / "goals" / f"{goal}.aisp"
+    if not path.is_file():
+        return None
+    m = _STATUS_RE.search(path.read_text(encoding="utf-8"))
+    return m.group(1) if m else None
+
+
 def generate(tree: Path) -> int:
     errors = 0
     unsorry_dir = tree / "library" / "Unsorry"
     for goal in proved_goals(tree):
+        if goal_status(tree, goal) == "archived":
+            print(f"skipped {goal}: archived proof package owns the binding")
+            continue
         goal_lean = tree / "goals" / f"{goal}.lean"
         if not goal_lean.is_file():
             # No Lean goal statement to bind against — a translate-phase or

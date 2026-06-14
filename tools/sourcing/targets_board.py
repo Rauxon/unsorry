@@ -23,13 +23,17 @@ _GOAL_RE = re.compile(r"goal≜([A-Za-z0-9][A-Za-z0-9-]*)")
 
 
 def _proved(root: Path) -> set[str]:
-    index = root / "library" / "index"
     proved: set[str] = set()
-    if index.is_dir():
-        for entry in index.glob("*.aisp"):
-            m = _GOAL_RE.search(entry.read_text(encoding="utf-8"))
-            if m:
-                proved.add(m.group(1))
+    indices = [root / "library" / "index"]
+    packages = root / "packages"
+    if packages.is_dir():
+        indices.extend(sorted(packages.glob("unsorry-archive-*/library/index")))
+    for index in indices:
+        if index.is_dir():
+            for entry in index.glob("*.aisp"):
+                m = _GOAL_RE.search(entry.read_text(encoding="utf-8"))
+                if m:
+                    proved.add(m.group(1))
     return proved
 
 

@@ -92,6 +92,28 @@ def test_patch_is_new_file_diff_with_header_and_proof(tmp_path):
     assert "import Unsorry" not in patch
 
 
+def test_packet_reads_archived_module(tmp_path):
+    root = _mk_root(tmp_path)
+    archive = root / "packages" / "unsorry-archive-0001"
+    (archive / "library" / "Unsorry").mkdir(parents=True)
+    (archive / "library" / "index").mkdir(parents=True)
+    (archive / "library" / "Unsorry" / "NovelLemma.lean").write_text(
+        (root / "library" / "Unsorry" / "NovelLemma.lean").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    (archive / "library" / "index" / ("ab" * 32 + ".aisp")).write_text(
+        (root / "library" / "index" / ("ab" * 32 + ".aisp")).read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    (root / "library" / "Unsorry" / "NovelLemma.lean").unlink()
+    (root / "library" / "index" / ("ab" * 32 + ".aisp")).unlink()
+
+    md = render_packet(root, "novel-lemma", _DEDUP, sponsor="Chris Barlow")
+
+    assert "`packages/unsorry-archive-0001/library/Unsorry/NovelLemma.lean`" in md
+    assert "theorem novel_lemma_thm" in md
+
+
 def test_dedup_hit_marks_packet_blocked(tmp_path):
     root = _mk_root(tmp_path)
     dedup = dict(_DEDUP, verdict="possible-duplicate",

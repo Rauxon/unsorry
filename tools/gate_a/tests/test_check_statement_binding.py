@@ -8,7 +8,8 @@ from tools.lean_sig import camel_name, foralltype, statement, theorem_name
 
 
 def _make_proved(tree: Path, goal: str, decl: str, proof: str = "by sorry",
-                 module: str | None = None, header: str = ""):
+                 module: str | None = None, header: str = "",
+                 status: str = "proved"):
     """Create a proved goal: goals/<goal>.{aisp,lean}, a library proof module,
     and the index entry that marks it proved. `header` is prepended to the
     goal `.lean` (import/`open` lines)."""
@@ -17,6 +18,10 @@ def _make_proved(tree: Path, goal: str, decl: str, proof: str = "by sorry",
     (tree / "library" / "index").mkdir(parents=True, exist_ok=True)
     (tree / "goals" / f"{goal}.lean").write_text(
         f"{header}{decl} := by sorry\n", encoding="utf-8")
+    (tree / "goals" / f"{goal}.aisp").write_text(
+        f"⟦Ω:Goal⟧{{id≜{goal}; phase≜prove; status≜{status}; difficulty≜1}}\n",
+        encoding="utf-8",
+    )
     mod = module or camel_name(goal)
     (tree / "library" / "Unsorry" / f"{mod}.lean").write_text(
         f"import Mathlib\n\n{decl} := {proof}\n", encoding="utf-8"
@@ -114,6 +119,15 @@ def test_generate_errors_when_no_module_declares_the_theorem(tmp_path):
     # Delete the proof module so nothing declares `lonely`.
     (tmp_path / "library" / "Unsorry" / "Lonely.lean").unlink()
     assert generate(tmp_path) == 1
+
+
+def test_generate_skips_archived_goal(tmp_path):
+    _make_proved(tmp_path, "old-proof",
+                 "theorem old_proof (n : Nat) : n = n",
+                 proof="rfl", status="archived")
+    (tmp_path / "library" / "Unsorry" / "OldProof.lean").unlink()
+    assert generate(tmp_path) == 0
+    assert not (tmp_path / "library" / "Unsorry" / "OldProofBinding.lean").exists()
 
 
 def test_clean_removes_only_bindings(tmp_path):

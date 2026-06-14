@@ -17,6 +17,7 @@ import pytest
 from tools.gate_b import config
 from tools.gate_b.records import parse_utc_z
 from tools.gate_b.validator import validate_tree
+from tools.lean_sig import statement_sha
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
@@ -50,6 +51,55 @@ def test_valid_tree_is_clean():
 
 def test_repo_root_is_clean():
     assert run_validate(REPO_ROOT) == []
+
+
+def test_archived_goal_accepts_archive_index_artifact(tmp_path: Path):
+    goal = "old-proof"
+    lean = "theorem old_proof (n : Nat) : n = n := by sorry\n"
+    sha = statement_sha(lean)
+    (tmp_path / "goals").mkdir()
+    (tmp_path / "proof-runs").mkdir()
+    archive_index = tmp_path / "packages" / "unsorry-archive-0001" / "library" / "index"
+    archive_index.mkdir(parents=True)
+    (tmp_path / "goals" / f"{goal}.lean").write_text(lean, encoding="utf-8")
+    (tmp_path / "backlog").mkdir()
+    (tmp_path / "backlog" / f"{goal}.md").write_text("Old proof\n", encoding="utf-8")
+    (tmp_path / "goals" / f"{goal}.aisp").write_text(
+        f"""𝔸5.1.goal.{goal}@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{{id≜{goal}; phase≜prove; status≜archived; difficulty≜1}}
+⟦Σ:Source⟧{{src≜backlog/{goal}.md}}
+⟦Γ:Deps⟧{{deps≜⟨⟩}}
+⟦Λ:Artifact⟧{{lean≜goals/{goal}.lean; sha≜{sha}}}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
+""",
+        encoding="utf-8",
+    )
+    (archive_index / f"{sha}.aisp").write_text(
+        f"""𝔸5.1.lemma.{sha[:12]}@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{{sha≜{sha}; goal≜{goal}; name≜old_proof}}
+⟦Σ:Source⟧{{src≜goals/{goal}.lean}}
+⟦Γ:Tags⟧{{tags≜⟨archive⟩}}
+⟦Λ:Meta⟧{{use≜0; aff≜0}}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
+""",
+        encoding="utf-8",
+    )
+    (tmp_path / "proof-runs" / f"{goal}.agent-x.20260610t000000000000z-1234abcd.aisp").write_text(
+        f"""𝔸5.1.run.{goal}.agent-x.20260610t000000000000z-1234abcd@2026-06-10
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{{id≜20260610t000000000000z-1234abcd; goal≜{goal}; agent≜agent-x; outcome≜proved}}
+⟦Π:Provenance⟧{{solver≜octocat; provider≜openai; model≜fable; effort≜high}}
+⟦Γ:Goal⟧{{goal≜{goal}}}
+⟦Λ:Metrics⟧{{attempts≜1; solve_s≜12; ended≜2026-06-10T00:00:00Z; lessons≜0}}
+⟦Σ:Artifact⟧{{sha≜{sha}}}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
+""",
+        encoding="utf-8",
+    )
+
+    assert validate_tree(tmp_path) == []
 
 
 def test_claims_valid_is_clean_while_live():

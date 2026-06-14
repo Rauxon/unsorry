@@ -120,11 +120,24 @@ def goals(root: Path) -> list[Goal]:
     return result
 
 
+def proof_index_paths(root: Path) -> list[Path]:
+    paths = []
+    active = root / "library" / "index"
+    if active.is_dir():
+        paths.extend(active.glob("*.aisp"))
+    packages = root / "packages"
+    if packages.is_dir():
+        for index in sorted(packages.glob("unsorry-archive-*/library/index")):
+            if index.is_dir():
+                paths.extend(index.glob("*.aisp"))
+    return sorted(paths)
+
+
 def proofs(root: Path, known_goals: list[Goal] | None = None) -> list[Proof]:
     known_goals = goals(root) if known_goals is None else known_goals
     difficulty = {goal.id: goal.difficulty for goal in known_goals}
     result = []
-    for path in sorted((root / "library" / "index").glob("*.aisp")):
+    for path in proof_index_paths(root):
         record = parse_record(path.read_text(encoding="utf-8"))
         goal = record.fields.get("goal", path.stem)
         result.append(
