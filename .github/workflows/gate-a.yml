@@ -103,9 +103,15 @@ jobs:
         if: needs.detect.outputs.lean == 'true'
         run: lake build UnsorryLibrary --wfail
 
+      # Serialized (--jobs 1): each axiom_audit process holds a full mathlib
+      # image (~6-7 GB), so two concurrent ones peak ~13 GB on a 16 GB runner.
+      # That doesn't OOM, but it evicts the olean page cache and the re-reads
+      # show up as high I/O wait — the parallel run thrashes instead of going
+      # faster. One image at a time keeps the cache hot. (Raise back to 2 only
+      # on a runner with materially more RAM, e.g. a 32 GB profile.)
       - name: Axiom audit (authoritative)
         if: needs.detect.outputs.lean == 'true'
-        run: python3 -m tools.gate_a.parallel_modules audit --jobs 2 --output axiom-report.json
+        run: python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json
 
       - name: Kernel replay (leanchecker)
         if: needs.detect.outputs.lean == 'true'
