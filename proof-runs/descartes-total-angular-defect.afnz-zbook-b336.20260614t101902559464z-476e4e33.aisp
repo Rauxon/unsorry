@@ -1,0 +1,9 @@
+𝔸5.1.run.descartes-total-angular-defect.afnz-zbook-b336.20260614t101902559464z-476e4e33@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t101902559464z-476e4e33; goal≜descartes-total-angular-defect; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜descartes-total-angular-defect}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜294; ended≜2026-06-14T10:19:02Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8581/8583] Building Unsorry.DescartesTotalAngularDefect (994ms) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-descartes-total-angular-defect-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-descartes-total-angular-defect-afnz-zbook-}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
