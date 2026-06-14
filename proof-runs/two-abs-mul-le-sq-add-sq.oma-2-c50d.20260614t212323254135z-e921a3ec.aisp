@@ -1,0 +1,8 @@
+𝔸5.1.run.two-abs-mul-le-sq-add-sq.oma-2-c50d.20260614t212323254135z-e921a3ec@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t212323254135z-e921a3ec; goal≜two-abs-mul-le-sq-add-sq; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high}
+⟦Γ:Goal⟧{goal≜two-abs-mul-le-sq-add-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜199; ended≜2026-06-14T21:23:23Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜2d46a1e810ae930182fbf64a98d0a583702906bc1a9af0865ff7d31fefbfbfb5}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
