@@ -75,6 +75,15 @@ _ELAB_ERROR_RE = re.compile(
     r"|invalid field|expected type must be known|failed to synthesize",
 )
 
+#: `decide` (in the battery `first | … | decide | …`) cannot synthesize a
+#: `Decidable` instance for a ∀ over an infinite type — that is the *tactic's*
+#: limitation, not a statement elaboration error, so its "failed to synthesize …
+#: Decidable …" message must NOT be read as a probe-error (it falsely tripped the
+#: `failed to synthesize` branch above — #410 follow-up). Stripped before the
+#: elab-error check. A genuine statement typeclass gap (e.g. "failed to synthesize
+#: instance\n  Inv ℕ") still matches and is surfaced.
+_DECIDE_NOISE_RE = re.compile(r"failed to synthesize\s*\n?\s*Decidable\b[^\n]*")
+
 
 def probe_module(goal_text: str, battery: tuple[str, ...] = TACTIC_BATTERY,
                  tactic: str | None = None) -> str:
@@ -101,7 +110,8 @@ def classify(returncode: int, output: str) -> str:
     elaborated — at sourcing it already type-checked — but no tactic closed it)."""
     if returncode == 0:
         return "trivial"
-    if _ELAB_ERROR_RE.search(output):
+    cleaned = _DECIDE_NOISE_RE.sub("", output)
+    if _ELAB_ERROR_RE.search(cleaned):
         return "probe-error"
     return "non-trivial"
 
@@ -228,6 +238,47 @@ def audit(root: Path, *, runner: Runner | None = None, timeout: float = 180.0) -
     return reports
 
 
+def render_audit(reports: list[dict], mathlib_rev: str | None) -> tuple[str, str]:
+    """(markdown, json) for the report-only retro-audit over all goals (#387 PR2).
+    A ``trivial`` verdict flags a proved-but-one-shot goal for human review — it is
+    never deleted (ADR-035)."""
+    order = ["trivial", "probe-error", "allowlisted", "override", "non-trivial"]
+    by_verdict: dict[str, list[dict]] = {v: [] for v in order}
+    for report in reports:
+        by_verdict.setdefault(report["verdict"], []).append(report)
+    counts = {v: len(by_verdict.get(v, [])) for v in order}
+    lines = [
+        "# Triviality retro-audit (ADR-035, report-only)",
+        "",
+        f"Probed **{len(reports)}** goals against the one-shot tactic battery at "
+        f"mathlib `{mathlib_rev or '?'}`. **Report-only** — nothing is deleted; a "
+        "`trivial` verdict means a single battery tactic closes the statement (so it "
+        "is one-shot-provable or already in mathlib under another name) and is flagged "
+        "for human review (ADR-035).",
+        "",
+        "| verdict | count |",
+        "|---|---|",
+        *[f"| {v} | {counts[v]} |" for v in order],
+        "",
+    ]
+    flagged = sorted(by_verdict.get("trivial", []), key=lambda r: r["goal"])
+    if flagged:
+        lines += ["## Flagged trivial (review)", "", "| goal | closed by |", "|---|---|"]
+        lines += [f"| `{r['goal']}` | {('`' + r['closed_by'] + '`') if r['closed_by'] else '—'} |"
+                  for r in flagged]
+    else:
+        lines.append("**No proved-but-trivial goals — the library is clean.** ✅")
+    errs = sorted(by_verdict.get("probe-error", []), key=lambda r: r["goal"])
+    if errs:
+        lines += ["", "## Probe errors (statement did not elaborate — tooling/import gap)", ""]
+        lines += [f"- `{r['goal']}`" for r in errs]
+    lines.append("")
+    payload = json.dumps(
+        {"mathlib_rev": mathlib_rev, "counts": counts, "reports": reports},
+        indent=2, sort_keys=True) + "\n"
+    return "\n".join(lines), payload
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("goal", nargs="?", help="goals/<id>.lean to probe")
@@ -238,12 +289,20 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument("--timeout", type=float, default=180.0)
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--write", action="store_true",
+                        help="with --all: write docs/triviality-audit.{md,json} (#387 PR2)")
     args = parser.parse_args(argv)
 
     if args.all:
         reports = audit(args.root, timeout=args.timeout)
         trivial = [r for r in reports if r["verdict"] == "trivial"]
-        if args.json:
+        if args.write:
+            md, payload = render_audit(reports, manifest_rev(args.root))
+            (args.root / "docs" / "triviality-audit.md").write_text(md, encoding="utf-8")
+            (args.root / "docs" / "triviality-audit.json").write_text(payload, encoding="utf-8")
+            print(f"wrote docs/triviality-audit.{{md,json}} — "
+                  f"{len(trivial)} trivial / {len(reports)} goals")
+        elif args.json:
             print(json.dumps({"reports": reports, "trivial_count": len(trivial)}, indent=2))
         else:
             for r in trivial:

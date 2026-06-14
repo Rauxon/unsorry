@@ -1,0 +1,2872 @@
+{
+  "counts": {
+    "allowlisted": 0,
+    "non-trivial": 125,
+    "override": 0,
+    "probe-error": 0,
+    "trivial": 18
+  },
+  "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+  "reports": [
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "abstract-regular-polyhedron-classification",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpcn55zbck/TrivialityProbe.lean:4:282: error: unsolved goals\n\u22a2 \u2200 (p q V E F : \u2115),\n    3 \u2264 p \u2192\n      3 \u2264 q \u2192\n        0 < V \u2192\n          0 < F \u2192\n            p * F = 2 * E \u2192\n              q * V = 2 * E \u2192\n                V + F = E + 2 \u2192 p = 3 \u2227 q = 3 \u2228 p = 3 \u2227 q = 4 \u2228 p = 4 \u2227 q = 3 \u2228 p = 3 \u2227 q = 5 \u2228 p = 5 \u2227 q = 3\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "abstract-regular-polyhedron-realizable-iff",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp6wv2kh0i/TrivialityProbe.lean:4:258: error: unsolved goals\n\u22a2 \u2200 (p q : \u2115),\n    3 \u2264 p \u2192\n      3 \u2264 q \u2192\n        (p = 3 \u2227 q = 3 \u2228 p = 3 \u2227 q = 4 \u2228 p = 4 \u2227 q = 3 \u2228 p = 3 \u2227 q = 5 \u2228 p = 5 \u2227 q = 3 \u2194\n          \u2203 V, 0 < V \u2227 \u2203 x x_1, 0 < x_1 \u2227 p * x_1 = 2 * x \u2227 q * V = 2 * x \u2227 V + x_1 = x + 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "alternating-sum-naturals",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpq9c_u6n2/TrivialityProbe.lean:4:163: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range n, (-1) ^ i * (\u2191i + 1) = if Even n then -(\u2191n / 2) else \u2191n / 2 + 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "and-comm-imp",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpwbsnyaxl/TrivialityProbe.lean:4:77: error: unsolved goals\n\u22a2 \u2200 (p q : Prop), p \u2192 q \u2192 q \u2227 p\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "binder-shape-canary",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpdhz1i33b/TrivialityProbe.lean:4:81: error: unsolved goals\n\u22a2 \u2200 {n : \u2115}, 1 < n \u2192 0 < n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "cauchy-schwarz-three-term",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpyg6dxxsy/TrivialityProbe.lean:4:157: error: unsolved goals\n\u22a2 \u2200 (a b c x y z : \u211d), (a * x + b * y + c * z) ^ 2 \u2264 (a ^ 2 + b ^ 2 + c ^ 2) * (x ^ 2 + y ^ 2 + z ^ 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "consecutive-triangular-eq-square",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpvap0oahk/TrivialityProbe.lean:4:142: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range (n + 1), i + \u2211 i \u2208 Finset.range n, i = n ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "constrained-sum-sq-ge-three",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpqb8r6x5k/TrivialityProbe.lean:4:119: error: unsolved goals\n\u22a2 \u2200 (a b c : \u211d), a + b + c = 3 \u2192 3 \u2264 a ^ 2 + b ^ 2 + c ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "cube-eq-triangular-sq-diff",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmphto3jsl7/TrivialityProbe.lean:4:144: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), (\u2211 i \u2208 Finset.range n, i) ^ 2 + n ^ 3 = (\u2211 i \u2208 Finset.range (n + 1), i) ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "descartes-total-angular-defect",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp1ys02jrm/TrivialityProbe.lean:4:281: error: unsolved goals\n\u22a2 \u2200 (p q V E F : \u2115),\n    3 \u2264 p \u2192\n      3 \u2264 q \u2192\n        0 < V \u2192\n          0 < F \u2192\n            p * F = 2 * E \u2192\n              q * V = 2 * E \u2192 V + F = E + 2 \u2192 \u2191V * (2 * Real.pi - \u2191q * ((\u2191p - 2) / \u2191p) * Real.pi) = 4 * Real.pi\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "eight-triangular-add-one-eq-odd-sq",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpldxjlphi/TrivialityProbe.lean:4:134: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 8 * \u2211 i \u2208 Finset.range (n + 1), i + 1 = (2 * n + 1) ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "euclid-perfect-numbers-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpj71ujwws/TrivialityProbe.lean:4:110: error: unsolved goals\n\u22a2 \u2200 (k : \u2115), \u2211 x \u2208 Finset.range (k + 1), 2 ^ x = 2 ^ (k + 1) - 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "euclid-perfect-numbers-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmppbnq74rb/TrivialityProbe.lean:4:122: error: unsolved goals\n\u22a2 \u2200 (q : \u2115), Nat.Prime q \u2192 \u2211 d \u2208 q.divisors, d = q + 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "euclid-perfect-numbers-s3",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpf6utxvcf/TrivialityProbe.lean:4:179: error: unsolved goals\n\u22a2 \u2200 (m n : \u2115), m.Coprime n \u2192 \u2211 d \u2208 (m * n).divisors, d = (\u2211 d \u2208 m.divisors, d) * \u2211 d \u2208 n.divisors, d\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "euclid-perfect-numbers-s4",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpoq2b206m/TrivialityProbe.lean:4:104: error: unsolved goals\n\u22a2 \u2200 (p : \u2115), (2 ^ (p - 1)).Coprime (2 ^ p - 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "euclid-perfect-numbers-s5",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpzkeq1ulq/TrivialityProbe.lean:4:102: error: unsolved goals\n\u22a2 \u2200 (p : \u2115), Nat.Prime (2 ^ p - 1) \u2192 1 \u2264 p\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "euclid-perfect-numbers-s6",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmppuwgjkek/TrivialityProbe.lean:4:156: error: unsolved goals\n\u22a2 \u2200 (p : \u2115), 1 \u2264 p \u2192 (2 ^ (p - 1 + 1) - 1) * (2 ^ p - 1 + 1) = 2 * (2 ^ (p - 1) * (2 ^ p - 1))\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "euclid-perfect-numbers",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpg79xjj_f/TrivialityProbe.lean:4:128: error: unsolved goals\n\u22a2 \u2200 (p : \u2115), Nat.Prime (2 ^ p - 1) \u2192 (2 ^ (p - 1) * (2 ^ p - 1)).Perfect\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "factorial-telescope-sum",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpix74hacj/TrivialityProbe.lean:4:151: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range (n + 1), i * i.factorial = (n + 1).factorial - 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "forty-two-dvd-pow-seven-sub-self",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpxt0r8187/TrivialityProbe.lean:4:95: error: unsolved goals\n\u22a2 \u2200 (n : \u2124), 42 \u2223 n ^ 7 - n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "four-consecutive-product-add-one-square-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpj3lz3y8j/TrivialityProbe.lean:4:146: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), n * (n + 1) * (n + 2) * (n + 3) = n * (n + 3) * ((n + 1) * (n + 2))\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "four-consecutive-product-add-one-square-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp6stt6258/TrivialityProbe.lean:4:126: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), (n + 1) * (n + 2) = n * (n + 3) + 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "four-consecutive-product-add-one-square-s3",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpk7ewnjvn/TrivialityProbe.lean:4:111: error: unsolved goals\n\u22a2 \u2200 (a : \u2115), a * (a + 2) + 1 = (a + 1) ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "four-consecutive-product-add-one-square",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpxugfzbwk/TrivialityProbe.lean:4:134: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2203 m, n * (n + 1) * (n + 2) * (n + 3) + 1 = m ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "four-var-cyclic-sos",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp8oyqx48y/TrivialityProbe.lean:4:129: error: unsolved goals\n\u22a2 \u2200 (a b c d : \u211d), a * b + b * c + c * d + d * a \u2264 a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "fourth-power-mod-five-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp897x9zmw/TrivialityProbe.lean:4:98: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), n ^ 4 % 5 = (n % 5) ^ 4 % 5\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "trivial",
+      "goal": "fourth-power-mod-five-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "fourth-power-mod-five",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmprfzvpajq/TrivialityProbe.lean:4:93: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u00acn % 5 = 0 \u2192 n ^ 4 % 5 = 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "fourth-power-mod-three",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpy38cphlh/TrivialityProbe.lean:4:94: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u00acn % 3 = 0 \u2192 n ^ 4 % 3 = 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "int-add-neg",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "int-neg-neg",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "int-sub-eq-add-neg",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpm0i4yplv/TrivialityProbe.lean:4:85: error: unsolved goals\n\u22a2 \u2200 (a b : \u2124), a - b = a + -b\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "list-reverse-reverse",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-add-assoc-thm",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpt5qnv_dm/TrivialityProbe.lean:4:89: error: unsolved goals\n\u22a2 \u2200 (a b c : \u2115), a + b + c = a + (b + c)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-add-comm-thm",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp23skdsfy/TrivialityProbe.lean:4:76: error: unsolved goals\n\u22a2 \u2200 (a b : \u2115), a + b = b + a\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "nat-add-left-cancel",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "nat-add-zero-thm",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "nat-dvd-refl",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-even-or-odd",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp11ynbyqi/TrivialityProbe.lean:4:78: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), Even n \u2228 Odd n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-gcd-comm",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpki94a8w0/TrivialityProbe.lean:4:88: error: unsolved goals\n\u22a2 \u2200 (a b : \u2115), a.gcd b = b.gcd a\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "nat-le-add-right",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "nat-le-succ",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-mul-add-distrib",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpo2qqyhjr/TrivialityProbe.lean:4:95: error: unsolved goals\n\u22a2 \u2200 (a b c : \u2115), a * (b + c) = a * b + a * c\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-mul-comm-thm",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp5bijzi3g/TrivialityProbe.lean:4:76: error: unsolved goals\n\u22a2 \u2200 (a b : \u2115), a * b = b * a\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "nat-mul-one-thm",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "nat-mul-zero-thm",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "trivial",
+      "goal": "nat-sq-lt-two-pow-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-sq-lt-two-pow-s2-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpxiv7ff0t/TrivialityProbe.lean:4:116: error: unsolved goals\n\u22a2 \u2200 {n : \u2115}, 5 \u2264 n \u2192 (n + 1) ^ 2 \u2264 2 * n ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "nat-sq-lt-two-pow-s2-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-sq-lt-two-pow-s2-s3",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpijam6gxc/TrivialityProbe.lean:4:101: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 2 * 2 ^ n = 2 ^ (n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-sq-lt-two-pow-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmprdqc2ryq/TrivialityProbe.lean:4:129: error: unsolved goals\n\u22a2 \u2200 {n : \u2115}, 5 \u2264 n \u2192 n ^ 2 < 2 ^ n \u2192 (n + 1) ^ 2 < 2 ^ (n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nat-sq-lt-two-pow",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpp_qa0xmo/TrivialityProbe.lean:4:93: error: unsolved goals\n\u22a2 \u2200 {n : \u2115}, 5 \u2264 n \u2192 n ^ 2 < 2 ^ n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "nat-zero-le",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nesbitt-inequality-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp4xttyg9b/TrivialityProbe.lean:4:199: error: unsolved goals\n\u22a2 \u2200 (a b c : \u211d),\n    0 < a \u2192 0 < b \u2192 0 < c \u2192 (a + b + c) ^ 2 / (2 * (a * b + b * c + c * a)) \u2264 a / (b + c) + b / (c + a) + c / (a + b)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nesbitt-inequality-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpz9i634xq/TrivialityProbe.lean:4:120: error: unsolved goals\n\u22a2 \u2200 (a b c : \u211d), 3 * (a * b + b * c + c * a) \u2264 (a + b + c) ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nesbitt-inequality-s3",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp0qg9znzb/TrivialityProbe.lean:4:132: error: unsolved goals\n\u22a2 \u2200 (a b c : \u211d), 0 < a \u2192 0 < b \u2192 0 < c \u2192 0 < a * b + b * c + c * a\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nesbitt-inequality-s4",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp_k986whk/TrivialityProbe.lean:4:229: error: unsolved goals\n\u22a2 \u2200 (a b c : \u211d),\n    0 < a * b + b * c + c * a \u2192\n      3 * (a * b + b * c + c * a) \u2264 (a + b + c) ^ 2 \u2192 3 / 2 \u2264 (a + b + c) ^ 2 / (2 * (a * b + b * c + c * a))\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nesbitt-inequality",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmprg67741o/TrivialityProbe.lean:4:151: error: unsolved goals\n\u22a2 \u2200 (a b c : \u211d), 0 < a \u2192 0 < b \u2192 0 < c \u2192 3 / 2 \u2264 a / (b + c) + b / (c + a) + c / (a + b)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nicomachus-sum-cubes-triangular",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpmvydp6mn/TrivialityProbe.lean:4:131: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range (n + 1), i ^ 3 = (n * (n + 1) / 2) ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "nicomachus-sum-cubes",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpsfuc0iwe/TrivialityProbe.lean:4:124: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 k \u2208 Finset.range n, k ^ 3 = (\u2211 k \u2208 Finset.range n, k) ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "no-int-sq-eq-eight-mul-add-three",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp8tikuawj/TrivialityProbe.lean:4:103: error: unsolved goals\n\u22a2 \u2200 (n x : \u2124), \u00acx ^ 2 = 8 * n + 3\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "no-nat-sq-eq-two-mul-sq-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpz5626dkf/TrivialityProbe.lean:4:108: error: unsolved goals\n\u22a2 \u2200 (a b : \u2115), a ^ 2 = 2 * b ^ 2 \u2192 2 \u2223 a\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "no-nat-sq-eq-two-mul-sq-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpi131an69/TrivialityProbe.lean:4:109: error: unsolved goals\n\u22a2 \u2200 (a b : \u2115), a ^ 2 = 2 * b ^ 2 \u2192 2 \u2223 b\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "no-nat-sq-eq-two-mul-sq-s3",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp2efkduns/TrivialityProbe.lean:4:155: error: unsolved goals\n\u22a2 \u2200 (a b c d : \u2115), a = 2 * c \u2192 b = 2 * d \u2192 a ^ 2 = 2 * b ^ 2 \u2192 c ^ 2 = 2 * d ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "no-nat-sq-eq-two-mul-sq-s4",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp08x0mbun/TrivialityProbe.lean:4:117: error: unsolved goals\n\u22a2 \u2200 (b d : \u2115), 0 < b \u2192 b = 2 * d \u2192 0 < d \u2227 d < b\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "no-nat-sq-eq-two-mul-sq",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp4tlw5_kw/TrivialityProbe.lean:4:93: error: unsolved goals\n\u22a2 \u2200 (x x_1 : \u2115), 0 < x_1 \u2192 \u00acx ^ 2 = 2 * x_1 ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "not-prime-pow-four-add-four",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpc451vp1f/TrivialityProbe.lean:4:106: error: unsolved goals\n\u22a2 \u2200 {n : \u2115}, 1 < n \u2192 \u00acNat.Prime (n ^ 4 + 4)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "odd-fourth-power-mod-sixteen",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpyrtpjj_h/TrivialityProbe.lean:4:97: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), Odd n \u2192 n ^ 4 % 16 = 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "odd-sq-mod-eight",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpw4z6zv5_/TrivialityProbe.lean:4:84: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), Odd n \u2192 n ^ 2 % 8 = 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "one-add-four-b-fourth-not-prime",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpa3o1kkgl/TrivialityProbe.lean:4:114: error: unsolved goals\n\u22a2 \u2200 (b : \u2115), 1 < b \u2192 \u00acNat.Prime (1 + 4 * b ^ 4)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "or-comm-imp",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpy6zoykp1/TrivialityProbe.lean:4:76: error: unsolved goals\n\u22a2 \u2200 (p q : Prop), p \u2228 q \u2192 q \u2228 p\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-pairs-realizable",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpay85ja1a/TrivialityProbe.lean:4:205: error: unsolved goals\n\u22a2 (\u2203 V, 0 < V \u2227 \u2203 x x_1, 0 < x_1 \u2227 3 * x_1 = 2 * x \u2227 3 * V = 2 * x \u2227 V + x_1 = x + 2) \u2227\n    (\u2203 V, 0 < V \u2227 \u2203 x x_1, 0 < x_1 \u2227 3 * x_1 = 2 * x \u2227 4 * V = 2 * x \u2227 V + x_1 = x + 2) \u2227\n      (\u2203 V, 0 < V \u2227 \u2203 x x_1, 0 < x_1 \u2227 4 * x_1 = 2 * x \u2227 3 * V = 2 * x \u2227 V + x_1 = x + 2) \u2227\n        (\u2203 V, 0 < V \u2227 \u2203 x x_1, 0 < x_1 \u2227 3 * x_1 = 2 * x \u2227 5 * V = 2 * x \u2227 V + x_1 = x + 2) \u2227\n          \u2203 V, 0 < V \u2227 \u2203 x x_1, 0 < x_1 \u2227 5 * x_1 = 2 * x \u2227 3 * V = 2 * x \u2227 V + x_1 = x + 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "platonic-schlafli-core-s1-s1-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "rfl",
+      "goal": "platonic-schlafli-core-s1-s1-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "platonic-schlafli-core-s1-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-schlafli-core-s1-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp9bisl7nl/TrivialityProbe.lean:4:104: error: unsolved goals\n\u22a2 \u2200 (q : \u211a), 6 \u2264 q \u2192 q\u207b\u00b9 \u2264 1 / 6\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": "norm_num",
+      "goal": "platonic-schlafli-core-s1-s3",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "",
+      "verdict": "trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-schlafli-core-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpv3qgoull/TrivialityProbe.lean:4:96: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 1 / 6 < (\u2191n)\u207b\u00b9 \u2192 n < 6\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-schlafli-core-s2-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpktzfw8wt/TrivialityProbe.lean:4:105: error: unsolved goals\n\u22a2 \u2200 (q : \u2115), 3 \u2264 q \u2192 (\u2191q)\u207b\u00b9 \u2264 1 / 3\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-schlafli-core-s2-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpmwvhuzpm/TrivialityProbe.lean:4:132: error: unsolved goals\n\u22a2 \u2200 (a b : \u211a), 1 / 2 < a + b \u2192 b \u2264 1 / 3 \u2192 1 / 6 < a\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-schlafli-core-s2-s3",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp0905owwm/TrivialityProbe.lean:4:102: error: unsolved goals\n\u22a2 \u2200 (p : \u2115), 1 / 6 < (\u2191p)\u207b\u00b9 \u2192 p < 6\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-schlafli-core-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmph1sstjis/TrivialityProbe.lean:4:138: error: unsolved goals\n\u22a2 \u2200 (p q : \u2115), 3 \u2264 p \u2192 3 \u2264 q \u2192 1 / 2 < (\u2191p)\u207b\u00b9 + (\u2191q)\u207b\u00b9 \u2192 p < 6\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-schlafli-core-s3",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpn4cgefwi/TrivialityProbe.lean:4:138: error: unsolved goals\n\u22a2 \u2200 (p q : \u2115), 3 \u2264 p \u2192 3 \u2264 q \u2192 1 / 2 < (\u2191p)\u207b\u00b9 + (\u2191q)\u207b\u00b9 \u2192 q < 6\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-schlafli-core-s4",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp21drq4t0/TrivialityProbe.lean:4:225: error: unsolved goals\n\u22a2 \u2200 (p q : \u2115),\n    3 \u2264 p \u2192\n      3 \u2264 q \u2192\n        p < 6 \u2192\n          q < 6 \u2192\n            1 / 2 < (\u2191p)\u207b\u00b9 + (\u2191q)\u207b\u00b9 \u2192 p = 3 \u2227 q = 3 \u2228 p = 3 \u2227 q = 4 \u2228 p = 4 \u2227 q = 3 \u2228 p = 3 \u2227 q = 5 \u2228 p = 5 \u2227 q = 3\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "platonic-schlafli-core",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpi152qim7/TrivialityProbe.lean:4:187: error: unsolved goals\n\u22a2 \u2200 (p q : \u2115),\n    3 \u2264 p \u2192\n      3 \u2264 q \u2192 1 / 2 < (\u2191p)\u207b\u00b9 + (\u2191q)\u207b\u00b9 \u2192 p = 3 \u2227 q = 3 \u2228 p = 3 \u2227 q = 4 \u2228 p = 4 \u2227 q = 3 \u2228 p = 3 \u2227 q = 5 \u2228 p = 5 \u2227 q = 3\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "pow-four-add-sq-add-one-factor",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp1tq1hnkd/TrivialityProbe.lean:4:126: error: unsolved goals\n\u22a2 \u2200 (n : \u2124), n ^ 4 + n ^ 2 + 1 = (n ^ 2 + n + 1) * (n ^ 2 - n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "pow-four-add-sq-add-one-not-prime",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp3n571qm3/TrivialityProbe.lean:4:120: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 1 < n \u2192 \u00acNat.Prime (n ^ 4 + n ^ 2 + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "prime-fourth-power-mod-240",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpw9h84ywy/TrivialityProbe.lean:4:115: error: unsolved goals\n\u22a2 \u2200 (p : \u2115), Nat.Prime p \u2192 5 < p \u2192 p ^ 4 % 240 = 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "prime-sq-mod-twenty-four",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpyygpjj4v/TrivialityProbe.lean:4:112: error: unsolved goals\n\u22a2 \u2200 (p : \u2115), Nat.Prime p \u2192 3 < p \u2192 p ^ 2 % 24 = 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "prime-sq-sub-sq-div-twenty-four",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpr3roxil5/TrivialityProbe.lean:4:178: error: unsolved goals\n\u22a2 \u2200 (p q : \u2115), Nat.Prime p \u2192 Nat.Prime q \u2192 3 < p \u2192 3 < q \u2192 24 \u2223 \u2191p ^ 2 - \u2191q ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "prod-one-sub-inv-sq-telescope",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpu11dn8bx/TrivialityProbe.lean:4:156: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 2 \u2264 n \u2192 \u220f x \u2208 Finset.Icc 2 n, (1 - (\u2191x ^ 2)\u207b\u00b9) = (\u2191n + 1) / (2 * \u2191n)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "prod-range-one-add-inv",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp0soxj72n/TrivialityProbe.lean:4:118: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), (\u220f x \u2208 Finset.Icc 1 n, (\u2191x + 1)) / \u220f x \u2208 Finset.Icc 1 n, \u2191x = \u2191n + 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "product-le-quarter-of-sum-one",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpz540dfwi/TrivialityProbe.lean:4:131: error: unsolved goals\n\u22a2 \u2200 (a b : \u211d), 0 \u2264 a \u2192 0 \u2264 b \u2192 a + b = 1 \u2192 a * b \u2264 1 / 4\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "qm-am-three-var",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpe1wmvid7/TrivialityProbe.lean:4:107: error: unsolved goals\n\u22a2 \u2200 (a b c : \u211d), (a + b + c) ^ 2 \u2264 3 * (a ^ 2 + b ^ 2 + c ^ 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "realization-determines-counts",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpza85idk2/TrivialityProbe.lean:4:331: error: unsolved goals\n\u22a2 \u2200 (p q V E F V' E' F' : \u2115),\n    3 \u2264 p \u2192\n      3 \u2264 q \u2192\n        0 < V \u2192\n          0 < F \u2192\n            0 < V' \u2192\n              0 < F' \u2192\n                p * F = 2 * E \u2192\n                  q * V = 2 * E \u2192\n                    V + F = E + 2 \u2192 p * F' = 2 * E' \u2192 q * V' = 2 * E' \u2192 V' + F' = E' + 2 \u2192 V = V' \u2227 E = E' \u2227 F = F'\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "realization-edge-in-set",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmplzu31efj/TrivialityProbe.lean:4:212: error: unsolved goals\n\u22a2 \u2200 (p q V E F : \u2115),\n    3 \u2264 p \u2192 3 \u2264 q \u2192 0 < V \u2192 0 < F \u2192 p * F = 2 * E \u2192 q * V = 2 * E \u2192 V + F = E + 2 \u2192 E = 6 \u2228 E = 12 \u2228 E = 30\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "realization-edge-relation",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpc8g1hl6p/TrivialityProbe.lean:4:172: error: unsolved goals\n\u22a2 \u2200 (p q V E F : \u2115), p * F = 2 * E \u2192 q * V = 2 * E \u2192 V + F = E + 2 \u2192 2 * E * (p + q) = p * q * (E + 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "six-dvd-three-consecutive-int",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpa264aj6g/TrivialityProbe.lean:4:103: error: unsolved goals\n\u22a2 \u2200 (n : \u2124), 6 \u2223 n * (n + 1) * (n + 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "six-dvd-three-consecutive",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpoczkgj94/TrivialityProbe.lean:4:98: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 6 \u2223 n * (n + 1) * (n + 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sq-add-sq-eq-three-mul-sq-s1",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpb0lnlvjk/TrivialityProbe.lean:4:103: error: unsolved goals\n\u22a2 \u2200 (a : \u2124), 3 \u2223 a ^ 2 \u2228 a ^ 2 % 3 = 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sq-add-sq-eq-three-mul-sq-s2",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp_be9mz86/TrivialityProbe.lean:4:142: error: unsolved goals\n\u22a2 \u2200 (x y z : \u2124), x ^ 2 + y ^ 2 = 3 * z ^ 2 \u2192 3 \u2223 x \u2227 3 \u2223 y \u2227 3 \u2223 z\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sq-add-sq-eq-three-mul-sq-s3",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp5fxg2527/TrivialityProbe.lean:4:295: error: unsolved goals\n\u22a2 \u2200 (x y z : \u2124),\n    x ^ 2 + y ^ 2 = 3 * z ^ 2 \u2192\n      \u00acx = 0 \u2228 \u00acy = 0 \u2228 \u00acz = 0 \u2192\n        \u2203 x1 y1 z1, x1 ^ 2 + y1 ^ 2 = 3 * z1 ^ 2 \u2227 x1.natAbs + y1.natAbs + z1.natAbs < x.natAbs + y.natAbs + z.natAbs\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sq-add-sq-eq-three-mul-sq-s4",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp6hk32b66/TrivialityProbe.lean:4:288: error: unsolved goals\n\u22a2 \u2200 (P : \u2124 \u2192 \u2124 \u2192 \u2124 \u2192 Prop),\n    (\u2200 (x y z : \u2124),\n        P x y z \u2192\n          \u00acx = 0 \u2228 \u00acy = 0 \u2228 \u00acz = 0 \u2192\n            \u2203 x1 y1 z1, P x1 y1 z1 \u2227 x1.natAbs + y1.natAbs + z1.natAbs < x.natAbs + y.natAbs + z.natAbs) \u2192\n      \u2200 (x y z : \u2124), P x y z \u2192 x = 0 \u2227 y = 0 \u2227 z = 0\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sq-add-sq-eq-three-mul-sq",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpw5m04x04/TrivialityProbe.lean:4:119: error: unsolved goals\n\u22a2 \u2200 (x y z : \u2124), x ^ 2 + y ^ 2 = 3 * z ^ 2 \u2192 x = 0 \u2227 y = 0 \u2227 z = 0\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sq-mod-three",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpuu9rdjsb/TrivialityProbe.lean:4:84: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u00acn % 3 = 0 \u2192 n ^ 2 % 3 = 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "square-of-sum-ge-three-pairwise",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpq0ikjnn7/TrivialityProbe.lean:4:123: error: unsolved goals\n\u22a2 \u2200 (a b c : \u211d), 3 * (a * b + b * c + c * a) \u2264 (a + b + c) ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-icc-choose-hockey-stick",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpwyodqlr5/TrivialityProbe.lean:4:129: error: unsolved goals\n\u22a2 \u2200 (n r : \u2115), \u2211 k \u2208 Finset.Icc r n, k.choose r = (n + 1).choose (r + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-choose-mul-two-pow",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmphnlezi5j/TrivialityProbe.lean:4:125: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 k \u2208 Finset.range (n + 1), n.choose k * 2 ^ k = 3 ^ n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-choose-sq-eq-central",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpr2xl39mp/TrivialityProbe.lean:4:136: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 k \u2208 Finset.range (n + 1), n.choose k ^ 2 = (2 * n).choose n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-cube-even",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpqdqdtnjo/TrivialityProbe.lean:4:121: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range n, (2 * i) ^ 3 = 2 * n ^ 2 * (n - 1) ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-cube-mul-choose",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmps26e70b9/TrivialityProbe.lean:4:144: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 8 * \u2211 k \u2208 Finset.range (n + 1), k ^ 3 * n.choose k = n ^ 2 * (n + 3) * 2 ^ n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-cube-odd",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpjblqli2j/TrivialityProbe.lean:4:124: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range n, (2 * i + 1) ^ 3 = n ^ 2 * (2 * n ^ 2 - 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-fall-mul-choose",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpisx9f4ec/TrivialityProbe.lean:4:146: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 4 * \u2211 k \u2208 Finset.range (n + 1), k * (k - 1) * n.choose k = n * (n - 1) * 2 ^ n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-fib-even-index",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp8ediutp9/TrivialityProbe.lean:4:133: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range n, Nat.fib (2 * (i + 1)) = Nat.fib (2 * n + 1) - 1\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-fib-odd-index",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpse9h1dwy/TrivialityProbe.lean:4:131: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range n, Nat.fib (2 * i + 1) = Nat.fib (2 * n)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-fib-sq",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp32y56fjr/TrivialityProbe.lean:4:135: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range (n + 1), Nat.fib i ^ 2 = Nat.fib n * Nat.fib (n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-id-eq-choose-two",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp8ar92myc/TrivialityProbe.lean:4:109: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range n, i = n.choose 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-mul-two-pow",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpi5eqp183/TrivialityProbe.lean:4:123: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range n, \u2191i * 2 ^ i = (\u2191n - 2) * 2 ^ n + 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-odd-cubes",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpamu4e7en/TrivialityProbe.lean:4:125: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 k \u2208 Finset.range n, (2 * k + 1) ^ 3 = n ^ 2 * (2 * n ^ 2 - 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-odd-eq-sq",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpoboyb_3r/TrivialityProbe.lean:4:103: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 i \u2208 Finset.range n, (2 * i + 1) = n ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pentagonal-closed-form",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpxcasgsgf/TrivialityProbe.lean:5:135: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 2 * \u2211 k \u2208 range (n + 1), (3 * k ^ 2 - k) / 2 = n ^ 2 * (n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pow-five-add-pow-seven",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp_gfv2sf4/TrivialityProbe.lean:4:190: error: unsolved goals\n\u22a2 \u2200 (n : \u2115),\n    \u2211 i \u2208 Finset.range (n + 1), i ^ 5 + \u2211 i \u2208 Finset.range (n + 1), i ^ 7 = 2 * (\u2211 i \u2208 Finset.range (n + 1), i) ^ 4\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pow-five-closed-form",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp0wf600lc/TrivialityProbe.lean:4:159: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 12 * \u2211 i \u2208 Finset.range (n + 1), i ^ 5 = n ^ 2 * (n + 1) ^ 2 * (2 * n ^ 2 + 2 * n - 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pow-five-faulhaber-triangular",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp78qvish1/TrivialityProbe.lean:4:201: error: unsolved goals\n\u22a2 \u2200 (n : \u2115),\n    3 * \u2211 i \u2208 Finset.range (n + 1), i ^ 5 =\n      (\u2211 i \u2208 Finset.range (n + 1), i) ^ 2 * (4 * \u2211 i \u2208 Finset.range (n + 1), i - 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pow-four-closed-form",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpkjeulnuy/TrivialityProbe.lean:4:168: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 30 * \u2211 k \u2208 Finset.range (n + 1), \u2191k ^ 4 = \u2191n * (\u2191n + 1) * (2 * \u2191n + 1) * (3 * \u2191n ^ 2 + 3 * \u2191n - 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pow-four-triangular-form",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpqp6jh3uz/TrivialityProbe.lean:4:189: error: unsolved goals\n\u22a2 \u2200 (n : \u2115),\n    15 * \u2211 i \u2208 Finset.range (n + 1), i ^ 4 = (\u2211 i \u2208 Finset.range (n + 1), i) * (2 * n + 1) * (3 * n ^ 2 + 3 * n - 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pow-seven-closed-form",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpwcpflh27/TrivialityProbe.lean:4:180: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 24 * \u2211 i \u2208 Finset.range (n + 1), i ^ 7 = n ^ 2 * (n + 1) ^ 2 * (3 * n ^ 4 + 6 * n ^ 3 - n ^ 2 - 4 * n + 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pow-seven-faulhaber-triangular",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpm7k34xbr/TrivialityProbe.lean:4:244: error: unsolved goals\n\u22a2 \u2200 (n : \u2115),\n    3 * \u2211 i \u2208 Finset.range (n + 1), i ^ 7 =\n      (\u2211 i \u2208 Finset.range (n + 1), i) ^ 2 *\n        (6 * (\u2211 i \u2208 Finset.range (n + 1), i) ^ 2 - 4 * \u2211 i \u2208 Finset.range (n + 1), i + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pow-six-closed-form",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpl3cxi9es/TrivialityProbe.lean:4:176: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 42 * \u2211 i \u2208 Finset.range (n + 1), i ^ 6 = n * (n + 1) * (2 * n + 1) * (3 * n ^ 4 + 6 * n ^ 3 - 3 * n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-pronic",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp6evjgdhp/TrivialityProbe.lean:4:126: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 3 * \u2211 i \u2208 Finset.range (n + 1), i * (i + 1) = n * (n + 1) * (n + 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-recip-pronic",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpc9zqbm37/TrivialityProbe.lean:4:130: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 x \u2208 Finset.range n, (\u2191x + 2)\u207b\u00b9 * (\u2191x + 1)\u207b\u00b9 = \u2191n / (\u2191n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-recip-triangular",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp9uwofdny/TrivialityProbe.lean:4:172: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), \u2211 k \u2208 Finset.range n, 2 / ((\u2191k + 1) * (\u2191k + 2)) = 2 * \u2191n / (\u2191n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-sq-closed-form",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp8k01jelj/TrivialityProbe.lean:4:132: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 6 * \u2211 i \u2208 Finset.range (n + 1), i ^ 2 = n * (n + 1) * (2 * n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-sq-even",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpixfr9xhs/TrivialityProbe.lean:4:129: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 3 * \u2211 i \u2208 Finset.range n, (2 * i) ^ 2 = 2 * n * (n - 1) * (2 * n - 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-sq-mul-choose",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp4fibr_yz/TrivialityProbe.lean:5:129: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 4 * \u2211 k \u2208 range (n + 1), k ^ 2 * n.choose k = n * (n + 1) * 2 ^ n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-sq-odd-closed-form",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp1gaz8vb_/TrivialityProbe.lean:4:144: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 3 * \u2211 i \u2208 Finset.range n, (2 * i + 1) ^ 2 = n * (2 * n - 1) * (2 * n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-sq-triangular-form",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpiv8mjkw5/TrivialityProbe.lean:4:156: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 3 * \u2211 i \u2208 Finset.range (n + 1), i ^ 2 = (\u2211 i \u2208 Finset.range (n + 1), i) * (2 * n + 1)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-three-consecutive-product",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpn7dck2fs/TrivialityProbe.lean:4:156: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 4 * \u2211 i \u2208 Finset.range n, i * (i + 1) * (i + 2) = (n - 1) * n * (n + 1) * (n + 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-range-triangular-eq-tetrahedral",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpm6u3c2vi/TrivialityProbe.lean:4:149: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 6 * \u2211 k \u2208 Finset.range (n + 1), k * (k + 1) / 2 = n * (n + 1) * (n + 2)\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "sum-three-squares-ge-sum-products",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpgk9fmbgy/TrivialityProbe.lean:4:125: error: unsolved goals\n\u22a2 \u2200 (a b c : \u211d), a * b + b * c + c * a \u2264 a ^ 2 + b ^ 2 + c ^ 2\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "thirty-dvd-pow-five-sub-self",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpr40rn48a/TrivialityProbe.lean:4:91: error: unsolved goals\n\u22a2 \u2200 (n : \u2124), 30 \u2223 n ^ 5 - n\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "three-cubes-div-nine",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmp2wh3e5_1/TrivialityProbe.lean:4:100: error: unsolved goals\n\u22a2 \u2200 (n : \u2115), 9 \u2223 n ^ 3 + (n + 1) ^ 3 + (n + 2) ^ 3\n",
+      "verdict": "non-trivial"
+    },
+    {
+      "battery": [
+        "rfl",
+        "trivial",
+        "decide",
+        "norm_num",
+        "omega",
+        "simp",
+        "simp_all",
+        "aesop",
+        "ring",
+        "linarith",
+        "tauto"
+      ],
+      "closed_by": null,
+      "goal": "weighted-am-gm-cubed",
+      "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "stderr_excerpt": "/tmp/tmpxbi46jp6/TrivialityProbe.lean:4:124: error: unsolved goals\n\u22a2 \u2200 (x y : \u211d), 0 \u2264 x \u2192 0 \u2264 y \u2192 3 * x ^ 2 * y \u2264 2 * x ^ 3 + y ^ 3\n",
+      "verdict": "non-trivial"
+    }
+  ]
+}

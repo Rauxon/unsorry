@@ -17,6 +17,7 @@ from tools.sourcing.check_triviality import (
     override_reason,
     probe,
     probe_module,
+    render_audit,
 )
 
 
@@ -227,3 +228,39 @@ def test_audit_combined_first_reprobes_only_trivial(tmp_path):
     assert sum("theorem hard" in s for s in runner.sources) == 1
     # triv ran the combined build + at least one per-tactic re-probe build.
     assert sum("theorem triv" in s for s in runner.sources) >= 2
+
+
+# ---- retro-audit report rendering (#387 PR2) ----
+
+def test_render_audit_md_and_json():
+    reports = [
+        {"goal": "t1", "verdict": "trivial", "closed_by": "simp"},
+        {"goal": "n1", "verdict": "non-trivial", "closed_by": None},
+        {"goal": "e1", "verdict": "probe-error", "closed_by": None},
+    ]
+    md, payload = render_audit(reports, "deadbeef")
+    assert "Triviality retro-audit" in md
+    assert "| trivial | 1 |" in md
+    assert "| non-trivial | 1 |" in md
+    assert "`t1`" in md and "`simp`" in md   # flagged trivial table
+    assert "`e1`" in md                       # probe-error listed
+    import json as _json
+    data = _json.loads(payload)
+    assert data["counts"]["trivial"] == 1
+    assert data["counts"]["non-trivial"] == 1
+    assert data["mathlib_rev"] == "deadbeef"
+    assert len(data["reports"]) == 3
+
+
+def test_render_audit_clean_library():
+    md, _ = render_audit([{"goal": "n1", "verdict": "non-trivial", "closed_by": None}], "x")
+    assert "the library is clean" in md
+
+
+def test_classify_decide_decidable_noise_not_probe_error():
+    # #410 follow-up: `decide` can't synthesize Decidable for a ∀ over an infinite
+    # type — that tactic-limitation message must NOT read as a statement error.
+    out = "error: failed to synthesize\n  Decidable (∀ (n : ℕ), n + 0 = n)\n"
+    assert classify(1, out) == "non-trivial"
+    # a genuine statement typeclass gap still surfaces:
+    assert classify(1, "error: failed to synthesize instance\n  Inv ℕ") == "probe-error"
