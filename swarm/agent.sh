@@ -1246,6 +1246,15 @@ open_prove_pr_exists() {
   return 1
 }
 
+decompose_blocked_by_open_prove_pr() {
+  local goal="$1"
+  if open_prove_pr_exists "$goal"; then
+    log "decompose($goal): open prove PR already exists — refusing to decompose"
+    return 0
+  fi
+  return 1
+}
+
 # Step 4: write + commit + push the claim; first-push-wins with retry. The
 # loop is re-entrant (SPEC-007-A): every retry rebuilds the claim commit from
 # scratch on a freshly-fetched, hard-reset origin/claims tip — no incremental
@@ -2163,6 +2172,9 @@ prove_local_goal() {
 # type-check, or any guardrail (≤ cap, strictly-smaller) rejects the split.
 decompose_goal() {
   local goal="$1" depth maxdepth prwt branch stmt out i=0 d0 ddur probe_rc
+  if decompose_blocked_by_open_prove_pr "$goal"; then
+    return 1
+  fi
   depth="$(py_helper goal-depth "goals/$goal.aisp")" || return 1
   maxdepth="$(py_helper max-decomp depth)" || return 1
   if [ "$depth" -ge "$maxdepth" ]; then
@@ -2269,6 +2281,11 @@ Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` 
   fi
 
   write_proof_run_record "$prwt" "$goal" decomposed || return 1
+  if decompose_blocked_by_open_prove_pr "$goal"; then
+    git worktree remove --force "$prwt" >/dev/null 2>&1 || true
+    git branch -q -D "$branch" >/dev/null 2>&1 || true
+    return 1
+  fi
   if submit_pr_tree "$prwt" "$branch" \
       "decompose($goal): ${#sub_ids[@]} sub-lemmas by $AGENT_ID" \
       "Automated decomposition (ADR-009, SPEC-009-A): goal \`$goal\` resisted proof within budget, so it is split into ${#sub_ids[@]} claimable sub-lemmas (depth $((depth + 1))) and parked \`blocked\`. The parent re-opens once its subs are proved and still closes only through Gate A — the dependency edges are advisory, never a trust path." \
@@ -3812,6 +3829,24 @@ test_open_pr_claim_guard() {
   return 0
 }
 
+test_decompose_open_prove_guard() {
+  local rc
+  gh() { printf 'prove(parent-goal): theorem_name by agent-a\n'; }
+  if ! decompose_blocked_by_open_prove_pr parent-goal; then
+    unset -f gh; log "  decompose did not detect open direct proof PR"; return 1
+  fi
+
+  gh() { printf 'prove(parent-goal-s1): theorem_name by agent-a\n'; }
+  rc=0; decompose_blocked_by_open_prove_pr parent-goal || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  decompose was blocked by sibling proof PR"; return 1; }
+
+  gh() { return 9; }
+  rc=0; decompose_blocked_by_open_prove_pr parent-goal || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  gh failure blocked decomposition"; return 1; }
+  unset -f gh
+  return 0
+}
+
 test_render_decomp_gateb() {
   # A rendered decomposition record + its sub goal records validate under the
   # real Gate B (acyclic, subs are known goals, none re-emits the parent).
@@ -3872,6 +3907,7 @@ run_self_tests() {
     test_lean_statement_helpers
     test_lean_sha_determinism
     test_prove_candidate_filtering
+    test_decompose_open_prove_guard
     test_local_prove_auto_selection
     test_already_proved_excluded
     test_goal_proved_rewrite
