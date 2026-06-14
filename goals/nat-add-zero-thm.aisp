@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-add-zero-thm
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-add-zero-thm.md
+  src≜packages/unsorry-archive-0001/backlog/nat-add-zero-thm.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-add-zero-thm.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-add-zero-thm.lean
   sha≜30bf70e18793e4574874c6d084b0bde8bf05fbae917b23bae14a2923c41dfa13
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

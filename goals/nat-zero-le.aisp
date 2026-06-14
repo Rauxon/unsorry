@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-zero-le
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-zero-le.md
+  src≜packages/unsorry-archive-0001/backlog/nat-zero-le.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-zero-le.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-zero-le.lean
   sha≜602dda5142dcdbf63321aec11798b1ba4163c778bbe95ea04334209ba294e2be
   aff≜1
 }
