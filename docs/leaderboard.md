@@ -4,23 +4,23 @@
 
 Verified output comes from `library/index`; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**106 verified proofs · 24 attributed · 82 historical/unknown · 31 logged terminal runs.**
+**106 verified proofs · 24 attributed · 82 historical/unknown · 32 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
 | Successful terminal runs | 22 |
-| Failed terminal runs | 9 |
+| Failed terminal runs | 10 |
 | Decomposed after failure | 6 |
-| Failed without decomposition | 3 |
-| Run success rate | 71.0% |
-| Provider attempts | 49 |
-| Failed attempts | 27 |
-| Attempt yield | 44.9% |
-| Recorded run time | 5h 9m |
-| Median / p90 run time | 5m 44s / 20m 27s |
-| Verified successes per recorded hour | 4.26 |
+| Failed without decomposition | 4 |
+| Run success rate | 68.8% |
+| Provider attempts | 50 |
+| Failed attempts | 28 |
+| Attempt yield | 44.0% |
+| Recorded run time | 5h 41m |
+| Median / p90 run time | 6m 20s / 24m 18s |
+| Verified successes per recorded hour | 3.87 |
 | Proofs with run telemetry | 22 (20.8%) |
 
 ## Work Queue
@@ -32,7 +32,7 @@ Verified output comes from `library/index`; append-only terminal-run telemetry c
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 9 | 6 | 66.7% | 12 | 9m 15s |
-| 2 | 7 | 5 | 71.4% | 5 | 3m 58s |
+| 2 | 8 | 5 | 62.5% | 6 | 4m 7s |
 | 3 | 10 | 8 | 80.0% | 8 | 9m 11s |
 | 4 | 5 | 3 | 60.0% | 2 | 4m 47s |
 
@@ -42,9 +42,9 @@ Verified output comes from `library/index`; append-only terminal-run telemetry c
 |------|--------|-----------:|-----:|----------------:|--------------:|
 | `sq-add-sq-eq-three-mul-sq-s4` | `open` | 1 | 2 | 6 | 54m 47s |
 | `nat-sq-lt-two-pow-s2` | `blocked` | 1 | 1 | 3 | 9m 15s |
+| `four-consecutive-product-add-one-square` | `open` | 2 | 2 | 2 | 33m 34s |
 | `no-nat-sq-eq-two-mul-sq` | `blocked` | 4 | 1 | 1 | 3m 23s |
 | `nesbitt-inequality` | `blocked` | 4 | 1 | 1 | 2m 43s |
-| `four-consecutive-product-add-one-square` | `open` | 2 | 1 | 1 | 2m 2s |
 
 ## Contributor Leaderboard
 
@@ -52,7 +52,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 61 | 19 | 42 | 23 | 82.6% | 101 | 11625 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 61 | 19 | 42 | 24 | 79.2% | 101 | 11625 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 30 | 0 | 30 | 0 | — | 61 | 6850 |
 | 3 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 4 | [@perttu](https://github.com/perttu) | 3 | 3 | 0 | 4 | 75.0% | 3 | 375 |
@@ -72,12 +72,13 @@ Git add-author attribution covers 106 of 106 proof index files. It is used only 
 | `claude / opus` | 19 | 21 | 90.5% | 14 | 1 | 7m 0s | 5.13 |
 | `codex / unknown` | 3 | 8 | 37.5% | 7 | 2 | 3m 49s | 5.45 |
 | `manual / gpt-5.5` | 2 | 0 | — | 0 | 1 | — | — |
-| `openai / leanstral-2603` | 0 | 2 | 0.0% | 6 | 1 | 27m 19s | 0.00 |
+| `openai / leanstral-2603` | 0 | 3 | 0.0% | 7 | 1 | 31m 32s | 0.00 |
 
 ## Recent Terminal Runs
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-14T09:58:58Z` | `four-consecutive-product-add-one-square` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 32s |
 | `2026-06-14T09:09:47Z` | `nat-sq-lt-two-pow-s2` | [@perttu](https://github.com/perttu) | `codex / unknown` | `decomposed` | 3 | 3 | 9m 15s |
 | `2026-06-14T08:50:54Z` | `nat-sq-lt-two-pow-s1` | [@perttu](https://github.com/perttu) | `codex / unknown` | `proved` | 1 | 0 | 4m 15s |
 | `2026-06-14T08:45:05Z` | `four-consecutive-product-add-one-square-s2` | [@perttu](https://github.com/perttu) | `codex / unknown` | `proved` | 1 | 0 | 4m 17s |
@@ -97,7 +98,6 @@ Git add-author attribution covers 106 of 106 proof index files. It is used only 
 | `2026-06-13T13:48:06Z` | `sum-range-pow-five-faulhaber-triangular` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 4m 52s |
 | `2026-06-13T13:46:00Z` | `sum-range-cube-mul-choose` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 9m 16s |
 | `2026-06-13T13:43:00Z` | `sum-range-fall-mul-choose` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 4m 55s |
-| `2026-06-13T13:37:46Z` | `sum-range-choose-mul-two-pow` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 3m 8s |
 
 ## Interpretation
 
