@@ -1,0 +1,13 @@
+𝔸5.1.decomp.am-hm-two-var.oma-2-c50d@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜am-hm-two-var; agent≜oma-2-c50d}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜am-hm-two-var-s1,sha≜ff0fe10ebdc1ea2d3f0bb1ebcf1ca7225fd31445055a06ae3b65b4969c05d59b⟩
+  sub₂≜⟨id≜am-hm-two-var-s2,sha≜9b62b91f804274e328f0c9827968130c871a44e5a9a870147046680e550fef3f⟩
+  sub₃≜⟨id≜am-hm-two-var-s3,sha≜e7d548372abe729275e3008217dd2dfb5f340387224d22bf031b0266e6f0c896⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

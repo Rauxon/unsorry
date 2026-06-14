@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜am-hm-two-var
   phase≜prove
-  status≜open
+  status≜blocked
   difficulty≜2
 }
 ⟦Σ:Source⟧{
