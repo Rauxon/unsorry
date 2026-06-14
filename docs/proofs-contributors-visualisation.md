@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**192 goals — 56 open · 8 blocked · 10 translated · 118 proved.** 18 decomposition families shown below; standalone goals are listed in the table.
+**200 goals — 63 open · 8 blocked · 10 translated · 79 proved · 40 archived.** 18 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (112 of 118 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (74 of 79 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -292,6 +292,8 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`cauchy-schwarz-three-term`](https://github.com/agenticsnz/unsorry/blob/main/goals/cauchy-schwarz-three-term.lean) | open | 3 | — | — | — | — |
 | [`consecutive-cubes-diff-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-cubes-diff-odd.lean) | open | 2 | — | — | — | — |
 | [`constrained-sum-sq-ge-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/constrained-sum-sq-ge-three.lean) | open | 2 | — | — | — | — |
+| [`cube-mod-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-mod-four.lean) | open | 2 | — | — | — | — |
+| [`cube-mod-seven`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-mod-seven.lean) | open | 2 | — | — | — | — |
 | [`cube-sum-ge-mul-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-mul-sq.lean) | open | 2 | — | — | — | — |
 | [`cube-sum-ge-three-prod-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod-s1.lean) | open | 1 | — | — | — | — |
 | [`cube-sum-ge-three-prod-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod-s2.lean) | open | 1 | — | — | — | — |
@@ -321,10 +323,15 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`realization-edge-in-set`](https://github.com/agenticsnz/unsorry/blob/main/goals/realization-edge-in-set.lean) | open | 4 | — | — | — | — |
 | [`realization-edge-relation`](https://github.com/agenticsnz/unsorry/blob/main/goals/realization-edge-relation.lean) | open | 2 | — | — | — | — |
 | [`recip-succ-lt-recip`](https://github.com/agenticsnz/unsorry/blob/main/goals/recip-succ-lt-recip.lean) | open | 2 | — | — | — | — |
+| [`six-dvd-n-mul-succ-mul-two-n-add-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-n-mul-succ-mul-two-n-add-one.lean) | open | 2 | — | — | — | — |
 | [`six-dvd-pow-three-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-pow-three-sub-self.lean) | open | 2 | — | — | — | — |
 | [`six-dvd-three-consecutive-int`](https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-three-consecutive-int.lean) | open | 2 | — | — | — | — |
+| [`sixth-power-mod-seven`](https://github.com/agenticsnz/unsorry/blob/main/goals/sixth-power-mod-seven.lean) | open | 2 | — | — | — | — |
 | [`sq-add-sq-eq-three-mul-sq-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s4.lean) | open | 1 | — | — | — | — |
 | [`sq-lt-cube-of-one-lt`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-lt-cube-of-one-lt.lean) | open | 2 | — | — | — | — |
+| [`sq-mod-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-mod-five.lean) | open | 2 | — | — | — | — |
+| [`sq-mod-nine`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-mod-nine.lean) | open | 2 | — | — | — | — |
+| [`sq-mod-seven`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-mod-seven.lean) | open | 2 | — | — | — | — |
 | [`sq-sum-le-two-mul-sum-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-sum-le-two-mul-sum-sq.lean) | open | 2 | — | — | — | — |
 | [`square-of-sum-ge-three-pairwise`](https://github.com/agenticsnz/unsorry/blob/main/goals/square-of-sum-ge-three-pairwise.lean) | open | 2 | — | — | — | — |
 | [`sum-four-pow-ge-sq-prod`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-four-pow-ge-sq-prod.lean) | open | 2 | — | — | — | — |
@@ -335,10 +342,10 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sum-range-choose-sq-eq-central`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-choose-sq-eq-central.lean) | open | 4 | — | — | — | — |
 | [`sum-range-odd-cubes`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-odd-cubes.lean) | open | 3 | — | — | — | — |
 | [`sum-range-triangular-eq-tetrahedral`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-triangular-eq-tetrahedral.lean) | open | 3 | — | — | — | — |
+| [`sum-range-two-mul-add-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-two-mul-add-one.lean) | open | 2 | — | — | — | — |
 | [`sum-sq-add-one-ge-mul-add`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-sq-add-one-ge-mul-add.lean) | open | 2 | — | — | — | — |
 | [`twelve-dvd-pow-four-sub-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/twelve-dvd-pow-four-sub-sq.lean) | open | 2 | — | — | — | — |
 | [`twenty-four-dvd-four-consecutive`](https://github.com/agenticsnz/unsorry/blob/main/goals/twenty-four-dvd-four-consecutive.lean) | open | 2 | — | — | — | — |
-| [`two-abs-le-sq-add-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/two-abs-le-sq-add-one.lean) | open | 2 | — | — | — | — |
 | [`two-abs-mul-le-sq-add-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/two-abs-mul-le-sq-add-sq.lean) | open | 2 | — | — | — | — |
 | [`weighted-am-gm-cubed`](https://github.com/agenticsnz/unsorry/blob/main/goals/weighted-am-gm-cubed.lean) | open | 2 | — | — | — | — |
 | [`am-gm-three-cube`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube.lean) | blocked | 3 | — | — | — | — |
@@ -360,12 +367,8 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`nat-zero-identity-add`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-zero-identity-add.lean) | translated | — | — | — | — | — |
 | [`nat-zero-lt-succ`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-zero-lt-succ.lean) | translated | — | — | — | — | 2026-06-10 |
 | [`abstract-regular-polyhedron-classification`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-classification.lean) | proved | 3 | — | — | — | 2026-06-13 |
-| [`alternating-sum-naturals`](https://github.com/agenticsnz/unsorry/blob/main/goals/alternating-sum-naturals.lean) | proved | 3 | mac-158f | OceanLi | [#204](https://github.com/agenticsnz/unsorry/pull/204) | 2026-06-11 |
 | [`am-gm-three-cube-s2-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s1.lean) | proved | 1 | oma-2-c50d | perttu · `gemini-3.1-pro-preview` | [#496](https://github.com/agenticsnz/unsorry/pull/496) | 2026-06-14 |
-| [`and-comm-imp`](https://github.com/agenticsnz/unsorry/blob/main/goals/and-comm-imp.lean) | proved | 1 | prover-bravo | Chris Barlow | [#70](https://github.com/agenticsnz/unsorry/pull/70) | 2026-06-10 |
-| [`binder-shape-canary`](https://github.com/agenticsnz/unsorry/blob/main/goals/binder-shape-canary.lean) | proved | 1 | — | — | — | 2026-06-12 |
 | [`consecutive-triangular-eq-square`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-triangular-eq-square.lean) | proved | 2 | p3-b1 | cgbarlow · `opus` | [#347](https://github.com/agenticsnz/unsorry/pull/347) | 2026-06-13 |
-| [`cube-eq-triangular-sq-diff`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-eq-triangular-sq-diff.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#322](https://github.com/agenticsnz/unsorry/pull/322) | 2026-06-13 |
 | [`cube-sum-ge-three-prod-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod-s3.lean) | proved | 1 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#493](https://github.com/agenticsnz/unsorry/pull/493) | 2026-06-14 |
 | [`descartes-total-angular-defect`](https://github.com/agenticsnz/unsorry/blob/main/goals/descartes-total-angular-defect.lean) | proved | 4 | oma-2-c50d | perttu | [#465](https://github.com/agenticsnz/unsorry/pull/465) | 2026-06-14 |
 | [`eight-dvd-consecutive-odd-sq-diff`](https://github.com/agenticsnz/unsorry/blob/main/goals/eight-dvd-consecutive-odd-sq-diff.lean) | proved | 2 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#495](https://github.com/agenticsnz/unsorry/pull/495) | 2026-06-14 |
@@ -377,7 +380,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`euclid-perfect-numbers-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/euclid-perfect-numbers-s4.lean) | proved | 1 | claude-rmt-001 | chat-bit-01 | [#273](https://github.com/agenticsnz/unsorry/pull/273) | 2026-06-13 |
 | [`euclid-perfect-numbers-s5`](https://github.com/agenticsnz/unsorry/blob/main/goals/euclid-perfect-numbers-s5.lean) | proved | 1 | claude-rmt-001 | chat-bit-01 | [#269](https://github.com/agenticsnz/unsorry/pull/269) | 2026-06-13 |
 | [`euclid-perfect-numbers-s6`](https://github.com/agenticsnz/unsorry/blob/main/goals/euclid-perfect-numbers-s6.lean) | proved | 1 | claude-rmt-001 | chat-bit-01 | [#279](https://github.com/agenticsnz/unsorry/pull/279) | 2026-06-13 |
-| [`factorial-telescope-sum`](https://github.com/agenticsnz/unsorry/blob/main/goals/factorial-telescope-sum.lean) | proved | 2 | binto-labs | binto | [#218](https://github.com/agenticsnz/unsorry/pull/218) | 2026-06-12 |
 | [`four-consecutive-product-add-one-square-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s1.lean) | proved | 1 | oma-2-c50d | perttu | [#437](https://github.com/agenticsnz/unsorry/pull/437) | 2026-06-14 |
 | [`four-consecutive-product-add-one-square-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s2.lean) | proved | 1 | oma-2-c50d | perttu | [#438](https://github.com/agenticsnz/unsorry/pull/438) | 2026-06-14 |
 | [`four-consecutive-product-add-one-square-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s3.lean) | proved | 1 | — | adam91holt · `gpt-5.5` | — | 2026-06-14 |
@@ -386,36 +388,14 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`fourth-power-mod-five-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-five-s1.lean) | proved | 1 | claude-rmt-001 | chat-bit-01 | [#353](https://github.com/agenticsnz/unsorry/pull/353) | 2026-06-13 |
 | [`fourth-power-mod-five-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-five-s2.lean) | proved | 1 | claude-rmt-001 | chat-bit-01 | [#343](https://github.com/agenticsnz/unsorry/pull/343) | 2026-06-13 |
 | [`fourth-power-mod-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-three.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#306](https://github.com/agenticsnz/unsorry/pull/306) | 2026-06-13 |
-| [`int-add-neg`](https://github.com/agenticsnz/unsorry/blob/main/goals/int-add-neg.lean) | proved | 1 | prover-alpha | Chris Barlow | [#72](https://github.com/agenticsnz/unsorry/pull/72) | 2026-06-10 |
-| [`int-neg-neg`](https://github.com/agenticsnz/unsorry/blob/main/goals/int-neg-neg.lean) | proved | 1 | prover-alpha | Chris Barlow | [#74](https://github.com/agenticsnz/unsorry/pull/74) | 2026-06-10 |
-| [`int-sub-eq-add-neg`](https://github.com/agenticsnz/unsorry/blob/main/goals/int-sub-eq-add-neg.lean) | proved | 1 | p2-charlie | Chris Barlow | [#90](https://github.com/agenticsnz/unsorry/pull/90) | 2026-06-10 |
-| [`list-reverse-reverse`](https://github.com/agenticsnz/unsorry/blob/main/goals/list-reverse-reverse.lean) | proved | 1 | p2-charlie | Chris Barlow | [#85](https://github.com/agenticsnz/unsorry/pull/85) | 2026-06-10 |
-| [`nat-add-assoc-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-add-assoc-thm.lean) | proved | 1 | p2-alpha | Chris Barlow | [#89](https://github.com/agenticsnz/unsorry/pull/89) | 2026-06-10 |
-| [`nat-add-comm-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-add-comm-thm.lean) | proved | 1 | p2-bravo | Chris Barlow | [#91](https://github.com/agenticsnz/unsorry/pull/91) | 2026-06-10 |
-| [`nat-add-left-cancel`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-add-left-cancel.lean) | proved | 1 | p2-charlie | Chris Barlow | [#97](https://github.com/agenticsnz/unsorry/pull/97) | 2026-06-10 |
-| [`nat-add-zero-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-add-zero-thm.lean) | proved | 1 | p2-alpha | Chris Barlow | [#96](https://github.com/agenticsnz/unsorry/pull/96) | 2026-06-10 |
-| [`nat-dvd-refl`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-dvd-refl.lean) | proved | 1 | p2-bravo | Chris Barlow | [#107](https://github.com/agenticsnz/unsorry/pull/107) | 2026-06-10 |
-| [`nat-even-or-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-even-or-odd.lean) | proved | 1 | p2-charlie | Chris Barlow | [#103](https://github.com/agenticsnz/unsorry/pull/103) | 2026-06-10 |
-| [`nat-gcd-comm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-gcd-comm.lean) | proved | 1 | p2-alpha | Chris Barlow | [#105](https://github.com/agenticsnz/unsorry/pull/105) | 2026-06-10 |
-| [`nat-le-add-right`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-le-add-right.lean) | proved | 1 | p2-bravo | Chris Barlow | [#115](https://github.com/agenticsnz/unsorry/pull/115) | 2026-06-10 |
-| [`nat-le-succ`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-le-succ.lean) | proved | 1 | p2-charlie | Chris Barlow | [#119](https://github.com/agenticsnz/unsorry/pull/119) | 2026-06-10 |
-| [`nat-mul-add-distrib`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-mul-add-distrib.lean) | proved | 1 | p2-alpha | Chris Barlow | [#117](https://github.com/agenticsnz/unsorry/pull/117) | 2026-06-10 |
-| [`nat-mul-comm-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-mul-comm-thm.lean) | proved | 1 | p2-charlie | Chris Barlow | [#121](https://github.com/agenticsnz/unsorry/pull/121) | 2026-06-10 |
-| [`nat-mul-one-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-mul-one-thm.lean) | proved | 1 | p3-b1 | Chris Barlow | [#235](https://github.com/agenticsnz/unsorry/pull/235) | 2026-06-12 |
-| [`nat-mul-zero-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-mul-zero-thm.lean) | proved | 1 | p3-b1 | Chris Barlow | [#238](https://github.com/agenticsnz/unsorry/pull/238) | 2026-06-12 |
 | [`nat-sq-lt-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow.lean) | proved | 3 | — | adam91holt · `gpt-5.5` | — | 2026-06-14 |
 | [`nat-sq-lt-two-pow-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s1.lean) | proved | 1 | oma-2-c50d | perttu | [#442](https://github.com/agenticsnz/unsorry/pull/442) | 2026-06-14 |
 | [`nat-sq-lt-two-pow-s2-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s2.lean) | proved | 1 | — | adam91holt · `gpt-5.5` | — | 2026-06-14 |
 | [`nat-sq-lt-two-pow-s2-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s3.lean) | proved | 1 | — | adam91holt · `gpt-5.5` | — | 2026-06-14 |
-| [`nat-zero-le`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-zero-le.lean) | proved | 1 | p3-a1 | Chris Barlow | [#237](https://github.com/agenticsnz/unsorry/pull/237) | 2026-06-12 |
 | [`nesbitt-inequality-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality-s2.lean) | proved | 1 | claude-rmt-001 | chat-bit-01 | [#451](https://github.com/agenticsnz/unsorry/pull/451) | 2026-06-14 |
-| [`nicomachus-sum-cubes`](https://github.com/agenticsnz/unsorry/blob/main/goals/nicomachus-sum-cubes.lean) | proved | 3 | e-alpha | Chris Barlow | [#133](https://github.com/agenticsnz/unsorry/pull/133) | 2026-06-10 |
-| [`nicomachus-sum-cubes-triangular`](https://github.com/agenticsnz/unsorry/blob/main/goals/nicomachus-sum-cubes-triangular.lean) | proved | 3 | p3-bravo | Chris Barlow | [#154](https://github.com/agenticsnz/unsorry/pull/154) | 2026-06-11 |
-| [`not-prime-pow-four-add-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/not-prime-pow-four-add-four.lean) | proved | 3 | binto-labs | binto | [#221](https://github.com/agenticsnz/unsorry/pull/221) | 2026-06-12 |
 | [`odd-fourth-power-mod-sixteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-fourth-power-mod-sixteen.lean) | proved | 2 | p3-a1 | cgbarlow · `opus` | [#310](https://github.com/agenticsnz/unsorry/pull/310) | 2026-06-13 |
 | [`odd-sq-mod-eight`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-sq-mod-eight.lean) | proved | 2 | binto-labs | binto | [#246](https://github.com/agenticsnz/unsorry/pull/246) | 2026-06-12 |
 | [`one-add-four-b-fourth-not-prime`](https://github.com/agenticsnz/unsorry/blob/main/goals/one-add-four-b-fourth-not-prime.lean) | proved | 3 | p3-a1 | cgbarlow · `opus` | [#315](https://github.com/agenticsnz/unsorry/pull/315) | 2026-06-13 |
-| [`or-comm-imp`](https://github.com/agenticsnz/unsorry/blob/main/goals/or-comm-imp.lean) | proved | 1 | p3-a1 | Chris Barlow | [#239](https://github.com/agenticsnz/unsorry/pull/239) | 2026-06-12 |
 | [`platonic-schlafli-core`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-schlafli-core.lean) | proved | 4 | p3-alpha | Chris Barlow | [#211](https://github.com/agenticsnz/unsorry/pull/211) | 2026-06-12 |
 | [`platonic-schlafli-core-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-schlafli-core-s1.lean) | proved | 1 | p3-alpha | Chris Barlow | [#207](https://github.com/agenticsnz/unsorry/pull/207) | 2026-06-11 |
 | [`platonic-schlafli-core-s1-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-schlafli-core-s1-s1.lean) | proved | 1 | p3-alpha | Chris Barlow | [#197](https://github.com/agenticsnz/unsorry/pull/197) | 2026-06-11 |
@@ -445,36 +425,64 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sum-four-sq-ge-two-cross-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-four-sq-ge-two-cross-s1.lean) | proved | 1 | steves-mac-mini-50c1 | yarcles · `opus` | [#547](https://github.com/agenticsnz/unsorry/pull/547) | 2026-06-14 |
 | [`sum-four-sq-ge-two-cross-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-four-sq-ge-two-cross-s2.lean) | proved | 1 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#549](https://github.com/agenticsnz/unsorry/pull/549) | 2026-06-14 |
 | [`sum-range-choose-mul-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-choose-mul-two-pow.lean) | proved | 2 | p3-a1 | cgbarlow · `opus` | [#338](https://github.com/agenticsnz/unsorry/pull/338) | 2026-06-13 |
-| [`sum-range-cube-even`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-even.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#329](https://github.com/agenticsnz/unsorry/pull/329) | 2026-06-13 |
 | [`sum-range-cube-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-mul-choose.lean) | proved | 3 | p3-b1 | cgbarlow · `opus` | [#340](https://github.com/agenticsnz/unsorry/pull/340) | 2026-06-13 |
-| [`sum-range-cube-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-odd.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#254](https://github.com/agenticsnz/unsorry/pull/254) | 2026-06-12 |
 | [`sum-range-fall-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fall-mul-choose.lean) | proved | 3 | p3-a1 | cgbarlow · `opus` | [#339](https://github.com/agenticsnz/unsorry/pull/339) | 2026-06-13 |
 | [`sum-range-fib-even-index`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fib-even-index.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#408](https://github.com/agenticsnz/unsorry/pull/408) | 2026-06-14 |
 | [`sum-range-fib-odd-index`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fib-odd-index.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#406](https://github.com/agenticsnz/unsorry/pull/406) | 2026-06-14 |
-| [`sum-range-fib-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fib-sq.lean) | proved | 2 | binto-labs | binto | [#217](https://github.com/agenticsnz/unsorry/pull/217) | 2026-06-12 |
 | [`sum-range-id-eq-choose-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-eq-choose-two.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#403](https://github.com/agenticsnz/unsorry/pull/403) | 2026-06-14 |
-| [`sum-range-mul-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-mul-two-pow.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#251](https://github.com/agenticsnz/unsorry/pull/251) | 2026-06-12 |
-| [`sum-range-odd-eq-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-odd-eq-sq.lean) | proved | 1 | binto-labs | binto | [#214](https://github.com/agenticsnz/unsorry/pull/214) | 2026-06-12 |
-| [`sum-range-pentagonal-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pentagonal-closed-form.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#259](https://github.com/agenticsnz/unsorry/pull/259) | 2026-06-12 |
 | [`sum-range-pow-five-add-pow-seven`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-five-add-pow-seven.lean) | proved | 4 | p3-a1 | cgbarlow · `opus` | [#351](https://github.com/agenticsnz/unsorry/pull/351) | 2026-06-13 |
 | [`sum-range-pow-five-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-five-closed-form.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#255](https://github.com/agenticsnz/unsorry/pull/255) | 2026-06-12 |
 | [`sum-range-pow-five-faulhaber-triangular`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-five-faulhaber-triangular.lean) | proved | 3 | p3-a1 | cgbarlow · `opus` | [#342](https://github.com/agenticsnz/unsorry/pull/342) | 2026-06-13 |
-| [`sum-range-pow-four-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-four-closed-form.lean) | proved | 2 | h4 | Chris Barlow | [#140](https://github.com/agenticsnz/unsorry/pull/140) | 2026-06-10 |
-| [`sum-range-pow-four-triangular-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-four-triangular-form.lean) | proved | 3 | p3-b1 | cgbarlow · `opus` | [#345](https://github.com/agenticsnz/unsorry/pull/345) | 2026-06-13 |
 | [`sum-range-pow-seven-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-seven-closed-form.lean) | proved | 4 | p3-a1 | cgbarlow · `opus` | [#346](https://github.com/agenticsnz/unsorry/pull/346) | 2026-06-13 |
 | [`sum-range-pow-seven-faulhaber-triangular`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-seven-faulhaber-triangular.lean) | proved | 4 | claude-rmt-001 | chat-bit-01 | [#413](https://github.com/agenticsnz/unsorry/pull/413) | 2026-06-14 |
 | [`sum-range-pow-six-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-six-closed-form.lean) | proved | 3 | p3-a1 | cgbarlow · `opus` | [#348](https://github.com/agenticsnz/unsorry/pull/348) | 2026-06-13 |
-| [`sum-range-pronic`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pronic.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#250](https://github.com/agenticsnz/unsorry/pull/250) | 2026-06-12 |
 | [`sum-range-recip-pronic`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-recip-pronic.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#253](https://github.com/agenticsnz/unsorry/pull/253) | 2026-06-12 |
 | [`sum-range-recip-triangular`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-recip-triangular.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#409](https://github.com/agenticsnz/unsorry/pull/409) | 2026-06-14 |
-| [`sum-range-sq-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-closed-form.lean) | proved | 2 | binto-labs | binto | [#216](https://github.com/agenticsnz/unsorry/pull/216) | 2026-06-12 |
-| [`sum-range-sq-even`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-even.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#252](https://github.com/agenticsnz/unsorry/pull/252) | 2026-06-12 |
 | [`sum-range-sq-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-mul-choose.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#266](https://github.com/agenticsnz/unsorry/pull/266) | 2026-06-13 |
-| [`sum-range-sq-odd-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-odd-closed-form.lean) | proved | 2 | p3-b1 | Chris Barlow | [#240](https://github.com/agenticsnz/unsorry/pull/240) | 2026-06-12 |
-| [`sum-range-sq-triangular-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-triangular-form.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#335](https://github.com/agenticsnz/unsorry/pull/335) | 2026-06-13 |
 | [`sum-range-three-consecutive-product`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-three-consecutive-product.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#407](https://github.com/agenticsnz/unsorry/pull/407) | 2026-06-14 |
 | [`sum-sq-add-three-ge-two-sum`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-sq-add-three-ge-two-sum.lean) | proved | 2 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#568](https://github.com/agenticsnz/unsorry/pull/568) | 2026-06-14 |
 | [`sum-three-squares-ge-sum-products`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-three-squares-ge-sum-products.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#432](https://github.com/agenticsnz/unsorry/pull/432) | 2026-06-14 |
 | [`thirty-dvd-pow-five-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/thirty-dvd-pow-five-sub-self.lean) | proved | 2 | oma-2-c50d | perttu · `gemini-3.1-pro-preview` | [#565](https://github.com/agenticsnz/unsorry/pull/565) | 2026-06-14 |
 | [`three-cubes-div-nine`](https://github.com/agenticsnz/unsorry/blob/main/goals/three-cubes-div-nine.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#249](https://github.com/agenticsnz/unsorry/pull/249) | 2026-06-13 |
+| [`two-abs-le-sq-add-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/two-abs-le-sq-add-one.lean) | proved | 2 | oma-2-c50d | perttu | [#571](https://github.com/agenticsnz/unsorry/pull/571) | 2026-06-14 |
+| [`alternating-sum-naturals`](https://github.com/agenticsnz/unsorry/blob/main/goals/alternating-sum-naturals.lean) | archived | 3 | mac-158f | OceanLi | [#204](https://github.com/agenticsnz/unsorry/pull/204) | 2026-06-11 |
+| [`and-comm-imp`](https://github.com/agenticsnz/unsorry/blob/main/goals/and-comm-imp.lean) | archived | 1 | prover-bravo | Chris Barlow | [#70](https://github.com/agenticsnz/unsorry/pull/70) | 2026-06-10 |
+| [`binder-shape-canary`](https://github.com/agenticsnz/unsorry/blob/main/goals/binder-shape-canary.lean) | archived | 1 | — | — | — | 2026-06-12 |
+| [`cube-eq-triangular-sq-diff`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-eq-triangular-sq-diff.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#322](https://github.com/agenticsnz/unsorry/pull/322) | 2026-06-13 |
+| [`factorial-telescope-sum`](https://github.com/agenticsnz/unsorry/blob/main/goals/factorial-telescope-sum.lean) | archived | 2 | binto-labs | binto | [#218](https://github.com/agenticsnz/unsorry/pull/218) | 2026-06-12 |
+| [`int-add-neg`](https://github.com/agenticsnz/unsorry/blob/main/goals/int-add-neg.lean) | archived | 1 | prover-alpha | Chris Barlow | [#72](https://github.com/agenticsnz/unsorry/pull/72) | 2026-06-10 |
+| [`int-neg-neg`](https://github.com/agenticsnz/unsorry/blob/main/goals/int-neg-neg.lean) | archived | 1 | prover-alpha | Chris Barlow | [#74](https://github.com/agenticsnz/unsorry/pull/74) | 2026-06-10 |
+| [`int-sub-eq-add-neg`](https://github.com/agenticsnz/unsorry/blob/main/goals/int-sub-eq-add-neg.lean) | archived | 1 | p2-charlie | Chris Barlow | [#90](https://github.com/agenticsnz/unsorry/pull/90) | 2026-06-10 |
+| [`list-reverse-reverse`](https://github.com/agenticsnz/unsorry/blob/main/goals/list-reverse-reverse.lean) | archived | 1 | p2-charlie | Chris Barlow | [#85](https://github.com/agenticsnz/unsorry/pull/85) | 2026-06-10 |
+| [`nat-add-assoc-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-add-assoc-thm.lean) | archived | 1 | p2-alpha | Chris Barlow | [#89](https://github.com/agenticsnz/unsorry/pull/89) | 2026-06-10 |
+| [`nat-add-comm-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-add-comm-thm.lean) | archived | 1 | p2-bravo | Chris Barlow | [#91](https://github.com/agenticsnz/unsorry/pull/91) | 2026-06-10 |
+| [`nat-add-left-cancel`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-add-left-cancel.lean) | archived | 1 | p2-charlie | Chris Barlow | [#97](https://github.com/agenticsnz/unsorry/pull/97) | 2026-06-10 |
+| [`nat-add-zero-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-add-zero-thm.lean) | archived | 1 | p2-alpha | Chris Barlow | [#96](https://github.com/agenticsnz/unsorry/pull/96) | 2026-06-10 |
+| [`nat-dvd-refl`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-dvd-refl.lean) | archived | 1 | p2-bravo | Chris Barlow | [#107](https://github.com/agenticsnz/unsorry/pull/107) | 2026-06-10 |
+| [`nat-even-or-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-even-or-odd.lean) | archived | 1 | p2-charlie | Chris Barlow | [#103](https://github.com/agenticsnz/unsorry/pull/103) | 2026-06-10 |
+| [`nat-gcd-comm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-gcd-comm.lean) | archived | 1 | p2-alpha | Chris Barlow | [#105](https://github.com/agenticsnz/unsorry/pull/105) | 2026-06-10 |
+| [`nat-le-add-right`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-le-add-right.lean) | archived | 1 | p2-bravo | Chris Barlow | [#115](https://github.com/agenticsnz/unsorry/pull/115) | 2026-06-10 |
+| [`nat-le-succ`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-le-succ.lean) | archived | 1 | p2-charlie | Chris Barlow | [#119](https://github.com/agenticsnz/unsorry/pull/119) | 2026-06-10 |
+| [`nat-mul-add-distrib`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-mul-add-distrib.lean) | archived | 1 | p2-alpha | Chris Barlow | [#117](https://github.com/agenticsnz/unsorry/pull/117) | 2026-06-10 |
+| [`nat-mul-comm-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-mul-comm-thm.lean) | archived | 1 | p2-charlie | Chris Barlow | [#121](https://github.com/agenticsnz/unsorry/pull/121) | 2026-06-10 |
+| [`nat-mul-one-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-mul-one-thm.lean) | archived | 1 | p3-b1 | Chris Barlow | [#235](https://github.com/agenticsnz/unsorry/pull/235) | 2026-06-12 |
+| [`nat-mul-zero-thm`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-mul-zero-thm.lean) | archived | 1 | p3-b1 | Chris Barlow | [#238](https://github.com/agenticsnz/unsorry/pull/238) | 2026-06-12 |
+| [`nat-zero-le`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-zero-le.lean) | archived | 1 | p3-a1 | Chris Barlow | [#237](https://github.com/agenticsnz/unsorry/pull/237) | 2026-06-12 |
+| [`nicomachus-sum-cubes`](https://github.com/agenticsnz/unsorry/blob/main/goals/nicomachus-sum-cubes.lean) | archived | 3 | e-alpha | Chris Barlow | [#133](https://github.com/agenticsnz/unsorry/pull/133) | 2026-06-10 |
+| [`nicomachus-sum-cubes-triangular`](https://github.com/agenticsnz/unsorry/blob/main/goals/nicomachus-sum-cubes-triangular.lean) | archived | 3 | p3-bravo | Chris Barlow | [#154](https://github.com/agenticsnz/unsorry/pull/154) | 2026-06-11 |
+| [`not-prime-pow-four-add-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/not-prime-pow-four-add-four.lean) | archived | 3 | binto-labs | binto | [#221](https://github.com/agenticsnz/unsorry/pull/221) | 2026-06-12 |
+| [`or-comm-imp`](https://github.com/agenticsnz/unsorry/blob/main/goals/or-comm-imp.lean) | archived | 1 | p3-a1 | Chris Barlow | [#239](https://github.com/agenticsnz/unsorry/pull/239) | 2026-06-12 |
+| [`sum-range-cube-even`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-even.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#329](https://github.com/agenticsnz/unsorry/pull/329) | 2026-06-13 |
+| [`sum-range-cube-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-odd.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#254](https://github.com/agenticsnz/unsorry/pull/254) | 2026-06-12 |
+| [`sum-range-fib-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fib-sq.lean) | archived | 2 | binto-labs | binto | [#217](https://github.com/agenticsnz/unsorry/pull/217) | 2026-06-12 |
+| [`sum-range-mul-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-mul-two-pow.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#251](https://github.com/agenticsnz/unsorry/pull/251) | 2026-06-12 |
+| [`sum-range-odd-eq-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-odd-eq-sq.lean) | archived | 1 | binto-labs | binto | [#214](https://github.com/agenticsnz/unsorry/pull/214) | 2026-06-12 |
+| [`sum-range-pentagonal-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pentagonal-closed-form.lean) | archived | 3 | claude-rmt-001 | chat-bit-01 | [#259](https://github.com/agenticsnz/unsorry/pull/259) | 2026-06-12 |
+| [`sum-range-pow-four-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-four-closed-form.lean) | archived | 2 | h4 | Chris Barlow | [#140](https://github.com/agenticsnz/unsorry/pull/140) | 2026-06-10 |
+| [`sum-range-pow-four-triangular-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-four-triangular-form.lean) | archived | 3 | p3-b1 | cgbarlow · `opus` | [#345](https://github.com/agenticsnz/unsorry/pull/345) | 2026-06-13 |
+| [`sum-range-pronic`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pronic.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#250](https://github.com/agenticsnz/unsorry/pull/250) | 2026-06-12 |
+| [`sum-range-sq-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-closed-form.lean) | archived | 2 | binto-labs | binto | [#216](https://github.com/agenticsnz/unsorry/pull/216) | 2026-06-12 |
+| [`sum-range-sq-even`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-even.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#252](https://github.com/agenticsnz/unsorry/pull/252) | 2026-06-12 |
+| [`sum-range-sq-odd-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-odd-closed-form.lean) | archived | 2 | p3-b1 | Chris Barlow | [#240](https://github.com/agenticsnz/unsorry/pull/240) | 2026-06-12 |
+| [`sum-range-sq-triangular-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-triangular-form.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#335](https://github.com/agenticsnz/unsorry/pull/335) | 2026-06-13 |
 
