@@ -4,10 +4,13 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**8 open · 90 proved · 99 total prove-goals.**
+**11 open · 90 proved · 102 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
+| `nat-sq-lt-two-pow` — For every natural n ≥ 5, n² < 2ⁿ — the quadratic-vs-exponential crossover. | open | 3 | — | Classic crossover inequality (standard induction exercise) | n² < 2ⁿ for n ≥ 5. mathlib has linear `Nat.lt_two_pow`-style bounds and Bernoulli (`one_add_mul_le_pow`) but no quadratic-vs-exponential crossover lemma. |
+| `no-nat-sq-eq-two-mul-sq` — There are no positive naturals a, b with a² = 2·b² — ¬∃ a b, 0 < b ∧ a² = 2b²: the irrationality of √2 in elementary infinite-descent form. | open | 4 | — | Freek 100 (#1, irrationality of √2), infinite-descent / parity form | Classic infinite descent: a²=2b² ⟹ a even ⟹ b even ⟹ a strictly smaller solution. mathlib proves `irrational_sqrt_two` over ℝ via prime factorisation; this self-contained ℕ descent statement (no reals, no `sqrt`) is absent and is the elementary heart of Freek #1. |
+| `prod-one-sub-inv-sq-telescope` — For n ≥ 2, ∏_{k=2}^{n} (1 − 1/k²) = (n+1)/(2n) over ℚ — the telescoping product of (1 − 1/k²). | open | 4 | — | Classic telescoping product (Wallis-adjacent finite product) | ∏(1−1/k²) = (n+1)/(2n), via the factorisation 1 − 1/k² = (k−1)(k+1)/k². Distinct from the reciprocal-pronic / reciprocal-triangular SUM telescopes already in the pool (this is a multiplicative, rational telescope). |
 | `six-dvd-three-consecutive` — For every natural n, 6 ∣ n(n+1)(n+2): the product of three consecutive integers is divisible by 6. | open | 2 | — | elementary number theory (product of k consecutive integers is divisible by k!) | Hardy & Wright, An Introduction to the Theory of Numbers, §6 — the k=3 case. mathlib has `Nat.factorial_dvd_descFactorial` but no standalone `6 ∣ n(n+1)(n+2)`. |
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | open | 1 | — | — | — |
 | `sum-range-fib-even-index` — For every natural n, ∑_{i<n} F(2(i+1)) = F(2n+1) − 1: the sum of the first n even-indexed Fibonacci numbers F₂ + F₄ + ⋯ + F_{2n} equals F(2n+1) − 1. | open | 3 | — | Fibonacci identities | Vajda (1989), identity (6); Koshy, Thm 5.2. Companion to the odd-index sum `sum-range-fib-odd-index`, whose result it can reuse. |
