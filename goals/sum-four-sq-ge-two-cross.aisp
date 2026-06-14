@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜sum-four-sq-ge-two-cross
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜2
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,6 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/sum-four-sq-ge-two-cross.lean
-  sha≜∅
+  sha≜4a6d05dca389b092bf5f0632c3d2801e7018e7e7997d8b65f4ca166e60ef758f
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
