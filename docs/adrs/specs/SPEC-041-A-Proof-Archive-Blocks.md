@@ -20,6 +20,17 @@ The cut tool should:
 3. Select the oldest stable proved goals until the next block reaches 40, unless doing so would split a tightly coupled decomposition tree.
 4. Emit a proposed manifest before moving files.
 
+The report-only command is:
+
+```bash
+python3 -m tools.archive --size 40
+python3 -m tools.archive --size 40 --json
+```
+
+It emits the next archive block id, eligible proved count, selected goal/module
+pairs, and dependency/decomposition groups deferred to avoid splitting related
+work.
+
 Maintainers may defer a cut for dependency-tree coherence, but should record the reason in the archive manifest or PR body.
 
 ## 3. Package Shape
@@ -92,8 +103,7 @@ The default must always fail toward a larger validation scope when the changed-p
 ## 7. Acceptance Criteria
 
 - A docs-only ADR/spec PR passes protocol and does not trigger Lean validation.
-- A report-only archive proposal can identify the next 40-goal block without moving files.
+- `python3 -m tools.archive --size 40` can identify the next 40-goal block without moving files.
 - A frozen archive block can be validated independently from the active package.
 - A normal proof PR after the first archive cut does not enumerate archived proof modules in the active replay/audit set.
 - A PR changing an archive pin or archive source triggers full validation for the affected archive boundary.
-

@@ -22,6 +22,8 @@ jobs:
       - name: Sourcing test suite (ADR-012 / ADR-035)
         # Stdlib only (absence grep + triviality probe use a mocked runner).
         run: pytest tools/sourcing -q
+      - name: Archive planner test suite (ADR-041)
+        run: pytest tools/archive -q
       - name: Validate repository tree
         run: python3 -m tools.gate_b validate .
       # Neither the targets-board nor the leaderboard `--check` is a PR gate
