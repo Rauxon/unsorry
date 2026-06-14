@@ -22,6 +22,7 @@ PROOF_PREFIXES = (
     "translations/",
     "decompositions/",
     "proof-runs/",
+    "packages/unsorry-archive-",
 )
 #: The trust-bearing machinery that decides whether a proof is accepted.
 HARNESS_PREFIXES = (
