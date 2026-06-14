@@ -59,7 +59,8 @@ jobs:
             echo "name=namespace-profile-unsorry-1" >> "$GITHUB_OUTPUT"
           fi
 
-  gate-a:
+  gate_a_prepare:
+    name: gate-a-prepare
     needs: detect
     # Namespace managed (ephemeral) runner, chosen by detect.profile:
     #   namespace-profile-unsorry-1 — normal proof PRs (incremental, light replay)
@@ -68,17 +69,144 @@ jobs:
     #                                 runs in its own pool and never blocks the
     #                                 frequent proof PRs on unsorry-1.
     # Both profiles are 4 vCPU / 16 GB; the split is for isolation, not power.
-    # The leanchecker replay stays serial on 16 GB (SPEC-006-B); sizing a profile
-    # up (e.g. 8x32) in the Namespace UI would let replay re-parallelize.
+    # This prepare job warms/restores the Lean cache, generates binding modules,
+    # and runs the cheap authoritative checks once before the heavy audit/replay
+    # jobs start in parallel.
+    if: needs.detect.outputs.lean == 'true'
+    runs-on: ${{ needs.detect.outputs.profile }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      # ADR-018: goal statements are create-only — the pin against history.
+      # Every other layer (binding regeneration, Gate B shas) derives from
+      # goals/<id>.lean in THIS tree, so same-PR consistent tampering passes
+      # them all (#190 CRITICAL). Runs before the build: cheap, and a
+      # tampering PR must die fast. Any goals/*.lean change sets detect.lean,
+      # so the gate cannot be short-circuited around.
+      - name: Goal statements are create-only (ADR-018)
+        if: github.event_name == 'pull_request'
+        run: |
+          python3 -m tools.gate_a.check_goal_immutability \
+            --base "${{ github.event.pull_request.base.sha }}"
+
+      - name: Build (lean-action, mathlib binary cache)
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          use-github-cache: true
+          build-args: "UnsorryGoals"
+
+      # ADR-011 statement binding: Gate A REGENERATES the binding obligation for
+      # every proved goal from the goal's own statement, so a contributor can
+      # neither weaken nor omit it. The --wfail build below then type-checks the
+      # obligations — a proof of a weakened/vacuous statement under the goal's
+      # name fails to inhabit the goal type and goes red. (#64 class.)
+      - name: Generate statement-binding obligations
+        run: python3 -m tools.gate_a.check_statement_binding generate .
+
+      - name: Library build — zero-warning bar (--wfail)
+        run: lake build UnsorryLibrary --wfail
+
+      - name: Audit self-test (gate cannot rot silently)
+        run: ./tools/gate_a/test_audit.sh
+
+      # Authoritative for the autoImplicit vector: the build/audit/leanchecker
+      # all PASS a vacuous theorem enabled by `set_option autoImplicit true`
+      # (it is sound, just meaningless), so for this vector the scan IS the bar.
+      # Whole-file + whitespace-collapsed, so line-splitting cannot evade it
+      # (W3 red-team PR #64). Self-tested by tools/gate_a/tests/.
+      - name: Forbidden elaboration options in library
+        run: python3 -m tools.gate_a.check_library_options library
+
+      - name: Textual lint on library diff (belt only — the audit is the bar)
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          base="${{ github.event.pull_request.base.sha }}"
+          added=$(git diff "$base"...HEAD -- library/ | grep '^+' | grep -v '^+++' || true)
+          if echo "$added" | grep -nE '\b(sorry|admit|sorryAx|native_decide|axiom|unsafe|implemented_by|extern)\b'; then
+            echo "::error::forbidden token added under library/ (see lines above)"
+            exit 1
+          fi
+
+  gate_a_audit:
+    name: gate-a-audit
+    needs: [detect, gate_a_prepare]
+    if: needs.detect.outputs.lean == 'true'
+    runs-on: ${{ needs.detect.outputs.profile }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      - name: Build (lean-action, mathlib binary cache)
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          use-github-cache: true
+          build-args: "UnsorryGoals"
+
+      - name: Generate statement-binding obligations
+        run: python3 -m tools.gate_a.check_statement_binding generate .
+
+      - name: Library build — zero-warning bar (--wfail)
+        run: lake build UnsorryLibrary --wfail
+
+      # Incremental on PRs: audit only changed library modules plus their
+      # reverse-import closure, and changed goals. Unchanged declarations were
+      # already audited on main. A push to main omits BASE_SHA and runs the full
+      # audit as the post-merge backstop. Gate/tooling changes fall back to full.
+      # Serialized (--jobs 1): each axiom_audit process holds a full mathlib
+      # image (~6-7 GB), so two concurrent ones peak ~13 GB on a 16 GB runner
+      # and evict the olean page cache instead of going faster.
+      - name: Axiom audit (authoritative)
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
+        run: |
+          if [ -n "$BASE_SHA" ]; then
+            python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json --base "$BASE_SHA"
+          else
+            python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json
+          fi
+
+      - name: Upload axiom footprint artifact
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: axiom-report
+          path: axiom-report.json
+
+      - name: Sticky footprint comment
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          {
+            echo '<!-- axiom-report -->'
+            echo '### Axiom footprint (Gate A)'
+            echo '```json'
+            cat axiom-report.json
+            echo '```'
+          } > comment.md
+          existing=$(gh api "repos/${{ github.repository }}/issues/$PR/comments" \
+            --jq '.[] | select(.body | startswith("<!-- axiom-report -->")) | .id' | head -1)
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/$existing" -F body=@comment.md >/dev/null
+          else
+            gh api "repos/${{ github.repository }}/issues/$PR/comments" -F body=@comment.md >/dev/null
+          fi
+
+  gate_a_replay:
+    name: gate-a-replay
+    needs: [detect, gate_a_prepare]
+    if: needs.detect.outputs.lean == 'true'
     runs-on: ${{ needs.detect.outputs.profile }}
     timeout-minutes: 60
     steps:
-      - name: Short-circuit (non-Lean change)
-        if: needs.detect.outputs.lean != 'true'
-        run: echo "No Lean-relevant paths touched — gate-a passes vacuously."
-
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
-        if: needs.detect.outputs.lean == 'true'
         with:
           fetch-depth: 0
 
@@ -91,7 +219,6 @@ jobs:
       # regions instead of OOM. The job uses ~10 of its 60 min, so paging is well
       # within budget. /mnt has tens of GB free on GitHub-hosted ubuntu runners.
       - name: Add swap headroom for leanchecker (best-effort)
-        if: needs.detect.outputs.lean == 'true'
         # Best-effort: GitHub-hosted runners allow swapon, so leanchecker pages
         # cold mathlib regions instead of OOMing on a constrained runner.
         # Namespace managed runners disallow swapon ("Operation not permitted");
@@ -113,55 +240,17 @@ jobs:
             echo "::warning::could not allocate a swapfile — continuing on RAM + serial replay"
           fi
 
-      # ADR-018: goal statements are create-only — the pin against history.
-      # Every other layer (binding regeneration, Gate B shas) derives from
-      # goals/<id>.lean in THIS tree, so same-PR consistent tampering passes
-      # them all (#190 CRITICAL). Runs before the build: cheap, and a
-      # tampering PR must die fast. Any goals/*.lean change sets detect.lean,
-      # so the gate cannot be short-circuited around.
-      - name: Goal statements are create-only (ADR-018)
-        if: needs.detect.outputs.lean == 'true' && github.event_name == 'pull_request'
-        run: |
-          python3 -m tools.gate_a.check_goal_immutability \
-            --base "${{ github.event.pull_request.base.sha }}"
-
       - name: Build (lean-action, mathlib binary cache)
-        if: needs.detect.outputs.lean == 'true'
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
           use-github-cache: true
           build-args: "UnsorryGoals"
 
-      # ADR-011 statement binding: Gate A REGENERATES the binding obligation for
-      # every proved goal from the goal's own statement, so a contributor can
-      # neither weaken nor omit it. The --wfail build below then type-checks the
-      # obligations — a proof of a weakened/vacuous statement under the goal's
-      # name fails to inhabit the goal type and goes red. (#64 class.)
       - name: Generate statement-binding obligations
-        if: needs.detect.outputs.lean == 'true'
         run: python3 -m tools.gate_a.check_statement_binding generate .
 
       - name: Library build — zero-warning bar (--wfail)
-        if: needs.detect.outputs.lean == 'true'
         run: lake build UnsorryLibrary --wfail
-
-      # Incremental on PRs: audit only changed library modules plus their
-      # reverse-import closure, and changed goals. Unchanged declarations were
-      # already audited on main. A push to main omits BASE_SHA and runs the full
-      # audit as the post-merge backstop. Gate/tooling changes fall back to full.
-      # Serialized (--jobs 1): each axiom_audit process holds a full mathlib
-      # image (~6-7 GB), so two concurrent ones peak ~13 GB on a 16 GB runner
-      # and evict the olean page cache instead of going faster.
-      - name: Axiom audit (authoritative)
-        if: needs.detect.outputs.lean == 'true'
-        env:
-          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
-        run: |
-          if [ -n "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json --base "$BASE_SHA"
-          else
-            python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json
-          fi
 
       # Incremental on PRs (ADR-033): replay only the changed library modules
       # and their reverse-import closure — the rest are byte-identical to and
@@ -171,7 +260,6 @@ jobs:
       # Replay is intentionally serial on the current 16 GB Namespace runners:
       # the tool accepts --jobs for CLI symmetry, but reports effective jobs=1.
       - name: Kernel replay (leanchecker)
-        if: needs.detect.outputs.lean == 'true'
         env:
           BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
         run: |
@@ -181,55 +269,35 @@ jobs:
             python3 -m tools.gate_a.parallel_modules replay --jobs 1
           fi
 
-      - name: Audit self-test (gate cannot rot silently)
-        if: needs.detect.outputs.lean == 'true'
-        run: ./tools/gate_a/test_audit.sh
-
-      # Authoritative for the autoImplicit vector: the build/audit/leanchecker
-      # all PASS a vacuous theorem enabled by `set_option autoImplicit true`
-      # (it is sound, just meaningless), so for this vector the scan IS the bar.
-      # Whole-file + whitespace-collapsed, so line-splitting cannot evade it
-      # (W3 red-team PR #64). Self-tested by tools/gate_a/tests/.
-      - name: Forbidden elaboration options in library
-        if: needs.detect.outputs.lean == 'true'
-        run: python3 -m tools.gate_a.check_library_options library
-
-      - name: Textual lint on library diff (belt only — the audit is the bar)
-        if: needs.detect.outputs.lean == 'true' && github.event_name == 'pull_request'
-        run: |
-          set -euo pipefail
-          base="${{ github.event.pull_request.base.sha }}"
-          added=$(git diff "$base"...HEAD -- library/ | grep '^+' | grep -v '^+++' || true)
-          if echo "$added" | grep -nE '\b(sorry|admit|sorryAx|native_decide|axiom|unsafe|implemented_by|extern)\b'; then
-            echo "::error::forbidden token added under library/ (see lines above)"
-            exit 1
-          fi
-
-      - name: Upload axiom footprint artifact
-        if: needs.detect.outputs.lean == 'true'
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
-        with:
-          name: axiom-report
-          path: axiom-report.json
-
-      - name: Sticky footprint comment
-        if: needs.detect.outputs.lean == 'true' && github.event_name == 'pull_request'
+  gate-a:
+    needs: [detect, gate_a_prepare, gate_a_audit, gate_a_replay]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Aggregate Gate A result
         env:
-          GH_TOKEN: ${{ github.token }}
-          PR: ${{ github.event.pull_request.number }}
+          LEAN_RELEVANT: ${{ needs.detect.outputs.lean }}
+          PREPARE_RESULT: ${{ needs.gate_a_prepare.result }}
+          AUDIT_RESULT: ${{ needs.gate_a_audit.result }}
+          REPLAY_RESULT: ${{ needs.gate_a_replay.result }}
         run: |
           set -euo pipefail
-          {
-            echo '<!-- axiom-report -->'
-            echo '### Axiom footprint (Gate A)'
-            echo '```json'
-            cat axiom-report.json
-            echo '```'
-          } > comment.md
-          existing=$(gh api "repos/${{ github.repository }}/issues/$PR/comments" \
-            --jq '.[] | select(.body | startswith("<!-- axiom-report -->")) | .id' | head -1)
-          if [ -n "$existing" ]; then
-            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/$existing" -F body=@comment.md >/dev/null
-          else
-            gh api "repos/${{ github.repository }}/issues/$PR/comments" -F body=@comment.md >/dev/null
+          if [ "$LEAN_RELEVANT" != "true" ]; then
+            echo "No Lean-relevant paths touched — gate-a passes vacuously."
+            exit 0
           fi
+
+          failed=0
+          for pair in \
+            "gate-a-prepare:$PREPARE_RESULT" \
+            "gate-a-audit:$AUDIT_RESULT" \
+            "gate-a-replay:$REPLAY_RESULT"; do
+            job="${pair%%:*}"
+            result="${pair#*:}"
+            if [ "$result" != "success" ]; then
+              echo "::error::$job concluded with $result"
+              failed=1
+            fi
+          done
+          exit "$failed"
