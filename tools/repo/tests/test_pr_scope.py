@@ -9,6 +9,8 @@ def test_surface_classification():
     assert surface("library/index/abc.aisp") == "proof"
     assert surface("goals/foo.aisp") == "proof"
     assert surface("proof-runs/foo.a.r.aisp") == "proof"
+    assert surface("packages/unsorry-archive-0001/library/Unsorry/Foo.lean") == "proof"
+    assert surface("packages/unsorry-archive-0001/archive-manifest.json") == "proof"
     assert surface("swarm/agent.sh") == "harness"
     assert surface("tools/gate_b/validator.py") == "harness"
     assert surface(".github/workflows/gate-a.yml") == "harness"
@@ -42,6 +44,10 @@ def test_mixed_proof_and_harness_is_blocked():
     assert mixed(["goals/foo.aisp", "swarm/agent.sh"])
     assert mixed(["library/Unsorry/Foo.lean", "tools/gate_b/validator.py"])
     assert mixed(["proof-runs/x.a.r.aisp", ".github/workflows/gate-a.yml"])
+    assert mixed([
+        "packages/unsorry-archive-0001/archive-manifest.json",
+        "tools/archive/plan.py",
+    ])
 
 
 def test_neutral_only_is_allowed():
