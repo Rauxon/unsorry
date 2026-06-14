@@ -1,0 +1,13 @@
+𝔸5.1.decomp.cube-sum-ge-three-prod.oma-2-c50d@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜cube-sum-ge-three-prod; agent≜oma-2-c50d}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜cube-sum-ge-three-prod-s1,sha≜b3e0f90ab52d412d5d8feadde76cffa3dfc76a00c7a71a1e7910632fdee98cd7⟩
+  sub₂≜⟨id≜cube-sum-ge-three-prod-s2,sha≜39644f1df2a0594bee4a418f0ddbafcd3446048f370a7838c5572c570035cb75⟩
+  sub₃≜⟨id≜cube-sum-ge-three-prod-s3,sha≜567a289ceaf0c41a210287e4edf0117e7d720ce7a2b756122edd1821dad1c2ca⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
