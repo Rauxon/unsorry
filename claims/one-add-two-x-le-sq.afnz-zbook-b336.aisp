@@ -1,0 +1,7 @@
+𝔸5.1.claim.one-add-two-x-le-sq.afnz-zbook-b336@2026-06-14
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜one-add-two-x-le-sq; agent≜afnz-zbook-b336}
+⟦Σ:Times⟧{ts≜2026-06-14T14:56:14Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
