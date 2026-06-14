@@ -1,0 +1,8 @@
+𝔸5.1.lemma.ee43e9e8df6e@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜ee43e9e8df6eb690673a32fb7a9a756fdf24f550d3f6a871fc683c7d83d1a94f; goal≜four-consecutive-product-add-one-square-s3; name≜product_with_two_more_add_one_is_square}
+⟦Σ:Source⟧{src≜goals/four-consecutive-product-add-one-square-s3.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜kev; agent≜d337a70018c9-90fd; provider≜manual; model≜gpt-5.5; effort≜manual; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
