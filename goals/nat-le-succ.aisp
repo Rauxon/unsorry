@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-le-succ
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-le-succ.md
+  src≜packages/unsorry-archive-0001/backlog/nat-le-succ.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-le-succ.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-le-succ.lean
   sha≜1372988dd6e14e17c8ba4de9aeed3cb5ae5ba4365c1283d8d0a4a8db5084349b
   aff≜1
 }

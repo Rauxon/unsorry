@@ -1,7 +1,0 @@
-𝔸5.1.lemma.1372988dd6e1@2026-06-10
-γ≔unsorry.lemma.index
-⟦Ω:Lemma⟧{sha≜1372988dd6e14e17c8ba4de9aeed3cb5ae5ba4365c1283d8d0a4a8db5084349b; goal≜nat-le-succ; name≜nat_le_succ_thm}
-⟦Σ:Source⟧{src≜goals/nat-le-succ.lean}
-⟦Γ:Tags⟧{tags≜⟨⟩}
-⟦Λ:Meta⟧{use≜0; aff≜0}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

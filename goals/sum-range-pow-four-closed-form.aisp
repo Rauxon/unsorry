@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-pow-four-closed-form
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-pow-four-closed-form.md
+  src≜packages/unsorry-archive-0001/backlog/sum-range-pow-four-closed-form.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-pow-four-closed-form.lean
+  lean≜packages/unsorry-archive-0001/goals/sum-range-pow-four-closed-form.lean
   sha≜1a7aa8ab505d860099eb67cbb9cc546f95baddfb01c92e7a9fe8f5a548c3b17d
   aff≜1
 }

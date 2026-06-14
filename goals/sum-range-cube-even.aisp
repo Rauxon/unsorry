@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-cube-even
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-cube-even.md
+  src≜packages/unsorry-archive-0001/backlog/sum-range-cube-even.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨nicomachus-sum-cubes⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-cube-even.lean
+  lean≜packages/unsorry-archive-0001/goals/sum-range-cube-even.lean
   sha≜92cae3bd240fbaf917b2e69e318d6bdbf59a404b39511e35961a62ade05d5593
   aff≜1
 }
