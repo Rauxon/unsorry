@@ -72,8 +72,18 @@ The restyle is presentation-only. It preserves the ADR-032 generation contract:
   `call showDetail("<goal>")` click wiring, `securityLevel: "loose"`, the
   click-to-detail panel, the zoom controls, and the filterable goals table all
   remain;
-- `--write` / `--check` still emit and drift-check the `.md` + `.html` pair, so the
+- `--write` / `--check` emit and drift-check the `.md` + `.html` + `.svg` set, so the
   post-merge refresh (`proofs-visualisation.yml`) is unchanged.
+
+## Two-surface parity: README preview SVG
+
+Mirroring `docs/leaderboard.svg`, the visualiser also emits `docs/proof-graph.svg`
+(`render_svg`, `--svg`): a self-contained README preview card in the shared visual
+language — white rounded card, Inter title, a per-status bar breakdown using the
+diagram's status fills, plus the decomposition-family count. Unlike the `.md`/`.html`
+(whose provenance is git-derived), the SVG is a pure function of the goals' statuses,
+so it is deterministic and never drifts on a shallow checkout. The README links it to
+the interactive page, alongside the leaderboard preview.
 
 ## Tests
 

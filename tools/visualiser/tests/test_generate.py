@@ -13,6 +13,7 @@ from tools.visualiser.generate import (
     render_json,
     render_markdown,
     render_mermaid,
+    render_svg,
 )
 
 
@@ -194,12 +195,33 @@ def test_main_html_stdout(tmp_path, capsys):
     assert capsys.readouterr().out.startswith("<!doctype html>")
 
 
+def test_render_svg(tmp_path):
+    # README preview card (ADR-038), shared leaderboard visual language.
+    svg = render_svg(build_graph(_repo(tmp_path)))
+    assert svg.startswith("<svg") and svg.rstrip().endswith("</svg>")
+    assert "Unsorry Proof Graph" in svg
+    assert "Inter, system-ui, sans-serif" in svg  # shared typography
+    assert "4 goals" in svg  # summary
+    assert ">proved<" in svg  # per-status row
+    # Deterministic from statuses alone — git-independent, safe on shallow checkouts.
+    assert render_svg(build_graph(_repo(tmp_path))) == svg
+
+
+def test_main_svg_stdout(tmp_path, capsys):
+    assert main(["--svg", str(_repo(tmp_path))]) == 0
+    assert capsys.readouterr().out.startswith("<svg")
+
+
 def test_main_write_and_check_both_artifacts(tmp_path):
     root = _repo(tmp_path)
     assert main(["--write", str(root)]) == 0
     assert (root / "docs" / "proofs-contributors-visualisation.md").exists()
     assert (root / "docs" / "proofs-contributors-visualisation.html").exists()
+    assert (root / "docs" / "proof-graph.svg").exists()
     assert main(["--check", str(root)]) == 0
-    # Drift in either artifact reddens the check.
+    # Drift in any artifact reddens the check.
     (root / "docs" / "proofs-contributors-visualisation.html").write_text("stale", encoding="utf-8")
+    assert main(["--check", str(root)]) == 1
+    main(["--write", str(root)])
+    (root / "docs" / "proof-graph.svg").write_text("stale", encoding="utf-8")
     assert main(["--check", str(root)]) == 1

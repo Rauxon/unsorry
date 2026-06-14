@@ -21,8 +21,9 @@ Usage::
     python3 -m tools.visualiser [<repo-root>]            # markdown to stdout
     python3 -m tools.visualiser --json [<repo-root>]     # graph model as JSON
     python3 -m tools.visualiser --html [<repo-root>]     # interactive HTML to stdout
-    python3 -m tools.visualiser --write [<repo-root>]    # write the docs/*.{md,html} pair
-    python3 -m tools.visualiser --check [<repo-root>]    # CI drift check (both)
+    python3 -m tools.visualiser --svg [<repo-root>]      # README preview SVG to stdout
+    python3 -m tools.visualiser --write [<repo-root>]    # write the docs/*.{md,html,svg} set
+    python3 -m tools.visualiser --check [<repo-root>]    # CI drift check (all three)
 """
 from __future__ import annotations
 
@@ -57,9 +58,11 @@ _ORDER = {"open": 0, "blocked": 1, "flagged": 2, "translated": 3, "proved": 4}
 #: GitHub PR base for click-through links.
 PR_BASE = "https://github.com/agenticsnz/unsorry/pull"
 
-#: Output filenames under ``docs/`` (markdown for GitHub, HTML for the browser).
+#: Output filenames under ``docs/`` (markdown for GitHub, HTML for the browser,
+#: SVG for the README preview card — the leaderboard's two-surface pattern, ADR-038).
 MD_NAME = "proofs-contributors-visualisation.md"
 HTML_NAME = "proofs-contributors-visualisation.html"
+SVG_NAME = "proof-graph.svg"
 
 _SUB_ID_RE = re.compile(r"id≜([a-z0-9][a-z0-9-]*)")
 
@@ -605,9 +608,76 @@ def render_html(graph: Graph) -> str:
     )
 
 
+def render_svg(graph: Graph) -> str:
+    """A README preview card for the proof graph (ADR-038, the leaderboard's
+    two-surface pattern).
+
+    A self-contained SVG — white rounded card, Inter title, a per-status bar
+    breakdown using the diagram's status fills — that mirrors ``docs/leaderboard.svg``
+    so the README reads as one product. Deterministic: it is a pure function of the
+    goals' statuses (no git provenance), so it never drifts on a shallow checkout.
+    """
+    counts: dict[str, int] = {}
+    for node in graph.nodes:
+        counts[node.status] = counts.get(node.status, 0) + 1
+    # Ranked bars (count desc), legend order as the tie-break.
+    statuses = sorted(counts, key=lambda s: (-counts[s], _ORDER.get(s, 9)))
+    total = len(graph.nodes)
+    proved = counts.get("proved", 0)
+    families = len({edge.parent for edge in graph.edges})
+    max_count = max(list(counts.values()) + [1])
+
+    width = 900
+    top = 110
+    row_h = 52
+    rows = max(1, len(statuses))
+    height = top + rows * row_h + 24
+    font = "Inter, system-ui, sans-serif"
+    lines = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+        f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
+        '<title id="title">Unsorry proof graph</title>',
+        '<desc id="desc">Unsorry proof graph: goals by status, with the '
+        "decomposition-lineage family count.</desc>",
+        f'<rect width="{width}" height="100%" rx="18" fill="#ffffff"/>',
+        f'<rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="18" '
+        'fill="none" stroke="#e2e8f0"/>',
+        f'<text x="32" y="44" font-family="{font}" font-size="28" font-weight="700" '
+        'fill="#334155">Unsorry Proof Graph</text>',
+        f'<text x="32" y="72" font-family="{font}" font-size="13" fill="#64748b">'
+        f"{total} goals · {proved} proved · {families} decomposition "
+        f"{'family' if families == 1 else 'families'}</text>",
+    ]
+    if not statuses:
+        lines.append(
+            f'<text x="32" y="{top + 30}" font-family="{font}" font-size="16" '
+            'fill="#64748b">No goals yet.</text>'
+        )
+    for index, status in enumerate(statuses):
+        count = counts[status]
+        fill = STATUS_STYLE.get(status, _DEFAULT_STYLE)[1]
+        y = top + index * row_h
+        bar_w = max(6, int(420 * count / max_count))
+        pct = round(100 * count / total) if total else 0
+        lines.extend([
+            f'<rect x="32" y="{y + 13}" width="15" height="15" rx="3" fill="{fill}" '
+            'stroke="#94a3b8"/>',
+            f'<text x="58" y="{y + 26}" font-family="{font}" font-size="16" '
+            f'font-weight="650" fill="#334155">{_html_escape(status)}</text>',
+            f'<text x="58" y="{y + 44}" font-family="{font}" font-size="12" '
+            f'fill="#64748b">{count} of {total} goals · {pct}%</text>',
+            f'<rect x="300" y="{y + 15}" width="420" height="24" rx="12" fill="#f1f5f9"/>',
+            f'<rect x="300" y="{y + 15}" width="{bar_w}" height="24" rx="12" fill="{fill}"/>',
+            f'<text x="740" y="{y + 33}" font-family="{font}" font-size="14" '
+            f'font-weight="700" fill="#334155">{count}</text>',
+        ])
+    lines.append("</svg>")
+    return "\n".join(lines) + "\n"
+
+
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
-    flags = ("--check", "--write", "--json", "--html")
+    flags = ("--check", "--write", "--json", "--html", "--svg")
     modes = [flag for flag in flags if flag in argv]
     if len(modes) > 1:
         print(f"{', '.join(flags)} are mutually exclusive", file=sys.stderr)
@@ -623,12 +693,16 @@ def main(argv: list[str] | None = None) -> int:
     if mode == "--html":
         sys.stdout.write(render_html(graph))
         return 0
+    if mode == "--svg":
+        sys.stdout.write(render_svg(graph))
+        return 0
 
-    # The markdown and interactive HTML renderings are written and drift-checked
-    # together — two views of the same graph.
+    # The markdown view, the interactive HTML, and the README SVG preview are
+    # written and drift-checked together — three views of the same graph.
     artifacts = [
         (root / "docs" / MD_NAME, render_markdown(graph) + "\n"),
         (root / "docs" / HTML_NAME, render_html(graph)),
+        (root / "docs" / SVG_NAME, render_svg(graph)),
     ]
     if mode == "--write":
         for target, content in artifacts:
