@@ -8,7 +8,10 @@
     "attributed_proofs": 19,
     "historical_unknown_proofs": 71,
     "terminal_runs": 23,
-    "proof_run_coverage": 0.2111
+    "proof_run_coverage": 0.2111,
+    "git_attributed_index_files": 90,
+    "historical_contributors": 4,
+    "attribution_gap_count": 71
   },
   "contributors": [
     {
@@ -31,6 +34,21 @@
         "difficulty": 49,
         "success_rate_percent": 82.61
       }
+    }
+  ],
+  "historical_contributors": [
+    {
+      "rank": 1,
+      "display_name": "chat-bit-01",
+      "github": "chat-bit-01",
+      "profile_url": "https://github.com/chat-bit-01",
+      "avatar_url": "https://github.com/chat-bit-01.png?size=96",
+      "index_files_added": 20,
+      "missing_solver_provenance": 20,
+      "solver_provenance_proofs": 0,
+      "difficulty_points": 60,
+      "attribution_source": "git-add-author",
+      "solver_credit": false
     }
   ]
 }

@@ -1159,7 +1159,8 @@ submit_pr_tree() {
     return 1
   fi
   git -C "$prwt" add "$@" docs/targets.md docs/leaderboard.md docs/leaderboard.svg \
-    docs/metrics/community-stats.json docs/metrics/leaderboard-ui.json || return 1
+    docs/metrics/community-stats.json docs/metrics/leaderboard-ui.json \
+    docs/metrics/attribution-gaps.json || return 1
   git -C "$prwt" commit -q -m "$title" || return 1
   git -C "$prwt" push -q origin "$branch" || return 1
   (

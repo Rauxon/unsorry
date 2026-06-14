@@ -44,9 +44,22 @@ Verified output comes from `library/index`; append-only terminal-run telemetry c
 
 ## Contributors
 
+These rows are strict solver-provenance credit from explicit `solver≜...` records.
+
 | Rank | GitHub solver | Verified proofs | Runs | Run success | Failed attempts | Difficulty points | Median time |
 |-----:|---------------|----------------:|-----:|------------:|----------------:|------------------:|------------:|
 | 1 | [@cgbarlow](https://github.com/cgbarlow) | 19 | 23 | 82.6% | 20 | 49 | 9m 7s |
+
+## Historical Proof Index Contributors
+
+These rows come from git add-author history for `library/index/*.aisp`. They provide contributor visibility for older proof artifacts and are not solver-provenance ranking.
+
+| Contributor | Index files added | Missing solver provenance | Solver-provenance proofs | Difficulty points | Source |
+|-------------|------------------:|--------------------------:|-------------------------:|------------------:|--------|
+| [@cgbarlow](https://github.com/cgbarlow) | 60 | 41 | 19 | 98 | `git-add-author` |
+| [@chat-bit-01](https://github.com/chat-bit-01) | 20 | 20 | 0 | 39 | `git-add-author` |
+| [@binto](https://github.com/binto) | 9 | 9 | 0 | 19 | `git-add-author` |
+| [@OceanLi](https://github.com/OceanLi) | 1 | 1 | 0 | 3 | `git-add-author` |
 
 ## Providers and Models
 

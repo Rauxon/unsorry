@@ -74,11 +74,16 @@ content-addressed library index entries and append one terminal fact under
 `proof-runs/` for proved, decomposed, or failed outcomes. The facts include the
 authenticated GitHub solver, swarm agent, provider, effective model when known,
 final effort, attempts, completion time, and local proof/verification duration.
-Override the credited GitHub handle with `UNSORRY_SOLVER`; historical work
-remains unknown rather than guessed. See the generated
+Before coordinated proof runs, make sure `gh auth status` shows the GitHub
+account that should receive solver credit, or set
+`UNSORRY_SOLVER=<github-handle>`. Git commit authorship and solver credit are
+intentionally separate: historical proof index authors are shown for visibility,
+but old `solver≜` fields are not guessed from git history. See the generated
 **[community proof statistics](docs/leaderboard.md)**, the
 **[visual leaderboard](docs/leaderboard.html)**, and machine-readable
-`docs/metrics/community-stats.json` / `docs/metrics/leaderboard-ui.json`.
+`docs/metrics/community-stats.json`,
+`docs/metrics/leaderboard-ui.json`, and
+`docs/metrics/attribution-gaps.json`.
 When changing `library/index/` or `proof-runs/` outside the agent loop, refresh
 the generated views with `python3 -m tools.leaderboard --write .` and verify
 them with `python3 -m tools.leaderboard --check .`.

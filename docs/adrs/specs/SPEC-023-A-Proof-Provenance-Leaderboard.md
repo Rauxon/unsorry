@@ -22,6 +22,10 @@ Existing index entries remain valid and are reported as historical/unknown.
 `solver` defaults to the authenticated `gh api user` login and can be
 overridden with `UNSORRY_SOLVER`. Unknown models are omitted, never guessed.
 
+Historical git add-author attribution may be generated for contributor
+visibility, but it remains separate from solver-provenance credit. It must not
+populate or rewrite `solver≜`.
+
 ## Terminal-run fact table
 
 Every coordinated proof run that reaches a durable outcome PR appends:
@@ -74,10 +78,14 @@ other trust decision.
 `python3 -m tools.leaderboard --write` deterministically writes:
 
 - `docs/metrics/community-stats.json`: schema-versioned base statistics;
-- `docs/leaderboard.md`: a human view generated from the same calculations.
+- `docs/metrics/leaderboard-ui.json`: browser-facing leaderboard payload;
+- `docs/metrics/attribution-gaps.json`: review queue for proof index files
+  missing explicit solver provenance;
+- `docs/leaderboard.md`: a human view generated from the same calculations;
+- `docs/leaderboard.svg`: README-compatible preview image.
 
 `--json` prints the machine-readable statistics and `--check` detects drift in
-both generated files.
+all generated leaderboard files.
 
 The base statistics include:
 
@@ -86,6 +94,8 @@ The base statistics include:
   total/median/p90 solve time, and successes per recorded run hour;
 - queue status and difficulty distributions;
 - contributor, provider/model, effort-rung, difficulty, and daily cohorts;
+- historical proof index contributors from git add-author history, separated
+  from solver-provenance ranking;
 - goal-level accumulated runs, failed attempts, and recorded time;
 - the latest terminal runs for operational inspection.
 

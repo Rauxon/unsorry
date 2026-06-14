@@ -1,0 +1,25 @@
+{
+  "git_authors": {
+    "Chris Barlow <cgbarlow@gmail.com>": {
+      "display_name": "Chris Barlow",
+      "evidence": "Existing solver provenance and git author history in this repository.",
+      "github": "cgbarlow"
+    },
+    "OceanLi <quantocean.li@gmail.com>": {
+      "display_name": "OceanLi",
+      "evidence": "Git author name is already a GitHub-handle-shaped contributor identity in this repository.",
+      "github": "OceanLi"
+    },
+    "binto <marcjvincent@gmail.com>": {
+      "display_name": "binto",
+      "evidence": "Git author name is already a GitHub-handle-shaped contributor identity in this repository.",
+      "github": "binto"
+    },
+    "chat-bit-01 <chatuser55@gmail.com>": {
+      "display_name": "chat-bit-01",
+      "evidence": "Git author name is already a GitHub-handle-shaped contributor identity in this repository.",
+      "github": "chat-bit-01"
+    }
+  },
+  "schema_version": 1
+}

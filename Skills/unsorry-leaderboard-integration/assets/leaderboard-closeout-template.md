@@ -9,6 +9,7 @@ Generated artifacts:
 - `docs/metrics/community-stats.json`: `<updated/not touched>`
 - `docs/leaderboard.md`: `<updated/not touched>`
 - `docs/metrics/leaderboard-ui.json`: `<updated/not applicable>`
+- `docs/metrics/attribution-gaps.json`: `<updated/not applicable>`
 - `docs/leaderboard.html`: `<updated/not applicable>`
 - `docs/leaderboard.svg/png`: `<updated/deferred/not applicable>`
 
@@ -18,6 +19,6 @@ Validation:
 - `python3 -m tools.leaderboard --check .`: `<pass/fail/not run>`
 
 Notes:
-- Attribution source: `<recorded solver only / unknown preserved>`
+- Attribution source: `<recorded solver / historical git visibility / unknown preserved>`
 - README image: `<implemented/deferred>`
 - Automation policy: `<proof PR regen / drift-check plus bot PR / undecided>`

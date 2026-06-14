@@ -29,9 +29,13 @@ Avoid raw GitHub URLs unless relative hosting is impossible.
     "attributed_proofs": 19,
     "historical_unknown_proofs": 71,
     "terminal_runs": 23,
-    "proof_run_coverage": 0.2111
+    "proof_run_coverage": 0.2111,
+    "git_attributed_index_files": 90,
+    "historical_contributors": 4,
+    "attribution_gap_count": 71
   },
-  "contributors": []
+  "contributors": [],
+  "historical_contributors": []
 }
 ```
 
@@ -61,6 +65,27 @@ Avoid raw GitHub URLs unless relative hosting is impossible.
 }
 ```
 
+## Historical Contributor Row
+
+Historical rows are visibility rows from git add-author history. They must not be
+merged into ranked solver-provenance rows.
+
+```json
+{
+  "rank": 1,
+  "display_name": "chat-bit-01",
+  "github": "chat-bit-01",
+  "profile_url": "https://github.com/chat-bit-01",
+  "avatar_url": "https://github.com/chat-bit-01.png?size=96",
+  "index_files_added": 20,
+  "missing_solver_provenance": 20,
+  "solver_provenance_proofs": 0,
+  "difficulty_points": 60,
+  "attribution_source": "git-add-author",
+  "solver_credit": false
+}
+```
+
 ## Mapping To Current HTML
 
 | Current field | UI payload field |
@@ -81,8 +106,9 @@ The browser should:
 
 - fetch the JSON;
 - verify `schema_version` is supported;
-- render rows;
+- render solver rows and historical rows separately;
 - show an empty state when there are no attributed contributors;
+- show an empty state when there are no historical contributors;
 - show a concise error state when fetch fails.
 
 The browser should not be the canonical rank or score calculator.

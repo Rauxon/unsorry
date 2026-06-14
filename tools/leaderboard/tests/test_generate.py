@@ -1,11 +1,15 @@
 import json
+import os
 from pathlib import Path
+import subprocess
 
 from tools.leaderboard.generate import (
+    attribution_gaps_payload,
     base_stats,
     main,
     proofs,
     render,
+    render_attribution_gaps_json,
     render_json,
     render_svg,
     render_ui_json,
@@ -31,6 +35,50 @@ def _goal(root: Path, goal: str, difficulty: int, status: str = "open") -> None:
     path.mkdir(parents=True, exist_ok=True)
     (path / f"{goal}.aisp").write_text(
         f"⟦Ω:Goal⟧{{id≜{goal}; status≜{status}; difficulty≜{difficulty}}}\n",
+        encoding="utf-8",
+    )
+
+
+def _git(root: Path, *args: str, author: str | None = None) -> None:
+    env = os.environ.copy()
+    if author:
+        name, email = author.rsplit(" <", 1)
+        email = email.rstrip(">")
+        env.update({
+            "GIT_AUTHOR_NAME": name,
+            "GIT_AUTHOR_EMAIL": email,
+            "GIT_COMMITTER_NAME": name,
+            "GIT_COMMITTER_EMAIL": email,
+        })
+    subprocess.run(
+        ["git", "-C", str(root), *args],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        env=env,
+    )
+
+
+def _alias(root: Path, git_author: str, github: str, display_name: str) -> None:
+    path = root / "docs" / "metrics"
+    path.mkdir(parents=True, exist_ok=True)
+    (path / "contributor-aliases.json").write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "git_authors": {
+                    git_author: {
+                        "github": github,
+                        "display_name": display_name,
+                        "evidence": "test fixture",
+                    }
+                },
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
         encoding="utf-8",
     )
 
@@ -80,6 +128,49 @@ def test_historical_entries_are_unknown_not_guessed(tmp_path):
     assert "1 historical/unknown" in render(tmp_path)
     assert "No attributed work yet" in render(tmp_path)
     assert ui_payload(tmp_path)["contributors"] == []
+    assert ui_payload(tmp_path)["historical_contributors"] == []
+
+
+def test_git_add_author_is_historical_visibility_not_solver_credit(tmp_path):
+    _git(tmp_path, "init")
+    _goal(tmp_path, "old-goal", 4)
+    _index(tmp_path, "a" * 64, "old-goal")
+    _git(tmp_path, "add", "goals", "library/index")
+    _git(
+        tmp_path,
+        "commit",
+        "-m",
+        "add historical proof",
+        author="Ada Lovelace <ada@example.test>",
+    )
+    _alias(tmp_path, "Ada Lovelace <ada@example.test>", "ada", "Ada Lovelace")
+
+    stats = base_stats(tmp_path)
+    assert stats["contributors"] == []
+    historical = stats["historical_attribution"]
+    assert historical["git_attributed_index_files"] == 1
+    assert historical["author_count"] == 1
+    assert historical["authors"][0]["display_name"] == "Ada Lovelace"
+    assert historical["authors"][0]["github"] == "ada"
+    assert historical["authors"][0]["missing_solver_provenance"] == 1
+    assert historical["authors"][0]["solver_credit"] is False
+
+    payload = ui_payload(tmp_path)
+    assert payload["summary"]["git_attributed_index_files"] == 1
+    assert payload["summary"]["historical_contributors"] == 1
+    assert payload["contributors"] == []
+    assert payload["historical_contributors"][0]["profile_url"] == "https://github.com/ada"
+    assert payload["historical_contributors"][0]["solver_credit"] is False
+
+    gaps = attribution_gaps_payload(tmp_path)
+    assert gaps["summary"] == {
+        "git_attributed_missing_solver": 1,
+        "mapped_missing_solver": 1,
+        "missing_solver_provenance": 1,
+        "unmapped_missing_solver": 0,
+    }
+    assert gaps["missing_solver_provenance"][0]["mapped_github"] == "ada"
+    assert json.loads(render_attribution_gaps_json(tmp_path)) == gaps
 
 
 def test_base_stats_derive_failure_and_efficiency_metrics(tmp_path):
@@ -184,6 +275,9 @@ def test_ui_payload_is_stable_browser_contract(tmp_path):
     assert payload["generated_at"] == "2026-06-13T12:00:00Z"
     assert payload["summary"]["verified_proofs"] == 2
     assert payload["summary"]["historical_unknown_proofs"] == 0
+    assert payload["summary"]["git_attributed_index_files"] == 0
+    assert payload["summary"]["historical_contributors"] == 0
+    assert payload["historical_contributors"] == []
 
     first = payload["contributors"][0]
     assert first["rank"] == 1
@@ -216,6 +310,7 @@ def test_svg_has_empty_state(tmp_path):
     svg = render_svg(tmp_path)
     assert "No attributed proofs yet." in svg
     assert "1 verified proofs" in svg
+    assert "Historical proof index contributors" in svg
 
 
 def test_check_and_write_modes_cover_markdown_json_ui_json_and_svg(tmp_path):
@@ -227,6 +322,8 @@ def test_check_and_write_modes_cover_markdown_json_ui_json_and_svg(tmp_path):
     assert (tmp_path / "docs" / "metrics" / "community-stats.json").is_file()
     ui_path = tmp_path / "docs" / "metrics" / "leaderboard-ui.json"
     assert ui_path.is_file()
+    gaps_path = tmp_path / "docs" / "metrics" / "attribution-gaps.json"
+    assert gaps_path.is_file()
     assert (tmp_path / "docs" / "leaderboard.svg").is_file()
     ui_path.write_text("{}\n", encoding="utf-8")
     assert main(["--check", str(tmp_path)]) == 1
@@ -238,6 +335,8 @@ def test_docs_leaderboard_html_consumes_generated_ui_json():
     assert "metrics/leaderboard-ui.json" in html
     assert "schema_version" in html
     assert "leaderboardData = normalizeRows(payload.contributors)" in html
+    assert "historical_contributors" in html
+    assert "renderHistoricalContributors" in html
     assert "LocalDataStore" not in html
     assert "seedData" not in html
     assert "pravatar" not in html

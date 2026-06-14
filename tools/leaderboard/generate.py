@@ -10,7 +10,9 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import statistics
+import subprocess
 import sys
 from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
@@ -35,6 +37,8 @@ class Goal:
 
 @dataclass(frozen=True)
 class Proof:
+    path: str
+    sha: str
     goal: str
     date: str
     solver: str | None
@@ -78,6 +82,21 @@ class Dataset:
     runs: list[Run]
 
 
+@dataclass(frozen=True)
+class GitAuthor:
+    commit: str
+    name: str
+    email: str
+    date: str
+
+    @property
+    def key(self) -> str:
+        return f"{self.name} <{self.email}>"
+
+
+_GITHUB_HANDLE = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$")
+
+
 def _optional(value: str | None) -> str | None:
     return None if not value or value == "∅" else value
 
@@ -110,6 +129,8 @@ def proofs(root: Path, known_goals: list[Goal] | None = None) -> list[Proof]:
         goal = record.fields.get("goal", path.stem)
         result.append(
             Proof(
+                path=path.relative_to(root).as_posix(),
+                sha=path.stem,
                 goal=goal,
                 date=record.header.date if record.header else "",
                 solver=_optional(record.fields.get("solver")),
@@ -158,6 +179,222 @@ def runs(root: Path, known_goals: list[Goal] | None = None) -> list[Run]:
 def load_dataset(root: Path) -> Dataset:
     goal_data = goals(root)
     return Dataset(goal_data, proofs(root, goal_data), runs(root, goal_data))
+
+
+def _valid_github_handle(value: str | None) -> str | None:
+    if value and _GITHUB_HANDLE.fullmatch(value):
+        return value
+    return None
+
+
+def _profile_url(handle: str | None) -> str | None:
+    handle = _valid_github_handle(handle)
+    return f"https://github.com/{handle}" if handle else None
+
+
+def _avatar_url(handle: str | None) -> str | None:
+    handle = _valid_github_handle(handle)
+    return f"https://github.com/{handle}.png?size=96" if handle else None
+
+
+def contributor_aliases(root: Path) -> dict[str, dict[str, str]]:
+    path = root / "docs" / "metrics" / "contributor-aliases.json"
+    if not path.is_file():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("schema_version") != 1:
+        return {}
+    aliases = data.get("git_authors", {})
+    if not isinstance(aliases, dict):
+        return {}
+    return {
+        str(key): value
+        for key, value in aliases.items()
+        if isinstance(value, dict)
+    }
+
+
+def git_add_authors(root: Path, proof_data: list[Proof]) -> dict[str, GitAuthor]:
+    paths = sorted({proof.path for proof in proof_data})
+    if not paths:
+        return {}
+    command = [
+        "git",
+        "-C",
+        str(root),
+        "log",
+        "--diff-filter=A",
+        "--name-only",
+        "--format=\x1e%H\x1f%an\x1f%ae\x1f%cs",
+        "--",
+        *paths,
+    ]
+    result = subprocess.run(
+        command,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+    )
+    if result.returncode != 0:
+        return {}
+
+    authors: dict[str, GitAuthor] = {}
+    current: GitAuthor | None = None
+    wanted = set(paths)
+    for raw_line in result.stdout.split("\n"):
+        line = raw_line.rstrip("\n\r")
+        if not line:
+            continue
+        if line.startswith("\x1e"):
+            fields = line[1:].split("\x1f")
+            if len(fields) == 4:
+                current = GitAuthor(
+                    commit=fields[0],
+                    name=fields[1],
+                    email=fields[2],
+                    date=fields[3],
+                )
+            else:
+                current = None
+            continue
+        path = line.strip()
+        if current and path in wanted:
+            # `git log` is newest-first. Assigning through the stream leaves the
+            # earliest add commit if a path was deleted and later re-added.
+            authors[path] = current
+    return authors
+
+
+def _alias_for(
+    aliases: dict[str, dict[str, str]], author: GitAuthor | None
+) -> tuple[str | None, str | None]:
+    if author is None:
+        return None, None
+    alias = aliases.get(author.key, {})
+    display_name = str(alias.get("display_name") or author.name)
+    github = _valid_github_handle(str(alias.get("github") or ""))
+    return display_name, github
+
+
+def historical_attribution(root: Path, data: Dataset | None = None) -> dict:
+    data = load_dataset(root) if data is None else data
+    aliases = contributor_aliases(root)
+    authors_by_path = git_add_authors(root, data.proofs)
+    by_author: dict[str, dict] = {}
+    author_objects: dict[str, GitAuthor] = {}
+    for proof in data.proofs:
+        author = authors_by_path.get(proof.path)
+        if author is None:
+            continue
+        author_objects.setdefault(author.key, author)
+        row = by_author.setdefault(
+            author.key,
+            {
+                "git_author": author.key,
+                "git_author_name": author.name,
+                "sample_add_commit": author.commit,
+                "sample_add_date": author.date,
+                "index_files_added": 0,
+                "missing_solver_provenance": 0,
+                "solver_provenance_proofs": 0,
+                "difficulty_points": 0,
+            },
+        )
+        row["index_files_added"] += 1
+        row["difficulty_points"] += proof.difficulty
+        if proof.solver:
+            row["solver_provenance_proofs"] += 1
+        else:
+            row["missing_solver_provenance"] += 1
+
+    authors = []
+    for key, row in by_author.items():
+        author = author_objects[key]
+        display_name, github = _alias_for(aliases, author)
+        authors.append(
+            {
+                **row,
+                "display_name": display_name or row["git_author_name"],
+                "github": github,
+                "profile_url": _profile_url(github),
+                "avatar_url": _avatar_url(github),
+                "attribution_source": "git-add-author",
+                "solver_credit": False,
+            }
+        )
+    authors.sort(
+        key=lambda row: (
+            -int(row["index_files_added"]),
+            str(row["display_name"]).lower(),
+            str(row["git_author"]).lower(),
+        )
+    )
+    return {
+        "source": "git-add-author",
+        "scope": "library/index/*.aisp",
+        "records": len(data.proofs),
+        "git_attributed_index_files": sum(
+            int(row["index_files_added"]) for row in authors
+        ),
+        "unattributed_index_files": len(data.proofs)
+        - sum(int(row["index_files_added"]) for row in authors),
+        "author_count": len(authors),
+        "alias_file": (
+            "docs/metrics/contributor-aliases.json"
+            if (root / "docs" / "metrics" / "contributor-aliases.json").is_file()
+            else None
+        ),
+        "authors": authors,
+    }
+
+
+def attribution_gaps_payload(root: Path) -> dict:
+    data = load_dataset(root)
+    aliases = contributor_aliases(root)
+    authors_by_path = git_add_authors(root, data.proofs)
+    gaps = []
+    for proof in sorted(data.proofs, key=lambda item: item.path):
+        if proof.solver:
+            continue
+        author = authors_by_path.get(proof.path)
+        display_name, github = _alias_for(aliases, author)
+        gaps.append(
+            {
+                "path": proof.path,
+                "sha": proof.sha,
+                "goal": proof.goal,
+                "date": proof.date,
+                "difficulty": proof.difficulty,
+                "git_author": author.key if author else None,
+                "git_author_name": author.name if author else None,
+                "git_add_commit": author.commit if author else None,
+                "git_add_date": author.date if author else None,
+                "display_name": display_name,
+                "mapped_github": github,
+                "alias_mapped": bool(github),
+                "review_status": "candidate" if author else "needs-git-history",
+            }
+        )
+    mapped = sum(1 for gap in gaps if gap["alias_mapped"])
+    return {
+        "schema_version": 1,
+        "generated_from": [
+            "library/index/*.aisp",
+            "docs/metrics/contributor-aliases.json",
+            "git add-author history",
+        ],
+        "source": "git-add-author",
+        "summary": {
+            "missing_solver_provenance": len(gaps),
+            "git_attributed_missing_solver": sum(
+                1 for gap in gaps if gap["git_author"]
+            ),
+            "mapped_missing_solver": mapped,
+            "unmapped_missing_solver": len(gaps) - mapped,
+        },
+        "missing_solver_provenance": gaps,
+    }
 
 
 def _rate(numerator: int, denominator: int) -> float | None:
@@ -316,6 +553,7 @@ def base_stats(root: Path) -> dict:
         "difficulty": difficulty,
         "effort": effort,
         "daily": daily,
+        "historical_attribution": historical_attribution(root, data),
         "goal_effort": goal_effort,
         "recent_runs": [
             asdict(run)
@@ -430,6 +668,8 @@ def render(root: Path) -> str:
         "",
         "## Contributors",
         "",
+        "These rows are strict solver-provenance credit from explicit `solver≜...` records.",
+        "",
         "| Rank | GitHub solver | Verified proofs | Runs | Run success | Failed attempts | Difficulty points | Median time |",
         "|-----:|---------------|----------------:|-----:|------------:|----------------:|------------------:|------------:|",
     ])
@@ -441,6 +681,33 @@ def render(root: Path) -> str:
             f"{row['verified_proofs']} | {row['runs']} | "
             f"{_percent(row['run_success_rate'])} | {row['failed_attempts']} | "
             f"{row['difficulty_points']} | {_duration(row['median_solve_s'])} |"
+        )
+
+    historical = stats["historical_attribution"]
+    lines.extend([
+        "",
+        "## Historical Proof Index Contributors",
+        "",
+        "These rows come from git add-author history for `library/index/*.aisp`. "
+        "They provide contributor visibility for older proof artifacts and are not "
+        "solver-provenance ranking.",
+        "",
+        "| Contributor | Index files added | Missing solver provenance | Solver-provenance proofs | Difficulty points | Source |",
+        "|-------------|------------------:|--------------------------:|-------------------------:|------------------:|--------|",
+    ])
+    if not historical["authors"]:
+        lines.append("| No git add-author attribution available | — | — | — | — | — |")
+    for row in historical["authors"]:
+        contributor = (
+            f"[@{row['github']}]({row['profile_url']})"
+            if row.get("github") and row.get("profile_url")
+            else str(row["display_name"])
+        )
+        lines.append(
+            f"| {contributor} | {row['index_files_added']} | "
+            f"{row['missing_solver_provenance']} | "
+            f"{row['solver_provenance_proofs']} | {row['difficulty_points']} | "
+            f"`{row['attribution_source']}` |"
         )
 
     lines.extend([
@@ -505,6 +772,7 @@ def _success_rate_percent(value: float | None) -> float | None:
 def ui_payload(root: Path) -> dict:
     stats = base_stats(root)
     coverage = stats["coverage"]
+    historical = stats["historical_attribution"]
     contributors = []
     for rank, row in enumerate(stats["contributors"], 1):
         solver = str(row["solver"])
@@ -531,6 +799,23 @@ def ui_payload(root: Path) -> dict:
                 },
             }
         )
+    historical_contributors = []
+    for rank, row in enumerate(historical["authors"], 1):
+        historical_contributors.append(
+            {
+                "rank": rank,
+                "display_name": row["display_name"],
+                "github": row["github"],
+                "profile_url": row["profile_url"],
+                "avatar_url": row["avatar_url"],
+                "index_files_added": row["index_files_added"],
+                "missing_solver_provenance": row["missing_solver_provenance"],
+                "solver_provenance_proofs": row["solver_provenance_proofs"],
+                "difficulty_points": row["difficulty_points"],
+                "attribution_source": row["attribution_source"],
+                "solver_credit": False,
+            }
+        )
     return {
         "schema_version": 1,
         "generated_from": "docs/metrics/community-stats.json",
@@ -546,8 +831,12 @@ def ui_payload(root: Path) -> dict:
             "historical_unknown_proofs": coverage["historical_unknown_proofs"],
             "terminal_runs": coverage["terminal_runs"],
             "proof_run_coverage": coverage["proof_run_coverage"],
+            "git_attributed_index_files": historical["git_attributed_index_files"],
+            "historical_contributors": historical["author_count"],
+            "attribution_gap_count": coverage["historical_unknown_proofs"],
         },
         "contributors": contributors,
+        "historical_contributors": historical_contributors,
     }
 
 
@@ -561,13 +850,14 @@ def render_svg(root: Path) -> str:
     width = 900
     row_h = 62
     top = 104
-    height = top + max(1, len(contributors)) * row_h + 42
+    height = top + max(1, len(contributors)) * row_h + 72
     max_score = max([int(row["score"]) for row in contributors] + [100])
     summary = payload["summary"]
+    historical_count = summary["historical_contributors"]
     lines = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         "<title id=\"title\">Unsorry leaderboard</title>",
-        "<desc id=\"desc\">Top verified Unsorry contributors ranked by proof count and difficulty points.</desc>",
+        "<desc id=\"desc\">Top verified Unsorry contributors plus historical proof-index contributor visibility.</desc>",
         "<rect width=\"900\" height=\"100%\" rx=\"18\" fill=\"#ffffff\"/>",
         "<rect x=\"0.5\" y=\"0.5\" width=\"899\" height=\"{h}\" rx=\"18\" fill=\"none\" stroke=\"#e2e8f0\"/>".format(h=height - 1),
         "<text x=\"32\" y=\"44\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"28\" font-weight=\"700\" fill=\"#334155\">Unsorry Leaderboard</text>",
@@ -575,8 +865,9 @@ def render_svg(root: Path) -> str:
             "<text x=\"32\" y=\"72\" font-family=\"Inter, system-ui, sans-serif\" "
             "font-size=\"13\" fill=\"#64748b\">"
             f"{summary['verified_proofs']} verified proofs · "
-            f"{summary['attributed_proofs']} attributed · "
-            f"{summary['terminal_runs']} terminal runs"
+            f"{summary['attributed_proofs']} solver-attributed · "
+            f"{summary['historical_unknown_proofs']} historical · "
+            f"{historical_count} git authors"
             "</text>"
         ),
     ]
@@ -605,8 +896,26 @@ def render_svg(root: Path) -> str:
             f"<rect x=\"320\" y=\"{y + 15}\" width=\"{bar_w}\" height=\"26\" rx=\"13\" fill=\"#e0f2fe\"/>",
             f"<text x=\"760\" y=\"{y + 34}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"14\" font-weight=\"700\" fill=\"#334155\">{row['score']} pts</text>",
         ])
+    footer_y = top + max(1, len(contributors)) * row_h + 28
+    lines.extend([
+        f"<text x=\"32\" y=\"{footer_y}\" font-family=\"Inter, system-ui, sans-serif\" font-size=\"13\" font-weight=\"650\" fill=\"#334155\">Historical proof index contributors</text>",
+        (
+            f"<text x=\"32\" y=\"{footer_y + 20}\" font-family=\"Inter, system-ui, sans-serif\" "
+            f"font-size=\"12\" fill=\"#64748b\">{summary['git_attributed_index_files']} git-attributed index files · "
+            f"{summary['attribution_gap_count']} records missing explicit solver provenance</text>"
+        ),
+    ])
     lines.append("</svg>")
     return "\n".join(lines) + "\n"
+
+
+def render_attribution_gaps_json(root: Path) -> str:
+    return json.dumps(
+        attribution_gaps_payload(root),
+        ensure_ascii=False,
+        indent=2,
+        sort_keys=True,
+    ) + "\n"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -622,9 +931,11 @@ def main(argv: list[str] | None = None) -> int:
     payload = render_json(root)
     ui_payload_json = render_ui_json(root)
     svg = render_svg(root)
+    gaps_payload = render_attribution_gaps_json(root)
     markdown_path = root / "docs" / "leaderboard.md"
     json_path = root / "docs" / "metrics" / "community-stats.json"
     ui_json_path = root / "docs" / "metrics" / "leaderboard-ui.json"
+    gaps_json_path = root / "docs" / "metrics" / "attribution-gaps.json"
     svg_path = root / "docs" / "leaderboard.svg"
     if mode == "--check":
         stale = []
@@ -634,6 +945,8 @@ def main(argv: list[str] | None = None) -> int:
             stale.append(json_path.relative_to(root).as_posix())
         if not ui_json_path.is_file() or ui_json_path.read_text(encoding="utf-8") != ui_payload_json:
             stale.append(ui_json_path.relative_to(root).as_posix())
+        if not gaps_json_path.is_file() or gaps_json_path.read_text(encoding="utf-8") != gaps_payload:
+            stale.append(gaps_json_path.relative_to(root).as_posix())
         if not svg_path.is_file() or svg_path.read_text(encoding="utf-8") != svg:
             stale.append(svg_path.relative_to(root).as_posix())
         if stale:
@@ -650,6 +963,7 @@ def main(argv: list[str] | None = None) -> int:
         markdown_path.write_text(markdown, encoding="utf-8")
         json_path.write_text(payload, encoding="utf-8")
         ui_json_path.write_text(ui_payload_json, encoding="utf-8")
+        gaps_json_path.write_text(gaps_payload, encoding="utf-8")
         svg_path.write_text(svg, encoding="utf-8")
         return 0
     sys.stdout.write(payload if mode == "--json" else markdown)

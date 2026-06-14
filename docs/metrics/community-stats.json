@@ -511,6 +511,81 @@
       "total_solve_s": 188
     }
   ],
+  "historical_attribution": {
+    "alias_file": "docs/metrics/contributor-aliases.json",
+    "author_count": 4,
+    "authors": [
+      {
+        "attribution_source": "git-add-author",
+        "avatar_url": "https://github.com/cgbarlow.png?size=96",
+        "difficulty_points": 98,
+        "display_name": "Chris Barlow",
+        "git_author": "Chris Barlow <cgbarlow@gmail.com>",
+        "git_author_name": "Chris Barlow",
+        "github": "cgbarlow",
+        "index_files_added": 60,
+        "missing_solver_provenance": 41,
+        "profile_url": "https://github.com/cgbarlow",
+        "sample_add_commit": "1620a46de6d2b6a8b0efd1f5cfacae4d2bc5841b",
+        "sample_add_date": "2026-06-12",
+        "solver_credit": false,
+        "solver_provenance_proofs": 19
+      },
+      {
+        "attribution_source": "git-add-author",
+        "avatar_url": "https://github.com/chat-bit-01.png?size=96",
+        "difficulty_points": 39,
+        "display_name": "chat-bit-01",
+        "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+        "git_author_name": "chat-bit-01",
+        "github": "chat-bit-01",
+        "index_files_added": 20,
+        "missing_solver_provenance": 20,
+        "profile_url": "https://github.com/chat-bit-01",
+        "sample_add_commit": "ed8d9bac84b715a080eaf07508766ee8861cf868",
+        "sample_add_date": "2026-06-12",
+        "solver_credit": false,
+        "solver_provenance_proofs": 0
+      },
+      {
+        "attribution_source": "git-add-author",
+        "avatar_url": "https://github.com/binto.png?size=96",
+        "difficulty_points": 19,
+        "display_name": "binto",
+        "git_author": "binto <marcjvincent@gmail.com>",
+        "git_author_name": "binto",
+        "github": "binto",
+        "index_files_added": 9,
+        "missing_solver_provenance": 9,
+        "profile_url": "https://github.com/binto",
+        "sample_add_commit": "386cd2b8a1ca5187b159090f4dfbd7b2f6d4b21e",
+        "sample_add_date": "2026-06-12",
+        "solver_credit": false,
+        "solver_provenance_proofs": 0
+      },
+      {
+        "attribution_source": "git-add-author",
+        "avatar_url": "https://github.com/OceanLi.png?size=96",
+        "difficulty_points": 3,
+        "display_name": "OceanLi",
+        "git_author": "OceanLi <quantocean.li@gmail.com>",
+        "git_author_name": "OceanLi",
+        "github": "OceanLi",
+        "index_files_added": 1,
+        "missing_solver_provenance": 1,
+        "profile_url": "https://github.com/OceanLi",
+        "sample_add_commit": "83b412048758cb0ebc2337e5750030df1c9ae775",
+        "sample_add_date": "2026-06-11",
+        "solver_credit": false,
+        "solver_provenance_proofs": 0
+      }
+    ],
+    "git_attributed_index_files": 90,
+    "records": 90,
+    "scope": "library/index/*.aisp",
+    "source": "git-add-author",
+    "unattributed_index_files": 0
+  },
   "models": [
     {
       "attempt_yield": 0.5758,

@@ -27,20 +27,22 @@ If the change touches interactive proof graph data, also read `docs/adrs/ADR-032
 
 - Source records: `goals/*.aisp`, `library/index/*.aisp`, and `proof-runs/*.aisp`.
 - Core generated stats: `docs/metrics/community-stats.json` and `docs/leaderboard.md`.
-- Proposed UI contract: `docs/metrics/leaderboard-ui.json`.
-- Proposed visual page: `docs/leaderboard.html`.
-- Optional README preview: `docs/leaderboard.svg` or `docs/leaderboard.png`.
+- UI contract: `docs/metrics/leaderboard-ui.json`.
+- Attribution review queue: `docs/metrics/attribution-gaps.json`.
+- Visual page: `docs/leaderboard.html`.
+- README preview: `docs/leaderboard.svg`.
 
-Do not infer historical attribution from git authors, PR mergers, or squash commits. Do not use leaderboard values in Gate A, Gate B admission, or queue selection.
+Do not infer solver credit from git authors, PR mergers, or squash commits. Historical git add-author attribution may be shown as a separate visibility layer only when the generated data labels it separately from `solver≜...` provenance. Do not use leaderboard values in Gate A, Gate B admission, or queue selection.
 
 ## Implementation Pattern
 
 1. Preserve `tools.leaderboard.generate.base_stats(root)` as the statistical source.
 2. Add a UI adapter that derives display-only fields from core stats: rank, score, GitHub profile URL, avatar URL, badges, and summary.
-3. Keep the browser page presentation-only. It should fetch generated JSON, validate basic shape, render rows, and show empty/error states.
-4. Make `python3 -m tools.leaderboard --write .` refresh every generated leaderboard artifact.
-5. Make `python3 -m tools.leaderboard --check .` detect drift for every generated leaderboard artifact.
-6. Add tests before or with implementation changes.
+3. Keep solver-provenance rows and historical git-attribution rows separate. `contributors` is ranked solver credit; `historical_contributors` is contributor visibility only.
+4. Keep the browser page presentation-only. It should fetch generated JSON, validate basic shape, render rows, and show empty/error states.
+5. Make `python3 -m tools.leaderboard --write .` refresh every generated leaderboard artifact.
+6. Make `python3 -m tools.leaderboard --check .` detect drift for every generated leaderboard artifact.
+7. Add tests before or with implementation changes.
 
 ## Automatic Data
 
@@ -71,8 +73,8 @@ If HTML or README preview rendering changes, inspect the generated artifact in a
 
 Load these references only when needed:
 
-- [references/data-model.md](references/data-model.md): automatic collection, per-run facts, generated artifacts, and fields to avoid.
-- [references/html-contract.md](references/html-contract.md): UI JSON schema, mapping to the current HTML, empty/error states.
+- [references/data-model.md](references/data-model.md): automatic collection, per-run facts, generated artifacts, historical attribution boundaries, and fields to avoid.
+- [references/html-contract.md](references/html-contract.md): UI JSON schema, solver rows, historical rows, mapping to the current HTML, empty/error states.
 - [references/automation.md](references/automation.md): automatic regeneration options, CI drift checks, and generated-artifact conflict tradeoffs.
 - [references/readme-rendering.md](references/readme-rendering.md): README image/link options and SVG vs PNG tradeoffs.
 
