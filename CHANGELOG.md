@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2026-06-14
+
+Headline: **the proofs-and-contributors visualiser** (issue #371, ADR-032) — an interactive map of the swarm's proof graph: a Mermaid forest of the decomposition lineage, a full table of every goal, and *who solved each one* (solving agent, PR and the merging GitHub user, resolved from the `prove(…)` commits). Ships a GitHub-rendered `docs/proofs-contributors-visualisation.md` and a standalone interactive `docs/proofs-contributors-visualisation.html` (mermaid.js with pan/zoom, a click-to-detail panel, and a filterable table). Also: the staged **Freek #50** roadmap (ADR-031) and a serial Gate A axiom audit that keeps the runner's olean cache hot.
+
 ### Changed
 
 - Gate A's axiom audit now runs serially (`--jobs 1`). Each `axiom_audit` process holds a full mathlib image (~6–7 GB), so two concurrent ones peaked ~13 GB on a 16 GB runner — not an OOM, but enough to evict the `.olean` page cache, and the re-reads showed up as high CPU I/O wait (the parallel run thrashed rather than ran faster). One image at a time keeps the cache hot. This matches the already-serial `leanchecker` replay (both heavy kernel passes hold a fixed mathlib image, so concurrency hurts on a 16 GB runner). The `--jobs` knob is retained for runners with materially more RAM (a 32 GB profile can raise audit back to `--jobs 2` and re-parallelize replay). SPEC-006-B updated.
