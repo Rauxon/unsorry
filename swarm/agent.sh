@@ -243,13 +243,18 @@ def _rank(candidates, proved: set) -> list[str]:
 
 
 def cmd_aff_bump(args):
-    """aff-bump <goal.aisp> <delta> — add <delta> to the goal's aff field,
-    inserting ``aff≜<delta>`` after the sha≜ line if none exists yet
-    (⟦Γ:Affinity⟧ update; +1 on merge, -10 on a failed attempt)."""
+    """aff-bump <goal.aisp> <delta> [<floor>] — add <delta> to the goal's aff
+    field, inserting ``aff≜<delta>`` after the sha≜ line if none exists yet
+    (⟦Γ:Affinity⟧ update; +1 on merge, -10 on a failed attempt). An optional
+    <floor> clamps the result (``new = max(aff+delta, floor)``) — the ADR-034
+    recompose demote passes τ_v so a recoverable parent is never buried below
+    viability (#388)."""
     path = Path(args[0])
     delta = int(args[1])
     record = parse_record(path.read_text(encoding="utf-8"))
     new = _affinity(record) + delta
+    if len(args) > 2:
+        new = max(new, int(args[2]))
     lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
     out = []
     hit = 0
@@ -489,6 +494,12 @@ def cmd_aff_delta(args):
     print(config.AFFINITY_MERGE if args[0] == "merge" else config.AFFINITY_FAIL)
 
 
+def cmd_tau_v(_args):
+    """tau-v — print the viability floor TAU_V, so the shell never hardcodes -5
+    (used by the ADR-034 recompose demote as the floor)."""
+    print(config.TAU_V)
+
+
 def cmd_max_decomp(args):
     """max-decomp subs|depth — the decomposition fan-out / depth caps (ADR-009)."""
     print(config.MAX_DECOMP_SUBS if args[0] == "subs" else config.MAX_DECOMP_DEPTH)
@@ -674,12 +685,9 @@ def cmd_has_decomposition(args):
     sys.exit(1)
 
 
-def cmd_unblockable(args):
-    """unblockable <goals-dir> <decompositions-dir> <library-dir> — list blocked
-    parent goals whose decomposition's sub-lemmas are ALL proved, so the parent
-    can be re-opened (ADR-009). One goal id per line, lexicographic."""
-    goals_dir, decomp_dir, library_dir = args[:3]
-    proved = _proved_goals(library_dir)
+def _decomp_subs(decomp_dir: str) -> dict:
+    """Map each decomposition parent to the set of its sub-lemma ids
+    (the ⟦Σ:Subs⟧ block's `id≜…`), unioned across all of its records."""
     parents: dict = {}
     ddir = Path(decomp_dir)
     if ddir.is_dir():
@@ -695,6 +703,16 @@ def cmd_unblockable(args):
                 else set()
             )
             parents.setdefault(parent, set()).update(ids)
+    return parents
+
+
+def cmd_unblockable(args):
+    """unblockable <goals-dir> <decompositions-dir> <library-dir> — list blocked
+    parent goals whose decomposition's sub-lemmas are ALL proved, so the parent
+    can be re-opened (ADR-009). One goal id per line, lexicographic."""
+    goals_dir, decomp_dir, library_dir = args[:3]
+    proved = _proved_goals(library_dir)
+    parents = _decomp_subs(decomp_dir)
     for path in sorted(Path(goals_dir).glob("*.aisp")):
         goal = path.stem
         record = parse_record(path.read_text(encoding="utf-8"))
@@ -703,6 +721,19 @@ def cmd_unblockable(args):
         subs = parents.get(goal)
         if subs and subs <= proved:
             print(goal)
+
+
+def cmd_recompose_candidate(args):
+    """recompose-candidate <goal> <decompositions-dir> <library-dir> — exit 0 iff
+    <goal> has a decomposition record whose sub-lemmas are ALL proved. A failed
+    prove on such a goal is a RECOMPOSE attempt (not a fresh prove): the #368
+    idempotency guard won't re-decompose it, so it must not be demoted below τ_v
+    (ADR-034 / #388). Unlike `unblockable` this ignores the goal's status — the
+    parent is `open` by recompose time, not `blocked`."""
+    goal, decomp_dir, library_dir = args[:3]
+    proved = _proved_goals(library_dir)
+    subs = _decomp_subs(decomp_dir).get(goal)
+    sys.exit(0 if (subs and subs <= proved) else 1)
 
 
 def cmd_now(_args):
@@ -826,6 +857,7 @@ COMMANDS = {
     "rewrite-goal": cmd_rewrite_goal,
     "aff-bump": cmd_aff_bump,
     "aff-delta": cmd_aff_delta,
+    "tau-v": cmd_tau_v,
     "max-decomp": cmd_max_decomp,
     "goal-depth": cmd_goal_depth,
     "render-goal": cmd_render_goal,
@@ -835,6 +867,7 @@ COMMANDS = {
     "lesson-sig": cmd_lesson_sig,
     "has-decomposition": cmd_has_decomposition,
     "unblockable": cmd_unblockable,
+    "recompose-candidate": cmd_recompose_candidate,
     "camel-name": cmd_camel_name,
     "lean-stmt": cmd_lean_stmt,
     "lean-name": cmd_lean_name,
@@ -2030,6 +2063,17 @@ prove_goal() {
       return 2
     fi
   fi
+  # ADR-034 (#388): a failed prove on a parent whose decomposition's sub-lemmas
+  # are all proved is a RECOMPOSE attempt, not a fresh prove. The #368 guard
+  # (rightly) refuses to re-decompose it, so a full -10 demote here can bury it
+  # below τ_v where the unblock→recompose sweep can never auto-retry it. Floor
+  # the demote at τ_v so it stays selectable (lowest priority) — recoverable work
+  # is never buried (the ADR-016 principle, for a distinct condition).
+  if py_helper recompose-candidate "$goal" decompositions library; then
+    demote_goal "$goal" "$(py_helper tau-v)" || true
+    log "prove of $goal failed (recompose of a proved subtree) — demote floored at τ_v, stays viable (ADR-034, #388)"
+    return 1
+  fi
   demote_goal "$goal" || true
   log "prove of $goal failed after $UNSORRY_ATTEMPTS attempt(s) — claim released, flagged, affinity -10"
   return 1
@@ -2210,16 +2254,25 @@ Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` 
 # (Stage C). Editing a goal .aisp is not a Lean path, so Gate A short-circuits;
 # Gate B validates. Best-effort — a failed demote never blocks the cycle.
 demote_goal() {
-  local goal="$1" prwt branch
+  # demote_goal <goal> [<floor>]. With a <floor> (the ADR-034 recompose case) the
+  # -10 is clamped so the goal never drops below it (τ_v), keeping a recoverable
+  # parent selectable; without one it is the ordinary -10 leaf demote.
+  local goal="$1" floor="${2:-}" prwt branch title note
+  local -a floorarg=()
+  [ -n "$floor" ] && floorarg=("$floor")
   branch="$(feature_branch demote "$goal")" || return 1
   prwt="$UNSORRY_WORKDIR/demote-${goal}-${AGENT_ID}"
   open_pr_worktree "$prwt" "$branch" || return 1
-  if py_helper aff-bump "$prwt/goals/$goal.aisp" "$(py_helper aff-delta fail)"; then
+  if [ -n "$floor" ]; then
+    title="affinity($goal): failed recompose, demote floored at τ_v by $AGENT_ID"
+    note="Automated affinity floor (ADR-010/ADR-034, SPEC-034-A): \`$goal\` is a fully-decomposed parent whose sub-lemmas are all proved, so a failed recompose floors the -10 demote at τ_v ($floor) instead of burying it — it stays selectable (lowest priority) for the unblock→recompose sweep to retry. Advisory queue state only — never trust-bearing."
+  else
+    title="affinity($goal): -10 after a failed prove attempt by $AGENT_ID"
+    note="Automated affinity penalty (ADR-010, SPEC-010-A): goal \`$goal\` resisted proof within budget, so its pattern is demoted by 10. Advisory queue state only — never trust-bearing."
+  fi
+  if py_helper aff-bump "$prwt/goals/$goal.aisp" "$(py_helper aff-delta fail)" "${floorarg[@]}"; then
     if write_proof_run_record "$prwt" "$goal" failed; then
-      submit_pr_tree "$prwt" "$branch" \
-        "affinity($goal): -10 after a failed prove attempt by $AGENT_ID" \
-        "Automated affinity penalty (ADR-010, SPEC-010-A): goal \`$goal\` resisted proof within budget, so its pattern is demoted by 10. Advisory queue state only — never trust-bearing." \
-        goals proof-runs || true
+      submit_pr_tree "$prwt" "$branch" "$title" "$note" goals proof-runs || true
     fi
   fi
   git worktree remove --force "$prwt" >/dev/null 2>&1 || true
@@ -3440,6 +3493,51 @@ test_unblockable_detection() {
   [ "$got" = "parent" ] || { log "  all subs proved ⇒ unblockable; got '$got'"; return 1; }
 }
 
+test_recompose_fail_floors_at_viability() {
+  # ADR-034 / #388: a failed recompose of a parent whose subs are all proved
+  # floors the demote at τ_v (parent stays selectable); an ordinary leaf fail is
+  # still the full -10. `recompose-candidate` ignores status (parent is `open`).
+  local tree tau sha1 sha2 paff laff
+  tree="$(mktemp -d "$SESSION_TMP/recompose-floor.XXXXXX")" || return 1
+  mkdir -p "$tree/goals" "$tree/decompositions" "$tree/library/index" "$tree/backlog" || return 1
+  tau="$(py_helper tau-v)" || return 1
+  [ "$tau" = "-5" ] || { log "  τ_v drifted from -5 (got $tau)"; return 1; }
+
+  make_prove_goal "$tree" parent "theorem p (a b : Nat) : a + b = b + a" || return 1
+  make_prove_goal "$tree" parent-s1 "theorem s1 (n : Nat) : n + 0 = n" || return 1
+  make_prove_goal "$tree" parent-s2 "theorem s2 (n : Nat) : 0 + n = n" || return 1
+  make_prove_goal "$tree" leaf "theorem l (n : Nat) : n = n" || return 1
+  py_helper render-decomp parent agent-x \
+    parent-s1 "$(py_helper lean-sha "$tree/goals/parent-s1.lean")" \
+    parent-s2 "$(py_helper lean-sha "$tree/goals/parent-s2.lean")" \
+    > "$tree/decompositions/parent.agent-x.aisp" || return 1
+
+  # Not a recompose candidate until ALL subs are proved.
+  py_helper recompose-candidate parent "$tree/decompositions" "$tree/library" \
+    && { log "  parent is not a recompose candidate with 0 subs proved"; return 1; }
+  sha1="$(py_helper lean-sha "$tree/goals/parent-s1.lean")" || return 1
+  py_helper render-index "$sha1" parent-s1 s1 > "$tree/library/index/$sha1.aisp" || return 1
+  py_helper recompose-candidate parent "$tree/decompositions" "$tree/library" \
+    && { log "  one sub proved is not enough for a recompose candidate"; return 1; }
+  sha2="$(py_helper lean-sha "$tree/goals/parent-s2.lean")" || return 1
+  py_helper render-index "$sha2" parent-s2 s2 > "$tree/library/index/$sha2.aisp" || return 1
+
+  # All subs proved ⇒ parent is a recompose candidate; a leaf (no decomp) is not.
+  py_helper recompose-candidate parent "$tree/decompositions" "$tree/library" \
+    || { log "  all subs proved ⇒ parent should be a recompose candidate"; return 1; }
+  py_helper recompose-candidate leaf "$tree/decompositions" "$tree/library" \
+    && { log "  a goal with no decomposition is not a recompose candidate"; return 1; }
+
+  # Criterion 1: floored demote keeps the parent at τ_v (not below). aff 0 → max(-10, -5) = -5.
+  py_helper aff-bump "$tree/goals/parent.aisp" "$(py_helper aff-delta fail)" "$tau" || return 1
+  paff="$(grep -oE 'aff≜-?[0-9]+' "$tree/goals/parent.aisp" | grep -oE -- '-?[0-9]+')"
+  [ "$paff" = "$tau" ] || { log "  recompose demote should floor at τ_v ($tau), got $paff"; return 1; }
+  # Criterion 2: an ordinary leaf demote is unchanged (-10, below τ_v).
+  py_helper aff-bump "$tree/goals/leaf.aisp" "$(py_helper aff-delta fail)" || return 1
+  laff="$(grep -oE 'aff≜-?[0-9]+' "$tree/goals/leaf.aisp" | grep -oE -- '-?[0-9]+')"
+  [ "$laff" = "-10" ] || { log "  ordinary leaf demote should be -10, got $laff"; return 1; }
+}
+
 test_proved_deps_surfacing() {
   # ADR-014: a goal's proved deps (declared + own-decomposition subs) surface
   # as importable modules; unproved deps stay silent (gap routing owns those).
@@ -3649,6 +3747,7 @@ run_self_tests() {
     test_decomp_caps_and_depth
     test_has_decomposition
     test_unblockable_detection
+    test_recompose_fail_floors_at_viability
     test_proved_deps_surfacing
     test_lesson_signature
     test_prove_lessons_surfacing
