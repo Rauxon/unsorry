@@ -4,21 +4,21 @@
 <rect width="900" height="100%" rx="18" fill="#ffffff"/>
 <rect x="0.5" y="0.5" width="899" height="485" rx="18" fill="none" stroke="#e2e8f0"/>
 <text x="32" y="44" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="#334155">Unsorry Leaderboard</text>
-<text x="32" y="72" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#64748b">155 credited proofs · 34 explicit · 121 inferred from git · 8 contributors</text>
+<text x="32" y="72" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#64748b">156 credited proofs · 35 explicit · 121 inferred from git · 8 contributors</text>
 <text x="34" y="148" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#fbbf24">1</text>
 <a href="https://github.com/cgbarlow">
 <text x="82" y="138" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@cgbarlow</text>
 </a>
-<text x="82" y="158" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">67 proofs · 111 difficulty · 25 explicit · 42 inferred · 83 runs</text>
+<text x="82" y="158" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">68 proofs · 112 difficulty · 26 explicit · 42 inferred · 84 runs</text>
 <rect x="320" y="127" width="420" height="26" rx="13" fill="#f1f5f9"/>
 <rect x="320" y="127" width="390" height="26" rx="13" fill="#e0f2fe"/>
-<text x="760" y="146" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">12775 pts</text>
+<text x="760" y="146" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">12900 pts</text>
 <text x="760" y="162" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b">explicit + inferred</text>
 <text x="34" y="212" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#94a3b8">2</text>
 <text x="82" y="202" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">Perttu Isotalo</text>
 <text x="82" y="222" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">39 proofs · 61 difficulty · 0 explicit · 39 inferred · 0 runs</text>
 <rect x="320" y="191" width="420" height="26" rx="13" fill="#f1f5f9"/>
-<rect x="320" y="191" width="215" height="26" rx="13" fill="#e0f2fe"/>
+<rect x="320" y="191" width="213" height="26" rx="13" fill="#e0f2fe"/>
 <text x="760" y="210" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">7075 pts</text>
 <text x="760" y="226" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b">inferred</text>
 <text x="34" y="276" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#b45309">3</text>
@@ -27,7 +27,7 @@
 </a>
 <text x="82" y="286" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">30 proofs · 61 difficulty · 0 explicit · 30 inferred · 0 runs</text>
 <rect x="320" y="255" width="420" height="26" rx="13" fill="#f1f5f9"/>
-<rect x="320" y="255" width="209" height="26" rx="13" fill="#e0f2fe"/>
+<rect x="320" y="255" width="207" height="26" rx="13" fill="#e0f2fe"/>
 <text x="760" y="274" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">6850 pts</text>
 <text x="760" y="290" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b">inferred</text>
 <text x="34" y="340" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#cbd5e1">4</text>
@@ -45,7 +45,7 @@
 </a>
 <text x="82" y="414" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">6 proofs · 11 difficulty · 6 explicit · 0 inferred · 10 runs</text>
 <rect x="320" y="383" width="420" height="26" rx="13" fill="#f1f5f9"/>
-<rect x="320" y="383" width="38" height="26" rx="13" fill="#e0f2fe"/>
+<rect x="320" y="383" width="37" height="26" rx="13" fill="#e0f2fe"/>
 <text x="760" y="402" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">1250 pts</text>
 <text x="760" y="418" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b">explicit</text>
 <text x="32" y="454" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">Inferred credits use git add-author history only when explicit solver provenance is missing.</text>
