@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**128 goals — 15 open · 4 blocked · 10 translated · 99 proved.** 11 decomposition families shown below; standalone goals are listed in the table.
+**128 goals — 14 open · 4 blocked · 10 translated · 100 proved.** 11 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (95 of 99 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (96 of 100 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -216,7 +216,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`no-nat-sq-eq-two-mul-sq-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s4.lean) | open | 1 | — | — | — | — |
 | [`prod-one-sub-inv-sq-telescope`](https://github.com/agenticsnz/unsorry/blob/main/goals/prod-one-sub-inv-sq-telescope.lean) | open | 4 | — | — | — | — |
 | [`sq-add-sq-eq-three-mul-sq-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s4.lean) | open | 1 | — | — | — | — |
-| [`sum-three-squares-ge-sum-products`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-three-squares-ge-sum-products.lean) | open | 2 | — | — | — | — |
 | [`four-consecutive-product-add-one-square`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square.lean) | blocked | 2 | — | — | — | — |
 | [`nesbitt-inequality`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality.lean) | blocked | 4 | — | — | — | — |
 | [`no-nat-sq-eq-two-mul-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq.lean) | blocked | 4 | — | — | — | — |
@@ -329,5 +328,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sum-range-sq-odd-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-odd-closed-form.lean) | proved | 2 | p3-b1 | Chris Barlow | [#240](https://github.com/agenticsnz/unsorry/pull/240) | 2026-06-12 |
 | [`sum-range-sq-triangular-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-triangular-form.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#335](https://github.com/agenticsnz/unsorry/pull/335) | 2026-06-13 |
 | [`sum-range-three-consecutive-product`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-three-consecutive-product.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#407](https://github.com/agenticsnz/unsorry/pull/407) | 2026-06-14 |
+| [`sum-three-squares-ge-sum-products`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-three-squares-ge-sum-products.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#432](https://github.com/agenticsnz/unsorry/pull/432) | 2026-06-14 |
 | [`three-cubes-div-nine`](https://github.com/agenticsnz/unsorry/blob/main/goals/three-cubes-div-nine.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#249](https://github.com/agenticsnz/unsorry/pull/249) | 2026-06-13 |
 
