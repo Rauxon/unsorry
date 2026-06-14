@@ -132,9 +132,21 @@ jobs:
         if: needs.detect.outputs.lean == 'true'
         run: python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json
 
+      # Incremental on PRs (ADR-033): replay only the changed library modules
+      # and their reverse-import closure — the rest are byte-identical to and
+      # already verified on main. On push to main, BASE_SHA is empty → a FULL
+      # replay runs as the post-merge backstop. The tool falls back to full
+      # replay if the diff can't be computed or a global-impact file changed.
       - name: Kernel replay (leanchecker)
         if: needs.detect.outputs.lean == 'true'
-        run: python3 -m tools.gate_a.parallel_modules replay --jobs 2
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
+        run: |
+          if [ -n "$BASE_SHA" ]; then
+            python3 -m tools.gate_a.parallel_modules replay --jobs 2 --base "$BASE_SHA"
+          else
+            python3 -m tools.gate_a.parallel_modules replay --jobs 2
+          fi
 
       - name: Audit self-test (gate cannot rot silently)
         if: needs.detect.outputs.lean == 'true'
