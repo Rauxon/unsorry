@@ -15,6 +15,7 @@
 ⟦Λ:Artifact⟧{
   lean≜goals/no-nat-sq-eq-two-mul-sq-s2.lean
   sha≜∅
+  aff≜-10
   depth≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
