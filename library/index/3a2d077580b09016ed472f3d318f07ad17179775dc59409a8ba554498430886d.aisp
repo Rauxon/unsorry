@@ -1,0 +1,8 @@
+𝔸5.1.lemma.3a2d077580b0@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜3a2d077580b09016ed472f3d318f07ad17179775dc59409a8ba554498430886d; goal≜descartes-total-angular-defect; name≜descartes_total_angular_defect}
+⟦Σ:Source⟧{src≜goals/descartes-total-angular-defect.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜xhigh; attempts≜3; solve_s≜1190}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

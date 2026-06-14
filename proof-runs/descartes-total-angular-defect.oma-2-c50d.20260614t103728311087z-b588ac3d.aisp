@@ -1,0 +1,8 @@
+𝔸5.1.run.descartes-total-angular-defect.oma-2-c50d.20260614t103728311087z-b588ac3d@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t103728311087z-b588ac3d; goal≜descartes-total-angular-defect; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜descartes-total-angular-defect}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜1190; ended≜2026-06-14T10:37:28Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜3a2d077580b09016ed472f3d318f07ad17179775dc59409a8ba554498430886d}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
