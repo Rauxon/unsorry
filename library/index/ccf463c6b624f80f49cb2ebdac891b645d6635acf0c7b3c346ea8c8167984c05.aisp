@@ -1,7 +1,0 @@
-𝔸5.1.lemma.ccf463c6b624@2026-06-12
-γ≔unsorry.lemma.index
-⟦Ω:Lemma⟧{sha≜ccf463c6b624f80f49cb2ebdac891b645d6635acf0c7b3c346ea8c8167984c05; goal≜factorial-telescope-sum; name≜sum_range_mul_factorial_telescope}
-⟦Σ:Source⟧{src≜goals/factorial-telescope-sum.lean}
-⟦Γ:Tags⟧{tags≜⟨⟩}
-⟦Λ:Meta⟧{use≜0; aff≜0}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

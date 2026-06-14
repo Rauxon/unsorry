@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-add-assoc-thm
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-add-assoc-thm.md
+  src≜packages/unsorry-archive-0001/backlog/nat-add-assoc-thm.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-add-assoc-thm.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-add-assoc-thm.lean
   sha≜2059c57d9a7b198bfadc35a77687708d459d91fa4c8b8612211d9fbfa0260508
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

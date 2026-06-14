@@ -1,8 +1,0 @@
-𝔸5.1.lemma.32ff577c2342@2026-06-13
-γ≔unsorry.lemma.index
-⟦Ω:Lemma⟧{sha≜32ff577c2342b4224b3b5e649950158456ff35633e292f242e39574e36244a3a; goal≜sum-range-pow-four-triangular-form; name≜sum_range_pow_four_triangular_form}
-⟦Σ:Source⟧{src≜goals/sum-range-pow-four-triangular-form.lean}
-⟦Γ:Tags⟧{tags≜⟨⟩}
-⟦Λ:Meta⟧{use≜0; aff≜0}
-⟦Π:Provenance⟧{solver≜cgbarlow; agent≜p3-b1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜598}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
