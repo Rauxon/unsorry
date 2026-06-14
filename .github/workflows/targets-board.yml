@@ -10,8 +10,14 @@
 # regenerates and commits the board straight back to `main` as a single
 # docs-only `[skip ci]` commit (the standard generated-artifact exception).
 #
-# Requirement (same as proofs-visualisation.yml): the GitHub Actions token must
-# be permitted to push to `main`.
+# Pushing the refresh to `main` needs an admin identity: the default
+# GITHUB_TOKEN / github-actions[bot] cannot push to a branch protected by
+# required status checks, and it cannot be granted a bypass (it is not a
+# selectable actor in classic protection *or* rulesets). Because the rule has
+# `enforce_admins: false`, an **admin** push bypasses the checks — so the push
+# authenticates with a `REFRESH_TOKEN` secret (an admin PAT / GitHub App token,
+# contents:write). When the secret is unset the workflow degrades to a
+# report-only notice instead of failing red. See issue #417.
 
 name: targets-board
 
@@ -41,9 +47,22 @@ jobs:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           fetch-depth: 0
+          # REFRESH_TOKEN (admin PAT/App, #417) authenticates the push to `main`;
+          # falls back to GITHUB_TOKEN for the read-only --check when unset.
+          token: ${{ secrets.REFRESH_TOKEN || github.token }}
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.12"
+      - name: Detect refresh token (#417)
+        id: tok
+        env:
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+        run: |
+          if [ -n "${REFRESH_TOKEN}" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
       - name: Check for board drift (ADR-012 / ADR-036)
         id: check
         run: |
@@ -52,8 +71,8 @@ jobs:
           else
             echo "stale=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Regenerate and commit on drift
-        if: steps.check.outputs.stale == 'true'
+      - name: Regenerate, commit, and push on drift
+        if: steps.check.outputs.stale == 'true' && steps.tok.outputs.present == 'true'
         run: |
           set -euo pipefail
           python3 -m tools.sourcing.targets_board > docs/targets.md
@@ -64,3 +83,7 @@ jobs:
           # the refresh commit never re-fires CI.
           git commit -m "docs: refresh targets board [skip ci]"
           git push origin HEAD:main
+      - name: Drift but no REFRESH_TOKEN — report only (#417)
+        if: steps.check.outputs.stale == 'true' && steps.tok.outputs.present != 'true'
+        run: |
+          echo "::warning::targets board drifted but the REFRESH_TOKEN secret is unset — skipping the push to main (issue #417). Add an admin PAT/App token as the REFRESH_TOKEN secret to enable the post-merge refresh."
