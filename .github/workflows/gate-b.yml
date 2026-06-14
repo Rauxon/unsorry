@@ -6,29 +6,75 @@ on:
     branches: [main]
 
 jobs:
-  gate-b:
-    # Required check: in-repo deterministic validator (ADR-003). Stdlib only;
-    # pytest is the sole test-time dependency.
+  detect:
     runs-on: ubuntu-latest
+    outputs:
+      gate_b: ${{ steps.filter.outputs.gate_b }}
+      aisp: ${{ steps.filter.outputs.aisp }}
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - id: filter
+        uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3.0.3
+        with:
+          filters: |
+            gate_b:
+              - '.github/workflows/gate-b.yml'
+              - 'tools/gate_b/**'
+              - 'tools/sourcing/**'
+              - 'tools/llm_providers/**'
+              - 'goals/**/*.aisp'
+              - 'goals/**/*.lean'
+              - 'translations/**/*.aisp'
+              - 'decompositions/**/*.aisp'
+              - 'library/index/**/*.aisp'
+              - 'proof-runs/**/*.aisp'
+              - 'swarm/**/*.aisp'
+            aisp:
+              - '.github/workflows/gate-b.yml'
+              - 'goals/**/*.aisp'
+              - 'translations/**/*.aisp'
+              - 'decompositions/**/*.aisp'
+              - 'library/index/**/*.aisp'
+              - 'proof-runs/**/*.aisp'
+              - 'swarm/**/*.aisp'
+
+  gate-b:
+    # Required check: in-repo deterministic validator (ADR-003). Stdlib only;
+    # pytest is the sole test-time dependency. The job always reports so branch
+    # protection never waits on an "expected" required check, but docs/UI-only
+    # PRs short-circuit before Python setup.
+    needs: detect
+    runs-on: ubuntu-latest
+    steps:
+      - name: Short-circuit (no Gate B-relevant paths)
+        if: needs.detect.outputs.gate_b != 'true'
+        run: echo "No Gate B-relevant paths touched — gate-b passes vacuously."
+
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        if: needs.detect.outputs.gate_b == 'true'
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        if: needs.detect.outputs.gate_b == 'true'
         with:
           python-version: "3.12"
       - name: Install test dependency
+        if: needs.detect.outputs.gate_b == 'true'
         run: pip install pytest
       - name: Gate B test suite
+        if: needs.detect.outputs.gate_b == 'true'
         run: pytest tools/gate_b -q
       - name: Sourcing test suite (ADR-012 / ADR-035)
+        if: needs.detect.outputs.gate_b == 'true'
         # Stdlib only (absence grep + triviality probe use a mocked runner).
         run: pytest tools/sourcing -q
       - name: Validate repository tree
+        if: needs.detect.outputs.gate_b == 'true'
         run: python3 -m tools.gate_b validate .
       # Neither the targets-board nor the leaderboard `--check` is a PR gate
       # (ADR-036, #415): a generated artifact regenerated in every PR made
       # concurrent goal PRs conflict on it. Both are refreshed POST-MERGE — the
       # board by `targets-board.yml`, the leaderboard by `leaderboard.yml`.
       - name: LLM provider tests (ADR-025)
+        if: needs.detect.outputs.gate_b == 'true'
         # The OpenAI provider imports `requests`; the resolver tests are pure stdlib.
         run: |
           pip install -r tools/llm_providers/requirements.txt
@@ -43,6 +89,8 @@ jobs:
     # legitimately carry shapes newer than 0.3.0 (e.g. the ADR-024 ⟦Δ:Lesson⟧
     # block) that the pinned upstream rejects. Resolving that drift (upstream the
     # block or bump the pin) is tracked in issue #318.
+    needs: detect
+    if: needs.detect.outputs.aisp == 'true'
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
