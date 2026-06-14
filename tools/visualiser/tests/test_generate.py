@@ -174,6 +174,19 @@ def test_render_html(tmp_path):
     assert re.search(r"__[A-Z]+__", html) is None  # no unreplaced placeholders
     blob = html.split('id="graph-data">', 1)[1].split("</script>", 1)[0]
     assert len(json.loads(blob)["nodes"]) == 4  # embedded model is valid JSON
+    # Shared #270 leaderboard design language (ADR-038).
+    assert 'name="viewport"' in html  # mobile-friendly
+    assert "cdn.tailwindcss.com" in html and "tailwind.config" in html
+    assert "brand" in html and "Inter" in html  # brand palette + Inter font
+    assert "lg:grid-cols-[minmax(0,1fr)_320px]" in html  # responsive diagram/panel
+    assert ">Unsorry<" in html  # shared wordmark header
+    assert "4 goals" in html  # header summary stat
+
+
+def test_render_html_status_chips(tmp_path):
+    # One header stat chip per present status, carrying the diagram swatch.
+    html = render_html(build_graph(_repo(tmp_path)))
+    assert "3 proved" in html and "1 open" in html
 
 
 def test_main_html_stdout(tmp_path, capsys):
