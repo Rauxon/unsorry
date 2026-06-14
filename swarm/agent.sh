@@ -99,8 +99,9 @@ Environment:
                     an infrastructure failure rather than a real attempt
                     (default: 240; confirmed by a health probe, ADR-016)
   UNSORRY_TTL       Claim TTL seconds (default: tools/gate_b/config.py TTL_SECONDS)
-  UNSORRY_ATTEMPTS  Prove build/audit attempts (default: 3 in --prove, one per
-                    ADR-015 effort rung; else config.py BUDGET_ATTEMPTS)
+  UNSORRY_ATTEMPTS  Prove build/audit attempts (default: 3 in --prove and
+                    --prove-local, one per ADR-015 effort rung; else
+                    config.py BUDGET_ATTEMPTS)
 EOF
 }
 
@@ -1524,6 +1525,10 @@ provider_effort_for_attempt() {
   effort_for_attempt "$attempt" "$effort"
 }
 
+prove_attempt_budget_default() {
+  printf '3\n'
+}
+
 # ADR-016 pure classifier: a failed claude call counts as an infrastructure
 # failure only when it died fast (a real prove attempt cannot fail in under
 # the fast-fail threshold — the model has to at least read the goal and try a
@@ -1629,14 +1634,14 @@ call_codex_prove() {
 }
 
 call_gemini_prove() {
-  local prompt="$1" workdir="$2" effort="$3"
-  local -a eff=()
-  [ -n "$effort" ] && eff=(--effort "$effort")
+  local prompt="$1" workdir="$2" _effort="$3"
   local model="${UNSORRY_MODEL:-gemini-3.1-pro-preview}"
   PROOF_MODEL_USED="$model"
+  # Gemini CLI has no --effort flag. Keep the retry ladder as attempt
+  # telemetry, but never forward it to the provider binary.
   ( cd "$workdir" \
     && timeout "$UNSORRY_WALL" gemini --skip-trust --yolo --allowed-mcp-server-names none -p "$prompt" \
-         --model "$model" "${eff[@]}" --output-format text < /dev/null )
+         --model "$model" --output-format text < /dev/null )
 }
 
 # OpenAI API provider for Unsorry
@@ -2623,6 +2628,41 @@ test_provider_effort_ladder() {
   [ "$(provider_effort_for_attempt gemini 3 ladder)" = max ] || return 1
   [ "$(provider_effort_for_attempt claude 3 ladder)" = max ] || return 1
   [ "$(provider_effort_for_attempt codex 2 low)" = low ] || return 1
+}
+
+test_prove_attempt_budget_default() {
+  [ "$(prove_attempt_budget_default)" = 3 ] \
+    || { log "  prove attempt budget default drifted"; return 1; }
+}
+
+test_gemini_prove_mutes_cli_effort() {
+  local tmp args
+  tmp="$(mktemp -d "$SESSION_TMP/gemini-effort.XXXXXX")" || return 1
+  mkdir -p "$tmp/bin" "$tmp/work" || return 1
+  args="$tmp/args"
+  # The fake gemini script is written verbatim; $@ / $GEMINI_ARGS_OUT must stay
+  # literal so they expand when the fake binary runs, not now.
+  # shellcheck disable=SC2016
+  printf '%s\n' \
+    '#!/bin/sh' \
+    'printf "%s\n" "$@" > "$GEMINI_ARGS_OUT"' \
+    'exit 0' > "$tmp/bin/gemini" || return 1
+  chmod +x "$tmp/bin/gemini" || return 1
+
+  GEMINI_ARGS_OUT="$args" \
+    PATH="$tmp/bin:$PATH" \
+    UNSORRY_MODEL=gemini-test \
+    UNSORRY_WALL=5 \
+    call_gemini_prove "prove something" "$tmp/work" high \
+    || { log "  fake gemini prove call failed"; return 1; }
+
+  [ -s "$args" ] || { log "  fake gemini did not capture arguments"; return 1; }
+  ! grep -qx -- '--effort' "$args" \
+    || { log "  gemini prove forwarded unsupported --effort"; return 1; }
+  grep -qx -- '--model' "$args" \
+    || { log "  gemini prove omitted --model"; return 1; }
+  grep -qx -- 'gemini-test' "$args" \
+    || { log "  gemini prove omitted configured model"; return 1; }
 }
 
 test_prove_target_path_guard() {
@@ -3719,6 +3759,8 @@ run_self_tests() {
     test_require_main_checkout
     test_require_main_matches_origin
     test_provider_effort_ladder
+    test_prove_attempt_budget_default
+    test_gemini_prove_mutes_cli_effort
     test_prove_target_path_guard
     test_prove_attempt_log_does_not_trip_guard
     test_run_proof_mock_provider_smoke
@@ -4012,7 +4054,7 @@ main() {
     UNSORRY_FASTFAIL="${UNSORRY_FASTFAIL:-240}"
     [[ "$UNSORRY_FASTFAIL" =~ ^[0-9]+$ ]] \
       || die_config "UNSORRY_FASTFAIL '$UNSORRY_FASTFAIL' is not an integer"
-    UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-1}"
+    UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-$(prove_attempt_budget_default)}"
     [[ "$UNSORRY_ATTEMPTS" =~ ^[1-9][0-9]*$ ]] \
       || die_config "UNSORRY_ATTEMPTS '$UNSORRY_ATTEMPTS' is not a positive integer"
     log "local prover starting (provider=$UNSORRY_PROVIDER model=${UNSORRY_MODEL:-default} effort=${UNSORRY_EFFORT:-default} attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s; HEAD only, no remote operations)"
@@ -4052,7 +4094,7 @@ main() {
     || die_config "UNSORRY_TTL '$UNSORRY_TTL' is not an integer"
   # ADR-015: prove's default budget is one attempt per ladder rung.
   if [ "$mode" = prove ]; then
-    UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-3}"
+    UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-$(prove_attempt_budget_default)}"
   else
     UNSORRY_ATTEMPTS="${UNSORRY_ATTEMPTS:-$(py_helper attempts)}"
   fi

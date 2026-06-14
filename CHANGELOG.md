@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.12.0] - 2026-06-14
 
 Headline: **the contributor leaderboard** (issue #270, ADR-023) — a standalone page ranking solvers by verified proofs, cross-linked with the #371 proof-graph visualiser. Around it, the post-merge generated-artifact pipeline (board, leaderboard, visualisation) became **self-healing**: it now actually pushes to `main` via an admin `REFRESH_TOKEN` (the GH006 fix, #417) with a race-tolerant retry loop (#426), so the three surfaces refresh on every merge without red runs. Contributor attribution is also corrected and **guarded** — a phantom-solver check (ADR-037) flags any `solver≜` not backed by a proof-run, git author, or alias. Plus a Skills framework for agent-driven work.
+### Fixed
+
+- The **gemini** proof provider no longer forwards an `--effort` flag to the `gemini` CLI, which has no such flag (it was built from the ADR-015 retry ladder and passed through). The retry ladder is still kept as per-attempt telemetry; it's simply not handed to the binary. Self-tested by `test_gemini_prove_mutes_cli_effort` (a fake `gemini` on `PATH` asserts `--effort` is never passed and `--model` still is).
+
+### Changed
+
+- `--prove-local` now defaults to the same **3-attempt** proof budget as coordinated `--prove` (was 1), via a shared `prove_attempt_budget_default` helper so the two modes can't drift; `UNSORRY_ATTEMPTS` still overrides. SPEC-007-A + `--help` updated. Self-tested by `test_prove_attempt_budget_default`.
 
 ### Added
 

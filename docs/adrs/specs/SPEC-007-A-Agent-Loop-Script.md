@@ -38,7 +38,7 @@ Must be run from the repository root (script verifies `swarm/protocol.aisp` exis
 | `UNSORRY_LOCAL_WORKTREE` | fresh `/tmp/unsorry-prove-local-*` path | Exact preserved worktree path for `--prove-local` |
 | `UNSORRY_WALL` | `1800` | Wall-clock seconds per cycle (`timeout` around the claude call) |
 | `UNSORRY_TTL` | read from `tools/gate_b/config.py` (7200) | Claim TTL; the script reads the config value — never hardcodes it (DRY with the contract) |
-| `UNSORRY_ATTEMPTS` | read from `tools/gate_b/config.py` `BUDGET_ATTEMPTS` (2) | Prove build/audit attempts; the prover gets up to this many `claude` calls (the second fed the first's build/audit error). Read from config — never hardcoded |
+| `UNSORRY_ATTEMPTS` | `3` for `--prove` and `--prove-local`; otherwise read from `tools/gate_b/config.py` `BUDGET_ATTEMPTS` (2) | Prove build/audit attempts; later attempts receive the previous build/audit error in the prompt. |
 
 Authentication: the selected provider CLI must be authenticated, or
 `OPENAI_API_KEY` must be set for `openai`; `gh` must be authenticated for PR
@@ -64,7 +64,7 @@ from a fork uses `--prove-local`.
 5. Run the same cache restore, strict library build, axiom audit, generated statement-binding obligation, and library-options lint as swarm prove mode.
 6. Remove the generated binding helper and preserve the worktree whether the proof succeeds or fails. Print the path and an inspection command.
 
-Local smoke defaults to one attempt; `UNSORRY_ATTEMPTS` can raise it. Codex defaults to its configured model and `high` reasoning unless `UNSORRY_MODEL` or `UNSORRY_EFFORT` is set. A requested Codex `ladder` maps to `medium → high → xhigh`; Claude retains `high → xhigh → max`.
+Local smoke defaults to the same three-attempt proof budget as coordinated prove; `UNSORRY_ATTEMPTS` can override it. Codex defaults to its configured model and `high` reasoning unless `UNSORRY_MODEL` or `UNSORRY_EFFORT` is set. A requested Codex `ladder` maps to `medium → high → xhigh`; Claude retains `high → xhigh → max`. Gemini keeps the retry budget but mutes effort at the CLI because `gemini` has no `--effort` flag.
 
 ## Cycle (translate-only)
 
