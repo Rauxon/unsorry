@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Gate A now routes its Namespace runner by **replay workload**: a normal proof PR (incremental, light replay — ADR-033) runs on `namespace-profile-unsorry-1` as before, while a **full** replay — a gate/infra change (`tools/gate_a/**`, the gate-a workflow, `lean-toolchain`, `lakefile*`, `lake-manifest.json`) or any push to `main` — runs on `namespace-profile-unsorry-2`. The `detect` job picks the profile (via a new `infra` paths-filter) and `gate-a` reads it through `runs-on: ${{ needs.detect.outputs.profile }}`. Both profiles are 4 vCPU / 16 GB; the split keeps the slow ~20-min full replay (triggered by `ci:`/gate changes) in its own pool so it never blocks the frequent, fast proof PRs. SPEC-006-B updated.
+
 ## [1.12.0] - 2026-06-14
 
 Headline: **the contributor leaderboard** (issue #270, ADR-023) — a standalone page ranking solvers by verified proofs, cross-linked with the #371 proof-graph visualiser. Around it, the post-merge generated-artifact pipeline (board, leaderboard, visualisation) became **self-healing**: it now actually pushes to `main` via an admin `REFRESH_TOKEN` (the GH006 fix, #417) with a race-tolerant retry loop (#426), so the three surfaces refresh on every merge without red runs. Contributor attribution is also corrected and **guarded** — a phantom-solver check (ADR-037) flags any `solver≜` not backed by a proof-run, git author, or alias. Plus a Skills framework for agent-driven work.

@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       lean: ${{ steps.filter.outputs.lean }}
+      profile: ${{ steps.profile.outputs.name }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - id: filter
@@ -37,17 +38,39 @@ jobs:
               - 'AuditFixtures/**'
               - 'tools/gate_a/**'
               - '.github/workflows/gate-a.yml'
+            # The ADR-033 full-replay triggers: a change here makes gate-a replay
+            # the WHOLE library (heavy), so it gets its own Namespace profile.
+            infra:
+              - 'tools/gate_a/**'
+              - '.github/workflows/gate-a.yml'
+              - 'lean-toolchain'
+              - 'lakefile.toml'
+              - 'lakefile.lean'
+              - 'lake-manifest.json'
+      # Route by replay workload: a full replay (gate/infra change, or any push
+      # to main) is heavy → namespace-profile-unsorry-2; a normal proof PR
+      # replays incrementally (light) → namespace-profile-unsorry-1, so a slow
+      # infra full-replay never hogs the proof runner.
+      - id: profile
+        run: |
+          if [ "${{ github.event_name }}" != "pull_request" ] || [ "${{ steps.filter.outputs.infra }}" = "true" ]; then
+            echo "name=namespace-profile-unsorry-2" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=namespace-profile-unsorry-1" >> "$GITHUB_OUTPUT"
+          fi
 
   gate-a:
     needs: detect
-    # Namespace managed (ephemeral) runner via the `namespace-profile-unsorry-1`
-    # profile — currently 4 vCPU / 16 GB. Memory parity with the GitHub-hosted
-    # runner, so the leanchecker replay stays serial (16 GB can't hold two
-    # mathlib images; see SPEC-006-B). Profile-backed ⇒ ephemeral, no
-    # self-hosted tampering surface; sizing the profile up (e.g. 8x32) in the
-    # Namespace UI would let replay re-parallelize. detect and the non-Lean
-    # gates stay on free GitHub-hosted runners.
-    runs-on: namespace-profile-unsorry-1
+    # Namespace managed (ephemeral) runner, chosen by detect.profile:
+    #   namespace-profile-unsorry-1 — normal proof PRs (incremental, light replay)
+    #   namespace-profile-unsorry-2 — full-replay runs (gate/infra change or push
+    #                                 to main), so the slow ~20-min full replay
+    #                                 runs in its own pool and never blocks the
+    #                                 frequent proof PRs on unsorry-1.
+    # Both profiles are 4 vCPU / 16 GB; the split is for isolation, not power.
+    # The leanchecker replay stays serial on 16 GB (SPEC-006-B); sizing a profile
+    # up (e.g. 8x32) in the Namespace UI would let replay re-parallelize.
+    runs-on: ${{ needs.detect.outputs.profile }}
     timeout-minutes: 60
     steps:
       - name: Short-circuit (non-Lean change)
