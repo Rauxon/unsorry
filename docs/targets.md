@@ -4,12 +4,15 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 104 proved · 118 total prove-goals.**
+**15 open · 104 proved · 123 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
+| `abstract-regular-polyhedron-realizable-iff` — The Track-1 **existence-biconditional**: for p, q ≥ 3, the pair (p,q) is a Platonic Schläfli pair {(3,3),(3,4),(4,3),(3,5),(5,3)} **iff** it is realizable by an abstract regular polyhedron (∃ V E F > 0 with p·F=2E, q·V=2E, V+F=E+2). | open | 4 | — | The capstone of Freek #50's combinatorial classification (ADR-031, Track 1) — the labelled combinatorial/Euler form, explicitly NOT the geometric #50. | ⟹ is the existence direction (`platonic-pairs-realizable`); ⟸ is the proved classification (`abstract-regular-polyhedron-classification`). Composing them gives the biconditional. mathlib has neither. |
 | `four-consecutive-product-add-one-square` — For every natural n, the product of four consecutive integers n(n+1)(n+2)(n+3), plus one, is a perfect square. | open | 2 | — | Classic elementary-number-theory identity (the "four consecutive integers" square). | n(n+1)(n+2)(n+3) + 1 = (n² + 3n + 1)². mathlib has no lemma that the product of four consecutive integers plus one is square; it is not a named result. |
-| `nat-sq-lt-two-pow-s2` — nat-sq-lt-two-pow-s2 | open | 1 | — | — | — |
+| `nat-sq-lt-two-pow-s2-s1` — nat-sq-lt-two-pow-s2-s1 | open | 1 | — | — | — |
+| `nat-sq-lt-two-pow-s2-s2` — nat-sq-lt-two-pow-s2-s2 | open | 1 | — | — | — |
+| `nat-sq-lt-two-pow-s2-s3` — nat-sq-lt-two-pow-s2-s3 | open | 1 | — | — | — |
 | `nesbitt-inequality-s1` — nesbitt-inequality-s1 | open | 1 | — | — | — |
 | `nesbitt-inequality-s2` — nesbitt-inequality-s2 | open | 1 | — | — | — |
 | `nesbitt-inequality-s3` — nesbitt-inequality-s3 | open | 1 | — | — | — |
@@ -17,8 +20,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `no-nat-sq-eq-two-mul-sq-s1` — no-nat-sq-eq-two-mul-sq-s1 | open | 1 | — | — | — |
 | `no-nat-sq-eq-two-mul-sq-s2` — no-nat-sq-eq-two-mul-sq-s2 | open | 1 | — | — | — |
 | `no-nat-sq-eq-two-mul-sq-s3` — no-nat-sq-eq-two-mul-sq-s3 | open | 1 | — | — | — |
+| `platonic-pairs-realizable` — Each of the five Platonic Schläfli pairs {(3,3),(3,4),(4,3),(3,5),(5,3)} is **realizable** by an abstract regular polyhedron: there exist V, E, F (>0) satisfying the two handshakes p·F=2E, q·V=2E and Euler V+F=E+2. | open | 3 | — | The **existence (⟸) direction** of Freek #50's combinatorial classification (ADR-031, Track 1). Complements the proved classification (⟹) `abstract-regular-polyhedron-classification`; together they are the Track-1 existence-biconditional. | witnesses — tetra (3,3)→(4,6,4), octa (3,4)→(6,12,8), cube (4,3)→(8,12,6), icosa (3,5)→(12,30,20), dodeca (5,3)→(20,30,12). mathlib has no abstract-regular-polyhedron realizability lemma. |
 | `prod-one-sub-inv-sq-telescope` — For n ≥ 2, ∏_{k=2}^{n} (1 − 1/k²) = (n+1)/(2n) over ℚ — the telescoping product of (1 − 1/k²). | open | 4 | — | Classic telescoping product (Wallis-adjacent finite product) | ∏(1−1/k²) = (n+1)/(2n), via the factorisation 1 − 1/k² = (k−1)(k+1)/k². Distinct from the reciprocal-pronic / reciprocal-triangular SUM telescopes already in the pool (this is a multiplicative, rational telescope). |
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | open | 1 | — | — | — |
+| `nat-sq-lt-two-pow-s2` — nat-sq-lt-two-pow-s2 | blocked | 1 | — | — | — |
 | `nesbitt-inequality` — Nesbitt's inequality: for positive reals a, b, c, a/(b+c) + b/(c+a) + c/(a+b) ≥ 3/2. | blocked | 4 | — | Nesbitt's inequality (1903), a classic three-variable cyclic inequality; AoPS/olympiad canon. | 3/2 ≤ a/(b+c) + b/(c+a) + c/(a+b) for a,b,c > 0. mathlib has `inner_mul_le_norm_mul_norm` and `div_add_div_same`-style lemmas but no Nesbitt lemma. |
 | `no-nat-sq-eq-two-mul-sq` — There are no positive naturals a, b with a² = 2·b² — ¬∃ a b, 0 < b ∧ a² = 2b²: the irrationality of √2 in elementary infinite-descent form. | blocked | 4 | — | Freek 100 (#1, irrationality of √2), infinite-descent / parity form | Classic infinite descent: a²=2b² ⟹ a even ⟹ b even ⟹ a strictly smaller solution. mathlib proves `irrational_sqrt_two` over ℝ via prime factorisation; this self-contained ℕ descent statement (no reals, no `sqrt`) is absent and is the elementary heart of Freek #1. |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | blocked | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
