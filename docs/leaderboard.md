@@ -4,23 +4,23 @@
 
 Verified output comes from `library/index`; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**106 verified proofs · 24 attributed · 82 historical/unknown · 48 logged terminal runs.**
+**106 verified proofs · 24 attributed · 82 historical/unknown · 49 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
 | Successful terminal runs | 22 |
-| Failed terminal runs | 26 |
+| Failed terminal runs | 27 |
 | Decomposed after failure | 7 |
-| Failed without decomposition | 19 |
-| Run success rate | 45.8% |
-| Provider attempts | 68 |
-| Failed attempts | 46 |
-| Attempt yield | 32.4% |
-| Recorded run time | 7h 33m |
-| Median / p90 run time | 4m 56s / 24m 18s |
-| Verified successes per recorded hour | 2.91 |
+| Failed without decomposition | 20 |
+| Run success rate | 44.9% |
+| Provider attempts | 69 |
+| Failed attempts | 47 |
+| Attempt yield | 31.9% |
+| Recorded run time | 7h 37m |
+| Median / p90 run time | 4m 55s / 24m 18s |
+| Verified successes per recorded hour | 2.88 |
 | Proofs with run telemetry | 22 (20.8%) |
 
 ## Work Queue
@@ -32,7 +32,7 @@ Verified output comes from `library/index`; append-only terminal-run telemetry c
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 14 | 6 | 42.9% | 17 | 5m 58s |
-| 2 | 14 | 5 | 35.7% | 12 | 4m 1s |
+| 2 | 15 | 5 | 33.3% | 13 | 4m 4s |
 | 3 | 13 | 8 | 61.5% | 13 | 9m 7s |
 | 4 | 7 | 3 | 42.9% | 4 | 4m 54s |
 
@@ -57,7 +57,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 61 | 19 | 42 | 39 | 48.7% | 101 | 11625 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 61 | 19 | 42 | 40 | 47.5% | 101 | 11625 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 30 | 0 | 30 | 0 | — | 61 | 6850 |
 | 3 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 4 | [@perttu](https://github.com/perttu) | 3 | 3 | 0 | 5 | 60.0% | 3 | 375 |
@@ -77,12 +77,13 @@ Git add-author attribution covers 106 of 106 proof index files. It is used only 
 | `claude / opus` | 19 | 21 | 90.5% | 14 | 1 | 7m 0s | 5.13 |
 | `codex / unknown` | 3 | 9 | 33.3% | 10 | 2 | 4m 15s | 3.97 |
 | `manual / gpt-5.5` | 2 | 0 | — | 0 | 1 | — | — |
-| `openai / leanstral-2603` | 0 | 18 | 0.0% | 22 | 1 | 4m 34s | 0.00 |
+| `openai / leanstral-2603` | 0 | 19 | 0.0% | 23 | 1 | 4m 16s | 0.00 |
 
 ## Recent Terminal Runs
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-14T12:17:54Z` | `cube-sum-ge-mul-sq` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 4m 13s |
 | `2026-06-14T12:12:04Z` | `consecutive-cubes-diff-odd` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 6s |
 | `2026-06-14T12:07:21Z` | `am-gm-three-cube` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 4m 16s |
 | `2026-06-14T12:02:18Z` | `am-gm-three-cube` | [@perttu](https://github.com/perttu) | `codex / unknown` | `decomposed` | 3 | 3 | 12m 16s |
@@ -102,7 +103,6 @@ Git add-author attribution covers 106 of 106 proof index files. It is used only 
 | `2026-06-14T09:58:58Z` | `four-consecutive-product-add-one-square` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 32s |
 | `2026-06-14T09:09:47Z` | `nat-sq-lt-two-pow-s2` | [@perttu](https://github.com/perttu) | `codex / unknown` | `decomposed` | 3 | 3 | 9m 15s |
 | `2026-06-14T08:50:54Z` | `nat-sq-lt-two-pow-s1` | [@perttu](https://github.com/perttu) | `codex / unknown` | `proved` | 1 | 0 | 4m 15s |
-| `2026-06-14T08:45:05Z` | `four-consecutive-product-add-one-square-s2` | [@perttu](https://github.com/perttu) | `codex / unknown` | `proved` | 1 | 0 | 4m 17s |
 
 ## Interpretation
 
