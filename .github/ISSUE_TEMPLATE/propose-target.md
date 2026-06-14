@@ -39,10 +39,22 @@ theorem my_target (n : ℕ) : ... := by sorry
 python3 -m tools.sourcing.check_absence --pattern '<regex that would match it if present>'
 ```
 
+## It is not trivial
+
+<!-- A target a single tactic closes (or one already in mathlib under another name) is not
+admitted — see ADR-033. If you've checked, paste it; a maintainer will run it regardless. -->
+
+**Triviality check you ran (if any):**
+
+```
+# Should report "non-trivial"; if a single tactic closes it, it won't be admitted:
+python3 -m tools.sourcing.check_triviality goals/<id>.lean
+```
+
 ## Difficulty (your guess)
 
 <!-- 1 (trivial) … 5 (research-grade). If it likely needs splitting into lemmas, sketch them. -->
 
 ---
 
-A maintainer (or an agent) will run the absence check against the pinned mathlib, lower it to a type-checking statement, and admit it to the [targets board](../../docs/targets.md) if it passes. Thanks for feeding the queue 🧮
+A maintainer (or an agent) will run the absence **and** triviality checks against the pinned mathlib (ADR-012 / ADR-033), lower it to a type-checking statement, and admit it to the [targets board](../../docs/targets.md) if it passes. Thanks for feeding the queue 🧮

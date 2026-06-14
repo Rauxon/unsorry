@@ -109,6 +109,14 @@ and machine-checked for mathlib-absence is [ADR-012](docs/adrs/ADR-012-Backlog-S
 absence is a grep **pre-filter**, not a proof — the definitive check is downstream (a target
 already in mathlib gets discharged by a one-line citation rather than a real proof).
 
+Admitted targets must also pass a **machine triviality check**
+([ADR-033](docs/adrs/ADR-033-Non-Trivial-Theorem-Enforcement.md)): `python3 -m
+tools.sourcing.check_triviality goals/<id>.lean` elaborates the statement under `import
+Mathlib` against a battery of one-shot tactics — a target a single `simp`/`aesop`/`decide`/…
+closes (or one already in mathlib under another name, which `simp`/`aesop` then finds) is not
+admitted. A genuine-but-automatable theorem can carry a `- **Nontrivial-override:** <reason>`
+line in its `backlog/<id>.md`.
+
 ---
 
 ## Upstreaming to mathlib

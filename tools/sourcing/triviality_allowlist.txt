@@ -1,0 +1,10 @@
+# Triviality allowlist (ADR-033 / SPEC-033-A).
+#
+# Goal ids that are INTENTIONALLY trivial and must not be flagged by the
+# triviality probe or the retro-audit — e.g. gate self-test canaries whose whole
+# purpose is to be a minimal, trivially-true statement. One id per line; `#`
+# starts a comment. For a genuine-but-automatable theorem, prefer a per-goal
+# `- **Nontrivial-override:** <reason> (approved-by <who>, <date>)` line in
+# backlog/<id>.md instead (it records the human judgement next to the target).
+
+binder-shape-canary   # ADR-011 binder-shape canary: a deliberately trivial 1<n → 0<n
