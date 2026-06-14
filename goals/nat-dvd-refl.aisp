@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-dvd-refl
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-dvd-refl.md
+  src≜packages/unsorry-archive-0001/backlog/nat-dvd-refl.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-dvd-refl.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-dvd-refl.lean
   sha≜21adbf537c7014e5d0b1acb4fde42656f289a08c499399b2556247d41f61bdc5
   aff≜1
 }

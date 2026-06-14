@@ -1,0 +1,20 @@
+𝔸5.1.goal.cube-mod-seven@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜cube-mod-seven
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/cube-mod-seven.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/cube-mod-seven.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
