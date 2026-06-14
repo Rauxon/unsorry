@@ -1,0 +1,9 @@
+𝔸5.1.run.cube-sum-ge-three-prod.afnz-zbook-b336.20260614t130612037909z-82428bbd@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t130612037909z-82428bbd; goal≜cube-sum-ge-three-prod; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜cube-sum-ge-three-prod}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜284; ended≜2026-06-14T13:06:12Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜⚠ [8513/8583] Replaying Unsorry.CubeSumGeThreeProdBinding trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-cube-sum-ge-three-prod-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-cube-sum-ge-three-prod-afnz-zbook-b336/.lake/packages/batte}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
