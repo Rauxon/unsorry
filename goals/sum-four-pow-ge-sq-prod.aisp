@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜sum-four-pow-ge-sq-prod
   phase≜prove
-  status≜open
+  status≜blocked
   difficulty≜2
 }
 ⟦Σ:Source⟧{

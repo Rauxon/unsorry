@@ -1,0 +1,12 @@
+𝔸5.1.decomp.sum-four-pow-ge-sq-prod.adam91holt@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜sum-four-pow-ge-sq-prod; agent≜adam91holt}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜sum-four-pow-ge-sq-prod-s1,sha≜a753805cbca6926c1a466879f25a2e9678a45460ae0de9337787c4bc6512a914⟩
+  sub₂≜⟨id≜sum-four-pow-ge-sq-prod-s2,sha≜cb5a5f88a2d7a7a8d31ecc6f16b588f269d01221895429e8a582919ad4753db7⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
