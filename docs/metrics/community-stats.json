@@ -1218,15 +1218,15 @@
     "difficulty_counts": {
       "0": 10,
       "1": 62,
-      "2": 52,
+      "2": 56,
       "3": 31,
       "4": 13,
       "5": 1
     },
-    "goals": 169,
+    "goals": 173,
     "status_counts": {
       "blocked": 4,
-      "open": 51,
+      "open": 55,
       "proved": 104,
       "translated": 10
     }
