@@ -1,0 +1,9 @@
+𝔸5.1.run.product-le-quarter-of-sum-one.afnz-zbook-b336.20260614t162157320132z-74c50b31@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t162157320132z-74c50b31; goal≜product-le-quarter-of-sum-one; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜product-le-quarter-of-sum-one}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜281; ended≜2026-06-14T16:21:57Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜⚠ [8584/8589] Replaying Unsorry.ProductLeQuarterOfSumOne trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-product-le-quarter-of-sum-one-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-product-le-quarter-of-sum-one-afnz-zbook-b336/.lake/p}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
