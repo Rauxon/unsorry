@@ -89,33 +89,33 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": 0.3333,
+      "attempt_yield": 0.3636,
       "avatar_url": "https://github.com/perttu.png?size=96",
       "badges": {
-        "difficulty": 13,
-        "proofs": 7,
-        "success_rate_percent": 63.64
+        "difficulty": 15,
+        "proofs": 8,
+        "success_rate_percent": 66.67
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 7,
-      "difficulty_points": 13,
+      "credited_proofs": 8,
+      "difficulty_points": 15,
       "display_name": "@perttu",
-      "explicit_solver_proofs": 7,
+      "explicit_solver_proofs": 8,
       "failed_attempts": 14,
       "github": "perttu",
       "inferred_git_proofs": 0,
-      "median_solve_s": 393,
+      "median_solve_s": 359,
       "profile_url": "https://github.com/perttu",
       "rank": 4,
-      "run_success_rate": 0.6364,
-      "runs": 11,
-      "score": 1475,
+      "run_success_rate": 0.6667,
+      "runs": 12,
+      "score": 1700,
       "solver": "perttu",
-      "successes": 7,
-      "verified_proofs": 7
+      "successes": 8,
+      "verified_proofs": 8
     },
     {
       "attempt_yield": 0.0,
@@ -250,15 +250,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 13,
+      "difficulty_points": 15,
       "display_name": "Perttu Isotalo",
       "github": null,
-      "index_files_added": 7,
+      "index_files_added": 8,
       "missing_solver_provenance": 0,
       "profile_url": null,
       "rank": 4,
       "solver_credit": false,
-      "solver_provenance_proofs": 7
+      "solver_provenance_proofs": 8
     },
     {
       "attribution_source": "git-add-author",
@@ -315,9 +315,9 @@
     },
     {
       "provider_model": "codex / unknown",
-      "run_success_rate": 0.2667,
-      "runs": 15,
-      "verified_proofs": 4
+      "run_success_rate": 0.3125,
+      "runs": 16,
+      "verified_proofs": 5
     },
     {
       "provider_model": "manual / gpt-5.5",
@@ -347,18 +347,18 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 38,
+    "attributed_proofs": 39,
     "attribution_gap_count": 82,
     "credited_contributors": 7,
-    "credited_proofs": 120,
-    "explicit_solver_proofs": 38,
-    "git_attributed_index_files": 120,
+    "credited_proofs": 121,
+    "explicit_solver_proofs": 39,
+    "git_attributed_index_files": 121,
     "historical_contributors": 7,
     "historical_unknown_proofs": 82,
     "inferred_git_proofs": 82,
-    "proof_run_coverage": 0.2833,
-    "terminal_runs": 108,
+    "proof_run_coverage": 0.2893,
+    "terminal_runs": 109,
     "uncredited_proofs": 0,
-    "verified_proofs": 120
+    "verified_proofs": 121
   }
 }
