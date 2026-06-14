@@ -1,0 +1,7 @@
+𝔸5.1.claim.two-abs-mul-le-sq-add-sq.oma-2-c50d@2026-06-14
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜two-abs-mul-le-sq-add-sq; agent≜oma-2-c50d}
+⟦Σ:Times⟧{ts≜2026-06-14T21:20:00Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
