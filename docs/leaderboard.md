@@ -25,7 +25,7 @@ Verified output comes from `library/index`; append-only terminal-run telemetry c
 
 ## Work Queue
 
-**133 goals · 4 blocked · 15 open · 104 proved · 10 translated.**
+**140 goals · 4 blocked · 22 open · 104 proved · 10 translated.**
 
 ## Efficiency by Difficulty
 

@@ -1058,14 +1058,14 @@
     "difficulty_counts": {
       "0": 10,
       "1": 62,
-      "2": 28,
-      "3": 23,
+      "2": 34,
+      "3": 24,
       "4": 10
     },
-    "goals": 133,
+    "goals": 140,
     "status_counts": {
       "blocked": 4,
-      "open": 15,
+      "open": 22,
       "proved": 104,
       "translated": 10
     }
