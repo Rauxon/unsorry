@@ -1,0 +1,20 @@
+𝔸5.1.goal.nat-mul-zero-thm@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜nat-mul-zero-thm
+  phase≜prove
+  status≜proved
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/nat-mul-zero-thm.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/nat-mul-zero-thm.lean
+  sha≜00aa07e961866d133e14b532c45b02d1e5274652e33383386b9dcc9d31772eb3
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

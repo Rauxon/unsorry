@@ -1,0 +1,20 @@
+𝔸5.1.goal.sum-range-sq-odd-closed-form@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-range-sq-odd-closed-form
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/sum-range-sq-odd-closed-form.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-range-sq-odd-closed-form.lean
+  sha≜39851e6c8bd8ce9809d21eb603c3d1c80dd11282246b01857514238308fb6310
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,20 @@
+𝔸5.1.goal.sum-range-fib-sq@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-range-fib-sq
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/sum-range-fib-sq.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-range-fib-sq.lean
+  sha≜d8e392701c3c83e8846ec5b880667f87973d606b5265a30b97e77a0d9f68ce1d
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

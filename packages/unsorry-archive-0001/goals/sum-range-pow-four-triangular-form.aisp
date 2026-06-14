@@ -1,0 +1,20 @@
+𝔸5.1.goal.sum-range-pow-four-triangular-form@2026-06-13
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-range-pow-four-triangular-form
+  phase≜prove
+  status≜proved
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/sum-range-pow-four-triangular-form.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨sum-range-pow-four-closed-form⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-range-pow-four-triangular-form.lean
+  sha≜32ff577c2342b4224b3b5e649950158456ff35633e292f242e39574e36244a3a
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,20 @@
+𝔸5.1.goal.nat-dvd-refl@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜nat-dvd-refl
+  phase≜prove
+  status≜proved
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/nat-dvd-refl.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/nat-dvd-refl.lean
+  sha≜21adbf537c7014e5d0b1acb4fde42656f289a08c499399b2556247d41f61bdc5
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

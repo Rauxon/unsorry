@@ -1,0 +1,19 @@
+𝔸5.1.goal.nat-add-assoc-thm@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜nat-add-assoc-thm
+  phase≜prove
+  status≜proved
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/nat-add-assoc-thm.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/nat-add-assoc-thm.lean
+  sha≜2059c57d9a7b198bfadc35a77687708d459d91fa4c8b8612211d9fbfa0260508
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,20 @@
+𝔸5.1.goal.nat-even-or-odd@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜nat-even-or-odd
+  phase≜prove
+  status≜proved
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/nat-even-or-odd.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/nat-even-or-odd.lean
+  sha≜33bb4e6c42e57b20d97a0fa7f6f9e83b336c9c81db45fc6e3a0b929c93cac5f5
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

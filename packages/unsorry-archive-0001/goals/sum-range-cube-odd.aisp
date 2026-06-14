@@ -1,0 +1,20 @@
+𝔸5.1.goal.sum-range-cube-odd@2026-06-12
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-range-cube-odd
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/sum-range-cube-odd.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-range-cube-odd.lean
+  sha≜954af55ad452b745e0ca44682a75327dbe7e3068aa8f1d7fe1e3334cb7a32f3a
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

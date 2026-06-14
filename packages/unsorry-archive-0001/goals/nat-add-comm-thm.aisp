@@ -1,0 +1,19 @@
+𝔸5.1.goal.nat-add-comm-thm@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜nat-add-comm-thm
+  phase≜prove
+  status≜proved
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/nat-add-comm-thm.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/nat-add-comm-thm.lean
+  sha≜2d50b65b97862acc9cfe91168f3457d1bb953d679006ca158143fd21704e12d4
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

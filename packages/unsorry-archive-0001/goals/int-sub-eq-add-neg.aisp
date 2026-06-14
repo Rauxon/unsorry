@@ -1,0 +1,19 @@
+𝔸5.1.goal.int-sub-eq-add-neg@2026-06-10
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜int-sub-eq-add-neg
+  phase≜prove
+  status≜proved
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜backlog/int-sub-eq-add-neg.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/int-sub-eq-add-neg.lean
+  sha≜ef67c4f08f5ca0426400acfe414a6bd810e8d75007aa6e7c1c107bccbec36d36
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

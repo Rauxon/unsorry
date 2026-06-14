@@ -1,0 +1,7 @@
+𝔸5.1.run.sum-range-pow-four-triangular-form.p3-b1.20260613t135615488099z-4328be3e@2026-06-13
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260613t135615488099z-4328be3e; goal≜sum-range-pow-four-triangular-form; agent≜p3-b1; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜598; ended≜2026-06-13T13:56:15Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜32ff577c2342b4224b3b5e649950158456ff35633e292f242e39574e36244a3a}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

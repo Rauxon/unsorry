@@ -1,0 +1,7 @@
+𝔸5.1.lemma.18f94bd0f4fb@2026-06-10
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜18f94bd0f4fba1e5e9dd9cbb158f5cb6e930a753213730c3b8f172c012a112a8; goal≜nat-gcd-comm; name≜nat_gcd_comm_thm}
+⟦Σ:Source⟧{src≜goals/nat-gcd-comm.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
