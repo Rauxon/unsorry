@@ -1,0 +1,8 @@
+𝔸5.1.lemma.3e787d18b07c@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜3e787d18b07ca902d73a010fad1588c8ad3a77c01a785f2081d4a5f690b117e4; goal≜nat-sq-lt-two-pow; name≜sq_lt_two_pow_of_five_le}
+⟦Σ:Source⟧{src≜goals/nat-sq-lt-two-pow.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜kev; agent≜d337a70018c9-90fd; provider≜manual; model≜gpt-5.5; effort≜manual; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
