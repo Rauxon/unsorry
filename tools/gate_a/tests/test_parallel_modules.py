@@ -4,12 +4,15 @@ from pathlib import Path
 
 from tools.gate_a.parallel_modules import (
     audit,
+    forces_full_audit,
     forces_full_replay,
+    goal_module_for_path,
     import_graph,
     library_module_for_path,
     module_names,
     replay,
     replay_scope,
+    scoped_audit_targets,
     split_evenly,
 )
 
@@ -158,12 +161,26 @@ def test_library_module_for_path():
     assert library_module_for_path("docs/readme.md") is None
 
 
+def test_goal_module_for_path():
+    assert goal_module_for_path("goals/foo.lean") == "goals.foo"
+    assert goal_module_for_path("goals/sub/foo.lean") == "goals.sub.foo"
+    assert goal_module_for_path("library/Unsorry/Foo.lean") is None
+    assert goal_module_for_path("goals/index.json") is None
+
+
 def test_forces_full_replay():
     assert forces_full_replay(["library/Unsorry/A.lean"]) is None
     assert forces_full_replay(["lean-toolchain"]) == "lean-toolchain"
     assert forces_full_replay(["lakefile.toml"]) == "lakefile.toml"
     assert forces_full_replay(["x", "tools/gate_a/check.py"]) == "tools/gate_a/check.py"
     assert forces_full_replay([".github/workflows/gate-a.yml"]) == ".github/workflows/gate-a.yml"
+
+
+def test_forces_full_audit():
+    assert forces_full_audit(["library/Unsorry/A.lean"]) is None
+    assert forces_full_audit(["AxiomAudit/Main.lean"]) == "AxiomAudit/Main.lean"
+    assert forces_full_audit(["AuditFixtures/Opaque.lean"]) == "AuditFixtures/Opaque.lean"
+    assert forces_full_audit(["tools/gate_a/parallel_modules.py"]) == "tools/gate_a/parallel_modules.py"
 
 
 def test_replay_scope_reverse_closure(tmp_path):
@@ -222,3 +239,88 @@ def test_replay_without_base_is_full(tmp_path):
     assert replay(tmp_path, 2, runner) == 0  # no base -> full, no git
     replayed = {m for c in calls for m in c[3:]}
     assert replayed == {"Unsorry.A", "Unsorry.B"}
+
+
+# --- incremental axiom audit ------------------------------------------------
+
+def test_scoped_audit_targets_changed_library_and_goal(tmp_path):
+    _write_lib(tmp_path, {"A": [], "B": ["A"], "C": [], "ABinding": ["A"]})
+    (tmp_path / "goals").mkdir()
+    (tmp_path / "goals" / "one.lean").write_text("")
+    (tmp_path / "goals" / "two.lean").write_text("")
+    runner, _ = _runner_for(
+        tmp_path,
+        "library/Unsorry/A.lean\ngoals/one.lean\ndocs/readme.md\n",
+    )
+
+    scoped = scoped_audit_targets(
+        tmp_path,
+        "origin/main",
+        ["Unsorry.A", "Unsorry.B", "Unsorry.C", "Unsorry.ABinding"],
+        ["goals.one", "goals.two"],
+        runner,
+    )
+
+    assert scoped is not None
+    assert scoped.mode == "incremental"
+    assert scoped.library == ["Unsorry.A", "Unsorry.ABinding", "Unsorry.B"]
+    assert scoped.goals == ["goals.one"]
+
+
+def test_scoped_audit_targets_global_impact_falls_back(tmp_path):
+    _write_lib(tmp_path, {"A": []})
+    runner, _ = _runner_for(tmp_path, "AxiomAudit/Main.lean\nlibrary/Unsorry/A.lean\n")
+    assert scoped_audit_targets(
+        tmp_path,
+        "origin/main",
+        ["Unsorry.A"],
+        [],
+        runner,
+    ) is None
+
+
+def test_audit_incremental_empty_scope_writes_empty_report(tmp_path: Path):
+    _write_lib(tmp_path, {"A": []})
+    output = tmp_path / "report.json"
+    calls = []
+
+    def runner(argv, **_kwargs):
+        argv = tuple(argv)
+        calls.append(argv)
+        if argv[0] == "git" and "diff" in argv:
+            return completed(argv, stdout="docs/readme.md\n")
+        return completed(argv, stdout="[]")
+
+    assert audit(tmp_path, 1, output, runner, base="origin/main") == 0
+    assert json.loads(output.read_text()) == []
+    assert all(call[:3] != ("lake", "build", "axiom_audit") for call in calls)
+
+
+def test_audit_incremental_runs_only_scoped_modules(tmp_path: Path):
+    _write_lib(tmp_path, {"A": [], "B": ["A"], "C": [], "ABinding": ["A"]})
+    (tmp_path / "goals").mkdir()
+    (tmp_path / "goals" / "one.lean").write_text("")
+    (tmp_path / "goals" / "two.lean").write_text("")
+    output = tmp_path / "report.json"
+    calls = []
+
+    def runner(argv, **_kwargs):
+        argv = tuple(argv)
+        calls.append(argv)
+        if argv[0] == "git" and "diff" in argv:
+            return completed(argv, stdout="library/Unsorry/A.lean\ngoals/one.lean\n")
+        if argv[:3] == ("lake", "build", "axiom_audit"):
+            return completed(argv)
+        modules = [arg for arg in argv if "." in arg]
+        report = [{"decl": module, "axioms": []} for module in modules]
+        return completed(argv, stdout=json.dumps(report))
+
+    assert audit(tmp_path, 1, output, runner, base="origin/main") == 0
+    assert json.loads(output.read_text()) == [
+        {"decl": "Unsorry.A", "axioms": []},
+        {"decl": "Unsorry.ABinding", "axioms": []},
+        {"decl": "Unsorry.B", "axioms": []},
+        {"decl": "goals.one", "axioms": []},
+    ]
+    audited = {arg for call in calls for arg in call if arg.startswith(("Unsorry.", "goals."))}
+    assert audited == {"Unsorry.A", "Unsorry.ABinding", "Unsorry.B", "goals.one"}
