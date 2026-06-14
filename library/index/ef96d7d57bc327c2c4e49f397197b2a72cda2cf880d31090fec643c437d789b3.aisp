@@ -1,0 +1,8 @@
+𝔸5.1.lemma.ef96d7d57bc3@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜ef96d7d57bc327c2c4e49f397197b2a72cda2cf880d31090fec643c437d789b3; goal≜four-mul-prod-le-sq-sum; name≜four_mul_prod_le_sq_sum}
+⟦Σ:Source⟧{src≜goals/four-mul-prod-le-sq-sum.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜440}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,8 @@
+𝔸5.1.run.four-mul-prod-le-sq-sum.afnz-zbook-b336.20260614t134718994932z-d6f7f086@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t134718994932z-d6f7f086; goal≜four-mul-prod-le-sq-sum; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜four-mul-prod-le-sq-sum}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜440; ended≜2026-06-14T13:47:19Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜ef96d7d57bc327c2c4e49f397197b2a72cda2cf880d31090fec643c437d789b3}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
