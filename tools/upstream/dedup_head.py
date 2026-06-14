@@ -43,15 +43,19 @@ def _index_name(root: Path, goal: str) -> str | None:
     must be delimiter-anchored: `goal≜parent` is a prefix of
     `goal≜parent-s1`, and a bare substring scan leaked a sub-lemma's name
     into the parent's packet on the real tree."""
-    index = root / "library" / "index"
-    if not index.is_dir():
-        return None
     goal_rx = re.compile(rf"goal≜{re.escape(goal)}(?=[;}}\s])")
-    for entry in sorted(index.glob("*.aisp")):
-        text = entry.read_text(encoding="utf-8")
-        if goal_rx.search(text):
-            m = _NAME_RE.search(text)
-            return m.group(1) if m else None
+    indices = [root / "library" / "index"]
+    packages = root / "packages"
+    if packages.is_dir():
+        indices.extend(sorted(packages.glob("unsorry-archive-*/library/index")))
+    for index in indices:
+        if not index.is_dir():
+            continue
+        for entry in sorted(index.glob("*.aisp")):
+            text = entry.read_text(encoding="utf-8")
+            if goal_rx.search(text):
+                m = _NAME_RE.search(text)
+                return m.group(1) if m else None
     return None
 
 

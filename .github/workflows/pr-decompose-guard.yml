@@ -1,0 +1,25 @@
+# Block decomposition PRs from racing direct proof PRs for the same goal. The
+# workflow runs on the trusted base ref and reads PR titles through the GitHub
+# API; it never executes PR-head code.
+name: pr-decompose-guard
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  decompose-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3 — base ref, never the PR head
+      - name: Reject decompose/prove races for the same goal
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          gh pr list --repo "$GITHUB_REPOSITORY" --state open --limit 200 \
+            --json number,title \
+            --jq ".[] | select(.number != ($PR | tonumber)) | .title" \
+            | python3 -m tools.repo.pr_decompose_guard check "$TITLE"

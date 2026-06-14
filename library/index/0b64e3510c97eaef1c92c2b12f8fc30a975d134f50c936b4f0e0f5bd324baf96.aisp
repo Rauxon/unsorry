@@ -1,0 +1,8 @@
+𝔸5.1.lemma.0b64e3510c97@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜0b64e3510c97eaef1c92c2b12f8fc30a975d134f50c936b4f0e0f5bd324baf96; goal≜nat-sq-lt-two-pow-s2-s2; name≜two_mul_square_lt_two_mul_pow_of_square_lt}
+⟦Σ:Source⟧{src≜goals/nat-sq-lt-two-pow-s2-s2.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜adam91holt; agent≜adam91holt; provider≜manual; model≜gpt-5.5; effort≜manual; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

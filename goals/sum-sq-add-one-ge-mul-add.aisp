@@ -15,5 +15,6 @@
 ⟦Λ:Artifact⟧{
   lean≜goals/sum-sq-add-one-ge-mul-add.lean
   sha≜∅
+  aff≜-10
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

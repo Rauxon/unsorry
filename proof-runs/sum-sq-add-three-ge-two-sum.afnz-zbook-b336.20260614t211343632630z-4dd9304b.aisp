@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-sq-add-three-ge-two-sum.afnz-zbook-b336.20260614t211343632630z-4dd9304b@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t211343632630z-4dd9304b; goal≜sum-sq-add-three-ge-two-sum; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-sq-add-three-ge-two-sum}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜619; ended≜2026-06-14T21:13:43Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜119e132ee6e8188755b0d134423fce3c4ab2704b8e6709ed877467c90805f548}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

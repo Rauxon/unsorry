@@ -20,6 +20,17 @@
 
 Found by the external review in issue #190 ("Soundness assessment: … CRITICAL hole: same-PR goal tampering … Nothing pins a proved goal's canonical statement against history. Fix is small."). The fix is the review's suggested base-ref diff, implemented as a tested module rather than inline YAML so the rule itself is under TDD. Red-team round 003 (`docs/metrics/gate-a-redteam-003.md`) replays the exact attack with a real adversarial PR.
 
+## Amendment (2026-06-15): ADR-041 archive-retirement exemption
+
+ADR-041 introduced proof **archive blocks**: when the active package reaches the block target, a batch of proved goals is relocated into a frozen, separately-validated archive package (`packages/unsorry-archive-*`). Retiring a block deletes the active `goals/<id>.lean` copies — which the original create-only rule rejected unconditionally, blocking the legitimate archive lifecycle (the cost ADR-041 itself flagged: "Gate A awareness of active-vs-archive paths").
+
+This amendment adds **one** narrowly-scoped exemption. A `D goals/<id>.lean` is allowed iff **both** hold in the PR's own tree:
+
+1. `<id>` is recorded in an archive manifest (`packages/unsorry-archive-*/archive-manifest.json`, `goals[].goal`); and
+2. the archived `packages/<block>/goals/<id>.lean` is **byte-identical** to the deleted statement *at the base ref*.
+
+The soundness anchor is unchanged. The pin does not vanish — it *relocates*, unchanged, into the archive block, which is itself a trust-bearing boundary: any PR touching archive paths full-validates that block (ADR-041 §4–5: `lake build --wfail`, axiom audit, kernel replay, statement-binding regeneration), and the archive surface is under CODEOWNERS (ADR-019). Condition (2) — comparing the archived copy against the **base ref**, the one thing a PR cannot rewrite — is the tampering guard: a delete that ships a *weakened* archived statement, a delete with no archive copy, and any modify/rename/typechange all stay rejected exactly as before. The exemption applies to deletes only; no other operation can carry a preserved copy out of the active tree.
+
 ## Options Considered
 
 ### Option 1: Create-only `goals/*.lean`, enforced by base-ref diff in gate-a (Selected)
@@ -38,6 +49,7 @@ A second root of trust to operate and protect. Rejected as disproportionate: exi
 | Amends | ADR-006 | Gate A Soundness Enforcement | New authoritative layer |
 | Relates To | ADR-011 | Statement-Binding Gate | Binding regenerates from the now-pinned statement |
 | Relates To | ADR-019 | CI Supply-Chain & Workflow Protection | Protects the layer itself |
+| Relates To | ADR-041 | Proof Archive Blocks | The sole exemption: archive retirement relocates the pin, byte-identical, into a frozen block |
 
 ## References
 | Reference ID | Title | Type | Location |
@@ -51,3 +63,4 @@ A second root of trust to operate and protect. Rejected as disproportionate: exi
 |--------|----------|------|
 | Proposed | unsorry maintainers | 2026-06-12 |
 | Accepted | unsorry maintainers | 2026-06-12 |
+| Amended | unsorry maintainers | 2026-06-15 |

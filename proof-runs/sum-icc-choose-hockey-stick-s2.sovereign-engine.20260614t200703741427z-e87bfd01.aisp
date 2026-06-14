@@ -1,0 +1,9 @@
+𝔸5.1.run.sum-icc-choose-hockey-stick-s2.sovereign-engine.20260614t200703741427z-e87bfd01@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t200703741427z-e87bfd01; goal≜sum-icc-choose-hockey-stick-s2; agent≜sovereign-engine; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603-sovereign; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-icc-choose-hockey-stick-s2}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜82; ended≜2026-06-14T20:07:03Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(no file was written at library/Unsorry/SumIccChooseHockeyStickS2.lean)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

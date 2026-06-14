@@ -1,0 +1,8 @@
+𝔸5.1.lemma.deb0475cc547@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜deb0475cc5476db2dd3f91fb99a1af7b470fc905d30b30c41262a797ffe53367; goal≜nat-sq-lt-two-pow-s2-s3; name≜two_mul_two_pow_eq_two_pow_succ_nat}
+⟦Σ:Source⟧{src≜goals/nat-sq-lt-two-pow-s2-s3.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜adam91holt; agent≜adam91holt; provider≜manual; model≜gpt-5.5; effort≜manual; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -66,8 +66,13 @@ Flags:
   --self-test       Run the built-in hermetic tests and exit (0 green / 1 red)
 
 Requirement:
-  Run from the repository root. Swarm modes require main checked out and equal
-  to origin/main; --prove-local instead tests committed local HEAD.
+  Run from a checkout of the repository. By default (ADR-042) swarm modes
+  relocate into a dedicated per-agent worktree pinned to origin/main, so the
+  launch dir is left untouched (edit proofs/the harness there freely) and
+  concurrent agents do not share a tree; the launch dir need not be on main.
+  With UNSORRY_NO_ISOLATE=1 the agent runs in place and the launch dir must be
+  on main and equal to origin/main. --prove-local always tests the caller's
+  committed local HEAD in place.
 
 Environment:
   UNSORRY_AGENT_ID  Swarm identity (default: ~/.unsorry/agent-id, created on first run)
@@ -91,6 +96,15 @@ Environment:
                     pins every attempt; else unset; dropped fail-soft when the
                     installed claude lacks --effort)
   UNSORRY_WORKDIR   Claims worktree + metrics.jsonl home (default: ~/.unsorry/work)
+  UNSORRY_NO_ISOLATE
+                    Set to 1 to run the swarm loop in the launch dir instead of
+                    relocating into a per-agent worktree (ADR-042). The launch
+                    dir must then be on main and equal to origin/main
+  UNSORRY_AGENT_WORKTREE
+                    Override the per-agent worktree path (ADR-042; default:
+                    $UNSORRY_WORKDIR/agent-main-<agent-id>). Reused across cycles
+                    so its .lake build cache is paid once. Reset with
+                    'git worktree remove --force <path>'
   UNSORRY_LOCAL_WORKTREE
                     Exact worktree path for --prove-local (default: a fresh
                     directory under /tmp)
@@ -102,6 +116,13 @@ Environment:
   UNSORRY_ATTEMPTS  Prove build/audit attempts (default: 3 in --prove and
                     --prove-local, one per ADR-015 effort rung; else
                     config.py BUDGET_ATTEMPTS)
+  UNSORRY_DECOMPOSE Decompose a goal into sub-lemmas when a prove attempt is
+                    exhausted (default: 1; set 0 to demote without decomposing)
+  UNSORRY_RECOVERY  ADR-044 idle recovery: when --prove finds no claimable
+                    viable goal, re-surface a goal orphaned below τ_v into the
+                    normal prove pipeline (retry with accumulated lessons,
+                    ADR-024; decompose on failure, ADR-009) instead of going
+                    idle (default: 1; set 0 to disable)
 EOF
 }
 
@@ -357,6 +378,46 @@ def cmd_prove_candidates(args):
     if force and force not in ranked and any(g == force for g, _ in survivors):
         print(force)  # explicit --goal overrides the viability floor only
     for goal in ranked:
+        print(goal)
+
+
+def cmd_recovery_candidates(args):
+    """recovery-candidates <goals-dir> <claims-dir> <library-dir> <agent> [<at>]
+
+    ADR-044 idle recovery pool — the inverse of ``prove-candidates``: claimable
+    prove goals parked *below* the viability floor (affinity < TAU_V). A failed
+    direct prove demotes a goal below TAU_V, where ``_rank`` can never surface it
+    again (ADR-010); such a goal is orphaned — its accumulated ⟦Δ:Lesson⟧ history
+    (ADR-024) is never reused and nothing retries it. This lists those orphans so
+    the idle sweep can re-surface one into the SAME ``prove_goal`` pipeline, which
+    retries with the lessons injected (ADR-024) and decomposes on failure
+    (ADR-009).
+
+    Same hard claimability filter as ``prove-candidates`` (phase≡prove,
+    status≡open, NOT proved, fewer than PROVE_CLAIM_CAP live other-agent claims,
+    no live self-claim), but keeps ONLY affinity < TAU_V, ordered least-buried
+    first (affinity desc, then id) so the most recoverable goals go first."""
+    goals_dir, claims_dir, library_dir, agent = args[:4]
+    now = _now(args[4] if len(args) > 4 else "")
+    proved = _proved_goals(library_dir)
+    out = []
+    for path in sorted(Path(goals_dir).glob("*.aisp")):
+        goal = path.stem
+        record = parse_record(path.read_text(encoding="utf-8"))
+        if record.fields.get("phase") != "prove":
+            continue
+        if record.fields.get("status") != "open":
+            continue
+        if goal in proved:
+            continue
+        if _affinity(record) >= config.TAU_V:
+            continue  # still viable — the normal prove queue handles it
+        others, live_self = _live_other_agents(claims_dir, goal, agent, now)
+        if live_self or len(others) >= config.PROVE_CLAIM_CAP:
+            continue
+        out.append((_affinity(record), goal))
+    out.sort(key=lambda t: (-t[0], t[1]))
+    for _, goal in out:
         print(goal)
 
 
@@ -876,6 +937,7 @@ COMMANDS = {
     "lean-foralltype": cmd_lean_foralltype,
     "lean-opens": cmd_lean_opens,
     "prove-candidates": cmd_prove_candidates,
+    "recovery-candidates": cmd_recovery_candidates,
     "prove-claimable": cmd_prove_claimable,
     "render-index": cmd_render_index,
     "run-id": cmd_run_id,
@@ -1089,6 +1151,11 @@ require_unsorry_origin() {
 }
 
 require_main_checkout() {
+  # ADR-042: inside an isolated agent worktree the checkout is a detached HEAD
+  # pinned to origin/main by sync_repo every cycle, so the branch-name check
+  # doesn't apply. The real invariant — HEAD == origin/main — is enforced by
+  # require_main_matches_origin (called in sync_repo) in both modes.
+  [ "${UNSORRY_IN_WT:-0}" = 1 ] && return 0
   local branch
   branch="$(git symbolic-ref --quiet --short HEAD 2>/dev/null)" \
     || die_config "must be run with main checked out (detached HEAD found)"
@@ -1125,9 +1192,17 @@ emit_event() {
 # ------------------------------------------------------------- git plumbing
 
 # Step 1: pull main, ensure the claims worktree exists and is freshly pulled.
+# ADR-042: an isolated agent worktree is a throwaway detached checkout, so it is
+# hard-reset to origin/main (re-entrant: clears anything a dead cycle left
+# behind, like the claims worktree does). The non-isolated path keeps the
+# conservative --ff-only merge of the operator's own main checkout.
 sync_repo() {
   git fetch -q origin || return 1
-  git merge -q --ff-only origin/main || return 1
+  if [ "${UNSORRY_IN_WT:-0}" = 1 ]; then
+    git reset --hard -q origin/main || return 1
+  else
+    git merge -q --ff-only origin/main || return 1
+  fi
   require_main_matches_origin
   ensure_claims_worktree
 }
@@ -1148,6 +1223,55 @@ maybe_reexec_on_harness_update() {
     log "harness updated on origin/main (${_HARNESS_SHA} → ${current}) — re-exec'ing to run the latest code (#428)"
     exec "${BASH_SOURCE[0]}" ${_ORIG_ARGV[@]+"${_ORIG_ARGV[@]}"}
   fi
+}
+
+# ADR-042: ensure a dedicated per-agent worktree exists at <wt>, a detached
+# checkout of origin/main. Reused across cycles so its .lake/mathlib build cache
+# is paid once, not per run. Mirrors ensure_claims_worktree's ownership guard:
+# refuse to adopt a path that belongs to a different clone, prune stale registry
+# entries before creating a fresh one.
+ensure_agent_worktree() {
+  local wt="$1"
+  if [ -e "$wt" ]; then
+    local theirs ours
+    theirs="$(git -C "$wt" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)" \
+      || die_config "$wt exists but is not a git worktree"
+    ours="$(git rev-parse --path-format=absolute --git-common-dir)"
+    [ "$theirs" = "$ours" ] \
+      || die_config "$wt belongs to another clone ($theirs)"
+  else
+    git worktree prune >/dev/null 2>&1 || true
+    git worktree add -q --detach "$wt" origin/main \
+      || die_config "cannot create agent worktree at $wt"
+  fi
+}
+
+# ADR-042: relocate the running agent into its own worktree before any work, so
+# the operator's launch dir is never synced/built/claimed in (they can edit
+# proofs and the harness there freely) and two agents on one host don't share a
+# tree. Opt out with UNSORRY_NO_ISOLATE=1; override the path with
+# UNSORRY_AGENT_WORKTREE. No-op once already inside the worktree (UNSORRY_IN_WT).
+# Like the #428 re-exec, this runs origin/main's agent.sh — the swarm loop must
+# act on merged code, not the operator's working copy.
+relocate_into_agent_worktree() {
+  [ "${UNSORRY_IN_WT:-0}" = 1 ] && return 0
+  [ "${UNSORRY_NO_ISOLATE:-0}" = 1 ] && return 0
+
+  require_unsorry_origin
+  git fetch -q origin || die_config "cannot fetch origin before relocating into an isolated worktree"
+
+  local workdir wt
+  workdir="${UNSORRY_WORKDIR:-$HOME/.unsorry/work}"
+  [ -n "${AGENT_ID:-}" ] || resolve_agent_id
+  wt="${UNSORRY_AGENT_WORKTREE:-$workdir/agent-main-$AGENT_ID}"
+
+  mkdir -p "$workdir" || die_config "cannot create UNSORRY_WORKDIR '$workdir'"
+  ensure_agent_worktree "$wt"
+
+  log "relocating into isolated agent worktree $wt (ADR-042); launch dir left untouched"
+  cd "$wt" || die_config "cannot enter agent worktree $wt"
+  export UNSORRY_IN_WT=1
+  exec "$wt/swarm/agent.sh" ${_ORIG_ARGV[@]+"${_ORIG_ARGV[@]}"}
 }
 
 ensure_claims_worktree() {
@@ -1243,6 +1367,15 @@ open_prove_pr_exists() {
   while IFS= read -r t; do
     case "$t" in "prove($goal):"*) return 0 ;; esac
   done <<< "$titles"
+  return 1
+}
+
+decompose_blocked_by_open_prove_pr() {
+  local goal="$1"
+  if open_prove_pr_exists "$goal"; then
+    log "decompose($goal): open prove PR already exists — refusing to decompose"
+    return 0
+  fi
   return 1
 }
 
@@ -2163,6 +2296,9 @@ prove_local_goal() {
 # type-check, or any guardrail (≤ cap, strictly-smaller) rejects the split.
 decompose_goal() {
   local goal="$1" depth maxdepth prwt branch stmt out i=0 d0 ddur probe_rc
+  if decompose_blocked_by_open_prove_pr "$goal"; then
+    return 1
+  fi
   depth="$(py_helper goal-depth "goals/$goal.aisp")" || return 1
   maxdepth="$(py_helper max-decomp depth)" || return 1
   if [ "$depth" -ge "$maxdepth" ]; then
@@ -2269,6 +2405,11 @@ Output 2 to $(py_helper max-decomp subs) sub-lemma signatures, one per \`SUB:\` 
   fi
 
   write_proof_run_record "$prwt" "$goal" decomposed || return 1
+  if decompose_blocked_by_open_prove_pr "$goal"; then
+    git worktree remove --force "$prwt" >/dev/null 2>&1 || true
+    git branch -q -D "$branch" >/dev/null 2>&1 || true
+    return 1
+  fi
   if submit_pr_tree "$prwt" "$branch" \
       "decompose($goal): ${#sub_ids[@]} sub-lemmas by $AGENT_ID" \
       "Automated decomposition (ADR-009, SPEC-009-A): goal \`$goal\` resisted proof within budget, so it is split into ${#sub_ids[@]} claimable sub-lemmas (depth $((depth + 1))) and parked \`blocked\`. The parent re-opens once its subs are proved and still closes only through Gate A — the dependency edges are advisory, never a trust path." \
@@ -2657,6 +2798,67 @@ test_harness_is_stale() {
   harness_is_stale abc unknown && { log "  unknown current sha treated as stale"; return 1; }
   harness_is_stale abc def || { log "  differing shas not detected as stale"; return 1; }
   return 0
+}
+
+# ADR-042: relocation is a no-op once already isolated or explicitly opted out —
+# in both cases it must return 0 without touching git or exec'ing (the guards
+# short-circuit before require_unsorry_origin / fetch).
+test_relocate_into_worktree_noop() {
+  ( UNSORRY_IN_WT=1 relocate_into_agent_worktree ) \
+    || { log "  relocate did not no-op when already inside the worktree"; return 1; }
+  ( UNSORRY_IN_WT=0 UNSORRY_NO_ISOLATE=1 relocate_into_agent_worktree ) \
+    || { log "  relocate did not no-op when isolation was opted out"; return 1; }
+  return 0
+}
+
+# ADR-042: require_main_checkout's branch-name gate is bypassed inside an
+# isolated worktree (UNSORRY_IN_WT=1), where HEAD is a detached origin/main that
+# require_main_matches_origin polices instead.
+test_require_main_checkout_isolated() {
+  local tmp rc=0
+  tmp="$(mktemp -d "$SESSION_TMP/iso-checkout.XXXXXX")" || return 1
+  git init -q -b main "$tmp" || return 1
+  fixture_git_id "$tmp" || return 1
+  git -C "$tmp" commit -q --allow-empty -m seed || return 1
+  git -C "$tmp" switch -q -c feature/wip || return 1
+  # On a feature branch the strict check still rejects (regression guard)...
+  ( cd "$tmp" && require_main_checkout ) >/dev/null 2>&1 || rc=$?
+  [ "$rc" -eq 2 ] \
+    || { log "  non-isolated feature checkout returned $rc, expected 2"; return 1; }
+  # ...but inside the worktree the same branch is accepted.
+  ( cd "$tmp" && UNSORRY_IN_WT=1 require_main_checkout ) \
+    || { log "  isolated worktree checkout was rejected"; return 1; }
+}
+
+# ADR-042: ensure_agent_worktree creates a detached origin/main worktree, reuses
+# it idempotently, and refuses to adopt a path owned by a foreign clone.
+test_ensure_agent_worktree() {
+  local tmp wt rc=0
+  tmp="$(mktemp -d "$SESSION_TMP/agentwt.XXXXXX")" || return 1
+  git init -q -b main "$tmp/repo" || return 1
+  fixture_git_id "$tmp/repo" || return 1
+  git -C "$tmp/repo" commit -q --allow-empty -m seed || return 1
+  git -C "$tmp/repo" update-ref refs/remotes/origin/main HEAD || return 1
+  wt="$tmp/agent-wt"   # outside the repo, like the real $UNSORRY_WORKDIR path
+
+  ( cd "$tmp/repo" && ensure_agent_worktree "$wt" ) \
+    || { log "  ensure_agent_worktree failed to create the worktree"; return 1; }
+  [ -e "$wt" ] || { log "  worktree path was not created"; return 1; }
+  [ "$(git -C "$wt" rev-parse HEAD)" = "$(git -C "$tmp/repo" rev-parse origin/main)" ] \
+    || { log "  worktree HEAD is not at origin/main"; return 1; }
+  git -C "$wt" symbolic-ref -q HEAD >/dev/null 2>&1 \
+    && { log "  worktree HEAD is not detached"; return 1; }
+
+  # Idempotent reuse: a second call on the existing worktree succeeds.
+  ( cd "$tmp/repo" && ensure_agent_worktree "$wt" ) \
+    || { log "  ensure_agent_worktree did not reuse the existing worktree"; return 1; }
+
+  # Ownership guard: a plain directory (not a worktree) outside the repo, like a
+  # path owned by another clone, is rejected rather than adopted.
+  mkdir -p "$tmp/not-a-wt" || return 1
+  ( cd "$tmp/repo" && ensure_agent_worktree "$tmp/not-a-wt" ) >/dev/null 2>&1 || rc=$?
+  [ "$rc" -eq 2 ] \
+    || { log "  adopting a non-worktree path returned $rc, expected config error 2"; return 1; }
 }
 
 test_provider_effort_ladder() {
@@ -3474,6 +3676,42 @@ test_viability_skip() {
     || { log "  at τ_v should be viable but rank below ok; expected 'ok bad', got '$got'"; return 1; }
 }
 
+test_recovery_candidates() {
+  # ADR-044: recovery-candidates is the exact inverse of prove-candidates —
+  # it surfaces ONLY goals parked below τ_v, ordered least-buried first, with
+  # the same claimability filter.
+  local tree claims got ttl
+  tree="$(mktemp -d "$SESSION_TMP/recovery.XXXXXX")" || return 1
+  claims="$tree/claims"
+  mkdir -p "$claims" "$tree/library/index" || return 1
+  ttl="$(py_helper ttl)" || return 1
+  make_prove_goal "$tree" viable "theorem v (n : Nat) : n + 0 = n" || return 1
+  make_prove_goal "$tree" buried "theorem b (n : Nat) : 0 + n = n" || return 1
+  make_prove_goal "$tree" deeper "theorem d (a b : Nat) : a + b = b + a" || return 1
+  py_helper aff-bump "$tree/goals/buried.aisp" -10 || return 1   # parked
+  py_helper aff-bump "$tree/goals/deeper.aisp" -20 || return 1   # more buried
+
+  # A: only the parked goals, least-buried first; the viable goal is excluded
+  # (it is the normal prove queue's job).
+  got="$(py_helper recovery-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "$(printf 'buried\ndeeper')" ] \
+    || { log "  A: expected 'buried deeper' (viable excluded, least-buried first), got '$got'"; return 1; }
+
+  # B: exactly at τ_v is viable, not recoverable — the cut is strictly below.
+  py_helper aff-bump "$tree/goals/buried.aisp" 5 || return 1     # -10 → -5
+  got="$(py_helper recovery-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "deeper" ] \
+    || { log "  B: -5 is viable; expected only 'deeper', got '$got'"; return 1; }
+
+  # C: a live claim by another agent on a parked goal excludes it (cap 1) — the
+  # recovery pool respects the same claimability filter as prove-candidates.
+  render_claim_record deeper agent-other "$T_LIVE_TS" "$ttl" \
+    > "$claims/deeper.agent-other.aisp"
+  got="$(py_helper recovery-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ -z "$got" ] \
+    || { log "  C: deeper claimed by another agent should be excluded, got '$got'"; return 1; }
+}
+
 test_goal_override_bypasses_viability() {
   # An explicit --goal (passed as --force) surfaces a goal ranked below τ_v —
   # the operator overrides the "awaiting re-decomposition" default — but never
@@ -3812,6 +4050,24 @@ test_open_pr_claim_guard() {
   return 0
 }
 
+test_decompose_open_prove_guard() {
+  local rc
+  gh() { printf 'prove(parent-goal): theorem_name by agent-a\n'; }
+  if ! decompose_blocked_by_open_prove_pr parent-goal; then
+    unset -f gh; log "  decompose did not detect open direct proof PR"; return 1
+  fi
+
+  gh() { printf 'prove(parent-goal-s1): theorem_name by agent-a\n'; }
+  rc=0; decompose_blocked_by_open_prove_pr parent-goal || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  decompose was blocked by sibling proof PR"; return 1; }
+
+  gh() { return 9; }
+  rc=0; decompose_blocked_by_open_prove_pr parent-goal || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  gh failure blocked decomposition"; return 1; }
+  unset -f gh
+  return 0
+}
+
 test_render_decomp_gateb() {
   # A rendered decomposition record + its sub goal records validate under the
   # real Gate B (acyclic, subs are known goals, none re-emits the parent).
@@ -3855,6 +4111,9 @@ run_self_tests() {
     test_require_main_checkout
     test_require_main_matches_origin
     test_harness_is_stale
+    test_relocate_into_worktree_noop
+    test_require_main_checkout_isolated
+    test_ensure_agent_worktree
     test_provider_effort_ladder
     test_prove_attempt_budget_default
     test_gemini_prove_mutes_cli_effort
@@ -3872,6 +4131,7 @@ run_self_tests() {
     test_lean_statement_helpers
     test_lean_sha_determinism
     test_prove_candidate_filtering
+    test_decompose_open_prove_guard
     test_local_prove_auto_selection
     test_already_proved_excluded
     test_goal_proved_rewrite
@@ -3881,6 +4141,7 @@ run_self_tests() {
     test_affinity_ranking
     test_gap_ranking
     test_viability_skip
+    test_recovery_candidates
     test_goal_override_bypasses_viability
     test_affinity_bump_math
     test_affinity_degrades_on_garbage
@@ -4071,6 +4332,42 @@ unblock_sweep() {
   done < <(py_helper unblockable goals decompositions library)
 }
 
+# ADR-044 recovery pool selector: parked prove orphans (affinity < τ_v) the
+# normal queue can never surface, filtered by scope and what this session has
+# already handled — the same shaping select_prove_candidates applies.
+select_recovery_candidates() {
+  local cand
+  while IFS= read -r cand; do
+    [ -n "$cand" ] || continue
+    goal_in_scope "$cand" || continue
+    [ -n "${HANDLED[$cand]:-}" ] && continue
+    printf '%s\n' "$cand"
+  done < <(py_helper recovery-candidates goals "$CLAIMS_WT/claims" library "$AGENT_ID")
+}
+
+# Walk a newline-separated candidate list (highest priority first), skipping
+# prove goals whose work is already in flight (an open prove PR — ADR-017), and
+# claim the first that is free. Sets CLAIMED_GOAL to that goal, or "" if the
+# whole list was in flight or lost the claim race. Diagnostics go to stderr via
+# log(), so stdout stays clean for the caller.
+claim_from_pool() {
+  local pool="$1" cand
+  CLAIMED_GOAL=""
+  [ -n "$pool" ] || return 0
+  while IFS= read -r cand; do
+    [ -n "$cand" ] || continue
+    if [ "$PROVE" -eq 1 ] && open_prove_pr_exists "$cand"; then
+      log "skipping $cand — an open prove PR is already in flight"
+      continue
+    fi
+    if claim_goal "$cand"; then
+      CLAIMED_GOAL="$cand"
+      return 0
+    fi
+  done <<< "$pool"
+  return 0
+}
+
 main() {
   # #428: remember the argv and the on-disk sha of the script this process was
   # launched with, so the cycle can re-exec the latest harness after sync_repo.
@@ -4093,6 +4390,14 @@ main() {
   fi
   [ "$TRANSLATE_ONLY" -eq 1 ] || [ "$PROVE" -eq 1 ] \
     || die_config "select a mode: --translate-only or --prove (or --self-test)"
+
+  # ADR-042: relocate into a dedicated per-agent worktree before any provider,
+  # auth, or model resolution, so all of it runs once in the isolated tree.
+  # --self-test exits above; --prove-local operates on the caller's committed
+  # HEAD by design, so neither relocates.
+  if [ "$PROVE_LOCAL" -eq 0 ]; then
+    relocate_into_agent_worktree
+  fi
 
   # -pi resolves to provider=openai with a custom base_url before provider
   # validation and before either prove branch, so both modes inherit it.
@@ -4259,35 +4564,51 @@ main() {
       convergence_sweep "$translations_dir" || overall=1
       candidates="$(select_candidates "$translations_dir")"
     fi
-    if [ -z "$candidates" ]; then
+    # An empty viable queue is terminal for translate mode, but in prove mode it
+    # may still have recoverable orphans (ADR-044) — fall through to step 4.
+    if [ -z "$candidates" ] && [ "$PROVE" -eq 0 ]; then
       log "no claimable goal — nothing to do"
       break
     fi
 
     if [ "$DRY_RUN" -eq 1 ]; then
-      goal="$(printf '%s\n' "$candidates" | head -n 1)"
-      printf 'dry-run: would claim goal %s (%s; %d candidate(s): %s)\n' \
-        "$goal" "$mode" "$(printf '%s\n' "$candidates" | wc -l)" \
-        "$(printf '%s\n' "$candidates" | paste -sd ' ' -)"
+      if [ -n "$candidates" ]; then
+        goal="$(printf '%s\n' "$candidates" | head -n 1)"
+        printf 'dry-run: would claim goal %s (%s; %d candidate(s): %s)\n' \
+          "$goal" "$mode" "$(printf '%s\n' "$candidates" | wc -l)" \
+          "$(printf '%s\n' "$candidates" | paste -sd ' ' -)"
+      else
+        # prove mode, empty viable queue: report what recovery would re-surface.
+        local recovery
+        recovery="$(select_recovery_candidates)"
+        if [ -n "$recovery" ] && [ "${UNSORRY_RECOVERY:-1}" != 0 ]; then
+          printf 'dry-run: no viable goal; would recover parked goal %s (%d parked below τ_v: %s)\n' \
+            "$(printf '%s\n' "$recovery" | head -n 1)" \
+            "$(printf '%s\n' "$recovery" | wc -l)" \
+            "$(printf '%s\n' "$recovery" | paste -sd ' ' -)"
+        else
+          printf 'dry-run: no viable or recoverable goal\n'
+        fi
+      fi
       exit 0
     fi
 
-    # Step 4 — claim, moving to the next candidate on collision. In prove
-    # mode a candidate with an open prove PR is skipped (ADR-017): its claim
-    # was released at PR-open, but the work is in flight, not abandoned.
-    goal=""
-    while IFS= read -r cand; do
-      if [ "$PROVE" -eq 1 ] && [ "$DRY_RUN" -eq 0 ] && open_prove_pr_exists "$cand"; then
-        log "skipping $cand — an open prove PR is already in flight"
-        continue
-      fi
-      if claim_goal "$cand"; then
-        goal="$cand"
-        break
-      fi
-    done <<< "$candidates"
+    # Step 4 — claim from the viable pool, skipping a candidate whose work is in
+    # flight (open prove PR, ADR-017) and moving on past a claim-race loss. If
+    # nothing viable is claimable, fall back to the ADR-044 recovery pool: parked
+    # orphans (affinity < τ_v) the normal queue never surfaces. A recovered goal
+    # runs the SAME prove_goal path below, so it retries with its accumulated
+    # lessons (ADR-024) and decomposes on failure (ADR-009) — no special casing.
+    claim_from_pool "$candidates"
+    goal="$CLAIMED_GOAL"
+    if [ -z "$goal" ] && [ "$PROVE" -eq 1 ] && [ "${UNSORRY_RECOVERY:-1}" != 0 ]; then
+      claim_from_pool "$(select_recovery_candidates)"
+      goal="$CLAIMED_GOAL"
+      [ -n "$goal" ] \
+        && log "recovery: re-surfaced parked goal $goal (below τ_v) for a lessons-armed retry (ADR-044)"
+    fi
     if [ -z "$goal" ]; then
-      log "every candidate collided — nothing claimable this pass"
+      log "no viable or recoverable prove work this pass"
       break
     fi
 

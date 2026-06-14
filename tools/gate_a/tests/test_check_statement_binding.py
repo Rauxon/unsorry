@@ -8,7 +8,8 @@ from tools.lean_sig import camel_name, foralltype, statement, theorem_name
 
 
 def _make_proved(tree: Path, goal: str, decl: str, proof: str = "by sorry",
-                 module: str | None = None, header: str = ""):
+                 module: str | None = None, header: str = "",
+                 status: str = "proved"):
     """Create a proved goal: goals/<goal>.{aisp,lean}, a library proof module,
     and the index entry that marks it proved. `header` is prepended to the
     goal `.lean` (import/`open` lines)."""
@@ -17,6 +18,10 @@ def _make_proved(tree: Path, goal: str, decl: str, proof: str = "by sorry",
     (tree / "library" / "index").mkdir(parents=True, exist_ok=True)
     (tree / "goals" / f"{goal}.lean").write_text(
         f"{header}{decl} := by sorry\n", encoding="utf-8")
+    (tree / "goals" / f"{goal}.aisp").write_text(
+        f"⟦Ω:Goal⟧{{id≜{goal}; phase≜prove; status≜{status}; difficulty≜1}}\n",
+        encoding="utf-8",
+    )
     mod = module or camel_name(goal)
     (tree / "library" / "Unsorry" / f"{mod}.lean").write_text(
         f"import Mathlib\n\n{decl} := {proof}\n", encoding="utf-8"
@@ -82,6 +87,29 @@ def test_generate_carries_goal_open_commands(tmp_path):
         "theorem sum_range_pentagonal_closed_form_binding_check")
 
 
+def test_generate_carries_goal_imports_before_proof_module(tmp_path):
+    # Regression: a goal may state its type using notation provided by its own
+    # imports (`ℕ` from Mathlib), while the proof module proves the same theorem
+    # with core names (`Nat`) and therefore does not import Mathlib. The binding
+    # restates the goal's type, so it must carry the goal imports too.
+    _make_proved(
+        tmp_path, "nat-pow-helper",
+        "theorem nat_pow_helper (n : ℕ) : n = n",
+        proof="rfl",
+        header="import Mathlib\n\n",
+    )
+    (tmp_path / "library" / "Unsorry" / "NatPowHelper.lean").write_text(
+        "theorem nat_pow_helper (n : Nat) : n = n := rfl\n",
+        encoding="utf-8",
+    )
+
+    assert generate(tmp_path) == 0
+    binding = (tmp_path / "library" / "Unsorry" / "NatPowHelperBinding.lean").read_text(
+        encoding="utf-8"
+    )
+    assert binding.startswith("import Mathlib\nimport Unsorry.NatPowHelper\n\n")
+
+
 def test_generate_without_opens_is_byte_identical_to_canonical(tmp_path):
     # No `open` in the goal file → the obligation keeps the exact canonical
     # shape (regression guard for the pre-open generator output).
@@ -114,6 +142,15 @@ def test_generate_errors_when_no_module_declares_the_theorem(tmp_path):
     # Delete the proof module so nothing declares `lonely`.
     (tmp_path / "library" / "Unsorry" / "Lonely.lean").unlink()
     assert generate(tmp_path) == 1
+
+
+def test_generate_skips_archived_goal(tmp_path):
+    _make_proved(tmp_path, "old-proof",
+                 "theorem old_proof (n : Nat) : n = n",
+                 proof="rfl", status="archived")
+    (tmp_path / "library" / "Unsorry" / "OldProof.lean").unlink()
+    assert generate(tmp_path) == 0
+    assert not (tmp_path / "library" / "Unsorry" / "OldProofBinding.lean").exists()
 
 
 def test_clean_removes_only_bindings(tmp_path):

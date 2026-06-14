@@ -1,0 +1,8 @@
+𝔸5.1.lemma.a753805cbca6@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜a753805cbca6926c1a466879f25a2e9678a45460ae0de9337787c4bc6512a914; goal≜sum-four-pow-ge-sq-prod-s1; name≜sq_mul_sq_le_half_sum_fourth}
+⟦Σ:Source⟧{src≜goals/sum-four-pow-ge-sq-prod-s1.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜718}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

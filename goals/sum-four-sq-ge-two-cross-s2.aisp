@@ -1,0 +1,21 @@
+𝔸5.1.goal.sum-four-sq-ge-two-cross-s2@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-four-sq-ge-two-cross-s2
+  phase≜prove
+  status≜proved
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜decompositions/sum-four-sq-ge-two-cross.adam91holt.aisp
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-four-sq-ge-two-cross-s2.lean
+  sha≜28225ea2a6fcdd8ca687fef217a0baad9a728076f97627ed9f228025b1071185
+  aff≜1
+  depth≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

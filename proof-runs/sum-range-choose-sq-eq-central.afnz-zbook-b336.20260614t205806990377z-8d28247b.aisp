@@ -1,0 +1,9 @@
+𝔸5.1.run.sum-range-choose-sq-eq-central.afnz-zbook-b336.20260614t205806990377z-8d28247b@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t205806990377z-8d28247b; goal≜sum-range-choose-sq-eq-central; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-choose-sq-eq-central}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜223; ended≜2026-06-14T20:58:07Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜⚠ [8583/8592] Replaying Unsorry.SumRangeChooseSqEqCentral trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-sum-range-choose-sq-eq-central-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-sum-range-choose-sq-eq-central-afnz-zbook-b336/.lak}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

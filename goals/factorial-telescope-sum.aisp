@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜factorial-telescope-sum
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/factorial-telescope-sum.md
+  src≜packages/unsorry-archive-0001/backlog/factorial-telescope-sum.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/factorial-telescope-sum.lean
+  lean≜packages/unsorry-archive-0001/goals/factorial-telescope-sum.lean
   sha≜ccf463c6b624f80f49cb2ebdac891b645d6635acf0c7b3c346ea8c8167984c05
   aff≜1
 }

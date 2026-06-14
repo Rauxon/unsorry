@@ -1,0 +1,12 @@
+𝔸5.1.decomp.sum-four-sq-ge-two-cross.adam91holt@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜sum-four-sq-ge-two-cross; agent≜adam91holt}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜sum-four-sq-ge-two-cross-s1,sha≜32a80d4111ebbcabab758b7e86fb01c4a3792c8f69b37d66ec904bd6dd702d51⟩
+  sub₂≜⟨id≜sum-four-sq-ge-two-cross-s2,sha≜28225ea2a6fcdd8ca687fef217a0baad9a728076f97627ed9f228025b1071185⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

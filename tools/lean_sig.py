@@ -57,6 +57,18 @@ def open_lines(lean_text: str) -> list[str]:
             if ln.lstrip().startswith("open ")]
 
 
+def import_lines(lean_text: str) -> list[str]:
+    """Top-level ``import …`` commands of a goal file, in order.
+
+    The generated binding restates the goal type verbatim, so notation and
+    aliases such as ``ℕ`` must elaborate under the goal statement's import
+    context, even when the proof module itself uses only core names like
+    ``Nat``.
+    """
+    return [ln.strip() for ln in lean_text.splitlines()
+            if ln.lstrip().startswith("import ")]
+
+
 def theorem_name(lean_text: str) -> str:
     """The declared name of `theorem <name> …` / `lemma <name> …`."""
     match = re.search(r"\b(?:theorem|lemma)\s+([A-Za-z_][A-Za-z0-9_']*)", lean_text)

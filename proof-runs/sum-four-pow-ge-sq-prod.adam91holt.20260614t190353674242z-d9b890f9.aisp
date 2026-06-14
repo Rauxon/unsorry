@@ -1,0 +1,9 @@
+𝔸5.1.run.sum-four-pow-ge-sq-prod.adam91holt.20260614t190353674242z-d9b890f9@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t190353674242z-d9b890f9; goal≜sum-four-pow-ge-sq-prod; agent≜adam91holt; outcome≜decomposed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜sum-four-pow-ge-sq-prod}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜131; ended≜2026-06-14T19:03:53Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(no file was written at library/Unsorry/SumFourPowGeSqProd.lean)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

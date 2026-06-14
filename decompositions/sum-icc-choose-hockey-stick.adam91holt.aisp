@@ -1,0 +1,13 @@
+𝔸5.1.decomp.sum-icc-choose-hockey-stick.adam91holt@2026-06-14
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜sum-icc-choose-hockey-stick; agent≜adam91holt}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜sum-icc-choose-hockey-stick-s1,sha≜e2d4ceafa325f38df0a15f21cbf110d45ea30a8a591256a3abf26ba70acf5893⟩
+  sub₂≜⟨id≜sum-icc-choose-hockey-stick-s2,sha≜e37fdeb054cbd14f4754652ed4fd2c9f7ef8621bd8f24bdce2d7e654aed0ab6e⟩
+  sub₃≜⟨id≜sum-icc-choose-hockey-stick-s3,sha≜eafbbdf7b180102c7e198a5117a7da00c9fe821838a83d536fd6b8dd0d28a9de⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

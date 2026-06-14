@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-four-pow-ge-sq-prod-s2.afnz-zbook-b336.20260614t195035457454z-d6364cd7@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t195035457454z-d6364cd7; goal≜sum-four-pow-ge-sq-prod-s2; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-four-pow-ge-sq-prod-s2}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1061; ended≜2026-06-14T19:50:35Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜cb5a5f88a2d7a7a8d31ecc6f16b588f269d01221895429e8a582919ad4753db7}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

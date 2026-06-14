@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜nat-sq-lt-two-pow-s2-s2
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,8 +14,8 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/nat-sq-lt-two-pow-s2-s2.lean
-  sha≜∅
-  aff≜-10
+  sha≜0b64e3510c97eaef1c92c2b12f8fc30a975d134f50c936b4f0e0f5bd324baf96
+  aff≜1
   depth≜2
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

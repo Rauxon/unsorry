@@ -39,9 +39,25 @@ _IMPORT_RE = re.compile(r"^import\s+(\S+)")
 
 
 def _module_text(root: Path, goal: str) -> str:
-    return (root / "library" / "Unsorry" / f"{camel_name(goal)}.lean").read_text(
-        encoding="utf-8"
-    )
+    return _module_path(root, goal).read_text(encoding="utf-8")
+
+
+def _module_path(root: Path, goal: str) -> Path:
+    rel = Path("library") / "Unsorry" / f"{camel_name(goal)}.lean"
+    active = root / rel
+    if active.is_file():
+        return active
+    packages = root / "packages"
+    if packages.is_dir():
+        for archive in sorted(packages.glob("unsorry-archive-*")):
+            candidate = archive / rel
+            if candidate.is_file():
+                return candidate
+    raise FileNotFoundError(rel.as_posix())
+
+
+def _module_label(root: Path, goal: str) -> str:
+    return _module_path(root, goal).relative_to(root).as_posix()
 
 
 def _theorem_block(module_text: str, name: str) -> str:
@@ -149,7 +165,7 @@ Status: {status} · generated mechanically (ADR-020 / SPEC-020-A) · sponsor: {s
 {statement}
 ```
 
-Kernel-verified on `main`: `library/Unsorry/{camel_name(goal)}.lean` (theorem `{name}`),
+Kernel-verified on `main`: `{_module_label(root, goal)}` (theorem `{name}`),
 through Gate A (build `--wfail`, axiom audit against the standard whitelist, leanchecker
 kernel replay, regenerated ADR-011 binding obligation).
 

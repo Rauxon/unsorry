@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜alternating-sum-naturals
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/alternating-sum-naturals.md
+  src≜packages/unsorry-archive-0001/backlog/alternating-sum-naturals.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/alternating-sum-naturals.lean
+  lean≜packages/unsorry-archive-0001/goals/alternating-sum-naturals.lean
   sha≜89b99a275b40905c9ed8d92292794951ef7d0967e4beb7c12e34e9fc88ed01d9
   aff≜1
 }
