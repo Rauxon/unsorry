@@ -25,7 +25,7 @@ Verified output comes from active `library/index` records plus archived index re
 
 ## Work Queue
 
-**200 goals · 40 archived · 8 blocked · 63 open · 79 proved · 10 translated.**
+**200 goals · 80 archived · 8 blocked · 63 open · 39 proved · 10 translated.**
 
 ## Efficiency by Difficulty
 
@@ -46,11 +46,11 @@ Verified output comes from active `library/index` records plus archived index re
 | `am-gm-three-cube-s2` | `blocked` | 1 | 2 | 4 | 43m 57s |
 | `cube-sum-ge-three-prod` | `blocked` | 2 | 2 | 4 | 17m 0s |
 | `am-gm-three-cube` | `blocked` | 3 | 2 | 4 | 16m 32s |
+| `fourth-power-mod-five` | `archived` | 3 | 1 | 3 | 20m 27s |
 | `cube-eq-triangular-sq-diff` | `archived` | 2 | 1 | 3 | 14m 49s |
 | `nat-sq-lt-two-pow-s2` | `blocked` | 1 | 1 | 3 | 9m 15s |
 | `prod-one-sub-inv-sq-telescope` | `open` | 4 | 2 | 2 | 1h 4m |
 | `sum-icc-choose-hockey-stick-s1` | `open` | 1 | 2 | 2 | 1h 3m |
-| `abstract-regular-polyhedron-realizable-iff` | `open` | 4 | 2 | 2 | 45m 43s |
 
 ## Contributor Leaderboard
 

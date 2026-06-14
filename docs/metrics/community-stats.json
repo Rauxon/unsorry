@@ -561,7 +561,7 @@
       "p90_solve_s": 1227,
       "run_success_rate": 0.0,
       "runs": 1,
-      "status": "proved",
+      "status": "archived",
       "successes": 0,
       "successes_per_recorded_hour": 0.0,
       "total_solve_s": 1227
@@ -881,7 +881,7 @@
       "p90_solve_s": 1103,
       "run_success_rate": 1.0,
       "runs": 1,
-      "status": "proved",
+      "status": "archived",
       "successes": 1,
       "successes_per_recorded_hour": 3.264,
       "total_solve_s": 1103
@@ -993,7 +993,7 @@
       "p90_solve_s": 344,
       "run_success_rate": 1.0,
       "runs": 1,
-      "status": "proved",
+      "status": "archived",
       "successes": 1,
       "successes_per_recorded_hour": 10.465,
       "total_solve_s": 344
@@ -1649,7 +1649,7 @@
       "p90_solve_s": 569,
       "run_success_rate": 1.0,
       "runs": 1,
-      "status": "proved",
+      "status": "archived",
       "successes": 1,
       "successes_per_recorded_hour": 6.327,
       "total_solve_s": 569
@@ -1793,7 +1793,7 @@
       "p90_solve_s": 342,
       "run_success_rate": 1.0,
       "runs": 1,
-      "status": "proved",
+      "status": "archived",
       "successes": 1,
       "successes_per_recorded_hour": 10.526,
       "total_solve_s": 342
@@ -1873,7 +1873,7 @@
       "p90_solve_s": 292,
       "run_success_rate": 1.0,
       "runs": 1,
-      "status": "proved",
+      "status": "archived",
       "successes": 1,
       "successes_per_recorded_hour": 12.329,
       "total_solve_s": 292
@@ -1889,7 +1889,7 @@
       "p90_solve_s": 287,
       "run_success_rate": 1.0,
       "runs": 1,
-      "status": "proved",
+      "status": "archived",
       "successes": 1,
       "successes_per_recorded_hour": 12.544,
       "total_solve_s": 287
@@ -2054,8 +2054,8 @@
         "index_files_added": 30,
         "missing_solver_provenance": 30,
         "profile_url": "https://github.com/chat-bit-01",
-        "sample_add_commit": "ed8d9bac84b715a080eaf07508766ee8861cf868",
-        "sample_add_date": "2026-06-12",
+        "sample_add_commit": "02e498190882edf7b814dcbf436075cb3b3b4f02",
+        "sample_add_date": "2026-06-14",
         "solver_credit": false,
         "solver_provenance_proofs": 0
       },
@@ -2070,7 +2070,7 @@
         "index_files_added": 9,
         "missing_solver_provenance": 9,
         "profile_url": "https://github.com/binto",
-        "sample_add_commit": "54806afaec17d1720db68fd5220f1b7c2f6b72eb",
+        "sample_add_commit": "386cd2b8a1ca5187b159090f4dfbd7b2f6d4b21e",
         "sample_add_date": "2026-06-12",
         "solver_credit": false,
         "solver_provenance_proofs": 0
@@ -2289,10 +2289,10 @@
     },
     "goals": 200,
     "status_counts": {
-      "archived": 40,
+      "archived": 80,
       "blocked": 8,
       "open": 63,
-      "proved": 79,
+      "proved": 39,
       "translated": 10
     }
   },
