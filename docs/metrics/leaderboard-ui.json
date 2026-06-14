@@ -89,12 +89,12 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": null,
-      "avatar_url": "https://github.com/kev.png?size=96",
+      "attempt_yield": 0.0,
+      "avatar_url": "https://github.com/adam91holt.png?size=96",
       "badges": {
         "difficulty": 4,
         "proofs": 2,
-        "success_rate_percent": null
+        "success_rate_percent": 0.0
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
@@ -102,18 +102,18 @@
       ],
       "credited_proofs": 2,
       "difficulty_points": 4,
-      "display_name": "@kev",
+      "display_name": "@adam91holt",
       "explicit_solver_proofs": 2,
-      "failed_attempts": 0,
-      "github": "kev",
+      "failed_attempts": 4,
+      "github": "adam91holt",
       "inferred_git_proofs": 0,
-      "median_solve_s": null,
-      "profile_url": "https://github.com/kev",
+      "median_solve_s": 146,
+      "profile_url": "https://github.com/adam91holt",
       "rank": 4,
-      "run_success_rate": null,
-      "runs": 0,
+      "run_success_rate": 0.0,
+      "runs": 4,
       "score": 450,
-      "solver": "kev",
+      "solver": "adam91holt",
       "successes": 0,
       "verified_proofs": 2
     },

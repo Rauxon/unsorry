@@ -54,7 +54,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 | 1 | [@cgbarlow](https://github.com/cgbarlow) | 61 | 19 | 42 | 23 | 82.6% | 101 | 11625 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 27 | 0 | 27 | 0 | — | 57 | 6375 |
 | 3 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
-| 4 | [@kev](https://github.com/kev) | 2 | 2 | 0 | 0 | — | 4 | 450 |
+| 4 | [@adam91holt](https://github.com/adam91holt) | 2 | 2 | 0 | 4 | 0.0% | 4 | 450 |
 | 5 | [@OceanLi](https://github.com/OceanLi) | 1 | 0 | 1 | 0 | — | 3 | 325 |
 
 ## Attribution Notes

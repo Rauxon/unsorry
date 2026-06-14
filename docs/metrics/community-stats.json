@@ -17,25 +17,9 @@
       "verified_proofs": 19
     },
     {
-      "attempt_yield": null,
-      "attempts": 0,
-      "difficulty_points": 4,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": null,
-      "p90_solve_s": null,
-      "run_success_rate": null,
-      "runs": 0,
-      "solver": "kev",
-      "successes": 0,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 2
-    },
-    {
       "attempt_yield": 0.0,
       "attempts": 4,
-      "difficulty_points": 0,
+      "difficulty_points": 4,
       "failed_attempts": 4,
       "failures": 4,
       "median_solve_s": 146,
@@ -46,7 +30,7 @@
       "successes": 0,
       "successes_per_recorded_hour": 0.0,
       "total_solve_s": 618,
-      "verified_proofs": 0
+      "verified_proofs": 2
     }
   ],
   "coverage": {
@@ -151,31 +135,31 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": null,
-      "attempts": 0,
-      "avatar_url": "https://github.com/kev.png?size=96",
+      "attempt_yield": 0.0,
+      "attempts": 4,
+      "avatar_url": "https://github.com/adam91holt.png?size=96",
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
       "credited_proofs": 2,
       "difficulty_points": 4,
-      "display_name": "@kev",
+      "display_name": "@adam91holt",
       "explicit_solver_proofs": 2,
-      "failed_attempts": 0,
-      "failures": 0,
+      "failed_attempts": 4,
+      "failures": 4,
       "git_author": null,
-      "github": "kev",
+      "github": "adam91holt",
       "inferred_git_proofs": 0,
-      "median_solve_s": null,
-      "p90_solve_s": null,
-      "profile_url": "https://github.com/kev",
-      "run_success_rate": null,
-      "runs": 0,
-      "solver": "kev",
+      "median_solve_s": 146,
+      "p90_solve_s": 203,
+      "profile_url": "https://github.com/adam91holt",
+      "run_success_rate": 0.0,
+      "runs": 4,
+      "solver": "adam91holt",
       "successes": 0,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
+      "successes_per_recorded_hour": 0.0,
+      "total_solve_s": 618,
       "verified_proofs": 2
     },
     {
