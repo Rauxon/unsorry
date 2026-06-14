@@ -95,6 +95,25 @@ jobs:
         with:
           fetch-depth: 0
 
+      # ADR-045: persist the local UnsorryLibrary oleans (.lake/build) across
+      # runs so `lake build UnsorryLibrary` is incremental — only changed
+      # modules recompile instead of the whole library cold-building (~16-21 min)
+      # in every job. The key invalidates on any toolchain / mathlib / lakefile
+      # change (forcing a full cold rebuild); otherwise restore-keys restores the
+      # most recent oleans. Same gate-a run: prepare saves under the commit sha
+      # and the audit/replay jobs (which `need` prepare) restore that exact key,
+      # so the library builds ONCE per run, not three times. Soundness is
+      # unchanged — Lake's content-hash traces recompile any changed source, and
+      # the axiom audit + leanchecker kernel replay still validate every olean
+      # that reaches main (full replay on push to main), cached or not.
+      - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: .lake/build
+          key: lake-build-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml') }}-${{ github.sha }}
+          restore-keys: |
+            lake-build-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml') }}-
+
       # ADR-018: goal statements are create-only — the pin against history.
       # Every other layer (binding regeneration, Gate B shas) derives from
       # goals/<id>.lean in THIS tree, so same-PR consistent tampering passes
@@ -183,6 +202,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      # ADR-045: restore the library oleans gate-a-prepare just built (exact-key
+      # hit on the commit sha) so this job's library build is a near-no-op rather
+      # than a second cold ~16-21 min rebuild. See gate-a-prepare for the full
+      # rationale and the soundness argument.
+      - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: .lake/build
+          key: lake-build-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml') }}-${{ github.sha }}
+          restore-keys: |
+            lake-build-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml') }}-
+
       - name: Build (lean-action, mathlib binary cache)
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
@@ -250,6 +281,18 @@ jobs:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           fetch-depth: 0
+
+      # ADR-045: restore the library oleans gate-a-prepare just built (exact-key
+      # hit on the commit sha) so this job's library build is a near-no-op rather
+      # than a third cold ~16-21 min rebuild. See gate-a-prepare for the full
+      # rationale and the soundness argument.
+      - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: .lake/build
+          key: lake-build-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml') }}-${{ github.sha }}
+          restore-keys: |
+            lake-build-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml') }}-
 
       # Kernel replay (leanchecker) holds ~all of mathlib resident per process;
       # as the library grows its peak RSS crept past the 7 GB standard-runner
