@@ -1,0 +1,8 @@
+𝔸5.1.lemma.b67301de97d1@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜b67301de97d17cb508b78c10b5685c3f4e522be557ad2ebf8930f025783cf836; goal≜thirty-dvd-pow-five-sub-self; name≜thirty_dvd_pow_five_sub_self}
+⟦Σ:Source⟧{src≜goals/thirty-dvd-pow-five-sub-self.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high; attempts≜1; solve_s≜230}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
