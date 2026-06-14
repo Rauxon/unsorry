@@ -19,7 +19,7 @@ jobs:
         run: pip install pytest
       - name: Gate B test suite
         run: pytest tools/gate_b -q
-      - name: Sourcing test suite (ADR-012 / ADR-033)
+      - name: Sourcing test suite (ADR-012 / ADR-035)
         # Stdlib only (absence grep + triviality probe use a mocked runner).
         run: pytest tools/sourcing -q
       - name: Validate repository tree

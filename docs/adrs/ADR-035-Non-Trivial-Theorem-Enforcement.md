@@ -1,8 +1,8 @@
-# ADR-033: Non-Trivial Theorem Enforcement
+# ADR-035: Non-Trivial Theorem Enforcement
 
 | Field | Value |
 |-------|-------|
-| **Decision ID** | ADR-033 |
+| **Decision ID** | ADR-035 |
 | **Initiative** | unsorry backlog quality — machine-enforced target non-triviality |
 | **Proposed By** | unsorry maintainers |
 | **Date** | 2026-06-14 |
@@ -85,7 +85,7 @@ in `library/`, platform-nondeterministic); a timeout is conservatively classifie
 
 | Reference ID | Title | Type | Location |
 |--------------|-------|------|----------|
-| REF-1 | Non-triviality enforcement spec | Specification | specs/SPEC-033-A-Non-Trivial-Theorem-Enforcement.md |
+| REF-1 | Non-triviality enforcement spec | Specification | specs/SPEC-035-A-Non-Trivial-Theorem-Enforcement.md |
 | REF-2 | Backlog sourcing (the pipeline this refines) | Decision | ADR-012-Backlog-Sourcing.md |
 | REF-3 | Statement-binding gate (template + `foralltype`/`open_lines` reuse) | Decision | ADR-011-Statement-Binding-Gate.md |
 | REF-4 | Tracking issue | Issue | https://github.com/agenticsnz/unsorry/issues/387 |

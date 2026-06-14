@@ -42,7 +42,7 @@ python3 -m tools.sourcing.check_absence --pattern '<regex that would match it if
 ## It is not trivial
 
 <!-- A target a single tactic closes (or one already in mathlib under another name) is not
-admitted — see ADR-033. If you've checked, paste it; a maintainer will run it regardless. -->
+admitted — see ADR-035. If you've checked, paste it; a maintainer will run it regardless. -->
 
 **Triviality check you ran (if any):**
 
@@ -57,4 +57,4 @@ python3 -m tools.sourcing.check_triviality goals/<id>.lean
 
 ---
 
-A maintainer (or an agent) will run the absence **and** triviality checks against the pinned mathlib (ADR-012 / ADR-033), lower it to a type-checking statement, and admit it to the [targets board](../../docs/targets.md) if it passes. Thanks for feeding the queue 🧮
+A maintainer (or an agent) will run the absence **and** triviality checks against the pinned mathlib (ADR-012 / ADR-035), lower it to a type-checking statement, and admit it to the [targets board](../../docs/targets.md) if it passes. Thanks for feeding the queue 🧮

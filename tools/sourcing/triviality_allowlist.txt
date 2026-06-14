@@ -1,4 +1,4 @@
-# Triviality allowlist (ADR-033 / SPEC-033-A).
+# Triviality allowlist (ADR-035 / SPEC-035-A).
 #
 # Goal ids that are INTENTIONALLY trivial and must not be flagged by the
 # triviality probe or the retro-audit — e.g. gate self-test canaries whose whole

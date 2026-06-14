@@ -1,6 +1,6 @@
-# SPEC-033-A: Non-Trivial Theorem Enforcement
+# SPEC-035-A: Non-Trivial Theorem Enforcement
 
-Implements: [ADR-033](../ADR-033-Non-Trivial-Theorem-Enforcement.md) · Status: Living · Updated: 2026-06-14 · Refines [SPEC-012-A](SPEC-012-A-Backlog-Sourcing.md)
+Implements: [ADR-035](../ADR-035-Non-Trivial-Theorem-Enforcement.md) · Status: Living · Updated: 2026-06-14 · Refines [SPEC-012-A](SPEC-012-A-Backlog-Sourcing.md)
 
 ## The probe
 

@@ -1,4 +1,4 @@
-"""Triviality probe (backlog sourcing, ADR-033 / SPEC-033-A).
+"""Triviality probe (backlog sourcing, ADR-035 / SPEC-035-A).
 
 A target only belongs in the backlog if it is **non-trivial** — not closable by
 one-shot automation, and not already in mathlib (under *any* name). The absence

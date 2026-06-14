@@ -47,7 +47,7 @@ Let statements in without type-checking or absence verification and prune downst
 | Relates To | ADR-010 | Affinity-Gap Selection | Difficulty/decomposition banding feeds gap-based routing |
 | Relates To | ADR-011 | Statement-Binding Gate | Binding guarantees a proof matches the admitted statement |
 | Refines | SPEC-003-A | Goal Record Schema | Adds optional provenance fields |
-| Refined By | ADR-033 | Non-Trivial Theorem Enforcement | Adds a machine triviality gate beside the absence gate |
+| Refined By | ADR-035 | Non-Trivial Theorem Enforcement | Adds a machine triviality gate beside the absence gate |
 
 ## References
 | Reference ID | Title | Type | Location |

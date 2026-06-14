@@ -110,7 +110,7 @@ absence is a grep **pre-filter**, not a proof — the definitive check is downst
 already in mathlib gets discharged by a one-line citation rather than a real proof).
 
 Admitted targets must also pass a **machine triviality check**
-([ADR-033](docs/adrs/ADR-033-Non-Trivial-Theorem-Enforcement.md)): `python3 -m
+([ADR-035](docs/adrs/ADR-035-Non-Trivial-Theorem-Enforcement.md)): `python3 -m
 tools.sourcing.check_triviality goals/<id>.lean` elaborates the statement under `import
 Mathlib` against a battery of one-shot tactics — a target a single `simp`/`aesop`/`decide`/…
 closes (or one already in mathlib under another name, which `simp`/`aesop` then finds) is not

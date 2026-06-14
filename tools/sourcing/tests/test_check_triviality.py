@@ -1,4 +1,4 @@
-"""Triviality-probe tests (ADR-033 / SPEC-033-A). Hermetic — a mocked runner
+"""Triviality-probe tests (ADR-035 / SPEC-035-A). Hermetic — a mocked runner
 stands in for lake+mathlib, so the orchestration/classification logic is covered
 without elaboration. The one real-build path is exercised separately at sourcing
 and in CI."""

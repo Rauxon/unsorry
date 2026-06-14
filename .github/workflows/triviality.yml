@@ -1,6 +1,6 @@
 name: triviality
 
-# Advisory backstop for ADR-033 / SPEC-033-A. The real block is at sourcing
+# Advisory backstop for ADR-035 / SPEC-035-A. The real block is at sourcing
 # admission (human-paced); this catches a trivial goal that reaches a PR by
 # another route. NON-BLOCKING by design: it posts a sticky advisory comment and
 # always exits 0 — do NOT add it to branch-protection's required checks. Scoped
@@ -65,7 +65,7 @@ jobs:
           changed=$(git diff --name-only "$base"...HEAD -- 'goals/**/*.lean')
           {
             echo '<!-- triviality-advisory -->'
-            echo '### Triviality probe (advisory · ADR-033)'
+            echo '### Triviality probe (advisory · ADR-035)'
           } > comment.md
           flagged=0
           for f in $changed; do
