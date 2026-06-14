@@ -1,0 +1,8 @@
+𝔸5.1.run.twenty-four-dvd-four-consecutive.oma-2-c50d.20260614t211854868491z-b758df08@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t211854868491z-b758df08; goal≜twenty-four-dvd-four-consecutive; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high}
+⟦Γ:Goal⟧{goal≜twenty-four-dvd-four-consecutive}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜299; ended≜2026-06-14T21:18:54Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜e6799cc6372271d1798ad67c3dff6d5eca936f1bfbe9b37fa41932a8ca65dacf}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

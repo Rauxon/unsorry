@@ -1,0 +1,8 @@
+𝔸5.1.lemma.e6799cc63722@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜e6799cc6372271d1798ad67c3dff6d5eca936f1bfbe9b37fa41932a8ca65dacf; goal≜twenty-four-dvd-four-consecutive; name≜twenty_four_dvd_four_consecutive}
+⟦Σ:Source⟧{src≜goals/twenty-four-dvd-four-consecutive.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high; attempts≜1; solve_s≜299}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
