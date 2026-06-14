@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-add-left-cancel
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-add-left-cancel.md
+  src≜packages/unsorry-archive-0001/backlog/nat-add-left-cancel.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-add-left-cancel.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-add-left-cancel.lean
   sha≜380a0ee8fbc944d64f493c3752a64c931dffeec0ab3155c7ae3b4fc185682718
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

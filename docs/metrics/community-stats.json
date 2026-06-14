@@ -577,7 +577,7 @@
       "p90_solve_s": 889,
       "run_success_rate": 0.0,
       "runs": 1,
-      "status": "proved",
+      "status": "archived",
       "successes": 0,
       "successes_per_recorded_hour": 0.0,
       "total_solve_s": 889
@@ -1633,7 +1633,7 @@
       "p90_solve_s": 598,
       "run_success_rate": 1.0,
       "runs": 1,
-      "status": "proved",
+      "status": "archived",
       "successes": 1,
       "successes_per_recorded_hour": 6.02,
       "total_solve_s": 598
@@ -2038,8 +2038,8 @@
         "index_files_added": 68,
         "missing_solver_provenance": 42,
         "profile_url": "https://github.com/cgbarlow",
-        "sample_add_commit": "1620a46de6d2b6a8b0efd1f5cfacae4d2bc5841b",
-        "sample_add_date": "2026-06-12",
+        "sample_add_commit": "9e98e4d6d440db53293f37db61384ba9541a53d3",
+        "sample_add_date": "2026-06-13",
         "solver_credit": false,
         "solver_provenance_proofs": 26
       },
@@ -2070,7 +2070,7 @@
         "index_files_added": 9,
         "missing_solver_provenance": 9,
         "profile_url": "https://github.com/binto",
-        "sample_add_commit": "386cd2b8a1ca5187b159090f4dfbd7b2f6d4b21e",
+        "sample_add_commit": "54806afaec17d1720db68fd5220f1b7c2f6b72eb",
         "sample_add_date": "2026-06-12",
         "solver_credit": false,
         "solver_provenance_proofs": 0
@@ -2289,9 +2289,10 @@
     },
     "goals": 200,
     "status_counts": {
+      "archived": 40,
       "blocked": 8,
       "open": 63,
-      "proved": 119,
+      "proved": 79,
       "translated": 10
     }
   },

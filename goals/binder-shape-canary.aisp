@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜binder-shape-canary
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/binder-shape-canary.md
+  src≜packages/unsorry-archive-0001/backlog/binder-shape-canary.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/binder-shape-canary.lean
+  lean≜packages/unsorry-archive-0001/goals/binder-shape-canary.lean
   sha≜799e2d333a987a15f4a2561140f0db1d7e791ec1b60178340deea88edbbe8b1b
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

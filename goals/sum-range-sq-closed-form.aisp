@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-sq-closed-form
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-sq-closed-form.md
+  src≜packages/unsorry-archive-0001/backlog/sum-range-sq-closed-form.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-sq-closed-form.lean
+  lean≜packages/unsorry-archive-0001/goals/sum-range-sq-closed-form.lean
   sha≜79fd25a08054d642c1f2d337c4deda26bac94a71f6db98bffda7e6f5461453cb
   aff≜1
 }
