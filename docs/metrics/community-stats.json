@@ -2282,15 +2282,15 @@
     "difficulty_counts": {
       "0": 10,
       "1": 76,
-      "2": 61,
+      "2": 69,
       "3": 31,
       "4": 13,
       "5": 1
     },
-    "goals": 192,
+    "goals": 200,
     "status_counts": {
       "blocked": 8,
-      "open": 55,
+      "open": 63,
       "proved": 119,
       "translated": 10
     }
