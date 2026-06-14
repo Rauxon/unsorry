@@ -3,15 +3,19 @@
 Usage:
   python3 -m tools.gate_a.parallel_modules audit --jobs 4 \
     --output axiom-report.json
+  python3 -m tools.gate_a.parallel_modules audit --jobs 1 \
+    --output axiom-report.json --base origin/main
   python3 -m tools.gate_a.parallel_modules replay --jobs 4
 """
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
@@ -30,6 +34,8 @@ FULL_REPLAY_PATHS = frozenset(
 )
 FULL_REPLAY_PREFIXES = ("tools/gate_a/",)
 FULL_REPLAY_EXACT = (".github/workflows/gate-a.yml",)
+FULL_AUDIT_PREFIXES = FULL_REPLAY_PREFIXES + ("AxiomAudit/", "AuditFixtures/")
+FULL_AUDIT_EXACT = FULL_REPLAY_EXACT
 
 _IMPORT_RE = re.compile(r"^\s*import\s+(Unsorry\.[A-Za-z0-9_.]+)", re.MULTILINE)
 
@@ -40,7 +46,35 @@ class Command:
     label: str
 
 
+@dataclass(frozen=True)
+class AuditScope:
+    library: list[str]
+    goals: list[str]
+    mode: str
+
+
 Runner = Callable[..., subprocess.CompletedProcess[str]]
+
+
+def fmt_duration(seconds: float) -> str:
+    """Human-friendly duration for CI logs and GitHub step summaries."""
+    if seconds < 60:
+        return f"{seconds:.1f}s"
+    minutes, rest = divmod(seconds, 60)
+    return f"{int(minutes)}m {rest:.1f}s"
+
+
+def append_step_summary(title: str, rows: Sequence[tuple[str, object]]) -> None:
+    """Append a compact metrics table to GITHUB_STEP_SUMMARY when running in CI."""
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    with Path(path).open("a", encoding="utf-8") as handle:
+        handle.write(f"\n### {title}\n\n")
+        handle.write("| Metric | Value |\n")
+        handle.write("| --- | --- |\n")
+        for key, value in rows:
+            handle.write(f"| {key} | {value} |\n")
 
 
 def available_memory_gb() -> float:
@@ -139,12 +173,41 @@ def audit(
     jobs: int,
     output: Path,
     runner: Runner = subprocess.run,
+    base: str | None = None,
 ) -> int:
+    started = time.perf_counter()
     library = module_names(root, "library")
     goals = module_names(root, "goals")
     if not library and not goals:
         print("no library or goal modules found", file=sys.stderr)
         return 2
+
+    scope = AuditScope(library, goals, "full")
+    if base is not None:
+        scoped = scoped_audit_targets(root, base, library, goals, runner)
+        if scoped is None:
+            pass  # reason already logged; full audit below
+        else:
+            scope = scoped
+            print(
+                f"incremental axiom audit: {len(scope.library)} of {len(library)} "
+                f"library and {len(scope.goals)} of {len(goals)} goal module(s)"
+            )
+            if not scope.library and not scope.goals:
+                output.write_text("[]\n", encoding="utf-8")
+                elapsed = time.perf_counter() - started
+                print("axiom audit: no changed library or goal modules — empty report")
+                append_step_summary(
+                    "Gate A axiom audit",
+                    (
+                        ("Scope", scope.mode),
+                        ("Library modules", f"0 of {len(library)}"),
+                        ("Goal modules", f"0 of {len(goals)}"),
+                        ("Commands", 0),
+                        ("Elapsed", fmt_duration(elapsed)),
+                    ),
+                )
+                return 0
 
     build = runner(
         ("lake", "build", "axiom_audit"),
@@ -160,21 +223,21 @@ def audit(
     # axiom_audit is memory-intensive as it loads large Mathlib environment;
     # dynamically limit parallelism based on available memory to prevent OOM kills.
     audit_jobs = max_safe_jobs(jobs)
-    library_jobs = max(1, audit_jobs // 2) if library and goals else audit_jobs
-    goal_jobs = audit_jobs - library_jobs if library and goals else audit_jobs
+    library_jobs = max(1, audit_jobs // 2) if scope.library and scope.goals else audit_jobs
+    goal_jobs = audit_jobs - library_jobs if scope.library and scope.goals else audit_jobs
     commands = [
         Command(
             ("lake", "exe", "axiom_audit", *chunk),
             f"library audit chunk {index}",
         )
-        for index, chunk in enumerate(split_evenly(library, library_jobs), 1)
+        for index, chunk in enumerate(split_evenly(scope.library, library_jobs), 1)
     ]
     commands.extend(
         Command(
             ("lake", "exe", "axiom_audit", "--allow-sorry", *chunk),
             f"goal audit chunk {index}",
         )
-        for index, chunk in enumerate(split_evenly(goals, goal_jobs), 1)
+        for index, chunk in enumerate(split_evenly(scope.goals, goal_jobs), 1)
     )
 
     results = run_commands(commands, audit_jobs, runner)
@@ -195,9 +258,22 @@ def audit(
 
     combined.sort(key=lambda item: str(item.get("decl", "")))
     output.write_text(json.dumps(combined, indent=2) + "\n", encoding="utf-8")
+    elapsed = time.perf_counter() - started
     print(
-        f"audited {len(library)} library and {len(goals)} goal module(s) "
-        f"in {len(commands)} chunk(s)"
+        f"audited {len(scope.library)} library and {len(scope.goals)} goal module(s) "
+        f"in {len(commands)} chunk(s) ({scope.mode}, {fmt_duration(elapsed)})"
+    )
+    append_step_summary(
+        "Gate A axiom audit",
+        (
+            ("Scope", scope.mode),
+            ("Library modules", f"{len(scope.library)} of {len(library)}"),
+            ("Goal modules", f"{len(scope.goals)} of {len(goals)}"),
+            ("Commands", len(commands)),
+            ("Requested jobs", jobs),
+            ("Effective jobs", audit_jobs),
+            ("Elapsed", fmt_duration(elapsed)),
+        ),
     )
     return 0
 
@@ -209,6 +285,14 @@ def library_module_for_path(path: str) -> str | None:
     if not (p.startswith("library/") and p.endswith(".lean")):
         return None
     return p[len("library/"):-len(".lean")].replace("/", ".")
+
+
+def goal_module_for_path(path: str) -> str | None:
+    """`goals/foo.lean` -> `goals.foo`; None if not a goal Lean source."""
+    p = path.strip()
+    if not (p.startswith("goals/") and p.endswith(".lean")):
+        return None
+    return p[:-len(".lean")].replace("/", ".")
 
 
 def changed_paths(root: Path, base: str, runner: Runner = subprocess.run) -> list[str] | None:
@@ -233,6 +317,18 @@ def forces_full_replay(paths: Sequence[str]) -> str | None:
             p in FULL_REPLAY_PATHS
             or p in FULL_REPLAY_EXACT
             or any(p.startswith(prefix) for prefix in FULL_REPLAY_PREFIXES)
+        ):
+            return p
+    return None
+
+
+def forces_full_audit(paths: Sequence[str]) -> str | None:
+    """Return the offending path if an audit run must cover every module."""
+    for p in paths:
+        if (
+            p in FULL_REPLAY_PATHS
+            or p in FULL_AUDIT_EXACT
+            or any(p.startswith(prefix) for prefix in FULL_AUDIT_PREFIXES)
         ):
             return p
     return None
@@ -301,12 +397,53 @@ def scoped_targets(
     return replay_scope(changed, import_graph(root))
 
 
+def scoped_audit_targets(
+    root: Path,
+    base: str,
+    library: Sequence[str],
+    goals: Sequence[str],
+    runner: Runner = subprocess.run,
+) -> AuditScope | None:
+    """Modules to axiom-audit for an incremental PR run.
+
+    Returns None when the diff cannot be trusted or a gate/tooling change means
+    the audit itself must be exercised against the full repository.
+    """
+    paths = changed_paths(root, base, runner)
+    if paths is None:
+        print(
+            f"incremental axiom audit: cannot diff against {base!r} — FULL audit",
+            file=sys.stderr,
+        )
+        return None
+    offender = forces_full_audit(paths)
+    if offender is not None:
+        print(
+            f"incremental axiom audit: global-impact change {offender!r} — FULL audit",
+            file=sys.stderr,
+        )
+        return None
+
+    changed_library = [m for m in (library_module_for_path(p) for p in paths) if m]
+    changed_goals = [m for m in (goal_module_for_path(p) for p in paths) if m]
+    library_set = set(library)
+    goal_set = set(goals)
+    scoped_library = replay_scope(changed_library, import_graph(root)) if changed_library else []
+    scoped_goals = sorted(set(changed_goals) & goal_set)
+    return AuditScope(
+        sorted(set(scoped_library) & library_set),
+        scoped_goals,
+        "incremental",
+    )
+
+
 def replay(
     root: Path,
     jobs: int,
     runner: Runner = subprocess.run,
     base: str | None = None,
 ) -> int:
+    started = time.perf_counter()
     library = module_names(root, "library")
     if not library:
         print("no library modules found", file=sys.stderr)
@@ -340,6 +477,7 @@ def replay(
     # `jobs` argument is accepted for CLI symmetry with `audit` but ignored
     # here; audit (collectAxioms, far lighter) keeps its parallelism.
     _ = jobs
+    effective_jobs = 1
     n_chunks = max(1, (len(targets) + REPLAY_CHUNK_SIZE - 1) // REPLAY_CHUNK_SIZE)
     commands = [
         Command(
@@ -349,10 +487,24 @@ def replay(
         for index, chunk in enumerate(split_evenly(targets, n_chunks), 1)
     ]
     # parallelism 1: chunks run one after another, never concurrently.
-    results = run_commands(commands, 1, runner)
+    results = run_commands(commands, effective_jobs, runner)
     if report_failures(commands, results):
         return 1
-    print(f"replayed {len(targets)} library module(s) serially in {len(commands)} chunk(s)")
+    elapsed = time.perf_counter() - started
+    print(
+        f"replayed {len(targets)} library module(s) serially in {len(commands)} "
+        f"chunk(s) ({fmt_duration(elapsed)}; requested jobs {jobs}, effective jobs {effective_jobs})"
+    )
+    append_step_summary(
+        "Gate A kernel replay",
+        (
+            ("Library modules", f"{len(targets)} of {len(library)}"),
+            ("Chunks", len(commands)),
+            ("Requested jobs", jobs),
+            ("Effective jobs", effective_jobs),
+            ("Elapsed", fmt_duration(elapsed)),
+        ),
+    )
     return 0
 
 
@@ -365,15 +517,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--base",
         default=None,
-        help="replay only: PR base ref/sha. Replays just the changed library "
-        "modules and their reverse-import closure (ADR-033). Omit for a full "
-        "replay (the post-merge backstop on main).",
+        help="PR base ref/sha. For replay, checks just the changed library "
+        "modules and their reverse-import closure (ADR-033). For audit, checks "
+        "the changed library closure plus changed goals. Omit for full checks "
+        "(the post-merge backstop on main).",
     )
     args = parser.parse_args(argv)
     if args.jobs < 1:
         parser.error("--jobs must be positive")
     if args.command == "audit":
-        return audit(args.root, args.jobs, args.output)
+        return audit(args.root, args.jobs, args.output, base=args.base)
     return replay(args.root, args.jobs, base=args.base)
 
 

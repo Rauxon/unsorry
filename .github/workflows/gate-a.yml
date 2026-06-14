@@ -145,30 +145,40 @@ jobs:
         if: needs.detect.outputs.lean == 'true'
         run: lake build UnsorryLibrary --wfail
 
+      # Incremental on PRs: audit only changed library modules plus their
+      # reverse-import closure, and changed goals. Unchanged declarations were
+      # already audited on main. A push to main omits BASE_SHA and runs the full
+      # audit as the post-merge backstop. Gate/tooling changes fall back to full.
       # Serialized (--jobs 1): each axiom_audit process holds a full mathlib
-      # image (~6-7 GB), so two concurrent ones peak ~13 GB on a 16 GB runner.
-      # That doesn't OOM, but it evicts the olean page cache and the re-reads
-      # show up as high I/O wait — the parallel run thrashes instead of going
-      # faster. One image at a time keeps the cache hot. (Raise back to 2 only
-      # on a runner with materially more RAM, e.g. a 32 GB profile.)
+      # image (~6-7 GB), so two concurrent ones peak ~13 GB on a 16 GB runner
+      # and evict the olean page cache instead of going faster.
       - name: Axiom audit (authoritative)
         if: needs.detect.outputs.lean == 'true'
-        run: python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
+        run: |
+          if [ -n "$BASE_SHA" ]; then
+            python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json --base "$BASE_SHA"
+          else
+            python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json
+          fi
 
       # Incremental on PRs (ADR-033): replay only the changed library modules
       # and their reverse-import closure — the rest are byte-identical to and
       # already verified on main. On push to main, BASE_SHA is empty → a FULL
       # replay runs as the post-merge backstop. The tool falls back to full
       # replay if the diff can't be computed or a global-impact file changed.
+      # Replay is intentionally serial on the current 16 GB Namespace runners:
+      # the tool accepts --jobs for CLI symmetry, but reports effective jobs=1.
       - name: Kernel replay (leanchecker)
         if: needs.detect.outputs.lean == 'true'
         env:
           BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
         run: |
           if [ -n "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.parallel_modules replay --jobs 2 --base "$BASE_SHA"
+            python3 -m tools.gate_a.parallel_modules replay --jobs 1 --base "$BASE_SHA"
           else
-            python3 -m tools.gate_a.parallel_modules replay --jobs 2
+            python3 -m tools.gate_a.parallel_modules replay --jobs 1
           fi
 
       - name: Audit self-test (gate cannot rot silently)
