@@ -24,10 +24,9 @@ jobs:
         run: pytest tools/sourcing -q
       - name: Validate repository tree
         run: python3 -m tools.gate_b validate .
-      - name: Targets board in sync (ADR-012 / SPEC-012-A)
-        # docs/targets.md is generated from goals + library/index; fail if it has
-        # drifted (the guard that was specified but never wired — issue #377).
-        run: python3 -m tools.sourcing.targets_board --check .
+      # The targets-board `--check` is no longer a PR gate (ADR-036, #415): a
+      # generated board regenerated in every PR made concurrent goal PRs conflict
+      # on it. The board is now refreshed POST-MERGE by `targets-board.yml`.
       - name: LLM provider tests (ADR-025)
         # The OpenAI provider imports `requests`; the resolver tests are pure stdlib.
         run: |
