@@ -4,23 +4,23 @@
 
 Verified output comes from `library/index`; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**108 verified proofs · 26 attributed · 82 historical/unknown · 59 logged terminal runs.**
+**108 verified proofs · 26 attributed · 82 historical/unknown · 60 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
 | Successful terminal runs | 24 |
-| Failed terminal runs | 35 |
+| Failed terminal runs | 36 |
 | Decomposed after failure | 9 |
-| Failed without decomposition | 26 |
-| Run success rate | 40.7% |
-| Provider attempts | 85 |
-| Failed attempts | 61 |
-| Attempt yield | 28.2% |
-| Recorded run time | 9h 20m |
-| Median / p90 run time | 4m 57s / 24m 18s |
-| Verified successes per recorded hour | 2.57 |
+| Failed without decomposition | 27 |
+| Run success rate | 40.0% |
+| Provider attempts | 86 |
+| Failed attempts | 62 |
+| Attempt yield | 27.9% |
+| Recorded run time | 9h 24m |
+| Median / p90 run time | 4m 56s / 20m 27s |
+| Verified successes per recorded hour | 2.55 |
 | Proofs with run telemetry | 24 (22.2%) |
 
 ## Work Queue
@@ -31,7 +31,7 @@ Verified output comes from `library/index`; append-only terminal-run telemetry c
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 20 | 7 | 35.0% | 24 | 5m 54s |
+| 1 | 21 | 7 | 33.3% | 25 | 5m 3s |
 | 2 | 17 | 5 | 29.4% | 17 | 4m 13s |
 | 3 | 14 | 8 | 57.1% | 14 | 8m 2s |
 | 4 | 8 | 4 | 50.0% | 6 | 5m 18s |
@@ -57,7 +57,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 62 | 20 | 42 | 47 | 42.5% | 102 | 11750 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 62 | 20 | 42 | 48 | 41.7% | 102 | 11750 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 30 | 0 | 30 | 0 | — | 61 | 6850 |
 | 3 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 4 | [@perttu](https://github.com/perttu) | 4 | 4 | 0 | 8 | 50.0% | 7 | 800 |
@@ -77,12 +77,13 @@ Git add-author attribution covers 108 of 108 proof index files. It is used only 
 | `claude / opus` | 19 | 21 | 90.5% | 14 | 1 | 7m 0s | 5.13 |
 | `codex / unknown` | 4 | 12 | 33.3% | 18 | 2 | 4m 37s | 2.71 |
 | `manual / gpt-5.5` | 2 | 0 | — | 0 | 1 | — | — |
-| `openai / leanstral-2603` | 1 | 26 | 3.9% | 29 | 1 | 4m 38s | 0.24 |
+| `openai / leanstral-2603` | 1 | 27 | 3.7% | 30 | 1 | 4m 33s | 0.24 |
 
 ## Recent Terminal Runs
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-14T13:39:46Z` | `am-gm-three-cube-s2-s2` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 38s |
 | `2026-06-14T13:29:10Z` | `discriminant-nonneg` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 4m 33s |
 | `2026-06-14T13:22:21Z` | `cube-sum-ge-three-prod-s3` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `proved` | 1 | 0 | 6m 46s |
 | `2026-06-14T13:18:16Z` | `am-gm-three-cube-s2` | [@perttu](https://github.com/perttu) | `codex / unknown` | `decomposed` | 3 | 3 | 11m 13s |
@@ -102,7 +103,6 @@ Git add-author attribution covers 108 of 108 proof index files. It is used only 
 | `2026-06-14T11:28:45Z` | `nesbitt-inequality-s3` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 39s |
 | `2026-06-14T11:23:28Z` | `nesbitt-inequality-s1` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 32m 39s |
 | `2026-06-14T10:49:06Z` | `nat-sq-lt-two-pow-s2-s3` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 2m 58s |
-| `2026-06-14T10:44:28Z` | `nat-sq-lt-two-pow-s2-s2` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 50s |
 
 ## Interpretation
 
