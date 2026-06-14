@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜or-comm-imp
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/or-comm-imp.md
+  src≜packages/unsorry-archive-0001/backlog/or-comm-imp.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/or-comm-imp.lean
+  lean≜packages/unsorry-archive-0001/goals/or-comm-imp.lean
   sha≜a3b8137ff8c8b23a93a31ebd23d581c5c5f3db5a1893d6d551db699b5ed45370
   aff≜1
 }

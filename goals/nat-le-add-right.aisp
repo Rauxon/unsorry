@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-le-add-right
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-le-add-right.md
+  src≜packages/unsorry-archive-0001/backlog/nat-le-add-right.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-le-add-right.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-le-add-right.lean
   sha≜7afe725357e773f49eb16f788a140fd122636b23843995535a78cdc30c276ba5
   aff≜1
 }

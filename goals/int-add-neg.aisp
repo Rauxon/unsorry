@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜int-add-neg
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/int-add-neg.md
+  src≜packages/unsorry-archive-0001/backlog/int-add-neg.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/int-add-neg.lean
+  lean≜packages/unsorry-archive-0001/goals/int-add-neg.lean
   sha≜f4a4b6f0f3c6c4a52d7745f11e24ba7d2b0bfd7bafc838efa57f542f9d59bc5f
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
