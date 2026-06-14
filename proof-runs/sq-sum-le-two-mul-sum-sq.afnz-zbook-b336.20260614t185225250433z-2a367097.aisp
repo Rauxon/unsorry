@@ -1,0 +1,9 @@
+𝔸5.1.run.sq-sum-le-two-mul-sum-sq.afnz-zbook-b336.20260614t185225250433z-2a367097@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t185225250433z-2a367097; goal≜sq-sum-le-two-mul-sum-sq; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜sq-sum-le-two-mul-sum-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜238; ended≜2026-06-14T18:52:25Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8587/8589] Building Unsorry.SqSumLeTwoMulSumSq (3.5s) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-sq-sum-le-two-mul-sum-sq-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-sq-sum-le-two-mul-sum-sq-afnz-zbook-b336/.lake/packages/ba}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
