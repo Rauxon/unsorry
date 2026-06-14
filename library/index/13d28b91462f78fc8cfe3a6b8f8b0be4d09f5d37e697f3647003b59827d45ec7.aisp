@@ -1,0 +1,8 @@
+𝔸5.1.lemma.13d28b91462f@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜13d28b91462f78fc8cfe3a6b8f8b0be4d09f5d37e697f3647003b59827d45ec7; goal≜two-abs-le-sq-add-one; name≜two_abs_le_sq_add_one}
+⟦Σ:Source⟧{src≜goals/two-abs-le-sq-add-one.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜325}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

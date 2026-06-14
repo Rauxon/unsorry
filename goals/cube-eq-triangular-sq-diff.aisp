@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜cube-eq-triangular-sq-diff
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/cube-eq-triangular-sq-diff.md
+  src≜packages/unsorry-archive-0001/backlog/cube-eq-triangular-sq-diff.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨nicomachus-sum-cubes⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/cube-eq-triangular-sq-diff.lean
+  lean≜packages/unsorry-archive-0001/goals/cube-eq-triangular-sq-diff.lean
   sha≜4302fd87a983f47d11f923ddf0524b51959e005d534e8c8c4e51e1aa09c9afb7
   aff≜-9
 }

@@ -1,0 +1,9 @@
+𝔸5.1.run.cube-mod-four.afnz-zbook-b336.20260614t233529963706z-f7fdeefb@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t233529963706z-f7fdeefb; goal≜cube-mod-four; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜cube-mod-four}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜180; ended≜2026-06-14T23:35:29Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8539/8558] Building Unsorry.CubeModFour (194ms) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-cube-mod-four-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-cube-mod-four-afnz-zbook-b336/.lake/packages/batteries/.lake/build/lib/lean}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

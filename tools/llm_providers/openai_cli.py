@@ -9,6 +9,7 @@ Usage similar to claude/codex/gemini CLIs:
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -17,6 +18,45 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from llm_providers.openai_provider import OpenAIProvider, OpenAIError
+
+
+# First ```lean fenced block, then a fence of any (or no) language. DOTALL so a
+# block spans lines; the inner group is the module source.
+_LEAN_FENCE_RE = re.compile(r"```[ \t]*lean[ \t]*\r?\n(.*?)```", re.DOTALL | re.IGNORECASE)
+_ANY_FENCE_RE = re.compile(r"```[ \t]*[A-Za-z0-9_+-]*[ \t]*\r?\n(.*?)```", re.DOTALL)
+
+# The prove prompt (swarm/prompts/prove.md + swarm/agent.sh) always states the
+# target on this exact line; used to recover it when --target is not passed.
+_TARGET_LINE_RE = re.compile(
+    r"^Target module file \(relative to repo root\):\s*(\S+)", re.MULTILINE
+)
+
+
+def extract_lean_module(content: str) -> str:
+    """Derive a Lean module from a model's free-text answer (ADR-041).
+
+    Preference order: the first ```lean fenced block, then the first fenced block
+    of any language, then the whole trimmed content. Returns the module source
+    with a single trailing newline, or '' if there is nothing usable. Soundness
+    does not rest on this guess — Gate A re-checks whatever is written, so a bad
+    extraction simply fails verification exactly as a bad tool-written proof does.
+    """
+    if not content or not content.strip():
+        return ""
+    m = _LEAN_FENCE_RE.search(content) or _ANY_FENCE_RE.search(content)
+    body = m.group(1) if m else content
+    return body.strip() + "\n"
+
+
+def target_from_prompt(prompt: str):
+    """Recover the prove target module path from the prompt's contract line.
+
+    Used when --target is not supplied so the CLI stays self-sufficient and the
+    agent.sh orchestration needs no change (it already embeds the target path).
+    Returns the path string, or None if the line is absent.
+    """
+    m = _TARGET_LINE_RE.search(prompt or "")
+    return m.group(1) if m else None
 
 
 def run_tool(tool_name: str, arguments: str, workdir: str) -> str:
@@ -89,8 +129,20 @@ def run_tool(tool_name: str, arguments: str, workdir: str) -> str:
     return f"Unknown tool: {tool_name}"
 
 
-def process_conversation(provider: OpenAIProvider, prompt: str, model: str, workdir: str, max_turns: int = 10) -> str:
-    """Process a conversation with tool use."""
+def process_conversation(provider: OpenAIProvider, prompt: str, model: str, workdir: str, target: str = None, max_turns: int = 10) -> str:
+    """Process a conversation with tool use.
+
+    When `target` is set (the prove path) and the tool loop ends without the
+    target module having been written by a Write/Edit tool call, fall back to
+    extracting the Lean module from the model's final text and writing it there
+    (ADR-041). This lets proof-specialised models that emit Lean as text — rather
+    than as OpenAI function calls — drive `--prove`.
+
+    Raises OpenAIError on a transport/HTTP failure (instead of returning the
+    error as a string with exit 0) so the caller exits non-zero and ADR-016's
+    classifier can tell a genuine infrastructure failure apart from an empty
+    answer.
+    """
     messages = [
         {
             "role": "system",
@@ -166,12 +218,13 @@ Always produce valid Lean 4 syntax."""
     ]
     
     import requests
-    
+
     headers = {
         "Authorization": f"Bearer {provider.api_key}",
         "Content-Type": "application/json",
     }
-    
+
+    last_content = ""
     for turn in range(max_turns):
         request_data = {
             "model": model,
@@ -180,7 +233,7 @@ Always produce valid Lean 4 syntax."""
             "tool_choice": "auto",
             "temperature": 0.1,
         }
-        
+
         try:
             response = requests.post(
                 f"{provider.base_url}/chat/completions",
@@ -191,35 +244,57 @@ Always produce valid Lean 4 syntax."""
             response.raise_for_status()
             data = response.json()
         except Exception as e:
-            return f"Error: API request failed: {e}"
-        
+            # Surface infra failures as a non-zero exit (ADR-016) rather than a
+            # string with exit 0; main() maps OpenAIError to sys.exit(1).
+            raise OpenAIError(f"API request failed: {e}")
+
         message = data["choices"][0]["message"]
+        if message.get("content"):
+            last_content = message["content"]
         tool_calls = message.get("tool_calls", [])
-        
+
         if not tool_calls:
-            # No tool calls, return the content
-            return message.get("content", "")
-        
+            # No tool calls: the model answered in text. Stop the loop; the
+            # extraction fallback below handles the prove path.
+            break
+
         # Add assistant message
         messages.append(message)
-        
+
         # Execute tool calls
         for tool_call in tool_calls:
             if tool_call.get("type") == "function":
                 func = tool_call["function"]
                 tool_name = func["name"]
                 arguments = func["arguments"]
-                
+
                 result = run_tool(tool_name, arguments, workdir)
-                
+
                 # Add tool result to messages
                 messages.append({
                     "role": "tool",
                     "tool_call_id": tool_call["id"],
                     "content": result,
                 })
-    
-    return "Error: Maximum turns exceeded"
+
+    # Text-extraction fallback (ADR-041). Only on the prove path, and only when
+    # the tool loop did not produce the target file. agent.sh's
+    # prepare_proof_attempt() removes the target before every attempt, so its
+    # presence here means a Write/Edit tool call created it — the tool path wins
+    # and we never double-write.
+    if target:
+        full_target = os.path.join(workdir, target) if workdir else target
+        if not os.path.exists(full_target):
+            lean = extract_lean_module(last_content)
+            if lean.strip():
+                parent = os.path.dirname(full_target)
+                if parent:
+                    os.makedirs(parent, exist_ok=True)
+                with open(full_target, "w") as f:
+                    f.write(lean)
+                return f"Wrote {target} via text-extraction fallback ({len(lean)} bytes)"
+
+    return last_content
 
 
 def main():
@@ -229,6 +304,10 @@ def main():
     parser.add_argument("--output-format", default="text", choices=["text", "json"])
     parser.add_argument("--prove", action="store_true", help="Use prove mode with tool access")
     parser.add_argument("--workdir", help="Working directory for file operations")
+    parser.add_argument("--target", help="Prove target module path (relative to workdir); "
+                                         "the text-extraction fallback writes here when the "
+                                         "model emits no Write tool call (ADR-041). Defaults to "
+                                         "the path parsed from the prove prompt.")
     parser.add_argument("--tools", help="Comma-separated list of allowed tools")
     parser.add_argument("--allowedTools", dest="allowed_tools", help="Allowed tools (alias)")
     parser.add_argument("--base-url", default=os.environ.get("OPENAI_BASE_URL"),
@@ -241,7 +320,8 @@ def main():
         workdir = args.workdir or os.getcwd()
         
         if args.prove:
-            result = process_conversation(provider, args.prompt, args.model, workdir)
+            target = args.target or target_from_prompt(args.prompt)
+            result = process_conversation(provider, args.prompt, args.model, workdir, target=target)
         else:
             result = provider.complete(
                 prompt=args.prompt,

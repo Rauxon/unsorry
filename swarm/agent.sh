@@ -116,6 +116,13 @@ Environment:
   UNSORRY_ATTEMPTS  Prove build/audit attempts (default: 3 in --prove and
                     --prove-local, one per ADR-015 effort rung; else
                     config.py BUDGET_ATTEMPTS)
+  UNSORRY_DECOMPOSE Decompose a goal into sub-lemmas when a prove attempt is
+                    exhausted (default: 1; set 0 to demote without decomposing)
+  UNSORRY_RECOVERY  ADR-044 idle recovery: when --prove finds no claimable
+                    viable goal, re-surface a goal orphaned below τ_v into the
+                    normal prove pipeline (retry with accumulated lessons,
+                    ADR-024; decompose on failure, ADR-009) instead of going
+                    idle (default: 1; set 0 to disable)
 EOF
 }
 
@@ -371,6 +378,46 @@ def cmd_prove_candidates(args):
     if force and force not in ranked and any(g == force for g, _ in survivors):
         print(force)  # explicit --goal overrides the viability floor only
     for goal in ranked:
+        print(goal)
+
+
+def cmd_recovery_candidates(args):
+    """recovery-candidates <goals-dir> <claims-dir> <library-dir> <agent> [<at>]
+
+    ADR-044 idle recovery pool — the inverse of ``prove-candidates``: claimable
+    prove goals parked *below* the viability floor (affinity < TAU_V). A failed
+    direct prove demotes a goal below TAU_V, where ``_rank`` can never surface it
+    again (ADR-010); such a goal is orphaned — its accumulated ⟦Δ:Lesson⟧ history
+    (ADR-024) is never reused and nothing retries it. This lists those orphans so
+    the idle sweep can re-surface one into the SAME ``prove_goal`` pipeline, which
+    retries with the lessons injected (ADR-024) and decomposes on failure
+    (ADR-009).
+
+    Same hard claimability filter as ``prove-candidates`` (phase≡prove,
+    status≡open, NOT proved, fewer than PROVE_CLAIM_CAP live other-agent claims,
+    no live self-claim), but keeps ONLY affinity < TAU_V, ordered least-buried
+    first (affinity desc, then id) so the most recoverable goals go first."""
+    goals_dir, claims_dir, library_dir, agent = args[:4]
+    now = _now(args[4] if len(args) > 4 else "")
+    proved = _proved_goals(library_dir)
+    out = []
+    for path in sorted(Path(goals_dir).glob("*.aisp")):
+        goal = path.stem
+        record = parse_record(path.read_text(encoding="utf-8"))
+        if record.fields.get("phase") != "prove":
+            continue
+        if record.fields.get("status") != "open":
+            continue
+        if goal in proved:
+            continue
+        if _affinity(record) >= config.TAU_V:
+            continue  # still viable — the normal prove queue handles it
+        others, live_self = _live_other_agents(claims_dir, goal, agent, now)
+        if live_self or len(others) >= config.PROVE_CLAIM_CAP:
+            continue
+        out.append((_affinity(record), goal))
+    out.sort(key=lambda t: (-t[0], t[1]))
+    for _, goal in out:
         print(goal)
 
 
@@ -890,6 +937,7 @@ COMMANDS = {
     "lean-foralltype": cmd_lean_foralltype,
     "lean-opens": cmd_lean_opens,
     "prove-candidates": cmd_prove_candidates,
+    "recovery-candidates": cmd_recovery_candidates,
     "prove-claimable": cmd_prove_claimable,
     "render-index": cmd_render_index,
     "run-id": cmd_run_id,
@@ -3628,6 +3676,42 @@ test_viability_skip() {
     || { log "  at τ_v should be viable but rank below ok; expected 'ok bad', got '$got'"; return 1; }
 }
 
+test_recovery_candidates() {
+  # ADR-044: recovery-candidates is the exact inverse of prove-candidates —
+  # it surfaces ONLY goals parked below τ_v, ordered least-buried first, with
+  # the same claimability filter.
+  local tree claims got ttl
+  tree="$(mktemp -d "$SESSION_TMP/recovery.XXXXXX")" || return 1
+  claims="$tree/claims"
+  mkdir -p "$claims" "$tree/library/index" || return 1
+  ttl="$(py_helper ttl)" || return 1
+  make_prove_goal "$tree" viable "theorem v (n : Nat) : n + 0 = n" || return 1
+  make_prove_goal "$tree" buried "theorem b (n : Nat) : 0 + n = n" || return 1
+  make_prove_goal "$tree" deeper "theorem d (a b : Nat) : a + b = b + a" || return 1
+  py_helper aff-bump "$tree/goals/buried.aisp" -10 || return 1   # parked
+  py_helper aff-bump "$tree/goals/deeper.aisp" -20 || return 1   # more buried
+
+  # A: only the parked goals, least-buried first; the viable goal is excluded
+  # (it is the normal prove queue's job).
+  got="$(py_helper recovery-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "$(printf 'buried\ndeeper')" ] \
+    || { log "  A: expected 'buried deeper' (viable excluded, least-buried first), got '$got'"; return 1; }
+
+  # B: exactly at τ_v is viable, not recoverable — the cut is strictly below.
+  py_helper aff-bump "$tree/goals/buried.aisp" 5 || return 1     # -10 → -5
+  got="$(py_helper recovery-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ "$got" = "deeper" ] \
+    || { log "  B: -5 is viable; expected only 'deeper', got '$got'"; return 1; }
+
+  # C: a live claim by another agent on a parked goal excludes it (cap 1) — the
+  # recovery pool respects the same claimability filter as prove-candidates.
+  render_claim_record deeper agent-other "$T_LIVE_TS" "$ttl" \
+    > "$claims/deeper.agent-other.aisp"
+  got="$(py_helper recovery-candidates "$tree/goals" "$claims" "$tree/library" agent-self "$T_AT")"
+  [ -z "$got" ] \
+    || { log "  C: deeper claimed by another agent should be excluded, got '$got'"; return 1; }
+}
+
 test_goal_override_bypasses_viability() {
   # An explicit --goal (passed as --force) surfaces a goal ranked below τ_v —
   # the operator overrides the "awaiting re-decomposition" default — but never
@@ -4057,6 +4141,7 @@ run_self_tests() {
     test_affinity_ranking
     test_gap_ranking
     test_viability_skip
+    test_recovery_candidates
     test_goal_override_bypasses_viability
     test_affinity_bump_math
     test_affinity_degrades_on_garbage
@@ -4245,6 +4330,42 @@ unblock_sweep() {
     git worktree remove --force "$prwt" >/dev/null 2>&1 || true
     git branch -q -D "$branch" >/dev/null 2>&1 || true
   done < <(py_helper unblockable goals decompositions library)
+}
+
+# ADR-044 recovery pool selector: parked prove orphans (affinity < τ_v) the
+# normal queue can never surface, filtered by scope and what this session has
+# already handled — the same shaping select_prove_candidates applies.
+select_recovery_candidates() {
+  local cand
+  while IFS= read -r cand; do
+    [ -n "$cand" ] || continue
+    goal_in_scope "$cand" || continue
+    [ -n "${HANDLED[$cand]:-}" ] && continue
+    printf '%s\n' "$cand"
+  done < <(py_helper recovery-candidates goals "$CLAIMS_WT/claims" library "$AGENT_ID")
+}
+
+# Walk a newline-separated candidate list (highest priority first), skipping
+# prove goals whose work is already in flight (an open prove PR — ADR-017), and
+# claim the first that is free. Sets CLAIMED_GOAL to that goal, or "" if the
+# whole list was in flight or lost the claim race. Diagnostics go to stderr via
+# log(), so stdout stays clean for the caller.
+claim_from_pool() {
+  local pool="$1" cand
+  CLAIMED_GOAL=""
+  [ -n "$pool" ] || return 0
+  while IFS= read -r cand; do
+    [ -n "$cand" ] || continue
+    if [ "$PROVE" -eq 1 ] && open_prove_pr_exists "$cand"; then
+      log "skipping $cand — an open prove PR is already in flight"
+      continue
+    fi
+    if claim_goal "$cand"; then
+      CLAIMED_GOAL="$cand"
+      return 0
+    fi
+  done <<< "$pool"
+  return 0
 }
 
 main() {
@@ -4443,35 +4564,51 @@ main() {
       convergence_sweep "$translations_dir" || overall=1
       candidates="$(select_candidates "$translations_dir")"
     fi
-    if [ -z "$candidates" ]; then
+    # An empty viable queue is terminal for translate mode, but in prove mode it
+    # may still have recoverable orphans (ADR-044) — fall through to step 4.
+    if [ -z "$candidates" ] && [ "$PROVE" -eq 0 ]; then
       log "no claimable goal — nothing to do"
       break
     fi
 
     if [ "$DRY_RUN" -eq 1 ]; then
-      goal="$(printf '%s\n' "$candidates" | head -n 1)"
-      printf 'dry-run: would claim goal %s (%s; %d candidate(s): %s)\n' \
-        "$goal" "$mode" "$(printf '%s\n' "$candidates" | wc -l)" \
-        "$(printf '%s\n' "$candidates" | paste -sd ' ' -)"
+      if [ -n "$candidates" ]; then
+        goal="$(printf '%s\n' "$candidates" | head -n 1)"
+        printf 'dry-run: would claim goal %s (%s; %d candidate(s): %s)\n' \
+          "$goal" "$mode" "$(printf '%s\n' "$candidates" | wc -l)" \
+          "$(printf '%s\n' "$candidates" | paste -sd ' ' -)"
+      else
+        # prove mode, empty viable queue: report what recovery would re-surface.
+        local recovery
+        recovery="$(select_recovery_candidates)"
+        if [ -n "$recovery" ] && [ "${UNSORRY_RECOVERY:-1}" != 0 ]; then
+          printf 'dry-run: no viable goal; would recover parked goal %s (%d parked below τ_v: %s)\n' \
+            "$(printf '%s\n' "$recovery" | head -n 1)" \
+            "$(printf '%s\n' "$recovery" | wc -l)" \
+            "$(printf '%s\n' "$recovery" | paste -sd ' ' -)"
+        else
+          printf 'dry-run: no viable or recoverable goal\n'
+        fi
+      fi
       exit 0
     fi
 
-    # Step 4 — claim, moving to the next candidate on collision. In prove
-    # mode a candidate with an open prove PR is skipped (ADR-017): its claim
-    # was released at PR-open, but the work is in flight, not abandoned.
-    goal=""
-    while IFS= read -r cand; do
-      if [ "$PROVE" -eq 1 ] && [ "$DRY_RUN" -eq 0 ] && open_prove_pr_exists "$cand"; then
-        log "skipping $cand — an open prove PR is already in flight"
-        continue
-      fi
-      if claim_goal "$cand"; then
-        goal="$cand"
-        break
-      fi
-    done <<< "$candidates"
+    # Step 4 — claim from the viable pool, skipping a candidate whose work is in
+    # flight (open prove PR, ADR-017) and moving on past a claim-race loss. If
+    # nothing viable is claimable, fall back to the ADR-044 recovery pool: parked
+    # orphans (affinity < τ_v) the normal queue never surfaces. A recovered goal
+    # runs the SAME prove_goal path below, so it retries with its accumulated
+    # lessons (ADR-024) and decomposes on failure (ADR-009) — no special casing.
+    claim_from_pool "$candidates"
+    goal="$CLAIMED_GOAL"
+    if [ -z "$goal" ] && [ "$PROVE" -eq 1 ] && [ "${UNSORRY_RECOVERY:-1}" != 0 ]; then
+      claim_from_pool "$(select_recovery_candidates)"
+      goal="$CLAIMED_GOAL"
+      [ -n "$goal" ] \
+        && log "recovery: re-surfaced parked goal $goal (below τ_v) for a lessons-armed retry (ADR-044)"
+    fi
     if [ -z "$goal" ]; then
-      log "every candidate collided — nothing claimable this pass"
+      log "no viable or recoverable prove work this pass"
       break
     fi
 

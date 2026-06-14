@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nicomachus-sum-cubes-triangular
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nicomachus-sum-cubes-triangular.md
+  src≜packages/unsorry-archive-0001/backlog/nicomachus-sum-cubes-triangular.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨nicomachus-sum-cubes⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nicomachus-sum-cubes-triangular.lean
+  lean≜packages/unsorry-archive-0001/goals/nicomachus-sum-cubes-triangular.lean
   sha≜95b5d3e9b16a6a3f1346605254bd4f49dfa5bac5b698373374b696351ae2c4e2
   aff≜1
 }
