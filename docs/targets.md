@@ -25,6 +25,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `four-var-qm-am` — For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. Not a named mathlib lemma in this form. |
 | `nat-sq-lt-two-pow-s2-s1` — nat-sq-lt-two-pow-s2-s1 | open | 1 | — | — | — |
 | `nat-sq-lt-two-pow-s2-s2` — nat-sq-lt-two-pow-s2-s2 | open | 1 | — | — | — |
+| `nat-sq-lt-two-pow-s2-s3` — nat-sq-lt-two-pow-s2-s3 | open | 1 | — | — | — |
 | `nesbitt-inequality-s1` — nesbitt-inequality-s1 | open | 1 | — | — | — |
 | `nesbitt-inequality-s3` — nesbitt-inequality-s3 | open | 1 | — | — | — |
 | `nesbitt-inequality-s4` — nesbitt-inequality-s4 | open | 1 | — | — | — |
@@ -123,7 +124,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `nat-mul-zero-thm` — Any natural number times zero is zero. | proved | 1 | — | — | — |
 | `nat-sq-lt-two-pow` — For every natural n ≥ 5, n² < 2ⁿ — the quadratic-vs-exponential crossover. | proved | 3 | — | Classic crossover inequality (standard induction exercise) | n² < 2ⁿ for n ≥ 5. mathlib has linear `Nat.lt_two_pow`-style bounds and Bernoulli (`one_add_mul_le_pow`) but no quadratic-vs-exponential crossover lemma. |
 | `nat-sq-lt-two-pow-s1` — nat-sq-lt-two-pow-s1 | proved | 1 | — | — | — |
-| `nat-sq-lt-two-pow-s2-s3` — nat-sq-lt-two-pow-s2-s3 | proved | 1 | — | — | — |
 | `nat-zero-le` — Every natural number is at least zero. | proved | 1 | — | — | — |
 | `nesbitt-inequality-s2` — nesbitt-inequality-s2 | proved | 1 | — | — | — |
 | `nicomachus-sum-cubes` — Nicomachus's theorem: the sum of the first n cubes equals the square of the sum | proved | 3 | [packet-ready](upstream/nicomachus-sum-cubes.md) | Phase-2 seeded target (pre-ADR-012) | Nicomachus of Gerasa, *Introduction to Arithmetic* II.20; left as a reader exercise in *Mathematics in Lean* §5 |
