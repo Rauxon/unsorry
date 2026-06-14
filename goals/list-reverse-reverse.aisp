@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜list-reverse-reverse
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/list-reverse-reverse.md
+  src≜packages/unsorry-archive-0001/backlog/list-reverse-reverse.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/list-reverse-reverse.lean
+  lean≜packages/unsorry-archive-0001/goals/list-reverse-reverse.lean
   sha≜5000dc0c5697859b78f31e4174bac15885a37a19e2ded99ec0ede13b6a9e9459
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-cube-odd
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-cube-odd.md
+  src≜packages/unsorry-archive-0001/backlog/sum-range-cube-odd.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-cube-odd.lean
+  lean≜packages/unsorry-archive-0001/goals/sum-range-cube-odd.lean
   sha≜954af55ad452b745e0ca44682a75327dbe7e3068aa8f1d7fe1e3334cb7a32f3a
   aff≜1
 }

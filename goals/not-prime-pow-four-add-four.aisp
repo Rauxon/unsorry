@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜not-prime-pow-four-add-four
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/not-prime-pow-four-add-four.md
+  src≜packages/unsorry-archive-0001/backlog/not-prime-pow-four-add-four.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/not-prime-pow-four-add-four.lean
+  lean≜packages/unsorry-archive-0001/goals/not-prime-pow-four-add-four.lean
   sha≜d2881a0defccea540e05c51fd8fe498f6b4c5aad39b16a88ffc5593fd7380ca2
   aff≜1
 }

@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-pentagonal-closed-form
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-pentagonal-closed-form.md
+  src≜packages/unsorry-archive-0001/backlog/sum-range-pentagonal-closed-form.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-pentagonal-closed-form.lean
+  lean≜packages/unsorry-archive-0001/goals/sum-range-pentagonal-closed-form.lean
   sha≜059756ae8ed5b2feaa627799f7fed87754d91a9835e23b8ffa1f2a602b3d6b84
   aff≜1
 }
