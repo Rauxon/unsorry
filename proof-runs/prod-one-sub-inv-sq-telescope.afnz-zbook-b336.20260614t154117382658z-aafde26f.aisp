@@ -1,0 +1,9 @@
+𝔸5.1.run.prod-one-sub-inv-sq-telescope.afnz-zbook-b336.20260614t154117382658z-aafde26f@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t154117382658z-aafde26f; goal≜prod-one-sub-inv-sq-telescope; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜prod-one-sub-inv-sq-telescope}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1925; ended≜2026-06-14T15:41:17Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(no file was written at library/Unsorry/ProdOneSubInvSqTelescope.lean)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
