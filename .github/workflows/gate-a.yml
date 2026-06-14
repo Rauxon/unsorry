@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       lean: ${{ steps.filter.outputs.lean }}
+      active: ${{ steps.filter.outputs.active }}
+      archive: ${{ steps.filter.outputs.archive }}
       profile: ${{ steps.profile.outputs.name }}
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
@@ -39,6 +41,18 @@ jobs:
               - 'AuditFixtures/**'
               - 'tools/gate_a/**'
               - '.github/workflows/gate-a.yml'
+            active:
+              - 'library/**'
+              - 'goals/**/*.lean'
+              - 'lakefile.toml'
+              - 'lake-manifest.json'
+              - 'lean-toolchain'
+              - 'AxiomAudit/**'
+              - 'AuditFixtures/**'
+              - 'tools/gate_a/**'
+              - '.github/workflows/gate-a.yml'
+            archive:
+              - 'packages/unsorry-archive-*/**'
             # The ADR-033 full-replay triggers: a change here makes gate-a replay
             # the WHOLE library (heavy), so it gets its own Namespace profile.
             infra:
@@ -88,12 +102,13 @@ jobs:
       # tampering PR must die fast. Any goals/*.lean change sets detect.lean,
       # so the gate cannot be short-circuited around.
       - name: Goal statements are create-only (ADR-018)
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && needs.detect.outputs.active == 'true'
         run: |
           python3 -m tools.gate_a.check_goal_immutability \
             --base "${{ github.event.pull_request.base.sha }}"
 
       - name: Build (lean-action, mathlib binary cache)
+        if: needs.detect.outputs.active == 'true'
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
           use-github-cache: true
@@ -105,12 +120,15 @@ jobs:
       # obligations — a proof of a weakened/vacuous statement under the goal's
       # name fails to inhabit the goal type and goes red. (#64 class.)
       - name: Generate statement-binding obligations
+        if: needs.detect.outputs.active == 'true'
         run: python3 -m tools.gate_a.check_statement_binding generate .
 
       - name: Library build — zero-warning bar (--wfail)
+        if: needs.detect.outputs.active == 'true'
         run: lake build UnsorryLibrary --wfail
 
       - name: Audit self-test (gate cannot rot silently)
+        if: needs.detect.outputs.active == 'true'
         run: ./tools/gate_a/test_audit.sh
 
       # Authoritative for the autoImplicit vector: the build/audit/leanchecker
@@ -119,9 +137,11 @@ jobs:
       # Whole-file + whitespace-collapsed, so line-splitting cannot evade it
       # (W3 red-team PR #64). Self-tested by tools/gate_a/tests/.
       - name: Forbidden elaboration options in library
+        if: needs.detect.outputs.active == 'true'
         run: python3 -m tools.gate_a.check_library_options library
 
       - name: Validate changed archive packages (ADR-041)
+        if: needs.detect.outputs.archive == 'true'
         env:
           BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
         run: |
@@ -132,7 +152,7 @@ jobs:
           fi
 
       - name: Textual lint on library diff (belt only — the audit is the bar)
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && needs.detect.outputs.active == 'true'
         run: |
           set -euo pipefail
           base="${{ github.event.pull_request.base.sha }}"
@@ -145,7 +165,7 @@ jobs:
   gate_a_audit:
     name: gate-a-audit
     needs: [detect, gate_a_prepare]
-    if: needs.detect.outputs.lean == 'true'
+    if: needs.detect.outputs.active == 'true'
     runs-on: ${{ needs.detect.outputs.profile }}
     timeout-minutes: 30
     steps:
@@ -213,7 +233,7 @@ jobs:
   gate_a_replay:
     name: gate-a-replay
     needs: [detect, gate_a_prepare]
-    if: needs.detect.outputs.lean == 'true'
+    if: needs.detect.outputs.active == 'true'
     runs-on: ${{ needs.detect.outputs.profile }}
     timeout-minutes: 60
     steps:
@@ -289,6 +309,7 @@ jobs:
       - name: Aggregate Gate A result
         env:
           LEAN_RELEVANT: ${{ needs.detect.outputs.lean }}
+          ACTIVE_RELEVANT: ${{ needs.detect.outputs.active }}
           PREPARE_RESULT: ${{ needs.gate_a_prepare.result }}
           AUDIT_RESULT: ${{ needs.gate_a_audit.result }}
           REPLAY_RESULT: ${{ needs.gate_a_replay.result }}
@@ -300,10 +321,12 @@ jobs:
           fi
 
           failed=0
-          for pair in \
-            "gate-a-prepare:$PREPARE_RESULT" \
-            "gate-a-audit:$AUDIT_RESULT" \
-            "gate-a-replay:$REPLAY_RESULT"; do
+          pairs="gate-a-prepare:$PREPARE_RESULT"
+          if [ "$ACTIVE_RELEVANT" = "true" ]; then
+            pairs="$pairs gate-a-audit:$AUDIT_RESULT gate-a-replay:$REPLAY_RESULT"
+          fi
+
+          for pair in $pairs; do
             job="${pair%%:*}"
             result="${pair#*:}"
             if [ "$result" != "success" ]; then
