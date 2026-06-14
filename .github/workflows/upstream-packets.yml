@@ -6,10 +6,14 @@ name: upstream-packets
 # human kick-off needed. Packets are mechanical facts (no model access).
 #
 # Token note: PRs created with the default GITHUB_TOKEN do not trigger other
-# workflows, so the gates would never run and auto-merge would never fire.
-# Set the UPSTREAM_PAT secret (repo-scoped PAT of the sponsor) to make packet
-# PRs flow like any other; without it the PR is still created and the gates
-# can be kicked by closing/reopening (documented in docs/security-checklist.md).
+# workflows, so the gates would never run and auto-merge would never fire. This
+# uses the shared REFRESH_TOKEN secret (the sponsor/admin PAT also used by the
+# post-merge artifact workflows, #417) so packet PRs flow through the gates like
+# any other. Because this workflow opens and auto-merges a PR, that token must
+# carry **pull-requests: write** as well as contents: write (a classic repo-scope
+# PAT covers both; a fine-grained one needs both permissions). Without the secret
+# the PR is still created by the default token but won't auto-merge until the
+# gates are kicked (close/reopen). See docs/security-checklist.md.
 
 on:
   schedule:
@@ -59,7 +63,7 @@ jobs:
       - name: Open the packet PR (assigned to the sponsor)
         if: steps.scan.outputs.found == 'true'
         env:
-          GH_TOKEN: ${{ secrets.UPSTREAM_PAT || github.token }}
+          GH_TOKEN: ${{ secrets.REFRESH_TOKEN || github.token }}
         run: |
           set -euo pipefail
           git config user.name "upstream-packets[bot]"

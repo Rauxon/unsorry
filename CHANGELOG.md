@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The `upstream-packets.yml` workflow (ADR-020) now uses the shared **`REFRESH_TOKEN`** secret instead of its own `UPSTREAM_PAT`, so a single sponsor/admin PAT drives every CI action that needs elevated rights (post-merge `main` pushes + the upstream packet PR). The unified token must carry both `contents: write` and `pull-requests: write` (documented in `docs/security-checklist.md`).
 - The generated targets board (`docs/targets.md`) is now refreshed **post-merge** instead of in every PR (ADR-036/SPEC-036-A, #415). The #377/#378 board-sync regenerated the board in every goal-mutating PR and gated it with a gate-b `--check` — which made any two concurrent goal PRs **conflict on the board**, so during a proving burst a freshly-sourced batch repeatedly went DIRTY and could never land (e.g. #404 / earlier #376). The in-PR regen (`submit_pr_tree`) and the `--check` gate are removed; a new `targets-board.yml` workflow regenerates and commits the board on push to `main` (mirroring the proofs-visualisation post-merge workflow, #395). Goal PRs no longer touch the board, so they stop colliding; `main`'s board stays fresh within one workflow run of any merge.
 
 ### Fixed

@@ -23,7 +23,7 @@ Implements: [ADR-020](../ADR-020-Human-Sponsored-Upstreaming.md) · Status: Livi
 
 ## Automatic initiation
 
-`.github/workflows/upstream-packets.yml` (nightly 14:17 UTC + `workflow_dispatch`): eligible-scan → shallow mathlib clone → dedup + packet per target → gated docs PR **assigned to the sponsor**, auto-merge armed. Token caveat (documented in the workflow header + security checklist): default-`GITHUB_TOKEN` PRs trigger no workflows, so set `UPSTREAM_PAT` for packet PRs to flow through the gates unaided. Idempotent: a packeted goal is no longer eligible.
+`.github/workflows/upstream-packets.yml` (nightly 14:17 UTC + `workflow_dispatch`): eligible-scan → shallow mathlib clone → dedup + packet per target → gated docs PR **assigned to the sponsor**, auto-merge armed. Token caveat (documented in the workflow header + security checklist): default-`GITHUB_TOKEN` PRs trigger no workflows, so the shared `REFRESH_TOKEN` secret (the sponsor/admin PAT also used by the post-merge artifact workflows, #417) is used for packet PRs to flow through the gates unaided — it must carry `pull-requests: write` (this workflow opens + auto-merges a PR) as well as `contents: write`. Idempotent: a packeted goal is no longer eligible.
 
 ## Board integration
 
