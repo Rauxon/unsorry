@@ -89,33 +89,33 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": 0.2632,
+      "attempt_yield": 0.3,
       "avatar_url": "https://github.com/perttu.png?size=96",
       "badges": {
-        "difficulty": 8,
-        "proofs": 5,
-        "success_rate_percent": 55.56
+        "difficulty": 11,
+        "proofs": 6,
+        "success_rate_percent": 60.0
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 5,
-      "difficulty_points": 8,
+      "credited_proofs": 6,
+      "difficulty_points": 11,
       "display_name": "@perttu",
-      "explicit_solver_proofs": 5,
+      "explicit_solver_proofs": 6,
       "failed_attempts": 14,
       "github": "perttu",
       "inferred_git_proofs": 0,
-      "median_solve_s": 555,
+      "median_solve_s": 474,
       "profile_url": "https://github.com/perttu",
       "rank": 4,
-      "run_success_rate": 0.5556,
-      "runs": 9,
-      "score": 925,
+      "run_success_rate": 0.6,
+      "runs": 10,
+      "score": 1250,
       "solver": "perttu",
-      "successes": 5,
-      "verified_proofs": 5
+      "successes": 6,
+      "verified_proofs": 6
     },
     {
       "attempt_yield": 0.0,
@@ -221,15 +221,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 8,
+      "difficulty_points": 11,
       "display_name": "Perttu Isotalo",
       "github": null,
-      "index_files_added": 5,
+      "index_files_added": 6,
       "missing_solver_provenance": 0,
       "profile_url": null,
       "rank": 4,
       "solver_credit": false,
-      "solver_provenance_proofs": 5
+      "solver_provenance_proofs": 6
     },
     {
       "attribution_source": "git-add-author",
@@ -278,33 +278,33 @@
       "verified_proofs": 3
     },
     {
+      "provider_model": "gemini / gemini-3.1-pro-preview",
+      "run_success_rate": 1.0,
+      "runs": 2,
+      "verified_proofs": 2
+    },
+    {
       "provider_model": "manual / gpt-5.5",
       "run_success_rate": null,
       "runs": 0,
       "verified_proofs": 2
-    },
-    {
-      "provider_model": "gemini / gemini-3.1-pro-preview",
-      "run_success_rate": 1.0,
-      "runs": 1,
-      "verified_proofs": 1
     }
   ],
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 29,
+    "attributed_proofs": 30,
     "attribution_gap_count": 82,
     "credited_contributors": 6,
-    "credited_proofs": 111,
-    "explicit_solver_proofs": 29,
-    "git_attributed_index_files": 111,
+    "credited_proofs": 112,
+    "explicit_solver_proofs": 30,
+    "git_attributed_index_files": 112,
     "historical_contributors": 6,
     "historical_unknown_proofs": 82,
     "inferred_git_proofs": 82,
-    "proof_run_coverage": 0.2432,
-    "terminal_runs": 73,
+    "proof_run_coverage": 0.25,
+    "terminal_runs": 74,
     "uncredited_proofs": 0,
-    "verified_proofs": 111
+    "verified_proofs": 112
   }
 }
