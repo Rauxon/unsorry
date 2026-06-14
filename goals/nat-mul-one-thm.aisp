@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜nat-mul-one-thm
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/nat-mul-one-thm.md
+  src≜packages/unsorry-archive-0001/backlog/nat-mul-one-thm.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/nat-mul-one-thm.lean
+  lean≜packages/unsorry-archive-0001/goals/nat-mul-one-thm.lean
   sha≜74b94677b0bd17bc4ca449f1f588d1916904197dbf6365d423730ec8a85386a8
   aff≜1
 }

@@ -1,7 +1,0 @@
-𝔸5.1.lemma.d8e392701c3c@2026-06-12
-γ≔unsorry.lemma.index
-⟦Ω:Lemma⟧{sha≜d8e392701c3c83e8846ec5b880667f87973d606b5265a30b97e77a0d9f68ce1d; goal≜sum-range-fib-sq; name≜sum_range_succ_fib_sq}
-⟦Σ:Source⟧{src≜goals/sum-range-fib-sq.lean}
-⟦Γ:Tags⟧{tags≜⟨⟩}
-⟦Λ:Meta⟧{use≜0; aff≜0}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
