@@ -1,0 +1,9 @@
+𝔸5.1.run.nat-sq-lt-two-pow-s2.oma-2-c50d.20260614t092230211545z-b761917a@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t092230211545z-b761917a; goal≜nat-sq-lt-two-pow-s2; agent≜oma-2-c50d; outcome≜decomposed}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜nat-sq-lt-two-pow-s2}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜413; ended≜2026-06-14T09:22:30Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜⚠ [8532/8581] Replaying Unsorry.NatSqLtTwoPowS2Binding trace: .> LEAN_PATH=/Users/perttu/.unsorry/work/prove-nat-sq-lt-two-pow-s2-oma-2-c50d/.lake/packages/Cli/.lake/build/lib/lean:/Users/perttu/.unsorry/work/prove-nat-sq-lt-two-pow-s2-oma-2-c50d/.lake/packages/batteries/.lake/bu}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
