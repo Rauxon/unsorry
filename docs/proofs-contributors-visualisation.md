@@ -6,7 +6,7 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**128 goals — 12 open · 3 blocked · 10 translated · 103 proved.** 11 decomposition families shown below; standalone goals are listed in the table.
+**133 goals — 16 open · 4 blocked · 10 translated · 103 proved.** 12 decomposition families shown below; standalone goals are listed in the table.
 
 Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (99 of 103 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
@@ -71,8 +71,17 @@ flowchart LR
   class g_nat_sq_lt_two_pow_s1 proved;
   click g_nat_sq_lt_two_pow_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s1.lean" "nat-sq-lt-two-pow-s1 — proved"
   g_nat_sq_lt_two_pow_s2["nat-sq-lt-two-pow-s2"]
-  class g_nat_sq_lt_two_pow_s2 open;
-  click g_nat_sq_lt_two_pow_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2.lean" "nat-sq-lt-two-pow-s2 — open"
+  class g_nat_sq_lt_two_pow_s2 blocked;
+  click g_nat_sq_lt_two_pow_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2.lean" "nat-sq-lt-two-pow-s2 — blocked"
+  g_nat_sq_lt_two_pow_s2_s1["nat-sq-lt-two-pow-s2-s1"]
+  class g_nat_sq_lt_two_pow_s2_s1 open;
+  click g_nat_sq_lt_two_pow_s2_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s1.lean" "nat-sq-lt-two-pow-s2-s1 — open"
+  g_nat_sq_lt_two_pow_s2_s2["nat-sq-lt-two-pow-s2-s2"]
+  class g_nat_sq_lt_two_pow_s2_s2 open;
+  click g_nat_sq_lt_two_pow_s2_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s2.lean" "nat-sq-lt-two-pow-s2-s2 — open"
+  g_nat_sq_lt_two_pow_s2_s3["nat-sq-lt-two-pow-s2-s3"]
+  class g_nat_sq_lt_two_pow_s2_s3 open;
+  click g_nat_sq_lt_two_pow_s2_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s3.lean" "nat-sq-lt-two-pow-s2-s3 — open"
   g_nesbitt_inequality["nesbitt-inequality"]
   class g_nesbitt_inequality blocked;
   click g_nesbitt_inequality "https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality.lean" "nesbitt-inequality — blocked"
@@ -170,6 +179,9 @@ flowchart LR
   g_fourth_power_mod_five --> g_fourth_power_mod_five_s2
   g_nat_sq_lt_two_pow --> g_nat_sq_lt_two_pow_s1
   g_nat_sq_lt_two_pow --> g_nat_sq_lt_two_pow_s2
+  g_nat_sq_lt_two_pow_s2 --> g_nat_sq_lt_two_pow_s2_s1
+  g_nat_sq_lt_two_pow_s2 --> g_nat_sq_lt_two_pow_s2_s2
+  g_nat_sq_lt_two_pow_s2 --> g_nat_sq_lt_two_pow_s2_s3
   g_nesbitt_inequality --> g_nesbitt_inequality_s1
   g_nesbitt_inequality --> g_nesbitt_inequality_s2
   g_nesbitt_inequality --> g_nesbitt_inequality_s3
@@ -202,8 +214,11 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 
 | Goal | Status | Difficulty | Agent | Solver / model | PR | Proved |
 | --- | --- | --- | --- | --- | --- | --- |
+| [`abstract-regular-polyhedron-realizable-iff`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-realizable-iff.lean) | open | 4 | — | — | — | — |
 | [`four-consecutive-product-add-one-square`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square.lean) | open | 2 | — | — | — | — |
-| [`nat-sq-lt-two-pow-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2.lean) | open | 1 | — | — | — | — |
+| [`nat-sq-lt-two-pow-s2-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s1.lean) | open | 1 | — | — | — | — |
+| [`nat-sq-lt-two-pow-s2-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s2.lean) | open | 1 | — | — | — | — |
+| [`nat-sq-lt-two-pow-s2-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s3.lean) | open | 1 | — | — | — | — |
 | [`nesbitt-inequality-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality-s1.lean) | open | 1 | — | — | — | — |
 | [`nesbitt-inequality-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality-s2.lean) | open | 1 | — | — | — | — |
 | [`nesbitt-inequality-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality-s3.lean) | open | 1 | — | — | — | — |
@@ -212,8 +227,10 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`no-nat-sq-eq-two-mul-sq-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s2.lean) | open | 1 | — | — | — | — |
 | [`no-nat-sq-eq-two-mul-sq-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s3.lean) | open | 1 | — | — | — | — |
 | [`no-nat-sq-eq-two-mul-sq-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s4.lean) | open | 1 | claude-rmt-001 | chat-bit-01 | [#440](https://github.com/agenticsnz/unsorry/pull/440) | 2026-06-14 |
+| [`platonic-pairs-realizable`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-pairs-realizable.lean) | open | 3 | — | — | — | — |
 | [`prod-one-sub-inv-sq-telescope`](https://github.com/agenticsnz/unsorry/blob/main/goals/prod-one-sub-inv-sq-telescope.lean) | open | 4 | — | — | — | — |
 | [`sq-add-sq-eq-three-mul-sq-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s4.lean) | open | 1 | — | — | — | — |
+| [`nat-sq-lt-two-pow-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2.lean) | blocked | 1 | — | — | — | — |
 | [`nesbitt-inequality`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality.lean) | blocked | 4 | — | — | — | — |
 | [`no-nat-sq-eq-two-mul-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq.lean) | blocked | 4 | — | — | — | — |
 | [`sq-add-sq-eq-three-mul-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq.lean) | blocked | 4 | — | — | — | — |
