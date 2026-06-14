@@ -1,0 +1,9 @@
+𝔸5.1.run.am-gm-three-cube-s2-s2.oma-2-c50d.20260614t223237869460z-ee31d54f@2026-06-14
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260614t223237869460z-ee31d54f; goal≜am-gm-three-cube-s2-s2; agent≜oma-2-c50d; outcome≜decomposed}
+⟦Π:Provenance⟧{solver≜perttu; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜max}
+⟦Γ:Goal⟧{goal≜am-gm-three-cube-s2-s2}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜392; ended≜2026-06-14T22:32:37Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜⚠ [8485/8597] Replaying Unsorry.AmGmThreeCubeS2S2Binding trace: .> LEAN_PATH=/Users/perttu/.unsorry/work/prove-am-gm-three-cube-s2-s2-oma-2-c50d/.lake/packages/Cli/.lake/build/lib/lean:/Users/perttu/.unsorry/work/prove-am-gm-three-cube-s2-s2-oma-2-c50d/.lake/packages/batteries/.l}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
