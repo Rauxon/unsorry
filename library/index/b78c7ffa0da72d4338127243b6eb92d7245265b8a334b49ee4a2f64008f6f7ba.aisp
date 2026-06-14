@@ -1,0 +1,8 @@
+𝔸5.1.lemma.b78c7ffa0da7@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜b78c7ffa0da72d4338127243b6eb92d7245265b8a334b49ee4a2f64008f6f7ba; goal≜nat-sq-lt-two-pow-s1; name≜sq_lt_two_pow_base_five}
+⟦Σ:Source⟧{src≜goals/nat-sq-lt-two-pow-s1.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜255}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
