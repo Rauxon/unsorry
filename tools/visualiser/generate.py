@@ -432,6 +432,7 @@ _HTML_TEMPLATE = """<!doctype html>
     <span><i class="swatch" style="background:#fed7d7"></i>flagged</span>
     <span><i class="swatch" style="background:#bee3f8"></i>translated</span>
   </p>
+  <p><a href="leaderboard.html">Contributor leaderboard &rarr;</a> &mdash; who solved what, ranked by verified proofs (issue #270).</p>
 </header>
 <div class="toolbar">
   <strong>Diagram:</strong>

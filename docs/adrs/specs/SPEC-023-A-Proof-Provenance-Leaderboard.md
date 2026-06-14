@@ -103,6 +103,24 @@ Leaderboard rank uses verified proof count, then summed goal-difficulty points.
 Failed effort is visible but cannot improve rank, which avoids rewarding
 deliberate repeated failure.
 
+## Automation (post-merge refresh)
+
+The generated leaderboard artifacts are **not** regenerated or gated in PRs.
+Like the targets board (ADR-036) and the proofs visualisation (ADR-032), they
+are refreshed **post-merge** by `.github/workflows/leaderboard.yml`: on a push to
+`main` that touches `goals/**`, `library/index/**`, `proof-runs/**`,
+`docs/metrics/contributor-aliases.json`, or `tools/leaderboard/**`, the workflow
+runs `tools.leaderboard --check .` and, on drift, runs `--write .` and commits
+the artifacts back to `main` as a single docs-only `docs: refresh leaderboard
+[skip ci]` commit. `swarm/agent.sh::submit_pr_tree` therefore does not regenerate
+or stage the leaderboard, and `gate-b.yml` carries no leaderboard `--check`
+gate — regenerating the leaderboard in every goal PR made any two concurrent goal
+PRs conflict on `docs/leaderboard.*` (exactly the churn #415 removed for the
+board). The hand-authored `docs/leaderboard.html` surface fetches the generated
+JSON at view time, so it stays consistent without being regenerated. As with the
+other two post-merge workflows, the Actions token must be permitted to push to
+`main`.
+
 ## Interpretation limits
 
 Rates use only logged post-adoption runs. Historical failures are never inferred

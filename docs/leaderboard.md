@@ -4,7 +4,7 @@
 
 Verified output comes from `library/index`; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**90 verified proofs · 19 attributed · 71 historical/unknown · 23 logged terminal runs.**
+**98 verified proofs · 19 attributed · 79 historical/unknown · 23 logged terminal runs.**
 
 ## Efficiency Baseline
 
@@ -21,11 +21,11 @@ Verified output comes from `library/index`; append-only terminal-run telemetry c
 | Recorded run time | 4h 36m |
 | Median / p90 run time | 9m 7s / 24m 18s |
 | Verified successes per recorded hour | 4.12 |
-| Proofs with run telemetry | 19 (21.1%) |
+| Proofs with run telemetry | 19 (19.4%) |
 
 ## Work Queue
 
-**109 goals · 1 blocked · 9 open · 89 proved · 10 translated.**
+**109 goals · 1 blocked · 1 open · 97 proved · 10 translated.**
 
 ## Efficiency by Difficulty
 
@@ -48,16 +48,16 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 60 | 19 | 41 | 23 | 82.6% | 98 | 11300 |
-| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 20 | 0 | 20 | 0 | — | 39 | 4400 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 61 | 19 | 42 | 23 | 82.6% | 101 | 11625 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 27 | 0 | 27 | 0 | — | 57 | 6375 |
 | 3 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 4 | [@OceanLi](https://github.com/OceanLi) | 1 | 0 | 1 | 0 | — | 3 | 325 |
 
 ## Attribution Notes
 
-**19 explicit solver credits · 71 inferred git credits · 0 uncredited proof records.**
+**19 explicit solver credits · 79 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 90 of 90 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 98 of 98 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 

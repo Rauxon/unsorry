@@ -412,6 +412,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-13",
+      "difficulty": 3,
+      "display_name": "Chris Barlow",
+      "git_add_commit": "772c2749b8bb66ffc1be555b1b667be75a89caa6",
+      "git_add_date": "2026-06-14",
+      "git_author": "Chris Barlow <cgbarlow@gmail.com>",
+      "git_author_name": "Chris Barlow",
+      "goal": "abstract-regular-polyhedron-classification",
+      "mapped_github": "cgbarlow",
+      "path": "library/index/43c6cfe1c583ff785c5d33e86a729be8136309d2795858aeb733de8d2284e9e8.aisp",
+      "review_status": "candidate",
+      "sha": "43c6cfe1c583ff785c5d33e86a729be8136309d2795858aeb733de8d2284e9e8"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-12",
       "difficulty": 4,
       "display_name": "Chris Barlow",
@@ -562,6 +577,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-14",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "b951a0663676e5c42b56c0da0b1d9074e5552188",
+      "git_add_date": "2026-06-14",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-range-fib-odd-index",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/6e84794efc3f9334cc39c5068f8daf7113472961af73cee6fa34ccbeb02e88ee.aisp",
+      "review_status": "candidate",
+      "sha": "6e84794efc3f9334cc39c5068f8daf7113472961af73cee6fa34ccbeb02e88ee"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-12",
       "difficulty": 3,
       "display_name": "chat-bit-01",
@@ -589,6 +619,21 @@
       "path": "library/index/72a45134df3a206e3788e2a847d431da0f9a1fc0c4d19dd81aa1e7a06be226db.aisp",
       "review_status": "candidate",
       "sha": "72a45134df3a206e3788e2a847d431da0f9a1fc0c4d19dd81aa1e7a06be226db"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-14",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "4faa1178f8a85030625f0b1f1660f3cd8bdf29bc",
+      "git_add_date": "2026-06-14",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-range-three-consecutive-product",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/73f0b362862b8cf8fe7b0f581b8c1dba1ccf27a74c9f8572b14a492af5ae3cf8.aisp",
+      "review_status": "candidate",
+      "sha": "73f0b362862b8cf8fe7b0f581b8c1dba1ccf27a74c9f8572b14a492af5ae3cf8"
     },
     {
       "alias_mapped": true,
@@ -652,6 +697,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-14",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "2ed84a91603399d6d907f580287f46a255d7f2ba",
+      "git_add_date": "2026-06-14",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-range-recip-triangular",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/7cadca8b4dddc9d2d9a8fff9f0cb028c4e6fc4d91611468491460541b0bad2b1.aisp",
+      "review_status": "candidate",
+      "sha": "7cadca8b4dddc9d2d9a8fff9f0cb028c4e6fc4d91611468491460541b0bad2b1"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-13",
       "difficulty": 1,
       "display_name": "chat-bit-01",
@@ -679,6 +739,21 @@
       "path": "library/index/8540c28548e54dd1ce6113a5ce0a36e74b3019b6ccd7ea46a965761f5a509424.aisp",
       "review_status": "candidate",
       "sha": "8540c28548e54dd1ce6113a5ce0a36e74b3019b6ccd7ea46a965761f5a509424"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-14",
+      "difficulty": 4,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "b9ea2416a87bc5b1de75f79c4edbc4561680e463",
+      "git_add_date": "2026-06-14",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-range-pow-seven-faulhaber-triangular",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/89307614b03d8e9eb6bf63b1f7483478c4100d87211d1a423db9cb53afa4dedb.aisp",
+      "review_status": "candidate",
+      "sha": "89307614b03d8e9eb6bf63b1f7483478c4100d87211d1a423db9cb53afa4dedb"
     },
     {
       "alias_mapped": true,
@@ -832,6 +907,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-14",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "be5e242e4ad0237f16fa240e0f1291b162983961",
+      "git_add_date": "2026-06-14",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "six-dvd-three-consecutive",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/ba2873b1e4c8b0a7fd8c21228cd76305efe283f4dc97ca40507a2a838b9e10ed.aisp",
+      "review_status": "candidate",
+      "sha": "ba2873b1e4c8b0a7fd8c21228cd76305efe283f4dc97ca40507a2a838b9e10ed"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-11",
       "difficulty": 1,
       "display_name": "Chris Barlow",
@@ -874,6 +964,21 @@
       "path": "library/index/d2881a0defccea540e05c51fd8fe498f6b4c5aad39b16a88ffc5593fd7380ca2.aisp",
       "review_status": "candidate",
       "sha": "d2881a0defccea540e05c51fd8fe498f6b4c5aad39b16a88ffc5593fd7380ca2"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-14",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "f727b90e1f3f790d967997288db9c682c75c60c9",
+      "git_add_date": "2026-06-14",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-range-id-eq-choose-two",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/d43768f14f5aa0d810d413dca0142de3ccd135597bb3a2ca2a7ba6478e4cc805.aisp",
+      "review_status": "candidate",
+      "sha": "d43768f14f5aa0d810d413dca0142de3ccd135597bb3a2ca2a7ba6478e4cc805"
     },
     {
       "alias_mapped": true,
@@ -1069,14 +1174,29 @@
       "path": "library/index/fd24d88a3c15b338f7c33103a64437c863f7a0ebe1674244fa20882763ffe6a1.aisp",
       "review_status": "candidate",
       "sha": "fd24d88a3c15b338f7c33103a64437c863f7a0ebe1674244fa20882763ffe6a1"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-14",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "f1b0ef627704bf21600a263da9dd946e9a18a301",
+      "git_add_date": "2026-06-14",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-range-fib-even-index",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/fe31b8b2df195f8e43ccb5fc6ebb02a2be28788b4de62da988ce0de89d37065a.aisp",
+      "review_status": "candidate",
+      "sha": "fe31b8b2df195f8e43ccb5fc6ebb02a2be28788b4de62da988ce0de89d37065a"
     }
   ],
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 71,
-    "mapped_missing_solver": 71,
-    "missing_solver_provenance": 71,
+    "git_attributed_missing_solver": 79,
+    "mapped_missing_solver": 79,
+    "missing_solver_provenance": 79,
     "unmapped_missing_solver": 0
   }
 }

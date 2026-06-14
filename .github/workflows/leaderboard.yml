@@ -1,0 +1,74 @@
+# Keep the generated leaderboard artifacts up to date POST-MERGE (ADR-023 data
+# model, refreshed under the ADR-036 / issue #415 post-merge generated-artifact
+# model — same as targets-board.yml and proofs-visualisation.yml).
+#
+# The leaderboard (docs/leaderboard.md + .svg + docs/metrics/*.json) is
+# generated from goals/ + library/index + proof-runs by `tools.leaderboard`.
+# Regenerating it *in every PR* (the original #401 approach) reintroduced exactly
+# the churn #415 removed for the board: every merged proof refreshes the
+# leaderboard, so two concurrent goal PRs conflict on docs/leaderboard.*. So the
+# leaderboard moves to the post-merge model: on every push to `main` that could
+# change the underlying statistics it runs `--check`, and on drift it regenerates
+# and commits the artifacts straight back to `main` as a single docs-only
+# `[skip ci]` commit (the standard generated-artifact exception).
+#
+# The hand-authored docs/leaderboard.html browser surface fetches these generated
+# JSON files at view time, so it is always consistent without being regenerated.
+#
+# Requirement (same as targets-board.yml / proofs-visualisation.yml): the GitHub
+# Actions token must be permitted to push to `main`.
+
+name: leaderboard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "goals/**"
+      - "library/index/**"
+      - "proof-runs/**"
+      - "docs/metrics/contributor-aliases.json"
+      - "tools/leaderboard/**"
+      - ".github/workflows/leaderboard.yml"
+  workflow_dispatch:
+
+# Coalesce bursts of merges into one refresh; never cancel a push mid-commit.
+concurrency:
+  group: leaderboard-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+      - name: Check for leaderboard drift (ADR-023 / ADR-036)
+        id: check
+        run: |
+          if python3 -m tools.leaderboard --check .; then
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Regenerate and commit on drift
+        if: steps.check.outputs.stale == 'true'
+        run: |
+          set -euo pipefail
+          python3 -m tools.leaderboard --write .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/leaderboard.md docs/leaderboard.svg \
+            docs/metrics/community-stats.json docs/metrics/leaderboard-ui.json \
+            docs/metrics/attribution-gaps.json
+          # `[skip ci]` + docs-only path (outside this workflow's triggers) means
+          # the refresh commit never re-fires CI.
+          git commit -m "docs: refresh leaderboard [skip ci]"
+          git push origin HEAD:main

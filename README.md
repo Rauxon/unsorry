@@ -108,6 +108,10 @@ the [targets board](docs/targets.md), the
 [proofs & contributors visualisation](docs/proofs-contributors-visualisation.md), and how to propose a target
 are in **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
+Working with an AI agent? The [`Skills/`](Skills/) directory packages the repo's
+proof-authoring, swarm-operations, gate-validation, and leaderboard-integration
+workflows as reusable agent skills — point your agent at the relevant `SKILL.md`.
+
 ## Roadmap
 
 - [x] **Phase 0 — coordination skeleton** (no Lean toolchain): swarm contract, goal records, claims, Gate B in CI; concurrent agents doing translation-only work; claim-collision rate and statement-diff false-positive rate measured — [run 001 metrics](docs/metrics/phase0-run-001.md): 38/38 autonomous PR merges, fidelity FP rate under the 20% kill criterion (0/10 after the paren-normalization fix), 3/3 paraphrase pairs converged to identical content addresses
