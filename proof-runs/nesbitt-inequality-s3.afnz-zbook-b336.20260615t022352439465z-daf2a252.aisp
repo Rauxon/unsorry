@@ -1,0 +1,8 @@
+𝔸5.1.run.nesbitt-inequality-s3.afnz-zbook-b336.20260615t022352439465z-daf2a252@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t022352439465z-daf2a252; goal≜nesbitt-inequality-s3; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜nesbitt-inequality-s3}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜231; ended≜2026-06-15T02:23:52Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜18f34251bf3e4a8f684e74bd30fbeaaebff4910136ba55fea7fb4dbd6764a17f}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
