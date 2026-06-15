@@ -84,6 +84,21 @@
       "alias_mapped": true,
       "date": "2026-06-15",
       "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "9ac7f55f82b893e9a4d185641a1edb788242d82d",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "qm-am-three-var",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/37da97b9dcd781821d70f2c5ba27c7a8c5c9d48de765145255d4e0a2ccc66eca.aisp",
+      "review_status": "candidate",
+      "sha": "37da97b9dcd781821d70f2c5ba27c7a8c5c9d48de765145255d4e0a2ccc66eca"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 2,
       "display_name": "Chris Barlow",
       "git_add_commit": "0100e37045403055ba5207a0ede696e6d6f1bcc7",
       "git_add_date": "2026-06-15",
@@ -1434,9 +1449,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 95,
-    "mapped_missing_solver": 94,
-    "missing_solver_provenance": 95,
+    "git_attributed_missing_solver": 96,
+    "mapped_missing_solver": 95,
+    "missing_solver_provenance": 96,
     "unmapped_missing_solver": 1
   }
 }
