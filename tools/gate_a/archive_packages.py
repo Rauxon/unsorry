@@ -7,15 +7,37 @@ Lake packages, so active-library replay/audit scoping does not see their
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import subprocess
 import sys
 from pathlib import Path
 from typing import Callable, Sequence
 
-from tools.gate_a.parallel_modules import REPLAY_CHUNK_SIZE, module_names, split_evenly
+from tools.gate_a.parallel_modules import module_names, split_evenly
 
 ARCHIVE_PREFIX = "packages/unsorry-archive-"
+
+
+def _archive_replay_chunk_size() -> int:
+    """Modules per archive-package ``leanchecker`` invocation.
+
+    Smaller than the active replay's REPLAY_CHUNK_SIZE (30): an archive package
+    is a *separate* Lake project, so its leanchecker loads its own full mathlib
+    image (~7-10 GB) — and a 30-module chunk still OOM-killed the runner (exit
+    137, #764). 12 keeps peak RSS within a 16 GB runner. Override with
+    ``UNSORRY_ARCHIVE_REPLAY_CHUNK`` for a runner of known RAM.
+    """
+    override = os.environ.get("UNSORRY_ARCHIVE_REPLAY_CHUNK")
+    if override:
+        try:
+            return max(1, int(override))
+        except ValueError:
+            pass
+    return 12
+
+
+ARCHIVE_REPLAY_CHUNK_SIZE = _archive_replay_chunk_size()
 FORBIDDEN_RE = re.compile(
     r"\b(sorry|admit|sorryAx|native_decide|axiom|unsafe|implemented_by|extern)\b"
 )
@@ -174,9 +196,13 @@ def validate_archive_package(
             return build
         # leanchecker holds ~all of mathlib resident per process, so replaying
         # every package module in one invocation OOM-kills a memory-bound runner
-        # (exit 137 on a 30-proof block ≈ 60 modules with bindings). Chunk it like
-        # the active replay (REPLAY_CHUNK_SIZE), run serially.
-        n_chunks = max(1, (len(modules) + REPLAY_CHUNK_SIZE - 1) // REPLAY_CHUNK_SIZE)
+        # (exit 137 on a 30-proof block ≈ 60 modules with bindings). Chunk it
+        # serially at ARCHIVE_REPLAY_CHUNK_SIZE — smaller than the active replay's
+        # chunk because the package's separate mathlib image leaves less headroom,
+        # and a 30-module chunk still OOM'd (#764).
+        n_chunks = max(
+            1, (len(modules) + ARCHIVE_REPLAY_CHUNK_SIZE - 1) // ARCHIVE_REPLAY_CHUNK_SIZE
+        )
         for index, chunk in enumerate(split_evenly(modules, n_chunks), 1):
             replay = run_step(
                 f"{rel} leanchecker replay chunk {index}/{n_chunks}",

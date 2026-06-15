@@ -89,6 +89,15 @@ Gate A should distinguish three validation scopes:
 
 The default must always fail toward a larger validation scope when the changed-path classifier cannot decide.
 
+**Runs in a dedicated `gate-a-archive` job.** Each archive package is a *separate* Lake project
+whose `leanchecker` replay loads its own full mathlib image (~7–10 GB). Running that inside
+`gate-a-prepare` (which already holds the freshly-built active library) OOM-killed the runner
+(exit 137, #764). So archive validation runs in its own job — `needs: [detect]`,
+`if: archive == 'true'`, on the same Namespace profile with swap headroom and the 120-min budget
+the active replay uses — and `archive_packages` chunks the replay at the smaller
+`ARCHIVE_REPLAY_CHUNK_SIZE` (default 12, override `UNSORRY_ARCHIVE_REPLAY_CHUNK`) rather than the
+active `REPLAY_CHUNK_SIZE` (30), since the package's separate mathlib image leaves less headroom.
+
 ## 6. Rollout Plan
 
 1. Add a report-only tool that prints:

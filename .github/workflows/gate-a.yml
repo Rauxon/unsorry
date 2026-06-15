@@ -207,26 +207,9 @@ jobs:
         if: needs.detect.outputs.active == 'true'
         run: python3 -m tools.gate_a.check_library_options library
 
-      - name: Set up Lean toolchain for archive packages
-        if: needs.detect.outputs.archive == 'true' && needs.detect.outputs.active != 'true'
-        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
-        with:
-          build: "false"
-          test: "false"
-          lint: "false"
-          use-mathlib-cache: "false"
-          use-github-cache: "false"
-
-      - name: Validate changed archive packages (ADR-041)
-        if: needs.detect.outputs.archive == 'true'
-        env:
-          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
-        run: |
-          if [ -n "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.archive_packages validate-changed --base "$BASE_SHA"
-          else
-            python3 -m tools.gate_a.archive_packages validate-changed
-          fi
+      # Archive-package validation moved to its own job (gate-a-archive): each
+      # archive package is a separate Lake project that leanchecker-replays its
+      # own mathlib image, which OOM'd when run inside this job's headroom (#764).
 
       - name: Textual lint on library diff (belt only — the audit is the bar)
         if: github.event_name == 'pull_request' && needs.detect.outputs.active == 'true'
@@ -480,8 +463,70 @@ jobs:
             python3 -m tools.gate_a.parallel_modules replay --jobs 1
           fi
 
+  gate_a_archive:
+    name: gate-a-archive
+    needs: [detect]
+    if: needs.detect.outputs.archive == 'true'
+    runs-on: ${{ needs.detect.outputs.profile }}
+    # Dedicated job (own runner, full headroom + swap, 120-min budget): an archive
+    # package is a separate Lake project whose leanchecker replays its OWN mathlib
+    # image (~7-10 GB), which OOM-killed gate-a-prepare (#764). archive_packages
+    # also chunks the replay at the smaller ARCHIVE_REPLAY_CHUNK_SIZE here.
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      # Mount the Namespace volume so the archive packages' `lake exe cache get`
+      # finds mathlib .ltar archives in the shared MATHLIB_CACHE_DIR (under .lake)
+      # instead of re-downloading per package (ADR-046).
+      - name: Namespace .lake cache volume
+        if: needs.detect.outputs.volume == 'true'
+        id: ns_lake_cache
+        continue-on-error: true
+        uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
+        with:
+          path: ${{ github.workspace }}/.lake
+
+      - name: Add swap headroom for leanchecker (best-effort)
+        run: |
+          if sudo fallocate -l 12G /mnt/swapfile \
+               || sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=12288; then
+            sudo chmod 600 /mnt/swapfile
+            sudo mkswap /mnt/swapfile
+            if sudo swapon /mnt/swapfile; then
+              free -h
+            else
+              echo "::warning::swapon not permitted — continuing on RAM + small chunks"
+              sudo rm -f /mnt/swapfile || true
+            fi
+          else
+            echo "::warning::could not allocate a swapfile — continuing on RAM + small chunks"
+          fi
+
+      # Archive packages build their own mathlib, so just install the toolchain.
+      - name: Set up Lean toolchain
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          build: "false"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "false"
+          use-github-cache: "false"
+
+      - name: Validate changed archive packages (ADR-041)
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
+        run: |
+          if [ -n "$BASE_SHA" ]; then
+            python3 -m tools.gate_a.archive_packages validate-changed --base "$BASE_SHA"
+          else
+            python3 -m tools.gate_a.archive_packages validate-changed
+          fi
+
   gate-a:
-    needs: [detect, gate_a_prepare, gate_a_audit, gate_a_replay]
+    needs: [detect, gate_a_prepare, gate_a_audit, gate_a_replay, gate_a_archive]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -493,6 +538,8 @@ jobs:
           PREPARE_RESULT: ${{ needs.gate_a_prepare.result }}
           AUDIT_RESULT: ${{ needs.gate_a_audit.result }}
           REPLAY_RESULT: ${{ needs.gate_a_replay.result }}
+          ARCHIVE_RELEVANT: ${{ needs.detect.outputs.archive }}
+          ARCHIVE_RESULT: ${{ needs.gate_a_archive.result }}
         run: |
           set -euo pipefail
           if [ "$LEAN_RELEVANT" != "true" ]; then
@@ -504,6 +551,9 @@ jobs:
           pairs="gate-a-prepare:$PREPARE_RESULT"
           if [ "$ACTIVE_RELEVANT" = "true" ]; then
             pairs="$pairs gate-a-audit:$AUDIT_RESULT gate-a-replay:$REPLAY_RESULT"
+          fi
+          if [ "$ARCHIVE_RELEVANT" = "true" ]; then
+            pairs="$pairs gate-a-archive:$ARCHIVE_RESULT"
           fi
 
           for pair in $pairs; do
