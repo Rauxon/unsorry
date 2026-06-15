@@ -666,6 +666,21 @@
       "sha": "e46626a069168f5990f9acb1bc47bd440a90a4d7f103cddda323030caeeb8e33"
     },
     {
+      "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "07a45d1afe8cdda19f10a9f5860a5edf85e67fc6",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sixth-power-mod-thirteen-mem",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/e8d4844864d1362443a0c45eab8335628ff307e09dd24521bc3c104ff12ec3bf.aisp",
+      "review_status": "candidate",
+      "sha": "e8d4844864d1362443a0c45eab8335628ff307e09dd24521bc3c104ff12ec3bf"
+    },
+    {
       "alias_mapped": false,
       "date": "2026-06-15",
       "difficulty": 2,
@@ -1869,9 +1884,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 124,
-    "mapped_missing_solver": 120,
-    "missing_solver_provenance": 124,
+    "git_attributed_missing_solver": 125,
+    "mapped_missing_solver": 121,
+    "missing_solver_provenance": 125,
     "unmapped_missing_solver": 4
   }
 }

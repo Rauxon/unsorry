@@ -94,19 +94,19 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
 
 ### Replenishment round 3 (scoped 2026-06-15) — 22 candidates
 
-- [ ] `sum_range_recip_four_step_residue_one` — The sum of 4/((4k+1)(4k+5)) for k from 0 to n-1 telescopes to 1 minus 1/(4n+1)
+- [x] `sum_range_recip_four_step_residue_one` — The sum of 4/((4k+1)(4k+5)) for k from 0 to n-1 telescopes to 1 minus 1/(4n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ; each term is 1/(4k+1) - 1/(4k+5); finish with field_simp/ring · conf: high
-- [ ] `sum_range_recip_three_step_residue_one` — The sum of 3/((3k+1)(3k+4)) for k from 0 to n-1 telescopes to 1 minus 1/(3n+1)
+- [x] `sum_range_recip_three_step_residue_one` — The sum of 3/((3k+1)(3k+4)) for k from 0 to n-1 telescopes to 1 minus 1/(3n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n; term equals 1/(3k+1) - 1/(3k+4); close with field_simp and ring · conf: high
-- [ ] `sum_range_recip_five_step_residue_one` — The sum of 5/((5k+1)(5k+6)) for k from 0 to n-1 telescopes to 1 minus 1/(5n+1)
+- [x] `sum_range_recip_five_step_residue_one` — The sum of 5/((5k+1)(5k+6)) for k from 0 to n-1 telescopes to 1 minus 1/(5n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n; term equals 1/(5k+1) - 1/(5k+6); finish with field_simp and ring · conf: high
-- [ ] `sum_icc_four_div_four_k_sub_one_four_k_add_three_telescope` — The sum of 4/((4k-1)(4k+3)) for k from 1 to n telescopes to 1/3 minus 1/(4n+3)
+- [x] `sum_icc_four_div_four_k_sub_one_four_k_add_three_telescope` — The sum of 4/((4k-1)(4k+3)) for k from 1 to n telescopes to 1/3 minus 1/(4n+3)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n via Finset.sum_Icc_succ_top; term is 1/(4k-1) - 1/(4k+3); field_simp then ring · conf: high
-- [ ] `sum_icc_three_div_three_k_sub_one_three_k_add_two_telescope` — The sum of 3/((3k-1)(3k+2)) for k from 1 to n telescopes to 1/2 minus 1/(3n+2)
+- [x] `sum_icc_three_div_three_k_sub_one_three_k_add_two_telescope` — The sum of 3/((3k-1)(3k+2)) for k from 1 to n telescopes to 1/2 minus 1/(3n+2)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_Icc_succ_top; term is 1/(3k-1) - 1/(3k+2); field_simp and ring · conf: high
-- [ ] `sum_range_recip_shift_two_shift_five_telescope` — The sum of 3/((k+2)(k+5)) for k from 0 to n-1 telescopes to 13/12 minus 1/(n+2)+1/(n+3)+1/(n+4)
+- [x] `sum_range_recip_shift_two_shift_five_telescope` — The sum of 3/((k+2)(k+5)) for k from 0 to n-1 telescopes to 13/12 minus 1/(n+2)+1/(n+3)+1/(n+4)
       absence: no-local-match · triviality: non-trivial · intended: Term is 1/(k+2) - 1/(k+5), a step-3 telescope leaving three boundary fractions; induct with sum_range_succ, field_simp, ring · conf: high
-- [ ] `sum_icc_two_k_add_one_div_k_sq_succ_sq_telescope` — The sum of (2k+1)/(k^2(k+1)^2) for k from 1 to n telescopes to 1 minus 1/(n+1)^2
+- [x] `sum_icc_two_k_add_one_div_k_sq_succ_sq_telescope` — The sum of (2k+1)/(k^2(k+1)^2) for k from 1 to n telescopes to 1 minus 1/(n+1)^2
       absence: no-local-match · triviality: non-trivial · intended: Each term equals 1/k^2 - 1/(k+1)^2; induct via sum_Icc_succ_top and finish with field_simp/ring · conf: high
 - [ ] `sum_icc_eight_k_div_odd_sq_pair_telescope` — The sum of 8k/((2k-1)^2(2k+1)^2) for k from 1 to n telescopes to 1 minus 1/(2n+1)^2
       absence: no-local-match · triviality: non-trivial · intended: Term equals 1/(2k-1)^2 - 1/(2k+1)^2; induct via sum_Icc_succ_top, then field_simp and ring · conf: high
@@ -116,7 +116,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Partial fractions give 1/k + 1/(k+1) - 2/(k+2), a double telescope; induct via sum_Icc_succ_top, field_simp, ring · conf: high
 - [ ] `sum_icc_k_div_three_shifted_consecutive_telescope` — The sum of k/((k+1)(k+2)(k+3)) for k from 1 to n telescopes to 1/4 + 1/(2(n+2)) - 3/(2(n+3))
       absence: no-local-match · triviality: non-trivial · intended: Partial fractions -1/2/(k+1)+2/(k+2)-3/2/(k+3) split as two telescopes; induct via sum_Icc_succ_top, field_simp, ring · conf: high
-- [ ] `sum_icc_two_div_k_mul_k_add_two_telescope` — The sum of 2/(k(k+2)) for k from 1 to n telescopes to 3/2 minus 1/(n+1) minus 1/(n+2)
+- [x] `sum_icc_two_div_k_mul_k_add_two_telescope` — The sum of 2/(k(k+2)) for k from 1 to n telescopes to 3/2 minus 1/(n+1) minus 1/(n+2)
       absence: no-local-match · triviality: non-trivial · intended: Term equals 1/k - 1/(k+2), a step-2 telescope leaving two boundary terms; induct via sum_Icc_succ_top, field_simp, ring · conf: high
 - [ ] `sum_icc_recip_four_consecutive_product_telescope` — The sum of 1/(k(k+1)(k+2)(k+3)) for k from 1 to n telescopes to 1/18 minus 1/(3(n+1)(n+2)(n+3))
       absence: no-local-match · triviality: non-trivial · intended: Term equals (1/3)(1/(k(k+1)(k+2)) - 1/((k+1)(k+2)(k+3))); induct via sum_Icc_succ_top, field_simp, ring · conf: high

@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-1365-pow-fifteen-sub-pow-three.thebeast-ace7.20260615t131035066842z-d9360716@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t131035066842z-d9360716; goal≜dvd-1365-pow-fifteen-sub-pow-three; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜dvd-1365-pow-fifteen-sub-pow-three}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜840; ended≜2026-06-15T13:10:35Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8498/8598] Running Mathlib.Tactic.Omega error: no such file or directory (error code: 4294967294) file: /home/adam/.unsorry/work/prove-dvd-1365-pow-fifteen-sub-pow-three-thebeast-ace7/.lake/packages/mathlib/Mathlib/Tactic/Omega.lean ✖ [8499/8598] Running Unsorry.Dvd1365PowFift}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
