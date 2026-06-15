@@ -1,19 +1,19 @@
 {
   "contributors": [
     {
-      "attempt_yield": 0.2772,
-      "attempts": 202,
+      "attempt_yield": 0.2759,
+      "attempts": 203,
       "difficulty_points": 110,
-      "failed_attempts": 146,
-      "failures": 127,
-      "median_solve_s": 309,
+      "failed_attempts": 147,
+      "failures": 128,
+      "median_solve_s": 316,
       "p90_solve_s": 1917,
-      "run_success_rate": 0.306,
-      "runs": 183,
+      "run_success_rate": 0.3043,
+      "runs": 184,
       "solver": "cgbarlow",
       "successes": 56,
-      "successes_per_recorded_hour": 1.455,
-      "total_solve_s": 138523,
+      "successes_per_recorded_hour": 1.436,
+      "total_solve_s": 140407,
       "verified_proofs": 52
     },
     {
@@ -70,7 +70,7 @@
     "historical_unknown_proofs": 120,
     "proof_run_coverage": 0.4141,
     "successful_proofs_with_run_telemetry": 82,
-    "terminal_runs": 251,
+    "terminal_runs": 252,
     "verified_proofs": 198
   },
   "credit": {
@@ -82,8 +82,8 @@
   },
   "credited_contributors": [
     {
-      "attempt_yield": 0.2772,
-      "attempts": 202,
+      "attempt_yield": 0.2759,
+      "attempts": 203,
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
       "credit_source_summary": "explicit + inferred",
       "credit_sources": [
@@ -94,20 +94,20 @@
       "difficulty_points": 171,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 52,
-      "failed_attempts": 146,
-      "failures": 127,
+      "failed_attempts": 147,
+      "failures": 128,
       "git_author": "Chris Barlow <cgbarlow@gmail.com>",
       "github": "cgbarlow",
       "inferred_git_proofs": 47,
-      "median_solve_s": 309,
+      "median_solve_s": 316,
       "p90_solve_s": 1917,
       "profile_url": "https://github.com/cgbarlow",
-      "run_success_rate": 0.306,
-      "runs": 183,
+      "run_success_rate": 0.3043,
+      "runs": 184,
       "solver": "cgbarlow",
       "successes": 56,
-      "successes_per_recorded_hour": 1.455,
-      "total_solve_s": 138523,
+      "successes_per_recorded_hour": 1.436,
+      "total_solve_s": 140407,
       "verified_proofs": 99
     },
     {
@@ -337,18 +337,18 @@
       "total_solve_s": 62299
     },
     {
-      "attempt_yield": 0.2857,
-      "attempts": 140,
+      "attempt_yield": 0.2837,
+      "attempts": 141,
       "date": "2026-06-15",
-      "failed_attempts": 100,
-      "failures": 85,
+      "failed_attempts": 101,
+      "failures": 86,
       "median_solve_s": 403,
       "p90_solve_s": 1914,
-      "run_success_rate": 0.32,
-      "runs": 125,
+      "run_success_rate": 0.3175,
+      "runs": 126,
       "successes": 40,
-      "successes_per_recorded_hour": 1.503,
-      "total_solve_s": 95779
+      "successes_per_recorded_hour": 1.474,
+      "total_solve_s": 97663
     }
   ],
   "difficulty": [
@@ -381,18 +381,18 @@
       "total_solve_s": 61240
     },
     {
-      "attempt_yield": 0.3171,
-      "attempts": 82,
+      "attempt_yield": 0.3133,
+      "attempts": 83,
       "difficulty": 3,
-      "failed_attempts": 56,
-      "failures": 44,
-      "median_solve_s": 454,
+      "failed_attempts": 57,
+      "failures": 45,
+      "median_solve_s": 486,
       "p90_solve_s": 1894,
-      "run_success_rate": 0.3714,
-      "runs": 70,
+      "run_success_rate": 0.3662,
+      "runs": 71,
       "successes": 26,
-      "successes_per_recorded_hour": 1.835,
-      "total_solve_s": 50997
+      "successes_per_recorded_hour": 1.77,
+      "total_solve_s": 52881
     },
     {
       "attempt_yield": 0.2273,
@@ -425,18 +425,18 @@
   ],
   "effort": [
     {
-      "attempt_yield": 0.3333,
-      "attempts": 186,
+      "attempt_yield": 0.3316,
+      "attempts": 187,
       "effort": "high",
-      "failed_attempts": 124,
-      "failures": 122,
-      "median_solve_s": 300,
+      "failed_attempts": 125,
+      "failures": 123,
+      "median_solve_s": 301,
       "p90_solve_s": 1914,
-      "run_success_rate": 0.337,
-      "runs": 184,
+      "run_success_rate": 0.3351,
+      "runs": 185,
       "successes": 62,
-      "successes_per_recorded_hour": 1.72,
-      "total_solve_s": 129796
+      "successes_per_recorded_hour": 1.695,
+      "total_solve_s": 131680
     },
     {
       "attempt_yield": 0.0741,
@@ -927,6 +927,22 @@
       "successes": 0,
       "successes_per_recorded_hour": 0.0,
       "total_solve_s": 2338
+    },
+    {
+      "attempt_yield": 0.0,
+      "attempts": 2,
+      "difficulty": 3,
+      "failed_attempts": 2,
+      "failures": 2,
+      "goal": "cube-mod-twentysix-mem",
+      "median_solve_s": 1144,
+      "p90_solve_s": 1884,
+      "run_success_rate": 0.0,
+      "runs": 2,
+      "status": "open",
+      "successes": 0,
+      "successes_per_recorded_hour": 0.0,
+      "total_solve_s": 2288
     },
     {
       "attempt_yield": 0.3333,
@@ -1951,22 +1967,6 @@
       "successes": 1,
       "successes_per_recorded_hour": 8.889,
       "total_solve_s": 405
-    },
-    {
-      "attempt_yield": 0.0,
-      "attempts": 1,
-      "difficulty": 3,
-      "failed_attempts": 1,
-      "failures": 1,
-      "goal": "cube-mod-twentysix-mem",
-      "median_solve_s": 404,
-      "p90_solve_s": 404,
-      "run_success_rate": 0.0,
-      "runs": 1,
-      "status": "open",
-      "successes": 0,
-      "successes_per_recorded_hour": 0.0,
-      "total_solve_s": 404
     },
     {
       "attempt_yield": 0.5,
@@ -3647,18 +3647,18 @@
     },
     {
       "attempt_yield": 0.0,
-      "attempts": 20,
-      "failed_attempts": 20,
-      "failures": 20,
+      "attempts": 21,
+      "failed_attempts": 21,
+      "failures": 21,
       "median_solve_s": 1914,
       "p90_solve_s": 1930,
       "provider_model": "openai / jackcloudman/Leanstral-2603-GGUF",
       "run_success_rate": 0.0,
-      "runs": 20,
+      "runs": 21,
       "solvers": 1,
       "successes": 0,
       "successes_per_recorded_hour": 0.0,
-      "total_solve_s": 38268,
+      "total_solve_s": 40152,
       "verified_proofs": 0
     },
     {
@@ -3696,21 +3696,21 @@
   ],
   "outcome_counts": {
     "decomposed": 16,
-    "failed": 153,
+    "failed": 154,
     "proved": 82
   },
   "outcomes": {
-    "attempt_yield": 0.2733,
-    "attempts": 300,
-    "failed_attempts": 218,
-    "failures": 169,
-    "median_solve_s": 351,
+    "attempt_yield": 0.2724,
+    "attempts": 301,
+    "failed_attempts": 219,
+    "failures": 170,
+    "median_solve_s": 361,
     "p90_solve_s": 1904,
-    "run_success_rate": 0.3267,
-    "runs": 251,
+    "run_success_rate": 0.3254,
+    "runs": 252,
     "successes": 82,
-    "successes_per_recorded_hour": 1.713,
-    "total_solve_s": 172292
+    "successes_per_recorded_hour": 1.695,
+    "total_solve_s": 174176
   },
   "queue": {
     "difficulty_counts": {
@@ -3731,6 +3731,20 @@
     }
   },
   "recent_runs": [
+    {
+      "agent": "sovereign-engine",
+      "attempts": 1,
+      "difficulty": 3,
+      "effort": "high",
+      "ended": "2026-06-15T11:38:05Z",
+      "goal": "cube-mod-twentysix-mem",
+      "id": "20260615t113805767230z-828e9351",
+      "model": "jackcloudman/Leanstral-2603-GGUF",
+      "outcome": "failed",
+      "provider": "openai",
+      "solve_s": 1884,
+      "solver": "cgbarlow"
+    },
     {
       "agent": "thebeast-ace7",
       "attempts": 1,
@@ -3996,20 +4010,6 @@
       "provider": "codex",
       "solve_s": 1138,
       "solver": "adam91holt"
-    },
-    {
-      "agent": "afnz-zbook-b336",
-      "attempts": 1,
-      "difficulty": 3,
-      "effort": "high",
-      "ended": "2026-06-15T09:04:29Z",
-      "goal": "dvd-thirtytwo-odd-pow-eight-sub-one",
-      "id": "20260615t090429755681z-ee582e03",
-      "model": "leanstral-2603",
-      "outcome": "failed",
-      "provider": "openai",
-      "solve_s": 181,
-      "solver": "cgbarlow"
     }
   ],
   "schema_version": 1
