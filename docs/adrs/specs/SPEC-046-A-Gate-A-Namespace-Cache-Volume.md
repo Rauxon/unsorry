@@ -10,12 +10,19 @@ survive across jobs and runs. The Namespace mount is disabled completely on non-
 When the Namespace volume reports a cache hit, `lean-action`'s GitHub mathlib cache is disabled
 because the volume supplies mathlib. On any non-Namespace profile, or if the Namespace volume
 misses/errors, the gate falls back to the existing GitHub caches with no behavioural change.
+Gate A also sets `MATHLIB_CACHE_DIR=${{ github.workspace }}/.lake/mathlib-cache` so Lake's mathlib
+`.ltar` archive cache is stored inside the mounted `.lake` tree instead of the default
+`$HOME/.cache/mathlib`.
 
 ## Implementation (`.github/workflows/gate-a.yml`)
 
 - **`detect.volume` flag.** The `profile` step computes the runner profile name, then sets
   `volume=true` iff the name matches `namespace-*`, else `volume=false`; exposed as the
   `detect.volume` job output.
+- **Mathlib archive cache location.** The workflow-level environment sets
+  `MATHLIB_CACHE_DIR: ${{ github.workspace }}/.lake/mathlib-cache`. This makes `lake exe cache get`
+  reuse cached `.ltar` archives from the same mounted tree instead of downloading them into the
+  runner home directory.
 - **Mount step** (in `gate-a-prepare`, `gate-a-audit`, `gate-a-replay`, after checkout, before the
   build):
   ```yaml
@@ -65,6 +72,8 @@ adopt or to revert.
 ## Acceptance criteria
 
 - `detect.volume` is `true` for `namespace-*` profiles and `false` otherwise.
+- `MATHLIB_CACHE_DIR` points under `${{ github.workspace }}/.lake` so the mounted volume contains
+  both unpacked oleans and downloaded mathlib `.ltar` archives.
 - On a Namespace profile, the mount step runs and `use-github-cache` resolves to `false` only when
   the Namespace cache reports a hit.
 - On a non-Namespace profile, the mount step is skipped, `use-github-cache` resolves to `true`, and
