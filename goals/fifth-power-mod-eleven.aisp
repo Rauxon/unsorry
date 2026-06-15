@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜fifth-power-mod-eleven
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜2
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/fifth-power-mod-eleven.lean
-  sha≜∅
-  aff≜-10
+  sha≜34b27ac2469c6fe02a438cf838808ab4989bad5eb6e07afe93576340a8159e89
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
