@@ -414,5 +414,37 @@
     "terminal_runs": 223,
     "uncredited_proofs": 0,
     "verified_proofs": 188
-  }
+  },
+  "timeline": [
+    {
+      "cumulative_proofs": 19,
+      "date": "2026-06-10",
+      "proofs": 19
+    },
+    {
+      "cumulative_proofs": 33,
+      "date": "2026-06-11",
+      "proofs": 14
+    },
+    {
+      "cumulative_proofs": 58,
+      "date": "2026-06-12",
+      "proofs": 25
+    },
+    {
+      "cumulative_proofs": 91,
+      "date": "2026-06-13",
+      "proofs": 33
+    },
+    {
+      "cumulative_proofs": 124,
+      "date": "2026-06-14",
+      "proofs": 33
+    },
+    {
+      "cumulative_proofs": 188,
+      "date": "2026-06-15",
+      "proofs": 64
+    }
+  ]
 }
