@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-sq-add-one-ge-mul-add
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-sq-add-one-ge-mul-add.md
+  src≜packages/unsorry-archive-0004/backlog/sum-sq-add-one-ge-mul-add.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-sq-add-one-ge-mul-add.lean
+  lean≜packages/unsorry-archive-0004/goals/sum-sq-add-one-ge-mul-add.lean
   sha≜7cba69b419423f121b04abeb6f93e7616ae62182dd86af25866444b59c210676
   aff≜-9
 }

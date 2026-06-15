@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜descartes-total-angular-defect
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜4
 }
 ⟦Σ:Source⟧{
-  src≜backlog/descartes-total-angular-defect.md
+  src≜packages/unsorry-archive-0004/backlog/descartes-total-angular-defect.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/descartes-total-angular-defect.lean
+  lean≜packages/unsorry-archive-0004/goals/descartes-total-angular-defect.lean
   sha≜3a2d077580b09016ed472f3d318f07ad17179775dc59409a8ba554498430886d
   aff≜1
 }

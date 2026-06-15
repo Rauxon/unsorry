@@ -1,0 +1,20 @@
+𝔸5.1.goal.sum-three-squares-ge-sum-products@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-three-squares-ge-sum-products
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/sum-three-squares-ge-sum-products.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-three-squares-ge-sum-products.lean
+  sha≜7ed2df15a5a2dc18308c046f8ca637066404163ac338bebeff90831224845090
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

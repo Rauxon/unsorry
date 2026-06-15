@@ -1,0 +1,20 @@
+𝔸5.1.goal.prod-range-one-add-inv@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜prod-range-one-add-inv
+  phase≜prove
+  status≜proved
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/prod-range-one-add-inv.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/prod-range-one-add-inv.lean
+  sha≜0d35fc289dc5b22b2c0bf31e878624a4fcf958f7c286686f0421c494daf5a9fa
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

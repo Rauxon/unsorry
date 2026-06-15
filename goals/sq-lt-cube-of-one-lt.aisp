@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sq-lt-cube-of-one-lt
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sq-lt-cube-of-one-lt.md
+  src≜packages/unsorry-archive-0004/backlog/sq-lt-cube-of-one-lt.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sq-lt-cube-of-one-lt.lean
+  lean≜packages/unsorry-archive-0004/goals/sq-lt-cube-of-one-lt.lean
   sha≜09d3f32739fed019ee17ce55938989e187ae8c9e2a5edb24c34d4eb674e82535
   aff≜-9
 }

@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜fourth-power-mod-seventeen-mem
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/fourth-power-mod-seventeen-mem.md
+  src≜packages/unsorry-archive-0004/backlog/fourth-power-mod-seventeen-mem.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/fourth-power-mod-seventeen-mem.lean
+  lean≜packages/unsorry-archive-0004/goals/fourth-power-mod-seventeen-mem.lean
   sha≜d3c0bea8752123413fa73c1a1c8c72ac00f0743e3f596ebd4c3d305f04bbe88a
   aff≜-9
 }

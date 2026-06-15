@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-four-pow-ge-sq-prod-s1
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜decompositions/sum-four-pow-ge-sq-prod.adam91holt.aisp
+  src≜packages/unsorry-archive-0004/decompositions/sum-four-pow-ge-sq-prod.adam91holt.aisp
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-four-pow-ge-sq-prod-s1.lean
+  lean≜packages/unsorry-archive-0004/goals/sum-four-pow-ge-sq-prod-s1.lean
   sha≜a753805cbca6926c1a466879f25a2e9678a45460ae0de9337787c4bc6512a914
   aff≜1
   depth≜1

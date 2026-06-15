@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜cauchy-schwarz-three-term
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/cauchy-schwarz-three-term.md
+  src≜packages/unsorry-archive-0004/backlog/cauchy-schwarz-three-term.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/cauchy-schwarz-three-term.lean
+  lean≜packages/unsorry-archive-0004/goals/cauchy-schwarz-three-term.lean
   sha≜cd2f5ab3e6b50898ac05ef03af4e3d562f3af8075b58c9759865311c83d1bcfa
   aff≜-8
 }

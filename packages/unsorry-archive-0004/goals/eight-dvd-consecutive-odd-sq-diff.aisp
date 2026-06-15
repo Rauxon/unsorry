@@ -1,0 +1,20 @@
+𝔸5.1.goal.eight-dvd-consecutive-odd-sq-diff@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜eight-dvd-consecutive-odd-sq-diff
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/eight-dvd-consecutive-odd-sq-diff.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/eight-dvd-consecutive-odd-sq-diff.lean
+  sha≜ae55a884322dcbff38a8dca5faf3777c2b91c68b579abd8904c2131082a7b3de
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,20 @@
+𝔸5.1.goal.twelve-dvd-pow-four-sub-sq@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜twelve-dvd-pow-four-sub-sq
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/twelve-dvd-pow-four-sub-sq.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/twelve-dvd-pow-four-sub-sq.lean
+  sha≜0566e6d6fe80e7a9ac205b1916c88fbde567a9356042ee13907a26b8f1419255
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

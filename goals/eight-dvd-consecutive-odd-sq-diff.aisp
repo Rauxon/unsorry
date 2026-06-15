@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜eight-dvd-consecutive-odd-sq-diff
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/eight-dvd-consecutive-odd-sq-diff.md
+  src≜packages/unsorry-archive-0004/backlog/eight-dvd-consecutive-odd-sq-diff.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/eight-dvd-consecutive-odd-sq-diff.lean
+  lean≜packages/unsorry-archive-0004/goals/eight-dvd-consecutive-odd-sq-diff.lean
   sha≜ae55a884322dcbff38a8dca5faf3777c2b91c68b579abd8904c2131082a7b3de
   aff≜1
 }
