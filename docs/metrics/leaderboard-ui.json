@@ -60,12 +60,12 @@
       "verified_proofs": 85
     },
     {
-      "attempt_yield": 0.3488,
+      "attempt_yield": 0.3261,
       "avatar_url": "https://github.com/perttu.png?size=96",
       "badges": {
         "difficulty": 50,
         "proofs": 23,
-        "success_rate_percent": 62.5
+        "success_rate_percent": 60.0
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
@@ -75,14 +75,14 @@
       "difficulty_points": 50,
       "display_name": "@perttu",
       "explicit_solver_proofs": 23,
-      "failed_attempts": 28,
+      "failed_attempts": 31,
       "github": "perttu",
       "inferred_git_proofs": 0,
-      "median_solve_s": 461,
+      "median_solve_s": 470,
       "profile_url": "https://github.com/perttu",
       "rank": 3,
-      "run_success_rate": 0.625,
-      "runs": 24,
+      "run_success_rate": 0.6,
+      "runs": 25,
       "score": 5575,
       "solver": "perttu",
       "successes": 15,
@@ -234,7 +234,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-15T20:20:12Z",
+  "generated_at": "2026-06-15T20:25:53Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -351,8 +351,8 @@
     },
     {
       "provider_model": "codex / unknown",
-      "run_success_rate": 0.1571,
-      "runs": 70,
+      "run_success_rate": 0.1549,
+      "runs": 71,
       "verified_proofs": 17
     },
     {
@@ -411,7 +411,7 @@
     "historical_unknown_proofs": 146,
     "inferred_git_proofs": 146,
     "proof_run_coverage": 0.2586,
-    "terminal_runs": 291,
+    "terminal_runs": 292,
     "uncredited_proofs": 0,
     "verified_proofs": 232
   },
