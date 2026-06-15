@@ -468,18 +468,13 @@ jobs:
     name: gate-a-archive
     needs: [detect]
     if: needs.detect.outputs.archive == 'true'
-    # Pinned to the 16 GB profile, NOT detect.profile: archive validation
-    # leanchecker-replays whole blocks (each archive package loads its own full
-    # mathlib environment, >8 GB resident). On the 8 GB unsorry-1 runner — where
-    # detect routes non-infra PRs — it OOM-killed at exit 137 even at a 12-module
-    # chunk (#764). unsorry-2 (16 GB) is the same class of runner the full active
-    # replay (push-to-main) already uses, so it has the headroom. (swapon is
-    # blocked on Namespace, so memory must come from the profile, not swap.)
-    runs-on: namespace-profile-unsorry-2
-    # Dedicated job (own runner, 120-min budget): an archive package is a separate
-    # Lake project whose leanchecker replays its OWN mathlib image, which OOM'd
-    # gate-a-prepare (#764). archive_packages also chunks at the smaller
-    # ARCHIVE_REPLAY_CHUNK_SIZE.
+    runs-on: ${{ needs.detect.outputs.profile }}
+    # Validates a changed archive package: packaging sanity (`lake build --wfail`)
+    # + provenance/byte-identity (ADR-018, checked in gate-a-prepare). It does NOT
+    # leanchecker-replay the archived proofs (ADR-048 verify-on-ingest) — they were
+    # kernel-verified when active and are byte-identical now — so it no longer needs
+    # the 16 GB pin (#838, now superseded) or swap that the replay required (#764).
+    # `lake build --wfail` fits the standard runner.
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
@@ -496,22 +491,6 @@ jobs:
         uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
         with:
           path: ${{ github.workspace }}/.lake
-
-      - name: Add swap headroom for leanchecker (best-effort)
-        run: |
-          if sudo fallocate -l 12G /mnt/swapfile \
-               || sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=12288; then
-            sudo chmod 600 /mnt/swapfile
-            sudo mkswap /mnt/swapfile
-            if sudo swapon /mnt/swapfile; then
-              free -h
-            else
-              echo "::warning::swapon not permitted — continuing on RAM + small chunks"
-              sudo rm -f /mnt/swapfile || true
-            fi
-          else
-            echo "::warning::could not allocate a swapfile — continuing on RAM + small chunks"
-          fi
 
       # Archive packages build their own mathlib, so just install the toolchain.
       - name: Set up Lean toolchain

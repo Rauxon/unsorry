@@ -63,14 +63,18 @@ The manifest records:
 
 ## 4. Validation Rules
 
-Before an archive block is frozen, CI must run the full soundness and metadata stack for that block:
+When an archive block is frozen, CI validates **provenance + packaging**, not soundness from scratch
+(ADR-048 verify-on-ingest — the proofs were kernel-verified when active and are byte-identical now):
 
-- `lake build --wfail`;
-- authoritative axiom audit;
-- `leanchecker` kernel replay;
+- byte-identity / immutability: the archived `.lean` is byte-for-byte the already-verified active
+  proof (ADR-018 archive-aware immutability, enforced in `gate-a-prepare`);
+- `lake build --wfail` (packaging sanity — the archive package is a new Lake project);
 - statement-binding regeneration/checks for archived goals;
 - forbidden elaboration option checks;
 - Gate B validation over archived index/proof-run metadata.
+
+It does **not** re-run `leanchecker` kernel replay or the axiom audit on archived proofs — re-running
+them on the same immutable artifact re-proves nothing and OOM-killed memory-bound runners (#764).
 
 After freezing:
 
@@ -89,14 +93,11 @@ Gate A should distinguish three validation scopes:
 
 The default must always fail toward a larger validation scope when the changed-path classifier cannot decide.
 
-**Runs in a dedicated `gate-a-archive` job.** Each archive package is a *separate* Lake project
-whose `leanchecker` replay loads its own full mathlib image (~7–10 GB). Running that inside
-`gate-a-prepare` (which already holds the freshly-built active library) OOM-killed the runner
-(exit 137, #764). So archive validation runs in its own job — `needs: [detect]`,
-`if: archive == 'true'`, on the same Namespace profile with swap headroom and the 120-min budget
-the active replay uses — and `archive_packages` chunks the replay at the smaller
-`ARCHIVE_REPLAY_CHUNK_SIZE` (default 12, override `UNSORRY_ARCHIVE_REPLAY_CHUNK`) rather than the
-active `REPLAY_CHUNK_SIZE` (30), since the package's separate mathlib image leaves less headroom.
+**Runs in the `gate-a-archive` job** (`needs: [detect]`, `if: archive == 'true'`). Under ADR-048
+(verify-on-ingest) this job no longer kernel-replays archived proofs — it does packaging sanity
+(`lake build --wfail`) + provenance, which fits the standard runner. (Earlier cuts — #823's chunking,
+#838's 16 GB pin — tried to make the re-replay fit; ADR-048 removes the re-replay instead, which is
+both cheaper and a better match for what an archive is.)
 
 ## 6. Rollout Plan
 
