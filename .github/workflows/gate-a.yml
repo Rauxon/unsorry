@@ -359,13 +359,15 @@ jobs:
         env:
           BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
         run: |
-          # --jobs $(nproc): the tool caps actual concurrency by available RAM
-          # (~7 GB per leanchecker, GB_PER_REPLAY_PROC), so this stays serial on a
-          # small runner and scales the FULL replay on a high-RAM one (ADR-047).
+          # Replay is SERIAL by default (ADR-047): one leanchecker holds ~all of
+          # mathlib (~7-10 GB), and auto-detecting RAM to parallelise is unsafe in
+          # a container (/proc/meminfo reports the host, not the cgroup limit →
+          # exit-137 OOM). The 120-min timeout covers the serial full replay; an
+          # operator with a known big-RAM runner opts in via UNSORRY_REPLAY_JOBS.
           if [ -n "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.parallel_modules replay --jobs "$(nproc)" --base "$BASE_SHA"
+            python3 -m tools.gate_a.parallel_modules replay --jobs 1 --base "$BASE_SHA"
           else
-            python3 -m tools.gate_a.parallel_modules replay --jobs "$(nproc)"
+            python3 -m tools.gate_a.parallel_modules replay --jobs 1
           fi
 
   gate-a:

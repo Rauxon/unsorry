@@ -8,6 +8,17 @@
 | **Date** | 2026-06-15 |
 | **Status** | Accepted |
 
+> **Revised before merge (2026-06-15): replay is SERIAL by default; parallelism is opt-in.**
+> The first cut auto-detected available RAM (`max_safe_replay_jobs` over `/proc/meminfo`) to choose
+> the chunk concurrency. That is unsafe in a **container**: `/proc/meminfo` reports the **host's**
+> memory, not the cgroup limit, so on a 16 GB runner it read ~74 GB, ran **7 concurrent**
+> `leancheckers`, and OOM-killed every chunk (exit 137). Since one `leanchecker` already needs
+> ~7–10 GB, parallelism cannot help a typical (16 GB) runner anyway. So replay now stays **serial**
+> unless an operator explicitly sets `UNSORRY_REPLAY_JOBS` (a runner they *know* has the RAM). The
+> durable win for memory-bound runners is the **60 → 120 min timeout** (so the serial full replay
+> completes) plus keeping the active set small via archiving (ADR-041). The sections below describe
+> the original RAM-cap intent; the shipped behaviour is serial-by-default + opt-in override.
+
 ## Context
 
 A change to any gate/infra file (`tools/gate_a/**`, `.github/workflows/gate-a.yml`,

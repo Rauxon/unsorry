@@ -105,36 +105,25 @@ def max_safe_jobs(requested_jobs: int) -> int:
     return min(requested_jobs, safe_cap)
 
 
-# A kernel-replay `leanchecker` holds ~all of mathlib resident, far more than an
-# audit's collectAxioms. Its resident set is ~6-7 GB, but checking spikes higher
-# and the run also needs olean page cache — budgeting 7 GB with no headroom
-# over-subscribed and OOM-killed chunks (exit 137). Budget 10 GB/process and
-# reserve headroom below, so we under-subscribe rather than OOM.
-GB_PER_REPLAY_PROC = 10.0
-# Left free for the OS and the mathlib olean page cache (which keeps replay fast).
-RAM_RESERVE_GB = 4.0
-
-
 def max_safe_replay_jobs(requested_jobs: int, mem_gb: float | None = None) -> int:
-    """Cap concurrent leanchecker processes by available RAM (conservative).
+    """Replay concurrency — **serial by default**, parallelism strictly opt-in.
 
-    Replaces the old fixed ``--jobs 1``: stays serial on a small runner (where
-    only one mathlib image fits) but scales on a high-RAM one, so a full replay
-    can use more cores instead of crawling. The cap is deliberately conservative
-    — it is what prevents the OOM an unbounded ``--jobs`` caused (the exit-143 of
-    #264 and the exit-137 of the first ADR-047 cut). Set ``UNSORRY_REPLAY_JOBS``
-    to pin the count explicitly (operator override, e.g. once a profile's safe
-    concurrency is known)."""
+    A kernel-replay ``leanchecker`` holds ~all of mathlib resident (~7-10 GB), so
+    on a typical CI runner only one fits. Auto-detecting RAM to parallelise is
+    unsafe: inside a container ``/proc/meminfo`` reports the **host's** memory,
+    not the cgroup limit, so the heuristic over-counted and OOM-killed every chunk
+    (exit 137 — 7 concurrent leancheckers on a 16 GB runner). So replay stays
+    **serial** unless an operator who *knows* their runner's RAM opts in via
+    ``UNSORRY_REPLAY_JOBS``; the 120-min replay timeout covers the serial path.
+    ``requested_jobs``/``mem_gb`` are accepted for CLI/test symmetry but never
+    auto-parallelise."""
     override = os.environ.get("UNSORRY_REPLAY_JOBS")
     if override:
         try:
             return max(1, int(override))
         except ValueError:
             pass
-    free_ram = available_memory_gb() if mem_gb is None else mem_gb
-    usable = max(0.0, free_ram - RAM_RESERVE_GB)
-    safe_cap = max(1, int(usable // GB_PER_REPLAY_PROC))
-    return max(1, min(requested_jobs, safe_cap))
+    return 1
 
 
 def module_names(root: Path, source_dir: str) -> list[str]:

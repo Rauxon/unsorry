@@ -81,32 +81,28 @@ def test_replay_propagates_a_chunk_failure(tmp_path: Path):
     assert replay(tmp_path, 2, runner) == 1
 
 
-def test_max_safe_replay_jobs_caps_by_ram(monkeypatch):
-    # Conservative: 10 GB/process + 4 GB reserve, so we under-subscribe rather
-    # than OOM (exit 137). Serial on a small runner, scaling on a big one, never
-    # above the requested jobs, floored at 1.
+def test_max_safe_replay_jobs_serial_by_default(monkeypatch):
+    # Serial by default — RAM auto-detection is unsafe in containers
+    # (/proc/meminfo reports the host, not the cgroup limit → exit-137 OOM), so
+    # we never auto-parallelise regardless of requested jobs or "available" RAM.
     monkeypatch.delenv("UNSORRY_REPLAY_JOBS", raising=False)
-    assert max_safe_replay_jobs(8, mem_gb=8.0) == 1     # (8-4)//10 = 0 -> 1
-    assert max_safe_replay_jobs(8, mem_gb=16.0) == 1    # (16-4)//10 = 1
-    assert max_safe_replay_jobs(8, mem_gb=64.0) == 6    # (64-4)//10 = 6
-    assert max_safe_replay_jobs(4, mem_gb=64.0) == 4    # capped by requested
-    assert max_safe_replay_jobs(8, mem_gb=2.0) == 1     # never below 1
+    assert max_safe_replay_jobs(8, mem_gb=8.0) == 1
+    assert max_safe_replay_jobs(8, mem_gb=64.0) == 1   # would-be-big RAM is ignored
+    assert max_safe_replay_jobs(16) == 1
 
 
 def test_replay_jobs_env_override(monkeypatch):
-    # The operator can pin replay concurrency regardless of the RAM heuristic.
+    # The operator can opt into parallelism only by pinning it explicitly.
     monkeypatch.setenv("UNSORRY_REPLAY_JOBS", "3")
     assert max_safe_replay_jobs(8, mem_gb=8.0) == 3
-    assert max_safe_replay_jobs(1, mem_gb=8.0) == 3  # override ignores requested
+    assert max_safe_replay_jobs(1) == 3            # override ignores requested
     monkeypatch.setenv("UNSORRY_REPLAY_JOBS", "bogus")
-    assert max_safe_replay_jobs(8, mem_gb=64.0) == 6  # bad value -> RAM calc
+    assert max_safe_replay_jobs(8, mem_gb=64.0) == 1  # bad value -> serial default
 
 
-def test_replay_parallelism_capped_by_ram(tmp_path: Path, monkeypatch):
-    # Replay now honours --jobs but caps concurrent leancheckers by RAM, so it
-    # stays serial on a small runner (one mathlib image — what prevents the OOM)
-    # and fans out on a big one. With a small library, n_chunks tracks the
-    # effective job count, so call-count reveals which path ran.
+def test_replay_is_serial_unless_opted_in(tmp_path: Path, monkeypatch):
+    # Default: serial → one chunk per REPLAY_CHUNK_SIZE, run one at a time (small
+    # library → a single leanchecker call). Opt-in via UNSORRY_REPLAY_JOBS fans out.
     monkeypatch.delenv("UNSORRY_REPLAY_JOBS", raising=False)
     (tmp_path / "library" / "Unsorry").mkdir(parents=True)
     for name in ("One", "Two", "Three", "Four", "Five"):
@@ -119,16 +115,17 @@ def test_replay_parallelism_capped_by_ram(tmp_path: Path, monkeypatch):
             return completed(argv, returncode=0)
         return runner
 
-    # 8 GB fits one leanchecker → serial → a single chunk over all modules.
+    # Default serial → small library → a single chunk over all modules.
     serial: list[tuple[str, ...]] = []
-    assert replay(tmp_path, 8, make_runner(serial), mem_gb=8.0) == 0
+    assert replay(tmp_path, 8, make_runner(serial)) == 0
     assert len(serial) == 1
     assert serial[0][:3] == ("lake", "env", "leanchecker")
     assert {"Unsorry.One", "Unsorry.Five"} <= set(serial[0])
 
-    # 64 GB → jobs=4 honoured → fans out into 4 chunks; every module still covered.
+    # Opt-in: UNSORRY_REPLAY_JOBS=4 → fans out into 4 chunks; every module covered.
+    monkeypatch.setenv("UNSORRY_REPLAY_JOBS", "4")
     parallel: list[tuple[str, ...]] = []
-    assert replay(tmp_path, 4, make_runner(parallel), mem_gb=64.0) == 0
+    assert replay(tmp_path, 4, make_runner(parallel)) == 0
     assert len(parallel) == 4
     assert all(c[:3] == ("lake", "env", "leanchecker") for c in parallel)
     assert {m for c in parallel for m in c[3:]} == {
