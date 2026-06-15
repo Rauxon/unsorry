@@ -1,7 +1,0 @@
-𝔸5.1.claim.dvd-455-pow-fifteen-sub-pow-three.thebeast-ace7@2026-06-15
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜dvd-455-pow-fifteen-sub-pow-three; agent≜thebeast-ace7}
-⟦Σ:Times⟧{ts≜2026-06-15T18:38:49Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
