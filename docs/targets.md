@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**106 open · 129 proved · 244 total prove-goals.**
+**105 open · 130 proved · 244 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -22,7 +22,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `cube-sum-ge-three-prod-s2` — cube-sum-ge-three-prod-s2 | open | 1 | — | — | — |
 | `discriminant-nonneg-s2` — discriminant-nonneg-s2 | open | 1 | — | — | — |
 | `dvd-2730-pow-thirteen-sub-self` — 2730 divides n^13 - n for every integer n. | open | 4 | — | #400 Identity Engine (ADR-043) — divisibility family. | 2730 divides n^13 - n for every integer n. Not a named mathlib lemma in this form. |
-| `dvd-nine-pow-nine-sub-pow-three` — 9 divides n^9 - n^3 for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family. | 9 divides n^9 - n^3 for every integer n. Not a named mathlib lemma in this form. |
 | `eight-sum-pow-four-ge-sum-pow-four` — For all reals a,b, (a+b)⁴ ≤ 8(a⁴+b⁴). | open | 3 | — | #400 Identity Engine (ADR-043) — inequalities family. | For all reals a,b, (a+b)⁴ ≤ 8(a⁴+b⁴). Not a named mathlib lemma in this form. |
 | `fifth-power-mod-eleven` — For every natural number n, the fifth power n⁵ is ≡ 0, 1, or 10 (mod 11) — i.e. 0 or ±1, by Fermat. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family (Fermat's little theorem instance). | By Fermat, n⁵ ≡ 0 or ±1 (mod 11); the residues are exactly {0,1,10}. Not a named mathlib lemma. |
 | `forty-two-dvd-pow-seven-sub-self` — For every integer n, 42 ∣ n⁷ − n (Fermat: 2,3,7 each divide n⁷−n). | open | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 42 ∣ n⁷ − n (Fermat: 2,3,7 each divide n⁷−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
@@ -141,6 +140,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `discriminant-nonneg-s3` — discriminant-nonneg-s3 | proved | 1 | — | — | — |
 | `dvd-30-pow-nine-sub-self` — 30 divides n^9 - n for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family. | 30 divides n^9 - n for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-66-pow-eleven-sub-self` — 66 divides n^11 - n for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family. | 66 divides n^11 - n for every integer n. Not a named mathlib lemma in this form. |
+| `dvd-nine-pow-nine-sub-pow-three` — 9 divides n^9 - n^3 for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family. | 9 divides n^9 - n^3 for every integer n. Not a named mathlib lemma in this form. |
 | `eight-dvd-consecutive-odd-sq-diff` — For every integer n, 8 ∣ (2n+3)² − (2n+1)² (difference of consecutive odd squares). | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For every integer n, 8 ∣ (2n+3)² − (2n+1)² (difference of consecutive odd squares). Not a named mathlib lemma in this concrete form. |
 | `eight-triangular-add-one-eq-odd-sq` — For every natural n, 8·Tₙ + 1 = (2n+1)², where Tₙ = ∑_{i≤n} i is the n-th triangular number; the classic "8T+1 is a perfect (odd) square" test for triangular numbers. | proved | 2 | — | classic identities (triangular-number gems — compounds on the Gauss sum) | The triangular-number characterisation: m is triangular iff 8m+1 is a perfect square (the forward direction). Conway & Guy, The Book of Numbers; standard recreational/elementary number theory. |
 | `euclid-perfect-numbers` — Euclid's theorem on perfect numbers: if $2^p - 1$ is prime (a Mersenne prime), then $2^{p-1} \cdot (2^p - 1)$ is perfect. | proved | 3 | — | Euclid, Elements IX.36 | https://en.wikipedia.org/wiki/Euclid%E2%80%93Euler_theorem |
