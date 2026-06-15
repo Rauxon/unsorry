@@ -1,0 +1,8 @@
+𝔸5.1.lemma.94d7917eb7c5@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜94d7917eb7c5ffbe6d391ab634f8d5d4236d38df94b8606bdee25802217e9ee3; goal≜diff-two-squares-zmod-sixteen-ne-two-six; name≜diff_two_squares_zmod_sixteen_ne_two_six}
+⟦Σ:Source⟧{src≜goals/diff-two-squares-zmod-sixteen-ne-two-six.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜306}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
