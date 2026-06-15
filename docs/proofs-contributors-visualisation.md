@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**659 goals — 427 open · 7 blocked · 10 translated · 135 proved · 80 archived.** 16 decomposition families shown below; standalone goals are listed in the table.
+**659 goals — 426 open · 7 blocked · 10 translated · 136 proved · 80 archived.** 16 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (131 of 135 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (132 of 136 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -368,7 +368,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gcd-fib-add-two-eq-gcd-fib-succ`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-fib-add-two-eq-gcd-fib-succ.lean) | open | 3 | — | — | — | — |
 | [`gcd-n-factorial-succ-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n-factorial-succ-eq-one.lean) | open | 3 | — | — | — | — |
 | [`gcd-n1-n7-dvd-six`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n1-n7-dvd-six.lean) | open | 2 | — | — | — | — |
-| [`gcd-n2-n4-dvd-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n2-n4-dvd-two.lean) | open | 2 | — | — | — | — |
 | [`gcd-n2-n6-dvd-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n2-n6-dvd-four.lean) | open | 2 | — | — | — | — |
 | [`gcd-n2-n8-dvd-six`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n2-n8-dvd-six.lean) | open | 2 | — | — | — | — |
 | [`gcd-n3-2n7-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n3-2n7-eq-one.lean) | open | 2 | — | — | — | — |
@@ -763,6 +762,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gcd-n-add-six-dvd-six`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n-add-six-dvd-six.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#869](https://github.com/agenticsnz/unsorry/pull/869) | 2026-06-15 |
 | [`gcd-n1-n4-dvd-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n1-n4-dvd-three.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#732](https://github.com/agenticsnz/unsorry/pull/732) | 2026-06-15 |
 | [`gcd-n2-2n5-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n2-2n5-eq-one.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#866](https://github.com/agenticsnz/unsorry/pull/866) | 2026-06-15 |
+| [`gcd-n2-n4-dvd-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n2-n4-dvd-two.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#870](https://github.com/agenticsnz/unsorry/pull/870) | 2026-06-15 |
 | [`gcd-np1-2np1-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-np1-2np1-eq-one.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#867](https://github.com/agenticsnz/unsorry/pull/867) | 2026-06-15 |
 | [`gcd-self-add-dvd`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-self-add-dvd.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#728](https://github.com/agenticsnz/unsorry/pull/728) | 2026-06-15 |
 | [`nat-sq-lt-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow.lean) | proved | 3 | — | adam91holt · `gpt-5.5` | — | 2026-06-14 |
