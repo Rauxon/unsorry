@@ -1,0 +1,20 @@
+𝔸5.1.goal.sextic-x6-plus-x3-plus-one-composite-shift@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sextic-x6-plus-x3-plus-one-composite-shift
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/sextic-x6-plus-x3-plus-one-composite-shift.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sextic-x6-plus-x3-plus-one-composite-shift.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

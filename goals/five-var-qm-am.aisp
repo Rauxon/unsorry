@@ -1,0 +1,20 @@
+𝔸5.1.goal.five-var-qm-am@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜five-var-qm-am
+  phase≜prove
+  status≜open
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/five-var-qm-am.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/five-var-qm-am.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,9 @@
+𝔸5.1.run.diff-twelfth-power-dvd-by-diff-cube.thebeast-ace7.20260615t150536489575z-37e4b0cd@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t150536489575z-37e4b0cd; goal≜diff-twelfth-power-dvd-by-diff-cube; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜diff-twelfth-power-dvd-by-diff-cube}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜459; ended≜2026-06-15T15:05:36Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8598/8609] Built Unsorry.Coprime2n13n2 (989ms) ✔ [8599/8609] Built Unsorry.FourVarQmAmS1 (2.1s) ✔ [8600/8609] Built Unsorry.DiscriminantNonnegS3 (3.2s) ✔ [8601/8609] Built Unsorry.AmHmTwoVarS3 (4.2s) ✔ [8602/8609] Built Unsorry.SixDvdThreeConsecutiveInt (5.4s) ✔ [8603/8609] Bu}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

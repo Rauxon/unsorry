@@ -9,6 +9,12 @@ permissions:
   contents: read
   pull-requests: write
 
+env:
+  # Lake's mathlib cache archives live outside .lake by default
+  # ($HOME/.cache/mathlib). Put them under .lake so the Namespace cache volume
+  # persists both the unpacked oleans and the .ltar archives.
+  MATHLIB_CACHE_DIR: ${{ github.workspace }}/.lake/mathlib-cache
+
 concurrency:
   group: gate-a-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -24,6 +30,7 @@ jobs:
       active: ${{ steps.filter.outputs.active }}
       archive: ${{ steps.filter.outputs.archive }}
       profile: ${{ steps.profile.outputs.name }}
+      volume: ${{ steps.profile.outputs.volume }}
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       - id: filter
@@ -69,10 +76,19 @@ jobs:
       - id: profile
         run: |
           if [ "${{ github.event_name }}" != "pull_request" ] || [ "${{ steps.filter.outputs.infra }}" = "true" ]; then
-            echo "name=namespace-profile-unsorry-2" >> "$GITHUB_OUTPUT"
+            name=namespace-profile-unsorry-2
           else
-            echo "name=namespace-profile-unsorry-1" >> "$GITHUB_OUTPUT"
+            name=namespace-profile-unsorry-1
           fi
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+          # Failsafe (ADR-046): the .lake cache volume engages ONLY on a Namespace
+          # profile. If the runner is ever changed to a non-Namespace one, volume
+          # is false and the gate falls back to lean-action's GitHub mathlib cache
+          # — nothing references a volume that isn't there.
+          case "$name" in
+            namespace-*) echo "volume=true"  >> "$GITHUB_OUTPUT" ;;
+            *)           echo "volume=false" >> "$GITHUB_OUTPUT" ;;
+          esac
 
   gate_a_prepare:
     name: gate-a-prepare
@@ -83,7 +99,8 @@ jobs:
     #                                 to main), so the slow ~20-min full replay
     #                                 runs in its own pool and never blocks the
     #                                 frequent proof PRs on unsorry-1.
-    # Both profiles are 4 vCPU / 16 GB; the split is for isolation, not power.
+    # unsorry-1 is the smaller proof-PR runner (8 GB); unsorry-2 is the larger
+    # heavy runner (16 GB) for full replays + archive validation.
     # This prepare job warms/restores the Lean cache, generates binding modules,
     # and runs the cheap authoritative checks once before the heavy audit/replay
     # jobs start in parallel.
@@ -111,7 +128,32 @@ jobs:
       # unchanged — Lake's content-hash traces recompile any changed source, and
       # the axiom audit + leanchecker kernel replay still validate every olean
       # that reaches main (full replay on push to main), cached or not.
+      # Namespace .lake cache volume (ADR-046): persists mathlib + the local
+      # oleans on the runner's attached disk across jobs and runs, so `lake exe
+      # cache get` finds mathlib present (no ~3.5-min GitHub-cache restore) and
+      # the library oleans survive between prepare/audit/replay. Engages ONLY on
+      # a Namespace profile; soft-fails (continue-on-error) if no volume is
+      # attached, falling back to the GitHub caches below.
+      - name: Namespace .lake cache volume
+        if: needs.detect.outputs.volume == 'true'
+        id: ns_lake_cache
+        continue-on-error: true
+        uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
+        with:
+          path: ${{ github.workspace }}/.lake
+
+      - name: Namespace .lake cache diagnostics
+        if: needs.detect.outputs.volume == 'true'
+        run: |
+          echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          du -sh .lake .lake/packages .lake/build 2>/dev/null || true
+
+      # GitHub-cache fallback for the local oleans. Keep this active even on
+      # Namespace: the volume is shared and keyless, while ADR-045's cache is
+      # exact to this commit so audit/replay can restore prepare's build and
+      # skip the duplicate library build safely.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: .lake/build
@@ -135,7 +177,9 @@ jobs:
         if: needs.detect.outputs.active == 'true'
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
-          use-github-cache: true
+          # On a warm Namespace .lake volume, mathlib is already resident. If the
+          # volume misses/errors, fall back to lean-action's GitHub cache.
+          use-github-cache: ${{ needs.detect.outputs.volume != 'true' || steps.ns_lake_cache.outputs.cache-hit != 'true' }}
           build-args: "UnsorryGoals"
 
       # ADR-011 statement binding: Gate A REGENERATES the binding obligation for
@@ -164,26 +208,9 @@ jobs:
         if: needs.detect.outputs.active == 'true'
         run: python3 -m tools.gate_a.check_library_options library
 
-      - name: Set up Lean toolchain for archive packages
-        if: needs.detect.outputs.archive == 'true' && needs.detect.outputs.active != 'true'
-        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
-        with:
-          build: "false"
-          test: "false"
-          lint: "false"
-          use-mathlib-cache: "false"
-          use-github-cache: "false"
-
-      - name: Validate changed archive packages (ADR-041)
-        if: needs.detect.outputs.archive == 'true'
-        env:
-          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
-        run: |
-          if [ -n "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.archive_packages validate-changed --base "$BASE_SHA"
-          else
-            python3 -m tools.gate_a.archive_packages validate-changed
-          fi
+      # Archive-package validation moved to its own job (gate-a-archive): each
+      # archive package is a separate Lake project that leanchecker-replays its
+      # own mathlib image, which OOM'd when run inside this job's headroom (#764).
 
       - name: Textual lint on library diff (belt only — the audit is the bar)
         if: github.event_name == 'pull_request' && needs.detect.outputs.active == 'true'
@@ -214,7 +241,32 @@ jobs:
       # hit on the commit sha) so this job's library build is a near-no-op rather
       # than a second cold ~16-21 min rebuild. See gate-a-prepare for the full
       # rationale and the soundness argument.
+      # Namespace .lake cache volume (ADR-046): persists mathlib + the local
+      # oleans on the runner's attached disk across jobs and runs, so `lake exe
+      # cache get` finds mathlib present (no ~3.5-min GitHub-cache restore) and
+      # the library oleans survive between prepare/audit/replay. Engages ONLY on
+      # a Namespace profile; soft-fails (continue-on-error) if no volume is
+      # attached, falling back to the GitHub caches below.
+      - name: Namespace .lake cache volume
+        if: needs.detect.outputs.volume == 'true'
+        id: ns_lake_cache
+        continue-on-error: true
+        uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
+        with:
+          path: ${{ github.workspace }}/.lake
+
+      - name: Namespace .lake cache diagnostics
+        if: needs.detect.outputs.volume == 'true'
+        run: |
+          echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          du -sh .lake .lake/packages .lake/build 2>/dev/null || true
+
+      # GitHub-cache fallback for the local oleans. Keep this active even on
+      # Namespace: the volume is shared and keyless, while ADR-045's cache is
+      # exact to this commit so audit/replay can restore prepare's build and
+      # skip the duplicate library build safely.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: .lake/build
@@ -225,13 +277,24 @@ jobs:
       - name: Build (lean-action, mathlib binary cache)
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
-          use-github-cache: true
+          # On a warm Namespace .lake volume, mathlib is already resident. If the
+          # volume misses/errors, fall back to lean-action's GitHub cache.
+          use-github-cache: ${{ needs.detect.outputs.volume != 'true' || steps.ns_lake_cache.outputs.cache-hit != 'true' }}
           build-args: "UnsorryGoals"
 
       - name: Generate statement-binding obligations
         run: python3 -m tools.gate_a.check_statement_binding generate .
 
       - name: Library build — zero-warning bar (--wfail)
+        # Skip when the .lake/build cache hit on the exact commit-sha key:
+        # gate-a-prepare already built and --wfail-checked these exact oleans this
+        # run, and the axiom audit / leanchecker only LOAD oleans (`lake exe` /
+        # `lake env`, never a library `lake build` — axiom_audit is a standalone
+        # lean_exe, leanchecker runs under `lake env`), so rebuilding here was pure
+        # waste (~3.5 min/job, the gate's biggest constant cost). Self-healing:
+        # on a cache miss the build runs. Soundness unchanged — leanchecker
+        # re-checks every olean it loads against the kernel regardless of origin.
+        if: steps.lake_build_cache.outputs.cache-hit != 'true'
         run: lake build UnsorryLibrary --wfail
 
       # Incremental on PRs: audit only changed library modules plus their
@@ -298,7 +361,32 @@ jobs:
       # hit on the commit sha) so this job's library build is a near-no-op rather
       # than a third cold ~16-21 min rebuild. See gate-a-prepare for the full
       # rationale and the soundness argument.
+      # Namespace .lake cache volume (ADR-046): persists mathlib + the local
+      # oleans on the runner's attached disk across jobs and runs, so `lake exe
+      # cache get` finds mathlib present (no ~3.5-min GitHub-cache restore) and
+      # the library oleans survive between prepare/audit/replay. Engages ONLY on
+      # a Namespace profile; soft-fails (continue-on-error) if no volume is
+      # attached, falling back to the GitHub caches below.
+      - name: Namespace .lake cache volume
+        if: needs.detect.outputs.volume == 'true'
+        id: ns_lake_cache
+        continue-on-error: true
+        uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
+        with:
+          path: ${{ github.workspace }}/.lake
+
+      - name: Namespace .lake cache diagnostics
+        if: needs.detect.outputs.volume == 'true'
+        run: |
+          echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          du -sh .lake .lake/packages .lake/build 2>/dev/null || true
+
+      # GitHub-cache fallback for the local oleans. Keep this active even on
+      # Namespace: the volume is shared and keyless, while ADR-045's cache is
+      # exact to this commit so audit/replay can restore prepare's build and
+      # skip the duplicate library build safely.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: .lake/build
@@ -339,13 +427,24 @@ jobs:
       - name: Build (lean-action, mathlib binary cache)
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
-          use-github-cache: true
+          # On a warm Namespace .lake volume, mathlib is already resident. If the
+          # volume misses/errors, fall back to lean-action's GitHub cache.
+          use-github-cache: ${{ needs.detect.outputs.volume != 'true' || steps.ns_lake_cache.outputs.cache-hit != 'true' }}
           build-args: "UnsorryGoals"
 
       - name: Generate statement-binding obligations
         run: python3 -m tools.gate_a.check_statement_binding generate .
 
       - name: Library build — zero-warning bar (--wfail)
+        # Skip when the .lake/build cache hit on the exact commit-sha key:
+        # gate-a-prepare already built and --wfail-checked these exact oleans this
+        # run, and the axiom audit / leanchecker only LOAD oleans (`lake exe` /
+        # `lake env`, never a library `lake build` — axiom_audit is a standalone
+        # lean_exe, leanchecker runs under `lake env`), so rebuilding here was pure
+        # waste (~3.5 min/job, the gate's biggest constant cost). Self-healing:
+        # on a cache miss the build runs. Soundness unchanged — leanchecker
+        # re-checks every olean it loads against the kernel regardless of origin.
+        if: steps.lake_build_cache.outputs.cache-hit != 'true'
         run: lake build UnsorryLibrary --wfail
 
       # Incremental on PRs (ADR-033): replay only the changed library modules
@@ -365,8 +464,56 @@ jobs:
             python3 -m tools.gate_a.parallel_modules replay --jobs 1
           fi
 
+  gate_a_archive:
+    name: gate-a-archive
+    needs: [detect]
+    if: needs.detect.outputs.archive == 'true'
+    runs-on: ${{ needs.detect.outputs.profile }}
+    # Validates a changed archive package: packaging sanity (`lake build --wfail`)
+    # + provenance/byte-identity (ADR-018, checked in gate-a-prepare). It does NOT
+    # leanchecker-replay the archived proofs (ADR-048 verify-on-ingest) — they were
+    # kernel-verified when active and are byte-identical now — so it no longer needs
+    # the 16 GB pin (#838, now superseded) or swap that the replay required (#764).
+    # `lake build --wfail` fits the standard runner.
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      # Mount the Namespace volume so the archive packages' `lake exe cache get`
+      # finds mathlib .ltar archives in the shared MATHLIB_CACHE_DIR (under .lake)
+      # instead of re-downloading per package (ADR-046).
+      - name: Namespace .lake cache volume
+        if: needs.detect.outputs.volume == 'true'
+        id: ns_lake_cache
+        continue-on-error: true
+        uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
+        with:
+          path: ${{ github.workspace }}/.lake
+
+      # Archive packages build their own mathlib, so just install the toolchain.
+      - name: Set up Lean toolchain
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          build: "false"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "false"
+          use-github-cache: "false"
+
+      - name: Validate changed archive packages (ADR-041)
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
+        run: |
+          if [ -n "$BASE_SHA" ]; then
+            python3 -m tools.gate_a.archive_packages validate-changed --base "$BASE_SHA"
+          else
+            python3 -m tools.gate_a.archive_packages validate-changed
+          fi
+
   gate-a:
-    needs: [detect, gate_a_prepare, gate_a_audit, gate_a_replay]
+    needs: [detect, gate_a_prepare, gate_a_audit, gate_a_replay, gate_a_archive]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -378,6 +525,8 @@ jobs:
           PREPARE_RESULT: ${{ needs.gate_a_prepare.result }}
           AUDIT_RESULT: ${{ needs.gate_a_audit.result }}
           REPLAY_RESULT: ${{ needs.gate_a_replay.result }}
+          ARCHIVE_RELEVANT: ${{ needs.detect.outputs.archive }}
+          ARCHIVE_RESULT: ${{ needs.gate_a_archive.result }}
         run: |
           set -euo pipefail
           if [ "$LEAN_RELEVANT" != "true" ]; then
@@ -389,6 +538,9 @@ jobs:
           pairs="gate-a-prepare:$PREPARE_RESULT"
           if [ "$ACTIVE_RELEVANT" = "true" ]; then
             pairs="$pairs gate-a-audit:$AUDIT_RESULT gate-a-replay:$REPLAY_RESULT"
+          fi
+          if [ "$ARCHIVE_RELEVANT" = "true" ]; then
+            pairs="$pairs gate-a-archive:$ARCHIVE_RESULT"
           fi
 
           for pair in $pairs; do

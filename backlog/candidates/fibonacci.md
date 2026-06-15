@@ -51,7 +51,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Expand fib(n±2) via Int.fib_add_two and reduce to Cassini fib_succ_mul_fib_pred_sub_fib_sq with ring · conf: high
 - [ ] `catalan_r3_int_fib` — Catalan's identity at offset 3: fib(n)² − fib(n−3)·fib(n+3) = 4·(−1)^(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Expand fib(n±3) via repeated Int.fib_add_two, reduce to Cassini, ring_nf with the (-1)^n parity · conf: med
-- [ ] `fib_add_four_recurrence_nat` — fib(n+4) + fib(n) = 3·fib(n+2), the second-order Fibonacci recurrence
+- [x] `fib_add_four_recurrence_nat` — fib(n+4) + fib(n) = 3·fib(n+2), the second-order Fibonacci recurrence
       absence: no-local-match · triviality: non-trivial · intended: Unfold fib(n+4) and fib(n+2) twice with Nat.fib_add_two and close by omega · conf: high
 - [ ] `fib_add_three_double_nat` — fib(n+3) = 2·fib(n+1) + fib(n)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite with Nat.fib_add_two twice and finish with omega · conf: high
@@ -59,15 +59,15 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Express fib(3n) via Int.fib_add of 2n and n, substitute fib(2n) closed forms, then ring after collecting cubes · conf: med
 - [ ] `sum_range_fib_prod_consec_even_nat` — The sum of fib(i+1)·fib(i+2) over the first 2n indices equals fib(2n+1)² − 1
       absence: no-local-match · triviality: non-trivial · intended: Induct on n, using Finset.sum_range_succ twice and the fib(2n) doubling identities, simplify with ring/omega · conf: med
-- [ ] `sum_range_fib_prod_shift_even_nat` — The sum of fib(i)·fib(i+1) over the first 2n indices equals fib(2n)²
+- [x] `sum_range_fib_prod_shift_even_nat` — The sum of fib(i)·fib(i+1) over the first 2n indices equals fib(2n)²
       absence: no-local-match · triviality: non-trivial · intended: Induct on n via Finset.sum_range_succ (two terms per step) and reduce using fib doubling identities and ring · conf: high
-- [ ] `fib_two_mul_sq_diff_int` — fib(2n) = fib(n+1)² − fib(n−1)², a difference-of-squares doubling formula
+- [x] `fib_two_mul_sq_diff_int` — fib(2n) = fib(n+1)² − fib(n−1)², a difference-of-squares doubling formula
       absence: no-local-match · triviality: non-trivial · intended: Start from Int.fib_two_mul, rewrite fib(n+1) and fib(n-1) via fib_add_two, and close with ring · conf: high
 - [ ] `fib_sq_diff_telescope_nat` — fib(n+2)² − fib(n)² = fib(2n+2), linking a square difference to a doubled index
       absence: no-local-match · triviality: non-trivial · intended: Use Nat.fib_two_mul_add_two / factor as (fib(n+2)-fib n)(fib(n+2)+fib n)=fib(n+1)·L and rewrite to fib(2n+2) · conf: high
 - [ ] `lucas_fib_mn_sum_int` — fib(m+n) + (−1)^n·fib(m−n) = L(n)·fib(m), with L(n)=fib(n−1)+fib(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Apply Int.fib_add to fib(m+n) and fib(m-n), expand L(n), and combine with ring and parity of (-1)^n · conf: med
-- [ ] `two_fib_add_int` — 2·fib(m+n) = fib(m)·L(n) + L(m)·fib(n), the symmetric Fibonacci addition law
+- [x] `two_fib_add_int` — 2·fib(m+n) = fib(m)·L(n) + L(m)·fib(n), the symmetric Fibonacci addition law
       absence: no-local-match · triviality: non-trivial · intended: Expand both Lucas terms as fib sums, apply Int.fib_add, and finish with ring · conf: high
 - [ ] `two_lucas_add_int` — 2·L(m+n) = L(m)·L(n) + 5·fib(m)·fib(n), the Lucas addition law
       absence: no-local-match · triviality: non-trivial · intended: Rewrite each Lucas number as a fib sum, apply Int.fib_add to all three composite indices, then ring · conf: med
@@ -77,7 +77,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Expand both Lucas squares to fib terms, use Int.fib_two_mul_add_one, and close with ring · conf: med
 - [ ] `lucas_succ_via_fib_sum_nat` — fib(n) + 2·fib(n+1) = fib(n) + fib(n+2), expressing L(n+1) two equivalent ways
       absence: no-local-match · triviality: non-trivial · intended: Rewrite fib(n+2) with Nat.fib_add_two and finish by omega · conf: high
-- [ ] `sum_range_lucas_shift_nat` — The sum of L(i+1)=fib(i)+fib(i+2) over the first n indices equals fib(n+1)+fib(n+3)−3
+- [x] `sum_range_lucas_shift_nat` — The sum of L(i+1)=fib(i)+fib(i+2) over the first n indices equals fib(n+1)+fib(n+3)−3
       absence: no-local-match · triviality: non-trivial · intended: Induct on n with Finset.sum_range_succ, using the partial-sum identity sum fib = fib(n+1)-1 twice, then omega · conf: high
 - [ ] `fib_dvd_three_mul_four_nat` — 3 divides fib(4n), since fib(4)=3 divides fib of every multiple of 4
       absence: no-local-match · triviality: non-trivial · intended: Apply Nat.fib_dvd with 4 ∣ 4*n and rewrite Nat.fib 4 = 3 · conf: high
@@ -92,15 +92,15 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
 
 ### Replenishment round 3 (scoped 2026-06-15) — 21 candidates
 
-- [ ] `catalan_r2_shift_nat_fib_int` — Over the integers, the square of fib(n+2) minus fib(n) times fib(n+4) equals (-1)^n, a Catalan identity at offset two shifted to stay in the naturals
+- [x] `catalan_r2_shift_nat_fib_int` — Over the integers, the square of fib(n+2) minus fib(n) times fib(n+4) equals (-1)^n, a Catalan identity at offset two shifted to stay in the naturals
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, expand fib(n+4),fib(n+3) via Int.fib_add_two down to fib(n),fib(n+1), reduce to Cassini, then ring with parity of (-1)^n · conf: high
-- [ ] `catalan_r3_shift_nat_fib_int` — Over the integers, the square of fib(n+3) minus fib(n) times fib(n+6) equals four times (-1)^n, a Catalan identity at offset three
+- [x] `catalan_r3_shift_nat_fib_int` — Over the integers, the square of fib(n+3) minus fib(n) times fib(n+6) equals four times (-1)^n, a Catalan identity at offset three
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, repeatedly expand fib(n+k) via Int.fib_add_two to fib(n),fib(n+1), reduce to Cassini, ring_nf with the (-1)^n parity term (fib(3)^2 = 4) · conf: high
 - [ ] `catalan_r4_shift_nat_fib_int` — Over the integers, the square of fib(n+4) minus fib(n) times fib(n+8) equals nine times (-1)^n, a Catalan identity at offset four
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, telescope fib(n+8),fib(n+4) via Int.fib_add_two to fib(n),fib(n+1), reduce to Cassini, ring with parity (fib(4)^2 = 9) · conf: med
 - [ ] `catalan_r5_shift_nat_fib_int` — Over the integers, the square of fib(n+5) minus fib(n) times fib(n+10) equals twenty-five times (-1)^n, a Catalan identity at offset five
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, expand fib(n+10),fib(n+5) via repeated Int.fib_add_two to fib(n),fib(n+1), reduce to Cassini, ring_nf with parity (fib(5)^2 = 25) · conf: med
-- [ ] `fib_prod_cross_shift_nat_int` — Over the integers, fib(n+1) times fib(n+2) minus fib(n) times fib(n+3) equals (-1)^n
+- [x] `fib_prod_cross_shift_nat_int` — Over the integers, fib(n+1) times fib(n+2) minus fib(n) times fib(n+3) equals (-1)^n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, rewrite fib(n+3)=fib(n+1)+fib(n+2) and fib(n+2)=fib(n)+fib(n+1) via Int.fib_add_two, reduce to Cassini fib(n)*fib(n+2)-fib(n+1)^2, ring with parity · conf: high
 - [ ] `fib_sq_diff_eq_fib_prod_skip_nat` — The difference of the squares fib(n+2)^2 and fib(n+1)^2 equals fib(n) times fib(n+3)
       absence: no-local-match · triviality: non-trivial · intended: Factor the LHS as (fib(n+2)-fib(n+1))(fib(n+2)+fib(n+1)) = fib(n)*fib(n+3) using Nat.fib_add_two twice; discharge the Nat subtraction with omega / Nat.fib monotonicity guard · conf: high
@@ -128,9 +128,52 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Nat.fib_dvd gives fib(14) ∣ fib(14n); rewrite Nat.fib 14 = 377 and chain 29 ∣ 377 by dvd_trans · conf: high
 - [ ] `coprime_fib_two_mul_fib_two_mul_add_two_nat` — Fib(2n) and fib(2n+2) are coprime, because the gcd of their indices is two and fib(2)=1
       absence: no-local-match · triviality: non-trivial · intended: Unfold Nat.Coprime to gcd; use Nat.fib_gcd to turn gcd(fib(2n),fib(2n+2)) into fib(gcd(2n,2n+2)), show gcd(2n,2n+2)=2 (omega/Nat.Coprime), and Nat.fib 2 = 1 · conf: high
-- [ ] `sum_range_window_five_fib_eq_fib_diff_nat` — The sum of five consecutive Fibonacci numbers starting at fib(n) equals fib(n+6) minus fib(n+1)
+- [x] `sum_range_window_five_fib_eq_fib_diff_nat` — The sum of five consecutive Fibonacci numbers starting at fib(n) equals fib(n+6) minus fib(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Expand the fixed-size Finset.range 5 sum with Finset.sum_range_succ (or decide/simp on the literal), rewrite the fib(n+k) via fib_add_two, and close with omega over the Nat subtraction (fib monotone) · conf: high
-- [ ] `sum_range_window_four_fib_eq_fib_diff_nat` — The sum of four consecutive Fibonacci numbers starting at fib(n) equals fib(n+5) minus fib(n+1)
+- [x] `sum_range_window_four_fib_eq_fib_diff_nat` — The sum of four consecutive Fibonacci numbers starting at fib(n) equals fib(n+5) minus fib(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Expand the Finset.range 4 sum with Finset.sum_range_succ, rewrite fib(n+k) via fib_add_two, and discharge the Nat subtraction with omega (fib monotone) · conf: high
 - [ ] `sum_range_fib_prod_two_apart_even_nat` — The sum of fib(i) times fib(i+2) over the first 2n indices equals fib(2n) times fib(2n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induct on n, peeling two terms per step with Finset.sum_range_succ at indices 2n and 2n+1, then reduce using fib_add_two and the fib doubling identities (fib_two_mul, fib_two_mul_add_one) with ring/omega · conf: med
+
+### Replenishment round 4 (scoped 2026-06-15) — 20 candidates
+
+- [ ] `fib_add_formula_m_n_succ_nat` — The Fibonacci addition formula: fib(m+n+1) equals fib(m+1)*fib(n+1) + fib(m)*fib(n)
+      absence: no-local-match · triviality: non-trivial · intended: Induct on n (or m) using Nat.fib_add_two and the recurrence; mathlib may have Nat.fib_add as a lemma to rewrite with · conf: high
+- [ ] `fib_two_mul_add_two_eq_fib_succ_mul_nat` — fib(2n+2) equals fib(n+1) times (2*fib(n) + fib(n+1))
+      absence: no-local-match · triviality: non-trivial · intended: Specialize the addition formula at m=n+1 (so 2n+2 = (n+1)+(n+1)) then simp/ring; or induct · conf: high
+- [ ] `fib_sq_add_fib_add_three_sq_eq_two_fib_two_mul_add_three` — The sum of the squares of fib(n) and fib(n+3) equals twice fib(2n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Reduce to the fib(2k+1)=fib(k)^2+fib(k+1)^2 lemma applied at suitable k plus fib recurrence; induction or addition formula + ring · conf: high
+- [ ] `fib_two_mul_eq_fib_succ_sq_sub_fib_pred_sq_int` — For n ≥ 1, fib(2n) equals fib(n+1)^2 minus fib(n-1)^2 over the integers
+      absence: no-local-match · triviality: non-trivial · intended: Write n = k+1, cast to ℤ, expand both squares via the addition/double-angle fib identities and ring · conf: high
+- [ ] `fib_cubes_window_eq_fib_three_mul_int` — For n ≥ 1, fib(n+1)^3 + fib(n)^3 - fib(n-1)^3 equals fib(3n) over the integers
+      absence: no-local-match · triviality: non-trivial · intended: Set n=k+1, cast to ℤ; expand fib(3k+3) via the addition formula in terms of fib k, fib(k+1) and verify the cubic identity by ring (nlinarith fallback) · conf: med
+- [ ] `fib_pred_mul_fib_add_two_sub_fib_mul_fib_succ_eq_neg_one_pow` — For n ≥ 1, fib(n-1)*fib(n+2) − fib(n)*fib(n+1) equals (−1)^n over the integers
+      absence: no-local-match · triviality: non-trivial · intended: Substitute n=k+1, reduce to Cassini fib(k)fib(k+2)-fib(k+1)^2 = (-1)^(k+1) plus fib recurrence and ring · conf: high
+- [ ] `fib_succ_sq_sub_fib_sq_eq_fib_pred_mul_fib_add_two_int` — For n ≥ 1, fib(n+1)^2 − fib(n)^2 equals fib(n-1)*fib(n+2) over the integers
+      absence: no-local-match · triviality: non-trivial · intended: Set n=k+1, expand fib(k+2)=fib(k+1)+fib(k) and fib(n-1)=fib(k), then factor the difference of squares and ring · conf: high
+- [ ] `five_fib_mul_fib_succ_eq_lucas_two_mul_add_one_sub_neg_one_pow` — Five times fib(n)*fib(n+1) equals the Lucas number L(2n+1) (written fib(2n)+fib(2n+2)) minus (−1)^n
+      absence: no-local-match · triviality: non-trivial · intended: Use fib(2n)+fib(2n+2)=L(2n+1) and the product-to-Lucas identity; cast to ℤ and induct, or reduce via fib addition formula + ring · conf: med
+- [ ] `lucas_two_mul_eq_lucas_sq_sub_two_neg_one_pow_fib_form` — For n ≥ 1, the Lucas number L(2n) equals L(n)^2 − 2(−1)^n, with all Lucas numbers written as fib(k-1)+fib(k+1)
+      absence: no-local-match · triviality: non-trivial · intended: Set n=k+1, cast to ℤ, rewrite both Lucas-as-fib forms, expand via fib addition/double formulas and ring (nlinarith if needed) · conf: med
+- [ ] `lucas_sq_eq_five_fib_sq_add_four_neg_one_pow_fib_form` — For n ≥ 1, L(n)^2 = 5*fib(n)^2 + 4(−1)^n, with L(n) written as fib(n-1)+fib(n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Set n=k+1, cast, expand the Lucas-as-fib square and use Cassini fib(k)fib(k+2)-fib(k+1)^2=(-1)^(k+1) with ring · conf: high
+- [ ] `lucas_cassini_fib_form_int` — The Cassini identity for Lucas numbers: L(n-1)*L(n+1) − L(n)^2 = 5(−1)^(n+1), with Lucas numbers in fib form
+      absence: no-local-match · triviality: non-trivial · intended: Set n=k+2, cast to ℤ, expand all Lucas-as-fib terms via fib recurrence and reduce to fib Cassini, then ring · conf: med
+- [ ] `docagne_lucas_fib_cross_diff_eq_two_neg_one_pow` — A d'Ocagne-type Lucas identity: fib(n)*L(n+1) − fib(n+1)*L(n) = 2(−1)^(n+1), with Lucas numbers in fib form
+      absence: no-local-match · triviality: non-trivial · intended: Set n=k+1, cast, expand L(n+1)=fib n + fib(n+2) and L(n)=fib(n-1)+fib(n+1), reduce to Cassini and ring · conf: med
+- [ ] `fib_mul_lucas_cross_sum_eq_two_fib_two_mul_succ` — fib(n)*L(n+1) + fib(n+1)*L(n) = 2*fib(2n+1), with Lucas numbers written in fib form
+      absence: no-local-match · triviality: non-trivial · intended: Set n=k+1, expand the Lucas-as-fib factors, and use fib(2k+1)=fib(k)^2+fib(k+1)^2 plus the recurrence; ring · conf: high
+- [ ] `two_mul_sum_range_fib_three_mul_eq_fib_three_mul_pred_sub_one` — For n ≥ 1, twice the sum of fib(3i) for i < n equals fib(3n-1) − 1
+      absence: no-local-match · triviality: non-trivial · intended: Induct on n with Finset.sum_range_succ; the step reduces to a fib recurrence identity provable by simp/omega/ring after fib_add_two rewrites · conf: med
+- [ ] `two_mul_sum_range_fib_three_mul_add_one_eq_fib_three_mul` — Twice the sum of fib(3i+1) for i < n equals fib(3n)
+      absence: no-local-match · triviality: non-trivial · intended: Induct on n via Finset.sum_range_succ; the inductive step is a fib recurrence among fib(3n), fib(3n+1), fib(3n+3) closed by repeated fib_add_two and ring/omega · conf: med
+- [ ] `sum_range_fib_succ_mul_lucas_succ_eq_fib_two_mul_succ_sub_one` — The sum over i < n of fib(i+1)*L(i+1) (Lucas in fib form) equals fib(2n+1) − 1
+      absence: no-local-match · triviality: non-trivial · intended: Each term equals fib(2i+2) since fib(k)L(k)=fib(2k); reduce to a telescoping/standard even-index fib sum, induct with sum_range_succ · conf: med
+- [ ] `sum_range_lucas_succ_sq_eq_lucas_mul_lucas_succ_sub_two_fib_form` — For n ≥ 1, the sum of L(i+1)^2 for i < n equals L(n)*L(n+1) − 2, with Lucas numbers in fib form
+      absence: no-local-match · triviality: non-trivial · intended: Induct on n with Finset.sum_range_succ; the step is the Lucas telescoping L(k+1)^2 = L(k+1)L(k+2)-L(k)L(k+1) provable via fib recurrence + ring · conf: med
+- [ ] `coprime_fib_succ_fib_add_two_nat` — Consecutive Fibonacci numbers fib(n+1) and fib(n+2) are coprime
+      absence: no-local-match · triviality: non-trivial · intended: Unfold Nat.Coprime to gcd = 1; use Nat.fib_add_two and Nat.gcd recurrence (or induction with Nat.coprime_add_self) to reduce to gcd(fib 1, fib 2)=1 · conf: high
+- [ ] `coprime_fib_add_two_fib_nat` — fib(n+2) and fib(n) are coprime for all n
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite fib(n+2)=fib(n+1)+fib(n); gcd(fib(n+1)+fib n, fib n)=gcd(fib(n+1),fib n)=1 via consecutive-coprime · conf: high
+- [ ] `fib_two_mul_add_three_eq_cross_prod_sum_nat` — fib(2n+3) equals fib(n+1)*fib(n+2) + fib(n+2)*fib(n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Apply the fib addition formula fib(a+b+1)=fib(a+1)fib(b+1)+fib(a)fib(b) with a=n+1, b=n+1 shifted, then simp/ring · conf: high

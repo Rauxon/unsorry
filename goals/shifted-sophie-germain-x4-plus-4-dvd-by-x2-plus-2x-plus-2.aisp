@@ -1,0 +1,20 @@
+𝔸5.1.goal.shifted-sophie-germain-x4-plus-4-dvd-by-x2-plus-2x-plus-2@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜shifted-sophie-germain-x4-plus-4-dvd-by-x2-plus-2x-plus-2
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/shifted-sophie-germain-x4-plus-4-dvd-by-x2-plus-2x-plus-2.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/shifted-sophie-germain-x4-plus-4-dvd-by-x2-plus-2x-plus-2.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

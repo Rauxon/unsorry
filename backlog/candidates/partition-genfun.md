@@ -41,11 +41,11 @@ Theme staging file for the Identity Engine (#400, ADR-043). 18 vetted candidates
 
 ### Replenishment round 2 (scoped 2026-06-15) — 18 candidates
 
-- [ ] `sum_range_compositions_count_eq_two_pow` — Summing the number of compositions of n+1 into k parts (binom(n, k-1)) over all part counts gives 2^n, the total number of compositions
+- [x] `sum_range_compositions_count_eq_two_pow` — Summing the number of compositions of n+1 into k parts (binom(n, k-1)) over all part counts gives 2^n, the total number of compositions
       absence: no-local-match · triviality: non-trivial · intended: Reindex to ∑ binom(n,j) over j and apply Nat.sum_range_choose; or induct with Pascal · conf: high
 - [ ] `sum_range_compositions_parts_total_eq` — The total number of parts across all compositions of n+2 equals (n+3)·2^n
       absence: no-local-match · triviality: non-trivial · intended: Split j·C = C + (j-1)·C, reindex, use sum_range_choose and ∑ k·C(m,k)=m·2^(m-1) · conf: med
-- [ ] `sum_range_vandermonde_self_eq_central_choose` — The self-convolution of binomial coefficients of n at total degree r equals binom(2n, r), a Vandermonde/generating-function product identity
+- [x] `sum_range_vandermonde_self_eq_central_choose` — The self-convolution of binomial coefficients of n at total degree r equals binom(2n, r), a Vandermonde/generating-function product identity
       absence: no-local-match · triviality: non-trivial · intended: Apply Nat.add_choose_le / Nat.choose_symm_diff via Nat.add_pow_le; really use Nat.sum_range_choose_mul_pow style: invoke Nat.add_choose_le or Finset.sum_range_choose_mul through Vandermonde (Nat.add_choose_eq) · conf: high
 - [ ] `sum_range_neg_binom_half_eq_two_pow` — The truncated negative-binomial generating sum of binom(n+k, k)/2^k from k=0 to n equals 2^n
       absence: no-local-match · triviality: non-trivial · intended: Induction on n using the hockey-stick/Pascal recurrence binom(n+1+k,k)=binom(n+k,k)+binom(n+k,k-1) and field_simp · conf: med
@@ -57,21 +57,21 @@ Theme staging file for the Identity Engine (#400, ADR-043). 18 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Rewrite C(n,k)/(k+1)=C(n+1,k+1)/(n+1), reindex, apply alternating-row-sum vanishing · conf: med
 - [ ] `sum_range_choose_diag_eq_fib_succ` — Summing binom(n-k, k) along a shallow diagonal of Pascal's triangle counts compositions of n into 1s and 2s, giving the Fibonacci number F(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Strong/two-step induction matching the Fibonacci recurrence, splitting the top diagonal term via Pascal · conf: med
-- [ ] `sum_range_fib_mul_two_pow_rev_eq` — The generating-function-weighted sum of Fibonacci numbers ∑ F(k)·2^(n-k) plus F(n+3) equals 2^(n+1)
+- [x] `sum_range_fib_mul_two_pow_rev_eq` — The generating-function-weighted sum of Fibonacci numbers ∑ F(k)·2^(n-k) plus F(n+3) equals 2^(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n using Nat.fib_add_two and 2^(n+1-k)=2·2^(n-k); additive form avoids Nat subtraction · conf: high
 - [ ] `sum_range_inclusion_exclusion_surjections_eq_factorial` — The inclusion–exclusion alternating sum ∑ (-1)^k·binom(n,k)·(n-k)^n counts surjections of an n-set onto itself and equals n!
       absence: no-local-match · triviality: non-trivial · intended: Relate to Stirling numbers of the second kind / finite differences of x^n; use Int.alternating_sum_range_choose with the n-th forward difference of the monomial · conf: med
-- [ ] `sum_icc_k_mul_three_k_sub_one_eq` — The sum of k(3k-1) for k from 1 to n, twice the generalized pentagonal numbers, equals n²(n+1)
+- [x] `sum_icc_k_mul_three_k_sub_one_eq` — The sum of k(3k-1) for k from 1 to n, twice the generalized pentagonal numbers, equals n²(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_Icc_succ_top, then ring/omega on the step · conf: high
-- [ ] `sum_icc_k_mul_three_k_add_one_eq` — The sum of k(3k+1) for k from 1 to n, twice the negative-index generalized pentagonal numbers, equals n(n+1)²
+- [x] `sum_icc_k_mul_three_k_add_one_eq` — The sum of k(3k+1) for k from 1 to n, twice the negative-index generalized pentagonal numbers, equals n(n+1)²
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_Icc_succ_top and ring · conf: high
-- [ ] `two_mul_sum_icc_three_k_sub_two_eq_pentagonal` — Twice the sum of (3k-2) for k from 1 to n equals n(3n-1), making the n-th partial sum the pentagonal number P_n
+- [x] `two_mul_sum_icc_three_k_sub_two_eq_pentagonal` — Twice the sum of (3k-2) for k from 1 to n equals n(3n-1), making the n-th partial sum the pentagonal number P_n
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top, clearing Nat subtraction via the doubled form and omega · conf: high
-- [ ] `sum_range_succ_mul_two_pow_eq_closed` — The derivative-of-geometric-series sum ∑ (k+1)·2^k from k=0 to n has closed form n·2^(n+1)+1
+- [x] `sum_range_succ_mul_two_pow_eq_closed` — The derivative-of-geometric-series sum ∑ (k+1)·2^k from k=0 to n has closed form n·2^(n+1)+1
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ and ring · conf: high
 - [ ] `sum_range_choose_mul_pow_three_eq_two_pow_two_n` — The binomial expansion ∑ binom(n,k)·3^(n-k) equals 4^n = (1+3)^n
       absence: no-local-match · triviality: non-trivial · intended: Rewrite as 1^k·3^(n-k) and apply add_pow / Nat.sum_range_choose_mul_pow (binomial theorem) · conf: high
-- [ ] `sum_range_fib_sq_mul_two_eq` — Twice the running sum of squared Fibonacci numbers relates the telescoping products F(n)F(n+1) and F(n+1)F(n+2) minus F(n+1)²
+- [x] `sum_range_fib_sq_mul_two_eq` — Twice the running sum of squared Fibonacci numbers relates the telescoping products F(n)F(n+1) and F(n+1)F(n+2) minus F(n+1)²
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ and Nat.fib_add_two; doubled form keeps everything in ℕ · conf: high
 - [ ] `sum_range_two_pow_mul_fib_succ_eq` — The reversed convolution ∑ 2^k·F(n-k) plus F(n+3) equals 2^(n+1), a generating-function product fact
       absence: no-local-match · triviality: non-trivial · intended: Induction reindexing the convolution; additive form avoids Nat subtraction in the target · conf: med
@@ -100,7 +100,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 18 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Rewrite multichoose_eq to C(n+j,j), then induct on m with Finset.sum_range_succ and Pascal's rule (Nat.succ_sub_one / Nat.choose_succ_succ) for the hockey-stick collapse · conf: high
 - [ ] `multichoose_two_eq_choose_succ_two` — The number of size-2 multisets from an n-element set equals C(n+1, 2), the number of unordered pairs with repetition
       absence: no-local-match · triviality: non-trivial · intended: Rewrite multichoose_eq giving (n+1).choose 2; for n=0 both are 0, otherwise it is definitional after Nat.add_sub_cancel — a real index-bookkeeping rewrite, not a single battery tactic · conf: high
-- [ ] `sum_range_multichoose_two_eq_choose_succ_two` — Summing the size-j multiset counts from a two-element set over j up to m gives the triangular number C(m+2, 2)
+- [x] `sum_range_multichoose_two_eq_choose_succ_two` — Summing the size-j multiset counts from a two-element set over j up to m gives the triangular number C(m+2, 2)
       absence: no-local-match · triviality: non-trivial · intended: Use multichoose_two (= j+1) to turn the sum into ∑ (j+1) = (m+1)(m+2)/2; then identify with choose_two_right and close with omega/ring after Gauss summation · conf: high
 - [ ] `sum_range_multichoose_vandermonde` — The multiset coefficients satisfy a Vandermonde-type convolution: the self-convolution of multichoose(a+1,·) and multichoose(b+1,·) at degree m equals multichoose(a+b+2, m)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite each multichoose via multichoose_eq into ordinary binomials C(a+j,j)·C(b+m-j,m-j) and apply Nat.add_choose_le / Vandermonde (Nat.choose_symm plus the Cauchy convolution) reindexed over the range · conf: med
@@ -124,3 +124,48 @@ Theme staging file for the Identity Engine (#400, ADR-043). 18 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Show both sides equal 2^n - 1: the left by the column-2 closed form, the right by Nat.sum_range_choose minus the j=0 term (C(n,0)=1); reconcile with omega and reindexing · conf: med
 - [ ] `sum_range_multichoose_three_eq_choose_cube_pos` — Summing the size-j multiset counts from a three-element set over j up to m gives the tetrahedral number C(m+3, 3)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite multichoose 3 j via multichoose_eq to C(j+2,2), then telescope the hockey-stick sum of C(j+2,2) into C(m+3,3) by induction with Finset.sum_range_succ and Pascal's rule · conf: high
+
+### Replenishment round 4 (scoped 2026-06-15) — 21 candidates
+
+- [ ] `sum_range_k_sq_mul_choose_eq_n_succ_mul_two_pow` — Four times the binomial-weighted sum of k-squared over the n-th Pascal row equals n(n+1)2^n
+      absence: no-local-match · triviality: non-trivial · intended: Second-derivative of (1+x)^n at x=1; induction on n with Finset.sum_range_succ and Nat.succ_mul_choose_eq, or differentiate the binomial generating function twice · conf: high
+- [ ] `sum_range_k_cube_mul_choose_eq_n_sq_mul_three_add_mul_two_pow` — Eight times the binomial-weighted sum of k-cubed over the n-th Pascal row equals n^2(n+3)2^n
+      absence: no-local-match · triviality: non-trivial · intended: Third-order operator x d/dx applied to (1+x)^n at x=1; induction reducing to the k^2 and k^1 weighted-row sums, k*C(n,k)=n*C(n-1,k-1) · conf: med
+- [ ] `sum_range_k_mul_choose_mul_two_pow_eq_two_n_mul_three_pow` — Three times the sum of k·C(n,k)·2^k over the n-th row equals 2n·3^n
+      absence: no-local-match · triviality: non-trivial · intended: x d/dx of (1+x)^n at x=2; rewrite k*C(n,k)=n*C(n-1,k-1) then re-index to n*sum C(n-1,j)2^(j+1)=2n*3^(n-1) · conf: high
+- [ ] `sum_range_k_mul_choose_mul_three_pow_eq_three_n_mul_four_pow` — Four times the sum of k·C(n,k)·3^k over the n-th row equals 3n·4^n
+      absence: no-local-match · triviality: non-trivial · intended: x d/dx of (1+x)^n at x=3; k*C(n,k)=n*C(n-1,k-1) plus re-index to n*3*sum C(n-1,j)3^j = 3n*4^(n-1) · conf: high
+- [ ] `sum_range_k_mul_choose_sq_eq_n_mul_central_binom_pred` — The sum of k·C(n,k)^2 over the n-th row equals n·C(2n-1,n-1)
+      absence: no-local-match · triviality: non-trivial · intended: k*C(n,k)=n*C(n-1,k-1), turn into n*∑ C(n-1,k-1)C(n,k) and apply Vandermonde to collapse to a single central binomial coefficient · conf: med
+- [ ] `sum_range_choose_mul_fib_succ_eq_fib_two_n_succ` — The binomial transform of the shifted Fibonacci numbers F(k+1) gives F(2n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Binomial transform via Fibonacci doubling F(2n+1)=F(n)^2+F(n+1)^2; induct on n using Nat.fib_add and the Pascal recurrence to split the row · conf: med
+- [ ] `sum_range_choose_mul_lucas_succ_eq_lucas_two_n_succ` — The binomial transform of the shifted Lucas numbers L(k+1) equals L(2n+1) (Lucas written via Fibonacci as 2F(m+1)-F(m))
+      absence: no-local-match · triviality: non-trivial · intended: Express Lucas as 2*fib(m+1)-fib(m), split the binomial sum into two shifted-Fibonacci binomial transforms, each evaluating by the Fibonacci doubling identity · conf: med
+- [ ] `alt_sum_range_choose_mul_fib_eq_neg_fib` — The signed binomial transform of the Fibonacci numbers gives minus F(n)
+      absence: no-local-match · triviality: non-trivial · intended: Binet/golden-ratio: (1-phi)^n and (1-psi)^n give -F(n) by phi+psi shift; in Lean induct on n with Nat.fib_add and the alternating Pascal split · conf: med
+- [ ] `alt_sum_range_choose_mul_lucas_eq_lucas` — The signed binomial transform of the Lucas numbers L(k) reproduces L(n) itself
+      absence: no-local-match · triviality: non-trivial · intended: Write Lucas as 2*fib(k+1)-fib(k); reduce to the signed-Fibonacci binomial transform identities and combine, using the n=0 base case L(0)=2 · conf: med
+- [ ] `alt_sum_range_choose_mul_k_pow_eq_neg_one_pow_factorial` — The n-th finite difference of the monomial x^n evaluated at 0 equals (-1)^n n! (top-degree finite-difference identity)
+      absence: no-local-match · triviality: non-trivial · intended: n-th forward difference of x^n is n!; relate via Stirling numbers (Nat.stirling / surjections) or induct using the difference operator Δ lowering degree, base on factorial · conf: med
+- [ ] `alt_sum_range_choose_mul_k_pow_pred_eq_zero` — The n-th finite difference of a polynomial of degree below n vanishes, shown for the monomial x^(n-1)
+      absence: no-local-match · triviality: non-trivial · intended: Finite-difference operator Δ^n kills any polynomial of degree < n; reduce x^(n-1) over Stirling-number expansion where every term has degree < n and applies the Δ^n-annihilation lemma · conf: med
+- [ ] `central_binom_sub_central_binom_succ_eq_catalan` — The difference of two adjacent central-row binomials equals the n-th Catalan number
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite both binomials with Nat.choose_symm_diff / succ_sub_one and Nat.centralBinom, then use catalan = centralBinom/(n+1) and the C(2n,n)-C(2n,n+1) ballot identity · conf: high
+- [ ] `sum_range_central_trinomial_row_eq_trinomial_coeff` — The central trinomial coefficient counted as a diagonal of products of binomials equals the even-index-row form summing C(n,2k)C(2k,k)
+      absence: no-local-match · triviality: non-trivial · intended: Both sides equal the constant term of (x + 1 + 1/x)^n; reindex C(n,k)C(n-k,k) = C(n,2k)C(2k,k) termwise via a choose-mul-choose subset-of-subset identity and cancel · conf: med
+- [ ] `sum_icc_three_k_add_one_eq_n_mul_succ_sq` — The running sum of twice the second generalized pentagonal numbers k(3k+1) equals n(n+1)^2
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n via Finset.sum_Icc_succ_top, then ring; or convert to range and combine Gauss and square-pyramidal closed forms · conf: high
+- [ ] `sum_range_second_pentagonal_double_eq_cube_form` — Twice the partial sum over the second-pentagonal weights k(3k+1) telescopes to (n-1)n(n+1)+(n-1)n
+      absence: no-local-match · triviality: non-trivial · intended: Induct on n with Finset.sum_range_succ; handle the Nat predecessor by casing on n then ring; alternatively recognize k(3k+1)=(k+1)^3-k^3-... telescoping cubes · conf: high
+- [ ] `card_filter_two_mul_le_eq_div_two_succ` — The number of partitions of n into parts of size at most 2 (counting 2's used) is floor(n/2)+1
+      absence: no-local-match · triviality: non-trivial · intended: Show the filtered set equals Finset.range (n/2 + 1) by an antisymmetry on 2*b ≤ n ↔ b ≤ n/2 (Nat.le_div_iff_mul_le), then Finset.card_range · conf: high
+- [ ] `card_filter_add_eq_two_part_partition_eq_div_two` — The number of partitions of n into exactly two positive parts equals floor(n/2)
+      absence: no-local-match · triviality: non-trivial · intended: Map a smaller part a (1 ≤ a ≤ n/2) bijectively to the partition (a, n-a); show the filter equals Finset.Icc 1 (n/2) via Nat.le_div_iff_mul_le and Finset.card_Icc · conf: high
+- [ ] `stars_bars_triples_card_eq_choose_add_two` — The number of ordered triples of nonnegative integers summing to n (stars and bars) is C(n+2,2)
+      absence: no-local-match · triviality: non-trivial · intended: Stars-and-bars for three parts; induct on n peeling off the first coordinate so the count is ∑_{a≤n}(n-a+1) = ∑ (j+1) = C(n+2,2), or build the multiset bijection · conf: high
+- [ ] `sum_range_fib_mul_two_pow_rev_eq_fib_two_mul` — The binomial transform of the even-index Fibonacci numbers F(2k) equals F(n)·L(n) = F(2n)
+      absence: no-local-match · triviality: non-trivial · intended: Use F(2k)=F(k)L(k) and the generating-function identity ∑ C(n,k)F(2k) = F(2n)=F(n)L(n); induct via Nat.fib_two_mul and the binomial-transform doubling already established for F(k+1) · conf: med
+- [ ] `sum_range_choose_mul_pow_five_eq_neg_four_pow_signed` — Evaluating the signed n-th Pascal row generating polynomial at x=5 gives (-4)^n
+      absence: no-local-match · triviality: non-trivial · intended: Recognize ∑ C(n,k)(-5)^k = (1-5)^n = (-4)^n via Commute.add_pow / Int.add_pow over Finset.range (n+1) · conf: high
+- [ ] `sum_range_k_mul_pred_mul_choose_eq_n_mul_pred_two_pow` — Four times the falling-factorial-weighted Pascal-row sum k(k-1)C(n,k) equals n(n-1)2^n
+      absence: no-local-match · triviality: non-trivial · intended: Second forward derivative: k(k-1)C(n,k)=n(n-1)C(n-2,k-2); reindex to n(n-1)∑ C(n-2,j) = n(n-1)2^(n-2), then clear the factor of 4 · conf: high

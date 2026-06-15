@@ -63,7 +63,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 21 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; expand H(k+1)=H(k)+1/(k+1), clear denominators with field_simp and close the step with ring · conf: med
 - [ ] `sum_range_three_k_add_one_mul_three_pow_closed` — Four times the sum over k<n of (3k+1)*3^k equals (6n-5)*3^n + 5
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; pow_succ on 3^(n+1) then ring/omega to match the step (work in ℤ or ℕ with care on subtraction) · conf: high
-- [ ] `sum_icc_k_mul_two_k_sub_one_closed_form` — Six times the sum of k(2k-1) for k from 1 to n equals n(n+1)(4n-1)
+- [x] `sum_icc_k_mul_two_k_sub_one_closed_form` — Six times the sum of k(2k-1) for k from 1 to n equals n(n+1)(4n-1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; the step is a cubic identity closed by ring (after clearing the 2k-1 subtraction) or omega · conf: high
 - [ ] `sum_icc_recip_id_mul_add_three_gap_telescope` — The sum of 1/(k(k+3)) for k from 1 to n telescopes to (1/3)(11/6 - (1/(n+1)+1/(n+2)+1/(n+3)))
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; gap-3 partial fraction 1/(k(k+3))=(1/3)(1/k-1/(k+3)), field_simp + ring, denominators nonzero · conf: med
@@ -75,3 +75,42 @@ Theme staging file for the Identity Engine (#400, ADR-043). 21 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; pow_succ on 3^(n+1), lift to ℤ to handle 5k-2 and 10n-9 subtractions, close with ring · conf: high
 - [ ] `sum_icc_harmonic_div_id_eq_half_sq_plus_second` — Twice the sum of H(k)/k for k up to n equals H(n)^2 plus the second-order harmonic sum (Euler's symmetry identity)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; expand H(n+1)=H(n)+1/(n+1) in both H(n)^2 and the second-order sum, field_simp + ring on the step · conf: med
+
+### Replenishment round 4 (scoped 2026-06-15) — 18 candidates
+
+- [ ] `sum_range_k_sq_mul_four_pow_closed` — The weighted sum of k squared times four to the k over the first n terms has a closed form scaled by 27
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: high
+- [ ] `sum_range_k_sq_mul_five_pow_closed` — The weighted sum of k squared times five to the k over the first n terms has a closed form scaled by 32
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: high
+- [ ] `sum_range_k_cube_mul_three_pow_closed` — The weighted sum of k cubed times three to the k over the first n terms has a cubic-polynomial closed form scaled by 8
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: med
+- [ ] `sum_range_k_cube_mul_four_pow_closed` — The weighted sum of k cubed times four to the k over the first n terms has a cubic-polynomial closed form scaled by 27
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: med
+- [ ] `sum_range_k_fourth_mul_two_pow_closed` — The weighted sum of k to the fourth times two to the k has a quartic-polynomial-times-power closed form
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: med
+- [ ] `sum_range_id_mul_neg_two_pow_closed_form` — The weighted sum of k times negative-two to the k has a closed form scaled by 9
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: high
+- [ ] `sum_range_id_mul_neg_three_pow_closed_form` — The weighted sum of k times negative-three to the k has a closed form scaled by 16
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: high
+- [ ] `sum_range_k_sq_mul_neg_two_pow_closed` — The weighted sum of k squared times negative-two to the k has a closed form scaled by 27
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: high
+- [ ] `sum_range_k_sq_mul_neg_three_pow_closed` — The weighted sum of k squared times negative-three to the k has a closed form scaled by 32
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: med
+- [ ] `sum_range_k_mul_succ_mul_two_pow_closed_form` — The weighted sum of k times its successor times two to the k has a clean quadratic-times-power closed form
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: high
+- [ ] `sum_range_succ_mul_add_two_mul_two_pow_closed` — The weighted sum of (k+1)(k+2) times two to the k has a clean quadratic-times-power closed form
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: high
+- [ ] `sum_range_three_k_add_one_mul_two_pow_closed` — The weighted sum of (3k+1) times two to the k has a clean linear-times-power closed form
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: high
+- [ ] `sum_range_k_sq_add_one_mul_two_pow_closed_form` — The weighted sum of (k squared plus one) times two to the k has a clean quadratic-times-power closed form
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, ring · conf: high
+- [ ] `sum_range_id_mul_fib_closed_form` — The sum of k times the kth Fibonacci number plus a Fibonacci correction term equals a closed Fibonacci form
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, Nat.fib_add_two, omega · conf: med
+- [ ] `two_mul_sum_range_fib_three_mul_eq_fib_pred` — Twice the sum of every third Fibonacci number (indices divisible by three), plus one, equals a single Fibonacci number
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, Nat.fib_add_two, omega · conf: med
+- [ ] `two_mul_sum_range_fib_three_mul_add_one_eq_fib` — Twice the sum of Fibonacci numbers at indices congruent to one mod three equals a single Fibonacci number
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, Nat.fib_add_two, omega · conf: med
+- [ ] `two_mul_sum_range_fib_three_mul_add_two_eq_fib` — Twice the sum of Fibonacci numbers at indices congruent to two mod three, plus one, equals a single Fibonacci number
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, Nat.fib_add_two, omega · conf: med
+- [ ] `sum_range_fib_four_mul_add_two_eq_fib_sq` — The sum of Fibonacci numbers at indices four-k-plus-two equals the square of the (2n)th Fibonacci number
+      absence: no-local-match · triviality: non-trivial · intended: induction on n, Finset.sum_range_succ, Fibonacci product identities, ring · conf: med
