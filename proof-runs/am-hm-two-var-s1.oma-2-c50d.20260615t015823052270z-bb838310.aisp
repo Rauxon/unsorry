@@ -1,0 +1,8 @@
+𝔸5.1.run.am-hm-two-var-s1.oma-2-c50d.20260615t015823052270z-bb838310@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t015823052270z-bb838310; goal≜am-hm-two-var-s1; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high}
+⟦Γ:Goal⟧{goal≜am-hm-two-var-s1}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜569; ended≜2026-06-15T01:58:23Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜ff0fe10ebdc1ea2d3f0bb1ebcf1ca7225fd31445055a06ae3b65b4969c05d59b}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

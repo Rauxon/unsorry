@@ -1,0 +1,8 @@
+𝔸5.1.lemma.ff0fe10ebdc1@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜ff0fe10ebdc1ea2d3f0bb1ebcf1ca7225fd31445055a06ae3b65b4969c05d59b; goal≜am-hm-two-var-s1; name≜add_sq_ge_four_mul_real}
+⟦Σ:Source⟧{src≜goals/am-hm-two-var-s1.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high; attempts≜1; solve_s≜569}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
