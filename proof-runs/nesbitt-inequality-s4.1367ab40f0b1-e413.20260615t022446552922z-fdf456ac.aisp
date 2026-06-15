@@ -1,0 +1,8 @@
+𝔸5.1.run.nesbitt-inequality-s4.1367ab40f0b1-e413.20260615t022446552922z-fdf456ac@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t022446552922z-fdf456ac; goal≜nesbitt-inequality-s4; agent≜1367ab40f0b1-e413; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜nesbitt-inequality-s4}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜225; ended≜2026-06-15T02:24:46Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜d4f52c047396fdfaf148e99cac9c3af96b0577ad2f0746a46558856814040ee0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

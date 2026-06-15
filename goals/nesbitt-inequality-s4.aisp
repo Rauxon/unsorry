@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜nesbitt-inequality-s4
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,8 +14,8 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/nesbitt-inequality-s4.lean
-  sha≜∅
-  aff≜-10
+  sha≜d4f52c047396fdfaf148e99cac9c3af96b0577ad2f0746a46558856814040ee0
+  aff≜-9
   depth≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

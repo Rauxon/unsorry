@@ -1,0 +1,8 @@
+𝔸5.1.lemma.d4f52c047396@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜d4f52c047396fdfaf148e99cac9c3af96b0577ad2f0746a46558856814040ee0; goal≜nesbitt-inequality-s4; name≜symmetric_bound_implies_three_halves}
+⟦Σ:Source⟧{src≜goals/nesbitt-inequality-s4.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜225}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
