@@ -23,6 +23,10 @@ library oleans look stale to Lake and it re-elaborates them. A **persistent runn
 that holds the *whole* `.lake` (mathlib packages **and** local build) across jobs and runs avoids
 both problems at once: mathlib is already on disk (no restore, no re-provisioning), so
 `lake exe cache get` is a near-no-op and the local oleans Lake produced last run are trusted.
+Lake's downloaded mathlib `.ltar` archive cache is outside `.lake` by default
+(`$HOME/.cache/mathlib`), so Gate A sets `MATHLIB_CACHE_DIR` to
+`${{ github.workspace }}/.lake/mathlib-cache`; otherwise the volume preserves unpacked oleans but
+`lake exe cache get` still downloads archives.
 
 Namespace runners (the gate's `namespace-profile-unsorry-1/2`) support exactly this via
 [`nscloud-cache-action`](https://github.com/namespacelabs/nscloud-cache-action): a keyless,
@@ -42,18 +46,20 @@ can attach a **persistent cache volume**,
 
 **we decided for** mounting a Namespace cache volume at **`${{ github.workspace }}/.lake`** with
 `namespacelabs/nscloud-cache-action` (pinned v1.4.3) in `gate-a-prepare`, `gate-a-audit`, and
-`gate-a-replay`, **and turning `lean-action`'s `use-github-cache` off when the volume is in play**
-so mathlib is read from the warm volume instead of re-restored; the volume is gated on a
-**`detect.volume` flag derived from the profile name** (`namespace-*` → `true`, anything else →
-`false`) and the step is **`continue-on-error`**, so a non-Namespace runner or a profile with no
-volume attached simply skips it and falls back to the GitHub mathlib cache (`use-github-cache`) and
-the ADR-045 `.lake/build` cache, which are themselves gated to the non-volume path,
+`gate-a-replay`, **and turning `lean-action`'s `use-github-cache` off only when the Namespace
+volume reports a cache hit** so mathlib is read from the warm volume instead of re-restored; the
+workflow also sets `MATHLIB_CACHE_DIR=${{ github.workspace }}/.lake/mathlib-cache` so the mathlib
+`.ltar` archive cache lives on the same mounted path; the
+volume is gated on a **`detect.volume` flag derived from the profile name** (`namespace-*` →
+`true`, anything else → `false`) and the step is **`continue-on-error`**, so a non-Namespace runner,
+a profile with no volume attached, or a cold/missed volume falls back to the GitHub mathlib cache
+(`use-github-cache`). The ADR-045 `.lake/build` cache stays live on all profiles because it is
+commit-exact and lets audit/replay safely restore the build produced by prepare,
 
 **and neglected** a Namespace `nsc artifact` upload/download (heavier, key-managed, and we want a
-*persistent* mount not a per-run artifact), caching only mathlib while keeping the ADR-045
-GitHub-cache for local oleans (two mechanisms fighting over `.lake`; the volume subsumes both on
-Namespace), and keeping `use-github-cache: true` alongside the volume (it would re-restore mathlib
-every run, erasing the win),
+*persistent* mount not a per-run artifact), caching only mathlib outside `.lake` (more bespoke than
+mounting the path Lake already uses), and keeping `use-github-cache: true` on a known-warm volume
+hit (it would re-restore mathlib every run, erasing the win),
 
 **to achieve** warm-volume runs where mathlib is already resident (no ~2–3.5-min restore × 3 jobs)
 and Lake incrementality actually holds (stable mathlib ⇒ trusted local oleans), cutting the gate's
@@ -81,8 +87,10 @@ design: that is safe precisely because correctness comes from the kernel replay,
    reference to `nscloud-cache-action` executes.
 2. **Soft-fail.** The mount step is `continue-on-error: true`: if the profile is Namespace but no
    volume is attached (or the action errors), the job continues.
-3. **Live fallbacks.** When `volume != 'true'`, `lean-action`'s `use-github-cache` is on and the
-   ADR-045 `.lake/build` cache runs, i.e. exactly today's behaviour. The volume is purely additive.
+3. **Live fallbacks.** When `volume != 'true'` or the Namespace cache step does not report a hit,
+   `lean-action`'s `use-github-cache` is on. The ADR-045 `.lake/build` cache always runs because it
+   is keyed by commit sha and is the safe same-run handoff from prepare to audit/replay. The volume
+   is purely additive.
 
 ## Operator note
 
