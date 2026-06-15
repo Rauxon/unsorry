@@ -142,3 +142,46 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: a^12 - b^12 = (a^3 - b^3)*(a^9 + a^6 b^3 + a^3 b^6 + b^9); Dvd.intro + ring · conf: high
 - [ ] `sum_of_two_squares_times_three_ge_square_of_sum` — Three times the sum of three squares is at least the square of their sum (QM-AM / power-mean)
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a)] · conf: high
+
+### Replenishment round 4 (scoped 2026-06-15) — 20 candidates
+
+- [ ] `sum_seventh_powers_dvd_by_sum` — The sum of two seventh powers is divisible by the sum of the two bases
+      absence: no-local-match · triviality: non-trivial · intended: Provide the explicit alternating-degree-6 cofactor as the divisibility witness and close with ring · conf: high
+- [ ] `diff_fifth_powers_dvd_by_diff` — The difference of two fifth powers is divisible by the difference of the two bases
+      absence: no-local-match · triviality: non-trivial · intended: Supply the degree-4 cofactor a^4+a^3 b+a^2 b^2+a b^3+b^4 as witness, then ring · conf: high
+- [ ] `sextic_a6_plus_27b6_dvd_by_quadratic` — The sextic a^6 + 27 b^6 is divisible by the quadratic a^2 + 3 b^2
+      absence: no-local-match · triviality: non-trivial · intended: Recognise a sum of cubes a^6+(3b^2)^3 and give cofactor a^4-3a^2b^2+9b^4 as witness, then ring · conf: high
+- [ ] `octic_x8_plus_x4_plus_one_dvd_by_quartic` — The octic x^8 + x^4 + 1 is divisible by the quartic x^4 - x^2 + 1
+      absence: no-local-match · triviality: non-trivial · intended: Witness the cofactor x^4+x^2+1 from the cyclotomic-style factorization and close by ring · conf: high
+- [ ] `decic_x10_plus_x5_plus_one_dvd_by_quadratic` — The decic x^10 + x^5 + 1 is divisible by x^2 + x + 1
+      absence: no-local-match · triviality: non-trivial · intended: Give the degree-8 cofactor witness arising from the 15th-cyclotomic factorization and ring · conf: high
+- [ ] `sextic_x6_minus_one_dvd_by_quadratic` — The sextic x^6 - 1 is divisible by x^2 + x + 1
+      absence: no-local-match · triviality: non-trivial · intended: Provide cofactor x^4 - x^3 + x - 1 as the divisibility witness and finish with ring · conf: high
+- [ ] `frobenius_sum_cubes_dvd_by_sum` — The expression a^3+b^3+c^3-3abc is divisible by a+b+c
+      absence: no-local-match · triviality: non-trivial · intended: Witness the symmetric cofactor a^2+b^2+c^2-ab-bc-ca and close by ring · conf: high
+- [ ] `sophie_germain_x4_plus_324_dvd_by_quadratic` — The quartic x^4 + 324 is divisible by x^2 - 6x + 18
+      absence: no-local-match · triviality: non-trivial · intended: Apply Sophie-Germain with parameter 3 (324=4*81), witness cofactor x^2+6x+18, then ring · conf: high
+- [ ] `sophie_germain_numeric_4x4_plus_1_dvd` — The biquadratic 4x^4 + 1 is divisible by 2x^2 + 2x + 1
+      absence: no-local-match · triviality: non-trivial · intended: Sophie-Germain factorization of 4x^4+1; witness cofactor 2x^2-2x+1 and ring · conf: high
+- [ ] `thirty_dvd_n_fifth_minus_n` — Thirty divides n^5 - n for every integer n
+      absence: no-local-match · triviality: non-trivial · intended: Bridge to ZMod 30 via Int.cast and decide, or combine 2,3,5 divisibility from Fermat-style residues · conf: high
+- [ ] `fortytwo_dvd_n_seventh_minus_n` — Forty-two divides n^7 - n for every integer n
+      absence: no-local-match · triviality: non-trivial · intended: Reduce mod 42 through ZMod 42 and decide, or assemble 2,3,7 cofactors via Fermat's little theorem · conf: high
+- [ ] `six_dvd_n_cubed_plus_five_n` — Six divides n^3 + 5n for every integer n
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite as n^3-n+6n and use 6 | n^3-n via the ZMod 6 decide bridge · conf: high
+- [ ] `thirty_dvd_n_ninth_minus_n` — Thirty divides n^9 - n for every integer n
+      absence: no-local-match · triviality: non-trivial · intended: Map to ZMod 30 and decide over all residues, or factor through 2,3,5 Fermat congruences · conf: med
+- [ ] `sum_range_k_fourth_closed_form` — Thirty times the sum of fourth powers below n equals the Faulhaber quintic 6n^5-15n^4+10n^3-n
+      absence: no-local-match · triviality: non-trivial · intended: Induct on n using Finset.sum_range_succ and close the step with ring · conf: high
+- [ ] `sum_range_k_mul_three_pow_closed` — Four times the sum of k*3^k for k below n equals (2n-3)*3^n + 3
+      absence: no-local-match · triviality: non-trivial · intended: Induct with Finset.sum_range_succ; the successor step is a 3^n ring identity · conf: high
+- [ ] `sum_range_k_sq_mul_two_pow_closed` — The sum of k^2*2^k for k below n equals (n^2-4n+6)*2^n - 6
+      absence: no-local-match · triviality: non-trivial · intended: Induct on n with Finset.sum_range_succ and discharge the step by ring · conf: high
+- [ ] `sum_range_odd_squares_closed` — Three times the sum of the first n odd squares equals n(2n-1)(2n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induct via Finset.sum_range_succ and close the inductive step with ring · conf: high
+- [ ] `sum_range_quad_poly_mul_factorial_eq` — The sum of (k^2+k+1)*k! for k below n equals n*n!
+      absence: no-local-match · triviality: non-trivial · intended: Telescoping induction with Finset.sum_range_succ and Nat.factorial_succ in the step · conf: high
+- [ ] `sum_range_kp1_mul_two_pow_closed` — The sum of (k+1)*2^k for k below n equals (n-1)*2^n + 1
+      absence: no-local-match · triviality: non-trivial · intended: Induct on n with Finset.sum_range_succ; the step reduces to a 2^n ring identity · conf: high
+- [ ] `sum_range_gnomon_quadratic_eq_cube` — The sum of the cubic gnomons 3k^2+3k+1 for k below n telescopes to n^3
+      absence: no-local-match · triviality: non-trivial · intended: Telescoping induction via Finset.sum_range_succ recognising (k+1)^3 - k^3 · conf: high

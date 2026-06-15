@@ -154,3 +154,50 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Fermat: nonzero n^12 ≡ 1 mod 13; Nat.pow_mod then decide over n % 13 · conf: high
 - [ ] `sixteenth_power_mod_seventeen_mem` — Every sixteenth power is congruent to only 0 or 1 modulo the prime 17 (Fermat's little theorem boundary case)
       absence: no-local-match · triviality: non-trivial · intended: Fermat: nonzero n^16 ≡ 1 mod 17; Nat.pow_mod then decide over n % 17 · conf: high
+
+### Replenishment round 4 (scoped 2026-06-15) — 22 candidates
+
+- [ ] `ninth_power_mod_twentyseven_mem` — Every ninth power of a natural number leaves remainder 0, 1, or 26 when divided by 27
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite via Nat.pow_mod then decide over the 27 residue classes of n % 27 (omega/interval_cases bridge) · conf: high
+- [ ] `tenth_power_mod_twentyfive_mem` — Every tenth power of a natural number is congruent to 0, 1, or 24 modulo 25
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod reduction then decide on n % 25 (prime-power modulus, Euler-phi=20 forces tiny image) · conf: high
+- [ ] `fourth_power_mod_fifteen_mem` — Every fourth power of a natural number leaves remainder 0, 1, 6, or 10 modulo 15
+      absence: no-local-match · triviality: non-trivial · intended: CRT-flavoured: reduce mod 15 via Nat.pow_mod and decide over n % 15 · conf: high
+- [ ] `sixth_power_mod_twentyeight_mem` — Every sixth power of a natural number leaves remainder 0, 1, 8, or 21 modulo 28
+      absence: no-local-match · triviality: non-trivial · intended: Reduce with Nat.pow_mod and decide on n % 28 (composite 4*7 modulus) · conf: high
+- [ ] `twelfth_power_mod_thirtyfive_mem` — Every twelfth power of a natural number is congruent to 0, 1, 15, or 21 modulo 35
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 35; lcm(phi(5),phi(7))=12 makes the image four idempotent-like classes · conf: high
+- [ ] `cube_mod_sixtythree_mem` — Every cube of a natural number leaves one of nine specific remainders modulo 63
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod reduction then decide over the 63 classes of n % 63 (cubic residues mod 9*7) · conf: high
+- [ ] `seventh_power_mod_fortythree_mem` — Every seventh power of a natural number is congruent to one of seven specific values modulo the prime 43
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide on n % 43; since 7 divides 42=phi(43) the seventh powers form a size-7 subgroup plus zero · conf: high
+- [ ] `eighth_power_mod_fortyone_mem` — Every eighth power of a natural number leaves one of six specific remainders modulo the prime 41
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 41; eighth powers form the size-5 subgroup (40/8) of the multiplicative group, plus zero · conf: high
+- [ ] `twelfth_power_mod_ninetyone_mem` — Every twelfth power of a natural number is congruent to 0, 1, 14, or 78 modulo 91
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 91 (=7*13); needs maxRecDepth bump given the 91 cases · conf: med
+- [ ] `eighth_power_mod_fortyeight_mem` — Every eighth power of a natural number leaves remainder 0, 1, 16, or 33 modulo 48
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 48 (modulus 16*3) · conf: high
+- [ ] `sixth_power_mod_seventytwo_mem` — Every sixth power of a natural number is congruent to 0, 1, 9, or 64 modulo 72
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 72 (=8*9); larger modulus needs maxRecDepth increase · conf: med
+- [ ] `fourth_power_mod_eighty_mem_deeper` — Every fourth power of a natural number leaves remainder 0, 1, 16, or 65 modulo 80
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 80 (=16*5) · conf: high
+- [ ] `eighth_power_mod_eighty_mem` — Every eighth power of a natural number is congruent to 0, 1, 16, or 65 modulo 80
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 80; eighth powers collapse to the same image as fourth powers here · conf: med
+- [ ] `fifth_power_mod_fortyfour_mem` — Every fifth power of a natural number leaves one of nine specific remainders modulo 44
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 44 (=4*11) · conf: high
+- [ ] `tenth_power_mod_twentytwo_mem` — Every tenth power of a natural number is congruent to 0, 1, 11, or 12 modulo 22
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 22 (=2*11); Fermat collapses the mod-11 part to {0,1,10} · conf: high
+- [ ] `fourth_power_mod_twohundredforty_mem` — Every fourth power of a natural number leaves one of eight specific remainders modulo 240
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over the 240 classes of n % 240 (=16*3*5); needs a substantial maxRecDepth bump · conf: med
+- [ ] `square_mod_nineteen_mem` — Every square of a natural number is a quadratic residue from the explicit set of ten values modulo the prime 19
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 19 (the (19-1)/2+1 = 10 quadratic residues including zero) · conf: high
+- [ ] `square_mod_twentythree_mem` — Every square of a natural number is a quadratic residue from the explicit set of twelve values modulo the prime 23
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 23 (the eleven nonzero quadratic residues plus zero) · conf: high
+- [ ] `square_mod_twentyeight_mem` — Every square of a natural number leaves one of eight specific remainders modulo 28
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 28 (=4*7 composite modulus) · conf: high
+- [ ] `fourth_power_mod_thirtyseven_mem` — Every fourth power of a natural number leaves one of ten specific remainders modulo the prime 37
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 37; since 4 divides 36 the fourth powers form the size-9 subgroup plus zero · conf: high
+- [ ] `sixth_power_mod_twentysix_mem` — Every sixth power of a natural number is congruent to one of six specific values modulo 26
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 26 (=2*13) · conf: high
+- [ ] `fourth_power_mod_fiftyone_mem` — Every fourth power of a natural number leaves one of ten specific remainders modulo 51
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over n % 51 (=3*17 composite modulus) · conf: high

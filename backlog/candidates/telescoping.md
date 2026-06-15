@@ -138,3 +138,54 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Rewrite factor as (k-1)(k+2)/(k(k+1)); split into two telescoping ratios; induct via prod_Icc_succ_top with 2 ≤ n, field_simp, ring · conf: med
 - [ ] `prod_icc_one_sub_three_div_shift_pronic_telescope` — The product of (1 - 3/((k+1)(k+3))) for k from 2 to n telescopes to 2(n+4)/(5(n+1))
       absence: no-local-match · triviality: non-trivial · intended: Rewrite factor as k(k+4)/((k+1)(k+3)); split into two step telescopes; induct via prod_Icc_succ_top with 2 ≤ n, field_simp, ring · conf: med
+
+### Replenishment round 4 (scoped 2026-06-15) — 24 candidates
+
+- [ ] `sum_range_arctan_quartic_telescope` — The sum of 2(k+1)/(1+(k+1)^2+(k+1)^4) over k from 0 to n-1 equals 1 minus 1/(n^2+n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Partial fraction: term = 1/(j^2-j+1) - 1/(j^2+j+1) with j=k+1; induction via Finset.sum_range_succ and field_simp/ring · conf: high
+- [ ] `sum_icc_recip_odd_square_pair_telescope` — The sum of 8k/((2k-1)^2(2k+1)^2) over k from 1 to n equals 1 minus 1/(2n+1)^2
+      absence: no-local-match · triviality: non-trivial · intended: Telescope term = 1/(2k-1)^2 - 1/(2k+1)^2; induction on n with Finset.sum_Icc_succ_top and field_simp; ring · conf: high
+- [ ] `sum_range_k_factorial_div_skip_two` — The sum of (k^2+k+1)/(k+2)! over k from 0 to n-1 equals 2 minus (n+2)/(n+1)!
+      absence: no-local-match · triviality: non-trivial · intended: Show term = (k+2)/(k+1)! - (k+3)/(k+2)! by factoring; telescope via induction with Nat.factorial_succ and field_simp · conf: med
+- [ ] `sum_range_two_pow_div_factorial_telescope` — Placeholder for a 2^k/(k+1)! telescoping identity
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite (k+1)2^k/(k+1)! = 2^k/k!; telescope as 2^k/k! differences; induction · conf: med
+- [ ] `sum_range_recip_central_binom_pair_telescope` — Placeholder central-binomial reciprocal telescope
+      absence: no-local-match · triviality: non-trivial · intended: Use Nat.succ_mul_choose_eq / central binomial recurrence to find telescoping difference; induction · conf: med
+- [ ] `sum_icc_cube_diff_over_product_telescope` — The sum of (3k^2+3k+1)/(k^3(k+1)^3) over k from 1 to n equals 1 minus 1/(n+1)^3
+      absence: no-local-match · triviality: non-trivial · intended: Term = 1/k^3 - 1/(k+1)^3 since (k+1)^3-k^3 = 3k^2+3k+1; telescope by induction, field_simp, ring · conf: high
+- [ ] `prod_icc_one_add_recip_cube_telescope` — Placeholder product of (k^3+1)/(k^3-1)
+      absence: no-local-match · triviality: non-trivial · intended: Factor k^3±1 = (k±1)(k^2∓k+1); double telescope on linear and quadratic factors via induction · conf: med
+- [ ] `sum_range_fib_recip_product_telescope_two` — The sum of F(k+1)/(F(k+2)F(k+3)) over k from 0 to n-1 equals 1 minus F(n+1)/F(n+2)
+      absence: no-local-match · triviality: non-trivial · intended: Use F(k+1) = F(k+3)-F(k+2) so term = 1/F(k+2) - 1/F(k+3); telescope via induction with Nat.fib_add_two and fib positivity · conf: med
+- [ ] `sum_range_k_mul_two_pow_div_factorial_shift` — Placeholder (k+2)/(k+1)! telescoping
+      absence: no-local-match · triviality: non-trivial · intended: Split (k+2)/(k+1)! = 1/k! + 1/(k+1)!; combine two telescopes · conf: high
+- [ ] `sum_icc_three_div_three_k_minus_two_three_k_plus_one_telescope` — The sum of 3/((3k-2)(3k+1)) over k from 1 to n equals n/(3n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Partial fraction term = 1/(3k-2) - 1/(3k+1); telescope by induction with field_simp and ring · conf: high
+- [ ] `sum_range_recip_quartic_shift_telescope` — The sum of 4/((k+1)(k+2)(k+3)(k+4)) over k from 0 to n-1 equals 2/3 minus 2/((n+2)(n+3))
+      absence: no-local-match · triviality: non-trivial · intended: Term = 2/((k+1)(k+2)(k+3)) - 2/((k+2)(k+3)(k+4)) (telescope of triple-product); induction, field_simp, ring · conf: high
+- [ ] `prod_range_one_add_recip_pronic_shift_telescope` — Placeholder product (1 + 1/((k+1)(k+3)))
+      absence: no-local-match · triviality: non-trivial · intended: Each factor = (k+2)^2/((k+1)(k+3)); double telescope of squares over offset linear factors · conf: med
+- [ ] `sum_icc_recip_triangular_pair_telescope` — The sum of 1/(T_k · T_{k+1}) over k from 1 to n, where T_k is the k-th triangular number, equals 2 minus 4/((n+1)(n+2))
+      absence: no-local-match · triviality: non-trivial · intended: 1/(T_k T_{k+1}) = 4/(k(k+1)^2(k+2)) = 2/(k(k+1)) - 2/((k+1)(k+2)); telescope, induction, field_simp · conf: high
+- [ ] `sum_range_two_k_plus_one_over_k_sq_k_plus_one_sq_telescope` — The sum of (2j+1)/(j^2(j+1)^2) with j=k+1 over k from 0 to n-1 equals 1 minus 1/(n+1)^2
+      absence: no-local-match · triviality: non-trivial · intended: Term = 1/j^2 - 1/(j+1)^2 since (j+1)^2-j^2 = 2j+1; telescope, induction, field_simp, ring · conf: high
+- [ ] `sum_range_k_mul_three_pow_shifted_closed` — The sum of (2k+1)·3^k over k from 0 to n-1 equals n·3^n
+      absence: no-local-match · triviality: non-trivial · intended: Telescoping/induction: show partial sum n·3^n via Finset.sum_range_succ; the step (n+1)3^{n+1}-n3^n = (2n+1)3^n by ring; induction · conf: high
+- [ ] `sum_icc_recip_k_mul_add_three_telescope_half` — The sum of 3/(k(k+3)) over k from 1 to n equals 11/6 minus the three tail reciprocals 1/(n+1)+1/(n+2)+1/(n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Partial fraction 3/(k(k+3)) = 1/k - 1/(k+3); gap-3 telescope leaves three head and three tail terms; induction with field_simp · conf: high
+- [ ] `prod_icc_one_sub_recip_triangular_shift_telescope` — The product of (1 - 2/(k(k+1))) over k from 2 to n equals (n+2)/(3n)
+      absence: no-local-match · triviality: non-trivial · intended: Each factor = (k-1)(k+2)/(k(k+1)); double telescope of (k-1)/k and (k+2)/(k+1) shifted products; induction · conf: high
+- [ ] `sum_range_fib_over_prod_consec_fib_telescope` — Placeholder signed Fibonacci telescoping sum
+      absence: no-local-match · triviality: non-trivial · intended: Use signed Fibonacci partial-sum telescoping via Nat.fib_add_two and induction · conf: high
+- [ ] `sum_icc_four_k_over_quartic_plus_quarter_telescope` — The sum of 4k/(4k^4+1) over k from 1 to n equals 1 minus 1/(2n^2+2n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Sophie Germain: 4k^4+1 = (2k^2-2k+1)(2k^2+2k+1); partial fraction gives 1/(2k^2-2k+1) - 1/(2k^2+2k+1); telescope, induction · conf: high
+- [ ] `sum_range_k_sq_add_k_sub_one_div_factorial_telescope` — The sum of (k^2+k-1)/(k+1)! over k from 0 to n-1 equals n/n! minus 1
+      absence: no-local-match · triviality: non-trivial · intended: Show term = k/k! - (k+1)/(k+1)! after factoring numerator; telescope via Nat.factorial_succ and induction · conf: med
+- [ ] `sum_icc_five_div_five_consec_product_telescope` — The sum of 5/(k(k+5)) over k from 1 to n equals 137/60 minus the five tail reciprocals from 1/(n+1) through 1/(n+5)
+      absence: no-local-match · triviality: non-trivial · intended: Partial fraction 5/(k(k+5)) = 1/k - 1/(k+5); gap-5 telescope; induction collapsing into five head/tail terms with field_simp · conf: med
+- [ ] `prod_range_one_add_two_pow_recip_telescope` — Placeholder product over (1 - 1/2^{k+1})
+      absence: no-local-match · triviality: non-trivial · intended: Not obviously telescoping in closed form; drop if no clean RHS — needs q-Pochhammer, likely cut · conf: med
+- [ ] `sum_icc_recip_k_mul_add_two_mul_add_four_telescope` — Placeholder gap-2 triple-product reciprocal telescope
+      absence: no-local-match · triviality: non-trivial · intended: Partial fraction 8/(k(k+2)(k+4)) into 1/(k(k+2)) - 1/((k+2)(k+4)) form; gap-2 telescope; induction · conf: med
+- [ ] `sum_range_cube_over_pow_two_telescope_closed` — The sum of k^3/2^k over k from 0 to n-1 equals 26 minus (n^3+6n^2+18n+26)/2^n
+      absence: no-local-match · triviality: non-trivial · intended: Ansatz P(k)/2^k with cubic P; the step P(k)/2^k - P(k+1)/2^{k+1} = k^3/2^k forces P; verify by induction with Finset.sum_range_succ, field_simp, ring · conf: med
