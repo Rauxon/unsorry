@@ -112,6 +112,16 @@ The first implementation should be conservative:
 5. Record CI timing before and after the first archive cut to decide whether 40 remains the
    right block size.
 
+The step-by-step cut procedure (as performed for 0001/0002) is the runbook in
+[SPEC-041-A §8](specs/SPEC-041-A-Proof-Archive-Blocks.md).
+
+**At scale.** With a high, continuous inflow of proofs (many contributors / agents), the active set
+crosses the block target constantly, and the active package's full-replay/audit cost — Gate A's long
+pole, which on memory-bound runners cannot be parallelised away (ADR-047) — grows between cuts. So
+40 is a **ceiling, not a goal**: cut early and often to keep full validation fast, and promote the
+report-only planner to a *write* mode plus a threshold-triggered retire PR so archiving keeps pace
+without manual effort (SPEC-041-A §9).
+
 ## References
 
 | Reference ID | Title | Type | Location |
