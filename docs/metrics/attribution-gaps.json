@@ -173,6 +173,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "ade637bc54c4ef202e121d79a8989bb944cf8e01",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-2n5-3n7-eq-one",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/36c8364ea97e87b563fa87dc9979930c6d2883e990e965f607881543be2d3d35.aisp",
+      "review_status": "candidate",
+      "sha": "36c8364ea97e87b563fa87dc9979930c6d2883e990e965f607881543be2d3d35"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
       "difficulty": 1,
       "display_name": "Chris Barlow",
       "git_add_commit": "2afe55917d33706bf41f3214a1d668ab2df9a528",
@@ -1989,9 +2004,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 132,
-    "mapped_missing_solver": 128,
-    "missing_solver_provenance": 132,
+    "git_attributed_missing_solver": 133,
+    "mapped_missing_solver": 129,
+    "missing_solver_provenance": 133,
     "unmapped_missing_solver": 4
   }
 }
