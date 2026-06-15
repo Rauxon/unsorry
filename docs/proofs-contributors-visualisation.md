@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**760 goals — 495 open · 8 blocked · 10 translated · 109 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
+**760 goals — 494 open · 8 blocked · 10 translated · 110 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (106 of 109 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (107 of 110 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -354,7 +354,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gcd-2n3-3n5-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-2n3-3n5-eq-one.lean) | open | 2 | — | — | — | — |
 | [`gcd-2n3-4n5-dvd-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-2n3-4n5-dvd-two.lean) | open | 3 | — | — | — | — |
 | [`gcd-2pow-3pow-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-2pow-3pow-eq-one.lean) | open | 2 | — | — | — | — |
-| [`gcd-3n1-5n2-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-3n1-5n2-eq-one.lean) | open | 2 | — | — | — | — |
 | [`gcd-3n1-9n4-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-3n1-9n4-eq-one.lean) | open | 2 | — | — | — | — |
 | [`gcd-3n2-5n4-dvd-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-3n2-5n4-dvd-two.lean) | open | 2 | — | — | — | — |
 | [`gcd-4n3-5n4-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-4n3-5n4-eq-one.lean) | open | 2 | — | — | — | — |
@@ -810,6 +809,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gcd-2n1-2n7-dvd-six`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-2n1-2n7-dvd-six.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#883](https://github.com/agenticsnz/unsorry/pull/883) | 2026-06-15 |
 | [`gcd-2n1-3n4-dvd-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-2n1-3n4-dvd-five.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#881](https://github.com/agenticsnz/unsorry/pull/881) | 2026-06-15 |
 | [`gcd-2n5-3n7-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-2n5-3n7-eq-one.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#863](https://github.com/agenticsnz/unsorry/pull/863) | 2026-06-15 |
+| [`gcd-3n1-5n2-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-3n1-5n2-eq-one.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#971](https://github.com/agenticsnz/unsorry/pull/971) | 2026-06-15 |
 | [`gcd-3n2-4n3-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-3n2-4n3-eq-one.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#861](https://github.com/agenticsnz/unsorry/pull/861) | 2026-06-15 |
 | [`gcd-3n4-5n7-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-3n4-5n7-eq-one.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#958](https://github.com/agenticsnz/unsorry/pull/958) | 2026-06-15 |
 | [`gcd-4n1-6n1-dvd-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-4n1-6n1-dvd-two.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#887](https://github.com/agenticsnz/unsorry/pull/887) | 2026-06-15 |
