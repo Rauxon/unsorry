@@ -3182,8 +3182,9 @@ test_binding_module_suppresses_unused_linter() {
   # The suppression must precede the obligation it guards.
   sopt_line="$(grep -n 'set_option linter.unusedVariables false in' "$binding" | head -1 | cut -d: -f1)"
   thm_line="$(grep -n 'unused_hyp_binding_check' "$binding" | head -1 | cut -d: -f1)"
-  [ -n "$sopt_line" ] && [ -n "$thm_line" ] && [ "$sopt_line" -lt "$thm_line" ] \
-    || { log "  suppression does not precede the binding theorem"; return 1; }
+  if ! { [ -n "$sopt_line" ] && [ -n "$thm_line" ] && [ "$sopt_line" -lt "$thm_line" ]; }; then
+    log "  suppression does not precede the binding theorem"; return 1
+  fi
   return 0
 }
 
