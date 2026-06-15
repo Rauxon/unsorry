@@ -1,0 +1,8 @@
+𝔸5.1.lemma.a52058e9a45f@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜a52058e9a45f4315bde29840ae4f223aae77bf9a4c5f98e84e847cf2b3e16fa6; goal≜am-gm-three-cube-s2-s2-s2; name≜weighted_am_gm_two_one_cube_factor_lin_nonneg}
+⟦Σ:Source⟧{src≜goals/am-gm-three-cube-s2-s2-s2.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜309}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
