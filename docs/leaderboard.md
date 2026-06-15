@@ -4,23 +4,23 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**174 verified proofs · 76 attributed · 98 historical/unknown · 193 logged terminal runs.**
+**174 verified proofs · 76 attributed · 98 historical/unknown · 194 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
 | Successful terminal runs | 75 |
-| Failed terminal runs | 118 |
+| Failed terminal runs | 119 |
 | Decomposed after failure | 16 |
-| Failed without decomposition | 102 |
-| Run success rate | 38.9% |
-| Provider attempts | 241 |
-| Failed attempts | 166 |
-| Attempt yield | 31.1% |
-| Recorded run time | 34h 34m |
+| Failed without decomposition | 103 |
+| Run success rate | 38.7% |
+| Provider attempts | 242 |
+| Failed attempts | 167 |
+| Attempt yield | 31.0% |
+| Recorded run time | 35h 5m |
 | Median / p90 run time | 4m 57s / 31m 43s |
-| Verified successes per recorded hour | 2.17 |
+| Verified successes per recorded hour | 2.14 |
 | Proofs with run telemetry | 75 (43.1%) |
 
 ## Work Queue
@@ -32,7 +32,7 @@ Verified output comes from active `library/index` records plus archived index re
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 64 | 27 | 42.2% | 54 | 4m 45s |
-| 2 | 73 | 22 | 30.1% | 68 | 4m 44s |
+| 2 | 74 | 22 | 29.7% | 69 | 4m 44s |
 | 3 | 38 | 22 | 57.9% | 28 | 5m 48s |
 | 4 | 17 | 4 | 23.5% | 15 | 9m 29s |
 | 5 | 1 | 0 | 0.0% | 1 | 31m 28s |
@@ -58,7 +58,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 97 | 52 | 45 | 149 | 36.2% | 166 | 19025 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 97 | 52 | 45 | 150 | 36.0% | 166 | 19025 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 42 | 0 | 42 | 0 | — | 85 | 9550 |
 | 3 | [@perttu](https://github.com/perttu) | 17 | 17 | 0 | 26 | 69.2% | 32 | 3625 |
 | 4 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
@@ -78,7 +78,7 @@ Git add-author attribution covers 174 of 174 proof index files. It is used only 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
 | `claude / opus` | 44 | 49 | 93.9% | 18 | 3 | 4m 47s | 7.45 |
-| `openai / leanstral-2603` | 9 | 90 | 12.2% | 83 | 1 | 4m 39s | 0.68 |
+| `openai / leanstral-2603` | 9 | 91 | 12.1% | 84 | 1 | 4m 41s | 0.65 |
 | `codex / unknown` | 9 | 29 | 31.0% | 43 | 2 | 4m 57s | 2.03 |
 | `gemini / gemini-3.1-pro-preview` | 9 | 11 | 81.8% | 6 | 1 | 6m 15s | 7.19 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
@@ -91,6 +91,7 @@ Git add-author attribution covers 174 of 174 proof index files. It is used only 
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-15T04:48:25Z` | `dvd-twentyfour-pow-five-sub-pow-three` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 27s |
 | `2026-06-15T04:43:09Z` | `dvd-sixty-pow-ten-sub-sq` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 32m 15s |
 | `2026-06-15T04:41:05Z` | `dvd-twentyfour-pow-seven-sub-pow-five` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `failed` | 1 | 1 | 8m 50s |
 | `2026-06-15T04:15:07Z` | `cyclic-quad-ge-abc-times-sum` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 23s |
@@ -110,7 +111,6 @@ Git add-author attribution covers 174 of 174 proof index files. It is used only 
 | `2026-06-15T02:46:55Z` | `amgm-four-cross-three-var` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `proved` | 3 | 2 | 7m 2s |
 | `2026-06-15T02:39:33Z` | `no-nat-sq-eq-two-mul-sq-s3` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `proved` | 2 | 1 | 5m 40s |
 | `2026-06-15T02:33:40Z` | `nesbitt-inequality-s1` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `failed` | 3 | 3 | 14m 21s |
-| `2026-06-15T02:32:40Z` | `no-nat-sq-eq-two-mul-sq-s2` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 3m 31s |
 
 ## Interpretation
 
