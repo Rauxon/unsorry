@@ -9,6 +9,7 @@ from tools.gate_a.parallel_modules import (
     goal_module_for_path,
     import_graph,
     library_module_for_path,
+    max_safe_replay_jobs,
     module_names,
     replay,
     replay_scope,
@@ -80,33 +81,53 @@ def test_replay_propagates_a_chunk_failure(tmp_path: Path):
     assert replay(tmp_path, 2, runner) == 1
 
 
-def test_replay_is_serial_regardless_of_jobs(tmp_path: Path):
-    # leanchecker holds mathlib resident per process, so concurrent invocations
-    # OOM-kill a standard CI runner (exit 143). A small library fits one serial
-    # leanchecker; chunking only kicks in past REPLAY_CHUNK_SIZE. Either way the
-    # --jobs request is ignored — replay never runs two leancheckers at once.
+def test_max_safe_replay_jobs_caps_by_ram():
+    # ~7 GB per leanchecker (GB_PER_REPLAY_PROC): serial on a small runner,
+    # scaling on a big one, never above the requested jobs. Floors at 1.
+    assert max_safe_replay_jobs(8, mem_gb=8.0) == 1     # one image fits
+    assert max_safe_replay_jobs(8, mem_gb=16.0) == 2    # two fit
+    assert max_safe_replay_jobs(8, mem_gb=64.0) == 8    # capped by requested
+    assert max_safe_replay_jobs(4, mem_gb=64.0) == 4    # capped by requested
+    assert max_safe_replay_jobs(8, mem_gb=2.0) == 1     # never below 1
+
+
+def test_replay_parallelism_capped_by_ram(tmp_path: Path):
+    # Replay now honours --jobs but caps concurrent leancheckers by RAM, so it
+    # stays serial on a small runner (one mathlib image — what prevents the
+    # exit-143 OOM) and fans out on a big one. With a small library, n_chunks
+    # tracks the effective job count, so call-count reveals which path ran.
     (tmp_path / "library" / "Unsorry").mkdir(parents=True)
     for name in ("One", "Two", "Three", "Four", "Five"):
         (tmp_path / "library" / "Unsorry" / f"{name}.lean").write_text("")
 
-    calls: list[tuple[str, ...]] = []
+    def make_runner(sink):
+        def runner(argv, **_kwargs):
+            argv = tuple(argv)
+            sink.append(argv)
+            return completed(argv, returncode=0)
+        return runner
 
-    def runner(argv, **_kwargs):
-        argv = tuple(argv)
-        calls.append(argv)
-        return completed(argv, returncode=0)
+    # 8 GB fits one leanchecker → serial → a single chunk over all modules.
+    serial: list[tuple[str, ...]] = []
+    assert replay(tmp_path, 8, make_runner(serial), mem_gb=8.0) == 0
+    assert len(serial) == 1
+    assert serial[0][:3] == ("lake", "env", "leanchecker")
+    assert {"Unsorry.One", "Unsorry.Five"} <= set(serial[0])
 
-    assert replay(tmp_path, 4, runner) == 0
-    # one chunk → one leanchecker process → every module checked in it
-    assert len(calls) == 1
-    assert calls[0][:3] == ("lake", "env", "leanchecker")
-    assert {"Unsorry.One", "Unsorry.Five"} <= set(calls[0])
+    # 64 GB → jobs=4 honoured → fans out into 4 chunks; every module still covered.
+    parallel: list[tuple[str, ...]] = []
+    assert replay(tmp_path, 4, make_runner(parallel), mem_gb=64.0) == 0
+    assert len(parallel) == 4
+    assert all(c[:3] == ("lake", "env", "leanchecker") for c in parallel)
+    assert {m for c in parallel for m in c[3:]} == {
+        f"Unsorry.{n}" for n in ("One", "Two", "Three", "Four", "Five")
+    }
 
 
-def test_replay_chunks_a_large_library_serially(tmp_path: Path):
-    # As the library grows past REPLAY_CHUNK_SIZE, one leanchecker over every
-    # module OOMs even serially (#294 was not enough). Replay splits into
-    # bounded chunks run one at a time, and every module is still replayed.
+def test_replay_chunks_a_large_library(tmp_path: Path):
+    # Past REPLAY_CHUNK_SIZE, replay splits into bounded chunks (so no single
+    # leanchecker grows unbounded) and every module is still replayed — here on a
+    # small-RAM runner (mem_gb=8) so chunks run serially.
     from tools.gate_a.parallel_modules import REPLAY_CHUNK_SIZE
     (tmp_path / "library" / "Unsorry").mkdir(parents=True)
     names = [f"M{i}" for i in range(REPLAY_CHUNK_SIZE * 2 + 5)]
@@ -120,8 +141,8 @@ def test_replay_chunks_a_large_library_serially(tmp_path: Path):
         calls.append(argv)
         return completed(argv, returncode=0)
 
-    assert replay(tmp_path, 4, runner) == 0
-    assert len(calls) >= 3  # split into multiple chunks
+    assert replay(tmp_path, 4, runner, mem_gb=8.0) == 0
+    assert len(calls) >= 3  # split into multiple bounded chunks
     assert all(c[:3] == ("lake", "env", "leanchecker") for c in calls)
     covered = {m for c in calls for m in c[3:]}
     assert covered == {f"Unsorry.{n}" for n in names}  # every module replayed

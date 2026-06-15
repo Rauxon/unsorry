@@ -105,6 +105,23 @@ def max_safe_jobs(requested_jobs: int) -> int:
     return min(requested_jobs, safe_cap)
 
 
+# A kernel-replay `leanchecker` holds ~all of mathlib resident, far more than an
+# audit's collectAxioms, so replay needs its own (larger) per-process RAM budget.
+GB_PER_REPLAY_PROC = 7.0
+
+
+def max_safe_replay_jobs(requested_jobs: int, mem_gb: float | None = None) -> int:
+    """Cap concurrent leanchecker processes by available RAM (~7 GB each).
+
+    Replaces the old fixed ``--jobs 1``: stays serial on a small runner (where
+    only one mathlib image fits) but scales on a high-RAM one, so a full replay
+    can use more cores instead of crawling. The RAM cap is what prevents the
+    exit-143 OOM that an unbounded ``--jobs`` caused (#264)."""
+    free_ram = available_memory_gb() if mem_gb is None else mem_gb
+    safe_cap = max(1, int(free_ram // GB_PER_REPLAY_PROC))
+    return max(1, min(requested_jobs, safe_cap))
+
+
 def module_names(root: Path, source_dir: str) -> list[str]:
     """Return Lean module names for every source below source_dir."""
     base = root / source_dir
@@ -442,6 +459,7 @@ def replay(
     jobs: int,
     runner: Runner = subprocess.run,
     base: str | None = None,
+    mem_gb: float | None = None,
 ) -> int:
     started = time.perf_counter()
     library = module_names(root, "library")
@@ -467,18 +485,20 @@ def replay(
                 f"incremental kernel replay: {len(targets)} of {len(library)} "
                 "module(s) (changed + reverse-import closure)"
             )
-    # leanchecker re-checks every declaration against the kernel and holds
-    # ~all of mathlib resident per process, so its memory cost is essentially
-    # fixed regardless of how few library modules a chunk carries. Two
-    # concurrent invocations therefore OOM-kill a standard CI runner (the
-    # replay step died with exit 143 repo-wide after #264 set --jobs 4 — the
-    # earlier min(jobs, 2) cap was not enough). Replay runs serially: one
-    # leanchecker over the whole library, one mathlib image in memory. The
-    # `jobs` argument is accepted for CLI symmetry with `audit` but ignored
-    # here; audit (collectAxioms, far lighter) keeps its parallelism.
-    _ = jobs
-    effective_jobs = 1
-    n_chunks = max(1, (len(targets) + REPLAY_CHUNK_SIZE - 1) // REPLAY_CHUNK_SIZE)
+    # leanchecker re-checks every declaration against the kernel and holds ~all
+    # of mathlib resident per process (~7 GB), so the binding constraint is RAM,
+    # not CPU. A fixed --jobs 1 left big runners idle and made a FULL replay
+    # crawl past the 60-min timeout (a gate/infra change forces full replay,
+    # ADR-033). Instead, cap concurrency by available RAM (GB_PER_REPLAY_PROC):
+    # serial on a small runner — which is what stops the exit-143 OOM that an
+    # unbounded --jobs caused (#264) — but scaling on a high-RAM one. Parallel
+    # chunks produce identical per-module kernel verdicts; only the wall-clock
+    # changes, so soundness is unaffected.
+    effective_jobs = max_safe_replay_jobs(jobs, mem_gb)
+    # Enough chunks to use the available parallelism, each still bounded by
+    # REPLAY_CHUNK_SIZE so no single leanchecker invocation grows unbounded.
+    by_size = (len(targets) + REPLAY_CHUNK_SIZE - 1) // REPLAY_CHUNK_SIZE
+    n_chunks = min(len(targets), max(by_size, effective_jobs))
     commands = [
         Command(
             ("lake", "env", "leanchecker", *chunk),
@@ -486,13 +506,13 @@ def replay(
         )
         for index, chunk in enumerate(split_evenly(targets, n_chunks), 1)
     ]
-    # parallelism 1: chunks run one after another, never concurrently.
+    # Up to effective_jobs chunks run concurrently (RAM-capped); serial when 1.
     results = run_commands(commands, effective_jobs, runner)
     if report_failures(commands, results):
         return 1
     elapsed = time.perf_counter() - started
     print(
-        f"replayed {len(targets)} library module(s) serially in {len(commands)} "
+        f"replayed {len(targets)} library module(s) in {len(commands)} "
         f"chunk(s) ({fmt_duration(elapsed)}; requested jobs {jobs}, effective jobs {effective_jobs})"
     )
     append_step_summary(

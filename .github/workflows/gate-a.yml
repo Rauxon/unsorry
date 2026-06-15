@@ -284,7 +284,11 @@ jobs:
     needs: [detect, gate_a_prepare]
     if: needs.detect.outputs.active == 'true'
     runs-on: ${{ needs.detect.outputs.profile }}
-    timeout-minutes: 60
+    # 120, not 60: a FULL replay (forced by any gate/infra change, ADR-033) of
+    # the whole library is the long pole. Replay now parallelises by RAM
+    # (ADR-047), but on a low-RAM runner it stays serial — this headroom lets it
+    # finish there too, and is a safety net while a high-RAM profile is adopted.
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
@@ -355,10 +359,13 @@ jobs:
         env:
           BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
         run: |
+          # --jobs $(nproc): the tool caps actual concurrency by available RAM
+          # (~7 GB per leanchecker, GB_PER_REPLAY_PROC), so this stays serial on a
+          # small runner and scales the FULL replay on a high-RAM one (ADR-047).
           if [ -n "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.parallel_modules replay --jobs 1 --base "$BASE_SHA"
+            python3 -m tools.gate_a.parallel_modules replay --jobs "$(nproc)" --base "$BASE_SHA"
           else
-            python3 -m tools.gate_a.parallel_modules replay --jobs 1
+            python3 -m tools.gate_a.parallel_modules replay --jobs "$(nproc)"
           fi
 
   gate-a:
