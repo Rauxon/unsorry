@@ -142,3 +142,44 @@ Theme staging file for the Identity Engine (#400, ADR-043). 23 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: (n+6)-(n+2)=4, so common divisors divide 4; gcd_dvd_left/right plus Nat.dvd_sub' · conf: high
 - [ ] `gcd_n1_n7_dvd_six` — The gcd of n+1 and n+7 always divides 6
       absence: no-local-match · triviality: non-trivial · intended: Their difference is 6, so the gcd divides 6 by dvd_sub on the two gcd divisibilities · conf: high
+
+### Replenishment round 4 (scoped 2026-06-15) — 19 candidates
+
+- [ ] `gcd_nsq_add_two_nsq_add_five_dvd_three` — The gcd of n squared plus two and n squared plus five always divides three
+      absence: no-local-match · triviality: non-trivial · intended: gcd divides the difference (n^2+5)-(n^2+2)=3 via Nat.dvd_sub' and Nat.dvd_gcd reasoning · conf: high
+- [ ] `gcd_ncube_add_one_n_add_one_eq` — The gcd of n cubed plus one and n plus one equals n plus one
+      absence: no-local-match · triviality: non-trivial · intended: show (n+1) ∣ (n^3+1) since n^3+1=(n+1)(n^2-n+1), then Nat.gcd_eq_right · conf: high
+- [ ] `gcd_nsq_sub_one_n_sub_one_eq` — Over the naturals, the gcd of n squared minus one and n minus one equals n minus one
+      absence: no-local-match · triviality: non-trivial · intended: (n-1) ∣ (n^2-1) via the factorisation (n-1)(n+1); handle Nat truncated subtraction then Nat.gcd_eq_right · conf: high
+- [ ] `coprime_nsq_add_one_n` — n squared plus one is coprime to n
+      absence: no-local-match · triviality: non-trivial · intended: n ∣ n^2 so gcd(n^2+1,n)=gcd(1,n)=1 via Nat.Coprime and add_mul_gcd-style simp · conf: high
+- [ ] `coprime_fermat_numbers` — Distinct Fermat numbers are coprime
+      absence: no-local-match · triviality: non-trivial · intended: WLOG m<n; show F_m ∣ F_n - 2 via telescoping product F_0..F_{n-1}=F_n-2, then any common divisor divides 2 but Fermat numbers are odd · conf: med
+- [ ] `coprime_n_mul_add_one` — n is coprime to any multiple of n plus one
+      absence: no-local-match · triviality: non-trivial · intended: gcd(n, n*k+1)=gcd(n,1)=1 using Nat.add_mul_mod-style / Nat.coprime_mul_right_add reasoning · conf: high
+- [ ] `gcd_nsq_add_n_coprime_succ` — n squared plus n is coprime to its successor
+      absence: no-local-match · triviality: non-trivial · intended: Nat.coprime_succ_self_right applied to the value n^2+n · conf: high
+- [ ] `coprime_two_pow_n_three_pow_n` — Powers of two and powers of three with the same exponent are coprime
+      absence: no-local-match · triviality: non-trivial · intended: Nat.Coprime.pow applied to the base coprimality Coprime 2 3 (decide) · conf: high
+- [ ] `gcd_two_pow_add_one_sub_one_eq_one` — Two to the n plus one and two to the n minus one are coprime for positive n
+      absence: no-local-match · triviality: non-trivial · intended: their difference is 2, common divisor divides 2, but both are odd so the gcd is 1 · conf: high
+- [ ] `gcd_six_n_four_six_n_nine_dvd_five` — The gcd of six n plus four and six n plus nine always divides five
+      absence: no-local-match · triviality: non-trivial · intended: gcd divides the difference (6n+9)-(6n+4)=5 via Nat.dvd_sub' and gcd_dvd · conf: high
+- [ ] `coprime_n_ncube_add_one` — n is coprime to n cubed plus one
+      absence: no-local-match · triviality: non-trivial · intended: n ∣ n^3 so gcd(n, n^3+1)=gcd(n,1)=1 via Nat.coprime_mul_right_add / add reasoning · conf: high
+- [ ] `gcd_nfourth_sub_one_nsq_sub_one_eq` — The gcd of n to the fourth minus one and n squared minus one equals n squared minus one
+      absence: no-local-match · triviality: non-trivial · intended: (n^2-1) ∣ (n^4-1) since n^4-1=(n^2-1)(n^2+1); handle Nat subtraction then Nat.gcd_eq_right · conf: high
+- [ ] `coprime_nsq_add_n_add_one_nsq_sub_n_add_one` — The two cyclotomic-like quadratics n squared plus n plus one and n squared minus n plus one are coprime
+      absence: no-local-match · triviality: non-trivial · intended: their difference is 2n, a common divisor divides 2n and the odd value n^2+n+1; combine to force the gcd to 1 · conf: med
+- [ ] `coprime_factorial_add_one_n` — One more than n factorial is coprime to n
+      absence: no-local-match · triviality: non-trivial · intended: n ∣ n! so gcd(n!+1,n)=gcd(1,n)=1 via Nat.dvd_factorial and coprime-of-add reasoning · conf: high
+- [ ] `gcd_two_n_two_n_add_two_eq_two` — The gcd of two consecutive even numbers two n and two n plus two equals two
+      absence: no-local-match · triviality: non-trivial · intended: factor out 2 via Nat.gcd_mul_left then gcd(n,n+1)=1 (Nat.coprime_succ_self) · conf: high
+- [ ] `gcd_nsq_add_three_n_add_two_n_add_one_eq` — The gcd of n squared plus three n plus two and n plus one equals n plus one
+      absence: no-local-match · triviality: non-trivial · intended: (n+1) ∣ (n^2+3n+2) since it factors as (n+1)(n+2), then Nat.gcd_eq_right · conf: high
+- [ ] `gcd_mersenne_eq_pow_gcd_sub_one` — The gcd of two Mersenne-type numbers equals two raised to the gcd of the exponents, minus one
+      absence: no-local-match · triviality: non-trivial · intended: Euclidean induction on the exponents using 2^m-1 ≡ 2^(m mod n)-1 modulo 2^n-1, mirroring the gcd recursion · conf: med
+- [ ] `bezout_nsq_nsqp1_int` — There is an integer Bezout combination of n squared and n squared plus one giving one
+      absence: no-local-match · triviality: non-trivial · intended: witness x=-1, y=1 then ring closes -n^2+(n^2+1)=1 · conf: high
+- [ ] `bezout_fib_consec_int` — Consecutive Fibonacci numbers admit an integer Bezout combination equal to one
+      absence: no-local-match · triviality: non-trivial · intended: use Cassini-style identity fib(n)*fib(n+1)... or derive from Nat.fib_coprime_fib_succ via Nat.Coprime.gcd_eq_one and Int.gcd Bezout · conf: med

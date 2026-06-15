@@ -136,3 +136,44 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring; combines Nicomachus and triangular pieces · conf: high
 - [ ] `sum_cube_sub_id_eq_four_consecutive` — Four times the sum of (k^3 - k) equals (n-1)n(n+1)(n+2), a product of four consecutive integers
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; k^3-k = (k-1)k(k+1) telescopes, ring after Nat-subtraction handling · conf: high
+
+### Replenishment round 4 (scoped 2026-06-15) — 19 candidates
+
+- [ ] `sum_odd_fourth_powers_closed_form` — Fifteen times the sum of the fourth powers of the first n+1 odd numbers equals a fifth-degree closed form factoring through (n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_id_mul_succ_sq_closed_form` — Twelve times the sum of k(k+1)^2 over k up to n has the closed product form n(n+1)(n+2)(3n+5)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_sq_mul_shift_two_closed_form` — Twelve times the sum of k^2(k+2) over k up to n equals n(n+1)(3n^2+11n+4)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_id_mul_shift_two_sq_closed_form` — Twelve times the sum of k(k+2)^2 over k up to n equals n(n+1)(3n^2+19n+32)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_even_spaced_triple_product_closed_form` — Four times the sum of the even-spaced triple products k(k+2)(k+4) telescopes to the product n(n+1)(n+4)(n+5)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_shift_spaced_triple_product_closed_form` — Twelve times the sum of k(k+1)(k+3) over k up to n equals n(n+1)(n+2)(3n+13)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_three_k_plus_one_sq_closed_form` — Twice the sum of the squares (3k+1)^2 over k up to n equals (n+1)(6n^2+9n+2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_four_k_plus_one_sq_closed_form` — Three times the sum of the squares (4k+1)^2 over k up to n equals (n+1)(16n^2+20n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_three_k_plus_two_sq_closed_form` — Six times the sum of the squares (3k+2)^2 over k up to n equals 3(n+1)(6n^2+15n+8)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_six_k_plus_one_sq_closed_form` — Six times the sum of the squares (6k+1)^2 over k up to n equals 6(n+1)(12n^2+12n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_four_k_plus_three_closed_form` — The sum of the arithmetic gnomons 4k+3 over k up to n equals (n+1)(2n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_five_k_plus_one_closed_form` — Twice the sum of the arithmetic gnomons 5k+1 over k up to n equals (n+1)(5n+2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_diff_of_odd_squares_closed_form` — Twice the sum of 9k^2-1 over k up to n equals the cubic closed form (n+1)(6n^2+3n-2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; handle the Nat subtraction via push_cast or omega/ring · conf: high
+- [ ] `sum_consec_odd_product_closed_form` — Three times the sum of the consecutive-odd products (2k-1)(2k+1) over k up to n equals (n+1)(4n^2+2n-3)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the k=0 term has truncated Nat subtraction, finish with omega/ring · conf: high
+- [ ] `sum_centered_square_numbers_running_closed_form` — Three times the running sum of the centered square numbers 2k^2+2k+1 equals (n+1)(2n^2+4n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_centered_triangular_running_poly_closed_form` — The running sum of twice the centered triangular numbers 3k^2+3k+2 equals 2(n+1)(n^2+2n+2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_centered_octahedral_running_closed_form` — The running sum of three times the centered octahedral numbers (2k+1)(2k^2+2k+3) equals (n+1)^2(n^2+2n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_pentagonal_pyramidal_via_id_sq_closed_form` — Twelve times the sum of k^2(k+1) (twice the pentagonal pyramidal numbers) equals n(n+1)(n+2)(3n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_heptagonal_numbers_running_closed_form` — Three times the running sum of twice the heptagonal numbers k(5k-3) equals n(n+1)(5n-2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; manage Nat subtraction with omega/nlinarith or cast · conf: high

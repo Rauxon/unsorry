@@ -150,3 +150,46 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: linear_combination h1*h2-style; norm multiplicativity with the minus sign · conf: high
 - [ ] `pell_d5_fundamental_ladder_step_preserves` — The fundamental solution (9,4) of x^2-5y^2=1 maps any solution to another solution
       absence: no-local-match · triviality: non-trivial · intended: linear_combination h · conf: high
+
+### Replenishment round 4 (scoped 2026-06-15) — 20 candidates
+
+- [ ] `pell_d8_ladder_step_preserves` — The fundamental automorphism (3,8;1,3) for d=8 sends a solution of x^2-8y^2=1 to another solution
+      absence: no-local-match · triviality: non-trivial · intended: Substitute h via nlinarith/ring after expanding; linear_combination (9 - 8) * h · conf: high
+- [ ] `pell_d24_ladder_step_preserves` — The fundamental automorphism for d=24 (from 5+√24) preserves x^2-24y^2=1
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination (25 - 24) * h after expanding · conf: high
+- [ ] `pell_d20_ladder_step_preserves` — The fundamental automorphism for d=20 (from 9+2√20) preserves x^2-20y^2=1
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination (81 - 80) * h after ring expansion · conf: high
+- [ ] `pell_d2_triple_ladder_step_preserves` — The cube of the fundamental d=2 automorphism (99+70√2) again maps solutions of x^2-2y^2=1 to solutions
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination (99^2 - 2*70^2) * h = 1 * h after expanding the large coefficients · conf: high
+- [ ] `pell_d2_cube_closed_form_solution` — Cubing x+y√2 gives the closed-form solution (x(x^2+6y^2), y(3x^2+2y^2)) of x^2-2y^2=1
+      absence: no-local-match · triviality: non-trivial · intended: Expand both sides; the difference factors as (x^2-2y^2)^3, then substitute h and ring · conf: high
+- [ ] `pell_d3_cube_closed_form_solution` — Cubing x+y√3 gives the closed-form solution (x(x^2+9y^2), 3y(x^2+y^2)) of x^2-3y^2=1
+      absence: no-local-match · triviality: non-trivial · intended: Difference equals (x^2-3y^2)^3; rewrite by h then ring · conf: high
+- [ ] `pell_d10_negative_square_to_positive` — Squaring a solution of the negative Pell equation x^2-10y^2=-1 yields a solution of x^2-10y^2=1
+      absence: no-local-match · triviality: non-trivial · intended: Difference equals (x^2-10y^2)^2 = (-1)^2 = 1; rewrite by h then ring · conf: high
+- [ ] `pell_d13_negative_square_to_positive` — Squaring a solution of the negative Pell equation x^2-13y^2=-1 yields a solution of x^2-13y^2=1
+      absence: no-local-match · triviality: non-trivial · intended: Difference equals (x^2-13y^2)^2; substitute h=-1 then ring · conf: high
+- [ ] `pell_d5_ladder_cross_determinant` — The cross-determinant of a d=5 solution with its ladder successor is the constant -4
+      absence: no-local-match · triviality: non-trivial · intended: Expand to (9-4)xy + 20y^2 - 4x^2 - 9xy = -4x^2 + 20y^2 = -4(x^2-5y^2); rewrite by h · conf: high
+- [ ] `pell_d6_ladder_cross_determinant` — The cross-determinant of a d=6 solution with its ladder successor is the constant -2
+      absence: no-local-match · triviality: non-trivial · intended: Simplify to -2x^2 + 12y^2 = -2(x^2-6y^2); substitute h · conf: high
+- [ ] `pell_d7_ladder_cross_determinant` — The cross-determinant of a d=7 solution with its ladder successor is the constant -3
+      absence: no-local-match · triviality: non-trivial · intended: Simplify to -3x^2 + 21y^2 = -3(x^2-7y^2); substitute h · conf: high
+- [ ] `pell_d5_y_coord_even` — In every solution of x^2-5y^2=1 the second coordinate y is even
+      absence: no-local-match · triviality: non-trivial · intended: Reduce mod 4 (or mod 2 via ZMod) using a decide-bridge: x^2-5y^2≡1 forces y even · conf: high
+- [ ] `pell_d6_x_coord_odd` — In every solution of x^2-6y^2=1 the first coordinate x is odd
+      absence: no-local-match · triviality: non-trivial · intended: Map to ZMod 2: x^2 = 1 + 6y^2 ≡ 1, so x is odd; decide on residues · conf: high
+- [ ] `pell_d8_x_coord_odd` — In every solution of x^2-8y^2=1 the first coordinate x is odd
+      absence: no-local-match · triviality: non-trivial · intended: x^2 = 1 + 8y^2 is odd, so x is odd; ZMod 2 decide-bridge or Int.even/odd lemmas · conf: high
+- [ ] `pell_d2_negative_x_coord_odd` — In every solution of the negative Pell equation x^2-2y^2=-1 the coordinate x is odd
+      absence: no-local-match · triviality: non-trivial · intended: x^2 = 2y^2 - 1 is odd, so x is odd; reduce mod 2 with a ZMod decide-bridge · conf: high
+- [ ] `pell_d5_pos_solution_two_y_lt_x` — For a positive solution of x^2-5y^2=1, the x-coordinate strictly exceeds twice the y-coordinate
+      absence: no-local-match · triviality: non-trivial · intended: From x^2 = 1 + 5y^2 > 4y^2 = (2y)^2 with positivity, nlinarith [sq_nonneg (x - 2*y)] · conf: high
+- [ ] `pell_d6_pos_solution_two_y_lt_x` — For a positive solution of x^2-6y^2=1, the x-coordinate strictly exceeds twice the y-coordinate
+      absence: no-local-match · triviality: non-trivial · intended: x^2 = 1 + 6y^2 > 4y^2; nlinarith [sq_nonneg (x - 2*y), hy] · conf: high
+- [ ] `pell_d2_form_value_never_three` — The quadratic form x^2-2y^2 never takes the value 3 over the integers
+      absence: no-local-match · triviality: non-trivial · intended: Map to ZMod 8 and decide: x^2-2y^2 mod 8 is never 3; contradiction via ZMod cast · conf: med
+- [ ] `pell_d5_form_value_never_two` — The quadratic form x^2-5y^2 never takes the value 2 over the integers
+      absence: no-local-match · triviality: non-trivial · intended: Reduce mod 5: x^2 ≡ 2 has no solution; ZMod 5 decide-bridge on the cast equation · conf: med
+- [ ] `pell_d5_form_value_never_three` — The quadratic form x^2-5y^2 never takes the value 3 over the integers
+      absence: no-local-match · triviality: non-trivial · intended: Reduce mod 5: x^2 ≡ 3 mod 5 is impossible; ZMod 5 decide after casting the hypothesis · conf: med

@@ -1,12 +1,12 @@
 {
   "contributors": [
     {
-      "attempt_yield": 0.2828,
+      "attempt_yield": 0.2772,
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
       "badges": {
         "difficulty": 171,
         "proofs": 99,
-        "success_rate_percent": 31.28
+        "success_rate_percent": 30.6
       },
       "credit_source_summary": "explicit + inferred",
       "credit_sources": [
@@ -17,14 +17,14 @@
       "difficulty_points": 171,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 52,
-      "failed_attempts": 142,
+      "failed_attempts": 146,
       "github": "cgbarlow",
       "inferred_git_proofs": 47,
-      "median_solve_s": 303,
+      "median_solve_s": 309,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 1,
-      "run_success_rate": 0.3128,
-      "runs": 179,
+      "run_success_rate": 0.306,
+      "runs": 183,
       "score": 19575,
       "solver": "cgbarlow",
       "successes": 56,
@@ -118,12 +118,12 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": 0.0455,
+      "attempt_yield": 0.0435,
       "avatar_url": "https://github.com/adam91holt.png?size=96",
       "badges": {
         "difficulty": 10,
         "proofs": 6,
-        "success_rate_percent": 6.06
+        "success_rate_percent": 5.71
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
@@ -133,14 +133,14 @@
       "difficulty_points": 10,
       "display_name": "@adam91holt",
       "explicit_solver_proofs": 6,
-      "failed_attempts": 42,
+      "failed_attempts": 44,
       "github": "adam91holt",
       "inferred_git_proofs": 0,
-      "median_solve_s": 400,
+      "median_solve_s": 403,
       "profile_url": "https://github.com/adam91holt",
       "rank": 5,
-      "run_success_rate": 0.0606,
-      "runs": 33,
+      "run_success_rate": 0.0571,
+      "runs": 35,
       "score": 1150,
       "solver": "adam91holt",
       "successes": 2,
@@ -234,7 +234,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-15T10:28:46Z",
+  "generated_at": "2026-06-15T11:10:48Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -351,14 +351,14 @@
     },
     {
       "provider_model": "codex / unknown",
-      "run_success_rate": 0.28,
-      "runs": 50,
+      "run_success_rate": 0.2692,
+      "runs": 52,
       "verified_proofs": 14
     },
     {
       "provider_model": "openai / leanstral-2603",
-      "run_success_rate": 0.115,
-      "runs": 113,
+      "run_success_rate": 0.1121,
+      "runs": 116,
       "verified_proofs": 11
     },
     {
@@ -382,7 +382,7 @@
     {
       "provider_model": "openai / jackcloudman/Leanstral-2603-GGUF",
       "run_success_rate": 0.0,
-      "runs": 19,
+      "runs": 20,
       "verified_proofs": 0
     },
     {
@@ -411,7 +411,7 @@
     "historical_unknown_proofs": 120,
     "inferred_git_proofs": 120,
     "proof_run_coverage": 0.4141,
-    "terminal_runs": 244,
+    "terminal_runs": 250,
     "uncredited_proofs": 0,
     "verified_proofs": 198
   },
