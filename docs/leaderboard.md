@@ -4,28 +4,28 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**155 verified proofs · 70 attributed · 85 historical/unknown · 168 logged terminal runs.**
+**156 verified proofs · 71 attributed · 85 historical/unknown · 169 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 65 |
+| Successful terminal runs | 66 |
 | Failed terminal runs | 103 |
 | Decomposed after failure | 15 |
 | Failed without decomposition | 88 |
-| Run success rate | 38.7% |
-| Provider attempts | 206 |
+| Run success rate | 39.1% |
+| Provider attempts | 207 |
 | Failed attempts | 141 |
-| Attempt yield | 31.6% |
-| Recorded run time | 27h 53m |
-| Median / p90 run time | 4m 52s / 31m 42s |
-| Verified successes per recorded hour | 2.33 |
-| Proofs with run telemetry | 65 (41.9%) |
+| Attempt yield | 31.9% |
+| Recorded run time | 28h 3m |
+| Median / p90 run time | 4m 53s / 31m 42s |
+| Verified successes per recorded hour | 2.35 |
+| Proofs with run telemetry | 66 (42.3%) |
 
 ## Work Queue
 
-**259 goals · 80 archived · 8 blocked · 88 open · 73 proved · 10 translated.**
+**259 goals · 80 archived · 8 blocked · 87 open · 74 proved · 10 translated.**
 
 ## Efficiency by Difficulty
 
@@ -33,7 +33,7 @@ Verified output comes from active `library/index` records plus archived index re
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 54 | 20 | 37.0% | 47 | 5m 0s |
 | 2 | 63 | 21 | 33.3% | 55 | 4m 19s |
-| 3 | 34 | 20 | 58.8% | 24 | 4m 53s |
+| 3 | 35 | 21 | 60.0% | 24 | 4m 55s |
 | 4 | 16 | 4 | 25.0% | 14 | 7m 35s |
 | 5 | 1 | 0 | 0.0% | 1 | 31m 28s |
 
@@ -45,12 +45,12 @@ Verified output comes from active `library/index` records plus archived index re
 | `sq-add-sq-eq-three-mul-sq-s4` | `open` | 1 | 2 | 6 | 54m 47s |
 | `am-gm-three-cube-s2-s2` | `open` | 1 | 3 | 5 | 44m 53s |
 | `am-gm-three-cube-s2` | `blocked` | 1 | 2 | 4 | 43m 57s |
-| `discriminant-nonneg` | `open` | 3 | 2 | 4 | 29m 26s |
 | `cube-sum-ge-three-prod` | `blocked` | 2 | 2 | 4 | 17m 0s |
 | `am-gm-three-cube` | `blocked` | 3 | 2 | 4 | 16m 32s |
 | `cube-sum-ge-mul-sq` | `open` | 2 | 2 | 4 | 5m 47s |
 | `cube-sum-ge-three-prod-s1` | `open` | 1 | 3 | 3 | 1h 6m |
 | `fourth-power-mod-five` | `archived` | 3 | 1 | 3 | 20m 27s |
+| `cube-eq-triangular-sq-diff` | `archived` | 2 | 1 | 3 | 14m 49s |
 
 ## Contributor Leaderboard
 
@@ -60,7 +60,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
 | 1 | [@cgbarlow](https://github.com/cgbarlow) | 90 | 48 | 42 | 134 | 35.1% | 158 | 18050 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 33 | 0 | 33 | 0 | — | 67 | 7525 |
-| 3 | [@perttu](https://github.com/perttu) | 17 | 17 | 0 | 24 | 70.8% | 32 | 3625 |
+| 3 | [@perttu](https://github.com/perttu) | 18 | 18 | 0 | 25 | 72.0% | 35 | 3950 |
 | 4 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 5 | [@adam91holt](https://github.com/adam91holt) | 4 | 4 | 0 | 9 | 0.0% | 6 | 700 |
 | 6 | [@OceanLi](https://github.com/OceanLi) | 1 | 0 | 1 | 0 | — | 3 | 325 |
@@ -68,9 +68,9 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 ## Attribution Notes
 
-**70 explicit solver credits · 85 inferred git credits · 0 uncredited proof records.**
+**71 explicit solver credits · 85 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 155 of 155 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 156 of 156 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -78,7 +78,7 @@ Git add-author attribution covers 155 of 155 proof index files. It is used only 
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
 | `claude / opus` | 41 | 44 | 93.2% | 17 | 3 | 4m 53s | 6.98 |
 | `openai / leanstral-2603` | 9 | 84 | 10.7% | 79 | 1 | 4m 35s | 0.62 |
-| `gemini / gemini-3.1-pro-preview` | 8 | 10 | 80.0% | 6 | 1 | 5m 51s | 7.33 |
+| `gemini / gemini-3.1-pro-preview` | 9 | 11 | 81.8% | 6 | 1 | 6m 15s | 7.19 |
 | `codex / unknown` | 7 | 20 | 35.0% | 27 | 2 | 4m 16s | 3.29 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
@@ -90,6 +90,7 @@ Git add-author attribution covers 155 of 155 proof index files. It is used only 
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-15T02:20:13Z` | `discriminant-nonneg` | [@perttu](https://github.com/perttu) | `gemini / gemini-3.1-pro-preview` | `proved` | 1 | 0 | 9m 35s |
 | `2026-06-15T02:19:50Z` | `lcm-self-succ` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 4m 15s |
 | `2026-06-15T02:16:21Z` | `gcd-lin-3n2-5n3` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 15m 38s |
 | `2026-06-15T02:14:50Z` | `dvd-2730-pow-thirteen-sub-self` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 31m 30s |
@@ -109,7 +110,6 @@ Git add-author attribution covers 155 of 155 proof index files. It is used only 
 | `2026-06-15T01:41:23Z` | `discriminant-nonneg-s2` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 2m 45s |
 | `2026-06-15T01:40:20Z` | `dvd-2730-pow-thirteen-sub-self` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 44s |
 | `2026-06-15T01:39:28Z` | `discriminant-nonneg-s2` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 31m 42s |
-| `2026-06-15T01:38:15Z` | `four-not-dvd-sq-add-two` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 3m 31s |
 
 ## Interpretation
 
