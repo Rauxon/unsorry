@@ -1,0 +1,9 @@
+𝔸5.1.run.cube-mod-fourteen-mem.afnz-zbook-b336.20260615t110405011099z-84ceb9a6@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t110405011099z-84ceb9a6; goal≜cube-mod-fourteen-mem; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜cube-mod-fourteen-mem}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜566; ended≜2026-06-15T11:04:05Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜⊢ n ^ 3 % 14 = 0 ∨ n ^ 3 % 14 = 1 ∨ n ^ 3 % 14 = 6 ∨ n ^ 3 % 14 = 7 ∨ n ^ 3 % 14 = 8 ∨ n ^ 3 % 14 = 13 case inr.inr.inr.inr.inr.inr.inr.inl n : ℕ h : n % 14 = 7 ⊢ n ^ 3 % 14 = 0 ∨ n ^ 3 % 14 = 1 ∨ n ^ 3 % 14 = 6 ∨ n ^ 3 % 14 = 7 ∨ n ^ 3 % 14 = 8 ∨ n ^ 3 % 14 = 13 case inr.inr.inr}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
