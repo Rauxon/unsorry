@@ -1,7 +1,0 @@
-𝔸5.1.claim.coprime-n2p1-n2p2.claude-rmt-001@2026-06-15
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜coprime-n2p1-n2p2; agent≜claude-rmt-001}
-⟦Σ:Times⟧{ts≜2026-06-15T21:11:07Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
