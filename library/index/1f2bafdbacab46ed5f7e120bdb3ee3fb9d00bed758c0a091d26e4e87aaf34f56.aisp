@@ -1,0 +1,8 @@
+𝔸5.1.lemma.1f2bafdbacab@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜1f2bafdbacab46ed5f7e120bdb3ee3fb9d00bed758c0a091d26e4e87aaf34f56; goal≜four-var-cyclic-sos; name≜four_var_cyclic_sos}
+⟦Σ:Source⟧{src≜goals/four-var-cyclic-sos.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high; attempts≜1; solve_s≜328}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

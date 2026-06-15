@@ -1,0 +1,8 @@
+𝔸5.1.run.four-var-cyclic-sos.oma-2-c50d.20260615t014243244932z-2cdbcfad@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t014243244932z-2cdbcfad; goal≜four-var-cyclic-sos; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high}
+⟦Γ:Goal⟧{goal≜four-var-cyclic-sos}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜328; ended≜2026-06-15T01:42:43Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜1f2bafdbacab46ed5f7e120bdb3ee3fb9d00bed758c0a091d26e4e87aaf34f56}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
