@@ -1,0 +1,20 @@
+𝔸5.1.goal.diff-two-squares-zmod-four-ne-two@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜diff-two-squares-zmod-four-ne-two
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/diff-two-squares-zmod-four-ne-two.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/diff-two-squares-zmod-four-ne-two.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

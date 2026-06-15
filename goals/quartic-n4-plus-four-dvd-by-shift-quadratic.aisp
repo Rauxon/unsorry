@@ -1,0 +1,20 @@
+𝔸5.1.goal.quartic-n4-plus-four-dvd-by-shift-quadratic@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜quartic-n4-plus-four-dvd-by-shift-quadratic
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/quartic-n4-plus-four-dvd-by-shift-quadratic.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/quartic-n4-plus-four-dvd-by-shift-quadratic.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
