@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**663 goals — 410 open · 8 blocked · 10 translated · 97 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
+**663 goals — 409 open · 8 blocked · 10 translated · 98 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (94 of 97 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (95 of 98 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -251,7 +251,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`constrained-sum-sq-ge-one-third`](https://github.com/agenticsnz/unsorry/blob/main/goals/constrained-sum-sq-ge-one-third.lean) | open | 2 | — | — | — | — |
 | [`coprime-consec-tri`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-consec-tri.lean) | open | 3 | — | — | — | — |
 | [`coprime-fib-sq-fib-succ`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-fib-sq-fib-succ.lean) | open | 3 | — | — | — | — |
-| [`coprime-n1-nsq1`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-n1-nsq1.lean) | open | 3 | — | — | — | — |
 | [`coprime-ncube1-ncube2`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-ncube1-ncube2.lean) | open | 2 | — | — | — | — |
 | [`coprime-twopow-sub-one-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-twopow-sub-one-two.lean) | open | 3 | — | — | — | — |
 | [`cube-mod-fourteen-mem`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-mod-fourteen-mem.lean) | open | 2 | — | — | — | — |
@@ -675,6 +674,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`coprime-3n1-4n1`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-3n1-4n1.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#888](https://github.com/agenticsnz/unsorry/pull/888) | 2026-06-15 |
 | [`coprime-n-cube-add-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-n-cube-add-one.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#941](https://github.com/agenticsnz/unsorry/pull/941) | 2026-06-15 |
 | [`coprime-n-sq-n-add-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-n-sq-n-add-one.lean) | proved | 2 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#718](https://github.com/agenticsnz/unsorry/pull/718) | 2026-06-15 |
+| [`coprime-n1-nsq1`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-n1-nsq1.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#947](https://github.com/agenticsnz/unsorry/pull/947) | 2026-06-15 |
 | [`coprime-n2p1-n2p2`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-n2p1-n2p2.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#940](https://github.com/agenticsnz/unsorry/pull/940) | 2026-06-15 |
 | [`coprime-nsq2-nsq3`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-nsq2-nsq3.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#945](https://github.com/agenticsnz/unsorry/pull/945) | 2026-06-15 |
 | [`coprime-succ-sq-add`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-succ-sq-add.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#934](https://github.com/agenticsnz/unsorry/pull/934) | 2026-06-16 |
