@@ -1,0 +1,8 @@
+𝔸5.1.run.fourth-power-mod-eight-mem.afnz-zbook-b336.20260615t014607091296z-9c66e43e@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t014607091296z-9c66e43e; goal≜fourth-power-mod-eight-mem; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜fourth-power-mod-eight-mem}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜326; ended≜2026-06-15T01:46:07Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜bb43c75a61fabf394308d1b68b5a4e69818bd590e303130f0ab3c8c22390f8fd}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

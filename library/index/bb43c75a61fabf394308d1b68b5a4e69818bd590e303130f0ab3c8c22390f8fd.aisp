@@ -1,0 +1,8 @@
+𝔸5.1.lemma.bb43c75a61fa@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜bb43c75a61fabf394308d1b68b5a4e69818bd590e303130f0ab3c8c22390f8fd; goal≜fourth-power-mod-eight-mem; name≜fourth_power_mod_eight_mem}
+⟦Σ:Source⟧{src≜goals/fourth-power-mod-eight-mem.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜326}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
