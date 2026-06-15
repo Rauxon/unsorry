@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-66-pow-twentyone-sub-pow-eleven.oma-2-c50d.20260615t202553083941z-c42ada94@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t202553083941z-c42ada94; goal≜dvd-66-pow-twentyone-sub-pow-eleven; agent≜oma-2-c50d; outcome≜failed}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜dvd-66-pow-twentyone-sub-pow-eleven}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜3985; ended≜2026-06-15T20:25:53Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(codex call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
