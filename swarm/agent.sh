@@ -2089,6 +2089,14 @@ write_binding_module() {
   {
     printf 'import Unsorry.%s\n\n' "$camel"
     if [ -n "$opens" ]; then printf '%s\n' "$opens"; fi
+    # linter.unusedVariables is suppressed to match Gate A's regenerated
+    # obligation (tools/gate_a/check_statement_binding.py): the binding restates
+    # the goal's binders verbatim, so a goal hypothesis a correct proof leaves
+    # unused (or a named binder eta-expanded after an implicit one) is flagged
+    # unused and fails this --wfail self-verify — wrongly rejecting a proof CI
+    # accepts and forcing a needless decomposition. The binding's force is
+    # type-checking, not lints.
+    printf 'set_option linter.unusedVariables false in\n'
     printf 'theorem %s_binding_check : %s := %s\n' "$name" "$ftype" "$name"
   } > "$prwt/library/Unsorry/${camel}Binding.lean"
 }
@@ -3075,6 +3083,32 @@ test_run_proof_mock_provider_smoke() {
   [ -f "$tree/library/Unsorry/GoalSmoke.lean" ] \
     || { log "  target module missing after smoke"; return 1; }
   [ -e "$tree/test.lean" ] && { log "  stray root file survived run_proof"; return 1; }
+  return 0
+}
+
+test_binding_module_suppresses_unused_linter() {
+  # Regression for the swarm/Gate-A binding divergence (issue #612): the local
+  # self-verify binding must suppress linter.unusedVariables exactly as Gate A's
+  # generator does (tools/gate_a/check_statement_binding.py). Without it, a goal
+  # hypothesis a correct proof leaves unused trips --wfail here, wrongly failing
+  # the self-verify and forcing a needless decomposition.
+  local tree camel="UnusedHyp" binding sopt_line thm_line
+  tree="$(mktemp -d "$SESSION_TMP/binding-unused.XXXXXX")" || return 1
+  mkdir -p "$tree/library/Unsorry" || return 1
+  make_prove_goal "$tree" unused-hyp \
+    "theorem unused_hyp (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) : 4 * (a * b) ≤ (a + b) ^ 2" \
+    || return 1
+  write_binding_module "$tree" unused-hyp "$camel" \
+    || { log "  write_binding_module failed"; return 1; }
+  binding="$tree/library/Unsorry/${camel}Binding.lean"
+  [ -f "$binding" ] || { log "  binding module not written"; return 1; }
+  grep -q 'set_option linter.unusedVariables false in' "$binding" \
+    || { log "  binding lacks linter.unusedVariables suppression (issue #612)"; return 1; }
+  # The suppression must precede the obligation it guards.
+  sopt_line="$(grep -n 'set_option linter.unusedVariables false in' "$binding" | head -1 | cut -d: -f1)"
+  thm_line="$(grep -n 'unused_hyp_binding_check' "$binding" | head -1 | cut -d: -f1)"
+  [ -n "$sopt_line" ] && [ -n "$thm_line" ] && [ "$sopt_line" -lt "$thm_line" ] \
+    || { log "  suppression does not precede the binding theorem"; return 1; }
   return 0
 }
 
@@ -4122,6 +4156,7 @@ run_self_tests() {
     test_prove_target_path_guard
     test_prove_attempt_log_does_not_trip_guard
     test_run_proof_mock_provider_smoke
+    test_binding_module_suppresses_unused_linter
     test_proof_attempt_cleanup
     test_feature_branch_names
     test_claim_push_reentrancy
