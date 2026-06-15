@@ -1,0 +1,8 @@
+𝔸5.1.run.nat-sq-lt-two-pow-s2.thebeast-ace7.20260615t213039433774z-56c39568@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t213039433774z-56c39568; goal≜nat-sq-lt-two-pow-s2; agent≜thebeast-ace7; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜nat-sq-lt-two-pow-s2}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜216; ended≜2026-06-15T21:30:39Z; lessons≜3}
+⟦Σ:Artifact⟧{sha≜414528f6cc23950064c715bee1e22317c0b2ba711df3b7163993019ffdc12d4d}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
