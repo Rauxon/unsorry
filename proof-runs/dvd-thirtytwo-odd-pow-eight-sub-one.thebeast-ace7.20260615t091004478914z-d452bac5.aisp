@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-thirtytwo-odd-pow-eight-sub-one.thebeast-ace7.20260615t091004478914z-d452bac5@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t091004478914z-d452bac5; goal≜dvd-thirtytwo-odd-pow-eight-sub-one; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜dvd-thirtytwo-odd-pow-eight-sub-one}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1138; ended≜2026-06-15T09:10:04Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8571/8587] Built Unsorry.AmGmThreeCubeS2S2S1 (1.0s) ✔ [8572/8587] Built Unsorry.FourVarQmAmS1 (2.1s) ✔ [8573/8587] Built Unsorry.AmgmFourCrossThreeVar (3.3s) ✔ [8574/8587] Built Unsorry.AmHmTwoVarS3 (4.3s) ✔ [8575/8587] Built Unsorry.CubeModNine (5.3s) ✔ [8576/8587] Built Unso}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
