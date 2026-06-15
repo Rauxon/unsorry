@@ -1,0 +1,8 @@
+𝔸5.1.run.consec-prod-succ-coprime.1367ab40f0b1-e413.20260615t225605679815z-07cf69eb@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t225605679815z-07cf69eb; goal≜consec-prod-succ-coprime; agent≜1367ab40f0b1-e413; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜consec-prod-succ-coprime}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜186; ended≜2026-06-15T22:56:05Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜8a583ca6bbaf9b45aebda3b466b4c7e91d1f02a51e024bf1e719e8d710bbd2cb}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
