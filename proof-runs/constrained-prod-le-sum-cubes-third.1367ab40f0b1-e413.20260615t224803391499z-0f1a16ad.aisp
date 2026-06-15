@@ -1,0 +1,8 @@
+𝔸5.1.run.constrained-prod-le-sum-cubes-third.1367ab40f0b1-e413.20260615t224803391499z-0f1a16ad@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t224803391499z-0f1a16ad; goal≜constrained-prod-le-sum-cubes-third; agent≜1367ab40f0b1-e413; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜constrained-prod-le-sum-cubes-third}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜356; ended≜2026-06-15T22:48:03Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜e4ead727856e798b1ba6c2ec50b51456eb3459d026d665c5cc920230a9d9b4b0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

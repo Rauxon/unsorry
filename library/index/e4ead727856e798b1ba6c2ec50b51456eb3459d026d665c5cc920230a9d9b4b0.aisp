@@ -1,0 +1,8 @@
+𝔸5.1.lemma.e4ead727856e@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜e4ead727856e798b1ba6c2ec50b51456eb3459d026d665c5cc920230a9d9b4b0; goal≜constrained-prod-le-sum-cubes-third; name≜constrained_prod_le_sum_cubes_third}
+⟦Σ:Source⟧{src≜goals/constrained-prod-le-sum-cubes-third.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜356}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
