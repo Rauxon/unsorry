@@ -112,6 +112,7 @@ jobs:
       # the axiom audit + leanchecker kernel replay still validate every olean
       # that reaches main (full replay on push to main), cached or not.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: .lake/build
@@ -215,6 +216,7 @@ jobs:
       # than a second cold ~16-21 min rebuild. See gate-a-prepare for the full
       # rationale and the soundness argument.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: .lake/build
@@ -232,6 +234,15 @@ jobs:
         run: python3 -m tools.gate_a.check_statement_binding generate .
 
       - name: Library build — zero-warning bar (--wfail)
+        # Skip when the .lake/build cache hit on the exact commit-sha key:
+        # gate-a-prepare already built and --wfail-checked these exact oleans this
+        # run, and the axiom audit / leanchecker only LOAD oleans (`lake exe` /
+        # `lake env`, never a library `lake build` — axiom_audit is a standalone
+        # lean_exe, leanchecker runs under `lake env`), so rebuilding here was pure
+        # waste (~3.5 min/job, the gate's biggest constant cost). Self-healing:
+        # on a cache miss the build runs. Soundness unchanged — leanchecker
+        # re-checks every olean it loads against the kernel regardless of origin.
+        if: steps.lake_build_cache.outputs.cache-hit != 'true'
         run: lake build UnsorryLibrary --wfail
 
       # Incremental on PRs: audit only changed library modules plus their
@@ -299,6 +310,7 @@ jobs:
       # than a third cold ~16-21 min rebuild. See gate-a-prepare for the full
       # rationale and the soundness argument.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: .lake/build
@@ -346,6 +358,15 @@ jobs:
         run: python3 -m tools.gate_a.check_statement_binding generate .
 
       - name: Library build — zero-warning bar (--wfail)
+        # Skip when the .lake/build cache hit on the exact commit-sha key:
+        # gate-a-prepare already built and --wfail-checked these exact oleans this
+        # run, and the axiom audit / leanchecker only LOAD oleans (`lake exe` /
+        # `lake env`, never a library `lake build` — axiom_audit is a standalone
+        # lean_exe, leanchecker runs under `lake env`), so rebuilding here was pure
+        # waste (~3.5 min/job, the gate's biggest constant cost). Self-healing:
+        # on a cache miss the build runs. Soundness unchanged — leanchecker
+        # re-checks every olean it loads against the kernel regardless of origin.
+        if: steps.lake_build_cache.outputs.cache-hit != 'true'
         run: lake build UnsorryLibrary --wfail
 
       # Incremental on PRs (ADR-033): replay only the changed library modules

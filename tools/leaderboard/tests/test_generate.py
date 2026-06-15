@@ -464,7 +464,7 @@ def test_docs_leaderboard_html_consumes_generated_ui_json():
     html = (root / "docs" / "leaderboard.html").read_text(encoding="utf-8")
     assert "metrics/leaderboard-ui.json" in html
     assert "schema_version" in html
-    assert "leaderboardData = normalizeRows(payload.contributors)" in html
+    assert "normalizeRows(payload.contributors)" in html
     assert "explicit_solver_proofs" in html
     assert "inferred_git_proofs" in html
     assert "renderHistoricalContributors" not in html
@@ -481,6 +481,18 @@ def test_docs_leaderboard_html_consumes_generated_ui_json():
     assert 'id="tab-leaderboard"' in html and 'id="tab-timeline"' in html
     assert 'id="view-timeline"' in html
     assert "renderTimeline" in html and "payload.timeline" in html
+    # Top 5 view: a third toggle tab rendering the top five contributors.
+    assert 'id="tab-top5"' in html and 'id="view-top5"' in html
+    assert "renderTop5" in html
+
+
+def test_docs_index_links_readme():
+    # The home page links the repository README so visitors can read about it.
+    root = Path(__file__).resolve().parents[3]
+    html = (root / "docs" / "index.html").read_text(encoding="utf-8")
+    assert "blob/main/README.md" in html
+    assert 'href="leaderboard.html"' in html
+    assert 'href="proofs-contributors-visualisation.html"' in html
 
 
 def test_ui_payload_includes_proof_timeline(tmp_path):

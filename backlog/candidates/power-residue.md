@@ -53,37 +53,37 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
 
 ### Replenishment round 2 (scoped 2026-06-15) — 24 candidates
 
-- [ ] `sq_mod_ten_mem` — The last decimal digit of any perfect square is always one of 0, 1, 4, 5, 6, or 9
+- [x] `sq_mod_ten_mem` — The last decimal digit of any perfect square is always one of 0, 1, 4, 5, 6, or 9
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 10, decide each of the 10 residue branches · conf: high
-- [ ] `sq_mod_ten_ne_two_three_seven_eight` — No perfect square ends in the decimal digit 2, 3, 7, or 8
+- [x] `sq_mod_ten_ne_two_three_seven_eight` — No perfect square ends in the decimal digit 2, 3, 7, or 8
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then interval_cases / decide over n % 10 to rule out the four non-residue digits · conf: high
-- [ ] `sq_mod_fifteen_mem` — Every perfect square is congruent to 0, 1, 4, 6, 9, or 10 modulo 15
+- [x] `sq_mod_fifteen_mem` — Every perfect square is congruent to 0, 1, 4, 6, 9, or 10 modulo 15
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 15, decide each of the 15 residue branches · conf: high
-- [ ] `sq_mod_twenty_mem` — Every perfect square is congruent to 0, 1, 4, 5, 9, or 16 modulo 20
+- [x] `sq_mod_twenty_mem` — Every perfect square is congruent to 0, 1, 4, 5, 9, or 16 modulo 20
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 20, decide each residue branch · conf: high
-- [ ] `sq_mod_thirtytwo_mem` — The quadratic residues modulo 32 are exactly 0, 1, 4, 9, 16, 17, and 25
+- [x] `sq_mod_thirtytwo_mem` — The quadratic residues modulo 32 are exactly 0, 1, 4, 9, 16, 17, and 25
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 32, decide each of the 32 residue branches · conf: high
-- [ ] `sq_mod_forty_mem` — Every perfect square is congruent to one of 0,1,4,9,16,20,24,25,36 modulo 40
+- [x] `sq_mod_forty_mem` — Every perfect square is congruent to one of 0,1,4,9,16,20,24,25,36 modulo 40
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 40, decide each of the 40 residue branches · conf: high
-- [ ] `cube_mod_twentyseven_mem` — The cubic residues modulo 27 are exactly 0, 1, 8, 10, 17, 19, and 26
+- [x] `cube_mod_twentyseven_mem` — The cubic residues modulo 27 are exactly 0, 1, 8, 10, 17, 19, and 26
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 27, decide each of the 27 residue branches · conf: high
-- [ ] `cube_mod_fourteen_mem` — The cubic residues modulo 14 are exactly 0, 1, 6, 7, 8, and 13
+- [x] `cube_mod_fourteen_mem` — The cubic residues modulo 14 are exactly 0, 1, 6, 7, 8, and 13
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 14, decide each residue branch · conf: high
-- [ ] `fourth_power_mod_five_mem` — Every natural number's fourth power is congruent to 0 or 1 modulo 5
+- [x] `fourth_power_mod_five_mem` — Every natural number's fourth power is congruent to 0 or 1 modulo 5
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 5, decide each of the 5 residue branches (Fermat exponent 4) · conf: high
-- [ ] `fourth_power_mod_ten_mem` — The last decimal digit of any fourth power is always 0, 1, 5, or 6
+- [x] `fourth_power_mod_ten_mem` — The last decimal digit of any fourth power is always 0, 1, 5, or 6
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 10, decide each residue branch · conf: high
-- [ ] `fourth_power_mod_thirtytwo_mem` — Every natural number's fourth power is congruent to 0, 1, 16, or 17 modulo 32
+- [x] `fourth_power_mod_thirtytwo_mem` — Every natural number's fourth power is congruent to 0, 1, 16, or 17 modulo 32
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 32, decide each of the 32 residue branches · conf: high
-- [ ] `fifth_power_mod_twentytwo_mem` — The fifth-power residues modulo 22 are exactly 0, 1, 10, 11, 12, and 21
+- [x] `fifth_power_mod_twentytwo_mem` — The fifth-power residues modulo 22 are exactly 0, 1, 10, 11, 12, and 21
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 22, decide each of the 22 residue branches · conf: high
-- [ ] `sixth_power_mod_fourteen_mem` — Every natural number's sixth power is congruent to 0, 1, 7, or 8 modulo 14
+- [x] `sixth_power_mod_fourteen_mem` — Every natural number's sixth power is congruent to 0, 1, 7, or 8 modulo 14
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 14, decide each residue branch · conf: high
-- [ ] `sixth_power_mod_sixtythree_mem` — Every natural number's sixth power is congruent to 0, 1, 28, or 36 modulo 63
+- [x] `sixth_power_mod_sixtythree_mem` — Every natural number's sixth power is congruent to 0, 1, 28, or 36 modulo 63
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 63, decide each of the 63 residue branches · conf: high
-- [ ] `sixth_power_mod_twentyone_mem` — Every natural number's sixth power is congruent to 0, 1, 7, or 15 modulo 21
+- [x] `sixth_power_mod_twentyone_mem` — Every natural number's sixth power is congruent to 0, 1, 7, or 15 modulo 21
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 21, decide each residue branch · conf: high
-- [ ] `fifth_power_mod_sixteen_odd_mem` — A fifth power modulo 16 is either 0 or one of the odd residues, and in fact equals n itself modulo 16 up to even classes
+- [x] `fifth_power_mod_sixteen_odd_mem` — A fifth power modulo 16 is either 0 or one of the odd residues, and in fact equals n itself modulo 16 up to even classes
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 16, decide each of the 16 residue branches · conf: high
 - [ ] `two_squares_zmod_sixteen_ne_three_seven_eleven` — A sum of two integer squares is never congruent to 3, 7, 11, or 15 modulo 16
       absence: no-local-match · triviality: non-trivial · intended: decide over the finite ZMod 16 × ZMod 16 domain after splitting the conjunction · conf: high
@@ -99,7 +99,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: decide over the finite ZMod 16 cubed domain (each fourth power is 0 or 1 mod 16) · conf: high
 - [ ] `three_cubes_zmod_nine_ne_four_five` — A sum of three integer cubes is never congruent to 4 or 5 modulo 9
       absence: no-local-match · triviality: non-trivial · intended: decide over the finite ZMod 9 cubed domain (the classic obstruction to representing 4,5 mod 9 as three cubes) · conf: high
-- [ ] `cube_mod_twentysix_mem` — The cubic residues modulo 26 are exactly 0,1,5,8,12,13,14,18,21,25
+- [x] `cube_mod_twentysix_mem` — The cubic residues modulo 26 are exactly 0,1,5,8,12,13,14,18,21,25
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 26, decide each of the 26 residue branches · conf: high
 
 ### Replenishment round 3 (scoped 2026-06-15) — 25 candidates

@@ -428,6 +428,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "6e40022b854e37f18b5cb35c5fec28980dfacde2",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-5n2-7n3-eq-one",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/a9564a1e9d6a5f41886b13c884818c85fd5d29bb6fca79bd80443e0158d678d0.aisp",
+      "review_status": "candidate",
+      "sha": "a9564a1e9d6a5f41886b13c884818c85fd5d29bb6fca79bd80443e0158d678d0"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
       "difficulty": 1,
       "display_name": "chat-bit-01",
       "git_add_commit": "3141062e09717f4acb797b57d5d899483eeaac59",
@@ -619,6 +634,21 @@
       "path": "library/index/ec4eec9b97d21d2b1553659fddcc84cfc1aef5309a2324cb40d6da703df0aa5b.aisp",
       "review_status": "candidate",
       "sha": "ec4eec9b97d21d2b1553659fddcc84cfc1aef5309a2324cb40d6da703df0aa5b"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "673a6ae2c9873431447ca31c6ee490147415ca9f",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-4n3-6n5-eq-one",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/f7a245e1b6bbfa26bc19cae38055774f0c48b1b3567fa1d10da0593aef15c059.aisp",
+      "review_status": "candidate",
+      "sha": "f7a245e1b6bbfa26bc19cae38055774f0c48b1b3567fa1d10da0593aef15c059"
     },
     {
       "alias_mapped": true,
@@ -1779,9 +1809,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 118,
-    "mapped_missing_solver": 114,
-    "missing_solver_provenance": 118,
+    "git_attributed_missing_solver": 120,
+    "mapped_missing_solver": 116,
+    "missing_solver_provenance": 120,
     "unmapped_missing_solver": 4
   }
 }

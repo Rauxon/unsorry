@@ -119,6 +119,39 @@ def test_validate_archive_package_runs_soundness_steps(tmp_path: Path):
     assert ("lake", "env", "leanchecker", "Unsorry.One", "Unsorry.OneBinding") in argv_only
 
 
+def test_validate_archive_package_chunks_replay_to_bound_memory(tmp_path: Path):
+    # leanchecker holds ~all of mathlib resident, so replaying every module in one
+    # invocation OOM-kills a memory-bound runner (exit 137). Replay must chunk at
+    # REPLAY_CHUNK_SIZE; each chunk bounded, every module still replayed.
+    from tools.gate_a.parallel_modules import REPLAY_CHUNK_SIZE
+    package = tmp_path / "packages" / "unsorry-archive-0001"
+    (package / "library" / "Unsorry").mkdir(parents=True)
+    (package / "goals").mkdir()
+    names = [f"M{i}" for i in range(REPLAY_CHUNK_SIZE + 5)]
+    for n in names:
+        (package / "library" / "Unsorry" / f"{n}.lean").write_text(
+            "import Mathlib\n\ntheorem t : True := trivial\n", encoding="utf-8"
+        )
+    (package / "lakefile.toml").write_text(
+        'defaultTargets = ["UnsorryArchive0001"]\n', encoding="utf-8"
+    )
+    (package / "lean-toolchain").write_text("leanprover/lean4:v4.30.0\n", encoding="utf-8")
+
+    calls: list[tuple[str, ...]] = []
+
+    def runner(argv, **_kwargs):
+        argv = tuple(argv)
+        calls.append(argv)
+        return completed(argv)
+
+    assert validate_archive_package(tmp_path, package, runner) == 0
+
+    replay = [c for c in calls if c[:3] == ("lake", "env", "leanchecker")]
+    assert len(replay) >= 2  # chunked, not one giant call
+    assert all(len(c) - 3 <= REPLAY_CHUNK_SIZE for c in replay)  # each chunk bounded
+    assert {m for c in replay for m in c[3:]} == {f"Unsorry.{n}" for n in names}  # all replayed
+
+
 def test_validate_changed_no_archive_changes_is_noop(tmp_path: Path):
     def runner(argv, **_kwargs):
         argv = tuple(argv)

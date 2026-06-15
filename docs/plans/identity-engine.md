@@ -46,7 +46,7 @@ partition / generating-function coefficients.
 
 ## Progress (updated per batch)
 
-**Shipped: 225 / 200 ✅ (cycle 1: 107 · cycle 2: 118) · Scoped: ~465 open ✓ · mathlib c5ea00351c** — cycles 1&2 complete.
+**Shipped: 356 ✅ (cycle 1: 107 · 2: 118 · 3: 131) · Scoped: ~599 open ✓ · mathlib c5ea00351c** — cycles 1-3 complete.
 
 | Theme | sourced | target (first-100) |
 |-------|---------|--------------------|

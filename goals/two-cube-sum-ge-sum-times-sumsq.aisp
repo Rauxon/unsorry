@@ -1,0 +1,20 @@
+𝔸5.1.goal.two-cube-sum-ge-sum-times-sumsq@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜two-cube-sum-ge-sum-times-sumsq
+  phase≜prove
+  status≜open
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/two-cube-sum-ge-sum-times-sumsq.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/two-cube-sum-ge-sum-times-sumsq.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

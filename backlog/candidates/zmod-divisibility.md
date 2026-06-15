@@ -49,45 +49,45 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
 
 ### Replenishment round 2 (scoped 2026-06-15) — 20 candidates
 
-- [ ] `dvd_1365_pow_thirteen_sub_self` — The integer 1365 = 3·5·7·13 divides n^13 - n for every integer n
+- [x] `dvd_1365_pow_thirteen_sub_self` — The integer 1365 = 3·5·7·13 divides n^13 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Reduce to ZMod 1365 via ZMod.intCast_zmod_eq_zero_iff_dvd, push_cast, then `decide` on the finite residue identity (set_option maxRecDepth ~20000) · conf: high
-- [ ] `dvd_910_pow_thirteen_sub_self` — The integer 910 = 2·5·7·13 divides n^13 - n for every integer n
+- [x] `dvd_910_pow_thirteen_sub_self` — The integer 910 = 2·5·7·13 divides n^13 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Bridge ℤ-divisibility to `∀ x : ZMod 910, x^13 - x = 0` by `decide`, lifted with push_cast and intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_455_pow_thirteen_sub_self` — The integer 455 = 5·7·13 divides n^13 - n for every integer n
+- [x] `dvd_455_pow_thirteen_sub_self` — The integer 455 = 5·7·13 divides n^13 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 455 decide bridge; each prime factor's (p-1) divides 12 so the residue identity holds and is decidable · conf: high
-- [ ] `dvd_273_pow_thirteen_sub_self` — The integer 273 = 3·7·13 divides n^13 - n for every integer n
+- [x] `dvd_273_pow_thirteen_sub_self` — The integer 273 = 3·7·13 divides n^13 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ZMod 273, prove `x^13 = x` for all residues by `decide`, then intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_1302_pow_thirtyone_sub_self` — The integer 1302 = 2·3·7·31 divides n^31 - n for every integer n
+- [x] `dvd_1302_pow_thirtyone_sub_self` — The integer 1302 = 2·3·7·31 divides n^31 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 1302 decide bridge with set_option maxRecDepth ~200000; exponent 31 makes kernel reduction heavier but still terminates (~26s) · conf: high
-- [ ] `dvd_1023_pow_thirtyone_sub_self` — The integer 1023 = 3·11·31 divides n^31 - n for every integer n
+- [x] `dvd_1023_pow_thirtyone_sub_self` — The integer 1023 = 3·11·31 divides n^31 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Bridge to `∀ x : ZMod 1023, x^31 - x = 0` by `decide` (high maxRecDepth), then lift via push_cast and intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_462_pow_thirtyone_sub_self` — The integer 462 = 2·3·7·11 divides n^31 - n for every integer n
+- [x] `dvd_462_pow_thirtyone_sub_self` — The integer 462 = 2·3·7·11 divides n^31 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 462 decide bridge; λ(462)=30 divides 30 so n^31≡n, decidable over the finite ring · conf: high
-- [ ] `dvd_399_pow_nineteen_sub_self` — The integer 399 = 3·7·19 divides n^19 - n for every integer n
+- [x] `dvd_399_pow_nineteen_sub_self` — The integer 399 = 3·7·19 divides n^19 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ZMod 399, `decide` the residue identity x^19 = x, then intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_266_pow_nineteen_sub_self` — The integer 266 = 2·7·19 divides n^19 - n for every integer n
+- [x] `dvd_266_pow_nineteen_sub_self` — The integer 266 = 2·7·19 divides n^19 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 266 decide bridge with push_cast; (p-1) for 2,7,19 all divide 18 so n^19≡n · conf: high
-- [ ] `dvd_133_pow_nineteen_sub_self` — The integer 133 = 7·19 divides n^19 - n for every integer n
+- [x] `dvd_133_pow_nineteen_sub_self` — The integer 133 = 7·19 divides n^19 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Reduce to `∀ x : ZMod 133, x^19 - x = 0` by `decide`, lift with intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_1365_pow_fifteen_sub_pow_three` — The integer 1365 = 3·5·7·13 divides n^15 - n^3 for every integer n
+- [x] `dvd_1365_pow_fifteen_sub_pow_three` — The integer 1365 = 3·5·7·13 divides n^15 - n^3 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ZMod 1365 and `decide` that x^15 = x^3 for all residues (set_option maxRecDepth ~100000, ~26s); lift via intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_910_pow_fifteen_sub_pow_three` — The integer 910 = 2·5·7·13 divides n^15 - n^3 for every integer n
+- [x] `dvd_910_pow_fifteen_sub_pow_three` — The integer 910 = 2·5·7·13 divides n^15 - n^3 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 910 decide bridge on x^15 - x^3 = 0; the common factor n^3 plus λ(910)=12 dividing 12 gives the identity · conf: high
-- [ ] `dvd_455_pow_fifteen_sub_pow_three` — The integer 455 = 5·7·13 divides n^15 - n^3 for every integer n
+- [x] `dvd_455_pow_fifteen_sub_pow_three` — The integer 455 = 5·7·13 divides n^15 - n^3 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ZMod 455, `decide` x^15 = x^3 over residues, then intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_210_pow_fifteen_sub_pow_three` — The integer 210 = 2·3·5·7 divides n^15 - n^3 for every integer n
+- [x] `dvd_210_pow_fifteen_sub_pow_three` — The integer 210 = 2·3·5·7 divides n^15 - n^3 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 210 decide bridge; λ(210)=12 divides 12 so n^15≡n^3, decidable over the 210 residues · conf: high
-- [ ] `dvd_840_pow_fifteen_sub_pow_three` — The integer 840 = 2^3·3·5·7 divides n^15 - n^3 for every integer n
+- [x] `dvd_840_pow_fifteen_sub_pow_three` — The integer 840 = 2^3·3·5·7 divides n^15 - n^3 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ZMod 840 and `decide` x^15 - x^3 = 0; the 2^3 factor needs the n^3 head so plain n^a-n fails, making this a genuine n^a-n^b fact · conf: high
-- [ ] `dvd_264_pow_thirteen_sub_pow_three` — The integer 264 = 2^3·3·11 divides n^13 - n^3 for every integer n
+- [x] `dvd_264_pow_thirteen_sub_pow_three` — The integer 264 = 2^3·3·11 divides n^13 - n^3 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 264 decide bridge on x^13 - x^3 = 0; 2^3 forces the n^3 factor, λ(odd part)=10 divides 10 for the n^10 lift · conf: high
-- [ ] `dvd_360_pow_fifteen_sub_pow_three` — The integer 360 = 2^3·3^2·5 divides n^15 - n^3 for every integer n
+- [x] `dvd_360_pow_fifteen_sub_pow_three` — The integer 360 = 2^3·3^2·5 divides n^15 - n^3 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ZMod 360 and `decide` x^15 = x^3; the 2^3 and 3^2 prime-power factors require the n^3 head, not a bare n^a-n form · conf: high
-- [ ] `dvd_546_pow_fourteen_sub_sq` — The integer 546 = 2·3·7·13 divides n^14 - n^2 for every integer n
+- [x] `dvd_546_pow_fourteen_sub_sq` — The integer 546 = 2·3·7·13 divides n^14 - n^2 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 546 decide bridge on x^14 - x^2 = 0; λ(546)=12 divides 12 so n^14≡n^2 after the n^2 head · conf: high
-- [ ] `dvd_273_pow_fourteen_sub_sq` — The integer 273 = 3·7·13 divides n^14 - n^2 for every integer n
+- [x] `dvd_273_pow_fourteen_sub_sq` — The integer 273 = 3·7·13 divides n^14 - n^2 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ZMod 273, `decide` x^14 = x^2 over residues, lift via intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_630_pow_fourteen_sub_sq` — The integer 630 = 2·3^2·5·7 divides n^14 - n^2 for every integer n
+- [x] `dvd_630_pow_fourteen_sub_sq` — The integer 630 = 2·3^2·5·7 divides n^14 - n^2 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 630 decide bridge on x^14 - x^2 = 0; the 3^2 factor needs the n^2 head, distinguishing it from a squarefree n^a-n fact · conf: high
 
 ### Replenishment round 3 (scoped 2026-06-15) — 20 candidates

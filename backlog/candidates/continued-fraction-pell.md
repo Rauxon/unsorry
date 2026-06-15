@@ -53,13 +53,13 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
 
 ### Replenishment round 2 (scoped 2026-06-15) — 23 candidates
 
-- [ ] `pell_d5_negative_ladder_step_preserves` — Applying the d=5 fundamental ladder map (x,y) ↦ (9x+20y, 4x+9y) to a solution of the negative Pell equation x²−5y²=−1 yields another negative solution
+- [x] `pell_d5_negative_ladder_step_preserves` — Applying the d=5 fundamental ladder map (x,y) ↦ (9x+20y, 4x+9y) to a solution of the negative Pell equation x²−5y²=−1 yields another negative solution
       absence: no-local-match · triviality: non-trivial · intended: linear_combination -h after ring-expanding both squares; the map multiplies the form value by the fundamental unit norm 1, fixing −1 · conf: high
-- [ ] `pell_d2_stormer_seven_ladder_preserves` — The √2 fundamental ladder map (x,y) ↦ (3x+4y, 2x+3y) sends a solution of the Pell-like equation x²−2y²=7 to another solution with the same value 7
+- [x] `pell_d2_stormer_seven_ladder_preserves` — The √2 fundamental ladder map (x,y) ↦ (3x+4y, 2x+3y) sends a solution of the Pell-like equation x²−2y²=7 to another solution with the same value 7
       absence: no-local-match · triviality: non-trivial · intended: linear_combination 7•? — really linear_combination h then ring, since LHS−7 = (form value−7) scaled by the unit · conf: high
-- [ ] `pell_d2_negative_seven_ladder_preserves` — The same √2 ladder map (x,y) ↦ (3x+4y, 2x+3y) preserves the value −7 in the equation x²−2y²=−7
+- [x] `pell_d2_negative_seven_ladder_preserves` — The same √2 ladder map (x,y) ↦ (3x+4y, 2x+3y) preserves the value −7 in the equation x²−2y²=−7
       absence: no-local-match · triviality: non-trivial · intended: linear_combination h; ring closes the residual after substituting the hypothesis value −7 · conf: high
-- [ ] `pell_d10_fundamental_ladder_step_preserves` — The d=10 fundamental ladder map (x,y) ↦ (19x+60y, 6x+19y), built from the fundamental solution (19,6), preserves x²−10y²=1
+- [x] `pell_d10_fundamental_ladder_step_preserves` — The d=10 fundamental ladder map (x,y) ↦ (19x+60y, 6x+19y), built from the fundamental solution (19,6), preserves x²−10y²=1
       absence: no-local-match · triviality: non-trivial · intended: linear_combination h after expanding the two squares; the coefficients are the entries of the fundamental-unit matrix · conf: high
 - [ ] `pell_negative_brahmagupta_composition_generic_d` — Brahmagupta composition of two solutions of the negative Pell equation x²−dy²=−1 produces a solution of the positive equation x²−dy²=1, since (−1)(−1)=1
       absence: no-local-match · triviality: non-trivial · intended: show LHS = (a²−d·b²)(c²−d·e²) by ring, then rewrite both hypotheses: (−1)·(−1)=1 · conf: high
@@ -71,11 +71,11 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: exhibit the Bézout combination x·x + (-2·y)·y = 1 from h, giving IsCoprime via the definition · conf: high
 - [ ] `pell_d2_x_sq_congr_one_mod_eight` — For every integer solution of x²−2y²=1 the x-coordinate satisfies x²≡1 (mod 8), reflecting that x is odd
       absence: no-local-match · triviality: non-trivial · intended: x is odd (x²=1+2y²), and every odd square is ≡1 mod 8; push h into ZMod 8 and decide over the residues · conf: high
-- [ ] `pell_d2_square_doubling_identity` — Squaring a solution of x²−2y²=1 via (x²+2y², 2xy) again solves x²−2y²=1
+- [x] `pell_d2_square_doubling_identity` — Squaring a solution of x²−2y²=1 via (x²+2y², 2xy) again solves x²−2y²=1
       absence: no-local-match · triviality: non-trivial · intended: LHS = (x²−2y²)² as a ring identity; substitute h to get 1²=1 via linear_combination · conf: high
-- [ ] `pell_d2_ladder_cross_determinant` — For a √2-Pell solution, the cross-determinant of (x,y) with its ladder image (3x+4y, 2x+3y) equals −2
+- [x] `pell_d2_ladder_cross_determinant` — For a √2-Pell solution, the cross-determinant of (x,y) with its ladder image (3x+4y, 2x+3y) equals −2
       absence: no-local-match · triviality: non-trivial · intended: the expression simplifies to −2(x²−2y²) by ring; rewrite with h to get −2 · conf: high
-- [ ] `pell_d2_x_sub_y_times_x_add_y` — Any √2-Pell solution satisfies (x−y)(x+y)=y²+1, a factored form of x²−2y²=1 rearranged
+- [x] `pell_d2_x_sub_y_times_x_add_y` — Any √2-Pell solution satisfies (x−y)(x+y)=y²+1, a factored form of x²−2y²=1 rearranged
       absence: no-local-match · triviality: non-trivial · intended: expand the product to x²−y²; substitute x²=2y²+1 from h, leaving y²+1; linear_combination h · conf: high
 - [ ] `fib_consecutive_vieta_form_value` — Consecutive Fibonacci numbers (Fₙ, Fₙ₊₁) satisfy the Markov/Vieta form x²−xy−y²=(−1)ⁿ
       absence: no-local-match · triviality: non-trivial · intended: induction on n: base cases compute; the step uses fib_add_two and linear_combination with the inductive identity · conf: high
@@ -83,7 +83,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: induction on n carrying both sequences; the step combines hPrec and hQrec via linear_combination after expanding (−1)^(n+1) · conf: med
 - [ ] `pell_d2_form_product_telescope_step` — The √2 norm form is multiplicative along the ladder: multiplying the form value by the fundamental-unit norm equals the form value of the ladder image
       absence: no-local-match · triviality: non-trivial · intended: pure ring identity once 3²−2·2²=1 is folded in; ring closes it without any hypothesis · conf: high
-- [ ] `pell_d3_square_doubling_identity` — Squaring a solution of x²−3y²=1 via (x²+3y², 2xy) again solves x²−3y²=1
+- [x] `pell_d3_square_doubling_identity` — Squaring a solution of x²−3y²=1 via (x²+3y², 2xy) again solves x²−3y²=1
       absence: no-local-match · triviality: non-trivial · intended: LHS = (x²−3y²)² by ring; substitute h via linear_combination to reach 1 · conf: high
 - [ ] `pell_d8_no_solution_y_one` — There is no integer x with x²−8·1²=1, so y=1 is not the index of any square-triangular Pell solution of x²−8y²=1
       absence: no-local-match · triviality: non-trivial · intended: reduces to x²≠9... actually x²=9 would solve it; instead show x²=9 forces x=±3 but then it equals 1 only if 9-8=1 holds — wait it does; restate as x²-8 ≠ 1 means x²≠9: use that the minimal y is 0, decide-free nlinarith on x²=9 vs target. (flag: verify direction at promotion) · conf: high
