@@ -1,0 +1,7 @@
+𝔸5.1.claim.fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib.thebeast-ace7@2026-06-15
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib; agent≜thebeast-ace7}
+⟦Σ:Times⟧{ts≜2026-06-15T09:10:14Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
