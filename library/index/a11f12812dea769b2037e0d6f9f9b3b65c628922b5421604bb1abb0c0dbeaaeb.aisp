@@ -1,0 +1,8 @@
+𝔸5.1.lemma.a11f12812dea@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜a11f12812dea769b2037e0d6f9f9b3b65c628922b5421604bb1abb0c0dbeaaeb; goal≜discriminant-nonneg; name≜discriminant_nonneg}
+⟦Σ:Source⟧{src≜goals/discriminant-nonneg.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high; attempts≜1; solve_s≜575}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
