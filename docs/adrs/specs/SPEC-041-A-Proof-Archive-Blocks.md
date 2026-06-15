@@ -63,14 +63,18 @@ The manifest records:
 
 ## 4. Validation Rules
 
-Before an archive block is frozen, CI must run the full soundness and metadata stack for that block:
+When an archive block is frozen, CI validates **provenance + packaging**, not soundness from scratch
+(ADR-048 verify-on-ingest — the proofs were kernel-verified when active and are byte-identical now):
 
-- `lake build --wfail`;
-- authoritative axiom audit;
-- `leanchecker` kernel replay;
+- byte-identity / immutability: the archived `.lean` is byte-for-byte the already-verified active
+  proof (ADR-018 archive-aware immutability, enforced in `gate-a-prepare`);
+- `lake build --wfail` (packaging sanity — the archive package is a new Lake project);
 - statement-binding regeneration/checks for archived goals;
 - forbidden elaboration option checks;
 - Gate B validation over archived index/proof-run metadata.
+
+It does **not** re-run `leanchecker` kernel replay or the axiom audit on archived proofs — re-running
+them on the same immutable artifact re-proves nothing and OOM-killed memory-bound runners (#764).
 
 After freezing:
 
@@ -88,6 +92,12 @@ Gate A should distinguish three validation scopes:
 3. **Global scope**: toolchain, Lake, Gate A, or archive packaging changes; full-validate active plus affected archive blocks.
 
 The default must always fail toward a larger validation scope when the changed-path classifier cannot decide.
+
+**Runs in the `gate-a-archive` job** (`needs: [detect]`, `if: archive == 'true'`). Under ADR-048
+(verify-on-ingest) this job no longer kernel-replays archived proofs — it does packaging sanity
+(`lake build --wfail`) + provenance, which fits the standard runner. (Earlier cuts — #823's chunking,
+#838's 16 GB pin — tried to make the re-replay fit; ADR-048 removes the re-replay instead, which is
+both cheaper and a better match for what an archive is.)
 
 ## 6. Rollout Plan
 

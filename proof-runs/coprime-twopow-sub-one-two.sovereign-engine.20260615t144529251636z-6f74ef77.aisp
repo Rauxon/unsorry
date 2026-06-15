@@ -1,0 +1,9 @@
+𝔸5.1.run.coprime-twopow-sub-one-two.sovereign-engine.20260615t144529251636z-6f74ef77@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t144529251636z-6f74ef77; goal≜coprime-twopow-sub-one-two; agent≜sovereign-engine; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜jackcloudman/Leanstral-2603-GGUF; effort≜high}
+⟦Γ:Goal⟧{goal≜coprime-twopow-sub-one-two}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1916; ended≜2026-06-15T14:45:29Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(openai call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

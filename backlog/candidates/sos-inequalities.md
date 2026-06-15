@@ -106,13 +106,13 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: WLOG-free nlinarith using mul_nonneg of each variable with the square of the difference of the other two, plus sq_nonneg hints · conf: med
 - [ ] `constrained_sum_le_sumsq_prod_one` — If three positive reals have product 1 then their sum of squares is at least their sum
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a), sq_nonneg (a+b+c-3), mul_pos hb hc, ...] using a+b+c ≥ 3 from AM-GM · conf: high
-- [ ] `constrained_pairsum_le_three_sum_three` — If three reals sum to 3 then their pairwise product sum is at most 3
+- [x] `constrained_pairsum_le_three_sum_three` — If three reals sum to 3 then their pairwise product sum is at most 3
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a)] using (a+b+c)^2 ≥ 3(ab+bc+ca) · conf: high
 - [ ] `constrained_prod_le_sum_cubes_third` — Among nonnegative reals summing to 1 the product abc is at most 1/27
       absence: no-local-match · triviality: non-trivial · intended: reduce to 27abc ≤ (a+b+c)^3 = 1; nlinarith with mul_nonneg of each variable times square of difference of the others · conf: high
 - [ ] `tangent_line_cyclic_fraction_ge_sum` — For positive reals the cyclic sum a^2/b + b^2/c + c^2/a is at least a+b+c
       absence: no-local-match · triviality: non-trivial · intended: tangent-line bound a^2/b ≥ 2a-b via le_div_iff₀ and sq_nonneg (a-b), summed cyclically with linarith · conf: med
-- [ ] `two_var_sq_add_one_ge_cross_plus_sum` — For any two reals a^2+b^2+1 is at least ab + a + b
+- [x] `two_var_sq_add_one_ge_cross_plus_sum` — For any two reals a^2+b^2+1 is at least ab + a + b
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (a-1), sq_nonneg (b-1)] · conf: high
 - [ ] `cauchy_schwarz_three_var_product` — The three-variable Cauchy-Schwarz inequality in product form
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a*y-b*x), sq_nonneg (b*z-c*y), sq_nonneg (a*z-c*x)] (Lagrange identity SOS) · conf: high
@@ -126,7 +126,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: le_div_iff₀ then nlinarith [sq_nonneg (a^2-b^2), sq_nonneg (a^2-a*b), mul_nonneg (sq_nonneg a) (sq_nonneg (a-b))] · conf: high
 - [ ] `sumsq_product_ge_cube_cross_three_var` — A symmetric degree-four inequality bounding the sum of a^3 b style cross terms
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with mul_nonneg products and sq_nonneg (a^2-b^2),(b^2-c^2),(c^2-a^2) plus squares of (a-b) scaled by squares · conf: med
-- [ ] `constrained_sum_sq_ge_one_third` — If three reals sum to 1 then their sum of squares is at least 1/3
+- [x] `constrained_sum_sq_ge_one_third` — If three reals sum to 1 then their sum of squares is at least 1/3
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a)] using QM-AM with the constraint substituted · conf: high
 
 ### Replenishment round 4 (scoped 2026-06-15) — 20 candidates

@@ -92,15 +92,15 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
 
 ### Replenishment round 3 (scoped 2026-06-15) — 21 candidates
 
-- [ ] `catalan_r2_shift_nat_fib_int` — Over the integers, the square of fib(n+2) minus fib(n) times fib(n+4) equals (-1)^n, a Catalan identity at offset two shifted to stay in the naturals
+- [x] `catalan_r2_shift_nat_fib_int` — Over the integers, the square of fib(n+2) minus fib(n) times fib(n+4) equals (-1)^n, a Catalan identity at offset two shifted to stay in the naturals
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, expand fib(n+4),fib(n+3) via Int.fib_add_two down to fib(n),fib(n+1), reduce to Cassini, then ring with parity of (-1)^n · conf: high
-- [ ] `catalan_r3_shift_nat_fib_int` — Over the integers, the square of fib(n+3) minus fib(n) times fib(n+6) equals four times (-1)^n, a Catalan identity at offset three
+- [x] `catalan_r3_shift_nat_fib_int` — Over the integers, the square of fib(n+3) minus fib(n) times fib(n+6) equals four times (-1)^n, a Catalan identity at offset three
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, repeatedly expand fib(n+k) via Int.fib_add_two to fib(n),fib(n+1), reduce to Cassini, ring_nf with the (-1)^n parity term (fib(3)^2 = 4) · conf: high
 - [ ] `catalan_r4_shift_nat_fib_int` — Over the integers, the square of fib(n+4) minus fib(n) times fib(n+8) equals nine times (-1)^n, a Catalan identity at offset four
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, telescope fib(n+8),fib(n+4) via Int.fib_add_two to fib(n),fib(n+1), reduce to Cassini, ring with parity (fib(4)^2 = 9) · conf: med
 - [ ] `catalan_r5_shift_nat_fib_int` — Over the integers, the square of fib(n+5) minus fib(n) times fib(n+10) equals twenty-five times (-1)^n, a Catalan identity at offset five
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, expand fib(n+10),fib(n+5) via repeated Int.fib_add_two to fib(n),fib(n+1), reduce to Cassini, ring_nf with parity (fib(5)^2 = 25) · conf: med
-- [ ] `fib_prod_cross_shift_nat_int` — Over the integers, fib(n+1) times fib(n+2) minus fib(n) times fib(n+3) equals (-1)^n
+- [x] `fib_prod_cross_shift_nat_int` — Over the integers, fib(n+1) times fib(n+2) minus fib(n) times fib(n+3) equals (-1)^n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, rewrite fib(n+3)=fib(n+1)+fib(n+2) and fib(n+2)=fib(n)+fib(n+1) via Int.fib_add_two, reduce to Cassini fib(n)*fib(n+2)-fib(n+1)^2, ring with parity · conf: high
 - [ ] `fib_sq_diff_eq_fib_prod_skip_nat` — The difference of the squares fib(n+2)^2 and fib(n+1)^2 equals fib(n) times fib(n+3)
       absence: no-local-match · triviality: non-trivial · intended: Factor the LHS as (fib(n+2)-fib(n+1))(fib(n+2)+fib(n+1)) = fib(n)*fib(n+3) using Nat.fib_add_two twice; discharge the Nat subtraction with omega / Nat.fib monotonicity guard · conf: high
@@ -128,9 +128,9 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Nat.fib_dvd gives fib(14) ∣ fib(14n); rewrite Nat.fib 14 = 377 and chain 29 ∣ 377 by dvd_trans · conf: high
 - [ ] `coprime_fib_two_mul_fib_two_mul_add_two_nat` — Fib(2n) and fib(2n+2) are coprime, because the gcd of their indices is two and fib(2)=1
       absence: no-local-match · triviality: non-trivial · intended: Unfold Nat.Coprime to gcd; use Nat.fib_gcd to turn gcd(fib(2n),fib(2n+2)) into fib(gcd(2n,2n+2)), show gcd(2n,2n+2)=2 (omega/Nat.Coprime), and Nat.fib 2 = 1 · conf: high
-- [ ] `sum_range_window_five_fib_eq_fib_diff_nat` — The sum of five consecutive Fibonacci numbers starting at fib(n) equals fib(n+6) minus fib(n+1)
+- [x] `sum_range_window_five_fib_eq_fib_diff_nat` — The sum of five consecutive Fibonacci numbers starting at fib(n) equals fib(n+6) minus fib(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Expand the fixed-size Finset.range 5 sum with Finset.sum_range_succ (or decide/simp on the literal), rewrite the fib(n+k) via fib_add_two, and close with omega over the Nat subtraction (fib monotone) · conf: high
-- [ ] `sum_range_window_four_fib_eq_fib_diff_nat` — The sum of four consecutive Fibonacci numbers starting at fib(n) equals fib(n+5) minus fib(n+1)
+- [x] `sum_range_window_four_fib_eq_fib_diff_nat` — The sum of four consecutive Fibonacci numbers starting at fib(n) equals fib(n+5) minus fib(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Expand the Finset.range 4 sum with Finset.sum_range_succ, rewrite fib(n+k) via fib_add_two, and discharge the Nat subtraction with omega (fib monotone) · conf: high
 - [ ] `sum_range_fib_prod_two_apart_even_nat` — The sum of fib(i) times fib(i+2) over the first 2n indices equals fib(2n) times fib(2n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induct on n, peeling two terms per step with Finset.sum_range_succ at indices 2n and 2n+1, then reduce using fib_add_two and the fib doubling identities (fib_two_mul, fib_two_mul_add_one) with ring/omega · conf: med
