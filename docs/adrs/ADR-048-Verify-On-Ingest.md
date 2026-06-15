@@ -64,9 +64,12 @@ defense-in-depth.
 1. **Active proof PRs** pass normal Gate A: build, statement-binding, axiom audit, **kernel replay**
    (incremental — only the changed modules + their reverse-import closure, ADR-033).
 2. After merge, the proof is **verified for that toolchain/mathlib context**.
-3. **Archive moves** validate that the archived file is **byte-identical** to an already-verified
-   active proof (ADR-018 archive-aware immutability) and that metadata references that verification —
-   plus `lake build --wfail` for packaging sanity. **No `leanchecker` replay.**
+3. **Archive moves** validate that the archived artifact is **byte-identical** to an already-verified
+   version — **proof modules** (`library/Unsorry/*.lean`) via the
+   `archive_packages.archive_proof_provenance` check (git-blob identity of each archived proof module
+   against the base active module or the base archived copy), and **goal statements** via ADR-018
+   archive-aware immutability — plus `lake build --wfail` for packaging sanity. **No `leanchecker`
+   replay.**
 4. **Re-verification (kernel replay) re-runs only when the trusted context changes**: the proof file,
    its goal statement, its imports/deps, `lean-toolchain`/lakefile/`lake-manifest.json`, or the Gate A
    checker (`tools/gate_a/**`). These are exactly the ADR-033 full-replay triggers.
@@ -74,11 +77,12 @@ defense-in-depth.
 
 ## Guardrails (bookkeeping soundness)
 
-- Store the proof file hash at verification time (goal record `sha`; archive manifest hashes).
 - Treat the per-package `lean-toolchain` + lakefile as the pinned verification context (archive
   packages are self-contained and frozen, so their context never drifts).
-- The archive record must reference the verified hash; **reject an archive move if the file content
-  differs** (ADR-018 byte-identity check, enforced in `gate-a-prepare`).
+- **Reject an archive move whose proof-module content differs from the verified version.** Enforced
+  by `archive_proof_provenance` (git-blob identity of every archived `library/Unsorry/*.lean` against
+  the base active module or the base archived copy) — a net-new or altered proof in an archive (which
+  was never kernel-replayed) fails the gate. Goal statements are pinned by ADR-018.
 - **Force a full re-verify on toolchain / mathlib / lake / checker changes** (ADR-033 triggers).
 - Keep a **scheduled full replay** as defense-in-depth against bookkeeping or scoping bugs.
 
@@ -105,10 +109,11 @@ byte-identity enforcement) covers the bookkeeping risk.
 
 | Reference ID | Title | Type | Location |
 |--------------|-------|------|----------|
-| REF-1 | Archive-aware immutability / byte-identity | Decision | ADR-018-Goal-Statement-Immutability.md |
-| REF-2 | Incremental kernel replay + full-replay triggers | Decision | ADR-033-Incremental-Kernel-Replay.md |
-| REF-3 | Proof archive blocks | Decision | ADR-041-Proof-Archive-Blocks.md |
-| REF-4 | Gate A soundness enforcement (re-verify stance amended) | Decision | ADR-006-Gate-A-Soundness-Enforcement.md |
+| REF-1 | Verify-on-ingest provenance spec | Specification | specs/SPEC-048-A-Verify-On-Ingest.md |
+| REF-2 | Archive-aware immutability / byte-identity | Decision | ADR-018-Goal-Statement-Immutability.md |
+| REF-3 | Incremental kernel replay + full-replay triggers | Decision | ADR-033-Incremental-Kernel-Replay.md |
+| REF-4 | Proof archive blocks | Decision | ADR-041-Proof-Archive-Blocks.md |
+| REF-5 | Gate A soundness enforcement (re-verify stance amended) | Decision | ADR-006-Gate-A-Soundness-Enforcement.md |
 
 ## Status History
 

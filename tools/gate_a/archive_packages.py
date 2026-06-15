@@ -112,10 +112,81 @@ def run_step(
     return result.returncode
 
 
+def _git_blob(repo_root: Path, ref_path: str, runner: Runner = subprocess.run) -> str | None:
+    """Git blob hash (content hash) of ``ref:path``, or None if it doesn't exist."""
+    res = runner(
+        ("git", "-C", str(repo_root), "rev-parse", "--verify", "-q", ref_path),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if res.returncode != 0:
+        return None
+    return res.stdout.strip() or None
+
+
+def archive_proof_provenance(
+    repo_root: Path,
+    package_root: Path,
+    base: str,
+    runner: Runner = subprocess.run,
+) -> int:
+    """ADR-048: every tracked proof module in an archive package must be
+    byte-identical (same git blob) to a previously *verified* version — either
+    the base active module (`library/Unsorry/X.lean`, being archived now) or the
+    base archived copy (already frozen). This is the bookkeeping guard that lets
+    archive validation skip the kernel replay: it proves the archived file is
+    exactly the artifact Gate A kernel-verified when it was active. Changed or
+    net-new proof content in an archive (which was never replayed) is rejected.
+    """
+    rel = package_root.relative_to(repo_root).as_posix()
+    ls = runner(
+        ("git", "-C", str(repo_root), "ls-tree", "-r", "--name-only", "HEAD", "--", f"{rel}/library"),
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if ls.returncode != 0:
+        print(f"[archive] {rel}: cannot list tracked archive proof modules", file=sys.stderr)
+        return 1
+    files = [f.strip() for f in ls.stdout.splitlines() if f.strip().endswith(".lean")]
+    if not files:
+        print(f"[archive] {rel}: no tracked archive proof modules to verify", file=sys.stderr)
+        return 1
+    bad: list[str] = []
+    for f in files:
+        head_blob = _git_blob(repo_root, f"HEAD:{f}", runner)
+        active_path = f[len(rel) + 1 :]  # strip "packages/unsorry-archive-NNNN/"
+        prior = {
+            _git_blob(repo_root, f"{base}:{active_path}", runner),
+            _git_blob(repo_root, f"{base}:{f}", runner),
+        }
+        prior.discard(None)
+        if head_blob is None or head_blob not in prior:
+            bad.append(f)
+    if bad:
+        print(
+            f"[archive] {rel}: archived proof module(s) NOT byte-identical to a "
+            f"verified prior version (ADR-048 provenance):",
+            file=sys.stderr,
+        )
+        for f in bad:
+            print(f"  {f}", file=sys.stderr)
+        print(
+            "  an archived proof must be exactly the artifact Gate A verified when it was "
+            "active; changed/new proof content must land via an active proof PR first.",
+            file=sys.stderr,
+        )
+        return 1
+    print(f"[archive] {rel}: provenance OK — {len(files)} proof module(s) byte-identical to verified base")
+    return 0
+
+
 def validate_archive_package(
     repo_root: Path,
     package_root: Path,
     runner: Runner = subprocess.run,
+    base: str | None = None,
 ) -> int:
     rel = package_root.relative_to(repo_root)
     if not (package_root / "lakefile.toml").is_file():
@@ -128,6 +199,16 @@ def validate_archive_package(
     if not modules:
         print(f"[archive] {rel}: no archive library modules", file=sys.stderr)
         return 1
+
+    # ADR-048 provenance: prove each archived proof module is byte-identical to a
+    # version Gate A already kernel-verified (base active / already-archived). This
+    # is the load-bearing guard that licenses skipping the kernel replay below.
+    # Requires a base ref (PR diff); a base-less push run trusts the PR that
+    # introduced the package (immutable since), so it is skipped there.
+    if base is not None:
+        provenance = archive_proof_provenance(repo_root, package_root, base, runner)
+        if provenance != 0:
+            return provenance
 
     findings = forbidden_tokens(package_root)
     if findings:
@@ -173,14 +254,14 @@ def validate_archive_package(
         if build != 0:
             return build
         # No leanchecker replay here (ADR-048, verify-on-ingest). These proofs were
-        # kernel-replayed by Gate A when they were ACTIVE, and the archive
-        # byte-identity check (ADR-018 archive-aware immutability, run in
-        # gate-a-prepare) proves the archived file is *exactly* that
-        # already-verified artifact. Re-running leanchecker on the same immutable
-        # proof re-proves nothing — and it loads the package's full mathlib image,
-        # which OOM-killed even a 16 GB runner (#764). `lake build --wfail` above
-        # stays as packaging sanity (an archive package is a new Lake project, so
-        # confirm it still compiles cleanly).
+        # kernel-replayed by Gate A when they were ACTIVE, and the provenance check
+        # above (archive_proof_provenance) proves each archived proof MODULE is
+        # byte-identical to that already-verified artifact — while goal statements
+        # are pinned by ADR-018 in gate-a-prepare. Re-running leanchecker on the
+        # same immutable proof re-proves nothing, and it loads the package's full
+        # mathlib image, which OOM-killed even a 16 GB runner (#764). `lake build
+        # --wfail` above stays as packaging sanity (an archive package is a new
+        # Lake project, so confirm it still compiles cleanly).
     finally:
         run_step(
             f"{rel} clean generated bindings",
@@ -206,7 +287,7 @@ def validate_changed(
         print("[archive] no changed archive packages")
         return 0
     for package_root in roots:
-        result = validate_archive_package(root, package_root, runner)
+        result = validate_archive_package(root, package_root, runner, base=base)
         if result != 0:
             return result
     return 0
