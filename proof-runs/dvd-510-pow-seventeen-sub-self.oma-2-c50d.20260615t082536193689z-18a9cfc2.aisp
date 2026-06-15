@@ -1,0 +1,8 @@
+𝔸5.1.run.dvd-510-pow-seventeen-sub-self.oma-2-c50d.20260615t082536193689z-18a9cfc2@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t082536193689z-18a9cfc2; goal≜dvd-510-pow-seventeen-sub-self; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜dvd-510-pow-seventeen-sub-self}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜300; ended≜2026-06-15T08:25:36Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜ad6c6e268db8bf6dc12074d560e9ed76e309c5034e81762d1de076c998fa13d1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
