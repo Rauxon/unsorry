@@ -556,6 +556,13 @@ def cmd_aff_delta(args):
     print(config.AFFINITY_MERGE if args[0] == "merge" else config.AFFINITY_FAIL)
 
 
+def cmd_affinity(args):
+    """affinity <goal.aisp> — print the goal's current advisory affinity."""
+    path = Path(args[0])
+    record = parse_record(path.read_text(encoding="utf-8"))
+    print(_affinity(record))
+
+
 def cmd_tau_v(_args):
     """tau-v — print the viability floor TAU_V, so the shell never hardcodes -5
     (used by the ADR-034 recompose demote as the floor)."""
@@ -919,6 +926,7 @@ COMMANDS = {
     "rewrite-goal": cmd_rewrite_goal,
     "aff-bump": cmd_aff_bump,
     "aff-delta": cmd_aff_delta,
+    "affinity": cmd_affinity,
     "tau-v": cmd_tau_v,
     "max-decomp": cmd_max_decomp,
     "goal-depth": cmd_goal_depth,
@@ -2173,14 +2181,14 @@ write_proof_run_record() {
 # decomposition call hits infrastructure. Preserve that evidence without
 # applying the ADR-010 demotion or pretending decomposition completed.
 check_in_failed_run_only() {
-  local goal="$1" prwt branch
+  local goal="$1" reason="${2:-proof attempts exhausted their budget, but the subsequent decomposition call hit an infrastructure failure}" prwt branch
   branch="$(feature_branch telemetry "$goal")" || return 1
   prwt="$UNSORRY_WORKDIR/telemetry-${goal}-${AGENT_ID}"
   open_pr_worktree "$prwt" "$branch" || return 1
   if write_proof_run_record "$prwt" "$goal" failed; then
     submit_pr_tree "$prwt" "$branch" \
       "chore: record failed proof run for $goal by $AGENT_ID" \
-      "Automated terminal-run telemetry (ADR-023, SPEC-023-A): proof attempts for \`$goal\` exhausted their budget, but the subsequent decomposition call hit an infrastructure failure. This records the proof evidence only; it does not demote, block, or otherwise change the goal." \
+      "Automated terminal-run telemetry (ADR-023, SPEC-023-A): $reason. This records the proof evidence only; it does not demote, block, or otherwise change the goal." \
       proof-runs || true
   fi
   git worktree remove --force "$prwt" >/dev/null 2>&1 || true
@@ -2482,12 +2490,23 @@ demote_goal() {
   # demote_goal <goal> [<floor>]. With a <floor> (the ADR-034 recompose case) the
   # -10 is clamped so the goal never drops below it (τ_v), keeping a recoverable
   # parent selectable; without one it is the ordinary -10 leaf demote.
-  local goal="$1" floor="${2:-}" prwt branch title note
+  local goal="$1" floor="${2:-}" prwt branch title note old_aff new_aff
   local -a floorarg=()
   [ -n "$floor" ] && floorarg=("$floor")
+  if open_prove_pr_exists "$goal"; then
+    check_in_failed_run_only "$goal" \
+      "proof attempts for \`$goal\` exhausted their budget, but an open direct proof PR already exists for the same goal"
+    log "demote($goal): open prove PR already exists — recorded telemetry only"
+    return 0
+  fi
   branch="$(feature_branch demote "$goal")" || return 1
   prwt="$UNSORRY_WORKDIR/demote-${goal}-${AGENT_ID}"
   open_pr_worktree "$prwt" "$branch" || return 1
+  old_aff="$(py_helper affinity "$prwt/goals/$goal.aisp")" || {
+    git worktree remove --force "$prwt" >/dev/null 2>&1 || true
+    git branch -q -D "$branch" >/dev/null 2>&1 || true
+    return 1
+  }
   if [ -n "$floor" ]; then
     title="affinity($goal): failed recompose, demote floored at τ_v by $AGENT_ID"
     note="Automated affinity floor (ADR-010/ADR-034, SPEC-034-A): \`$goal\` is a fully-decomposed parent whose sub-lemmas are all proved, so a failed recompose floors the -10 demote at τ_v ($floor) instead of burying it — it stays selectable (lowest priority) for the unblock→recompose sweep to retry. Advisory queue state only — never trust-bearing."
@@ -2496,8 +2515,17 @@ demote_goal() {
     note="Automated affinity penalty (ADR-010, SPEC-010-A): goal \`$goal\` resisted proof within budget, so its pattern is demoted by 10. Advisory queue state only — never trust-bearing."
   fi
   if py_helper aff-bump "$prwt/goals/$goal.aisp" "$(py_helper aff-delta fail)" "${floorarg[@]}"; then
+    new_aff="$(py_helper affinity "$prwt/goals/$goal.aisp")" || new_aff=""
+    if [ -n "$floor" ] && [ "$new_aff" = "$old_aff" ]; then
+      title="chore: record failed proof run for $goal by $AGENT_ID"
+      note="Automated terminal-run telemetry (ADR-023, SPEC-023-A): \`$goal\` is already at the ADR-034 recompose floor τ_v ($floor), so this failed recompose records proof evidence only and does not open a misleading affinity-demote PR."
+    fi
     if write_proof_run_record "$prwt" "$goal" failed; then
-      submit_pr_tree "$prwt" "$branch" "$title" "$note" goals proof-runs || true
+      if [ -n "$floor" ] && [ "$new_aff" = "$old_aff" ]; then
+        submit_pr_tree "$prwt" "$branch" "$title" "$note" proof-runs || true
+      else
+        submit_pr_tree "$prwt" "$branch" "$title" "$note" goals proof-runs || true
+      fi
     fi
   fi
   git worktree remove --force "$prwt" >/dev/null 2>&1 || true
@@ -3860,11 +3888,13 @@ test_goal_override_bypasses_viability() {
 test_affinity_bump_math() {
   # aff-bump inserts when absent, accumulates when present, and reflects the
   # configured +1 / −10 deltas.
-  local tree merge fail
+  local tree merge fail got
   tree="$(mktemp -d "$SESSION_TMP/affbump.XXXXXX")" || return 1
   make_prove_goal "$tree" g "theorem g (n : Nat) : n + 0 = n" || return 1
   grep -q 'aff≜' "$tree/goals/g.aisp" \
     && { log "  fresh goal should carry no aff field"; return 1; }
+  got="$(py_helper affinity "$tree/goals/g.aisp")" || return 1
+  [ "$got" = "0" ] || { log "  absent affinity should read as 0, got $got"; return 1; }
   merge="$(py_helper aff-delta merge)" || return 1
   fail="$(py_helper aff-delta fail)" || return 1
   if [ "$merge" != "1" ] || [ "$fail" != "-10" ]; then
@@ -3877,6 +3907,8 @@ test_affinity_bump_math() {
   py_helper aff-bump "$tree/goals/g.aisp" "$fail" || return 1    # 1 → -9
   grep -qxF "  aff≜-9" "$tree/goals/g.aisp" \
     || { log "  aff not accumulated to -9"; return 1; }
+  got="$(py_helper affinity "$tree/goals/g.aisp")" || return 1
+  [ "$got" = "-9" ] || { log "  affinity readback should be -9, got $got"; return 1; }
   # The inserted aff line sits inside the artifact block; the tree still
   # validates under Gate B (aff is an ignored advisory field).
   mkdir -p "$tree/backlog" || return 1
@@ -3900,6 +3932,77 @@ test_affinity_degrades_on_garbage() {
     || { log "  selection crashed on a garbled aff"; return 1; }
   [ "$got" = "$(printf 'h\ng')" ] \
     || { log "  garbled aff should rank as 0; expected 'h g', got '$got'"; return 1; }
+}
+
+test_demote_open_prove_records_telemetry_only() {
+  # If a direct proof PR is already open, a stale/concurrent failed attempt must
+  # not race the goal record with an affinity PR. Keep the failed-run evidence.
+  local captured_goal="" captured_reason="" opened=0
+  open_prove_pr_exists() { [ "$1" = "parent" ]; }
+  check_in_failed_run_only() { captured_goal="$1"; captured_reason="$2"; return 0; }
+  open_pr_worktree() { opened=1; return 0; }
+
+  demote_goal parent || {
+    unset -f open_prove_pr_exists check_in_failed_run_only open_pr_worktree
+    log "  demote with open prove PR failed"
+    return 1
+  }
+  unset -f open_prove_pr_exists check_in_failed_run_only open_pr_worktree
+  [ "$captured_goal" = "parent" ] \
+    || { log "  telemetry helper not called for parent"; return 1; }
+  case "$captured_reason" in
+    *"open direct proof PR"*) ;;
+    *) log "  telemetry reason did not mention open proof PR: $captured_reason"; return 1 ;;
+  esac
+  [ "$opened" -eq 0 ] || { log "  demote worktree opened despite open proof PR"; return 1; }
+}
+
+test_floored_recompose_noop_records_telemetry_only() {
+  # A recompose parent already sitting at τ_v should not open another
+  # misleading affinity(<goal>) PR. It records proof-run telemetry only.
+  local src captured_title="" captured_paths="" tau
+  src="$(mktemp -d "$SESSION_TMP/floornoop.XXXXXX")" || return 1
+  make_prove_goal "$src" parent "theorem p (n : Nat) : n = n" || return 1
+  tau="$(py_helper tau-v)" || return 1
+  py_helper aff-bump "$src/goals/parent.aisp" "$tau" || return 1
+  UNSORRY_WORKDIR="$SESSION_TMP"
+  AGENT_ID="agent-test"
+
+  open_prove_pr_exists() { return 1; }
+  feature_branch() { printf 'test-branch\n'; }
+  open_pr_worktree() {
+    mkdir -p "$1" || return 1
+    cp -R "$src/." "$1/"
+  }
+  write_proof_run_record() {
+    mkdir -p "$1/proof-runs" || return 1
+    printf 'run\n' > "$1/proof-runs/parent.agent.run.aisp"
+  }
+  submit_pr_tree() {
+    captured_title="$3"
+    shift 4
+    captured_paths="$*"
+    return 0
+  }
+  git() {
+    case "$1 $2" in
+      "worktree remove"|"branch -q") return 0 ;;
+      *) command git "$@" ;;
+    esac
+  }
+
+  demote_goal parent "$tau" || {
+    unset -f open_prove_pr_exists feature_branch open_pr_worktree write_proof_run_record submit_pr_tree git
+    log "  floored no-op demote failed"
+    return 1
+  }
+  unset -f open_prove_pr_exists feature_branch open_pr_worktree write_proof_run_record submit_pr_tree git
+  case "$captured_title" in
+    "chore: record failed proof run for parent by "*) ;;
+    *) log "  expected telemetry title, got '$captured_title'"; return 1 ;;
+  esac
+  [ "$captured_paths" = "proof-runs" ] \
+    || { log "  expected proof-runs-only submit, got '$captured_paths'"; return 1; }
 }
 
 test_decomp_caps_and_depth() {
@@ -4268,6 +4371,8 @@ run_self_tests() {
     test_effort_ladder
     test_infra_failure_classifier
     test_open_pr_claim_guard
+    test_demote_open_prove_records_telemetry_only
+    test_floored_recompose_noop_records_telemetry_only
     test_render_decomp_gateb
   )
   local failures=0 t
