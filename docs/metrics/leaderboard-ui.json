@@ -60,33 +60,33 @@
       "verified_proofs": 84
     },
     {
-      "attempt_yield": 0.3,
+      "attempt_yield": 0.3171,
       "avatar_url": "https://github.com/perttu.png?size=96",
       "badges": {
-        "difficulty": 44,
-        "proofs": 20,
-        "success_rate_percent": 57.14
+        "difficulty": 45,
+        "proofs": 21,
+        "success_rate_percent": 59.09
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 20,
-      "difficulty_points": 44,
+      "credited_proofs": 21,
+      "difficulty_points": 45,
       "display_name": "@perttu",
-      "explicit_solver_proofs": 20,
+      "explicit_solver_proofs": 21,
       "failed_attempts": 28,
       "github": "perttu",
       "inferred_git_proofs": 0,
-      "median_solve_s": 404,
+      "median_solve_s": 437,
       "profile_url": "https://github.com/perttu",
       "rank": 3,
-      "run_success_rate": 0.5714,
-      "runs": 21,
-      "score": 4900,
+      "run_success_rate": 0.5909,
+      "runs": 22,
+      "score": 5025,
       "solver": "perttu",
-      "successes": 12,
-      "verified_proofs": 20
+      "successes": 13,
+      "verified_proofs": 21
     },
     {
       "attempt_yield": null,
@@ -118,12 +118,12 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": 0.0345,
+      "attempt_yield": 0.0339,
       "avatar_url": "https://github.com/adam91holt.png?size=96",
       "badges": {
         "difficulty": 10,
         "proofs": 6,
-        "success_rate_percent": 4.26
+        "success_rate_percent": 4.17
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
@@ -133,14 +133,14 @@
       "difficulty_points": 10,
       "display_name": "@adam91holt",
       "explicit_solver_proofs": 6,
-      "failed_attempts": 56,
+      "failed_attempts": 57,
       "github": "adam91holt",
       "inferred_git_proofs": 0,
-      "median_solve_s": 422,
+      "median_solve_s": 425,
       "profile_url": "https://github.com/adam91holt",
       "rank": 5,
-      "run_success_rate": 0.0426,
-      "runs": 47,
+      "run_success_rate": 0.0417,
+      "runs": 48,
       "score": 1150,
       "solver": "adam91holt",
       "successes": 2,
@@ -234,7 +234,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-15T16:15:13Z",
+  "generated_at": "2026-06-15T16:19:50Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -266,15 +266,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 52,
+      "difficulty_points": 53,
       "display_name": "Perttu Isotalo",
       "github": null,
-      "index_files_added": 24,
+      "index_files_added": 25,
       "missing_solver_provenance": 4,
       "profile_url": null,
       "rank": 3,
       "solver_credit": false,
-      "solver_provenance_proofs": 20
+      "solver_provenance_proofs": 21
     },
     {
       "attribution_source": "git-add-author",
@@ -350,15 +350,15 @@
       "verified_proofs": 41
     },
     {
+      "provider_model": "codex / unknown",
+      "run_success_rate": 0.1613,
+      "runs": 62,
+      "verified_proofs": 16
+    },
+    {
       "provider_model": "openai / leanstral-2603",
       "run_success_rate": 0.0787,
       "runs": 127,
-      "verified_proofs": 15
-    },
-    {
-      "provider_model": "codex / unknown",
-      "run_success_rate": 0.15,
-      "runs": 60,
       "verified_proofs": 15
     },
     {
@@ -401,19 +401,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 83,
+    "attributed_proofs": 84,
     "attribution_gap_count": 145,
     "credited_contributors": 8,
-    "credited_proofs": 228,
-    "explicit_solver_proofs": 83,
-    "git_attributed_index_files": 228,
+    "credited_proofs": 229,
+    "explicit_solver_proofs": 84,
+    "git_attributed_index_files": 229,
     "historical_contributors": 8,
     "historical_unknown_proofs": 145,
     "inferred_git_proofs": 145,
-    "proof_run_coverage": 0.25,
-    "terminal_runs": 261,
+    "proof_run_coverage": 0.2533,
+    "terminal_runs": 263,
     "uncredited_proofs": 0,
-    "verified_proofs": 228
+    "verified_proofs": 229
   },
   "timeline": [
     {
@@ -442,9 +442,9 @@
       "proofs": 33
     },
     {
-      "cumulative_proofs": 228,
+      "cumulative_proofs": 229,
       "date": "2026-06-15",
-      "proofs": 104
+      "proofs": 105
     }
   ]
 }
