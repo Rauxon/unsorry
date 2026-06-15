@@ -1,0 +1,14 @@
+𝔸5.1.decomp.dvd-210-pow-fifteen-sub-pow-three.oma-2-c50d@2026-06-15
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜dvd-210-pow-fifteen-sub-pow-three; agent≜oma-2-c50d}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜dvd-210-pow-fifteen-sub-pow-three-s1,sha≜d42a499246b1d8ea1dfb17ca4bd110fd5100adaa6b3454b390bad1279ec85694⟩
+  sub₂≜⟨id≜dvd-210-pow-fifteen-sub-pow-three-s2,sha≜c82e131ab95a4dc8619d487f252b367e12e8a5195dc9bc05763b43f33e9dddc5⟩
+  sub₃≜⟨id≜dvd-210-pow-fifteen-sub-pow-three-s3,sha≜a3d986257cec3bc7997db0015e469c750f3a62dafd6a5d935acbcd0163723b3a⟩
+  sub₄≜⟨id≜dvd-210-pow-fifteen-sub-pow-three-s4,sha≜dfdf724d83854a112462ff2d4ad095f25c358ac88502a09f7fff6f37c4b9f509⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent); Post(sub₄)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
