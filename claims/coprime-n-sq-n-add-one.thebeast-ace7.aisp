@@ -1,0 +1,7 @@
+𝔸5.1.claim.coprime-n-sq-n-add-one.thebeast-ace7@2026-06-15
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜coprime-n-sq-n-add-one; agent≜thebeast-ace7}
+⟦Σ:Times⟧{ts≜2026-06-15T03:00:52Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
