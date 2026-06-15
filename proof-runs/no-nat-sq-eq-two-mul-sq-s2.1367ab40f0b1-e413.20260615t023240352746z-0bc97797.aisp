@@ -1,0 +1,8 @@
+𝔸5.1.run.no-nat-sq-eq-two-mul-sq-s2.1367ab40f0b1-e413.20260615t023240352746z-0bc97797@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t023240352746z-0bc97797; goal≜no-nat-sq-eq-two-mul-sq-s2; agent≜1367ab40f0b1-e413; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜no-nat-sq-eq-two-mul-sq-s2}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜211; ended≜2026-06-15T02:32:40Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜bbca966f016cfb8dc70a97fe2f9f9950c5fdf4b66cbdd7c00f7eac257b28abce}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
