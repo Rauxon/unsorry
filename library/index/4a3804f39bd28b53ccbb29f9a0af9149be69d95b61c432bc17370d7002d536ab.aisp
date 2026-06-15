@@ -1,0 +1,8 @@
+𝔸5.1.lemma.4a3804f39bd2@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜4a3804f39bd28b53ccbb29f9a0af9149be69d95b61c432bc17370d7002d536ab; goal≜amgm-four-cross-three-var; name≜amgm_four_cross_three_var}
+⟦Σ:Source⟧{src≜goals/amgm-four-cross-three-var.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜adam91holt; agent≜thebeast-ace7; provider≜codex; effort≜xhigh; attempts≜3; solve_s≜422}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

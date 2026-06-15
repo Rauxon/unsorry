@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜amgm-four-cross-three-var
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜3
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/amgm-four-cross-three-var.lean
-  sha≜∅
-  aff≜-10
+  sha≜4a3804f39bd28b53ccbb29f9a0af9149be69d95b61c432bc17370d7002d536ab
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

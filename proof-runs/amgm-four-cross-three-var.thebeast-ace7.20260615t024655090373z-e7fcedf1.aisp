@@ -1,0 +1,8 @@
+𝔸5.1.run.amgm-four-cross-three-var.thebeast-ace7.20260615t024655090373z-e7fcedf1@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t024655090373z-e7fcedf1; goal≜amgm-four-cross-three-var; agent≜thebeast-ace7; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜amgm-four-cross-three-var}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜422; ended≜2026-06-15T02:46:55Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜4a3804f39bd28b53ccbb29f9a0af9149be69d95b61c432bc17370d7002d536ab}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
