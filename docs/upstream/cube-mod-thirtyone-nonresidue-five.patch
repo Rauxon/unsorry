@@ -1,0 +1,16 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/CubeModThirtyoneNonresidueFive.lean
+@@ -0,0 +1,13 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.Data.Nat.ModEq
++import Mathlib.Tactic.IntervalCases
++
++theorem cube_mod_thirtyone_nonresidue_five (n : ℕ) : n ^ 3 % 31 ≠ 3 ∧ n ^ 3 % 31 ≠ 5 ∧ n ^ 3 % 31 ≠ 6 ∧ n ^ 3 % 31 ≠ 7 := by
++  have hlt : n % 31 < 31 := Nat.mod_lt _ (by norm_num)
++  have key : n ^ 3 % 31 = (n % 31) ^ 3 % 31 := ((Nat.mod_modEq n 31).pow 3).symm
++  rw [key]
++  interval_cases (n % 31) <;> decide

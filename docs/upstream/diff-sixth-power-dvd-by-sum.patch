@@ -1,0 +1,15 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/DiffSixthPowerDvdBySum.lean
+@@ -0,0 +1,12 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib
++
++theorem diff_sixth_power_dvd_by_sum (a b : ℤ) : (a + b) ∣ (a ^ 6 - b ^ 6) := by
++  have h1 : a ^ 6 - b ^ 6 = (a + b) * ((a - b) * (a ^ 2 + a * b + b ^ 2) * (a ^ 2 - a * b + b ^ 2)) := by
++    ring
++  rw [h1]
++  apply dvd_mul_right

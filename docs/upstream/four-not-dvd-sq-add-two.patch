@@ -1,0 +1,17 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/FourNotDvdSqAddTwo.lean
+@@ -0,0 +1,14 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.Data.ZMod.Basic
++
++theorem four_not_dvd_sq_add_two (n : ℤ) : ¬ (4 : ℤ) ∣ (n ^ 2 + 2) := by
++  intro h
++  have h' : ((4 : ℕ) : ℤ) ∣ (n ^ 2 + 2) := by exact_mod_cast h
++  rw [← ZMod.intCast_zmod_eq_zero_iff_dvd] at h'
++  push_cast at h'
++  have key : ∀ m : ZMod 4, m ^ 2 + 2 ≠ 0 := by decide
++  exact key _ h'

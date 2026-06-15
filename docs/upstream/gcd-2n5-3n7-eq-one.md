@@ -1,0 +1,105 @@
+# Upstream packet: `gcd-2n5-3n7-eq-one`
+
+Status: packet-ready · generated mechanically (ADR-020 / SPEC-020-A) · sponsor: Chris Barlow
+
+## The statement (as proved here)
+
+```lean
+import Mathlib
+
+theorem gcd_2n5_3n7_eq_one (n : ℕ) : Nat.gcd (2 * n + 5) (3 * n + 7) = 1 := by
+  sorry
+```
+
+Kernel-verified on `main`: `library/Unsorry/Gcd2n53n7EqOne.lean` (theorem `gcd_2n5_3n7_eq_one`),
+through Gate A (build `--wfail`, axiom audit against the standard whitelist, leanchecker
+kernel replay, regenerated ADR-011 binding obligation).
+
+## Proposed contribution
+
+The `git apply`-able new-file diff is at [`gcd-2n5-3n7-eq-one.patch`](gcd-2n5-3n7-eq-one.patch). The target path
+`Mathlib/Unsorry/Gcd2n53n7EqOne.lean` is a **placeholder** — file placement and the
+final name are Zulip questions, not ours to decide. Content:
+
+```lean
+/-
+Copyright (c) 2026 Chris Barlow. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Chris Barlow
+-/
+import Mathlib
+
+theorem gcd_2n5_3n7_eq_one (n : ℕ) : Nat.gcd (2 * n + 5) (3 * n + 7) = 1 := by
+  have h1 : Nat.gcd (2 * n + 5) (3 * n + 7) ∣ (2 * n + 5) := Nat.gcd_dvd_left _ _
+  have h2 : Nat.gcd (2 * n + 5) (3 * n + 7) ∣ (3 * n + 7) := Nat.gcd_dvd_right _ _
+  have h4 : Nat.gcd (2 * n + 5) (3 * n + 7) ∣ 2 * (3 * n + 7) := h2.mul_left 2
+  have h5 : Nat.gcd (2 * n + 5) (3 * n + 7) ∣ 2 * (3 * n + 7) + 1 := by
+    have heq : 2 * (3 * n + 7) + 1 = 3 * (2 * n + 5) := by omega
+    rw [heq]
+    exact h1.mul_left 3
+  exact Nat.dvd_one.mp ((Nat.dvd_add_right h4).mp h5)
+```
+
+## Dedup at mathlib HEAD
+
+- mathlib revision scanned: `c0477ad6b77161888036499c30cfaaeb0b50d46f`
+- patterns: `\bgcd_2n5_3n7_eq_one\b`
+- verdict: **no-local-match**
+- matches:
+- none
+
+A name-grep is a pre-filter, not a proof of absence; the kernel build at HEAD
+(`tools/upstream/verify_head.sh`) is the strong evidence and its result belongs in the
+PR conversation.
+
+## Provenance dossier
+
+| Field | Value |
+|---|---|
+| source | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). |
+| reference | The linear forms 2n+5 and 3n+7 are coprime for every natural number n. Not a named mathlib lemma in this form. |
+| absence | no-local-match (grep of pinned mathlib rev c5ea00351c, 2026-06-15); generic-lemma instances dropped via direct mathlib grep (sub_dvd_pow_sub_pow / Odd.add_dvd_pow_add_pow / add_pow / centralBinom / Vandermonde / fib_add). |
+| triviality | machine-checked non-trivial (battery v1, rev c5ea00351c, 2026-06-15). |
+| difficulty | 3 |
+| decomposition sketch | g | 3*(2n+5)=6n+15 and g | 2*(3n+7)=6n+14; difference is 1, so g | 1. Verified to build (lake env lean). |
+| title | The linear forms 2n+5 and 3n+7 are coprime for every natural number n. |
+
+Proof produced by an autonomous Claude agent swarm (model policy ADR-013/ADR-015:
+`fable`, progressive effort), merged with no human review through two CI gates
+(ADR-006 soundness, Gate B hygiene). Full machine history: the goal's PR trail in
+this repository.
+
+## AI disclosure (paste-ready facts)
+
+> The Lean proof in this PR was produced by an autonomous LLM agent
+> (Anthropic Claude, model `fable`) operating in the `unsorry` proof swarm
+> (github.com/agenticsnz/unsorry), and was machine-verified there by kernel
+> replay, an axiom audit against the standard whitelist (`propext`,
+> `Classical.choice`, `Quot.sound`), and a CI-regenerated statement-binding
+> obligation. I have read and understood the proof in full and can justify
+> each step without AI assistance. Label: `LLM-generated`.
+
+## For the sponsor
+
+1. Read the proof until you can justify every step **without AI assistance** —
+   mathlib reviewers will expect exactly that.
+2. **Zulip first**, in your own words: is the lemma wanted, where does it live,
+   what should it be called? The PR-description narrative and every review reply
+   likewise **must be rewritten in your own words** — mathlib policy forbids
+   LLM-written conversation; only the lemma itself (disclosed) and the factual
+   disclosure block above may be pasted.
+3. **Raise the draft PR with one command** once you've done 1–2 — from the
+   unsorry repo root:
+   ```
+   python3 -m tools.upstream.raise_pr --goal gcd-2n5-3n7-eq-one --fork <your-github-user> --understood
+   ```
+   It clones mathlib master, applies the patch to a fresh branch, pushes to
+   your fork, and opens a **draft** PR pre-filled with the factual disclosure
+   and a placeholder where your narrative goes. (`--understood` is your
+   attestation that you've read the proof; `--dry-run` shows the plan first.)
+   The machine never marks it ready and never writes a review reply.
+4. Write your narrative in the draft, apply the `LLM-generated` label, then
+   **you** flip draft → ready. Expect the linter to want golfing (binder
+   names, line length) — that editing is yours. See [docs/upstreaming.md](../upstreaming.md).
+5. Record the outcome on the targets board (`in-discussion → pr-open →
+   merged | declined`). **Declined is a valid, recorded result.**

@@ -1,0 +1,16 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/CoprimeNSqNAddOne.lean
+@@ -0,0 +1,13 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib
++
++theorem coprime_n_sq_n_add_one (n : ℕ) : Nat.Coprime n (n ^ 2 + n + 1)
++  := by
++    rw [Nat.coprime_iff_gcd_eq_one]
++    have h1 : n ^ 2 + n + 1 = n * (n + 1) + 1 := by ring
++    rw [h1]
++    simp

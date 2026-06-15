@@ -1,0 +1,14 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/ConstrainedSumSqGeThree.lean
+@@ -0,0 +1,11 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.Data.Real.Basic
++import Mathlib.Tactic.Linarith
++
++theorem constrained_sum_sq_ge_three (a b c : ℝ) (h : a + b + c = 3) :
++    3 ≤ a ^ 2 + b ^ 2 + c ^ 2 := by
++  nlinarith [sq_nonneg (a - b), sq_nonneg (b - c), sq_nonneg (a - c), h]

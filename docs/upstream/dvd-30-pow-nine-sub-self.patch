@@ -1,0 +1,16 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/Dvd30PowNineSubSelf.lean
+@@ -0,0 +1,13 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.Data.ZMod.Basic
++
++theorem dvd_30_pow_nine_sub_self (n : ℤ) : (30 : ℤ) ∣ n ^ 9 - n := by
++  have h : ((n ^ 9 - n : ℤ) : ZMod 30) = 0 := by
++    have key : ∀ x : ZMod 30, x ^ 9 - x = 0 := by decide
++    push_cast
++    exact key _
++  rwa [ZMod.intCast_zmod_eq_zero_iff_dvd] at h

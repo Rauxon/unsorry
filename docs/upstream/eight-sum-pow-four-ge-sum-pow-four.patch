@@ -1,0 +1,16 @@
+--- /dev/null
++++ b/Mathlib/Unsorry/EightSumPowFourGeSumPowFour.lean
+@@ -0,0 +1,13 @@
++/-
++Copyright (c) 2026 Chris Barlow. All rights reserved.
++Released under Apache 2.0 license as described in the file LICENSE.
++Authors: Chris Barlow
++-/
++import Mathlib.Data.Real.Basic
++import Mathlib.Tactic.Linarith
++
++theorem eight_sum_pow_four_ge_sum_pow_four (a b : ℝ) :
++    (a + b) ^ 4 ≤ 8 * (a ^ 4 + b ^ 4) := by
++  nlinarith [mul_nonneg (sq_nonneg (a - b)) (sq_nonneg (a + b)),
++    mul_nonneg (sq_nonneg (a - b)) (sq_nonneg a),
++    mul_nonneg (sq_nonneg (a - b)) (sq_nonneg b)]
