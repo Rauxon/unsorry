@@ -1,12 +1,12 @@
 {
   "contributors": [
     {
-      "attempt_yield": 0.2067,
+      "attempt_yield": 0.2057,
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
       "badges": {
         "difficulty": 180,
         "proofs": 103,
-        "success_rate_percent": 22.4
+        "success_rate_percent": 22.28
       },
       "credit_source_summary": "explicit + inferred",
       "credit_sources": [
@@ -17,14 +17,14 @@
       "difficulty_points": 180,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 56,
-      "failed_attempts": 165,
+      "failed_attempts": 166,
       "github": "cgbarlow",
       "inferred_git_proofs": 47,
-      "median_solve_s": 325,
+      "median_solve_s": 326,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 1,
-      "run_success_rate": 0.224,
-      "runs": 192,
+      "run_success_rate": 0.2228,
+      "runs": 193,
       "score": 20575,
       "solver": "cgbarlow",
       "successes": 43,
@@ -34,30 +34,30 @@
       "attempt_yield": null,
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
       "badges": {
-        "difficulty": 178,
-        "proofs": 83,
+        "difficulty": 180,
+        "proofs": 84,
         "success_rate_percent": null
       },
       "credit_source_summary": "inferred",
       "credit_sources": [
         "inferred-git-add-author"
       ],
-      "credited_proofs": 83,
-      "difficulty_points": 178,
+      "credited_proofs": 84,
+      "difficulty_points": 180,
       "display_name": "@chat-bit-01",
       "explicit_solver_proofs": 0,
       "failed_attempts": 0,
       "github": "chat-bit-01",
-      "inferred_git_proofs": 83,
+      "inferred_git_proofs": 84,
       "median_solve_s": null,
       "profile_url": "https://github.com/chat-bit-01",
       "rank": 2,
       "run_success_rate": null,
       "runs": 0,
-      "score": 19875,
+      "score": 20100,
       "solver": "chat-bit-01",
       "successes": 0,
-      "verified_proofs": 83
+      "verified_proofs": 84
     },
     {
       "attempt_yield": 0.3,
@@ -234,7 +234,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-15T16:10:03Z",
+  "generated_at": "2026-06-15T16:15:13Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -253,11 +253,11 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
-      "difficulty_points": 178,
+      "difficulty_points": 180,
       "display_name": "chat-bit-01",
       "github": "chat-bit-01",
-      "index_files_added": 83,
-      "missing_solver_provenance": 83,
+      "index_files_added": 84,
+      "missing_solver_provenance": 84,
       "profile_url": "https://github.com/chat-bit-01",
       "rank": 2,
       "solver_credit": false,
@@ -351,8 +351,8 @@
     },
     {
       "provider_model": "openai / leanstral-2603",
-      "run_success_rate": 0.0794,
-      "runs": 126,
+      "run_success_rate": 0.0787,
+      "runs": 127,
       "verified_proofs": 15
     },
     {
@@ -402,18 +402,18 @@
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
     "attributed_proofs": 83,
-    "attribution_gap_count": 144,
+    "attribution_gap_count": 145,
     "credited_contributors": 8,
-    "credited_proofs": 227,
+    "credited_proofs": 228,
     "explicit_solver_proofs": 83,
-    "git_attributed_index_files": 227,
+    "git_attributed_index_files": 228,
     "historical_contributors": 8,
-    "historical_unknown_proofs": 144,
-    "inferred_git_proofs": 144,
-    "proof_run_coverage": 0.2511,
-    "terminal_runs": 260,
+    "historical_unknown_proofs": 145,
+    "inferred_git_proofs": 145,
+    "proof_run_coverage": 0.25,
+    "terminal_runs": 261,
     "uncredited_proofs": 0,
-    "verified_proofs": 227
+    "verified_proofs": 228
   },
   "timeline": [
     {
@@ -442,9 +442,9 @@
       "proofs": 33
     },
     {
-      "cumulative_proofs": 227,
+      "cumulative_proofs": 228,
       "date": "2026-06-15",
-      "proofs": 103
+      "proofs": 104
     }
   ]
 }

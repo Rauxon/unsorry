@@ -40,6 +40,21 @@
       "date": "2026-06-15",
       "difficulty": 2,
       "display_name": "chat-bit-01",
+      "git_add_commit": "71b125681a238ce34c6f604b1a8d0a82e56a5a62",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "coprime-3n1-4n1",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/10102b6c735f9c479a49ec5f234dd86091e91f7dad445f5de46c68a3a9a957b4.aisp",
+      "review_status": "candidate",
+      "sha": "10102b6c735f9c479a49ec5f234dd86091e91f7dad445f5de46c68a3a9a957b4"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
       "git_add_commit": "37063b8522bbed2284cd0d9a18ba259a4835923c",
       "git_add_date": "2026-06-15",
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -2169,9 +2184,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 144,
-    "mapped_missing_solver": 140,
-    "missing_solver_provenance": 144,
+    "git_attributed_missing_solver": 145,
+    "mapped_missing_solver": 141,
+    "missing_solver_provenance": 145,
     "unmapped_missing_solver": 4
   }
 }
