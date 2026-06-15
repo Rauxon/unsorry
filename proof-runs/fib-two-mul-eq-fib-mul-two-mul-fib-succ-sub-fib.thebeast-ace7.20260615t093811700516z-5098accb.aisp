@@ -1,0 +1,9 @@
+𝔸5.1.run.fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib.thebeast-ace7.20260615t093811700516z-5098accb@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t093811700516z-5098accb; goal≜fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜507; ended≜2026-06-15T09:38:11Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8565/8591] Built Unsorry.SumFourSqGeTwoCross (70s) ✔ [8566/8591] Built Unsorry.AmGmThreeCubeS1 (72s) ✔ [8567/8591] Built Unsorry.RecipSuccLtRecip (75s) ✔ [8568/8591] Built Unsorry.SqSumLeTwoMulSumSq (77s) ✔ [8569/8591] Built Unsorry.SumThreeSquaresGeSumProducts (79s) ✔ [8570/8}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
