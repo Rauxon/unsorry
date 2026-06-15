@@ -1,0 +1,20 @@
+𝔸5.1.goal.alternating-sum-k-mul-choose-eq-zero@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜alternating-sum-k-mul-choose-eq-zero
+  phase≜prove
+  status≜open
+  difficulty≜4
+}
+⟦Σ:Source⟧{
+  src≜backlog/alternating-sum-k-mul-choose-eq-zero.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/alternating-sum-k-mul-choose-eq-zero.lean
+  sha≜∅
+  aff≜-20
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
