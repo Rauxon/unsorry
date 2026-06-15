@@ -1,0 +1,8 @@
+𝔸5.1.lemma.18f34251bf3e@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜18f34251bf3e4a8f684e74bd30fbeaaebff4910136ba55fea7fb4dbd6764a17f; goal≜nesbitt-inequality-s3; name≜positive_pairwise_sum}
+⟦Σ:Source⟧{src≜goals/nesbitt-inequality-s3.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜231}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
