@@ -1,0 +1,8 @@
+𝔸5.1.lemma.423ff21d32ea@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜423ff21d32ea7ee1d4f01eaef408b7e2bfc2ddbf309f1d9cab0e529183343cb4; goal≜cyclic-quartic-ge-asym-cubic-cross; name≜cyclic_quartic_ge_asym_cubic_cross}
+⟦Σ:Source⟧{src≜goals/cyclic-quartic-ge-asym-cubic-cross.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜xhigh; attempts≜2; solve_s≜563}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

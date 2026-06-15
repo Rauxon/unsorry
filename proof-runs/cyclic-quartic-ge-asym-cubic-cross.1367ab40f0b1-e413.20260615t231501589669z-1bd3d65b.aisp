@@ -1,0 +1,8 @@
+𝔸5.1.run.cyclic-quartic-ge-asym-cubic-cross.1367ab40f0b1-e413.20260615t231501589669z-1bd3d65b@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t231501589669z-1bd3d65b; goal≜cyclic-quartic-ge-asym-cubic-cross; agent≜1367ab40f0b1-e413; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜cyclic-quartic-ge-asym-cubic-cross}
+⟦Λ:Metrics⟧{attempts≜2; solve_s≜563; ended≜2026-06-15T23:15:01Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜423ff21d32ea7ee1d4f01eaef408b7e2bfc2ddbf309f1d9cab0e529183343cb4}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
