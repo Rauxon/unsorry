@@ -1,0 +1,8 @@
+𝔸5.1.run.dvd-264-pow-thirteen-sub-pow-three.oma-2-c50d.20260615t155308210316z-ef4202ea@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t155308210316z-ef4202ea; goal≜dvd-264-pow-thirteen-sub-pow-three; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜dvd-264-pow-thirteen-sub-pow-three}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜299; ended≜2026-06-15T15:53:08Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜7826a2a48e8b85ac503cf5b7173f8dc562a0ba1eec945086062e3b4c05d860af}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

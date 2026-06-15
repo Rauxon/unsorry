@@ -1,0 +1,8 @@
+𝔸5.1.lemma.7826a2a48e8b@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜7826a2a48e8b85ac503cf5b7173f8dc562a0ba1eec945086062e3b4c05d860af; goal≜dvd-264-pow-thirteen-sub-pow-three; name≜dvd_264_pow_thirteen_sub_pow_three}
+⟦Σ:Source⟧{src≜goals/dvd-264-pow-thirteen-sub-pow-three.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜299}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
