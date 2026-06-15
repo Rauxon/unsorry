@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**254 goals — 107 open · 9 blocked · 10 translated · 48 proved · 80 archived.** 13 decomposition families shown below; standalone goals are listed in the table.
+**254 goals — 106 open · 9 blocked · 10 translated · 49 proved · 80 archived.** 13 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (44 of 48 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (45 of 49 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -225,7 +225,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`cube-sum-ge-three-prod-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod-s2.lean) | open | 1 | — | — | — | — |
 | [`discriminant-nonneg-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg-s2.lean) | open | 1 | — | — | — | — |
 | [`dvd-2730-pow-thirteen-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-2730-pow-thirteen-sub-self.lean) | open | 4 | — | — | — | — |
-| [`dvd-nine-pow-nine-sub-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-nine-pow-nine-sub-pow-three.lean) | open | 3 | — | — | — | — |
 | [`eight-sum-pow-four-ge-sum-pow-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/eight-sum-pow-four-ge-sum-pow-four.lean) | open | 3 | — | — | — | — |
 | [`fifth-power-mod-eleven`](https://github.com/agenticsnz/unsorry/blob/main/goals/fifth-power-mod-eleven.lean) | open | 2 | — | — | — | — |
 | [`forty-two-dvd-pow-seven-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/forty-two-dvd-pow-seven-sub-self.lean) | open | 2 | — | — | — | — |
@@ -350,6 +349,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`discriminant-nonneg-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg-s3.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#627](https://github.com/agenticsnz/unsorry/pull/627) | 2026-06-15 |
 | [`dvd-30-pow-nine-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-30-pow-nine-sub-self.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#628](https://github.com/agenticsnz/unsorry/pull/628) | 2026-06-15 |
 | [`dvd-66-pow-eleven-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-66-pow-eleven-sub-self.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#629](https://github.com/agenticsnz/unsorry/pull/629) | 2026-06-15 |
+| [`dvd-nine-pow-nine-sub-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-nine-pow-nine-sub-pow-three.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#630](https://github.com/agenticsnz/unsorry/pull/630) | 2026-06-15 |
 | [`eight-dvd-consecutive-odd-sq-diff`](https://github.com/agenticsnz/unsorry/blob/main/goals/eight-dvd-consecutive-odd-sq-diff.lean) | proved | 2 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#495](https://github.com/agenticsnz/unsorry/pull/495) | 2026-06-14 |
 | [`eight-triangular-add-one-eq-odd-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/eight-triangular-add-one-eq-odd-sq.lean) | proved | 2 | p3-a1 | cgbarlow · `opus` | [#307](https://github.com/agenticsnz/unsorry/pull/307) | 2026-06-13 |
 | [`four-consecutive-product-add-one-square-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s1.lean) | proved | 1 | oma-2-c50d | perttu | [#437](https://github.com/agenticsnz/unsorry/pull/437) | 2026-06-14 |
