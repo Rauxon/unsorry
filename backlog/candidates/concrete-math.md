@@ -63,7 +63,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 21 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; expand H(k+1)=H(k)+1/(k+1), clear denominators with field_simp and close the step with ring · conf: med
 - [ ] `sum_range_three_k_add_one_mul_three_pow_closed` — Four times the sum over k<n of (3k+1)*3^k equals (6n-5)*3^n + 5
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; pow_succ on 3^(n+1) then ring/omega to match the step (work in ℤ or ℕ with care on subtraction) · conf: high
-- [ ] `sum_icc_k_mul_two_k_sub_one_closed_form` — Six times the sum of k(2k-1) for k from 1 to n equals n(n+1)(4n-1)
+- [x] `sum_icc_k_mul_two_k_sub_one_closed_form` — Six times the sum of k(2k-1) for k from 1 to n equals n(n+1)(4n-1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; the step is a cubic identity closed by ring (after clearing the 2k-1 subtraction) or omega · conf: high
 - [ ] `sum_icc_recip_id_mul_add_three_gap_telescope` — The sum of 1/(k(k+3)) for k from 1 to n telescopes to (1/3)(11/6 - (1/(n+1)+1/(n+2)+1/(n+3)))
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; gap-3 partial fraction 1/(k(k+3))=(1/3)(1/k-1/(k+3)), field_simp + ring, denominators nonzero · conf: med
