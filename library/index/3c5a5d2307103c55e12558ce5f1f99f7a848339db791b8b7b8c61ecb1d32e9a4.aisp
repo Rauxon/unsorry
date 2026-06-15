@@ -1,0 +1,8 @@
+𝔸5.1.lemma.3c5a5d230710@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜3c5a5d2307103c55e12558ce5f1f99f7a848339db791b8b7b8c61ecb1d32e9a4; goal≜cube-mod-thirtyone-nonresidue-five; name≜cube_mod_thirtyone_nonresidue_five}
+⟦Σ:Source⟧{src≜goals/cube-mod-thirtyone-nonresidue-five.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜301}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
