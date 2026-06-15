@@ -1,0 +1,7 @@
+𝔸5.1.claim.alt-sum-range-sq-eq-signed-pronic.sovereign-engine@2026-06-15
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜alt-sum-range-sq-eq-signed-pronic; agent≜sovereign-engine}
+⟦Σ:Times⟧{ts≜2026-06-15T22:01:59Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
