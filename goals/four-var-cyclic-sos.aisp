@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜four-var-cyclic-sos
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜2
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/four-var-cyclic-sos.lean
-  sha≜∅
-  aff≜-10
+  sha≜1f2bafdbacab46ed5f7e120bdb3ee3fb9d00bed758c0a091d26e4e87aaf34f56
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
