@@ -1,6 +1,6 @@
 # SPEC-041-A: Proof Archive Blocks
 
-Implements: [ADR-041](../ADR-041-Proof-Archive-Blocks.md) · Status: Living · Updated: 2026-06-14
+Implements: [ADR-041](../ADR-041-Proof-Archive-Blocks.md) · Status: Living · Updated: 2026-06-15
 
 ## 1. Terms
 
@@ -107,3 +107,82 @@ The default must always fail toward a larger validation scope when the changed-p
 - A frozen archive block can be validated independently from the active package.
 - A normal proof PR after the first archive cut does not enumerate archived proof modules in the active replay/audit set.
 - A PR changing an archive pin or archive source triggers full validation for the affected archive boundary.
+
+## 8. Cutting a block — runbook
+
+This is the routine procedure performed for blocks 0001 and 0002. One block ≈ 40 proved goals
+moving from the active package into a new frozen archive package; the active `goals/<id>.aisp`
+records stay (re-pointed to the archive), only the proved artefacts move.
+
+**1. Plan.** On an up-to-date checkout of `main`:
+
+```bash
+python3 -m tools.archive --size 40          # proposes block id + the 40 goals (module, sha, proved_at)
+python3 -m tools.archive --size 40 --json   # machine-readable
+```
+
+Confirm the proposed `block_id` is the next one after the existing `packages/unsorry-archive-*`
+(the planner derives it from existing manifests; if a checkout is stale it can mis-number — verify).
+
+**2. Create `packages/unsorry-archive-NNNN/`.** Mirror an existing block (e.g. copy 0002's layout):
+
+- `lakefile.toml` — `name = "unsorryArchiveNNNN"`, one `[[lean_lib]]` `UnsorryArchiveNNNN`
+  (`srcDir = "library"`, `globs = ["Unsorry.+"]`), and the `mathlib` require pinned to the **current**
+  `rev` (match root `lakefile.toml`).
+- `lean-toolchain` — copy of the root `lean-toolchain`.
+- `lake-manifest.json` — the resolved manifest for the package.
+- For each selected goal `<id>` (module `Unsorry.<Mod>`):
+  - **move** `library/Unsorry/<Mod>.lean` → `packages/unsorry-archive-NNNN/library/Unsorry/<Mod>.lean`
+  - **move** its index entry `library/index/<sha>.aisp` → the package's `library/index/`
+  - **move** `goals/<id>.lean` → the package's `goals/<id>.lean` (**byte-identical** — required so the
+    ADR-018 immutability gate accepts its removal from active; see §9 of ADR-018 / the archive-aware
+    exemption)
+  - **copy** `goals/<id>.aisp` → the package's `goals/<id>.aisp` (provenance)
+  - **move** `backlog/<id>.md`, `proof-runs/<id-runs>`, and any `decompositions/<id>.*.aisp` into the
+    package's `backlog/`, `proof-runs/`, `decompositions/`.
+- `archive-manifest.json` — `block_id`, `target_size`, `proof_count`, `status: "frozen"`,
+  `source_commit`, `validation_commit` (null until validated), `pins` (`lean_toolchain`, `mathlib`),
+  `notes`, `goals: [{goal, module}, …]`, `deferred_groups`.
+
+**3. Retire from active.** Remove the moved `library/`, `goals/<id>.lean`, `backlog/`, `proof-runs/`,
+and `decompositions/` entries from the active tree, and **edit each active `goals/<id>.aisp`** to the
+archived end-state (keep the record, re-point it):
+
+```
+⟦Ω:Goal⟧{ … status≜archived … }
+⟦Σ:Source⟧{ src≜packages/unsorry-archive-NNNN/backlog/<id>.md }
+⟦Λ:Artifact⟧{ lean≜packages/unsorry-archive-NNNN/goals/<id>.lean ; sha≜<unchanged> ; aff≜… }
+```
+
+The `sha` is unchanged (the statement is preserved); only `status`, `src`, and the `lean` path move.
+
+**4. Regenerate boards** (they are derived files): `python3 -m tools.leaderboard --write` plus the
+targets board / metrics generators. Archived proofs retain leaderboard attribution.
+
+**5. Validate locally** before the PR:
+
+```bash
+( cd packages/unsorry-archive-NNNN && lake exe cache get && lake build --wfail )
+python3 -m tools.gate_a.archive_packages validate-changed       # build + audit + leanchecker replay of the block
+python3 -m tools.leaderboard --check
+```
+
+**6. Open the PR** titled `chore(archive): retire active copies for block NNNN`. Gate A then
+full-validates the new archive package (ADR-041 §4) and replays the **shrunk** active library. The
+goal-`.lean` removals pass the ADR-018 immutability gate because each is recorded in the manifest
+with a byte-identical archived copy (the archive-aware exemption).
+
+## 9. Operating at scale
+
+With a high inflow of proofs (many contributors / many agents), the active set crosses the block
+target continuously, so archiving is **not** a one-off: the active package's full-replay and audit
+cost (the Gate A long pole, especially on memory-bound runners where replay can't parallelise) grows
+between cuts. Two implications:
+
+- **Cut early and often.** Treat 40 as a ceiling, not a goal; a smaller effective active set keeps
+  full validation fast. Cut a new block whenever the planner reports a full block of eligible goals.
+- **Automate the cut.** The §8 runbook is mechanical and was done identically for 0001/0002 — it
+  should become a `tools.archive` *write* mode (perform the moves, write the manifest, re-point the
+  active records) plus a scheduled/threshold trigger that opens the retire PR automatically once the
+  eligible count reaches a block. Until then, follow §8 by hand. (The planner today is report-only by
+  design; the write mode is the natural next increment.)
