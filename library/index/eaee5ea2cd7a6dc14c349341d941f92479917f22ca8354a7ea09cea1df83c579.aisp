@@ -1,0 +1,8 @@
+𝔸5.1.lemma.eaee5ea2cd7a@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜eaee5ea2cd7a6dc14c349341d941f92479917f22ca8354a7ea09cea1df83c579; goal≜consecutive-cubes-diff-odd; name≜consecutive_cubes_diff_odd}
+⟦Σ:Source⟧{src≜goals/consecutive-cubes-diff-odd.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜467}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
