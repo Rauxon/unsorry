@@ -1,0 +1,9 @@
+𝔸5.1.run.coprime-n2p1-n2p2.thebeast-ace7.20260615t142634856489z-75856036@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t142634856489z-75856036; goal≜coprime-n2p1-n2p2; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜coprime-n2p1-n2p2}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜405; ended≜2026-06-15T14:26:34Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8585/8604] Building Unsorry.CoprimeN2p1N2p2 (959ms) trace: .> LEAN_PATH=/home/adam/.unsorry/work/prove-coprime-n2p1-n2p2-thebeast-ace7/.lake/packages/Cli/.lake/build/lib/lean:/home/adam/.unsorry/work/prove-coprime-n2p1-n2p2-thebeast-ace7/.lake/packages/batteries/.lake/build/li}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
