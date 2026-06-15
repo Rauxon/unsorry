@@ -1,12 +1,12 @@
 {
   "contributors": [
     {
-      "attempt_yield": 0.2794,
+      "attempt_yield": 0.2774,
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
       "badges": {
         "difficulty": 140,
         "proofs": 81,
-        "success_rate_percent": 32.2
+        "success_rate_percent": 31.93
       },
       "credit_source_summary": "explicit + inferred",
       "credit_sources": [
@@ -17,14 +17,14 @@
       "difficulty_points": 140,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 39,
-      "failed_attempts": 98,
+      "failed_attempts": 99,
       "github": "cgbarlow",
       "inferred_git_proofs": 42,
       "median_solve_s": 294,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 1,
-      "run_success_rate": 0.322,
-      "runs": 118,
+      "run_success_rate": 0.3193,
+      "runs": 119,
       "score": 16025,
       "solver": "cgbarlow",
       "successes": 38,
@@ -205,7 +205,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-15T01:40:20Z",
+  "generated_at": "2026-06-15T01:50:09Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -309,8 +309,8 @@
     },
     {
       "provider_model": "openai / leanstral-2603",
-      "run_success_rate": 0.1039,
-      "runs": 77,
+      "run_success_rate": 0.1026,
+      "runs": 78,
       "verified_proofs": 8
     },
     {
@@ -369,7 +369,7 @@
     "historical_unknown_proofs": 82,
     "inferred_git_proofs": 82,
     "proof_run_coverage": 0.365,
-    "terminal_runs": 146,
+    "terminal_runs": 147,
     "uncredited_proofs": 0,
     "verified_proofs": 137
   }
