@@ -1,7 +1,0 @@
-𝔸5.1.claim.am-hm-two-var-s1.oma-2-c50d@2026-06-15
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜am-hm-two-var-s1; agent≜oma-2-c50d}
-⟦Σ:Times⟧{ts≜2026-06-15T01:48:50Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
