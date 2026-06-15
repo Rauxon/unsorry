@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 from typing import Callable, Sequence
 
-from tools.gate_a.parallel_modules import module_names
+from tools.gate_a.parallel_modules import REPLAY_CHUNK_SIZE, module_names, split_evenly
 
 ARCHIVE_PREFIX = "packages/unsorry-archive-"
 FORBIDDEN_RE = re.compile(
@@ -172,14 +172,20 @@ def validate_archive_package(
         build = run_step(f"{rel} Lake build", build_argv, cwd=package_root, runner=runner)
         if build != 0:
             return build
-        replay = run_step(
-            f"{rel} leanchecker replay",
-            ("lake", "env", "leanchecker", *modules),
-            cwd=package_root,
-            runner=runner,
-        )
-        if replay != 0:
-            return replay
+        # leanchecker holds ~all of mathlib resident per process, so replaying
+        # every package module in one invocation OOM-kills a memory-bound runner
+        # (exit 137 on a 30-proof block ≈ 60 modules with bindings). Chunk it like
+        # the active replay (REPLAY_CHUNK_SIZE), run serially.
+        n_chunks = max(1, (len(modules) + REPLAY_CHUNK_SIZE - 1) // REPLAY_CHUNK_SIZE)
+        for index, chunk in enumerate(split_evenly(modules, n_chunks), 1):
+            replay = run_step(
+                f"{rel} leanchecker replay chunk {index}/{n_chunks}",
+                ("lake", "env", "leanchecker", *chunk),
+                cwd=package_root,
+                runner=runner,
+            )
+            if replay != 0:
+                return replay
     finally:
         run_step(
             f"{rel} clean generated bindings",
