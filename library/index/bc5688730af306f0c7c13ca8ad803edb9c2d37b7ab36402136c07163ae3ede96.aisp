@@ -1,0 +1,8 @@
+𝔸5.1.lemma.bc5688730af3@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜bc5688730af306f0c7c13ca8ad803edb9c2d37b7ab36402136c07163ae3ede96; goal≜dvd-462-pow-thirtyone-sub-self; name≜dvd_462_pow_thirtyone_sub_self}
+⟦Σ:Source⟧{src≜goals/dvd-462-pow-thirtyone-sub-self.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜557}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
