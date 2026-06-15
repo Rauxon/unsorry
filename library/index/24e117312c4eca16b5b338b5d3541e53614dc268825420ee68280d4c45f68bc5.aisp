@@ -1,0 +1,8 @@
+𝔸5.1.lemma.24e117312c4e@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜24e117312c4eca16b5b338b5d3541e53614dc268825420ee68280d4c45f68bc5; goal≜dvd-798-pow-nineteen-sub-self; name≜dvd_798_pow_nineteen_sub_self}
+⟦Σ:Source⟧{src≜goals/dvd-798-pow-nineteen-sub-self.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜309}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
