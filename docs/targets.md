@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**88 open · 153 proved · 249 total prove-goals.**
+**87 open · 154 proved · 249 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -22,7 +22,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `forty-two-dvd-pow-seven-sub-self` — For every integer n, 42 ∣ n⁷ − n (Fermat: 2,3,7 each divide n⁷−n). | open | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 42 ∣ n⁷ − n (Fermat: 2,3,7 each divide n⁷−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `four-var-qm-am` — For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. Not a named mathlib lemma in this form. |
 | `gcd-consec-odd-eq-one` — Two consecutive odd numbers 2n+1 and 2n+3 are coprime. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | Two consecutive odd numbers 2n+1 and 2n+3 are coprime. Not a named mathlib lemma in this form. |
-| `gcd-lin-3n2-5n3` — The linear forms 3n+2 and 5n+3 are coprime for every n. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The linear forms 3n+2 and 5n+3 are coprime for every n. Not a named mathlib lemma in this form. |
 | `gcd-n1-n4-dvd-three` — The gcd of n+1 and n+4 always divides 3. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The gcd of n+1 and n+4 always divides 3. Not a named mathlib lemma in this form. |
 | `gcd-self-add-dvd` — The gcd of n and n+k divides k. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The gcd of n and n+k divides k. Not a named mathlib lemma in this form. |
 | `lcm-self-succ` — The lcm of n and n+1 is their product n(n+1). | open | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The lcm of n and n+1 is their product n(n+1). Not a named mathlib lemma in this form. |
@@ -157,6 +156,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `fourth-power-mod-five-s2` — fourth-power-mod-five-s2 | proved | 1 | — | — | — |
 | `fourth-power-mod-thirteen-mem` — Every fourth power is congruent to 0, 1, 3, or 9 modulo 13 (the quartic residues mod 13). | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family. | Every fourth power is congruent to 0, 1, 3, or 9 modulo 13 (the quartic residues mod 13). Not a named mathlib lemma in this form. |
 | `fourth-power-mod-three` — The fourth power of any natural number not divisible by 3 leaves remainder 1 on division by 3: if n % 3 ≠ 0 then n⁴ % 3 = 1. | proved | 2 | — | classic identities (fourth-power congruence tower — leaf; compounds on `sq-mod-three`) | Quadratic residues mod 3: n² ≡ 1 (mod 3) for 3∤n, hence n⁴ ≡ 1 (mod 3). Hardy & Wright, An Introduction to the Theory of Numbers. One power up from the proved `sq-mod-three`. |
+| `gcd-lin-3n2-5n3` — The linear forms 3n+2 and 5n+3 are coprime for every n. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The linear forms 3n+2 and 5n+3 are coprime for every n. Not a named mathlib lemma in this form. |
 | `int-add-neg` — Adding the negation of an integer yields zero. | proved | 1 | — | — | — |
 | `int-neg-neg` — Double negation of an integer is the identity. | proved | 1 | — | — | — |
 | `int-sub-eq-add-neg` — Integer subtraction equals adding the negation. | proved | 1 | — | — | — |
