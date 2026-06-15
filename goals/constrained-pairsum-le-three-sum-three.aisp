@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜constrained-pairsum-le-three-sum-three
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜2
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/constrained-pairsum-le-three-sum-three.lean
-  sha≜∅
-  aff≜-10
+  sha≜fbb1f0d2d7e54fdd106928e9d57a1197f496359d812319e961a435dbdeda716d
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

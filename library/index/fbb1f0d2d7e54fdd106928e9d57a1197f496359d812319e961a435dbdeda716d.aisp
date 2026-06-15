@@ -1,0 +1,8 @@
+𝔸5.1.lemma.fbb1f0d2d7e5@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜fbb1f0d2d7e54fdd106928e9d57a1197f496359d812319e961a435dbdeda716d; goal≜constrained-pairsum-le-three-sum-three; name≜constrained_pairsum_le_three_sum_three}
+⟦Σ:Source⟧{src≜goals/constrained-pairsum-le-three-sum-three.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜435}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
