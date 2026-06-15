@@ -526,14 +526,19 @@ jobs:
           use-mathlib-cache: "false"
           use-github-cache: "false"
 
+      # BASE_SHA mirrors the audit/replay jobs: pull_request.base.sha on a PR,
+      # github.event.before on a push to main (validate only archives the push
+      # changed — usually a no-op). The zero-SHA (first push / branch creation) or
+      # an empty BASE_SHA falls back to validating ALL archive packages, so we
+      # never rely on implicit `git diff <zero-sha>` behaviour for a soundness path.
       - name: Validate changed archive packages (ADR-041)
         env:
-          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || (github.event_name == 'push' && github.event.before || '') }}
         run: |
-          if [ -n "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.archive_packages validate-changed --base "$BASE_SHA"
-          else
+          if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] || [ -z "$BASE_SHA" ]; then
             python3 -m tools.gate_a.archive_packages validate-changed
+          else
+            python3 -m tools.gate_a.archive_packages validate-changed --base "$BASE_SHA"
           fi
 
   gate-a:

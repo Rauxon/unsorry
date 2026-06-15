@@ -52,9 +52,12 @@ verify-on-ingest shift so routine Gate A fits an **8 GB** runner and the 16 GB p
   step runs the FULL command when `BASE_SHA` is empty **or** the zero-SHA
   (`0000000000000000000000000000000000000000`, i.e. first push / branch creation); otherwise the
   incremental `--base "$BASE_SHA"` command. The existing two-branch command structure is preserved.
-- `gate_a_archive` is **unchanged**: on a PR it validates provenance + packaging incrementally; on a
-  push it validates packaging for changed archives. Provenance enforcement at archive-introducing PRs
-  is not weakened.
+- `gate_a_archive` uses the **same `BASE_SHA` rule** as audit/replay: `pull_request.base.sha` on a PR,
+  `github.event.before` on a push, empty otherwise — and the zero-SHA (first push / branch creation) or
+  an empty `BASE_SHA` falls back to validating **all** archive packages (never relying on implicit
+  `git diff <zero-sha>` behaviour on a soundness path). On a PR it validates provenance + packaging for
+  the changed archives; on a normal push it is usually a no-op (no archive changed). Provenance
+  enforcement at archive-introducing PRs is not weakened.
 
 ### `.github/workflows/gate-a-full-replay.yml` (new)
 
