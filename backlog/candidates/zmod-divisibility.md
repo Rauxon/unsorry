@@ -34,7 +34,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 24, x^5 - x^3 = 0 by decide; transfer lemma · conf: high
 - [x] `dvd_5040_seven_consecutive_product` — 5040 (=7!) divides n·(n^2-1)·(n^2-4)·(n^2-9), the product of seven consecutive integers centred at n
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 5040, x*(x^2-1)*(x^2-4)*(x^2-9)=0 by decide (needs set_option maxRecDepth 100000, build-verified); transfer lemma · conf: med
-- [ ] `dvd_120_five_consecutive_product` — 120 (=5!) divides n·(n^2-1)·(n^2-4), the product of five consecutive integers centred at n
+- [x] `dvd_120_five_consecutive_product` — 120 (=5!) divides n·(n^2-1)·(n^2-4), the product of five consecutive integers centred at n
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 120, x*(x^2-1)*(x^2-4)=0 by decide; transfer via intCast_zmod_eq_zero_iff_dvd · conf: high
 - [x] `prime_pow_six_mod_504` — For every prime p greater than 7, p^6 is congruent to 1 modulo 504
       absence: no-local-match · triviality: non-trivial · intended: Reduce mod 504=8·9·7 via CRT/ZMod units; for p coprime to 504, p is a unit whose order divides 6 in each factor (decide over coprime residues of ZMod 504) · conf: med
@@ -122,42 +122,42 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: 798 = 2·3·7·19; decide n^57=n^3 in each ZMod p (maxRecDepth for exponent 57), recombine via coprime dvd · conf: med
 - [x] `dvd_66_pow_twentyone_sub_pow_eleven` — For every integer n, 66 divides n to the 21st power minus n to the 11th power
       absence: no-local-match · triviality: non-trivial · intended: 66 = 2·3·11; decide n^21=n^11 in ZMod 2, ZMod 3, ZMod 11, combine by coprimality · conf: high
-- [ ] `dvd_330_pow_twentythree_sub_pow_three` — For every integer n, 330 divides n to the 23rd power minus n to the 3rd power
+- [x] `dvd_330_pow_twentythree_sub_pow_three` — For every integer n, 330 divides n to the 23rd power minus n to the 3rd power
       absence: no-local-match · triviality: non-trivial · intended: 330 = 2·3·5·11; per-prime ZMod.decide of n^23=n^3, recombine via Nat.Coprime.mul_dvd · conf: high
 - [ ] `dvd_1806_pow_fortynine_sub_pow_seven` — For every integer n, 1806 divides n to the 49th power minus n to the 7th power
       absence: no-local-match · triviality: non-trivial · intended: 1806 = 2·3·7·43; decide n^49=n^7 in each ZMod p (maxRecDepth), combine by coprimality · conf: med
-- [ ] `dvd_910_pow_twentyfive_sub_pow_thirteen` — For every integer n, 910 divides n to the 25th power minus n to the 13th power
+- [x] `dvd_910_pow_twentyfive_sub_pow_thirteen` — For every integer n, 910 divides n to the 25th power minus n to the 13th power
       absence: no-local-match · triviality: non-trivial · intended: 910 = 2·5·7·13; per-prime ZMod.decide of n^25=n^13, recombine via coprime product dvd · conf: high
 - [ ] `dvd_2730_pow_thirtyseven_sub_pow_thirteen` — For every integer n, 2730 divides n to the 37th power minus n to the 13th power
       absence: no-local-match · triviality: non-trivial · intended: 2730 = 2·3·5·7·13; decide n^37=n^13 in each ZMod p with high maxRecDepth, combine by coprimality · conf: med
-- [ ] `dvd_510_pow_nineteen_sub_pow_three` — For every integer n, 510 divides n to the 19th power minus n to the 3rd power
+- [x] `dvd_510_pow_nineteen_sub_pow_three` — For every integer n, 510 divides n to the 19th power minus n to the 3rd power
       absence: no-local-match · triviality: non-trivial · intended: 510 = 2·3·5·17; per-prime ZMod.decide of n^19=n^3, recombine via Nat.Coprime.mul_dvd · conf: high
 
 ### Replenishment round 4 (scoped 2026-06-15) — 23 candidates
 
-- [ ] `dvd_138_pow_twentythree_sub_self` — 138 divides n^23 - n for every integer n
+- [x] `dvd_138_pow_twentythree_sub_self` — 138 divides n^23 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Factor 138 = 2*3*23; reduce mod each prime via ZMod and decide, then combine by coprimality (Int.ModEq / Nat.Coprime.mul_dvd) · conf: high
-- [ ] `dvd_870_pow_twentynine_sub_self` — 870 divides n^29 - n for every integer n
+- [x] `dvd_870_pow_twentynine_sub_self` — 870 divides n^29 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 870 = 2*3*5*29; for each prime p, (p-1)|28 so n^29≡n mod p by ZMod decide; combine via coprime product divisibility · conf: high
-- [ ] `dvd_282_pow_fortyseven_sub_self` — 282 divides n^47 - n for every integer n
+- [x] `dvd_282_pow_fortyseven_sub_self` — 282 divides n^47 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 282 = 2*3*47; each prime divides n^47-n by Fermat (set maxRecDepth for ZMod 47 decide); CRT-combine the three coprime factors · conf: high
 - [ ] `dvd_498_pow_eightythree_sub_self` — 498 divides n^83 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 498 = 2*3*83; reduce mod 2,3,83 via ZMod decide (maxRecDepth for modulus 83) and assemble with coprime multiplicativity of dvd · conf: med
 - [ ] `dvd_642_pow_hundredseven_sub_self` — 642 divides n^107 - n for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 642 = 2*3*107; each prime p has (p-1)|106 so n^107≡n by ZMod decide (large maxRecDepth for 107); combine by coprimality · conf: med
-- [ ] `dvd_138_pow_fortyfive_sub_pow_twentythree` — 138 divides n^45 - n^23 for every integer n
+- [x] `dvd_138_pow_fortyfive_sub_pow_twentythree` — 138 divides n^45 - n^23 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: Write n^45-n^23 = n^23(n^22-1); for each prime p|138 reduce mod p with ZMod decide (covering both n coprime and divisible cases), then coprime-combine · conf: high
 - [ ] `dvd_870_pow_fiftyseven_sub_pow_twentynine` — 870 divides n^57 - n^29 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 870 = 2*3*5*29; per prime decide n^57≡n^29 over ZMod p (the 28-step exponent gap is a multiple of each p-1), then CRT-combine · conf: med
-- [ ] `dvd_510_pow_fortynine_sub_pow_seventeen` — 510 divides n^49 - n^17 for every integer n
+- [x] `dvd_510_pow_fortynine_sub_pow_seventeen` — 510 divides n^49 - n^17 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 510 = 2*3*5*17; the exponent gap 32 is divisible by each (p-1) so n^49≡n^17 mod p by ZMod decide; combine coprime factors · conf: high
-- [ ] `dvd_798_pow_thirtyseven_sub_pow_nineteen` — 798 divides n^37 - n^19 for every integer n
+- [x] `dvd_798_pow_thirtyseven_sub_pow_nineteen` — 798 divides n^37 - n^19 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 798 = 2*3*7*19; gap 18 is a multiple of each p-1, so decide n^37≡n^19 over each ZMod p and combine by coprimality · conf: high
-- [ ] `dvd_66_pow_thirtyone_sub_pow_eleven` — 66 divides n^31 - n^11 for every integer n
+- [x] `dvd_66_pow_thirtyone_sub_pow_eleven` — 66 divides n^31 - n^11 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 66 = 2*3*11; n^31-n^11 = n^11(n^20-1), gap 20 divisible by each p-1; ZMod decide per prime then coprime-combine · conf: high
-- [ ] `dvd_42_pow_twentyfive_sub_pow_seven` — 42 divides n^25 - n^7 for every integer n
+- [x] `dvd_42_pow_twentyfive_sub_pow_seven` — 42 divides n^25 - n^7 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 42 = 2*3*7; gap 18 is a multiple of each p-1, decide n^25≡n^7 over ZMod 2,3,7 and combine via coprime dvd product · conf: high
-- [ ] `dvd_30_pow_twentyone_sub_pow_five` — 30 divides n^21 - n^5 for every integer n
+- [x] `dvd_30_pow_twentyone_sub_pow_five` — 30 divides n^21 - n^5 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: 30 = 2*3*5; n^21-n^5 = n^5(n^16-1), gap 16 divisible by each p-1; ZMod decide mod 2,3,5 and coprime-combine · conf: high
 - [ ] `dvd_sixtyfour_odd_pow_sixteen_sub_one` — For every odd integer n, 64 divides n^16 - 1
       absence: no-local-match · triviality: non-trivial · intended: Reduce n to its residue mod 64 using the odd hypothesis and decide over the odd classes of ZMod 64 (the multiplicative order of any odd unit divides 16) · conf: high

@@ -6,13 +6,13 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ, then ring · conf: high
 - [x] `sum_centered_cube_eq_biquadratic` — Twice the sum over k<n of k^3+(k+1)^3 equals n^2 times (n^2+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes the step · conf: high
-- [ ] `sum_octahedral_centered_squares` — Three times the sum of the first n centered-square numbers is n times (2n^2+1), the octahedral closed form
+- [x] `sum_octahedral_centered_squares` — Three times the sum of the first n centered-square numbers is n times (2n^2+1), the octahedral closed form
       absence: no-local-match · triviality: non-trivial · intended: Induction on n; Finset.sum_range_succ then nlinarith handling Nat subtraction · conf: high
 - [x] `sum_odd_squares_faulhaber` — Three times the sum of the first n odd squares equals n(2n-1)(2n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; nlinarith to close with the Nat subtraction · conf: high
 - [ ] `sum_odd_cubes_eq_biquadratic` — The sum of the first n odd cubes equals n^2 times (2n^2-1)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n; Finset.sum_range_succ then nlinarith for the (2n^2-1) Nat-subtraction step · conf: high
-- [ ] `sum_star_numbers_closed_form` — The sum of the first n star numbers equals n times (2n^2-1)
+- [x] `sum_star_numbers_closed_form` — The sum of the first n star numbers equals n times (2n^2-1)
       absence: no-local-match · triviality: non-trivial · intended: Induction; Finset.sum_range_succ then nlinarith over Nat subtraction terms · conf: high
 - [x] `sum_k_sq_mul_succ_closed_form` — Twelve times the sum of k^2(k+1) over k up to n equals n(n+1)(n+2)(3n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes the step · conf: high
@@ -20,7 +20,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Telescoping induction via Finset.sum_range_succ; ring · conf: high
 - [x] `sum_pentatope_triple_product` — Four times the sum of three consecutive integer products equals n(n+1)(n+2)(n+3), the pentatope closed form
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring · conf: high
-- [ ] `sum_centered_triangular_closed_form` — The sum of the first n centered triangular numbers equals n times (n^2+1)
+- [x] `sum_centered_triangular_closed_form` — The sum of the first n centered triangular numbers equals n times (n^2+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n; Finset.sum_range_succ then nlinarith handling 3k^2-3k Nat subtraction · conf: high
 - [x] `sum_even_squares_faulhaber` — Three times the sum of the first n even squares equals 2n(n+1)(2n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring · conf: high
@@ -71,7 +71,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ; handle the Nat subtraction by casework or omega on the step · conf: high
 - [x] `sum_id_mul_triangular_closed_form` — Twenty-four times the sum of k times the k-th triangular number equals (n-1)n(n+1)(3n-2)
       absence: no-local-match · triviality: non-trivial · intended: Induction; rewrite k*(k(k+1)/2) = k^2(k+1)/2 exactly, then ring/omega across the Nat subtractions · conf: high
-- [ ] `sum_four_consecutive_eq_hyper_tetrahedral` — Five times the sum of products of four consecutive integers equals n(n+1)(n+2)(n+3)(n+4)
+- [x] `sum_four_consecutive_eq_hyper_tetrahedral` — Five times the sum of products of four consecutive integers equals n(n+1)(n+2)(n+3)(n+4)
       absence: no-local-match · triviality: non-trivial · intended: Telescoping/induction with Finset.sum_range_succ; the step is a degree-5 ring identity (no division) · conf: high
 - [ ] `sum_prod_consecutive_triangular` — Ten times the sum of k(k+1)^2(k+2) (four times the product of consecutive triangular numbers) has the stated degree-5 closed form
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; degree-5 ring identity on the inductive step · conf: med
@@ -100,23 +100,23 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
 
 - [x] `sum_heptagonal_numbers_closed_form` — Three times the sum of the first n heptagonal numbers (twice each, as k(5k-3)) equals n(n+1)(5n-2)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ, then ring (Nat subtraction stays nonnegative for k,n ≥ 1) · conf: high
-- [ ] `sum_octagonal_numbers_closed_form` — Twice the running sum of the first n octagonal numbers k(3k-2) equals n(n+1)(2n-1)
+- [x] `sum_octagonal_numbers_closed_form` — Twice the running sum of the first n octagonal numbers k(3k-2) equals n(n+1)(2n-1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring; the doubling clears the /2 in the octagonal closed form · conf: high
 - [x] `sum_nonagonal_numbers_closed_form` — Three times the running sum of the first n nonagonal numbers (as k(7k-5)) equals n(n+1)(7n-4)
       absence: no-local-match · triviality: non-trivial · intended: Induction over Finset.range with sum_range_succ; ring closes the step · conf: high
-- [ ] `sum_decagonal_numbers_closed_form` — Six times the running sum of the first n decagonal numbers k(4k-3) equals n(n+1)(8n-5)
+- [x] `sum_decagonal_numbers_closed_form` — Six times the running sum of the first n decagonal numbers k(4k-3) equals n(n+1)(8n-5)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring; factor of 6 clears the /2 · conf: high
 - [x] `sum_centered_square_numbers_closed_form` — Three times the running sum of centered square numbers 2k(k+1)+1 equals n(2n^2+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction over Finset.range n with sum_range_succ; ring closes after the factor-3 clears denominators · conf: high
-- [ ] `sum_stella_octangula_closed_form` — Twice the running sum of stella octangula numbers k(2k^2-1) equals n(n+1)(n^2+n-1)
+- [x] `sum_stella_octangula_closed_form` — Twice the running sum of stella octangula numbers k(2k^2-1) equals n(n+1)(n^2+n-1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; reduces to a cubic identity closed by ring (Nat subtraction valid for the indexed terms) · conf: high
-- [ ] `sum_centered_octahedral_closed_form` — The running sum of three-times-centered-octahedral terms (2k+1)(2k^2+2k+3) equals n^2(n^2+2)
+- [x] `sum_centered_octahedral_closed_form` — The running sum of three-times-centered-octahedral terms (2k+1)(2k^2+2k+3) equals n^2(n^2+2)
       absence: no-local-match · triviality: non-trivial · intended: Induction over Finset.range n with sum_range_succ; the quartic step is closed by ring · conf: high
-- [ ] `sum_centered_tetrahedral_closed_form` — Twice the running sum of (2k+1)(k^2+k+3) equals n^2(n^2+5), a centered-tetrahedral closed form
+- [x] `sum_centered_tetrahedral_closed_form` — Twice the running sum of (2k+1)(k^2+k+3) equals n^2(n^2+5), a centered-tetrahedral closed form
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the doubling clears /2 and ring finishes the quartic step · conf: high
 - [x] `sum_centered_triangular_running_closed_form` — The running sum of twice-centered-triangular terms 3k^2+3k+2 equals n(n^2+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction over Finset.range n with sum_range_succ then ring · conf: high
-- [ ] `sum_rhombic_dodecahedral_eq_fourth_power` — The running sum of the rhombic-dodecahedral gnomons (2k-1)(2k^2-2k+1) equals n^4 exactly
+- [x] `sum_rhombic_dodecahedral_eq_fourth_power` — The running sum of the rhombic-dodecahedral gnomons (2k-1)(2k^2-2k+1) equals n^4 exactly
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the k=0 term vanishes and the gnomon (n+1)^4 - n^4 expansion is closed by ring after Nat-subtraction care · conf: high
 - [ ] `sum_consecutive_product_skip_two_closed_form` — Six times the sum of k(k+2) over the first n terms equals n(n+1)(2n+7)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes after the factor-6 clears the /6 · conf: high

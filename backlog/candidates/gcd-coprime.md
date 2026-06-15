@@ -102,31 +102,31 @@ Theme staging file for the Identity Engine (#400, ADR-043). 23 vetted candidates
 
 - [x] `gcd_np1_2np1_eq_one` — Consecutive-ratio terms n+1 and 2n+1 are always coprime
       absence: no-local-match · triviality: non-trivial · intended: Euclid step: 2*(n+1)-(2n+1)=1, so gcd divides 1; Nat.Coprime via dvd_sub or omega after gcd_rec · conf: high
-- [ ] `gcd_2n3_3n5_eq_one` — The linear forms 2n+3 and 3n+5 (determinant 1) are coprime for every n
+- [x] `gcd_2n3_3n5_eq_one` — The linear forms 2n+3 and 3n+5 (determinant 1) are coprime for every n
       absence: no-local-match · triviality: non-trivial · intended: Bezout: 3*(2n+3)-2*(3n+5)=-1; reduce gcd to gcd of a constant 1 · conf: high
-- [ ] `gcd_3n1_5n2_eq_one` — The linear forms 3n+1 and 5n+2 (determinant 1) are coprime for every n
+- [x] `gcd_3n1_5n2_eq_one` — The linear forms 3n+1 and 5n+2 (determinant 1) are coprime for every n
       absence: no-local-match · triviality: non-trivial · intended: Bezout combination 5*(3n+1)-3*(5n+2)=-1 forces gcd | 1 · conf: high
-- [ ] `gcd_4n3_5n4_eq_one` — The linear forms 4n+3 and 5n+4 (determinant 1) are coprime for every n
+- [x] `gcd_4n3_5n4_eq_one` — The linear forms 4n+3 and 5n+4 (determinant 1) are coprime for every n
       absence: no-local-match · triviality: non-trivial · intended: Bezout 5*(4n+3)-4*(5n+4)=-1 gives a unit combination, so gcd | 1 · conf: high
-- [ ] `gcd_5n3_7n4_eq_one` — The linear forms 5n+3 and 7n+4 (determinant -1) are coprime for every n
+- [x] `gcd_5n3_7n4_eq_one` — The linear forms 5n+3 and 7n+4 (determinant -1) are coprime for every n
       absence: no-local-match · triviality: non-trivial · intended: Bezout 7*(5n+3)-5*(7n+4)=1 yields a unit combination forcing gcd 1 · conf: high
-- [ ] `gcd_3n2_5n4_dvd_two` — The gcd of 3n+2 and 5n+4 always divides 2
+- [x] `gcd_3n2_5n4_dvd_two` — The gcd of 3n+2 and 5n+4 always divides 2
       absence: no-local-match · triviality: non-trivial · intended: Bezout 5*(3n+2)-3*(5n+4)=-2, so any common divisor divides 2; gcd_dvd via dvd_sub · conf: high
 - [x] `gcd_2n1_2n7_dvd_six` — The gcd of 2n+1 and 2n+7 always divides 6
       absence: no-local-match · triviality: non-trivial · intended: Difference is 6; common divisor divides (2n+7)-(2n+1)=6, so gcd ∣ 6 · conf: high
-- [ ] `gcd_np1_n2p1_dvd_two` — The gcd of n+1 and n^2+1 always divides 2
+- [x] `gcd_np1_n2p1_dvd_two` — The gcd of n+1 and n^2+1 always divides 2
       absence: no-local-match · triviality: non-trivial · intended: n^2+1 = (n-1)(n+1) + 2, so gcd(n+1, n^2+1) ∣ 2 via the Euclidean remainder · conf: high
-- [ ] `gcd_n2p1_n2p3_dvd_two` — The gcd of n^2+1 and n^2+3 always divides 2
+- [x] `gcd_n2p1_n2p3_dvd_two` — The gcd of n^2+1 and n^2+3 always divides 2
       absence: no-local-match · triviality: non-trivial · intended: Their difference is 2, so any common divisor divides 2; reduce via Nat.dvd_sub' · conf: high
 - [x] `coprime_n2p1_n2p2` — n^2+1 and n^2+2 are consecutive integers, hence coprime
       absence: no-local-match · triviality: non-trivial · intended: They are consecutive (differ by 1); apply Nat.coprime_succ_self after rewriting n^2+2 = (n^2+1)+1 · conf: high
-- [ ] `consec_prod_succ_coprime` — Any number n(n+1) is coprime to its successor
+- [x] `consec_prod_succ_coprime` — Any number n(n+1) is coprime to its successor
       absence: no-local-match · triviality: non-trivial · intended: Direct instance of Nat.coprime_succ_self_right; the n*(n+1) shape blocks a one-line decide · conf: high
-- [ ] `gcd_n3p1_np1_eq_np1` — Since n+1 divides n^3+1, the gcd of n^3+1 and n+1 is n+1
+- [x] `gcd_n3p1_np1_eq_np1` — Since n+1 divides n^3+1, the gcd of n^3+1 and n+1 is n+1
       absence: no-local-match · triviality: non-trivial · intended: Show (n+1) ∣ n^3+1 via the factorization n^3+1=(n+1)(n^2-n+1); then Nat.gcd_eq_right · conf: high
-- [ ] `gcd_n4p1_n2p1_dvd_two` — The gcd of n^4+1 and n^2+1 always divides 2
+- [x] `gcd_n4p1_n2p1_dvd_two` — The gcd of n^4+1 and n^2+1 always divides 2
       absence: no-local-match · triviality: non-trivial · intended: n^4+1 = (n^2+1)(n^2-1) + 2, so the Euclidean remainder is 2 and gcd ∣ 2 · conf: high
-- [ ] `gcd_2pow_3pow_eq_one` — Powers of 2 and powers of 3 with the same exponent are coprime
+- [x] `gcd_2pow_3pow_eq_one` — Powers of 2 and powers of 3 with the same exponent are coprime
       absence: no-local-match · triviality: non-trivial · intended: From Nat.Coprime 2 3 use Nat.Coprime.pow to get coprimality of the powers, then unfold gcd · conf: high
 - [ ] `gcd_fib_2n_eq_fib_n` — Because fib n divides fib (2n), the gcd of fib(2n) and fib n is fib n
       absence: no-local-match · triviality: non-trivial · intended: Use Nat.fib_dvd (n ∣ 2n ⇒ fib n ∣ fib (2n)) then Nat.gcd_eq_right · conf: high

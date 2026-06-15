@@ -38,7 +38,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, expand the Lucas square, and reduce to Cassini (fib(n-1)*fib(n+1)-fib n^2 = (-1)^n) after rewriting fib(n+1)=fib n+fib(n-1); requires a Nat.fib n>=1 / index bridge and ring · conf: med
 - [ ] `lucas_two_mul_eq_lucas_sq_sub_two_neg_one_pow` — The Lucas number at 2n equals the square of the Lucas number at n minus 2*(-1)^n
       absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, rewrite both Lucas numbers in fib, use fib_two_mul / fib_two_mul_add_one to express fib(2n±1) and reduce via Cassini for the (-1)^n term; ring · conf: med
-- [ ] `lucas_succ_add_lucas_pred_eq_five_mul_fib` — The sum of the Lucas numbers at n+2 and n equals five times fib(n+1) (stated with a +1 index shift to keep terms in Nat)
+- [x] `lucas_succ_add_lucas_pred_eq_five_mul_fib` — The sum of the Lucas numbers at n+2 and n equals five times fib(n+1) (stated with a +1 index shift to keep terms in Nat)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite fib(n+3)=fib(n+1)+fib(n+2), fib(n+2)=fib n+fib(n+1), and fib(n+1)=fib n+fib(n-1) via fib_add_two; omega collapses to 5*fib(n+1) · conf: high
 - [ ] `fib_two_mul_eq_fib_mul_lucas` — fib(2(n+1)) equals fib(n+1) times the Lucas number (fib(n+2)+fib n), shifted to stay in Nat
       absence: no-local-match · triviality: non-trivial · intended: Use fib_two_mul_add_two (fib(2n+2)=fib(n+1)(2 fib n+fib(n+1))) and rewrite fib(n+2)+fib n = 2 fib n + fib(n+1) via fib_add_two; ring · conf: high
@@ -47,7 +47,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
 
 - [ ] `docagne_int_fib_identity` — d'Ocagne's identity: fib(m)·fib(n+1) − fib(m+1)·fib(n) equals (−1)^n·fib(m−n)
       absence: no-local-match · triviality: non-trivial · intended: Induct on n using Int.fib_add and the recurrence; or reduce to Int.fib_add and a Cassini-type lemma · conf: med
-- [ ] `catalan_r2_int_fib` — Catalan's identity at offset 2: fib(n)² − fib(n−2)·fib(n+2) = (−1)^n
+- [x] `catalan_r2_int_fib` — Catalan's identity at offset 2: fib(n)² − fib(n−2)·fib(n+2) = (−1)^n
       absence: no-local-match · triviality: non-trivial · intended: Expand fib(n±2) via Int.fib_add_two and reduce to Cassini fib_succ_mul_fib_pred_sub_fib_sq with ring · conf: high
 - [ ] `catalan_r3_int_fib` — Catalan's identity at offset 3: fib(n)² − fib(n−3)·fib(n+3) = 4·(−1)^(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Expand fib(n±3) via repeated Int.fib_add_two, reduce to Cassini, ring_nf with the (-1)^n parity · conf: med

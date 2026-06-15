@@ -55,7 +55,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: expand both sides, nlinarith with mul_nonneg hints and sq_nonneg of differences · conf: med
 - [ ] `quartic_sum_ge_abc_sum` — The sum of fourth powers dominates abc times the sum a+b+c for all reals
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a^2-b^2), sq_nonneg (a*b-b*c), sq_nonneg (a^2-a*b) family · conf: med
-- [ ] `pair_sum_sq_ge_three_abc_sum` — The square of the elementary symmetric sum ab+bc+ca is at least 3abc(a+b+c) for all reals (Newton/Maclaurin)
+- [x] `pair_sum_sq_ge_three_abc_sum` — The square of the elementary symmetric sum ab+bc+ca is at least 3abc(a+b+c) for all reals (Newton/Maclaurin)
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a*b-b*c), sq_nonneg (b*c-c*a), sq_nonneg (c*a-a*b) · conf: high
 - [x] `sumsq_ge_ab_plus_bc` — The sum of three squares dominates the two adjacent cross terms ab+bc
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg b (asymmetric weighting) · conf: high
@@ -88,33 +88,33 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
 
 ### Replenishment round 3 (scoped 2026-06-15) — 20 candidates
 
-- [ ] `sumsq_products_ge_abc_times_sum` — The sum of squared pairwise products of three reals is at least the product abc times their sum
+- [x] `sumsq_products_ge_abc_times_sum` — The sum of squared pairwise products of three reals is at least the product abc times their sum
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a*b-b*c), sq_nonneg (b*c-c*a), sq_nonneg (c*a-a*b)] · conf: high
 - [ ] `pairsum_sq_ge_three_abc_sum` — The square of the sum of pairwise products is at least three times abc times the sum a+b+c
       absence: no-local-match · triviality: non-trivial · intended: expand and reduce to a*b*c*(a+b+c) ≤ sum of squared products; nlinarith with sq_nonneg of product differences · conf: high
 - [ ] `three_quartic_sum_ge_sumsq_squared` — The square of the sum of three squares is at most three times the sum of their fourth powers
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a^2-b^2), sq_nonneg (b^2-c^2), sq_nonneg (c^2-a^2)] · conf: high
-- [ ] `quartic_sum_ge_abc_times_sum` — The sum of fourth powers of three reals dominates abc times their sum a+b+c
+- [x] `quartic_sum_ge_abc_times_sum` — The sum of fourth powers of three reals dominates abc times their sum a+b+c
       absence: no-local-match · triviality: non-trivial · intended: chain a^4+b^4+c^4 ≥ a^2b^2+b^2c^2+c^2a^2 ≥ abc(a+b+c); nlinarith with sq_nonneg of squared differences and product differences · conf: high
-- [ ] `cyclic_cube_sum_ge_asym_quad_cubic` — For nonnegative reals the sum of cubes dominates the cyclic sum a^2 b + b^2 c + c^2 a
+- [x] `cyclic_cube_sum_ge_asym_quad_cubic` — For nonnegative reals the sum of cubes dominates the cyclic sum a^2 b + b^2 c + c^2 a
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with mul_nonneg products and sq_nonneg (a-b),(b-c),(c-a) weighted by the variables · conf: high
-- [ ] `cyclic_quartic_ge_asym_cubic_cross` — For nonnegative reals the sum of fourth powers dominates the cyclic sum a^3 b + b^3 c + c^3 a
+- [x] `cyclic_quartic_ge_asym_cubic_cross` — For nonnegative reals the sum of fourth powers dominates the cyclic sum a^3 b + b^3 c + c^3 a
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with mul_nonneg products and sq_nonneg of squared differences scaled appropriately · conf: high
 - [ ] `amgm_three_cube_twentyseven` — For nonnegative reals the cube of the sum a+b+c is at least 27 times the product abc (AM-GM)
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [mul_nonneg ha (sq_nonneg (b-c)), mul_nonneg hb (sq_nonneg (c-a)), mul_nonneg hc (sq_nonneg (a-b)), mul_nonneg (mul_nonneg ha hb) hc] · conf: high
 - [ ] `schur_deg_two_three_var` — The degree-one Schur inequality: the sum of cubes plus 3abc dominates the symmetric sum of ab(a+b) terms
       absence: no-local-match · triviality: non-trivial · intended: WLOG-free nlinarith using mul_nonneg of each variable with the square of the difference of the other two, plus sq_nonneg hints · conf: med
-- [ ] `constrained_sum_le_sumsq_prod_one` — If three positive reals have product 1 then their sum of squares is at least their sum
+- [x] `constrained_sum_le_sumsq_prod_one` — If three positive reals have product 1 then their sum of squares is at least their sum
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a), sq_nonneg (a+b+c-3), mul_pos hb hc, ...] using a+b+c ≥ 3 from AM-GM · conf: high
 - [x] `constrained_pairsum_le_three_sum_three` — If three reals sum to 3 then their pairwise product sum is at most 3
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a)] using (a+b+c)^2 ≥ 3(ab+bc+ca) · conf: high
-- [ ] `constrained_prod_le_sum_cubes_third` — Among nonnegative reals summing to 1 the product abc is at most 1/27
+- [x] `constrained_prod_le_sum_cubes_third` — Among nonnegative reals summing to 1 the product abc is at most 1/27
       absence: no-local-match · triviality: non-trivial · intended: reduce to 27abc ≤ (a+b+c)^3 = 1; nlinarith with mul_nonneg of each variable times square of difference of the others · conf: high
 - [ ] `tangent_line_cyclic_fraction_ge_sum` — For positive reals the cyclic sum a^2/b + b^2/c + c^2/a is at least a+b+c
       absence: no-local-match · triviality: non-trivial · intended: tangent-line bound a^2/b ≥ 2a-b via le_div_iff₀ and sq_nonneg (a-b), summed cyclically with linarith · conf: med
 - [x] `two_var_sq_add_one_ge_cross_plus_sum` — For any two reals a^2+b^2+1 is at least ab + a + b
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (a-1), sq_nonneg (b-1)] · conf: high
-- [ ] `cauchy_schwarz_three_var_product` — The three-variable Cauchy-Schwarz inequality in product form
+- [x] `cauchy_schwarz_three_var_product` — The three-variable Cauchy-Schwarz inequality in product form
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a*y-b*x), sq_nonneg (b*z-c*y), sq_nonneg (a*z-c*x)] (Lagrange identity SOS) · conf: high
 - [ ] `two_var_sixth_ge_mixed_fourth_second` — For any two reals the sum of sixth powers dominates the mixed terms a^4 b^2 + a^2 b^4
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [mul_nonneg (sq_nonneg a) (mul_nonneg (sq_nonneg (a-b)) ...)] ; sq_nonneg (a-b) scaled by a^2,b^2 and sq_nonneg (a^2-b^2)*? · conf: high

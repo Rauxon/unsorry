@@ -34,7 +34,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; clear the factor 30, then ring (cast to ℤ if Nat subtraction bites) · conf: med
 - [ ] `schur_degree_one_nonneg` — Schur's degree-one inequality: the cyclic sum a(a-b)(a-c)+... is nonnegative for nonnegative reals
       absence: no-local-match · triviality: non-trivial · intended: WLOG order a≥b≥c then nlinarith with products of (a-b),(b-c),(a-c) and the nonnegativity hypotheses as hints · conf: med
-- [ ] `sum_fourth_powers_ge_cube_times_sum` — For nonnegative reals, a^3 b + a b^3 is at most a^4 + b^4
+- [x] `sum_fourth_powers_ge_cube_times_sum` — For nonnegative reals, a^3 b + a b^3 is at most a^4 + b^4
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a-b) and sq_nonneg (a+b) times sq_nonneg (a-b) as SOS hints · conf: high
 - [ ] `diff_squares_prod_dvd_quartic_diff` — The difference of squares a^2-b^2 divides the difference of fourth powers a^4-b^4
       absence: no-local-match · triviality: non-trivial · intended: Witness a^2+b^2 via Dvd.intro and close with ring · conf: high
@@ -49,7 +49,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a*d - b*c)] (Lagrange identity gives the SOS gap) · conf: high
 - [x] `candido_sum_quartics_twice_square` — Candido's identity: the sum of the fourth powers of a, b and a+b is always twice a perfect square
       absence: no-local-match · triviality: non-trivial · intended: exact ⟨a^2 + a*b + b^2, by ring⟩ · conf: high
-- [ ] `eisenstein_norm_multiplicative` — The set of Loeschian numbers x²+xy+y² (Eisenstein integer norms) is closed under multiplication
+- [x] `eisenstein_norm_multiplicative` — The set of Loeschian numbers x²+xy+y² (Eisenstein integer norms) is closed under multiplication
       absence: no-local-match · triviality: non-trivial · intended: exact ⟨a*c - b*d, a*d + b*c + b*d, by ring⟩ · conf: high
 - [x] `cube_of_sum_minus_cubes_div_by_sum` — The difference between (a+b+c)³ and a³+b³+c³ is divisible by a+b (it equals 3(a+b)(b+c)(c+a))
       absence: no-local-match · triviality: non-trivial · intended: exact ⟨3*(b+c)*(c+a), by ring⟩ · conf: high

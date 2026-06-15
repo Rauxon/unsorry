@@ -36,7 +36,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 18 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ, combining the known sum F(k)=F(n+2)-1 with the index-weighted Abel summation; track Nat subtraction carefully · conf: med
 - [ ] `sum_range_two_pow_mul_fib_succ_sub_fib` — A 2^k-weighted telescoping sum of consecutive Fibonacci differences collapses to 2^(n+1)·F(n+1) - 1
       absence: no-local-match · triviality: non-trivial · intended: Note F(k+2)-F(k)=F(k+1); then induct over ℤ with Finset.sum_range_succ, closing the step with fib_add_two and ring · conf: med
-- [ ] `sum_range_catalan_mul_catalan_eq_catalan_succ` — The Catalan numbers satisfy the convolution recurrence: the self-convolution of the first n+1 Catalan numbers gives C(n+1)
+- [x] `sum_range_catalan_mul_catalan_eq_catalan_succ` — The Catalan numbers satisfy the convolution recurrence: the self-convolution of the first n+1 Catalan numbers gives C(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite catalan_succ (a Fin-indexed convolution) as a Finset.range sum via Fin.sum_univ_eq_sum_range and Nat.sub bookkeeping · conf: high
 
 ### Replenishment round 2 (scoped 2026-06-15) — 18 candidates
@@ -82,7 +82,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 18 vetted candidates
 
 - [ ] `sum_range_stirling_second_row_eq_bell_succ` — The Bell number (row sum of Stirling numbers of the second kind) satisfies the Bell recurrence B(n+1) = sum over j of C(n,j)·B(j), here phrased so the n-th row sum equals the binomial-transform of the smaller row sums
       absence: no-local-match · triviality: non-trivial · intended: Identify both sides as Bell numbers; prove the Bell recurrence by counting set partitions via the block containing the last element, using stirlingSecond_succ_succ and Vandermonde/Pascal reindexing · conf: med
-- [ ] `sum_range_stirling_first_row_eq_factorial` — The sum of the unsigned Stirling numbers of the first kind across a full row equals n factorial, since every permutation of an n-set decomposes into some number of cycles
+- [x] `sum_range_stirling_first_row_eq_factorial` — The sum of the unsigned Stirling numbers of the first kind across a full row equals n factorial, since every permutation of an n-set decomposes into some number of cycles
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with stirlingFirst_succ_succ; the step Finset.sum splits via the recurrence stirlingFirst (n+1) k = n·stirlingFirst n k + stirlingFirst n (k-1) and collapses to n·n! + n! = (n+1)! · conf: high
 - [ ] `stirling_second_col_two_eq_two_pow_sub_one` — The number of ways to partition an (n+2)-element set into exactly two non-empty blocks is 2^(n+1) - 1
       absence: no-local-match · triviality: non-trivial · intended: Induction on n using stirlingSecond_succ_left / stirlingSecond_succ_succ with stirlingSecond_one_right = 1; the recurrence S(m+1,2)=2·S(m,2)+1 gives 2·(2^k-1)+1 = 2^(k+1)-1, handling Nat subtraction with omega · conf: high
@@ -94,7 +94,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 18 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Unfold numDerangements via numDerangements_add_two twice down to numDerangements_zero and numDerangements_one; decide does not reduce the recursive definition without the rewrite lemmas, so a real unfold chain is needed · conf: high
 - [ ] `numderangements_mul_recurrence` — The number of derangements obeys the single-step recurrence D(n+1) = (n+1)·D(n) + (-1)^(n+1) over the integers
       absence: no-local-match · triviality: non-trivial · intended: Induction on n using numDerangements_add_two (D(m+2)=(m+1)(D(m+1)+D(m))); substitute the inductive form of D(m+1) and simplify the sign powers with ring over ℤ · conf: med
-- [ ] `numderangements_add_two_int_form` — The derangement count of an (n+2)-set is (n+1) times the sum of the derangement counts of the (n+1)- and n-element sets, stated over the integers
+- [x] `numderangements_add_two_int_form` — The derangement count of an (n+2)-set is (n+1) times the sum of the derangement counts of the (n+1)- and n-element sets, stated over the integers
       absence: no-local-match · triviality: non-trivial · intended: Push numDerangements_add_two through the integer cast with push_cast / Nat.cast_add; needs the defining recurrence rewrite rather than any battery tactic · conf: high
 - [ ] `sum_range_multichoose_succ_eq_choose` — The cumulative stars-and-bars hockey-stick: summing multichoose(n+1, j) = C(n+j, j) over j from 0 to m gives C(n+m+1, m)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite multichoose_eq to C(n+j,j), then induct on m with Finset.sum_range_succ and Pascal's rule (Nat.succ_sub_one / Nat.choose_succ_succ) for the hockey-stick collapse · conf: high

@@ -26,11 +26,11 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction; rewrite 1 − 1/(k+1)² = k(k+2)/(k+1)² and telescope, field_simp + ring · conf: high
 - [ ] `prod_icc_one_sub_recip_triangular` — The product of (1 − 1/C(k+1,2)) (one minus reciprocal triangular number) for k from 2 to n equals (n+2)/(3n)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite Nat.choose (k+1) 2 = k(k+1)/2 (Nat.choose_two_right), reduce to the pronic product and telescope by induction · conf: med
-- [ ] `sum_range_cube_diff_eq_cube` — The sum of (3k²+3k+1) for k from 0 to n-1 equals n³
+- [x] `sum_range_cube_diff_eq_cube` — The sum of (3k²+3k+1) for k from 0 to n-1 equals n³
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the per-term is (k+1)³−k³, close with ring · conf: high
 - [x] `sum_range_four_cube_diff_eq` — The sum of (4k³+6k²+4k+1) for k from 0 to n-1 equals n⁴
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; per-term is (k+1)⁴−k⁴, close with ring · conf: high
-- [ ] `sum_range_k_mul_two_pow_eq` — The sum of k·2^k for k from 0 to n-1 equals (n−2)·2ⁿ + 2
+- [x] `sum_range_k_mul_two_pow_eq` — The sum of k·2^k for k from 0 to n-1 equals (n−2)·2ⁿ + 2
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; handle Nat subtraction by stating over ℤ or proving 2 ≤ result; ring_nf after expanding 2^(n+1) · conf: high
 - [ ] `sum_range_recip_fib_prod_consecutive` — The sum of 1/(F(k+2)·F(k+3)) for k from 0 to n-1 equals F(n+1)/F(n+2), where F is Fibonacci
       absence: no-local-match · triviality: non-trivial · intended: Induction using the Fibonacci recurrence and fib positivity; combine fractions with field_simp and apply fib_add_two · conf: med
@@ -55,7 +55,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ; the summand is the difference 1/3[1/((k+1)(k+2)(k+3)) - 1/((k+2)(k+3)(k+4))], finish with field_simp and ring · conf: high
 - [x] `sum_range_k_div_succ_factorial_telescope` — The sum of k/(k+1)! over the first n terms equals 1 minus 1/n!
       absence: no-local-match · triviality: non-trivial · intended: Induction on n; summand k/(k+1)! = 1/k! - 1/(k+1)!, use Nat.factorial_succ and the cast of factorials being positive, then field_simp/ring · conf: high
-- [ ] `sum_range_k_sub_one_div_factorial_telescope` — Reserved-shape variant: a factorial telescope whose summand (k-1)/(k+1)! collapses to a boundary term
+- [x] `sum_range_k_sub_one_div_factorial_telescope` — Reserved-shape variant: a factorial telescope whose summand (k-1)/(k+1)! collapses to a boundary term
       absence: no-local-match · triviality: non-trivial · intended: Induction; rewrite (k-1)/(k+1)! as 1/(k+1)! difference shifted, but state via Icc 1 n form below; keep as factorial telescope distinct from k/(k+1)! · conf: high
 - [x] `sum_icc_k_sub_one_div_factorial_eq_one_sub` — For n at least 1, the sum of (k-1)/k! for k from 1 to n equals 1 minus 1/n!
       absence: no-local-match · triviality: non-trivial · intended: Induction on n from base 1 using Finset.sum_Icc_succ_top; summand (k-1)/k! = 1/(k-1)! - 1/k!, telescopes; field_simp with factorial positivity then ring · conf: high
@@ -108,17 +108,17 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Term is 1/(k+2) - 1/(k+5), a step-3 telescope leaving three boundary fractions; induct with sum_range_succ, field_simp, ring · conf: high
 - [x] `sum_icc_two_k_add_one_div_k_sq_succ_sq_telescope` — The sum of (2k+1)/(k^2(k+1)^2) for k from 1 to n telescopes to 1 minus 1/(n+1)^2
       absence: no-local-match · triviality: non-trivial · intended: Each term equals 1/k^2 - 1/(k+1)^2; induct via sum_Icc_succ_top and finish with field_simp/ring · conf: high
-- [ ] `sum_icc_eight_k_div_odd_sq_pair_telescope` — The sum of 8k/((2k-1)^2(2k+1)^2) for k from 1 to n telescopes to 1 minus 1/(2n+1)^2
+- [x] `sum_icc_eight_k_div_odd_sq_pair_telescope` — The sum of 8k/((2k-1)^2(2k+1)^2) for k from 1 to n telescopes to 1 minus 1/(2n+1)^2
       absence: no-local-match · triviality: non-trivial · intended: Term equals 1/(2k-1)^2 - 1/(2k+1)^2; induct via sum_Icc_succ_top, then field_simp and ring · conf: high
-- [ ] `sum_icc_four_div_three_consec_odd_telescope` — The sum of 4/((2k-1)(2k+1)(2k+3)) for k from 1 to n telescopes to 1/3 minus 1/((2n+1)(2n+3))
+- [x] `sum_icc_four_div_three_consec_odd_telescope` — The sum of 4/((2k-1)(2k+1)(2k+3)) for k from 1 to n telescopes to 1/3 minus 1/((2n+1)(2n+3))
       absence: no-local-match · triviality: non-trivial · intended: Term equals 1/((2k-1)(2k+1)) - 1/((2k+1)(2k+3)); induct via sum_Icc_succ_top and close with field_simp/ring · conf: high
-- [ ] `sum_icc_three_k_add_two_div_triple_consecutive_telescope` — The sum of (3k+2)/(k(k+1)(k+2)) for k from 1 to n telescopes to 2 minus 1/(n+1) minus 2/(n+2)
+- [x] `sum_icc_three_k_add_two_div_triple_consecutive_telescope` — The sum of (3k+2)/(k(k+1)(k+2)) for k from 1 to n telescopes to 2 minus 1/(n+1) minus 2/(n+2)
       absence: no-local-match · triviality: non-trivial · intended: Partial fractions give 1/k + 1/(k+1) - 2/(k+2), a double telescope; induct via sum_Icc_succ_top, field_simp, ring · conf: high
-- [ ] `sum_icc_k_div_three_shifted_consecutive_telescope` — The sum of k/((k+1)(k+2)(k+3)) for k from 1 to n telescopes to 1/4 + 1/(2(n+2)) - 3/(2(n+3))
+- [x] `sum_icc_k_div_three_shifted_consecutive_telescope` — The sum of k/((k+1)(k+2)(k+3)) for k from 1 to n telescopes to 1/4 + 1/(2(n+2)) - 3/(2(n+3))
       absence: no-local-match · triviality: non-trivial · intended: Partial fractions -1/2/(k+1)+2/(k+2)-3/2/(k+3) split as two telescopes; induct via sum_Icc_succ_top, field_simp, ring · conf: high
 - [x] `sum_icc_two_div_k_mul_k_add_two_telescope` — The sum of 2/(k(k+2)) for k from 1 to n telescopes to 3/2 minus 1/(n+1) minus 1/(n+2)
       absence: no-local-match · triviality: non-trivial · intended: Term equals 1/k - 1/(k+2), a step-2 telescope leaving two boundary terms; induct via sum_Icc_succ_top, field_simp, ring · conf: high
-- [ ] `sum_icc_recip_four_consecutive_product_telescope` — The sum of 1/(k(k+1)(k+2)(k+3)) for k from 1 to n telescopes to 1/18 minus 1/(3(n+1)(n+2)(n+3))
+- [x] `sum_icc_recip_four_consecutive_product_telescope` — The sum of 1/(k(k+1)(k+2)(k+3)) for k from 1 to n telescopes to 1/18 minus 1/(3(n+1)(n+2)(n+3))
       absence: no-local-match · triviality: non-trivial · intended: Term equals (1/3)(1/(k(k+1)(k+2)) - 1/((k+1)(k+2)(k+3))); induct via sum_Icc_succ_top, field_simp, ring · conf: high
 - [ ] `sum_icc_four_k_div_sophie_germain_quartic_telescope` — The sum of 4k/(4k^4+1) for k from 1 to n telescopes to 1 minus 1/(2n^2+2n+1)
       absence: no-local-match · triviality: non-trivial · intended: Sophie-Germain factor 4k^4+1=(2k^2-2k+1)(2k^2+2k+1); term is 1/(2k^2-2k+1)-1/(2k^2+2k+1); induct, field_simp, ring · conf: med
@@ -126,13 +126,13 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Term equals 1/(2^k+1) - 1/(2^(k+1)+1) since 2^(k+1) - 2^k = 2^k; induct via sum_range_succ, rewrite pow_succ, field_simp, ring · conf: med
 - [ ] `sum_range_k_sq_sub_one_div_factorial_succ_eq_neg_recip_factorial` — The sum of (k^2-1)/(k+1)! for k from 0 to n equals minus 1/n!
       absence: no-local-match · triviality: non-trivial · intended: Show each term is k/(k+1)! - (k-1)/k! style telescope (k/k! - something); induct via sum_range_succ, simp factorial_succ, field_simp, ring · conf: med
-- [ ] `prod_icc_k_sq_div_pred_mul_succ_telescope` — The product of k^2/((k-1)(k+1)) for k from 2 to n telescopes to 2n/(n+1)
+- [x] `prod_icc_k_sq_div_pred_mul_succ_telescope` — The product of k^2/((k-1)(k+1)) for k from 2 to n telescopes to 2n/(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Factor as (k/(k-1))(k/(k+1)); each factor telescopes; induct via prod_Icc_succ_top with 2 ≤ n, field_simp, ring · conf: high
-- [ ] `prod_icc_succ_add_three_div_self_eq_binom_shift` — The product of (k+3)/k for k from 1 to n telescopes to (n+1)(n+2)(n+3)/6
+- [x] `prod_icc_succ_add_three_div_self_eq_binom_shift` — The product of (k+3)/k for k from 1 to n telescopes to (n+1)(n+2)(n+3)/6
       absence: no-local-match · triviality: non-trivial · intended: Step-3 telescoping product; induct via prod_Icc_succ_top with 1 ≤ n, field_simp, ring · conf: high
-- [ ] `prod_icc_succ_sq_div_k_mul_add_two_telescope` — The product of (k+1)^2/(k(k+2)) for k from 1 to n telescopes to 2(n+1)/(n+2)
+- [x] `prod_icc_succ_sq_div_k_mul_add_two_telescope` — The product of (k+1)^2/(k(k+2)) for k from 1 to n telescopes to 2(n+1)/(n+2)
       absence: no-local-match · triviality: non-trivial · intended: Factor as ((k+1)/k)((k+1)/(k+2)); each telescopes; induct via prod_Icc_succ_top, field_simp, ring · conf: high
-- [ ] `prod_icc_k_mul_add_two_div_succ_sq_telescope_half` — The product of k(k+2)/(k+1)^2 for k from 1 to n telescopes to (n+2)/(2(n+1))
+- [x] `prod_icc_k_mul_add_two_div_succ_sq_telescope_half` — The product of k(k+2)/(k+1)^2 for k from 1 to n telescopes to (n+2)/(2(n+1))
       absence: no-local-match · triviality: non-trivial · intended: Factor as (k/(k+1))((k+2)/(k+1)); each telescopes; induct via prod_Icc_succ_top, field_simp, ring · conf: high
 - [ ] `prod_icc_one_sub_two_div_pronic_telescope_third` — The product of (1 - 2/(k(k+1))) for k from 2 to n telescopes to (n+2)/(3n)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite factor as (k-1)(k+2)/(k(k+1)); split into two telescoping ratios; induct via prod_Icc_succ_top with 2 ≤ n, field_simp, ring · conf: med

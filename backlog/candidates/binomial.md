@@ -103,7 +103,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the quadratic step · conf: high
 - [x] `sum_range_sq_add_one_mul_two_pow_closed` — The sum of (k^2+1) times two-to-the-k over k below n equals (n^2-4n+7)2^n-7
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the quadratic coefficient step · conf: high
-- [ ] `sum_range_id_mul_neg_two_pow_closed` — Nine times the sum of k times negative-two-to-the-k over k below n equals (2n-3)(-2)^n-2
+- [x] `sum_range_id_mul_neg_two_pow_closed` — Nine times the sum of k times negative-two-to-the-k over k below n equals (2n-3)(-2)^n-2
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring handles the signed base (-2)^(k+1) step · conf: high
 - [ ] `sum_range_fib_mul_two_pow_eq_lucas` — Five times the sum of Fibonacci-k times two-to-the-k over k below n equals two-to-the-n times the n-th Lucas number (fib(n+1)+fib(n-1)) minus two
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ using Nat.fib_add_two and case-splitting fib(n-1); ring on the resulting Fibonacci-recurrence identity · conf: med
