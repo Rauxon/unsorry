@@ -60,22 +60,32 @@ jobs:
               - '.github/workflows/gate-a.yml'
             archive:
               - 'packages/unsorry-archive-*/**'
-            # The ADR-033 full-replay triggers: a change here makes gate-a replay
-            # the WHOLE library (heavy), so it gets its own Namespace profile.
+            # The ADR-033 olean-invalidating full-replay triggers: a change here
+            # forces gate-a to replay the WHOLE library (heavy), so it gets its
+            # own heavier Namespace profile. Narrowed to exactly the
+            # olean-invalidating paths (FULL_REPLAY_PATHS in parallel_modules.py):
+            # #792 made tools/gate_a/** and gate-a.yml run an INCREMENTAL replay
+            # (they change no olean), so they no longer select the heavy profile
+            # (ADR-048 Phase 2).
             infra:
-              - 'tools/gate_a/**'
-              - '.github/workflows/gate-a.yml'
               - 'lean-toolchain'
               - 'lakefile.toml'
               - 'lakefile.lean'
               - 'lake-manifest.json'
-      # Route by replay workload: a full replay (gate/infra change, or any push
-      # to main) is heavy → namespace-profile-unsorry-2; a normal proof PR
-      # replays incrementally (light) → namespace-profile-unsorry-1, so a slow
-      # infra full-replay never hogs the proof runner.
+      # Route by replay workload (ADR-048 Phase 2): a routine proof PR AND a push
+      # to main now replay INCREMENTALLY (light) → namespace-profile-unsorry-1
+      # (8 GB). Only an olean-invalidating change (toolchain/lakefile/manifest)
+      # forces a FULL replay (heavy) → namespace-profile-unsorry-2 (16 GB), so a
+      # rare slow full-replay never hogs the frequent proof runner.
+      #
+      # Transition note: namespace-profile-unsorry-2 is now used ONLY by forced
+      # full-replay (toolchain/dep) runs. If the operator retires unsorry-2,
+      # point those runs at unsorry-1 with the small-chunk path
+      # (UNSORRY_REPLAY_CHUNK, see the replay job and SPEC-048-B) — nothing on the
+      # routine path depends on the 16 GB profile.
       - id: profile
         run: |
-          if [ "${{ github.event_name }}" != "pull_request" ] || [ "${{ steps.filter.outputs.infra }}" = "true" ]; then
+          if [ "${{ steps.filter.outputs.infra }}" = "true" ]; then
             name=namespace-profile-unsorry-2
           else
             name=namespace-profile-unsorry-1
@@ -93,14 +103,17 @@ jobs:
   gate_a_prepare:
     name: gate-a-prepare
     needs: detect
-    # Namespace managed (ephemeral) runner, chosen by detect.profile:
-    #   namespace-profile-unsorry-1 — normal proof PRs (incremental, light replay)
-    #   namespace-profile-unsorry-2 — full-replay runs (gate/infra change or push
-    #                                 to main), so the slow ~20-min full replay
+    # Namespace managed (ephemeral) runner, chosen by detect.profile (ADR-048
+    # Phase 2):
+    #   namespace-profile-unsorry-1 (8 GB) — routine proof PRs AND push to main,
+    #                                 both incremental + light.
+    #   namespace-profile-unsorry-2 (16 GB) — only an olean-invalidating change
+    #                                 (toolchain/lakefile/manifest) that forces a
+    #                                 FULL replay, so the rare slow full replay
     #                                 runs in its own pool and never blocks the
     #                                 frequent proof PRs on unsorry-1.
-    # unsorry-1 is the smaller proof-PR runner (8 GB); unsorry-2 is the larger
-    # heavy runner (16 GB) for full replays + archive validation.
+    # The scheduled gate-a-full-replay workflow runs the full backstop on the
+    # 8 GB profile with a small UNSORRY_REPLAY_CHUNK.
     # This prepare job warms/restores the Lean cache, generates binding modules,
     # and runs the cheap authoritative checks once before the heavy audit/replay
     # jobs start in parallel.
@@ -127,7 +140,8 @@ jobs:
       # so the library builds ONCE per run, not three times. Soundness is
       # unchanged — Lake's content-hash traces recompile any changed source, and
       # the axiom audit + leanchecker kernel replay still validate every olean
-      # that reaches main (full replay on push to main), cached or not.
+      # that reaches main (incremental on the pushed diff, plus the scheduled
+      # gate-a-full-replay backstop — ADR-048 Phase 2), cached or not.
       # Namespace .lake cache volume (ADR-046): persists mathlib + the local
       # oleans on the runner's attached disk across jobs and runs, so `lake exe
       # cache get` finds mathlib present (no ~3.5-min GitHub-cache restore) and
@@ -297,21 +311,23 @@ jobs:
         if: steps.lake_build_cache.outputs.cache-hit != 'true'
         run: lake build UnsorryLibrary --wfail
 
-      # Incremental on PRs: audit only changed library modules plus their
-      # reverse-import closure, and changed goals. Unchanged declarations were
-      # already audited on main. A push to main omits BASE_SHA and runs the full
-      # audit as the post-merge backstop. Gate/tooling changes fall back to full.
+      # Incremental on PRs AND on push to main (ADR-048 Phase 2): audit only the
+      # changed library modules plus their reverse-import closure, and changed
+      # goals. Unchanged declarations were already audited on main. BASE_SHA is
+      # github.event.before on a push (the previous main tip — diff = exactly the
+      # merged change), pull_request.base.sha on a PR, empty otherwise. A zero-SHA
+      # (first push / branch creation) or empty BASE_SHA runs the FULL audit as
+      # the backstop; gate/tooling changes also fall back to full (forces_full_audit).
       # Serialized (--jobs 1): each axiom_audit process holds a full mathlib
-      # image (~6-7 GB), so two concurrent ones peak ~13 GB on a 16 GB runner
-      # and evict the olean page cache instead of going faster.
+      # image (~6-7 GB).
       - name: Axiom audit (authoritative)
         env:
-          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || (github.event_name == 'push' && github.event.before || '') }}
         run: |
-          if [ -n "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json --base "$BASE_SHA"
-          else
+          if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] || [ -z "$BASE_SHA" ]; then
             python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json
+          else
+            python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json --base "$BASE_SHA"
           fi
 
       - name: Upload axiom footprint artifact
@@ -347,10 +363,10 @@ jobs:
     needs: [detect, gate_a_prepare]
     if: needs.detect.outputs.active == 'true'
     runs-on: ${{ needs.detect.outputs.profile }}
-    # 120m (not 60m): a FULL replay (push-to-main backstop, or toolchain/dep
-    # change) is serial on a memory-bound runner and needs the headroom to
-    # finish rather than time out (ADR-047). Incremental PR replays finish in
-    # seconds. Matches ADR-047/#748.
+    # 120m (not 60m): a FULL replay (toolchain/dep change, or the scheduled
+    # backstop) is serial on a memory-bound runner and needs the headroom to
+    # finish rather than time out (ADR-047). Incremental PR and push-to-main
+    # replays finish in seconds (ADR-048 Phase 2). Matches ADR-047/#748.
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
@@ -406,8 +422,10 @@ jobs:
         # Best-effort: GitHub-hosted runners allow swapon, so leanchecker pages
         # cold mathlib regions instead of OOMing on a constrained runner.
         # Namespace managed runners disallow swapon ("Operation not permitted");
-        # there the larger RAM (namespace-profile-unsorry-1 is 16 GB) covers the
-        # replay, so any failure in this step is a warning, not a gate failure.
+        # there the incremental scope (routine PRs + push to main, ADR-048 Phase
+        # 2) keeps the replay small, and a forced FULL replay routes to the 16 GB
+        # unsorry-2 profile (or unsorry-1 with a small UNSORRY_REPLAY_CHUNK), so
+        # any failure in this step is a warning, not a gate failure.
         run: |
           if sudo fallocate -l 12G /mnt/swapfile \
                || sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=12288; then
@@ -447,21 +465,27 @@ jobs:
         if: steps.lake_build_cache.outputs.cache-hit != 'true'
         run: lake build UnsorryLibrary --wfail
 
-      # Incremental on PRs (ADR-033): replay only the changed library modules
-      # and their reverse-import closure — the rest are byte-identical to and
-      # already verified on main. On push to main, BASE_SHA is empty → a FULL
-      # replay runs as the post-merge backstop. The tool falls back to full
-      # replay if the diff can't be computed or a global-impact file changed.
-      # Replay is intentionally serial on the current 16 GB Namespace runners:
-      # the tool accepts --jobs for CLI symmetry, but reports effective jobs=1.
+      # Incremental on PRs AND on push to main (ADR-033 + ADR-048 Phase 2):
+      # replay only the changed library modules and their reverse-import closure
+      # — the rest are byte-identical to and already verified on main. BASE_SHA is
+      # github.event.before on a push (the previous main tip — diff = exactly the
+      # merged change), pull_request.base.sha on a PR, empty otherwise. A zero-SHA
+      # (first push / branch creation) or empty BASE_SHA runs a FULL replay as the
+      # backstop; the tool also falls back to full if the diff can't be computed or
+      # an olean-invalidating file changed. The scheduled gate-a-full-replay
+      # workflow is the defense-in-depth full backstop (ADR-048 Phase 2).
+      # Replay is intentionally serial: the tool accepts --jobs for CLI symmetry
+      # but reports effective jobs=1. A forced FULL replay routes to the 16 GB
+      # profile; on an 8 GB runner set UNSORRY_REPLAY_CHUNK to a small value
+      # (e.g. 6) so leanchecker's per-chunk peak fits (SPEC-048-B).
       - name: Kernel replay (leanchecker)
         env:
-          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || '' }}
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || (github.event_name == 'push' && github.event.before || '') }}
         run: |
-          if [ -n "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.parallel_modules replay --jobs 1 --base "$BASE_SHA"
-          else
+          if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] || [ -z "$BASE_SHA" ]; then
             python3 -m tools.gate_a.parallel_modules replay --jobs 1
+          else
+            python3 -m tools.gate_a.parallel_modules replay --jobs 1 --base "$BASE_SHA"
           fi
 
   gate_a_archive:

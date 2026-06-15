@@ -91,10 +91,17 @@ defense-in-depth.
 - **Phase 1 (this ADR):** archive validation drops the `leanchecker` replay — provenance +
   `lake build --wfail` only. Removes the archive-OOM class; archive PRs fit 8 GB. (Supersedes the
   #823 chunking and #838 16 GB-runner tactical fixes for archives.)
-- **Phase 2 (follow-up):** make the push-to-`main` full replay **incremental** (re-check only the
-  pushed diff) with a **scheduled** full replay as the backstop; then **downscale the runner profiles
-  16 GB → 8 GB**. Toolchain/dep full re-verifies (rare) run on a scheduled/temporarily-scaled runner
-  or with small chunks. This is the change that realises the downscale + speed-up.
+- **Phase 2 (implemented — SPEC-048-B):** the push-to-`main` replay + audit are now **incremental**
+  (re-check only the pushed diff, base = `github.event.before`), with a **scheduled daily** full replay
+  + audit + archive re-validation as the defense-in-depth backstop
+  (`.github/workflows/gate-a-full-replay.yml`). Routine Gate A (proof PRs **and** push to `main`) routes
+  to the 8 GB `namespace-profile-unsorry-1`; only an olean-invalidating change
+  (`forces_full_replay`: toolchain/lakefile/manifest) forces a FULL replay on the 16 GB
+  `namespace-profile-unsorry-2`. `REPLAY_CHUNK_SIZE` is overridable via `UNSORRY_REPLAY_CHUNK` so a full
+  replay fits 8 GB with a small chunk — the backstop uses `6`. The change is additive and zero-gap (the
+  backstop ships with the incremental-push change) and does not hard-require `unsorry-2`: if it is
+  retired, forced full-replays move to `unsorry-1` with the small-chunk path. This realises the
+  downscale + speed-up.
 
 ## Soundness
 
@@ -109,7 +116,8 @@ byte-identity enforcement) covers the bookkeeping risk.
 
 | Reference ID | Title | Type | Location |
 |--------------|-------|------|----------|
-| REF-1 | Verify-on-ingest provenance spec | Specification | specs/SPEC-048-A-Verify-On-Ingest.md |
+| REF-1 | Verify-on-ingest provenance spec (Phase 1) | Specification | specs/SPEC-048-A-Verify-On-Ingest.md |
+| REF-1b | Incremental push + scheduled backstop + 8 GB sizing (Phase 2) | Specification | specs/SPEC-048-B-Verify-On-Ingest-Phase2.md |
 | REF-2 | Archive-aware immutability / byte-identity | Decision | ADR-018-Goal-Statement-Immutability.md |
 | REF-3 | Incremental kernel replay + full-replay triggers | Decision | ADR-033-Incremental-Kernel-Replay.md |
 | REF-4 | Proof archive blocks | Decision | ADR-041-Proof-Archive-Blocks.md |
@@ -121,3 +129,4 @@ byte-identity enforcement) covers the bookkeeping risk.
 |--------|----------|------|
 | Proposed | unsorry maintainers | 2026-06-15 |
 | Accepted | unsorry maintainers | 2026-06-15 |
+| Phase 2 implemented (SPEC-048-B) | unsorry maintainers | 2026-06-15 |

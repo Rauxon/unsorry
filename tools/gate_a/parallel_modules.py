@@ -23,7 +23,26 @@ from typing import Callable, Sequence
 
 # Modules per serial leanchecker invocation in replay (ADR-006): bounds peak
 # memory so the replay step does not OOM the runner as the library grows.
-REPLAY_CHUNK_SIZE = 30
+# Overridable via UNSORRY_REPLAY_CHUNK so a FULL replay can fit a smaller (8 GB)
+# runner with a smaller chunk (ADR-048 Phase 2) — leanchecker holds ~all of
+# mathlib resident per process, so a smaller chunk trims the few-olean peak and
+# the wall-clock-per-chunk on a memory-bound runner. A missing or invalid value
+# falls back to the safe 30-module default.
+_DEFAULT_REPLAY_CHUNK_SIZE = 30
+
+
+def _replay_chunk_size() -> int:
+    raw = os.environ.get("UNSORRY_REPLAY_CHUNK")
+    if raw is None:
+        return _DEFAULT_REPLAY_CHUNK_SIZE
+    try:
+        value = int(raw)
+    except ValueError:
+        return _DEFAULT_REPLAY_CHUNK_SIZE
+    return value if value >= 1 else _DEFAULT_REPLAY_CHUNK_SIZE
+
+
+REPLAY_CHUNK_SIZE = _replay_chunk_size()
 
 # Incremental replay (ADR-033): a FULL replay re-checks every olean against the
 # kernel. An olean changes only with the proof source, the toolchain, or the
@@ -486,7 +505,8 @@ def replay(
     # here; audit (collectAxioms, far lighter) keeps its parallelism.
     _ = jobs
     effective_jobs = 1
-    n_chunks = max(1, (len(targets) + REPLAY_CHUNK_SIZE - 1) // REPLAY_CHUNK_SIZE)
+    chunk_size = _replay_chunk_size()
+    n_chunks = max(1, (len(targets) + chunk_size - 1) // chunk_size)
     commands = [
         Command(
             ("lake", "env", "leanchecker", *chunk),

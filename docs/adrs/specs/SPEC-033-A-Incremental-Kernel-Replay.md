@@ -10,10 +10,14 @@ and full on `main`.
 
 `python3 -m tools.gate_a.parallel_modules replay [--base <ref>]`
 
-- **`--base <ref>` present** (PR builds): incremental replay against `<ref>`
-  (`github.event.pull_request.base.sha`).
-- **`--base` absent** (push to `main`, manual runs): **full** replay — the
-  post-merge backstop.
+- **`--base <ref>` present** (PR builds, and push to `main` as of ADR-048
+  Phase 2): incremental replay against `<ref>` —
+  `github.event.pull_request.base.sha` on a PR, `github.event.before` (the
+  previous `main` tip) on a push.
+- **`--base` absent** (manual runs, the scheduled `gate-a-full-replay` backstop,
+  or a push with a zero/empty base): **full** replay. Per ADR-048 Phase 2 the
+  per-push full replay is replaced by an incremental push + a daily scheduled
+  full replay; the workflow passes the zero-SHA case through to this full path.
 
 The `gate-a` job checks out with `fetch-depth: 0`, so `<ref>` is present for the
 `git diff`.
@@ -22,12 +26,17 @@ The `gate-a` job checks out with `fetch-depth: 0`, so `<ref>` is present for the
 
 1. `paths = git -C <root> diff --name-only <base> HEAD`.
    - If git exits non-zero (missing base / not a repo) → **full replay**.
-2. If any path is **global-impact** → **full replay**:
+2. If any path is **olean-invalidating** → **full replay**
+   (`forces_full_replay`):
    - exact: `lean-toolchain`, `lakefile.toml`, `lakefile.lean`,
-     `lake-manifest.json`, `.github/workflows/gate-a.yml`;
-   - prefix: `tools/gate_a/**`.
-   These can change any olean or the gate's own behaviour, so the
-   "unchanged ⇒ identical olean" invariant no longer holds.
+     `lake-manifest.json`.
+   These change the toolchain/dependency set and so can change any olean, so the
+   "unchanged ⇒ identical olean" invariant no longer holds. `tools/gate_a/**` and
+   `.github/workflows/gate-a.yml` are **no longer** full-replay triggers (#792):
+   they change no olean, so they run an incremental replay (covered by the gate's
+   own unit tests + the scheduled full-replay backstop). The axiom audit keeps the
+   wider `forces_full_audit` set (`tools/gate_a/**`, `AxiomAudit/`,
+   `AuditFixtures/`, `gate-a.yml`), since those can change which axioms it accepts.
 3. `changed = { library/Unsorry/<…>.lean in paths } → module names`.
    - If empty (the PR touched no library module) → **replay nothing**, exit 0.
 4. Build the import graph by parsing `^\s*import\s+(Unsorry\.\S+)` from every
@@ -38,6 +47,9 @@ The `gate-a` job checks out with `fetch-depth: 0`, so `<ref>` is present for the
    with on-disk modules (so a *deleted* module — no olean — drops out).
 6. Replay the set with `leanchecker`, serially, chunked by `REPLAY_CHUNK_SIZE`
    exactly as the full path (the set is normally tiny, so one chunk).
+   `REPLAY_CHUNK_SIZE` defaults to 30 and is overridable via the
+   `UNSORRY_REPLAY_CHUNK` env var (bad value → 30), so a full replay can fit a
+   smaller (8 GB) runner with a smaller chunk (ADR-048 Phase 2).
 
 ## 3. Soundness argument
 
@@ -61,9 +73,12 @@ Corollaries:
 - mathlib is a pinned, verified cache (ADR-002); it is loaded as trusted context
   but is not the swarm's output and is not the threat surface.
 
-Every uncertainty resolves **toward** full replay (§2.1, §2.2), and `main` always
-runs a full replay post-merge — so the change can only ever replay *more* than
-strictly necessary, never less.
+Every uncertainty resolves **toward** full replay (§2.1, §2.2). Post-merge,
+`main` runs the **same incremental** replay on the pushed diff (ADR-048 Phase 2),
+and the scheduled `gate-a-full-replay` workflow re-runs the **full** replay daily
+as the defense-in-depth backstop — so the change can only ever replay *more* than
+strictly necessary, never less, and the whole library is still re-derived on a
+schedule.
 
 ## 4. Implementation
 

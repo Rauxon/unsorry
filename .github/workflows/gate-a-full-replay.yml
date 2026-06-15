@@ -1,0 +1,140 @@
+name: gate-a-full-replay
+
+# Scheduled defense-in-depth backstop for ADR-048 (verify-on-ingest), Phase 2.
+#
+# Routine Gate A now verifies INCREMENTALLY — on proof PRs and on push to main it
+# replays only the changed library modules + their reverse-import closure
+# (ADR-033), and archive moves validate provenance + packaging, not a kernel
+# replay (ADR-048 Phase 1). That carries soundness forward via immutability +
+# provenance rather than re-deriving it. The residual risk is *bookkeeping*: a
+# scoping or provenance bug could let an olean reach main without ever being
+# kernel-replayed in its committed form.
+#
+# This workflow closes that gap. On a daily cron it re-runs the FULL kernel
+# replay + FULL axiom audit over the entire active library (no --base), and
+# re-validates every archive package, on the 8 GB namespace-profile-unsorry-1
+# runner with a small UNSORRY_REPLAY_CHUNK so leanchecker's per-chunk peak fits
+# (SPEC-048-B). It is ADDITIVE: it ships with the Phase 2 incremental change, so
+# there is never a window with no full re-verify path.
+#
+# Failure surfaces per this repo's convention (cf. reaper.yml / upstream-packets
+# .yml): each step runs under `set -euo pipefail` and the job fails the run, so
+# GitHub marks the scheduled run red and the actions dashboard / notifications
+# flag it for a human.
+
+on:
+  schedule:
+    # Daily at 04:11 UTC (off the hour, like upstream-packets, to avoid the
+    # cron-spike GitHub deprioritises). workflow_dispatch for on-demand re-runs.
+    - cron: "11 4 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gate-a-full-replay
+  cancel-in-progress: false
+
+env:
+  MATHLIB_CACHE_DIR: ${{ github.workspace }}/.lake/mathlib-cache
+  # Small chunk so a FULL leanchecker replay fits the 8 GB runner: leanchecker
+  # holds ~all of mathlib resident per process, so a smaller chunk trims the
+  # few-olean peak on top of that image (ADR-048 Phase 2 / SPEC-048-B). Bad value
+  # falls back to the 30-module default in parallel_modules.py.
+  UNSORRY_REPLAY_CHUNK: "6"
+
+jobs:
+  full-replay:
+    name: gate-a-full-replay
+    # 8 GB profile: Phase 2 makes the full backstop fit the routine runner via the
+    # small UNSORRY_REPLAY_CHUNK, so unsorry-2 (16 GB) is not required here.
+    runs-on: namespace-profile-unsorry-1
+    # Generous: a serial full replay of the whole library in small chunks is the
+    # slowest path; the small chunk trades wall-clock for memory headroom.
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      # Namespace .lake cache volume (ADR-046): mathlib oleans + the local build
+      # persist on the runner's attached disk, so `lake exe cache get` finds
+      # mathlib present. Soft-fails (continue-on-error) if no volume is attached.
+      - name: Namespace .lake cache volume
+        id: ns_lake_cache
+        continue-on-error: true
+        uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
+        with:
+          path: ${{ github.workspace }}/.lake
+
+      - name: Namespace .lake cache diagnostics
+        run: |
+          echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          du -sh .lake .lake/packages .lake/build 2>/dev/null || true
+
+      # Best-effort swap so leanchecker pages cold mathlib regions instead of
+      # OOMing on the 8 GB runner (same pattern as gate-a-replay). Namespace
+      # runners disallow swapon; there the small chunk keeps the peak in RAM, so a
+      # failure here is a warning, not a gate failure.
+      - name: Add swap headroom for leanchecker (best-effort)
+        run: |
+          if sudo fallocate -l 12G /mnt/swapfile \
+               || sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=12288; then
+            sudo chmod 600 /mnt/swapfile
+            sudo mkswap /mnt/swapfile
+            if sudo swapon /mnt/swapfile; then
+              echo "--- memory after adding swap ---"
+              free -h
+            else
+              echo "::warning::swapon not permitted on this runner — continuing on RAM + small-chunk serial replay"
+              sudo rm -f /mnt/swapfile || true
+            fi
+          else
+            echo "::warning::could not allocate a swapfile — continuing on RAM + small-chunk serial replay"
+          fi
+
+      - name: Build (lean-action, mathlib binary cache)
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          use-github-cache: ${{ steps.ns_lake_cache.outputs.cache-hit != 'true' }}
+          build-args: "UnsorryGoals"
+
+      - name: Generate statement-binding obligations
+        run: python3 -m tools.gate_a.check_statement_binding generate .
+
+      - name: Library build — zero-warning bar (--wfail)
+        run: lake build UnsorryLibrary --wfail
+
+      # FULL audit + FULL replay: no --base, so every active library + goal module
+      # is re-checked. This is the defense-in-depth re-derivation of soundness.
+      - name: Full axiom audit (authoritative)
+        run: |
+          set -euo pipefail
+          python3 -m tools.gate_a.parallel_modules audit --jobs 1 --output axiom-report.json
+
+      - name: Full kernel replay (leanchecker, small chunks)
+        run: |
+          set -euo pipefail
+          python3 -m tools.gate_a.parallel_modules replay --jobs 1
+
+      # Re-validate every archive package as the bookkeeping backstop for the
+      # verify-on-ingest model (ADR-048). No --base = validate ALL archives from
+      # scratch (packaging sanity: forbidden-token + Gate B + statement-binding +
+      # `lake build --wfail`), not just the ones changed since some base — on a
+      # scheduled run HEAD == origin/main, so a --base diff would be empty and
+      # check nothing. No leanchecker (archives are immutable + byte-identity-
+      # checked at their introducing PR, ADR-048 Phase 1); per-PR provenance is
+      # enforced there, this re-asserts packaging integrity against build drift.
+      - name: Re-validate all archive packages (ADR-048 backstop)
+        run: |
+          set -euo pipefail
+          python3 -m tools.gate_a.archive_packages validate-changed
+
+      - name: Upload axiom footprint artifact
+        if: always()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: axiom-report-full-replay
+          path: axiom-report.json
+          if-no-files-found: ignore

@@ -127,6 +127,51 @@ def test_replay_chunks_a_large_library_serially(tmp_path: Path):
     assert covered == {f"Unsorry.{n}" for n in names}  # every module replayed
 
 
+def _replay_calls(tmp_path: Path, n_modules: int) -> list[tuple[str, ...]]:
+    (tmp_path / "library" / "Unsorry").mkdir(parents=True)
+    for i in range(n_modules):
+        (tmp_path / "library" / "Unsorry" / f"M{i}.lean").write_text("")
+    calls: list[tuple[str, ...]] = []
+
+    def runner(argv, **_kwargs):
+        argv = tuple(argv)
+        calls.append(argv)
+        return completed(argv, returncode=0)
+
+    assert replay(tmp_path, 1, runner) == 0
+    return calls
+
+
+def test_replay_chunk_size_env_override_shrinks_chunks(tmp_path: Path, monkeypatch):
+    # ADR-048 Phase 2: UNSORRY_REPLAY_CHUNK lets a FULL replay fit a smaller (8 GB)
+    # runner by cutting the chunk size, so the same module set splits into more,
+    # smaller chunks (each chunk's peak RSS is the few oleans on top of mathlib).
+    monkeypatch.setenv("UNSORRY_REPLAY_CHUNK", "6")
+    calls = _replay_calls(tmp_path, 30)
+    # 30 modules / 6-per-chunk = 5 chunks (vs 1 chunk at the default 30).
+    assert len(calls) == 5
+    covered = {m for c in calls for m in c[3:]}
+    assert covered == {f"Unsorry.M{i}" for i in range(30)}  # every module replayed
+
+
+def test_replay_chunk_size_env_invalid_falls_back_to_default(tmp_path: Path, monkeypatch):
+    # A bad value (non-int, zero, negative) must not silently disable chunking —
+    # it falls back to the safe 30-module default so the gate cannot be tricked
+    # into one unbounded leanchecker process.
+    for bad in ("not-a-number", "0", "-5", ""):
+        monkeypatch.setenv("UNSORRY_REPLAY_CHUNK", bad)
+        from tools.gate_a.parallel_modules import _replay_chunk_size
+
+        assert _replay_chunk_size() == 30, bad
+
+
+def test_replay_chunk_size_env_unset_is_default(monkeypatch):
+    from tools.gate_a.parallel_modules import _replay_chunk_size
+
+    monkeypatch.delenv("UNSORRY_REPLAY_CHUNK", raising=False)
+    assert _replay_chunk_size() == 30
+
+
 # --- incremental replay (ADR-033) -------------------------------------------
 
 def _write_lib(tmp_path: Path, modules: dict[str, list[str]]) -> None:
