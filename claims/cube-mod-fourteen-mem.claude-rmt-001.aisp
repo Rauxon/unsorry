@@ -1,0 +1,7 @@
+𝔸5.1.claim.cube-mod-fourteen-mem.claude-rmt-001@2026-06-15
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜cube-mod-fourteen-mem; agent≜claude-rmt-001}
+⟦Σ:Times⟧{ts≜2026-06-15T12:29:38Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
