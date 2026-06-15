@@ -1,0 +1,8 @@
+𝔸5.1.lemma.26d3e4f95e72@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜26d3e4f95e72b8678a9f08cefb95c4ce74d836b3d62aa8130ec413c4852b95aa; goal≜dvd-455-pow-thirteen-sub-self; name≜dvd_455_pow_thirteen_sub_self}
+⟦Σ:Source⟧{src≜goals/dvd-455-pow-thirteen-sub-self.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜452}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
