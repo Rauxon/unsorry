@@ -562,6 +562,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "99b2caa4f0558fb4df1635fd47c26d651aaf578d",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "eighth-power-mod-fifteen-mem",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/bcd77e83510d6e2063902bf2c15cc4399298175d1aea88f20dcf09216011f603.aisp",
+      "review_status": "candidate",
+      "sha": "bcd77e83510d6e2063902bf2c15cc4399298175d1aea88f20dcf09216011f603"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-14",
       "difficulty": 1,
       "display_name": "chat-bit-01",
@@ -1959,9 +1974,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 130,
-    "mapped_missing_solver": 126,
-    "missing_solver_provenance": 130,
+    "git_attributed_missing_solver": 131,
+    "mapped_missing_solver": 127,
+    "missing_solver_provenance": 131,
     "unmapped_missing_solver": 4
   }
 }
