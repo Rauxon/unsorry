@@ -1,0 +1,20 @@
+𝔸5.1.goal.gcd-self-add-dvd@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜gcd-self-add-dvd
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/gcd-self-add-dvd.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/gcd-self-add-dvd.lean
+  sha≜29a715289eb19ed1c03c0ee6062f8492755f907fc09a3b75cb9fbd22d50158a3
+  aff≜-19
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

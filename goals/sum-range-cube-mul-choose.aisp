@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-cube-mul-choose
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-cube-mul-choose.md
+  src≜packages/unsorry-archive-0003/backlog/sum-range-cube-mul-choose.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨sum-range-sq-mul-choose⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-cube-mul-choose.lean
+  lean≜packages/unsorry-archive-0003/goals/sum-range-cube-mul-choose.lean
   sha≜5cf1cc9f3fe556fea6bbede7c85c34fbdbcdecec308d7b1eda8a329d0ea68e27
   aff≜1
 }

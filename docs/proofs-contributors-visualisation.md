@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**428 goals — 225 open · 7 blocked · 10 translated · 106 proved · 80 archived.** 16 decomposition families shown below; standalone goals are listed in the table.
+**428 goals — 225 open · 7 blocked · 10 translated · 76 proved · 110 archived.** 15 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (102 of 106 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (73 of 76 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -79,18 +79,6 @@ flowchart LR
   g_discriminant_nonneg_s3["discriminant-nonneg-s3"]
   class g_discriminant_nonneg_s3 proved;
   click g_discriminant_nonneg_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg-s3.lean" "discriminant-nonneg-s3 — proved"
-  g_four_consecutive_product_add_one_square["four-consecutive-product-add-one-square"]
-  class g_four_consecutive_product_add_one_square proved;
-  click g_four_consecutive_product_add_one_square "https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square.lean" "four-consecutive-product-add-one-square — proved"
-  g_four_consecutive_product_add_one_square_s1["four-consecutive-product-add-one-square-s1"]
-  class g_four_consecutive_product_add_one_square_s1 proved;
-  click g_four_consecutive_product_add_one_square_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s1.lean" "four-consecutive-product-add-one-square-s1 — proved"
-  g_four_consecutive_product_add_one_square_s2["four-consecutive-product-add-one-square-s2"]
-  class g_four_consecutive_product_add_one_square_s2 proved;
-  click g_four_consecutive_product_add_one_square_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s2.lean" "four-consecutive-product-add-one-square-s2 — proved"
-  g_four_consecutive_product_add_one_square_s3["four-consecutive-product-add-one-square-s3"]
-  class g_four_consecutive_product_add_one_square_s3 proved;
-  click g_four_consecutive_product_add_one_square_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s3.lean" "four-consecutive-product-add-one-square-s3 — proved"
   g_four_var_qm_am["four-var-qm-am"]
   class g_four_var_qm_am blocked;
   click g_four_var_qm_am "https://github.com/agenticsnz/unsorry/blob/main/goals/four-var-qm-am.lean" "four-var-qm-am — blocked"
@@ -211,9 +199,6 @@ flowchart LR
   g_discriminant_nonneg --> g_discriminant_nonneg_s1
   g_discriminant_nonneg --> g_discriminant_nonneg_s2
   g_discriminant_nonneg --> g_discriminant_nonneg_s3
-  g_four_consecutive_product_add_one_square --> g_four_consecutive_product_add_one_square_s1
-  g_four_consecutive_product_add_one_square --> g_four_consecutive_product_add_one_square_s2
-  g_four_consecutive_product_add_one_square --> g_four_consecutive_product_add_one_square_s3
   g_four_var_qm_am --> g_four_var_qm_am_s1
   g_four_var_qm_am --> g_four_var_qm_am_s2
   g_four_var_qm_am --> g_four_var_qm_am_s3
@@ -502,16 +487,12 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`aurifeuillian-quartic-dvd`](https://github.com/agenticsnz/unsorry/blob/main/goals/aurifeuillian-quartic-dvd.lean) | proved | 2 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#617](https://github.com/agenticsnz/unsorry/pull/617) | 2026-06-15 |
 | [`cauchy-schwarz-three-term`](https://github.com/agenticsnz/unsorry/blob/main/goals/cauchy-schwarz-three-term.lean) | proved | 3 | claude-rmt-001 | perttu · `opus` | [#692](https://github.com/agenticsnz/unsorry/pull/692) | 2026-06-15 |
 | [`consecutive-cubes-diff-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-cubes-diff-odd.lean) | proved | 2 | claude-rmt-001 | perttu · `opus` | [#726](https://github.com/agenticsnz/unsorry/pull/726) | 2026-06-15 |
-| [`consecutive-triangular-eq-square`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-triangular-eq-square.lean) | proved | 2 | p3-b1 | cgbarlow · `opus` | [#347](https://github.com/agenticsnz/unsorry/pull/347) | 2026-06-13 |
 | [`constrained-sum-sq-ge-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/constrained-sum-sq-ge-three.lean) | proved | 2 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#633](https://github.com/agenticsnz/unsorry/pull/633) | 2026-06-15 |
 | [`coprime-2n1-3n2`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-2n1-3n2.lean) | proved | 2 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#680](https://github.com/agenticsnz/unsorry/pull/680) | 2026-06-15 |
 | [`coprime-2n1-n1`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-2n1-n1.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#619](https://github.com/agenticsnz/unsorry/pull/619) | 2026-06-15 |
 | [`coprime-n-sq-n-add-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-n-sq-n-add-one.lean) | proved | 2 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#718](https://github.com/agenticsnz/unsorry/pull/718) | 2026-06-15 |
-| [`cube-mod-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-mod-four.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#745](https://github.com/agenticsnz/unsorry/pull/745) | 2026-06-15 |
 | [`cube-mod-nine`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-mod-nine.lean) | proved | 2 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#620](https://github.com/agenticsnz/unsorry/pull/620) | 2026-06-15 |
-| [`cube-mod-seven`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-mod-seven.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#743](https://github.com/agenticsnz/unsorry/pull/743) | 2026-06-15 |
 | [`cube-mod-thirteen-mem`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-mod-thirteen-mem.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#625](https://github.com/agenticsnz/unsorry/pull/625) | 2026-06-15 |
-| [`cube-sum-ge-mul-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-mul-sq.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#675](https://github.com/agenticsnz/unsorry/pull/675) | 2026-06-15 |
 | [`cube-sum-ge-three-prod-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod-s1.lean) | proved | 1 | claude-rmt-001 | chat-bit-01 | [#698](https://github.com/agenticsnz/unsorry/pull/698) | 2026-06-15 |
 | [`cube-sum-ge-three-prod-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod-s3.lean) | proved | 1 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#493](https://github.com/agenticsnz/unsorry/pull/493) | 2026-06-14 |
 | [`descartes-total-angular-defect`](https://github.com/agenticsnz/unsorry/blob/main/goals/descartes-total-angular-defect.lean) | proved | 4 | oma-2-c50d | perttu | [#465](https://github.com/agenticsnz/unsorry/pull/465) | 2026-06-14 |
@@ -525,14 +506,8 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`dvd-nine-pow-nine-sub-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-nine-pow-nine-sub-pow-three.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#630](https://github.com/agenticsnz/unsorry/pull/630) | 2026-06-15 |
 | [`eight-dvd-consecutive-odd-sq-diff`](https://github.com/agenticsnz/unsorry/blob/main/goals/eight-dvd-consecutive-odd-sq-diff.lean) | proved | 2 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#495](https://github.com/agenticsnz/unsorry/pull/495) | 2026-06-14 |
 | [`eight-sum-pow-four-ge-sum-pow-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/eight-sum-pow-four-ge-sum-pow-four.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#631](https://github.com/agenticsnz/unsorry/pull/631) | 2026-06-15 |
-| [`eight-triangular-add-one-eq-odd-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/eight-triangular-add-one-eq-odd-sq.lean) | proved | 2 | p3-a1 | cgbarlow · `opus` | [#307](https://github.com/agenticsnz/unsorry/pull/307) | 2026-06-13 |
 | [`fifth-power-mod-eleven`](https://github.com/agenticsnz/unsorry/blob/main/goals/fifth-power-mod-eleven.lean) | proved | 2 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#632](https://github.com/agenticsnz/unsorry/pull/632) | 2026-06-15 |
 | [`fifth-power-mod-twentyfive-mem`](https://github.com/agenticsnz/unsorry/blob/main/goals/fifth-power-mod-twentyfive-mem.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#757](https://github.com/agenticsnz/unsorry/pull/757) | 2026-06-15 |
-| [`forty-two-dvd-pow-seven-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/forty-two-dvd-pow-seven-sub-self.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#737](https://github.com/agenticsnz/unsorry/pull/737) | 2026-06-15 |
-| [`four-consecutive-product-add-one-square`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square.lean) | proved | 2 | oma-2-c50d | perttu | [#573](https://github.com/agenticsnz/unsorry/pull/573) | 2026-06-15 |
-| [`four-consecutive-product-add-one-square-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s1.lean) | proved | 1 | oma-2-c50d | perttu | [#437](https://github.com/agenticsnz/unsorry/pull/437) | 2026-06-14 |
-| [`four-consecutive-product-add-one-square-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s2.lean) | proved | 1 | oma-2-c50d | perttu | [#438](https://github.com/agenticsnz/unsorry/pull/438) | 2026-06-14 |
-| [`four-consecutive-product-add-one-square-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s3.lean) | proved | 1 | — | adam91holt · `gpt-5.5` | — | 2026-06-14 |
 | [`four-mul-prod-le-sq-sum`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-mul-prod-le-sq-sum.lean) | proved | 2 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#498](https://github.com/agenticsnz/unsorry/pull/498) | 2026-06-14 |
 | [`four-not-dvd-sq-add-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-not-dvd-sq-add-two.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#634](https://github.com/agenticsnz/unsorry/pull/634) | 2026-06-15 |
 | [`four-var-cyclic-sos`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-var-cyclic-sos.lean) | proved | 2 | oma-2-c50d | perttu · `gemini-3.1-pro-preview` | [#639](https://github.com/agenticsnz/unsorry/pull/639) | 2026-06-15 |
@@ -543,8 +518,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`fourth-power-mod-sixteen-mem`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-sixteen-mem.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#749](https://github.com/agenticsnz/unsorry/pull/749) | 2026-06-15 |
 | [`fourth-power-mod-thirteen-mem`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-thirteen-mem.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#641](https://github.com/agenticsnz/unsorry/pull/641) | 2026-06-15 |
 | [`gcd-lin-3n2-5n3`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-lin-3n2-5n3.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#658](https://github.com/agenticsnz/unsorry/pull/658) | 2026-06-15 |
-| [`gcd-n1-n4-dvd-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n1-n4-dvd-three.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#732](https://github.com/agenticsnz/unsorry/pull/732) | 2026-06-15 |
-| [`gcd-self-add-dvd`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-self-add-dvd.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#728](https://github.com/agenticsnz/unsorry/pull/728) | 2026-06-15 |
 | [`nat-sq-lt-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow.lean) | proved | 3 | — | adam91holt · `gpt-5.5` | — | 2026-06-14 |
 | [`nat-sq-lt-two-pow-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s1.lean) | proved | 1 | oma-2-c50d | perttu | [#442](https://github.com/agenticsnz/unsorry/pull/442) | 2026-06-14 |
 | [`nat-sq-lt-two-pow-s2-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s1.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#666](https://github.com/agenticsnz/unsorry/pull/666) | 2026-06-15 |
@@ -557,16 +530,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`no-nat-sq-eq-two-mul-sq-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s1.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#670](https://github.com/agenticsnz/unsorry/pull/670) | 2026-06-15 |
 | [`no-nat-sq-eq-two-mul-sq-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s2.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#671](https://github.com/agenticsnz/unsorry/pull/671) | 2026-06-15 |
 | [`no-nat-sq-eq-two-mul-sq-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s3.lean) | proved | 1 | thebeast-ace7 | adam91holt | [#673](https://github.com/agenticsnz/unsorry/pull/673) | 2026-06-15 |
-| [`one-add-four-b-fourth-not-prime`](https://github.com/agenticsnz/unsorry/blob/main/goals/one-add-four-b-fourth-not-prime.lean) | proved | 3 | p3-a1 | cgbarlow · `opus` | [#315](https://github.com/agenticsnz/unsorry/pull/315) | 2026-06-13 |
-| [`one-add-three-x-le-cube`](https://github.com/agenticsnz/unsorry/blob/main/goals/one-add-three-x-le-cube.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#706](https://github.com/agenticsnz/unsorry/pull/706) | 2026-06-15 |
-| [`one-add-two-x-le-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/one-add-two-x-le-sq.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#650](https://github.com/agenticsnz/unsorry/pull/650) | 2026-06-15 |
-| [`pow-four-add-sq-add-one-factor`](https://github.com/agenticsnz/unsorry/blob/main/goals/pow-four-add-sq-add-one-factor.lean) | proved | 2 | p3-b1 | cgbarlow · `opus` | [#320](https://github.com/agenticsnz/unsorry/pull/320) | 2026-06-13 |
-| [`pow-four-add-sq-add-one-not-prime`](https://github.com/agenticsnz/unsorry/blob/main/goals/pow-four-add-sq-add-one-not-prime.lean) | proved | 3 | p3-b1 | cgbarlow · `opus` | [#337](https://github.com/agenticsnz/unsorry/pull/337) | 2026-06-13 |
-| [`prod-pair-sums-ge-eight-mul`](https://github.com/agenticsnz/unsorry/blob/main/goals/prod-pair-sums-ge-eight-mul.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#700](https://github.com/agenticsnz/unsorry/pull/700) | 2026-06-15 |
 | [`prod-range-one-add-inv`](https://github.com/agenticsnz/unsorry/blob/main/goals/prod-range-one-add-inv.lean) | proved | 3 | oma-2-c50d | perttu · `gemini-3.1-pro-preview` | [#509](https://github.com/agenticsnz/unsorry/pull/509) | 2026-06-14 |
-| [`product-le-quarter-of-sum-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/product-le-quarter-of-sum-one.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#656](https://github.com/agenticsnz/unsorry/pull/656) | 2026-06-15 |
-| [`qm-am-three-var`](https://github.com/agenticsnz/unsorry/blob/main/goals/qm-am-three-var.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#704](https://github.com/agenticsnz/unsorry/pull/704) | 2026-06-15 |
-| [`quartic-ge-cross`](https://github.com/agenticsnz/unsorry/blob/main/goals/quartic-ge-cross.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#702](https://github.com/agenticsnz/unsorry/pull/702) | 2026-06-15 |
 | [`quartic-ge-sq-prod`](https://github.com/agenticsnz/unsorry/blob/main/goals/quartic-ge-sq-prod.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#689](https://github.com/agenticsnz/unsorry/pull/689) | 2026-06-15 |
 | [`recip-succ-lt-recip`](https://github.com/agenticsnz/unsorry/blob/main/goals/recip-succ-lt-recip.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#735](https://github.com/agenticsnz/unsorry/pull/735) | 2026-06-15 |
 | [`sq-add-sq-eq-three-mul-sq-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s1.lean) | proved | 1 | p3-b1 | cgbarlow · `opus` | [#323](https://github.com/agenticsnz/unsorry/pull/323) | 2026-06-13 |
@@ -580,15 +544,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sum-four-sq-ge-two-cross`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-four-sq-ge-two-cross.lean) | proved | 2 | claude-rmt-001 | cgbarlow · `leanstral-2603` | [#686](https://github.com/agenticsnz/unsorry/pull/686) | 2026-06-15 |
 | [`sum-four-sq-ge-two-cross-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-four-sq-ge-two-cross-s1.lean) | proved | 1 | steves-mac-mini-50c1 | yarcles · `opus` | [#547](https://github.com/agenticsnz/unsorry/pull/547) | 2026-06-14 |
 | [`sum-four-sq-ge-two-cross-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-four-sq-ge-two-cross-s2.lean) | proved | 1 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#549](https://github.com/agenticsnz/unsorry/pull/549) | 2026-06-14 |
-| [`sum-range-choose-mul-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-choose-mul-two-pow.lean) | proved | 2 | p3-a1 | cgbarlow · `opus` | [#338](https://github.com/agenticsnz/unsorry/pull/338) | 2026-06-13 |
-| [`sum-range-cube-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-mul-choose.lean) | proved | 3 | p3-b1 | cgbarlow · `opus` | [#340](https://github.com/agenticsnz/unsorry/pull/340) | 2026-06-13 |
-| [`sum-range-fall-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fall-mul-choose.lean) | proved | 3 | p3-a1 | cgbarlow · `opus` | [#339](https://github.com/agenticsnz/unsorry/pull/339) | 2026-06-13 |
-| [`sum-range-fib-even-index`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fib-even-index.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#408](https://github.com/agenticsnz/unsorry/pull/408) | 2026-06-14 |
-| [`sum-range-fib-odd-index`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fib-odd-index.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#406](https://github.com/agenticsnz/unsorry/pull/406) | 2026-06-14 |
-| [`sum-range-id-eq-choose-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-eq-choose-two.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#403](https://github.com/agenticsnz/unsorry/pull/403) | 2026-06-14 |
-| [`sum-range-pow-six-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-six-closed-form.lean) | proved | 3 | p3-a1 | cgbarlow · `opus` | [#348](https://github.com/agenticsnz/unsorry/pull/348) | 2026-06-13 |
-| [`sum-range-sq-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-mul-choose.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#266](https://github.com/agenticsnz/unsorry/pull/266) | 2026-06-13 |
-| [`sum-range-three-consecutive-product`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-three-consecutive-product.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#407](https://github.com/agenticsnz/unsorry/pull/407) | 2026-06-14 |
 | [`sum-sq-add-one-ge-mul-add`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-sq-add-one-ge-mul-add.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#705](https://github.com/agenticsnz/unsorry/pull/705) | 2026-06-15 |
 | [`sum-sq-add-three-ge-two-sum`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-sq-add-three-ge-two-sum.lean) | proved | 2 | claude-rmt-001 | cgbarlow · `leanstral-2603` | [#695](https://github.com/agenticsnz/unsorry/pull/695) | 2026-06-15 |
 | [`sum-three-squares-ge-sum-products`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-three-squares-ge-sum-products.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#432](https://github.com/agenticsnz/unsorry/pull/432) | 2026-06-14 |
@@ -601,7 +556,12 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`alternating-sum-naturals`](https://github.com/agenticsnz/unsorry/blob/main/goals/alternating-sum-naturals.lean) | archived | 3 | mac-158f | OceanLi | [#204](https://github.com/agenticsnz/unsorry/pull/204) | 2026-06-11 |
 | [`and-comm-imp`](https://github.com/agenticsnz/unsorry/blob/main/goals/and-comm-imp.lean) | archived | 1 | prover-bravo | Chris Barlow | [#70](https://github.com/agenticsnz/unsorry/pull/70) | 2026-06-10 |
 | [`binder-shape-canary`](https://github.com/agenticsnz/unsorry/blob/main/goals/binder-shape-canary.lean) | archived | 1 | — | — | — | 2026-06-12 |
+| [`consecutive-triangular-eq-square`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-triangular-eq-square.lean) | archived | 2 | p3-b1 | cgbarlow · `opus` | [#347](https://github.com/agenticsnz/unsorry/pull/347) | 2026-06-13 |
 | [`cube-eq-triangular-sq-diff`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-eq-triangular-sq-diff.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#322](https://github.com/agenticsnz/unsorry/pull/322) | 2026-06-13 |
+| [`cube-mod-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-mod-four.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#745](https://github.com/agenticsnz/unsorry/pull/745) | 2026-06-15 |
+| [`cube-mod-seven`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-mod-seven.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#743](https://github.com/agenticsnz/unsorry/pull/743) | 2026-06-15 |
+| [`cube-sum-ge-mul-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-mul-sq.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#675](https://github.com/agenticsnz/unsorry/pull/675) | 2026-06-15 |
+| [`eight-triangular-add-one-eq-odd-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/eight-triangular-add-one-eq-odd-sq.lean) | archived | 2 | p3-a1 | cgbarlow · `opus` | [#307](https://github.com/agenticsnz/unsorry/pull/307) | 2026-06-13 |
 | [`euclid-perfect-numbers`](https://github.com/agenticsnz/unsorry/blob/main/goals/euclid-perfect-numbers.lean) | archived | 3 | p3-a1 | cgbarlow · `opus` | [#370](https://github.com/agenticsnz/unsorry/pull/370) | 2026-06-13 |
 | [`euclid-perfect-numbers-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/euclid-perfect-numbers-s1.lean) | archived | 1 | cgbarlow | Chris Barlow | [#276](https://github.com/agenticsnz/unsorry/pull/276) | 2026-06-13 |
 | [`euclid-perfect-numbers-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/euclid-perfect-numbers-s2.lean) | archived | 1 | claude-rmt-001 | chat-bit-01 | [#282](https://github.com/agenticsnz/unsorry/pull/282) | 2026-06-13 |
@@ -610,10 +570,17 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`euclid-perfect-numbers-s5`](https://github.com/agenticsnz/unsorry/blob/main/goals/euclid-perfect-numbers-s5.lean) | archived | 1 | claude-rmt-001 | chat-bit-01 | [#269](https://github.com/agenticsnz/unsorry/pull/269) | 2026-06-13 |
 | [`euclid-perfect-numbers-s6`](https://github.com/agenticsnz/unsorry/blob/main/goals/euclid-perfect-numbers-s6.lean) | archived | 1 | claude-rmt-001 | chat-bit-01 | [#279](https://github.com/agenticsnz/unsorry/pull/279) | 2026-06-13 |
 | [`factorial-telescope-sum`](https://github.com/agenticsnz/unsorry/blob/main/goals/factorial-telescope-sum.lean) | archived | 2 | binto-labs | binto | [#218](https://github.com/agenticsnz/unsorry/pull/218) | 2026-06-12 |
+| [`forty-two-dvd-pow-seven-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/forty-two-dvd-pow-seven-sub-self.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#737](https://github.com/agenticsnz/unsorry/pull/737) | 2026-06-15 |
+| [`four-consecutive-product-add-one-square`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square.lean) | archived | 2 | oma-2-c50d | perttu | [#573](https://github.com/agenticsnz/unsorry/pull/573) | 2026-06-15 |
+| [`four-consecutive-product-add-one-square-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s1.lean) | archived | 1 | oma-2-c50d | perttu | [#437](https://github.com/agenticsnz/unsorry/pull/437) | 2026-06-14 |
+| [`four-consecutive-product-add-one-square-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s2.lean) | archived | 1 | oma-2-c50d | perttu | [#438](https://github.com/agenticsnz/unsorry/pull/438) | 2026-06-14 |
+| [`four-consecutive-product-add-one-square-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square-s3.lean) | archived | 1 | — | adam91holt · `gpt-5.5` | — | 2026-06-14 |
 | [`fourth-power-mod-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-five.lean) | archived | 3 | claude-rmt-001 | chat-bit-01 | [#359](https://github.com/agenticsnz/unsorry/pull/359) | 2026-06-13 |
 | [`fourth-power-mod-five-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-five-s1.lean) | archived | 1 | claude-rmt-001 | chat-bit-01 | [#353](https://github.com/agenticsnz/unsorry/pull/353) | 2026-06-13 |
 | [`fourth-power-mod-five-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-five-s2.lean) | archived | 1 | claude-rmt-001 | chat-bit-01 | [#343](https://github.com/agenticsnz/unsorry/pull/343) | 2026-06-13 |
 | [`fourth-power-mod-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-three.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#306](https://github.com/agenticsnz/unsorry/pull/306) | 2026-06-13 |
+| [`gcd-n1-n4-dvd-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n1-n4-dvd-three.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#732](https://github.com/agenticsnz/unsorry/pull/732) | 2026-06-15 |
+| [`gcd-self-add-dvd`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-self-add-dvd.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#728](https://github.com/agenticsnz/unsorry/pull/728) | 2026-06-15 |
 | [`int-add-neg`](https://github.com/agenticsnz/unsorry/blob/main/goals/int-add-neg.lean) | archived | 1 | prover-alpha | Chris Barlow | [#72](https://github.com/agenticsnz/unsorry/pull/72) | 2026-06-10 |
 | [`int-neg-neg`](https://github.com/agenticsnz/unsorry/blob/main/goals/int-neg-neg.lean) | archived | 1 | prover-alpha | Chris Barlow | [#74](https://github.com/agenticsnz/unsorry/pull/74) | 2026-06-10 |
 | [`int-sub-eq-add-neg`](https://github.com/agenticsnz/unsorry/blob/main/goals/int-sub-eq-add-neg.lean) | archived | 1 | p2-charlie | Chris Barlow | [#90](https://github.com/agenticsnz/unsorry/pull/90) | 2026-06-10 |
@@ -637,6 +604,9 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`not-prime-pow-four-add-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/not-prime-pow-four-add-four.lean) | archived | 3 | binto-labs | binto | [#221](https://github.com/agenticsnz/unsorry/pull/221) | 2026-06-12 |
 | [`odd-fourth-power-mod-sixteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-fourth-power-mod-sixteen.lean) | archived | 2 | p3-a1 | cgbarlow · `opus` | [#310](https://github.com/agenticsnz/unsorry/pull/310) | 2026-06-13 |
 | [`odd-sq-mod-eight`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-sq-mod-eight.lean) | archived | 2 | binto-labs | binto | [#246](https://github.com/agenticsnz/unsorry/pull/246) | 2026-06-12 |
+| [`one-add-four-b-fourth-not-prime`](https://github.com/agenticsnz/unsorry/blob/main/goals/one-add-four-b-fourth-not-prime.lean) | archived | 3 | p3-a1 | cgbarlow · `opus` | [#315](https://github.com/agenticsnz/unsorry/pull/315) | 2026-06-13 |
+| [`one-add-three-x-le-cube`](https://github.com/agenticsnz/unsorry/blob/main/goals/one-add-three-x-le-cube.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#706](https://github.com/agenticsnz/unsorry/pull/706) | 2026-06-15 |
+| [`one-add-two-x-le-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/one-add-two-x-le-sq.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#650](https://github.com/agenticsnz/unsorry/pull/650) | 2026-06-15 |
 | [`or-comm-imp`](https://github.com/agenticsnz/unsorry/blob/main/goals/or-comm-imp.lean) | archived | 1 | p3-a1 | Chris Barlow | [#239](https://github.com/agenticsnz/unsorry/pull/239) | 2026-06-12 |
 | [`platonic-schlafli-core`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-schlafli-core.lean) | archived | 4 | p3-alpha | Chris Barlow | [#211](https://github.com/agenticsnz/unsorry/pull/211) | 2026-06-12 |
 | [`platonic-schlafli-core-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-schlafli-core-s1.lean) | archived | 1 | p3-alpha | Chris Barlow | [#207](https://github.com/agenticsnz/unsorry/pull/207) | 2026-06-11 |
@@ -651,14 +621,26 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`platonic-schlafli-core-s2-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-schlafli-core-s2-s3.lean) | archived | 1 | p3-alpha | Chris Barlow | [#194](https://github.com/agenticsnz/unsorry/pull/194) | 2026-06-11 |
 | [`platonic-schlafli-core-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-schlafli-core-s3.lean) | archived | 1 | p3-alpha | Chris Barlow | [#201](https://github.com/agenticsnz/unsorry/pull/201) | 2026-06-11 |
 | [`platonic-schlafli-core-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-schlafli-core-s4.lean) | archived | 1 | p3-alpha | Chris Barlow | [#208](https://github.com/agenticsnz/unsorry/pull/208) | 2026-06-11 |
+| [`pow-four-add-sq-add-one-factor`](https://github.com/agenticsnz/unsorry/blob/main/goals/pow-four-add-sq-add-one-factor.lean) | archived | 2 | p3-b1 | cgbarlow · `opus` | [#320](https://github.com/agenticsnz/unsorry/pull/320) | 2026-06-13 |
+| [`pow-four-add-sq-add-one-not-prime`](https://github.com/agenticsnz/unsorry/blob/main/goals/pow-four-add-sq-add-one-not-prime.lean) | archived | 3 | p3-b1 | cgbarlow · `opus` | [#337](https://github.com/agenticsnz/unsorry/pull/337) | 2026-06-13 |
 | [`prime-fourth-power-mod-240`](https://github.com/agenticsnz/unsorry/blob/main/goals/prime-fourth-power-mod-240.lean) | archived | 4 | p3-b1 | cgbarlow · `opus` | [#349](https://github.com/agenticsnz/unsorry/pull/349) | 2026-06-13 |
 | [`prime-sq-mod-twenty-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/prime-sq-mod-twenty-four.lean) | archived | 3 | binto-labs | binto | [#247](https://github.com/agenticsnz/unsorry/pull/247) | 2026-06-12 |
 | [`prime-sq-sub-sq-div-twenty-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/prime-sq-sub-sq-div-twenty-four.lean) | archived | 2 | binto-labs | binto | [#248](https://github.com/agenticsnz/unsorry/pull/248) | 2026-06-12 |
+| [`prod-pair-sums-ge-eight-mul`](https://github.com/agenticsnz/unsorry/blob/main/goals/prod-pair-sums-ge-eight-mul.lean) | archived | 3 | claude-rmt-001 | chat-bit-01 | [#700](https://github.com/agenticsnz/unsorry/pull/700) | 2026-06-15 |
+| [`product-le-quarter-of-sum-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/product-le-quarter-of-sum-one.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#656](https://github.com/agenticsnz/unsorry/pull/656) | 2026-06-15 |
+| [`qm-am-three-var`](https://github.com/agenticsnz/unsorry/blob/main/goals/qm-am-three-var.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#704](https://github.com/agenticsnz/unsorry/pull/704) | 2026-06-15 |
+| [`quartic-ge-cross`](https://github.com/agenticsnz/unsorry/blob/main/goals/quartic-ge-cross.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#702](https://github.com/agenticsnz/unsorry/pull/702) | 2026-06-15 |
 | [`six-dvd-three-consecutive`](https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-three-consecutive.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#405](https://github.com/agenticsnz/unsorry/pull/405) | 2026-06-14 |
 | [`sq-mod-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-mod-three.lean) | archived | 2 | binto-labs | binto | [#245](https://github.com/agenticsnz/unsorry/pull/245) | 2026-06-12 |
+| [`sum-range-choose-mul-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-choose-mul-two-pow.lean) | archived | 2 | p3-a1 | cgbarlow · `opus` | [#338](https://github.com/agenticsnz/unsorry/pull/338) | 2026-06-13 |
 | [`sum-range-cube-even`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-even.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#329](https://github.com/agenticsnz/unsorry/pull/329) | 2026-06-13 |
+| [`sum-range-cube-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-mul-choose.lean) | archived | 3 | p3-b1 | cgbarlow · `opus` | [#340](https://github.com/agenticsnz/unsorry/pull/340) | 2026-06-13 |
 | [`sum-range-cube-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-odd.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#254](https://github.com/agenticsnz/unsorry/pull/254) | 2026-06-12 |
+| [`sum-range-fall-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fall-mul-choose.lean) | archived | 3 | p3-a1 | cgbarlow · `opus` | [#339](https://github.com/agenticsnz/unsorry/pull/339) | 2026-06-13 |
+| [`sum-range-fib-even-index`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fib-even-index.lean) | archived | 3 | claude-rmt-001 | chat-bit-01 | [#408](https://github.com/agenticsnz/unsorry/pull/408) | 2026-06-14 |
+| [`sum-range-fib-odd-index`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fib-odd-index.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#406](https://github.com/agenticsnz/unsorry/pull/406) | 2026-06-14 |
 | [`sum-range-fib-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fib-sq.lean) | archived | 2 | binto-labs | binto | [#217](https://github.com/agenticsnz/unsorry/pull/217) | 2026-06-12 |
+| [`sum-range-id-eq-choose-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-eq-choose-two.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#403](https://github.com/agenticsnz/unsorry/pull/403) | 2026-06-14 |
 | [`sum-range-mul-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-mul-two-pow.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#251](https://github.com/agenticsnz/unsorry/pull/251) | 2026-06-12 |
 | [`sum-range-odd-eq-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-odd-eq-sq.lean) | archived | 1 | binto-labs | binto | [#214](https://github.com/agenticsnz/unsorry/pull/214) | 2026-06-12 |
 | [`sum-range-pentagonal-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pentagonal-closed-form.lean) | archived | 3 | claude-rmt-001 | chat-bit-01 | [#259](https://github.com/agenticsnz/unsorry/pull/259) | 2026-06-12 |
@@ -669,12 +651,15 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sum-range-pow-four-triangular-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-four-triangular-form.lean) | archived | 3 | p3-b1 | cgbarlow · `opus` | [#345](https://github.com/agenticsnz/unsorry/pull/345) | 2026-06-13 |
 | [`sum-range-pow-seven-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-seven-closed-form.lean) | archived | 4 | p3-a1 | cgbarlow · `opus` | [#346](https://github.com/agenticsnz/unsorry/pull/346) | 2026-06-13 |
 | [`sum-range-pow-seven-faulhaber-triangular`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-seven-faulhaber-triangular.lean) | archived | 4 | claude-rmt-001 | chat-bit-01 | [#413](https://github.com/agenticsnz/unsorry/pull/413) | 2026-06-14 |
+| [`sum-range-pow-six-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pow-six-closed-form.lean) | archived | 3 | p3-a1 | cgbarlow · `opus` | [#348](https://github.com/agenticsnz/unsorry/pull/348) | 2026-06-13 |
 | [`sum-range-pronic`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-pronic.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#250](https://github.com/agenticsnz/unsorry/pull/250) | 2026-06-12 |
 | [`sum-range-recip-pronic`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-recip-pronic.lean) | archived | 3 | claude-rmt-001 | chat-bit-01 | [#253](https://github.com/agenticsnz/unsorry/pull/253) | 2026-06-12 |
 | [`sum-range-recip-triangular`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-recip-triangular.lean) | archived | 3 | claude-rmt-001 | chat-bit-01 | [#409](https://github.com/agenticsnz/unsorry/pull/409) | 2026-06-14 |
 | [`sum-range-sq-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-closed-form.lean) | archived | 2 | binto-labs | binto | [#216](https://github.com/agenticsnz/unsorry/pull/216) | 2026-06-12 |
 | [`sum-range-sq-even`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-even.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#252](https://github.com/agenticsnz/unsorry/pull/252) | 2026-06-12 |
+| [`sum-range-sq-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-mul-choose.lean) | archived | 3 | claude-rmt-001 | chat-bit-01 | [#266](https://github.com/agenticsnz/unsorry/pull/266) | 2026-06-13 |
 | [`sum-range-sq-odd-closed-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-odd-closed-form.lean) | archived | 2 | p3-b1 | Chris Barlow | [#240](https://github.com/agenticsnz/unsorry/pull/240) | 2026-06-12 |
 | [`sum-range-sq-triangular-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-sq-triangular-form.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#335](https://github.com/agenticsnz/unsorry/pull/335) | 2026-06-13 |
+| [`sum-range-three-consecutive-product`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-three-consecutive-product.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#407](https://github.com/agenticsnz/unsorry/pull/407) | 2026-06-14 |
 | [`three-cubes-div-nine`](https://github.com/agenticsnz/unsorry/blob/main/goals/three-cubes-div-nine.lean) | archived | 2 | claude-rmt-001 | chat-bit-01 | [#249](https://github.com/agenticsnz/unsorry/pull/249) | 2026-06-13 |
 

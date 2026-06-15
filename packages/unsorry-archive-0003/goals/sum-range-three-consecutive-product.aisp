@@ -1,0 +1,20 @@
+𝔸5.1.goal.sum-range-three-consecutive-product@2026-06-13
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-range-three-consecutive-product
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/sum-range-three-consecutive-product.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-range-three-consecutive-product.lean
+  sha≜73f0b362862b8cf8fe7b0f581b8c1dba1ccf27a74c9f8572b14a492af5ae3cf8
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

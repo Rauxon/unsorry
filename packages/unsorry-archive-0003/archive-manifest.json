@@ -1,0 +1,140 @@
+{
+  "block_id": "unsorry-archive-0003",
+  "target_size": 40,
+  "proof_count": 30,
+  "status": "frozen",
+  "source_commit": "67e423eb1d7f18454a528d60e8ff4727f45b8d37",
+  "validation_commit": null,
+  "pins": {
+    "lean_toolchain": "leanprover/lean4:v4.30.0",
+    "mathlib": "v4.30.0"
+  },
+  "notes": [
+    "ADR-041 proof archive block 0003.",
+    "Whole decomposition trees + standalone proved goals only (split trees deferred).",
+    "Active goal records remain as archived metadata pointing at this package."
+  ],
+  "goals": [
+    {
+      "goal": "sum-range-sq-mul-choose",
+      "module": "Unsorry.SumRangeSqMulChoose"
+    },
+    {
+      "goal": "sum-range-fall-mul-choose",
+      "module": "Unsorry.SumRangeFallMulChoose"
+    },
+    {
+      "goal": "sum-range-cube-mul-choose",
+      "module": "Unsorry.SumRangeCubeMulChoose"
+    },
+    {
+      "goal": "sum-range-fib-even-index",
+      "module": "Unsorry.SumRangeFibEvenIndex"
+    },
+    {
+      "goal": "sum-range-fib-odd-index",
+      "module": "Unsorry.SumRangeFibOddIndex"
+    },
+    {
+      "goal": "sum-range-id-eq-choose-two",
+      "module": "Unsorry.SumRangeIdEqChooseTwo"
+    },
+    {
+      "goal": "sum-range-three-consecutive-product",
+      "module": "Unsorry.SumRangeThreeConsecutiveProduct"
+    },
+    {
+      "goal": "eight-triangular-add-one-eq-odd-sq",
+      "module": "Unsorry.EightTriangularAddOneEqOddSq"
+    },
+    {
+      "goal": "one-add-four-b-fourth-not-prime",
+      "module": "Unsorry.OneAddFourBFourthNotPrime"
+    },
+    {
+      "goal": "pow-four-add-sq-add-one-factor",
+      "module": "Unsorry.PowFourAddSqAddOneFactor"
+    },
+    {
+      "goal": "pow-four-add-sq-add-one-not-prime",
+      "module": "Unsorry.PowFourAddSqAddOneNotPrime"
+    },
+    {
+      "goal": "sum-range-choose-mul-two-pow",
+      "module": "Unsorry.SumRangeChooseMulTwoPow"
+    },
+    {
+      "goal": "consecutive-triangular-eq-square",
+      "module": "Unsorry.ConsecutiveTriangularEqSquare"
+    },
+    {
+      "goal": "sum-range-pow-six-closed-form",
+      "module": "Unsorry.SumRangePowSixClosedForm"
+    },
+    {
+      "goal": "cube-mod-four",
+      "module": "Unsorry.CubeModFour"
+    },
+    {
+      "goal": "cube-mod-seven",
+      "module": "Unsorry.CubeModSeven"
+    },
+    {
+      "goal": "cube-sum-ge-mul-sq",
+      "module": "Unsorry.CubeSumGeMulSq"
+    },
+    {
+      "goal": "forty-two-dvd-pow-seven-sub-self",
+      "module": "Unsorry.FortyTwoDvdPowSevenSubSelf"
+    },
+    {
+      "goal": "four-consecutive-product-add-one-square-s3",
+      "module": "Unsorry.FourConsecutiveProductAddOneSquareS3"
+    },
+    {
+      "goal": "four-consecutive-product-add-one-square-s1",
+      "module": "Unsorry.FourConsecutiveProductAddOneSquareS1"
+    },
+    {
+      "goal": "four-consecutive-product-add-one-square-s2",
+      "module": "Unsorry.FourConsecutiveProductAddOneSquareS2"
+    },
+    {
+      "goal": "four-consecutive-product-add-one-square",
+      "module": "Unsorry.FourConsecutiveProductAddOneSquare"
+    },
+    {
+      "goal": "gcd-n1-n4-dvd-three",
+      "module": "Unsorry.GcdN1N4DvdThree"
+    },
+    {
+      "goal": "gcd-self-add-dvd",
+      "module": "Unsorry.GcdSelfAddDvd"
+    },
+    {
+      "goal": "one-add-three-x-le-cube",
+      "module": "Unsorry.OneAddThreeXLeCube"
+    },
+    {
+      "goal": "one-add-two-x-le-sq",
+      "module": "Unsorry.OneAddTwoXLeSq"
+    },
+    {
+      "goal": "prod-pair-sums-ge-eight-mul",
+      "module": "Unsorry.ProdPairSumsGeEightMul"
+    },
+    {
+      "goal": "product-le-quarter-of-sum-one",
+      "module": "Unsorry.ProductLeQuarterOfSumOne"
+    },
+    {
+      "goal": "qm-am-three-var",
+      "module": "Unsorry.QmAmThreeVar"
+    },
+    {
+      "goal": "quartic-ge-cross",
+      "module": "Unsorry.QuarticGeCross"
+    }
+  ],
+  "deferred_groups": []
+}

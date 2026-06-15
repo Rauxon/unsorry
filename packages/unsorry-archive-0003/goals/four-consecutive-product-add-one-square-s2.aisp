@@ -1,0 +1,21 @@
+𝔸5.1.goal.four-consecutive-product-add-one-square-s2@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜four-consecutive-product-add-one-square-s2
+  phase≜prove
+  status≜proved
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜decompositions/four-consecutive-product-add-one-square.d337a70018c9-90fd.aisp
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/four-consecutive-product-add-one-square-s2.lean
+  sha≜0267f22a7eeb9ef0015673c705e448865011d81469b2e892d4b1051cfb0ae578
+  aff≜1
+  depth≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

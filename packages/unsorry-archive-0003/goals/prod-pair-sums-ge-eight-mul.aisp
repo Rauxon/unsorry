@@ -1,0 +1,20 @@
+𝔸5.1.goal.prod-pair-sums-ge-eight-mul@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜prod-pair-sums-ge-eight-mul
+  phase≜prove
+  status≜proved
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/prod-pair-sums-ge-eight-mul.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/prod-pair-sums-ge-eight-mul.lean
+  sha≜ffc945c757edeceaffc1ca0ac4c73cb8cf6da4c56bc2f87678d6889b79723bbf
+  aff≜-9
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

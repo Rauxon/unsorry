@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-pow-six-closed-form
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-pow-six-closed-form.md
+  src≜packages/unsorry-archive-0003/backlog/sum-range-pow-six-closed-form.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-pow-six-closed-form.lean
+  lean≜packages/unsorry-archive-0003/goals/sum-range-pow-six-closed-form.lean
   sha≜76c42f425f31999ea0ce4f4b0833a682bb80a0ca706cd1fa0d106a2714a28bf3
   aff≜1
 }

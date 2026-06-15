@@ -1,12 +1,12 @@
 {
   "contributors": [
     {
-      "attempt_yield": 0.2989,
+      "attempt_yield": 0.2674,
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
       "badges": {
         "difficulty": 168,
         "proofs": 98,
-        "success_rate_percent": 33.33
+        "success_rate_percent": 29.49
       },
       "credit_source_summary": "explicit + inferred",
       "credit_sources": [
@@ -17,17 +17,17 @@
       "difficulty_points": 168,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 52,
-      "failed_attempts": 129,
+      "failed_attempts": 126,
       "github": "cgbarlow",
       "inferred_git_proofs": 46,
       "median_solve_s": 295,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 1,
-      "run_success_rate": 0.3333,
-      "runs": 165,
+      "run_success_rate": 0.2949,
+      "runs": 156,
       "score": 19250,
       "solver": "cgbarlow",
-      "successes": 55,
+      "successes": 46,
       "verified_proofs": 98
     },
     {
@@ -60,12 +60,12 @@
       "verified_proofs": 52
     },
     {
-      "attempt_yield": 0.4375,
+      "attempt_yield": 0.4,
       "avatar_url": "https://github.com/perttu.png?size=96",
       "badges": {
         "difficulty": 35,
         "proofs": 17,
-        "success_rate_percent": 72.41
+        "success_rate_percent": 69.23
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
@@ -78,14 +78,14 @@
       "failed_attempts": 27,
       "github": "perttu",
       "inferred_git_proofs": 0,
-      "median_solve_s": 396,
+      "median_solve_s": 435,
       "profile_url": "https://github.com/perttu",
       "rank": 3,
-      "run_success_rate": 0.7241,
-      "runs": 29,
+      "run_success_rate": 0.6923,
+      "runs": 26,
       "score": 3925,
       "solver": "perttu",
-      "successes": 21,
+      "successes": 18,
       "verified_proofs": 17
     },
     {
@@ -345,14 +345,14 @@
   "models": [
     {
       "provider_model": "claude / opus",
-      "run_success_rate": 0.9388,
-      "runs": 49,
+      "run_success_rate": 0.925,
+      "runs": 40,
       "verified_proofs": 42
     },
     {
       "provider_model": "codex / unknown",
-      "run_success_rate": 0.2791,
-      "runs": 43,
+      "run_success_rate": 0.225,
+      "runs": 40,
       "verified_proofs": 12
     },
     {
@@ -410,8 +410,8 @@
     "historical_contributors": 8,
     "historical_unknown_proofs": 112,
     "inferred_git_proofs": 112,
-    "proof_run_coverage": 0.4202,
-    "terminal_runs": 223,
+    "proof_run_coverage": 0.3564,
+    "terminal_runs": 211,
     "uncredited_proofs": 0,
     "verified_proofs": 188
   },

@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-id-eq-choose-two
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-id-eq-choose-two.md
+  src≜packages/unsorry-archive-0003/backlog/sum-range-id-eq-choose-two.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-id-eq-choose-two.lean
+  lean≜packages/unsorry-archive-0003/goals/sum-range-id-eq-choose-two.lean
   sha≜d43768f14f5aa0d810d413dca0142de3ccd135597bb3a2ca2a7ba6478e4cc805
   aff≜1
 }

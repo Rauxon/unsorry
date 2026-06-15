@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜four-consecutive-product-add-one-square
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/four-consecutive-product-add-one-square.md
+  src≜packages/unsorry-archive-0003/backlog/four-consecutive-product-add-one-square.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/four-consecutive-product-add-one-square.lean
+  lean≜packages/unsorry-archive-0003/goals/four-consecutive-product-add-one-square.lean
   sha≜da8ee4792c508c4e679a8988260b2db365638b386ffa9f6809ced9f512fb45db
   aff≜-4
 }

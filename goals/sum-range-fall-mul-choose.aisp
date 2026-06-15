@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-fall-mul-choose
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-fall-mul-choose.md
+  src≜packages/unsorry-archive-0003/backlog/sum-range-fall-mul-choose.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨sum-range-sq-mul-choose⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-fall-mul-choose.lean
+  lean≜packages/unsorry-archive-0003/goals/sum-range-fall-mul-choose.lean
   sha≜fba4b11273e5be9bd1215fde938c46d5f51efe2d71964a65d7fe9b3b57293249
   aff≜1
 }

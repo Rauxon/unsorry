@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-range-fib-odd-index
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-range-fib-odd-index.md
+  src≜packages/unsorry-archive-0003/backlog/sum-range-fib-odd-index.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-range-fib-odd-index.lean
+  lean≜packages/unsorry-archive-0003/goals/sum-range-fib-odd-index.lean
   sha≜6e84794efc3f9334cc39c5068f8daf7113472961af73cee6fa34ccbeb02e88ee
   aff≜1
 }
