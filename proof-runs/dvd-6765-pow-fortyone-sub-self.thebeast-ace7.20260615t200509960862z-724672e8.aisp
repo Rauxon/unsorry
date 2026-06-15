@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-6765-pow-fortyone-sub-self.thebeast-ace7.20260615t200509960862z-724672e8@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t200509960862z-724672e8; goal≜dvd-6765-pow-fortyone-sub-self; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜dvd-6765-pow-fortyone-sub-self}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜632; ended≜2026-06-15T20:05:09Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8546/8571] Built Unsorry.GcdN1N7DvdSix (57s) ✔ [8547/8571] Built Unsorry.CoprimeNSqNAddOne (59s) ✔ [8548/8571] Built Unsorry.NoNatSqEqTwoMulSqS4 (61s) ✔ [8549/8571] Built Unsorry.FourVarQmAmS3 (63s) ✔ [8550/8571] Built Unsorry.GcdN2N8DvdSix (65s) ✔ [8551/8571] Built Unsorry.Am}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
