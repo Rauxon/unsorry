@@ -284,7 +284,11 @@ jobs:
     needs: [detect, gate_a_prepare]
     if: needs.detect.outputs.active == 'true'
     runs-on: ${{ needs.detect.outputs.profile }}
-    timeout-minutes: 60
+    # 120m (not 60m): a FULL replay (push-to-main backstop, or toolchain/dep
+    # change) is serial on a memory-bound runner and needs the headroom to
+    # finish rather than time out (ADR-047). Incremental PR replays finish in
+    # seconds. Matches ADR-047/#748.
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
