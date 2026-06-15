@@ -6,7 +6,7 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**251 goals — 113 open · 8 blocked · 10 translated · 40 proved · 80 archived.** 12 decomposition families shown below; standalone goals are listed in the table.
+**254 goals — 115 open · 9 blocked · 10 translated · 40 proved · 80 archived.** 13 decomposition families shown below; standalone goals are listed in the table.
 
 Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (36 of 40 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
@@ -49,6 +49,18 @@ flowchart LR
   g_cube_sum_ge_three_prod_s3["cube-sum-ge-three-prod-s3"]
   class g_cube_sum_ge_three_prod_s3 proved;
   click g_cube_sum_ge_three_prod_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod-s3.lean" "cube-sum-ge-three-prod-s3 — proved"
+  g_discriminant_nonneg["discriminant-nonneg"]
+  class g_discriminant_nonneg blocked;
+  click g_discriminant_nonneg "https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg.lean" "discriminant-nonneg — blocked"
+  g_discriminant_nonneg_s1["discriminant-nonneg-s1"]
+  class g_discriminant_nonneg_s1 open;
+  click g_discriminant_nonneg_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg-s1.lean" "discriminant-nonneg-s1 — open"
+  g_discriminant_nonneg_s2["discriminant-nonneg-s2"]
+  class g_discriminant_nonneg_s2 open;
+  click g_discriminant_nonneg_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg-s2.lean" "discriminant-nonneg-s2 — open"
+  g_discriminant_nonneg_s3["discriminant-nonneg-s3"]
+  class g_discriminant_nonneg_s3 open;
+  click g_discriminant_nonneg_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg-s3.lean" "discriminant-nonneg-s3 — open"
   g_four_consecutive_product_add_one_square["four-consecutive-product-add-one-square"]
   class g_four_consecutive_product_add_one_square open;
   click g_four_consecutive_product_add_one_square "https://github.com/agenticsnz/unsorry/blob/main/goals/four-consecutive-product-add-one-square.lean" "four-consecutive-product-add-one-square — open"
@@ -161,6 +173,9 @@ flowchart LR
   g_cube_sum_ge_three_prod --> g_cube_sum_ge_three_prod_s1
   g_cube_sum_ge_three_prod --> g_cube_sum_ge_three_prod_s2
   g_cube_sum_ge_three_prod --> g_cube_sum_ge_three_prod_s3
+  g_discriminant_nonneg --> g_discriminant_nonneg_s1
+  g_discriminant_nonneg --> g_discriminant_nonneg_s2
+  g_discriminant_nonneg --> g_discriminant_nonneg_s3
   g_four_consecutive_product_add_one_square --> g_four_consecutive_product_add_one_square_s1
   g_four_consecutive_product_add_one_square --> g_four_consecutive_product_add_one_square_s2
   g_four_consecutive_product_add_one_square --> g_four_consecutive_product_add_one_square_s3
@@ -212,7 +227,9 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`cube-sum-ge-mul-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-mul-sq.lean) | open | 2 | — | — | — | — |
 | [`cube-sum-ge-three-prod-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod-s1.lean) | open | 1 | — | — | — | — |
 | [`cube-sum-ge-three-prod-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod-s2.lean) | open | 1 | — | — | — | — |
-| [`discriminant-nonneg`](https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg.lean) | open | 3 | — | — | — | — |
+| [`discriminant-nonneg-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg-s1.lean) | open | 1 | — | — | — | — |
+| [`discriminant-nonneg-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg-s2.lean) | open | 1 | — | — | — | — |
+| [`discriminant-nonneg-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg-s3.lean) | open | 1 | — | — | — | — |
 | [`dvd-2730-pow-thirteen-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-2730-pow-thirteen-sub-self.lean) | open | 4 | — | — | — | — |
 | [`dvd-30-pow-nine-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-30-pow-nine-sub-self.lean) | open | 3 | — | — | — | — |
 | [`dvd-66-pow-eleven-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-66-pow-eleven-sub-self.lean) | open | 3 | — | — | — | — |
@@ -312,6 +329,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`am-gm-three-cube`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube.lean) | blocked | 3 | — | — | — | — |
 | [`am-gm-three-cube-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2.lean) | blocked | 1 | — | — | — | — |
 | [`cube-sum-ge-three-prod`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod.lean) | blocked | 2 | — | — | — | — |
+| [`discriminant-nonneg`](https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg.lean) | blocked | 3 | — | — | — | — |
 | [`nat-sq-lt-two-pow-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2.lean) | blocked | 1 | — | — | — | — |
 | [`nesbitt-inequality`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality.lean) | blocked | 4 | — | — | — | — |
 | [`no-nat-sq-eq-two-mul-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq.lean) | blocked | 4 | — | — | — | — |
