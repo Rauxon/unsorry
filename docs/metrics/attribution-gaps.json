@@ -67,6 +67,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "Chris Barlow",
+      "git_add_commit": "d2175dd91964dbe1219b91ec925c0f22bb9d8bbc",
+      "git_add_date": "2026-06-15",
+      "git_author": "Chris Barlow <cgbarlow@gmail.com>",
+      "git_author_name": "Chris Barlow",
+      "goal": "fourth-power-mod-thirteen-mem",
+      "mapped_github": "cgbarlow",
+      "path": "library/index/1bc3dadfe05a2508701b10862c907d2d0cc1275ed8c60997d705cf50226bea49.aisp",
+      "review_status": "candidate",
+      "sha": "1bc3dadfe05a2508701b10862c907d2d0cc1275ed8c60997d705cf50226bea49"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-14",
       "difficulty": 2,
       "display_name": "chat-bit-01",
@@ -1704,9 +1719,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 113,
-    "mapped_missing_solver": 109,
-    "missing_solver_provenance": 113,
+    "git_attributed_missing_solver": 114,
+    "mapped_missing_solver": 110,
+    "missing_solver_provenance": 114,
     "unmapped_missing_solver": 4
   }
 }
