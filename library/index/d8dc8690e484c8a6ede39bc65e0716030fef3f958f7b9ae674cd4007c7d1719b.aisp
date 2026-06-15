@@ -1,0 +1,8 @@
+𝔸5.1.lemma.d8dc8690e484@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜d8dc8690e484c8a6ede39bc65e0716030fef3f958f7b9ae674cd4007c7d1719b; goal≜dvd-330-pow-twentyone-sub-self; name≜dvd_330_pow_twentyone_sub_self}
+⟦Σ:Source⟧{src≜goals/dvd-330-pow-twentyone-sub-self.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜396}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
