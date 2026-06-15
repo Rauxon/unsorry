@@ -4,9 +4,9 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
 
 - [ ] `sum_range_fall_three_mul_choose` — The sum over k of the third falling factorial of k times C(n,k), scaled by 8, equals n(n-1)(n-2) times 2^n
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ plus Nat.succ_mul_choose_eq absorption; companion to the existing degree-2 falling goal · conf: med
-- [ ] `sum_range_k_plus_one_mul_choose` — Twice the sum of (k+1)·C(n,k) over k equals (n+2)·2^n
+- [x] `sum_range_k_plus_one_mul_choose` — Twice the sum of (k+1)·C(n,k) over k equals (n+2)·2^n
       absence: no-local-match · triviality: non-trivial · intended: Split (k+1)·C(n,k) into k·C(n,k)+C(n,k) and use sum_range_mul_choose and sum_range_choose · conf: high
-- [ ] `sum_range_shifted_choose_eq_two_pow_sub_one` — The sum of the shifted binomial coefficients C(n+1,k+1) for k from 0 to n equals 2^(n+1) minus 1
+- [x] `sum_range_shifted_choose_eq_two_pow_sub_one` — The sum of the shifted binomial coefficients C(n+1,k+1) for k from 0 to n equals 2^(n+1) minus 1
       absence: no-local-match · triviality: non-trivial · intended: Reindex against sum_range_choose for n+1, peeling off the C(n+1,0)=1 term · conf: high
 - [ ] `alternating_sum_k_mul_choose_eq_zero` — For n at least 2 the alternating sum of k·C(n,k) over k is zero
       absence: no-local-match · triviality: non-trivial · intended: Rewrite k·C(n,k)=n·C(n-1,k-1), factor out n, reindex, then apply Int.alternating_sum_range_choose · conf: med

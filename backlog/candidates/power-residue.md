@@ -2,15 +2,15 @@
 
 Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates — each **absence-clean** (no name/content match in pinned mathlib `c5ea00351c` or our goal set) and screened **non-trivial** (ADR-035 battery). The expensive gates (intended proof compiling under `lake env lean` + adversarial skeptic) run at promotion. Scoped 2026-06-15.
 
-- [ ] `sq_mod_eight_mem` — Every natural number's square leaves remainder 0, 1, or 4 when divided by 8
+- [x] `sq_mod_eight_mem` — Every natural number's square leaves remainder 0, 1, or 4 when divided by 8
       absence: no-local-match · triviality: non-trivial · intended: omega-on (n % 8) after Nat.pow_mod, then decide over the 8 residues · conf: high
-- [ ] `sq_mod_sixteen_mem` — Every natural number's square is congruent to 0, 1, 4, or 9 modulo 16
+- [x] `sq_mod_sixteen_mem` — Every natural number's square is congruent to 0, 1, 4, or 9 modulo 16
       absence: no-local-match · triviality: non-trivial · intended: rewrite n^2%16 via Nat.pow_mod, case-split on n%16 with decide/omega · conf: high
-- [ ] `sq_mod_eleven_mem` — The quadratic residues modulo 11 are exactly {0,1,3,4,5,9}
+- [x] `sq_mod_eleven_mem` — The quadratic residues modulo 11 are exactly {0,1,3,4,5,9}
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over residues 0..10 · conf: high
 - [ ] `sq_mod_thirteen_mem` — The quadratic residues modulo 13 are exactly {0,1,3,4,9,10,12}
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n%13, decide each branch · conf: high
-- [ ] `sq_mod_twelve_mem` — Every natural number's square is congruent to 0, 1, 4, or 9 modulo 12
+- [x] `sq_mod_twelve_mem` — Every natural number's square is congruent to 0, 1, 4, or 9 modulo 12
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over the 12 residue classes · conf: high
 - [ ] `sq_mod_twentyfour_mem` — The squares modulo 24 fall in exactly {0,1,4,9,12,16}
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n%24, decide each of 24 branches · conf: high
@@ -22,7 +22,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over residues 0..16 · conf: high
 - [ ] `fourth_power_mod_twentynine_mem` — The fourth-power residues modulo 29 are exactly {0,1,7,16,20,23,24,25}
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n%29, decide each of 29 branches · conf: med
-- [ ] `fourth_power_mod_sixteen_mem` — Every natural number's fourth power is congruent to 0 or 1 modulo 16
+- [x] `fourth_power_mod_sixteen_mem` — Every natural number's fourth power is congruent to 0 or 1 modulo 16
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod then decide over residues 0..15 (unconditional, unlike the Odd-only version) · conf: high
 - [ ] `fifth_power_mod_twentyfive_mem` — The fifth-power residues modulo 25 are exactly {0,1,7,18,24}
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n%25, decide each branch · conf: high

@@ -2,21 +2,21 @@
 
 Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates — each **absence-clean** (no name/content match in pinned mathlib `c5ea00351c` or our goal set) and screened **non-trivial** (ADR-035 battery). The expensive gates (intended proof compiling under `lake env lean` + adversarial skeptic) run at promotion. Scoped 2026-06-15.
 
-- [ ] `sum_centered_hexagonal_eq_cube` — The sum of the first n centered hexagonal numbers equals n cubed
+- [x] `sum_centered_hexagonal_eq_cube` — The sum of the first n centered hexagonal numbers equals n cubed
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ, then ring · conf: high
-- [ ] `sum_centered_cube_eq_biquadratic` — Twice the sum over k<n of k^3+(k+1)^3 equals n^2 times (n^2+1)
+- [x] `sum_centered_cube_eq_biquadratic` — Twice the sum over k<n of k^3+(k+1)^3 equals n^2 times (n^2+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes the step · conf: high
 - [ ] `sum_octahedral_centered_squares` — Three times the sum of the first n centered-square numbers is n times (2n^2+1), the octahedral closed form
       absence: no-local-match · triviality: non-trivial · intended: Induction on n; Finset.sum_range_succ then nlinarith handling Nat subtraction · conf: high
-- [ ] `sum_odd_squares_faulhaber` — Three times the sum of the first n odd squares equals n(2n-1)(2n+1)
+- [x] `sum_odd_squares_faulhaber` — Three times the sum of the first n odd squares equals n(2n-1)(2n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; nlinarith to close with the Nat subtraction · conf: high
 - [ ] `sum_odd_cubes_eq_biquadratic` — The sum of the first n odd cubes equals n^2 times (2n^2-1)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n; Finset.sum_range_succ then nlinarith for the (2n^2-1) Nat-subtraction step · conf: high
 - [ ] `sum_star_numbers_closed_form` — The sum of the first n star numbers equals n times (2n^2-1)
       absence: no-local-match · triviality: non-trivial · intended: Induction; Finset.sum_range_succ then nlinarith over Nat subtraction terms · conf: high
-- [ ] `sum_k_sq_mul_succ_closed_form` — Twelve times the sum of k^2(k+1) over k up to n equals n(n+1)(n+2)(3n+1)
+- [x] `sum_k_sq_mul_succ_closed_form` — Twelve times the sum of k^2(k+1) over k up to n equals n(n+1)(n+2)(3n+1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes the step · conf: high
-- [ ] `sum_quadruple_product_closed_form` — Five times the sum of four consecutive integer products equals the five-term product n through n+4
+- [x] `sum_quadruple_product_closed_form` — Five times the sum of four consecutive integer products equals the five-term product n through n+4
       absence: no-local-match · triviality: non-trivial · intended: Telescoping induction via Finset.sum_range_succ; ring · conf: high
 - [ ] `sum_pentatope_triple_product` — Four times the sum of three consecutive integer products equals n(n+1)(n+2)(n+3), the pentatope closed form
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring · conf: high

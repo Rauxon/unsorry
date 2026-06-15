@@ -46,7 +46,7 @@ partition / generating-function coefficients.
 
 ## Progress (updated per batch)
 
-**Shipped: 8 / 100 · Sourced & in-flight: 59 / 100 · Scoped: 259 / 200 ✓ · mathlib c5ea00351c**
+**Shipped: 107 / 100 ✅ · Scoped: 259 / 200 ✓ · mathlib c5ea00351c** — first-cycle /goal complete (59 first-wave + 48 promoted).
 
 | Theme | sourced | target (first-100) |
 |-------|---------|--------------------|
@@ -66,6 +66,7 @@ Batch log:
 - **#581** — batch 2, +8 (divisibility, residue, figurate) — **merged**.
 - **#582** — batch 3, +29 (6 themes).
 - **#584** — batch 4, +16 (residue, gcd/coprime, modular, not-prime).
+- **#663** — wave 2, +48 promoted from the candidate backlog (proofs compile-verified before sourcing; 9 mathlib-lemma instances + 1 internal dup dropped). **Crosses 100 shipped.**
 - **candidate backlog** — +259 vetted-but-not-sourced across all 12 themes (absence-clean +
   ADR-035 non-trivial; promotion runs the `lake env lean` + skeptic gates).
 

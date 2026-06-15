@@ -2,7 +2,7 @@
 
 Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates — each **absence-clean** (no name/content match in pinned mathlib `c5ea00351c` or our goal set) and screened **non-trivial** (ADR-035 battery). The expensive gates (intended proof compiling under `lake env lean` + adversarial skeptic) run at promotion. Scoped 2026-06-15.
 
-- [ ] `three_cubes_minus_three_prod_dvd_sum` — The sum a+b+c divides the symmetric expression a cubed plus b cubed plus c cubed minus three times abc
+- [x] `three_cubes_minus_three_prod_dvd_sum` — The sum a+b+c divides the symmetric expression a cubed plus b cubed plus c cubed minus three times abc
       absence: no-local-match · triviality: non-trivial · intended: Provide the cofactor a^2+b^2+c^2-ab-bc-ca as a Dvd witness, then close with ring · conf: high
 - [ ] `diff_fifth_power_dvd_by_diff` — The difference a minus b divides the difference of fifth powers a^5 minus b^5
       absence: no-local-match · triviality: non-trivial · intended: Exhibit a^4+a^3 b+a^2 b^2+a b^3+b^4 as the explicit Dvd witness and discharge with ring · conf: high

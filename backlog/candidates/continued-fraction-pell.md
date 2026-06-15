@@ -2,15 +2,15 @@
 
 Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates — each **absence-clean** (no name/content match in pinned mathlib `c5ea00351c` or our goal set) and screened **non-trivial** (ADR-035 battery). The expensive gates (intended proof compiling under `lake env lean` + adversarial skeptic) run at promotion. Scoped 2026-06-15.
 
-- [ ] `pell_d2_ladder_step_preserves` — Applying the fundamental Pell ladder map (x,y) ↦ (3x+4y, 2x+3y) to any solution of x²−2y²=1 yields another solution
+- [x] `pell_d2_ladder_step_preserves` — Applying the fundamental Pell ladder map (x,y) ↦ (3x+4y, 2x+3y) to any solution of x²−2y²=1 yields another solution
       absence: no-local-match · triviality: non-trivial · intended: linear_combination using the hypothesis after ring-normalising the expanded square · conf: high
-- [ ] `pell_d3_ladder_step_preserves` — The d=3 fundamental ladder map (x,y) ↦ (2x+3y, x+2y) sends each solution of x²−3y²=1 to another solution
+- [x] `pell_d3_ladder_step_preserves` — The d=3 fundamental ladder map (x,y) ↦ (2x+3y, x+2y) sends each solution of x²−3y²=1 to another solution
       absence: no-local-match · triviality: non-trivial · intended: linear_combination h; ring closes the residual · conf: high
-- [ ] `pell_d5_ladder_step_preserves` — The d=5 fundamental ladder map (x,y) ↦ (9x+20y, 4x+9y) preserves the Pell relation x²−5y²=1
+- [x] `pell_d5_ladder_step_preserves` — The d=5 fundamental ladder map (x,y) ↦ (9x+20y, 4x+9y) preserves the Pell relation x²−5y²=1
       absence: no-local-match · triviality: non-trivial · intended: linear_combination h after expanding the two squares · conf: high
-- [ ] `pell_d2_negative_to_positive_step` — One half-step (x,y) ↦ (x+2y, x+y) turns a solution of the negative Pell equation x²−2y²=−1 into a solution of x²−2y²=1
+- [x] `pell_d2_negative_to_positive_step` — One half-step (x,y) ↦ (x+2y, x+y) turns a solution of the negative Pell equation x²−2y²=−1 into a solution of x²−2y²=1
       absence: no-local-match · triviality: non-trivial · intended: the map negates the form value: linear_combination -h · conf: high
-- [ ] `pell_d2_positive_to_negative_step` — The same half-step (x,y) ↦ (x+2y, x+y) sends a solution of x²−2y²=1 to a solution of the negative Pell equation x²−2y²=−1
+- [x] `pell_d2_positive_to_negative_step` — The same half-step (x,y) ↦ (x+2y, x+y) sends a solution of x²−2y²=1 to a solution of the negative Pell equation x²−2y²=−1
       absence: no-local-match · triviality: non-trivial · intended: linear_combination -h; ring residual vanishes · conf: high
 - [ ] `pell_brahmagupta_composition_d2` — Brahmagupta composition: multiplying two solutions of x²−2y²=1 via (ac+2be, ae+bc) gives another solution
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [h1, h2] or linear_combination c^2*h1 + ... ; the product of the two relations equals the goal LHS · conf: high

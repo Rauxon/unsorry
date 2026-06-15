@@ -22,15 +22,15 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 252, x^8 - x^2 = 0 by decide; transfer lemma. 252 = 2^2·3^2·7 · conf: high
 - [ ] `dvd_240_pow_eight_sub_pow_four` — 240 divides n^8 minus n^4 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 240, x^8 - x^4 = 0 by decide; transfer via intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_sixty_pow_six_sub_sq` — 60 divides n^6 minus n^2 for every integer n
+- [x] `dvd_sixty_pow_six_sub_sq` — 60 divides n^6 minus n^2 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 60, x^6 - x^2 = 0 by decide; transfer lemma. 60 = 2^2·3·5 · conf: high
-- [ ] `dvd_sixty_pow_ten_sub_sq` — 60 divides n^10 minus n^2 for every integer n
+- [x] `dvd_sixty_pow_ten_sub_sq` — 60 divides n^10 minus n^2 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 60, x^10 - x^2 = 0 by decide; transfer via intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_twentyfour_pow_seven_sub_pow_five` — 24 divides n^7 minus n^5 for every integer n
+- [x] `dvd_twentyfour_pow_seven_sub_pow_five` — 24 divides n^7 minus n^5 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 24, x^7 - x^5 = 0 by decide; transfer lemma (small modulus, fast decide) · conf: high
-- [ ] `dvd_twentyfour_pow_six_sub_pow_four` — 24 divides n^6 minus n^4 for every integer n
+- [x] `dvd_twentyfour_pow_six_sub_pow_four` — 24 divides n^6 minus n^4 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 24, x^6 - x^4 = 0 by decide; transfer via intCast_zmod_eq_zero_iff_dvd · conf: high
-- [ ] `dvd_twentyfour_pow_five_sub_pow_three` — 24 divides n^5 minus n^3 for every integer n
+- [x] `dvd_twentyfour_pow_five_sub_pow_three` — 24 divides n^5 minus n^3 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 24, x^5 - x^3 = 0 by decide; transfer lemma · conf: high
 - [ ] `dvd_5040_seven_consecutive_product` — 5040 (=7!) divides n·(n^2-1)·(n^2-4)·(n^2-9), the product of seven consecutive integers centred at n
       absence: no-local-match · triviality: non-trivial · intended: ∀ x : ZMod 5040, x*(x^2-1)*(x^2-4)*(x^2-9)=0 by decide (needs set_option maxRecDepth 100000, build-verified); transfer lemma · conf: med

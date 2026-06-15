@@ -8,17 +8,17 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a-b) etc. weighted by a,b,c via mul_nonneg · conf: med
 - [ ] `ravi_amgm_product_le` — Under triangle-like nonnegativity of the Ravi substitutions, the product (a+b-c)(b+c-a)(c+a-b) is at most abc
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a-b),(b-c),(c-a) and mul_nonneg of the hypotheses · conf: med
-- [ ] `sum_recip_times_sum_ge_nine` — For positive reals, (a+b+c)(1/a+1/b+1/c) is at least 9 (Cauchy-Schwarz / AM-HM corollary)
+- [x] `sum_recip_times_sum_ge_nine` — For positive reals, (a+b+c)(1/a+1/b+1/c) is at least 9 (Cauchy-Schwarz / AM-HM corollary)
       absence: no-local-match · triviality: non-trivial · intended: clear denominators via field_simp, then nlinarith with sq_nonneg of pairwise differences · conf: high
 - [ ] `cyclic_square_times_ge_product_sum` — The product of the sum of squares and the pairwise-product sum dominates 3abc(a+b+c)
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg combinations and mul_nonneg a,b,c times sq_nonneg differences · conf: med
-- [ ] `cyclic_quad_ge_abc_times_sum` — The sum of squared pairwise products dominates abc(a+b+c) for all reals
+- [x] `cyclic_quad_ge_abc_times_sum` — The sum of squared pairwise products dominates abc(a+b+c) for all reals
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a*b - b*c), sq_nonneg (b*c - c*a), sq_nonneg (c*a - a*b) · conf: high
 - [ ] `power_mean_cube_three_var` — For nonnegative reals, the cube of the sum is at most nine times the sum of cubes
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with mul_nonneg of a,b,c against sq_nonneg of pairwise differences · conf: med
-- [ ] `sum_sq_ge_third_sq_sum` — The mean-square form: one third of the squared sum is at most the sum of squares (QM-AM in fractional form)
+- [x] `sum_sq_ge_third_sq_sum` — The mean-square form: one third of the squared sum is at most the sum of squares (QM-AM in fractional form)
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a) · conf: high
-- [ ] `amgm_four_cross_three_var` — The sum of fourth powers dominates the sum of squared pairwise products
+- [x] `amgm_four_cross_three_var` — The sum of fourth powers dominates the sum of squared pairwise products
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a^2 - b^2), sq_nonneg (b^2 - c^2), sq_nonneg (c^2 - a^2) · conf: high
 - [ ] `tangent_line_cube_trick` — The tangent-line bound at x=1 for the cube: 3x is at most x cubed plus two for nonnegative x
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (x-1) and mul_nonneg hx (sq_nonneg (x-1)) to capture the (x-1)^2(x+2) factorisation · conf: high
@@ -38,7 +38,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a^2 - a*b) style hints plus sq_nonneg of differences scaled by nonneg vars · conf: med
 - [ ] `cyclic_square_cross_le_cube_sum` — For nonnegative reals the cyclic squared-cross sum is at most the sum of cubes
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with mul_nonneg ha (sq_nonneg (a-b)) and the two cyclic analogues · conf: med
-- [ ] `shifted_sum_sq_ge_twice_sum_three_var` — Each variable's square plus one dominates twice the variable, summed over three variables
+- [x] `shifted_sum_sq_ge_twice_sum_three_var` — Each variable's square plus one dominates twice the variable, summed over three variables
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a-1), sq_nonneg (b-1), sq_nonneg (c-1) · conf: high
 - [ ] `amgm_prod_le_cube_of_third_sum` — The three-variable AM-GM in cube form: 27abc is at most the cube of the sum for nonnegative reals
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with mul_nonneg products of a,b,c against sq_nonneg pairwise differences (Schur-assisted SOS) · conf: med

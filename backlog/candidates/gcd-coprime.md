@@ -2,15 +2,15 @@
 
 Theme staging file for the Identity Engine (#400, ADR-043). 23 vetted candidates — each **absence-clean** (no name/content match in pinned mathlib `c5ea00351c` or our goal set) and screened **non-trivial** (ADR-035 battery). The expensive gates (intended proof compiling under `lake env lean` + adversarial skeptic) run at promotion. Scoped 2026-06-15.
 
-- [ ] `coprime_n_sq_n_add_one` — n is coprime to n squared plus n plus one
+- [x] `coprime_n_sq_n_add_one` — n is coprime to n squared plus n plus one
       absence: no-local-match · triviality: non-trivial · intended: Rewrite n^2+n+1 = n*(n+1)+1 and reduce gcd via Nat.Coprime / gcd_add_mul_right to gcd n 1 = 1 · conf: high
-- [ ] `coprime_2n1_3n2` — 2n+1 and 3n+2 are always coprime
+- [x] `coprime_2n1_3n2` — 2n+1 and 3n+2 are always coprime
       absence: no-local-match · triviality: non-trivial · intended: Bezout: 3*(2n+1) - 2*(3n+2) = -1, so any common divisor divides 1; reduce gcd by subtraction · conf: high
-- [ ] `coprime_2n1_2n3` — Two consecutive odd numbers 2n+1 and 2n+3 are coprime
+- [x] `coprime_2n1_2n3` — Two consecutive odd numbers 2n+1 and 2n+3 are coprime
       absence: no-local-match · triviality: non-trivial · intended: Common divisor divides their difference 2 and an odd number, so divides gcd(2,odd)=1; gcd_rec reduction · conf: high
-- [ ] `coprime_3n1_4n1` — 3n+1 and 4n+1 are always coprime
+- [x] `coprime_3n1_4n1` — 3n+1 and 4n+1 are always coprime
       absence: no-local-match · triviality: non-trivial · intended: 4*(3n+1) - 3*(4n+1) = 1, so the gcd divides 1; reduce via Nat.Coprime gcd subtraction lemmas · conf: high
-- [ ] `coprime_n_cube_add_one` — n is coprime to n cubed plus one
+- [x] `coprime_n_cube_add_one` — n is coprime to n cubed plus one
       absence: no-local-match · triviality: non-trivial · intended: n^3+1 = n*n^2 + 1, so gcd n (n*n^2+1) = gcd n 1 = 1 via the add-multiple gcd reduction · conf: high
 - [ ] `coprime_nsq1_n1` — If n squared plus one is coprime to n plus one then n is odd
       absence: no-local-match · triviality: non-trivial · intended: n^2+1 ≡ 2 mod (n+1) since n ≡ -1, so coprimality forces n+1 odd; contrapose on parity via ZMod/omega · conf: high
