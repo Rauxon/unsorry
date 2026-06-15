@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜two-abs-le-sq-add-one
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/two-abs-le-sq-add-one.md
+  src≜packages/unsorry-archive-0004/backlog/two-abs-le-sq-add-one.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/two-abs-le-sq-add-one.lean
+  lean≜packages/unsorry-archive-0004/goals/two-abs-le-sq-add-one.lean
   sha≜13d28b91462f78fc8cfe3a6b8f8b0be4d09f5d37e697f3647003b59827d45ec7
   aff≜1
 }

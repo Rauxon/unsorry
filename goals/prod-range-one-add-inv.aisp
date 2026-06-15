@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜prod-range-one-add-inv
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/prod-range-one-add-inv.md
+  src≜packages/unsorry-archive-0004/backlog/prod-range-one-add-inv.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/prod-range-one-add-inv.lean
+  lean≜packages/unsorry-archive-0004/goals/prod-range-one-add-inv.lean
   sha≜0d35fc289dc5b22b2c0bf31e878624a4fcf958f7c286686f0421c494daf5a9fa
   aff≜1
 }

@@ -1,0 +1,20 @@
+𝔸5.1.goal.consecutive-cubes-diff-odd@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜consecutive-cubes-diff-odd
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/consecutive-cubes-diff-odd.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/consecutive-cubes-diff-odd.lean
+  sha≜eaee5ea2cd7a6dc14c349341d941f92479917f22ca8354a7ea09cea1df83c579
+  aff≜-8
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

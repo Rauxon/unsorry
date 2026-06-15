@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜four-mul-prod-le-sq-sum
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/four-mul-prod-le-sq-sum.md
+  src≜packages/unsorry-archive-0004/backlog/four-mul-prod-le-sq-sum.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/four-mul-prod-le-sq-sum.lean
+  lean≜packages/unsorry-archive-0004/goals/four-mul-prod-le-sq-sum.lean
   sha≜ef96d7d57bc327c2c4e49f397197b2a72cda2cf880d31090fec643c437d789b3
   aff≜1
 }

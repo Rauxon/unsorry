@@ -1,0 +1,132 @@
+{
+  "block_id": "unsorry-archive-0004",
+  "target_size": 40,
+  "proof_count": 28,
+  "status": "frozen",
+  "source_commit": "c510b587c1dfde6a2c53884ce4c314fbc73ca9dd",
+  "validation_commit": null,
+  "pins": {
+    "lean_toolchain": "leanprover/lean4:v4.30.0",
+    "mathlib": "v4.30.0"
+  },
+  "notes": [
+    "ADR-041 proof archive block 0004.",
+    "Whole decomposition trees + standalone proved goals only (split trees deferred).",
+    "Active goal records remain as archived metadata pointing at this package."
+  ],
+  "goals": [
+    {
+      "goal": "quartic-ge-sq-prod",
+      "module": "Unsorry.QuarticGeSqProd"
+    },
+    {
+      "goal": "recip-succ-lt-recip",
+      "module": "Unsorry.RecipSuccLtRecip"
+    },
+    {
+      "goal": "sq-lt-cube-of-one-lt",
+      "module": "Unsorry.SqLtCubeOfOneLt"
+    },
+    {
+      "goal": "sq-sum-le-two-mul-sum-sq",
+      "module": "Unsorry.SqSumLeTwoMulSumSq"
+    },
+    {
+      "goal": "sum-four-pow-ge-sq-prod",
+      "module": "Unsorry.SumFourPowGeSqProd"
+    },
+    {
+      "goal": "sum-four-pow-ge-sq-prod-s1",
+      "module": "Unsorry.SumFourPowGeSqProdS1"
+    },
+    {
+      "goal": "sum-four-pow-ge-sq-prod-s2",
+      "module": "Unsorry.SumFourPowGeSqProdS2"
+    },
+    {
+      "goal": "sum-sq-add-one-ge-mul-add",
+      "module": "Unsorry.SumSqAddOneGeMulAdd"
+    },
+    {
+      "goal": "sum-three-squares-ge-sum-products",
+      "module": "Unsorry.SumThreeSquaresGeSumProducts"
+    },
+    {
+      "goal": "descartes-total-angular-defect",
+      "module": "Unsorry.DescartesTotalAngularDefect"
+    },
+    {
+      "goal": "eight-dvd-consecutive-odd-sq-diff",
+      "module": "Unsorry.EightDvdConsecutiveOddSqDiff"
+    },
+    {
+      "goal": "four-mul-prod-le-sq-sum",
+      "module": "Unsorry.FourMulProdLeSqSum"
+    },
+    {
+      "goal": "prod-range-one-add-inv",
+      "module": "Unsorry.ProdRangeOneAddInv"
+    },
+    {
+      "goal": "sum-four-sq-ge-two-cross",
+      "module": "Unsorry.SumFourSqGeTwoCross"
+    },
+    {
+      "goal": "sum-four-sq-ge-two-cross-s1",
+      "module": "Unsorry.SumFourSqGeTwoCrossS1"
+    },
+    {
+      "goal": "sum-four-sq-ge-two-cross-s2",
+      "module": "Unsorry.SumFourSqGeTwoCrossS2"
+    },
+    {
+      "goal": "thirty-dvd-pow-five-sub-self",
+      "module": "Unsorry.ThirtyDvdPowFiveSubSelf"
+    },
+    {
+      "goal": "twelve-dvd-pow-four-sub-sq",
+      "module": "Unsorry.TwelveDvdPowFourSubSq"
+    },
+    {
+      "goal": "sum-sq-add-three-ge-two-sum",
+      "module": "Unsorry.SumSqAddThreeGeTwoSum"
+    },
+    {
+      "goal": "twenty-four-dvd-four-consecutive",
+      "module": "Unsorry.TwentyFourDvdFourConsecutive"
+    },
+    {
+      "goal": "two-abs-le-sq-add-one",
+      "module": "Unsorry.TwoAbsLeSqAddOne"
+    },
+    {
+      "goal": "two-abs-mul-le-sq-add-sq",
+      "module": "Unsorry.TwoAbsMulLeSqAddSq"
+    },
+    {
+      "goal": "cauchy-schwarz-three-term",
+      "module": "Unsorry.CauchySchwarzThreeTerm"
+    },
+    {
+      "goal": "consecutive-cubes-diff-odd",
+      "module": "Unsorry.ConsecutiveCubesDiffOdd"
+    },
+    {
+      "goal": "fifth-power-mod-twentyfive-mem",
+      "module": "Unsorry.FifthPowerModTwentyfiveMem"
+    },
+    {
+      "goal": "fourth-power-mod-seventeen-mem",
+      "module": "Unsorry.FourthPowerModSeventeenMem"
+    },
+    {
+      "goal": "fourth-power-mod-sixteen-mem",
+      "module": "Unsorry.FourthPowerModSixteenMem"
+    },
+    {
+      "goal": "aurifeuillian-quartic-dvd",
+      "module": "Unsorry.AurifeuillianQuarticDvd"
+    }
+  ],
+  "deferred_groups": []
+}

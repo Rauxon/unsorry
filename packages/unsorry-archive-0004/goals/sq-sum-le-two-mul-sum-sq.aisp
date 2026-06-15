@@ -1,0 +1,20 @@
+𝔸5.1.goal.sq-sum-le-two-mul-sum-sq@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sq-sum-le-two-mul-sum-sq
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/sq-sum-le-two-mul-sum-sq.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sq-sum-le-two-mul-sum-sq.lean
+  sha≜1c82b0f5546fa19fd220112ece592d2e2879907038adc62fa48cda995e30c68b
+  aff≜-9
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

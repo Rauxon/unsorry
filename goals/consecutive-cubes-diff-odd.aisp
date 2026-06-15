@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜consecutive-cubes-diff-odd
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/consecutive-cubes-diff-odd.md
+  src≜packages/unsorry-archive-0004/backlog/consecutive-cubes-diff-odd.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/consecutive-cubes-diff-odd.lean
+  lean≜packages/unsorry-archive-0004/goals/consecutive-cubes-diff-odd.lean
   sha≜eaee5ea2cd7a6dc14c349341d941f92479917f22ca8354a7ea09cea1df83c579
   aff≜-8
 }

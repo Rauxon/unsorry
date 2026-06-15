@@ -1,0 +1,21 @@
+𝔸5.1.goal.sum-four-pow-ge-sq-prod-s2@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-four-pow-ge-sq-prod-s2
+  phase≜prove
+  status≜proved
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜decompositions/sum-four-pow-ge-sq-prod.adam91holt.aisp
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-four-pow-ge-sq-prod-s2.lean
+  sha≜cb5a5f88a2d7a7a8d31ecc6f16b588f269d01221895429e8a582919ad4753db7
+  aff≜1
+  depth≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

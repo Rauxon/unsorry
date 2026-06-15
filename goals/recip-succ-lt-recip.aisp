@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜recip-succ-lt-recip
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/recip-succ-lt-recip.md
+  src≜packages/unsorry-archive-0004/backlog/recip-succ-lt-recip.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/recip-succ-lt-recip.lean
+  lean≜packages/unsorry-archive-0004/goals/recip-succ-lt-recip.lean
   sha≜7e23c93135a554c94bb1980ad41404f9dc68e417c92f4952f08c995756af93b5
   aff≜-9
 }

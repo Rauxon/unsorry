@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-three-squares-ge-sum-products
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-three-squares-ge-sum-products.md
+  src≜packages/unsorry-archive-0004/backlog/sum-three-squares-ge-sum-products.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-three-squares-ge-sum-products.lean
+  lean≜packages/unsorry-archive-0004/goals/sum-three-squares-ge-sum-products.lean
   sha≜7ed2df15a5a2dc18308c046f8ca637066404163ac338bebeff90831224845090
   aff≜1
 }

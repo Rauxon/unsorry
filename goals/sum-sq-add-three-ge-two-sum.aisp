@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sum-sq-add-three-ge-two-sum
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sum-sq-add-three-ge-two-sum.md
+  src≜packages/unsorry-archive-0004/backlog/sum-sq-add-three-ge-two-sum.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sum-sq-add-three-ge-two-sum.lean
+  lean≜packages/unsorry-archive-0004/goals/sum-sq-add-three-ge-two-sum.lean
   sha≜119e132ee6e8188755b0d134423fce3c4ab2704b8e6709ed877467c90805f548
   aff≜2
 }

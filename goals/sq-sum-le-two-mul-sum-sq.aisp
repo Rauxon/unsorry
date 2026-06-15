@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜sq-sum-le-two-mul-sum-sq
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/sq-sum-le-two-mul-sum-sq.md
+  src≜packages/unsorry-archive-0004/backlog/sq-sum-le-two-mul-sum-sq.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/sq-sum-le-two-mul-sum-sq.lean
+  lean≜packages/unsorry-archive-0004/goals/sq-sum-le-two-mul-sum-sq.lean
   sha≜1c82b0f5546fa19fd220112ece592d2e2879907038adc62fa48cda995e30c68b
   aff≜-9
 }
