@@ -115,7 +115,7 @@ jobs:
         uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
         continue-on-error: true
         with:
-          path: .lake
+          path: ${{ github.workspace }}/.lake
 
       # ADR-018: goal statements are create-only — the pin against history.
       # Every other layer (binding regeneration, Gate B shas) derives from
@@ -216,7 +216,7 @@ jobs:
         uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
         continue-on-error: true
         with:
-          path: .lake
+          path: ${{ github.workspace }}/.lake
 
       - name: Build (lean-action, mathlib binary cache)
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
@@ -294,7 +294,7 @@ jobs:
         uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
         continue-on-error: true
         with:
-          path: .lake
+          path: ${{ github.workspace }}/.lake
 
       # Kernel replay (leanchecker) holds ~all of mathlib resident per process;
       # as the library grows its peak RSS crept past the 7 GB standard-runner
