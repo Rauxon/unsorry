@@ -1,0 +1,8 @@
+𝔸5.1.lemma.06a395c60e03@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜06a395c60e03f3b2f71a4067cbdd89a94701915f494a4b326c5e7e907b5a9c66; goal≜dvd-399-pow-nineteen-sub-self; name≜dvd_399_pow_nineteen_sub_self}
+⟦Σ:Source⟧{src≜goals/dvd-399-pow-nineteen-sub-self.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high; attempts≜1; solve_s≜559}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
