@@ -118,33 +118,33 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": 0.0476,
+      "attempt_yield": 0.0833,
       "avatar_url": "https://github.com/adam91holt.png?size=96",
       "badges": {
-        "difficulty": 7,
-        "proofs": 5,
-        "success_rate_percent": 8.33
+        "difficulty": 10,
+        "proofs": 6,
+        "success_rate_percent": 15.38
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 5,
-      "difficulty_points": 7,
+      "credited_proofs": 6,
+      "difficulty_points": 10,
       "display_name": "@adam91holt",
-      "explicit_solver_proofs": 5,
-      "failed_attempts": 20,
+      "explicit_solver_proofs": 6,
+      "failed_attempts": 22,
       "github": "adam91holt",
       "inferred_git_proofs": 0,
-      "median_solve_s": 161,
+      "median_solve_s": 163,
       "profile_url": "https://github.com/adam91holt",
       "rank": 5,
-      "run_success_rate": 0.0833,
-      "runs": 12,
-      "score": 825,
+      "run_success_rate": 0.1538,
+      "runs": 13,
+      "score": 1150,
       "solver": "adam91holt",
-      "successes": 1,
-      "verified_proofs": 5
+      "successes": 2,
+      "verified_proofs": 6
     },
     {
       "attempt_yield": null,
@@ -276,15 +276,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 1,
+      "difficulty_points": 4,
       "display_name": "adam91holt",
       "github": null,
-      "index_files_added": 1,
+      "index_files_added": 2,
       "missing_solver_provenance": 0,
       "profile_url": null,
       "rank": 6,
       "solver_credit": false,
-      "solver_provenance_proofs": 1
+      "solver_provenance_proofs": 2
     },
     {
       "attribution_source": "git-add-author",
@@ -327,16 +327,16 @@
       "verified_proofs": 10
     },
     {
+      "provider_model": "codex / unknown",
+      "run_success_rate": 0.36,
+      "runs": 25,
+      "verified_proofs": 9
+    },
+    {
       "provider_model": "gemini / gemini-3.1-pro-preview",
       "run_success_rate": 0.8182,
       "runs": 11,
       "verified_proofs": 9
-    },
-    {
-      "provider_model": "codex / unknown",
-      "run_success_rate": 0.3333,
-      "runs": 24,
-      "verified_proofs": 8
     },
     {
       "provider_model": "manual / gpt-5.5",
@@ -372,18 +372,18 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 77,
+    "attributed_proofs": 78,
     "attribution_gap_count": 87,
     "credited_contributors": 7,
-    "credited_proofs": 164,
-    "explicit_solver_proofs": 77,
-    "git_attributed_index_files": 164,
+    "credited_proofs": 165,
+    "explicit_solver_proofs": 78,
+    "git_attributed_index_files": 165,
     "historical_contributors": 8,
     "historical_unknown_proofs": 87,
     "inferred_git_proofs": 87,
-    "proof_run_coverage": 0.4451,
-    "terminal_runs": 182,
+    "proof_run_coverage": 0.4485,
+    "terminal_runs": 183,
     "uncredited_proofs": 0,
-    "verified_proofs": 164
+    "verified_proofs": 165
   }
 }
