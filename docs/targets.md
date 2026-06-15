@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**93 open · 145 proved · 249 total prove-goals.**
+**92 open · 146 proved · 249 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -23,7 +23,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `dvd-2730-pow-thirteen-sub-self` — 2730 divides n^13 - n for every integer n. | open | 4 | — | #400 Identity Engine (ADR-043) — divisibility family. | 2730 divides n^13 - n for every integer n. Not a named mathlib lemma in this form. |
 | `forty-two-dvd-pow-seven-sub-self` — For every integer n, 42 ∣ n⁷ − n (Fermat: 2,3,7 each divide n⁷−n). | open | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 42 ∣ n⁷ − n (Fermat: 2,3,7 each divide n⁷−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `four-var-qm-am` — For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. Not a named mathlib lemma in this form. |
-| `fourth-power-mod-eight-mem` — Every fourth power is congruent to 0 or 1 modulo 8. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family. | Every fourth power is congruent to 0 or 1 modulo 8. Not a named mathlib lemma in this form. |
 | `gcd-consec-odd-eq-one` — Two consecutive odd numbers 2n+1 and 2n+3 are coprime. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | Two consecutive odd numbers 2n+1 and 2n+3 are coprime. Not a named mathlib lemma in this form. |
 | `gcd-lin-3n2-5n3` — The linear forms 3n+2 and 5n+3 are coprime for every n. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The linear forms 3n+2 and 5n+3 are coprime for every n. Not a named mathlib lemma in this form. |
 | `gcd-n1-n4-dvd-three` — The gcd of n+1 and n+4 always divides 3. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The gcd of n+1 and n+4 always divides 3. Not a named mathlib lemma in this form. |
@@ -154,6 +153,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `four-mul-prod-le-sq-sum` — For all real a,b, 4ab ≤ (a+b)² (the unnormalized AM-GM kernel). | proved | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For all real a,b, 4ab ≤ (a+b)² (the unnormalized AM-GM kernel). Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `four-not-dvd-sq-add-two` — 4 never divides n^2 + 2, since n^2 mod 4 is 0 or 1. | proved | 3 | — | #400 Identity Engine (ADR-043) — modular-arith family. | 4 never divides n^2 + 2, since n^2 mod 4 is 0 or 1. Not a named mathlib lemma in this form. |
 | `four-var-cyclic-sos` — For all real a,b,c,d, a²+b²+c²+d² ≥ ab+bc+cd+da — the four-variable cyclic sum-of-squares bound. | proved | 2 | — | Classic real inequality (library-growth batch, #400 plan Phase 3). The project had almost no inequalities; this seeds the SOS/nlinarith family. | For all real a,b,c,d, a²+b²+c²+d² ≥ ab+bc+cd+da — the four-variable cyclic sum-of-squares bound. mathlib has the abstract Cauchy–Schwarz / power-mean lemmas but not this concrete polynomial form as a named lemma. |
+| `fourth-power-mod-eight-mem` — Every fourth power is congruent to 0 or 1 modulo 8. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family. | Every fourth power is congruent to 0 or 1 modulo 8. Not a named mathlib lemma in this form. |
 | `fourth-power-mod-five` — The fourth power of any natural number not divisible by 5 leaves remainder 1 on division by 5: if n % 5 ≠ 0 then n⁴ % 5 = 1. | proved | 3 | — | classic identities (fourth-power congruence tower — leaf; the Fermat case p=5) | Fermat's little theorem at the prime 5: a⁴ ≡ 1 (mod 5) for gcd(a,5)=1. Hardy & Wright, An Introduction to the Theory of Numbers. The mod-5 leaf that the others (mod 16, mod 3) do not cover. |
 | `fourth-power-mod-five-s1` — fourth-power-mod-five-s1 | proved | 1 | — | — | — |
 | `fourth-power-mod-five-s2` — fourth-power-mod-five-s2 | proved | 1 | — | — | — |
