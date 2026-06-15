@@ -1,0 +1,8 @@
+𝔸5.1.lemma.e7d548372abe@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜e7d548372abe729275e3008217dd2dfb5f340387224d22bf031b0266e6f0c896; goal≜am-hm-two-var-s3; name≜inv_add_inv_eq_add_div_mul_of_pos}
+⟦Σ:Source⟧{src≜goals/am-hm-two-var-s3.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜259}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,8 @@
+𝔸5.1.run.am-hm-two-var-s3.1367ab40f0b1-e413.20260615t015647566116z-bafbd1e2@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t015647566116z-bafbd1e2; goal≜am-hm-two-var-s3; agent≜1367ab40f0b1-e413; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜am-hm-two-var-s3}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜259; ended≜2026-06-15T01:56:47Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜e7d548372abe729275e3008217dd2dfb5f340387224d22bf031b0266e6f0c896}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
