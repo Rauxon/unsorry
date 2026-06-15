@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**411 open · 234 proved · 653 total prove-goals.**
+**410 open · 235 proved · 653 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -28,7 +28,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `constrained-sum-sq-ge-one-third` — If three reals sum to 1 then their sum of squares is at least 1/3. | open | 2 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | If three reals sum to 1 then their sum of squares is at least 1/3. Not a named mathlib lemma in this form. |
 | `coprime-consec-tri` — The odd number 2n+1 is coprime to the product n(n+1). | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The odd number 2n+1 is coprime to the product n(n+1). Not a named mathlib lemma in this form. |
 | `coprime-fib-sq-fib-succ` — The square of fib n is coprime to fib (n+1). | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The square of fib n is coprime to fib (n+1). Not a named mathlib lemma in this form. |
-| `coprime-n-cube-add-one` — n is coprime to n cubed plus one. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | n is coprime to n cubed plus one. Not a named mathlib lemma in this form. |
 | `coprime-n1-nsq1` — The gcd of n+1 and n^2+1 always divides 2. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of n+1 and n^2+1 always divides 2. Not a named mathlib lemma in this form. |
 | `coprime-ncube1-ncube2` — The consecutive values n^3+1 and n^3+2 are coprime for every n. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The consecutive values n^3+1 and n^3+2 are coprime for every n. Not a named mathlib lemma in this form. |
 | `coprime-nsq2-nsq3` — The consecutive values n^2+2 and n^2+3 are coprime for every n. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The consecutive values n^2+2 and n^2+3 are coprime for every n. Not a named mathlib lemma in this form. |
@@ -449,6 +448,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `coprime-2n1-3n2` — 2n+1 and 3n+2 are always coprime. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | 2n+1 and 3n+2 are always coprime. Not a named mathlib lemma in this form. |
 | `coprime-2n1-n1` — 2n+1 and n+1 are coprime for every n. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | 2n+1 and n+1 are coprime for every n. Not a named mathlib lemma in this form. |
 | `coprime-3n1-4n1` — 3n+1 and 4n+1 are always coprime. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | 3n+1 and 4n+1 are always coprime. Not a named mathlib lemma in this form. |
+| `coprime-n-cube-add-one` — n is coprime to n cubed plus one. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | n is coprime to n cubed plus one. Not a named mathlib lemma in this form. |
 | `coprime-n-sq-n-add-one` — n is coprime to n squared plus n plus one. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | n is coprime to n squared plus n plus one. Not a named mathlib lemma in this form. |
 | `coprime-n2p1-n2p2` — n^2+1 and n^2+2 are consecutive integers, hence coprime. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | n^2+1 and n^2+2 are consecutive integers, hence coprime. Not a named mathlib lemma in this form. |
 | `coprime-succ-sq-add` — n+1 is coprime to n²+n+1. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | n+1 is coprime to n²+n+1. Not a named mathlib lemma in this form. |
