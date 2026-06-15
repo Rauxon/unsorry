@@ -99,7 +99,8 @@ jobs:
     #                                 to main), so the slow ~20-min full replay
     #                                 runs in its own pool and never blocks the
     #                                 frequent proof PRs on unsorry-1.
-    # Both profiles are 4 vCPU / 16 GB; the split is for isolation, not power.
+    # unsorry-1 is the smaller proof-PR runner (8 GB); unsorry-2 is the larger
+    # heavy runner (16 GB) for full replays + archive validation.
     # This prepare job warms/restores the Lean cache, generates binding modules,
     # and runs the cheap authoritative checks once before the heavy audit/replay
     # jobs start in parallel.
@@ -467,11 +468,18 @@ jobs:
     name: gate-a-archive
     needs: [detect]
     if: needs.detect.outputs.archive == 'true'
-    runs-on: ${{ needs.detect.outputs.profile }}
-    # Dedicated job (own runner, full headroom + swap, 120-min budget): an archive
-    # package is a separate Lake project whose leanchecker replays its OWN mathlib
-    # image (~7-10 GB), which OOM-killed gate-a-prepare (#764). archive_packages
-    # also chunks the replay at the smaller ARCHIVE_REPLAY_CHUNK_SIZE here.
+    # Pinned to the 16 GB profile, NOT detect.profile: archive validation
+    # leanchecker-replays whole blocks (each archive package loads its own full
+    # mathlib environment, >8 GB resident). On the 8 GB unsorry-1 runner — where
+    # detect routes non-infra PRs — it OOM-killed at exit 137 even at a 12-module
+    # chunk (#764). unsorry-2 (16 GB) is the same class of runner the full active
+    # replay (push-to-main) already uses, so it has the headroom. (swapon is
+    # blocked on Namespace, so memory must come from the profile, not swap.)
+    runs-on: namespace-profile-unsorry-2
+    # Dedicated job (own runner, 120-min budget): an archive package is a separate
+    # Lake project whose leanchecker replays its OWN mathlib image, which OOM'd
+    # gate-a-prepare (#764). archive_packages also chunks at the smaller
+    # ARCHIVE_REPLAY_CHUNK_SIZE.
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
