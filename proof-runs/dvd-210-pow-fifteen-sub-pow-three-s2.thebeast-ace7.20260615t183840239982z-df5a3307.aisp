@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-210-pow-fifteen-sub-pow-three-s2.thebeast-ace7.20260615t183840239982z-df5a3307@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t183840239982z-df5a3307; goal≜dvd-210-pow-fifteen-sub-pow-three-s2; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜dvd-210-pow-fifteen-sub-pow-three-s2}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜541; ended≜2026-06-15T18:38:40Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8542/8569] Built Unsorry.GcdN22n5EqOne (50s) ✔ [8543/8569] Built Unsorry.Gcd2n13n4DvdFive (52s) ✔ [8544/8569] Built Unsorry.GcdN1N7DvdSix (54s) ✔ [8545/8569] Built Unsorry.CoprimeNSqNAddOne (56s) ✔ [8546/8569] Built Unsorry.NoNatSqEqTwoMulSqS4 (58s) ✔ [8547/8569] Built Unsorry}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
