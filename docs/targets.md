@@ -4,14 +4,16 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**102 open · 134 proved · 246 total prove-goals.**
+**104 open · 134 proved · 249 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
 | `abstract-regular-polyhedron-realizable-iff` — The Track-1 **existence-biconditional**: for p, q ≥ 3, the pair (p,q) is a Platonic Schläfli pair {(3,3),(3,4),(4,3),(3,5),(5,3)} **iff** it is realizable by an abstract regular polyhedron (∃ V E F > 0 with p·F=2E, q·V=2E, V+F=E+2). | open | 4 | — | The capstone of Freek #50's combinatorial classification (ADR-031, Track 1) — the labelled combinatorial/Euler form, explicitly NOT the geometric #50. | ⟹ is the existence direction (`platonic-pairs-realizable`); ⟸ is the proved classification (`abstract-regular-polyhedron-classification`). Composing them gives the biconditional. mathlib has neither. |
 | `am-gm-three-cube-s2-s2-s1` — am-gm-three-cube-s2-s2-s1 | open | 1 | — | — | — |
 | `am-gm-three-cube-s2-s2-s2` — am-gm-three-cube-s2-s2-s2 | open | 1 | — | — | — |
-| `am-hm-two-var` — For positive reals a,b, 4/(a+b) ≤ 1/a + 1/b — the two-variable AM–HM inequality. | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For positive reals a,b, 4/(a+b) ≤ 1/a + 1/b — the two-variable AM–HM inequality. Not a named mathlib lemma in this concrete form. |
+| `am-hm-two-var-s1` — am-hm-two-var-s1 | open | 1 | — | — | — |
+| `am-hm-two-var-s2` — am-hm-two-var-s2 | open | 1 | — | — | — |
+| `am-hm-two-var-s3` — am-hm-two-var-s3 | open | 1 | — | — | — |
 | `cauchy-schwarz-three-term` — For all real a,b,c,x,y,z, (ax+by+cz)² ≤ (a²+b²+c²)(x²+y²+z²) — the 3-term Cauchy–Schwarz inequality. | open | 3 | — | Classic real inequality (library-growth batch, #400 plan Phase 3). The project had almost no inequalities; this seeds the SOS/nlinarith family. | For all real a,b,c,x,y,z, (ax+by+cz)² ≤ (a²+b²+c²)(x²+y²+z²) — the 3-term Cauchy–Schwarz inequality. mathlib has the abstract Cauchy–Schwarz / power-mean lemmas but not this concrete polynomial form as a named lemma. |
 | `consecutive-cubes-diff-odd` — For every integer n, (n+1)³ − n³ is odd. | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For every integer n, (n+1)³ − n³ is odd. Not a named mathlib lemma in this concrete form. |
 | `constrained-sum-sq-ge-three` — For real a,b,c with a+b+c=3, a²+b²+c² ≥ 3 — the constrained tangent-line bound. | open | 2 | — | Classic real inequality (library-growth batch, #400 plan Phase 3). The project had almost no inequalities; this seeds the SOS/nlinarith family. | For real a,b,c with a+b+c=3, a²+b²+c² ≥ 3 — the constrained tangent-line bound. mathlib has the abstract Cauchy–Schwarz / power-mean lemmas but not this concrete polynomial form as a named lemma. |
@@ -113,6 +115,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `am-gm-three-cube` — For nonneg reals, 27abc ≤ (a+b+c)³ — AM-GM for three terms (polynomial form). | blocked | 3 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For nonneg reals, 27abc ≤ (a+b+c)³ — AM-GM for three terms (polynomial form). Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `am-gm-three-cube-s2` — am-gm-three-cube-s2 | blocked | 1 | — | — | — |
 | `am-gm-three-cube-s2-s2` — am-gm-three-cube-s2-s2 | blocked | 1 | — | — | — |
+| `am-hm-two-var` — For positive reals a,b, 4/(a+b) ≤ 1/a + 1/b — the two-variable AM–HM inequality. | blocked | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For positive reals a,b, 4/(a+b) ≤ 1/a + 1/b — the two-variable AM–HM inequality. Not a named mathlib lemma in this concrete form. |
 | `cube-sum-ge-three-prod` — For nonneg reals, 3abc ≤ a³+b³+c³ — AM-GM for cubes (a³+b³+c³−3abc = (a+b+c)·½Σ(a−b)²). | blocked | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For nonneg reals, 3abc ≤ a³+b³+c³ — AM-GM for cubes (a³+b³+c³−3abc = (a+b+c)·½Σ(a−b)²). Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `discriminant-nonneg` — If a>0 and b²≤4ac, then ax²+bx+c ≥ 0 for all x (the discriminant nonnegativity criterion). | blocked | 3 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | If a>0 and b²≤4ac, then ax²+bx+c ≥ 0 for all x (the discriminant nonnegativity criterion). Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `nat-sq-lt-two-pow-s2` — nat-sq-lt-two-pow-s2 | blocked | 1 | — | — | — |
