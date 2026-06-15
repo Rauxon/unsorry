@@ -110,43 +110,57 @@ The default must always fail toward a larger validation scope when the changed-p
 
 ## 8. Cutting a block — runbook
 
-This is the routine procedure performed for blocks 0001 and 0002. One block ≈ 40 proved goals
-moving from the active package into a new frozen archive package; the active `goals/<id>.aisp`
-records stay (re-pointed to the archive), only the proved artefacts move.
+A block moves a set of proved goals from the active package into a new frozen archive package; the
+active `goals/<id>.aisp` records stay (re-pointed to the archive), only the proved artefacts move.
+
+Two non-obvious invariants — both learned the hard way (blocks 0003/0004) — govern a correct cut:
+
+> **(A) Archive whole decomposition trees, never split one.** A decomposition record and its
+> `parent` + all `subs` are *atomic* to Gate B: the package is validated as its own tree, so a
+> sub-lemma's `src≜decompositions/<D>` must resolve there (GB008) and the decomposition's `parent`
+> must be a known goal there (GB016) — and any active sub still referencing a moved decomposition
+> fails GB008 on the active side. So a tree goes to the package **entirely or not at all**.
+>
+> **(B) Never touch generated docs in the cut.** `docs/leaderboard.*`, `docs/metrics/*.json`,
+> `docs/targets.md`, and `docs/proof-graph.*` / `docs/proofs-contributors-visualisation.*` are
+> regenerated and committed by **push-to-`main`** workflows (no PR gate checks them). If the cut
+> regenerates them, it races main's refresh bot and conflicts forever. Leave them at the
+> **merge-base** version (zero delta); main refreshes them after merge.
 
 **1. Plan.** On an up-to-date checkout of `main`:
 
 ```bash
-python3 -m tools.archive --size 40          # proposes block id + the 40 goals (module, sha, proved_at)
-python3 -m tools.archive --size 40 --json   # machine-readable
+python3 -m tools.archive --size 40 --json   # next block id + candidate goals (module, sha, proof-runs, index)
 ```
 
-Confirm the proposed `block_id` is the next one after the existing `packages/unsorry-archive-*`
-(the planner derives it from existing manifests; if a checkout is stale it can mis-number — verify).
+Confirm `block_id` is the next after existing `packages/unsorry-archive-*` (a stale checkout
+mis-numbers — verify).
 
-**2. Create `packages/unsorry-archive-NNNN/`.** Mirror an existing block (e.g. copy 0002's layout):
+**1b. Restrict to whole trees (invariant A).** Build the decomposition graph from active
+`decompositions/*.aisp` (each record's `parent≜…` + `id≜…` subs are one component). Keep a candidate
+goal only if it is standalone (in no decomposition) **or** its entire component is also in the
+candidate set; drop split-tree goals (they archive later when their whole tree is eligible together).
+The block is then whole-trees + standalone goals — which is usually **fewer than 40**; that is
+correct and preferable to a broken 40. (The report-only planner is not yet tree-aware; this is the
+gap the write-mode tool should close.)
 
-- `lakefile.toml` — `name = "unsorryArchiveNNNN"`, one `[[lean_lib]]` `UnsorryArchiveNNNN`
-  (`srcDir = "library"`, `globs = ["Unsorry.+"]`), and the `mathlib` require pinned to the **current**
-  `rev` (match root `lakefile.toml`).
-- `lean-toolchain` — copy of the root `lean-toolchain`.
-- `lake-manifest.json` — the resolved manifest for the package.
-- For each selected goal `<id>` (module `Unsorry.<Mod>`):
-  - **move** `library/Unsorry/<Mod>.lean` → `packages/unsorry-archive-NNNN/library/Unsorry/<Mod>.lean`
-  - **move** its index entry `library/index/<sha>.aisp` → the package's `library/index/`
-  - **move** `goals/<id>.lean` → the package's `goals/<id>.lean` (**byte-identical** — required so the
-    ADR-018 immutability gate accepts its removal from active; see §9 of ADR-018 / the archive-aware
-    exemption)
-  - **copy** `goals/<id>.aisp` → the package's `goals/<id>.aisp` (provenance)
-  - **move** `backlog/<id>.md`, `proof-runs/<id-runs>`, and any `decompositions/<id>.*.aisp` into the
-    package's `backlog/`, `proof-runs/`, `decompositions/`.
-- `archive-manifest.json` — `block_id`, `target_size`, `proof_count`, `status: "frozen"`,
-  `source_commit`, `validation_commit` (null until validated), `pins` (`lean_toolchain`, `mathlib`),
-  `notes`, `goals: [{goal, module}, …]`, `deferred_groups`.
+**2. Create `packages/unsorry-archive-NNNN/`** (mirror 0002's layout):
 
-**3. Retire from active.** Remove the moved `library/`, `goals/<id>.lean`, `backlog/`, `proof-runs/`,
-and `decompositions/` entries from the active tree, and **edit each active `goals/<id>.aisp`** to the
-archived end-state (keep the record, re-point it):
+- `lakefile.toml` (`name = "unsorryArchiveNNNN"`, one `[[lean_lib]]` `UnsorryArchiveNNNN`,
+  `srcDir = "library"`, `globs = ["Unsorry.+"]`, `mathlib` pinned to the **current** root `rev`),
+  `lean-toolchain` (copy root), `lake-manifest.json`, and `archive-manifest.json`
+  (`block_id`, `target_size`, `proof_count`, `status: "frozen"`, `source_commit`,
+  `validation_commit: null`, `pins`, `notes`, `goals: [{goal, module}, …]`).
+- For each archived goal `<id>` (module `Unsorry.<Mod>`): **move** `library/Unsorry/<Mod>.lean`,
+  its `library/index/<sha>.aisp`, `goals/<id>.lean` (**byte-identical** — required for the ADR-018
+  archive-aware exemption), `backlog/<id>.md`, and its `proof-runs/*`; **copy** `goals/<id>.aisp`
+  (provenance).
+- **Decompositions:** move a `decompositions/<parent>.*.aisp` into the package **only when its whole
+  tree is archived** (invariant A). Then re-point the package's sub-lemma records' `src` to
+  `packages/unsorry-archive-NNNN/decompositions/…`.
+
+**3. Retire from active.** Remove the moved artefacts from the active tree, and edit each active
+`goals/<id>.aisp` to the archived end-state (keep the record, re-point it; `sha` unchanged):
 
 ```
 ⟦Ω:Goal⟧{ … status≜archived … }
@@ -154,23 +168,24 @@ archived end-state (keep the record, re-point it):
 ⟦Λ:Artifact⟧{ lean≜packages/unsorry-archive-NNNN/goals/<id>.lean ; sha≜<unchanged> ; aff≜… }
 ```
 
-The `sha` is unchanged (the statement is preserved); only `status`, `src`, and the `lean` path move.
-
-**4. Regenerate boards** (they are derived files): `python3 -m tools.leaderboard --write` plus the
-targets board / metrics generators. Archived proofs retain leaderboard attribution.
+**4. Leave generated docs alone (invariant B).** Do **not** run the board generators. If any got
+touched, restore them to the merge-base: `git checkout "$(git merge-base origin/main HEAD)" --
+docs/leaderboard.* docs/metrics/*.json docs/targets.md docs/proof-graph.* docs/proofs-contributors-visualisation.*`.
+The PR must show **zero** generated-doc changes; main auto-refreshes them post-merge.
 
 **5. Validate locally** before the PR:
 
 ```bash
-( cd packages/unsorry-archive-NNNN && lake exe cache get && lake build --wfail )
-python3 -m tools.gate_a.archive_packages validate-changed       # build + audit + leanchecker replay of the block
-python3 -m tools.leaderboard --check
+python3 -m tools.gate_b validate .                                            # active records
+python3 -m tools.gate_b validate packages/unsorry-archive-NNNN --goals-root packages/unsorry-archive-NNNN  # the package as its own tree (catches A)
+python3 -m tools.gate_a.check_goal_immutability --base <PR base>              # goal-.lean removals (ADR-018)
+git diff --name-only <PR base> -- docs/ | grep -v docs/adrs/ || echo "no generated-doc delta — good"  # invariant B
 ```
 
-**6. Open the PR** titled `chore(archive): retire active copies for block NNNN`. Gate A then
-full-validates the new archive package (ADR-041 §4) and replays the **shrunk** active library. The
-goal-`.lean` removals pass the ADR-018 immutability gate because each is recorded in the manifest
-with a byte-identical archived copy (the archive-aware exemption).
+**6. Open the PR** titled `chore(archive): retire active copies for block NNNN`. Gate A
+full-validates the new archive package (ADR-041 §4) and replays the **shrunk** active library; the
+goal-`.lean` removals pass the ADR-018 immutability gate (byte-identical archived copy in the
+manifest).
 
 ## 9. Operating at scale
 
@@ -181,8 +196,11 @@ between cuts. Two implications:
 
 - **Cut early and often.** Treat 40 as a ceiling, not a goal; a smaller effective active set keeps
   full validation fast. Cut a new block whenever the planner reports a full block of eligible goals.
-- **Automate the cut.** The §8 runbook is mechanical and was done identically for 0001/0002 — it
-  should become a `tools.archive` *write* mode (perform the moves, write the manifest, re-point the
-  active records) plus a scheduled/threshold trigger that opens the retire PR automatically once the
-  eligible count reaches a block. Until then, follow §8 by hand. (The planner today is report-only by
-  design; the write mode is the natural next increment.)
+- **Automate the cut.** The §8 runbook is mechanical — it should become a `tools.archive` *write*
+  mode (perform the moves, write the manifest, re-point the active records) plus a scheduled/threshold
+  trigger that opens the retire PR automatically once a whole-tree block is eligible. The write mode
+  **must** encode both invariants from §8: **(A)** select only whole decomposition trees + standalone
+  goals (make the planner tree-aware), and **(B)** never write generated docs (leave them to the
+  push-to-`main` refresh workflows). Both are what made the hand-cuts conflict / fail validation; a
+  tool that bakes them in is the durable fix for a high proof-inflow repo. Until then, follow §8 by
+  hand.
