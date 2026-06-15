@@ -32,9 +32,11 @@ strictly serially because two concurrent `leanchecker` processes had OOM-killed 
 **facing** the fact that the serial full replay now exceeds the 60-min timeout and that neither
 more CPU nor more RAM helped — the workflow requested `--jobs 1` and the tool ignored `jobs`
 anyway,
-**we decided for** making replay **honor `--jobs`, capped by available RAM** at
-`GB_PER_REPLAY_PROC` (~7 GB per `leanchecker`): a new `max_safe_replay_jobs(jobs, mem_gb)` returns
-`min(jobs, free_ram // 7)` (floored at 1), the workflow now passes `--jobs "$(nproc)"`, and replay
+**we decided for** making replay **honor `--jobs`, capped conservatively by available RAM**:
+budget `GB_PER_REPLAY_PROC = 10 GB` per `leanchecker` and reserve `RAM_RESERVE_GB = 4 GB`, so a new
+`max_safe_replay_jobs(jobs, mem_gb)` returns `min(jobs, (free_ram − 4) // 10)` (floored at 1; a
+first cut at 7 GB with no reserve OOM-killed chunks at exit 137), with an `UNSORRY_REPLAY_JOBS`
+override to pin the count; the workflow now passes `--jobs "$(nproc)"`, and replay
 splits into `max(ceil(n/REPLAY_CHUNK_SIZE), effective_jobs)` chunks run up to `effective_jobs` at a
 time — so it stays **serial on a small runner** (one mathlib image, exactly the condition that
 prevents the #264 OOM) and **scales on a high-RAM one**; we also raised `gate-a-replay`
@@ -47,7 +49,7 @@ soundness backstop),
 an 8 vCPU / 64 GB profile turns a ~60+ min serial replay into ~minutes), unblocking gate/infra
 PRs without removing any validation,
 **accepting that** the speed-up requires sizing `namespace-profile-unsorry-2` with enough RAM
-(operator config; ~7 GB × desired concurrency), that on a small runner replay stays serial (slow
+(operator config; ~10 GB × desired concurrency + 4 GB reserve), that on a small runner replay stays serial (slow
 but correct, covered by the 120-min headroom), and that the RAM estimate is a heuristic — set
 conservatively so it under-subscribes rather than risk an OOM (a false *negative*, never a false
 *positive*).
@@ -57,13 +59,13 @@ conservatively so it under-subscribes rather than risk an OOM (a false *negative
 Parallelism changes **only wall-clock**, not verdicts: each `leanchecker` chunk independently
 kernel-checks its modules; running chunks concurrently produces identical per-module results. The
 only failure mode parallelism can introduce is OOM → exit 143 → a *red* gate (false negative,
-never a false pass). The RAM cap (`free_ram // 7`, floored at 1) is precisely what bounds
+never a false pass). The RAM cap (`(free_ram − 4) // 10`, floored at 1) is precisely what bounds
 concurrency to what fits, so it cannot silently admit an unsound proof.
 
 ## Operator note
 
 To realise the speed-up, size `namespace-profile-unsorry-2` (the full-replay/infra profile) with
-RAM ≈ `7 GB × desired concurrency` — e.g. **8 vCPU / 64 GB** for ~8-way replay. Without it, replay
+RAM ≈ `10 GB × desired concurrency + 4` — e.g. **8 vCPU / 64 GB** for ~6-way replay. Without it, replay
 runs serially within available RAM and relies on the 120-min timeout. (Per ADR-046, the same
 profile also benefits from the `.lake` cache volume.)
 
