@@ -563,6 +563,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "54d29388dc88b2a85542c68442e0a63b746db866",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-3n2-4n3-eq-one",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/bc8bd10ef2f2e4df0c21905d5d7187daa0580f4c6b9bc1d7f040e142bc5369d9.aisp",
+      "review_status": "candidate",
+      "sha": "bc8bd10ef2f2e4df0c21905d5d7187daa0580f4c6b9bc1d7f040e142bc5369d9"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
       "difficulty": 2,
       "display_name": "chat-bit-01",
       "git_add_commit": "99b2caa4f0558fb4df1635fd47c26d651aaf578d",
@@ -1974,9 +1989,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 131,
-    "mapped_missing_solver": 127,
-    "missing_solver_provenance": 131,
+    "git_attributed_missing_solver": 132,
+    "mapped_missing_solver": 128,
+    "missing_solver_provenance": 132,
     "unmapped_missing_solver": 4
   }
 }
