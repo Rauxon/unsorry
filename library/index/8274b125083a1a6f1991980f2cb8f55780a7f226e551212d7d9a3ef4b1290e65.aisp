@@ -1,0 +1,8 @@
+𝔸5.1.lemma.8274b125083a@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜8274b125083a1a6f1991980f2cb8f55780a7f226e551212d7d9a3ef4b1290e65; goal≜eight-sum-pow-four-ge-sum-pow-four; name≜eight_sum_pow_four_ge_sum_pow_four}
+⟦Σ:Source⟧{src≜goals/eight-sum-pow-four-ge-sum-pow-four.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜180}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
