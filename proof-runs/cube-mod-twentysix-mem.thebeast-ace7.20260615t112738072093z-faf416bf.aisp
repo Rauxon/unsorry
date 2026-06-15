@@ -1,0 +1,9 @@
+𝔸5.1.run.cube-mod-twentysix-mem.thebeast-ace7.20260615t112738072093z-faf416bf@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t112738072093z-faf416bf; goal≜cube-mod-twentysix-mem; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜cube-mod-twentysix-mem}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜404; ended≜2026-06-15T11:27:38Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8584/8595] Built Unsorry.FourVarQmAmS1 (1.2s) ✔ [8585/8595] Built Unsorry.AmgmFourCrossThreeVar (2.4s) ✔ [8586/8595] Built Unsorry.ThirtyDvdPowFiveSubSelf (3.6s) ✔ [8587/8595] Built Unsorry.Dvd30PowNineSubSelf (4.9s) ✔ [8588/8595] Built Unsorry.EightDvdConsecutiveOddSqDiff (5.}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
