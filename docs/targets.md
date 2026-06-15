@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**235 open · 176 proved · 418 total prove-goals.**
+**234 open · 177 proved · 418 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -72,7 +72,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gcd-fib-add-two-eq-gcd-fib-succ` — gcd(F_n, F_{n+2}) equals gcd(F_n, F_{n+1}). | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | gcd(F_n, F_{n+2}) equals gcd(F_n, F_{n+1}). Not a named mathlib lemma in this form. |
 | `gcd-n-add-six-dvd-six` — The gcd of n and n+6 always divides 6. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of n and n+6 always divides 6. Not a named mathlib lemma in this form. |
 | `gcd-n-factorial-succ-eq-one` — For positive n, n is coprime to n factorial plus one. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | For positive n, n is coprime to n factorial plus one. Not a named mathlib lemma in this form. |
-| `gcd-n1-n4-dvd-three` — The gcd of n+1 and n+4 always divides 3. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The gcd of n+1 and n+4 always divides 3. Not a named mathlib lemma in this form. |
 | `gcd-n2-2n5-eq-one` — The gcd of n+2 and 2n+5 is always one. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of n+2 and 2n+5 is always one. Not a named mathlib lemma in this form. |
 | `gcd-n2-n4-dvd-two` — The gcd of n+2 and n+4 always divides 2. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of n+2 and n+4 always divides 2. Not a named mathlib lemma in this form. |
 | `gcd-sq-n-sq-n-one` — n squared is coprime to n squared plus n plus one. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | n squared is coprime to n squared plus n plus one. Not a named mathlib lemma in this form. |
@@ -311,6 +310,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `fourth-power-mod-thirteen-mem` — Every fourth power is congruent to 0, 1, 3, or 9 modulo 13 (the quartic residues mod 13). | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family. | Every fourth power is congruent to 0, 1, 3, or 9 modulo 13 (the quartic residues mod 13). Not a named mathlib lemma in this form. |
 | `fourth-power-mod-three` — The fourth power of any natural number not divisible by 3 leaves remainder 1 on division by 3: if n % 3 ≠ 0 then n⁴ % 3 = 1. | proved | 2 | — | classic identities (fourth-power congruence tower — leaf; compounds on `sq-mod-three`) | Quadratic residues mod 3: n² ≡ 1 (mod 3) for 3∤n, hence n⁴ ≡ 1 (mod 3). Hardy & Wright, An Introduction to the Theory of Numbers. One power up from the proved `sq-mod-three`. |
 | `gcd-lin-3n2-5n3` — The linear forms 3n+2 and 5n+3 are coprime for every n. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The linear forms 3n+2 and 5n+3 are coprime for every n. Not a named mathlib lemma in this form. |
+| `gcd-n1-n4-dvd-three` — The gcd of n+1 and n+4 always divides 3. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The gcd of n+1 and n+4 always divides 3. Not a named mathlib lemma in this form. |
 | `gcd-self-add-dvd` — The gcd of n and n+k divides k. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The gcd of n and n+k divides k. Not a named mathlib lemma in this form. |
 | `int-add-neg` — Adding the negation of an integer yields zero. | proved | 1 | — | — | — |
 | `int-neg-neg` — Double negation of an integer is the identity. | proved | 1 | — | — | — |
