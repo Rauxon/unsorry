@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜discriminant-nonneg-s2
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,8 +14,8 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/discriminant-nonneg-s2.lean
-  sha≜∅
-  aff≜-10
+  sha≜371c5f9bf176fadb60edbadcbed859640ade565ea8fe7bf6754b256c457fdb39
+  aff≜-9
   depth≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
