@@ -42,3 +42,54 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Witness a^4-a^3 b+a^2 b^2-a b^3+b^4 via Dvd.intro, then ring · conf: high
 - [ ] `n_pow_three_sub_n_dvd_by_six` — Six divides n cubed minus n for every integer n (product of three consecutive integers)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite n^3-n = (n-1)*n*(n+1) and combine 2 ∣ and 3 ∣ via a ZMod 6 residue decide or consecutive-integer lemmas · conf: high
+
+### Replenishment round 2 (scoped 2026-06-15) — 24 candidates
+
+- [ ] `cauchy_schwarz_two_term` — For reals, the square of a dot product of two 2-vectors is at most the product of their squared norms (the two-term Cauchy-Schwarz inequality)
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a*d - b*c)] (Lagrange identity gives the SOS gap) · conf: high
+- [ ] `candido_sum_quartics_twice_square` — Candido's identity: the sum of the fourth powers of a, b and a+b is always twice a perfect square
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨a^2 + a*b + b^2, by ring⟩ · conf: high
+- [ ] `eisenstein_norm_multiplicative` — The set of Loeschian numbers x²+xy+y² (Eisenstein integer norms) is closed under multiplication
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨a*c - b*d, a*d + b*c + b*d, by ring⟩ · conf: high
+- [ ] `cube_of_sum_minus_cubes_div_by_sum` — The difference between (a+b+c)³ and a³+b³+c³ is divisible by a+b (it equals 3(a+b)(b+c)(c+a))
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨3*(b+c)*(c+a), by ring⟩ · conf: high
+- [ ] `sum_cubes_sym_divisible_by_quadratic` — The symmetric quadratic a²+b²+c²-ab-bc-ca divides a³+b³+c³-3abc
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨a + b + c, by ring⟩ · conf: high
+- [ ] `quad_form_divides_cube_sum` — The quadratic a²-ab+b² divides the sum of cubes a³+b³
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨a + b, by ring⟩ · conf: high
+- [ ] `sum_of_squares_divides_sum_sixth_powers` — The sum of two squares a²+b² divides the sum of their sixth powers a⁶+b⁶
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨a^4 - a^2*b^2 + b^4, by ring⟩ · conf: high
+- [ ] `cyclotomic_five_divides_pow_five_sub_one` — The 5th cyclotomic polynomial n⁴+n³+n²+n+1 divides n⁵-1
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨n - 1, by ring⟩ · conf: high
+- [ ] `cyclotomic_three_divides_pow_six_sub_one` — The polynomial n²+n+1 divides n⁶-1
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨(n - 1)*(n + 1)*(n^2 - n + 1), by ring⟩ · conf: high
+- [ ] `quartic_sum_ge_symmetric_product_pairs` — The sum of fourth powers dominates the sum of pairwise products of squares
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a^2-b^2), sq_nonneg (b^2-c^2), sq_nonneg (c^2-a^2)] · conf: high
+- [ ] `sum_sq_norm_sq_le_twice_sum_fourth` — The square of a²+b² is at most twice the sum of fourth powers (power-mean / QM bound)
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a^2 - b^2)] · conf: high
+- [ ] `sum_sixth_ge_mixed_fourth_second` — The sum of sixth powers dominates the mixed terms a⁴b²+a²b⁴
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (a+b), sq_nonneg a, sq_nonneg b, mul_nonneg (sq_nonneg a) (sq_nonneg b)] · conf: high
+- [ ] `four_quartics_ge_four_product` — The sum of four fourth powers is at least four times the product abcd (AM-GM on squares)
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a^2-b^2), sq_nonneg (c^2-d^2), sq_nonneg (a*b-c*d), mul_self_nonneg (a*b), mul_self_nonneg (c*d)] · conf: high
+- [ ] `cyclic_four_sum_sq_ge_cyclic_products` — The sum of four squares dominates the cyclic sum of adjacent products ab+bc+cd+da
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-d), sq_nonneg (d-a)] · conf: high
+- [ ] `product_three_sum_squares_ge_eight_product` — The product of three pairwise sums of squares is at least eight times the product of all three squares
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a^2-b^2), sq_nonneg (b^2-c^2), sq_nonneg (c^2-a^2), sq_nonneg (a*b*c), mul_nonneg (sq_nonneg a) (sq_nonneg b)] · conf: high
+- [ ] `biquadratic_mixed_sos_nonneg` — The quartic factor of a⁵+b⁵ over a+b, namely a⁴-a³b+a²b²-ab³+b⁴, is always nonnegative
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a^2-b^2), sq_nonneg (a-b), sq_nonneg (a+b), sq_nonneg (a^2 - a*b), sq_nonneg (a*b - b^2)] · conf: high
+- [ ] `lagrange_identity_three_var` — Lagrange's three-variable identity expresses the Cauchy-Schwarz gap as an explicit sum of three squares
+      absence: no-local-match · triviality: non-trivial · intended: ring · conf: high
+- [ ] `n4_plus_one_factor_over_sqrt_shift` — The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨2*n^2 + 2*n + 1, by ring⟩ · conf: high
+- [ ] `sextic_x6_plus_x3_plus_one_dvd_pow_nine_sub_one` — The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨n^3 - 1, by ring⟩ · conf: high
+- [ ] `quartic_n4_plus_four_composite_witness` — n⁴+4 factors explicitly as (n²-2n+2)(n²+2n+2), exhibiting both Sophie-Germain factors
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨_, _, by ring, rfl, rfl⟩ · conf: high
+- [ ] `diff_cube_divides_diff_sixth` — The difference of cubes a³-b³ divides the difference of sixth powers a⁶-b⁶
+      absence: no-local-match · triviality: non-trivial · intended: exact ⟨a^3 + b^3, by ring⟩ · conf: high
+- [ ] `sum_four_squares_ge_pairwise_distinct_products` — A weighted four-square bound: ac+bd is dominated by a²+b²/2+c²/2+d²
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a - c), sq_nonneg (b - d), sq_nonneg a, sq_nonneg d] · conf: high
+- [ ] `square_product_sum_three_le_square_norm` — The square of the symmetric pairwise-product sum is at most the square of the sum of squares
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a), sq_nonneg (a+b+c), sq_nonneg (a*b+b*c+c*a)] · conf: high
+- [ ] `sophie_germain_factor_difference_four_prod` — The two Sophie-Germain quadratic factors of a⁴+4b⁴ differ by exactly 4ab, bounding their gcd
+      absence: no-local-match · triviality: non-trivial · intended: ring · conf: high

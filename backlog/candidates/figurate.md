@@ -50,3 +50,48 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring · conf: high
 - [ ] `sum_five_consecutive_product_closed_form` — Six times the sum of five consecutive integer products equals the six-term product n through n+5, the 5-simplex closed form
       absence: no-local-match · triviality: non-trivial · intended: Telescoping induction via Finset.sum_range_succ; ring · conf: high
+
+### Replenishment round 2 (scoped 2026-06-15) — 21 candidates
+
+- [ ] `sum_squares_eq_square_pyramidal` — Six times the sum of the first n squares equals the n-th square-pyramidal number n(n+1)(2n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ, then ring_nf / omega on the algebra · conf: high
+- [ ] `sum_square_pyramidal_eq_hyper` — Twelve times the sum of the first n square-pyramidal numbers equals n(n+1)^2(n+2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; clear the /6 by Nat.div lemma or recast each term as 2k^3+3k^2+k before summing · conf: high
+- [ ] `sum_tetrahedral_eq_pentatope` — Twenty-four times the sum of the first n tetrahedral numbers equals the pentatope number n(n+1)(n+2)(n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the k(k+1)(k+2) terms are divisible by 6 so the /6 stays exact · conf: high
+- [ ] `sum_pentatope_eq_five_simplex` — One hundred twenty times the sum of the first n pentatope numbers equals the 5-simplex number n(n+1)(n+2)(n+3)(n+4)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; each k(k+1)(k+2)(k+3) is divisible by 24, then degree-5 ring identity on the step · conf: med
+- [ ] `sum_triangular_sq_running` — Sixty times the sum of the squares of the first n triangular numbers equals n(n+1)(n+2)(3n^2+6n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; replace (k(k+1)/2)^2 by k^2(k+1)^2/4 exactly, then close the degree-5 step with ring · conf: med
+- [ ] `sum_pronic_sq_closed_form` — Thirty times the sum of the squares of the first n pronic numbers equals the stated quartic-times-linear expression
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n; expand (k(k+1))^2 = k^4+2k^3+k^2 and combine the three Faulhaber pieces, ring on the step · conf: med
+- [ ] `diff_tetrahedral_eq_triangular` — The difference of two consecutive tetrahedral numbers equals the intervening triangular number
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite each Nat division via divisibility (6 ∣ product, 2 ∣ product), then omega / ring on the integers · conf: high
+- [ ] `sum_pronic_eq_thrice_tetrahedral` — Three times the sum of the first n pronic numbers k(k+1) equals (n-1)n(n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ; handle the Nat subtraction by casework or omega on the step · conf: high
+- [ ] `sum_id_mul_triangular_closed_form` — Twenty-four times the sum of k times the k-th triangular number equals (n-1)n(n+1)(3n-2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; rewrite k*(k(k+1)/2) = k^2(k+1)/2 exactly, then ring/omega across the Nat subtractions · conf: high
+- [ ] `sum_four_consecutive_eq_hyper_tetrahedral` — Five times the sum of products of four consecutive integers equals n(n+1)(n+2)(n+3)(n+4)
+      absence: no-local-match · triviality: non-trivial · intended: Telescoping/induction with Finset.sum_range_succ; the step is a degree-5 ring identity (no division) · conf: high
+- [ ] `sum_prod_consecutive_triangular` — Ten times the sum of k(k+1)^2(k+2) (four times the product of consecutive triangular numbers) has the stated degree-5 closed form
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; degree-5 ring identity on the inductive step · conf: med
+- [ ] `sum_pentagonal_pyramidal_closed_form` — Twelve times the sum of k^2(k+1) (twice the pentagonal-pyramidal terms) equals n(n+1)(3n+1)(n+2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; expand k^2(k+1)=k^3+k^2 and combine Faulhaber pieces, ring on the step · conf: high
+- [ ] `sum_hexagonal_pyramidal_closed_form` — Six times the sum of the first n hexagonal-pyramidal numbers equals n^2(n+1)(n+2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; k(k+1)(4k-1) is divisible by 6, manage the Nat (4k-1) subtraction termwise then ring · conf: med
+- [ ] `sum_hexagonal_running_eq_hex_pyramidal` — Six times the running sum of the first n hexagonal numbers k(2k-1) equals the hexagonal-pyramidal number n(n+1)(4n-1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; handle the Nat (2k-1) and (4n-1) subtractions by casework/omega · conf: high
+- [ ] `sum_stella_octangula_running` — Twice the running sum of stella-octangula numbers k(2k^2-1) equals n^2(n+1)^2 - n(n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; split as 2*sum k^3 - sum k via Nicomachus and Gauss, manage Nat subtraction with omega · conf: med
+- [ ] `sum_pentagonal_running_eq_pyramidal` — Twice the running sum of the first n pentagonal numbers k(3k-1)/2 equals the pentagonal-pyramidal number n^2(n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; k(3k-1) is even so /2 is exact, then ring/omega across the Nat (3k-1) subtraction · conf: high
+- [ ] `sum_heptagonal_running_closed_form` — Six times the running sum of the first n heptagonal numbers k(5k-3)/2 equals n(n+1)(5n-2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; k(5k-3) is even so /2 is exact, manage Nat subtractions termwise then ring · conf: med
+- [ ] `sum_octagonal_running_closed_form` — Twice the running sum of the first n octagonal numbers k(3k-2) equals n(n+1)(2n-1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; resolve the Nat (3k-2) and (2n-1) subtractions by omega/casework · conf: high
+- [ ] `sum_nonagonal_running_closed_form` — Six times the running sum of the first n nonagonal numbers k(7k-5)/2 equals n(n+1)(7n-4)
+      absence: no-local-match · triviality: non-trivial · intended: Induction; k(7k-5) is even so /2 is exact, handle Nat subtractions termwise then ring · conf: med
+- [ ] `sum_even_index_triangular_closed_form` — Six times the sum of the even-index triangular numbers T_{2k}=k(2k+1) equals n(n+1)(4n+5)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the step is a quadratic ring identity, no division · conf: high
+- [ ] `hexagonal_eq_triangular_odd_index` — The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite the (2n-1)*(2n)/2 division exactly via Nat.mul_div_cancel on the even factor, then ring/omega · conf: high

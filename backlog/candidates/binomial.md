@@ -42,3 +42,82 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ and Nat.succ_sub_one / choose_succ_succ Pascal step; a parallel-diagonal hockey-stick distinct from the Icc form · conf: high
 - [ ] `sum_range_sq_sym_choose_sq_eq_central` — The sum of (n-2k)^2·C(n,k)^2 equals 2n times the binomial coefficient C(2n-2,n-1)
       absence: no-local-match · triviality: non-trivial · intended: Expand (n-2k)^2 and combine sum_range_choose_sq with the k and k^2 weighted convolutions; an SOS-style reduction to Vandermonde · conf: med
+
+### Replenishment round 2 (scoped 2026-06-15) — 38 candidates
+
+- [ ] `sum_range_k_sq_mul_choose_eq` — Four times the sum of k squared times C(n,k) over k equals n(n+1) times 2 to the n
+      absence: no-local-match · triviality: non-trivial · intended: Split k^2 = k*(k-1) + k, absorb k*C(n,k)=n*C(n-1,k-1) twice, reduce to sum_range_choose; the scaling-by-4 keeps it off norm_num/ring · conf: high
+- [ ] `sum_range_lower_triangle_choose_eq_two_pow` — The double sum of C(j,k) over the lower-triangular index region with j up to n equals 2 to the (n+1) minus 1
+      absence: no-local-match · triviality: non-trivial · intended: Inner sum collapses to 2^j via Nat.sum_range_choose, then a geometric telescoping induction with Finset.sum_range_succ · conf: high
+- [ ] `sum_range_k_mul_pred_mul_choose_sq_eq` — The sum of k(k-1) times C(n+2,k) squared equals (n+2)(n+1) times the binomial coefficient C(2n+2,n)
+      absence: no-local-match · triviality: non-trivial · intended: Double absorption k*C(m,k)=m*C(m-1,k-1) on both squared factors, then a Vandermonde convolution; reindexed on n+2 to keep Nat subtraction safe · conf: med
+- [ ] `sum_range_two_k_succ_mul_choose_eq` — The sum of (2k+1) times C(n,k) over k equals (n+1) times 2 to the n
+      absence: no-local-match · triviality: non-trivial · intended: Split into 2*sum(k*C)=2*n*2^(n-1) and sum(C)=2^n via sum_range_mul_choose and sum_range_choose; combine · conf: high
+- [ ] `sum_range_disp_mul_choose_sq_eq_zero` — Over the integers the sum of (n-2k) times C(n,k) squared vanishes by the reflection symmetry k to n-k
+      absence: no-local-match · triviality: non-trivial · intended: Reflection involution k↦n-k via Finset.sum_range_reflect negates the linear displacement while fixing the symmetric square C(n,k)^2; antisymmetry forces zero · conf: high
+- [ ] `sum_range_k_mul_comp_mul_choose_sq_eq` — Over the integers the sum of k(m-k) times C(m,k) squared, with m = n+1, equals m(m-1) times C(2m-2,m-1)
+      absence: no-local-match · triviality: non-trivial · intended: Expand k(m-k)=k*m - k^2, reuse the k-weighted and k^2-weighted central convolutions, combine; cast to ℤ avoids truncated subtraction · conf: med
+- [ ] `sum_range_half_even_row_choose_eq` — Twice the sum of the first n+1 entries of the even row 2n of Pascal's triangle equals 4 to the n plus the central coefficient C(2n,n)
+      absence: no-local-match · triviality: non-trivial · intended: Symmetry choose_symm folds the upper half onto the lower half; the full even row sums to 2^(2n)=4^n and the central term is counted once, so doubling the half adds C(2n,n) · conf: high
+- [ ] `sum_range_choose_mul_choose_shift_two_eq` — The sum over k of C(n+2,k) times C(n+2,k+2) equals the off-center coefficient C(2n+4,n)
+      absence: no-local-match · triviality: non-trivial · intended: Vandermonde slice: pair C(m,k) with C(m,m-2-k) via choose_symm and apply Nat.add_choose_eq; reindexed on n+2 for safe shift-by-2 · conf: med
+- [ ] `sum_vandermonde_diagonal_eq_choose` — The diagonal Vandermonde convolution, summing C(n,k) times C(m,k) over k, equals C(n+m,n)
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite C(m,k)=C(m,m-k) via choose_symm to turn the same-index product into the standard Vandermonde shape, then apply Nat.add_choose_eq · conf: high
+- [ ] `sum_range_comp_mul_choose_sq_eq` — Over the integers the sum of (m-k) times C(m,k) squared, with m = n+1, equals m times C(2m,m) minus m times C(2m-1,m-1)
+      absence: no-local-match · triviality: non-trivial · intended: Write (m-k)=m - k, split into m*sum(C^2)=m*C(2m,m) and sum(k*C^2)=m*C(2m-1,m-1) via sum_range_choose_sq and the k-weighted convolution · conf: high
+- [ ] `sum_range_choose_mul_succ_choose_eq` — The cross-row Vandermonde diagonal summing C(n,k) times C(n+1,k) equals C(2n+1,n)
+      absence: no-local-match · triviality: non-trivial · intended: Apply choose_symm to C(n+1,k) and invoke Nat.add_choose_eq (Vandermonde) with rows n and n+1 at total index n · conf: high
+- [ ] `sum_range_disp_sq_mul_choose_eq` — The binomial variance identity: over the integers the sum of (2k-n) squared times C(n,k) equals n times 2 to the n
+      absence: no-local-match · triviality: non-trivial · intended: Expand (2k-n)^2=4k^2-4kn+n^2, plug in sum(C)=2^n, sum(k*C)=n*2^(n-1), sum(k^2*C)=n(n+1)2^(n-2); the cross terms collapse to n*2^n · conf: high
+- [ ] `sum_range_disp_mul_choose_eq_zero` — Over the integers the mean-centered sum of (2k-n) times C(n,k) vanishes
+      absence: no-local-match · triviality: non-trivial · intended: Split 2*sum(k*C)=n*2^n and n*sum(C)=n*2^n and cancel; or use the reflection k↦n-k that negates 2k-n while fixing C(n,k) · conf: high
+- [ ] `alt_sum_range_half_choose_eq` — The signed partial sum of the first n+2 entries of the even row 2(n+1) equals (-1)^(n+1) times C(2n+1,n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Telescope the alternating partial row using the Pascal identity so consecutive signed terms cancel, leaving the single boundary coefficient · conf: med
+- [ ] `sum_range_shifted_choose_mul_choose_eq` — The convolution of the shifted upper row with the lower row, summing C(n+1,k+1) times C(n,k), equals C(2n+1,n)
+      absence: no-local-match · triviality: non-trivial · intended: Apply choose_symm to C(n,k) and recognise a Vandermonde slice of rows n+1 and n at a shifted total via Nat.add_choose_eq · conf: med
+- [ ] `sum_range_odd_index_choose_eq_two_pow` — The sum of the odd-indexed entries of the even row 2(n+1) of Pascal's triangle equals 2 to the (2n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Average the full row sum 2^(2(n+1)) against the alternating row sum 0 (parity split) via Int.alternating_sum_range_choose to isolate the odd-index half · conf: high
+- [ ] `sum_range_choose_mul_choose_shift_three_eq` — The sum over k of C(n+3,k) times C(n+3,k+3) equals the off-center coefficient C(2n+6,n)
+      absence: no-local-match · triviality: non-trivial · intended: Vandermonde slice: pair C(m,k) with C(m,m-3-k) via choose_symm and apply Nat.add_choose_eq; reindexed on n+3 for a safe shift-by-3 · conf: med
+- [ ] `sum_range_succ_mul_choose_sq_eq` — Twice the sum of (k+1) times C(n,k) squared equals (n+2) times the central coefficient C(2n,n)
+      absence: no-local-match · triviality: non-trivial · intended: Split (k+1)*C^2 into k*C^2 and C^2, then combine sum_range_choose_sq=C(2n,n) with the k-weighted central convolution 2*sum(k*C^2)=n*C(2n,n) · conf: high
+- [ ] `sum_range_cube_mul_two_pow_closed` — The sum of k-cubed times two-to-the-k over k below n has the closed form (n^3-6n^2+18n-26)2^n+26
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ, then ring on the cubic-polynomial coefficient identity · conf: high
+- [ ] `sum_range_id_mul_three_pow_closed` — Four times the sum of k times three-to-the-k over k below n equals (2n-3)3^n+3
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; clear the factor 4 and close the step with ring · conf: high
+- [ ] `sum_range_sq_mul_three_pow_closed` — Twice the sum of k-squared times three-to-the-k over k below n equals (n^2-3n+3)3^n-3
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ, ring on the quadratic coefficient identity after clearing the 2 · conf: high
+- [ ] `sum_range_cube_mul_three_pow_closed` — Eight times the sum of k-cubed times three-to-the-k over k below n equals (4n^3-18n^2+36n-33)3^n+33
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring discharges the cubic step after clearing the 8 · conf: high
+- [ ] `sum_range_id_mul_four_pow_closed` — Nine times the sum of k times four-to-the-k over k below n equals (3n-4)4^n+4
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the linear step after clearing the 9 · conf: high
+- [ ] `sum_range_sq_mul_four_pow_closed` — Twenty-seven times the sum of k-squared times four-to-the-k over k below n equals (9n^2-24n+20)4^n-20
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the quadratic step after clearing the 27 · conf: high
+- [ ] `sum_range_two_k_sub_one_mul_three_pow_closed` — The sum of (2k-1) times three-to-the-k over k below n has the clean closed form (n-2)3^n+2
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes the linear step · conf: high
+- [ ] `sum_range_three_k_add_two_mul_two_pow_closed` — The sum of (3k+2) times two-to-the-k over k below n equals (3n-4)2^n+4
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes the linear step · conf: high
+- [ ] `sum_range_succ_sq_mul_two_pow_closed` — The sum of (k+1)-squared times two-to-the-k over k below n equals (n^2-2n+3)2^n-3
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the quadratic coefficient step · conf: high
+- [ ] `sum_range_id_mul_succ_mul_two_pow_closed` — The sum of k(k+1) times two-to-the-k over k below n equals (n^2-3n+4)2^n-4
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the quadratic step · conf: high
+- [ ] `sum_range_sq_add_one_mul_two_pow_closed` — The sum of (k^2+1) times two-to-the-k over k below n equals (n^2-4n+7)2^n-7
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the quadratic coefficient step · conf: high
+- [ ] `sum_range_id_mul_neg_two_pow_closed` — Nine times the sum of k times negative-two-to-the-k over k below n equals (2n-3)(-2)^n-2
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring handles the signed base (-2)^(k+1) step · conf: high
+- [ ] `sum_range_fib_mul_two_pow_eq_lucas` — Five times the sum of Fibonacci-k times two-to-the-k over k below n equals two-to-the-n times the n-th Lucas number (fib(n+1)+fib(n-1)) minus two
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ using Nat.fib_add_two and case-splitting fib(n-1); ring on the resulting Fibonacci-recurrence identity · conf: med
+- [ ] `sum_range_lucas_eq_lucas_add_two_sub_three` — The sum of the first n Lucas numbers (each written as fib(k+1)+fib(k-1)) equals fib(n+2)+fib(n)-1
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; unfold fib recurrence and discharge with omega/simp on the Nat subtraction edge cases · conf: med
+- [ ] `sum_range_sq_mul_choose_eq_quarter` — Four times the sum over k of k-squared times n-choose-k equals n(n+1)2^n
+      absence: no-local-match · triviality: non-trivial · intended: Differentiate the binomial identity twice (absorption Nat.succ_mul_choose_eq) or induct via Pascal; reduce to known k*C(n,k) and C(n,k) sums · conf: med
+- [ ] `sum_range_id_mul_choose_eq_half` — Twice the sum over k of k times n-choose-k equals n times two-to-the-n
+      absence: no-local-match · triviality: non-trivial · intended: Use the absorption identity k*C(n,k)=n*C(n-1,k-1) (Nat.succ_mul_choose_eq) and Nat.sum_range_choose · conf: high
+- [ ] `sum_range_succ_div_two_pow_eq_four_sub` — The sum of (k+1) over two-to-the-k for k below n equals four minus (2n+4)/2^n
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ over ℚ; field_simp then ring on the 2^(k+1) denominators · conf: high
+- [ ] `sum_range_id_div_two_pow_eq_two_sub` — The sum of k over two-to-the-k for k below n equals two minus (2n+2)/2^n
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ over ℚ; field_simp and ring on the doubling denominator · conf: high
+- [ ] `sum_range_recip_triple_consecutive_shifted_telescope` — The sum of 1/((k+1)(k+2)(k+3)) for k below n telescopes to 1/4 minus 1/(2(n+1)(n+2))
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ over ℚ; field_simp then ring to verify the partial-fraction telescoping step · conf: high
+- [ ] `alt_sum_range_two_k_add_one_eq_signed_n` — The alternating sum of the odd numbers (2k+1) over k below n equals (-1)^(n+1) times n
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; case on parity via pow_succ and close with ring · conf: high
