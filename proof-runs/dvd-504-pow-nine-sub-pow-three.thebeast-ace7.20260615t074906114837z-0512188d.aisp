@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-504-pow-nine-sub-pow-three.thebeast-ace7.20260615t074906114837z-0512188d@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t074906114837z-0512188d; goal≜dvd-504-pow-nine-sub-pow-three; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜dvd-504-pow-nine-sub-pow-three}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜550; ended≜2026-06-15T07:49:06Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8526/8582] Building Unsorry.Dvd504PowNineSubPowThree (1.2s) trace: .> LEAN_PATH=/home/adam/.unsorry/work/prove-dvd-504-pow-nine-sub-pow-three-thebeast-ace7/.lake/packages/Cli/.lake/build/lib/lean:/home/adam/.unsorry/work/prove-dvd-504-pow-nine-sub-pow-three-thebeast-ace7/.lake}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
