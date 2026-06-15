@@ -381,6 +381,21 @@
       "sha": "fec3f18c751b649742633b967407cac80f22e664bb71fc55a1d7fcb7ec6cd070"
     },
     {
+      "alias_mapped": false,
+      "date": "2026-06-15",
+      "difficulty": 1,
+      "display_name": "Perttu Isotalo",
+      "git_add_commit": "43bceee53f7578c8b70a16e142bfe3e686387528",
+      "git_add_date": "2026-06-15",
+      "git_author": "Perttu Isotalo <pisotalo@isotalo.org>",
+      "git_author_name": "Perttu Isotalo",
+      "goal": "am-hm-two-var-s1",
+      "mapped_github": null,
+      "path": "library/index/ff0fe10ebdc1ea2d3f0bb1ebcf1ca7225fd31445055a06ae3b65b4969c05d59b.aisp",
+      "review_status": "candidate",
+      "sha": "ff0fe10ebdc1ea2d3f0bb1ebcf1ca7225fd31445055a06ae3b65b4969c05d59b"
+    },
+    {
       "alias_mapped": true,
       "date": "2026-06-15",
       "difficulty": 3,
@@ -1494,9 +1509,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 99,
+    "git_attributed_missing_solver": 100,
     "mapped_missing_solver": 98,
-    "missing_solver_provenance": 99,
-    "unmapped_missing_solver": 1
+    "missing_solver_provenance": 100,
+    "unmapped_missing_solver": 2
   }
 }

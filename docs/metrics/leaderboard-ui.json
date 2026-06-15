@@ -63,18 +63,18 @@
       "attempt_yield": 0.4091,
       "avatar_url": "https://github.com/perttu.png?size=96",
       "badges": {
-        "difficulty": 32,
-        "proofs": 17,
+        "difficulty": 31,
+        "proofs": 16,
         "success_rate_percent": 69.23
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 17,
-      "difficulty_points": 32,
+      "credited_proofs": 16,
+      "difficulty_points": 31,
       "display_name": "@perttu",
-      "explicit_solver_proofs": 17,
+      "explicit_solver_proofs": 16,
       "failed_attempts": 26,
       "github": "perttu",
       "inferred_git_proofs": 0,
@@ -83,10 +83,10 @@
       "rank": 3,
       "run_success_rate": 0.6923,
       "runs": 26,
-      "score": 3625,
+      "score": 3500,
       "solver": "perttu",
       "successes": 18,
-      "verified_proofs": 17
+      "verified_proofs": 16
     },
     {
       "attempt_yield": null,
@@ -148,6 +148,35 @@
     },
     {
       "attempt_yield": null,
+      "avatar_url": null,
+      "badges": {
+        "difficulty": 4,
+        "proofs": 2,
+        "success_rate_percent": null
+      },
+      "credit_source_summary": "inferred",
+      "credit_sources": [
+        "inferred-git-add-author"
+      ],
+      "credited_proofs": 2,
+      "difficulty_points": 4,
+      "display_name": "Perttu Isotalo",
+      "explicit_solver_proofs": 0,
+      "failed_attempts": 0,
+      "github": null,
+      "inferred_git_proofs": 2,
+      "median_solve_s": null,
+      "profile_url": null,
+      "rank": 6,
+      "run_success_rate": null,
+      "runs": 0,
+      "score": 450,
+      "solver": null,
+      "successes": 0,
+      "verified_proofs": 2
+    },
+    {
+      "attempt_yield": null,
       "avatar_url": "https://github.com/OceanLi.png?size=96",
       "badges": {
         "difficulty": 3,
@@ -167,40 +196,11 @@
       "inferred_git_proofs": 1,
       "median_solve_s": null,
       "profile_url": "https://github.com/OceanLi",
-      "rank": 6,
-      "run_success_rate": null,
-      "runs": 0,
-      "score": 325,
-      "solver": "OceanLi",
-      "successes": 0,
-      "verified_proofs": 1
-    },
-    {
-      "attempt_yield": null,
-      "avatar_url": null,
-      "badges": {
-        "difficulty": 3,
-        "proofs": 1,
-        "success_rate_percent": null
-      },
-      "credit_source_summary": "inferred",
-      "credit_sources": [
-        "inferred-git-add-author"
-      ],
-      "credited_proofs": 1,
-      "difficulty_points": 3,
-      "display_name": "Perttu Isotalo",
-      "explicit_solver_proofs": 0,
-      "failed_attempts": 0,
-      "github": null,
-      "inferred_git_proofs": 1,
-      "median_solve_s": null,
-      "profile_url": null,
       "rank": 7,
       "run_success_rate": null,
       "runs": 0,
       "score": 325,
-      "solver": null,
+      "solver": "OceanLi",
       "successes": 0,
       "verified_proofs": 1
     },
@@ -270,11 +270,11 @@
       "display_name": "Perttu Isotalo",
       "github": null,
       "index_files_added": 18,
-      "missing_solver_provenance": 1,
+      "missing_solver_provenance": 2,
       "profile_url": null,
       "rank": 3,
       "solver_credit": false,
-      "solver_provenance_proofs": 17
+      "solver_provenance_proofs": 16
     },
     {
       "attribution_source": "git-add-author",
@@ -365,7 +365,7 @@
       "provider_model": "gemini / gemini-3.1-pro-preview",
       "run_success_rate": 0.8182,
       "runs": 11,
-      "verified_proofs": 9
+      "verified_proofs": 8
     },
     {
       "provider_model": "manual / gpt-5.5",
@@ -401,15 +401,15 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 75,
-    "attribution_gap_count": 99,
+    "attributed_proofs": 74,
+    "attribution_gap_count": 100,
     "credited_contributors": 8,
     "credited_proofs": 174,
-    "explicit_solver_proofs": 75,
+    "explicit_solver_proofs": 74,
     "git_attributed_index_files": 174,
     "historical_contributors": 8,
-    "historical_unknown_proofs": 99,
-    "inferred_git_proofs": 99,
+    "historical_unknown_proofs": 100,
+    "inferred_git_proofs": 100,
     "proof_run_coverage": 0.431,
     "terminal_runs": 197,
     "uncredited_proofs": 0,

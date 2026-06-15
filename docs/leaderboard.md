@@ -4,7 +4,7 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**174 verified proofs · 75 attributed · 99 historical/unknown · 197 logged terminal runs.**
+**174 verified proofs · 74 attributed · 100 historical/unknown · 197 logged terminal runs.**
 
 ## Efficiency Baseline
 
@@ -60,16 +60,16 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
 | 1 | [@cgbarlow](https://github.com/cgbarlow) | 97 | 51 | 46 | 152 | 35.5% | 166 | 19025 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 42 | 0 | 42 | 0 | — | 85 | 9550 |
-| 3 | [@perttu](https://github.com/perttu) | 17 | 17 | 0 | 26 | 69.2% | 32 | 3625 |
+| 3 | [@perttu](https://github.com/perttu) | 16 | 16 | 0 | 26 | 69.2% | 31 | 3500 |
 | 4 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 5 | [@adam91holt](https://github.com/adam91holt) | 6 | 6 | 0 | 18 | 11.1% | 10 | 1150 |
-| 6 | [@OceanLi](https://github.com/OceanLi) | 1 | 0 | 1 | 0 | — | 3 | 325 |
-| 7 | Perttu Isotalo | 1 | 0 | 1 | 0 | — | 3 | 325 |
+| 6 | Perttu Isotalo | 2 | 0 | 2 | 0 | — | 4 | 450 |
+| 7 | [@OceanLi](https://github.com/OceanLi) | 1 | 0 | 1 | 0 | — | 3 | 325 |
 | 8 | [@yarcles](https://github.com/yarcles) | 1 | 1 | 0 | 1 | 100.0% | 1 | 125 |
 
 ## Attribution Notes
 
-**75 explicit solver credits · 99 inferred git credits · 0 uncredited proof records.**
+**74 explicit solver credits · 100 inferred git credits · 0 uncredited proof records.**
 
 Git add-author attribution covers 174 of 174 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
@@ -80,7 +80,7 @@ Git add-author attribution covers 174 of 174 proof index files. It is used only 
 | `claude / opus` | 43 | 49 | 93.9% | 18 | 3 | 4m 47s | 7.45 |
 | `openai / leanstral-2603` | 9 | 93 | 11.8% | 86 | 1 | 4m 41s | 0.65 |
 | `codex / unknown` | 9 | 30 | 30.0% | 44 | 2 | 5m 11s | 1.98 |
-| `gemini / gemini-3.1-pro-preview` | 9 | 11 | 81.8% | 6 | 1 | 6m 15s | 7.19 |
+| `gemini / gemini-3.1-pro-preview` | 8 | 11 | 81.8% | 6 | 1 | 6m 15s | 7.19 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
 | `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 12 | 0.0% | 12 | 1 | 31m 53s | 0.00 |
