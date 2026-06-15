@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-510-pow-seventeen-sub-self.thebeast-ace7.20260615t083246631693z-4bd1645c@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t083246631693z-4bd1645c; goal≜dvd-510-pow-seventeen-sub-self; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜dvd-510-pow-seventeen-sub-self}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜865; ended≜2026-06-15T08:32:46Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8572/8585] Built Unsorry.AurifeuillianQuarticDvd (1.1s) ✔ [8573/8585] Built Unsorry.AmHmTwoVarS3 (2.1s) ✔ [8574/8585] Built Unsorry.AmGmThreeCubeS2S1 (3.1s) ✔ [8575/8585] Built Unsorry.EightSumPowFourGeSumPowFour (4.3s) ✔ [8576/8585] Built Unsorry.EightDvdConsecutiveOddSqDiff }
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
