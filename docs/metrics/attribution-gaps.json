@@ -96,6 +96,21 @@
       "sha": "1f70c1213ebdf624a3b55e35ed514e3480d1943b78367f005548456eb103bbe3"
     },
     {
+      "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "6d5b01e5b5be8f36d18a994db14948fdc6b43052",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-self-add-dvd",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/29a715289eb19ed1c03c0ee6062f8492755f907fc09a3b75cb9fbd22d50158a3.aisp",
+      "review_status": "candidate",
+      "sha": "29a715289eb19ed1c03c0ee6062f8492755f907fc09a3b75cb9fbd22d50158a3"
+    },
+    {
       "alias_mapped": false,
       "date": "2026-06-15",
       "difficulty": 2,
@@ -1554,9 +1569,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 103,
-    "mapped_missing_solver": 99,
-    "missing_solver_provenance": 103,
+    "git_attributed_missing_solver": 104,
+    "mapped_missing_solver": 100,
+    "missing_solver_provenance": 104,
     "unmapped_missing_solver": 4
   }
 }
