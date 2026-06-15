@@ -235,6 +235,21 @@
       "date": "2026-06-15",
       "difficulty": 2,
       "display_name": "chat-bit-01",
+      "git_add_commit": "961e701a18ebae88334081cc75a8e7c06da53f2c",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-n-add-six-dvd-six",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/4a9553e1882190873c6e41e9ffcdfac9445450e0b1476cfbb17898e80abbc218.aisp",
+      "review_status": "candidate",
+      "sha": "4a9553e1882190873c6e41e9ffcdfac9445450e0b1476cfbb17898e80abbc218"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
       "git_add_commit": "aaf4271d67fb746e6f739f2e0a7b262442a66f9d",
       "git_add_date": "2026-06-15",
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -2034,9 +2049,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 135,
-    "mapped_missing_solver": 131,
-    "missing_solver_provenance": 135,
+    "git_attributed_missing_solver": 136,
+    "mapped_missing_solver": 132,
+    "missing_solver_provenance": 136,
     "unmapped_missing_solver": 4
   }
 }
