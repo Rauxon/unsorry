@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**132 open · 157 proved · 297 total prove-goals.**
+**131 open · 158 proved · 297 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -42,7 +42,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gcd-self-add-dvd` — The gcd of n and n+k divides k. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The gcd of n and n+k divides k. Not a named mathlib lemma in this form. |
 | `lcm-self-succ` — The lcm of n and n+1 is their product n(n+1). | open | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The lcm of n and n+1 is their product n(n+1). Not a named mathlib lemma in this form. |
 | `nesbitt-inequality-s1` — nesbitt-inequality-s1 | open | 1 | — | — | — |
-| `nesbitt-inequality-s4` — nesbitt-inequality-s4 | open | 1 | — | — | — |
 | `no-int-sq-eq-eight-mul-add-three` — No integer square has the form 8n+3 (squares are 0,1,4 mod 8). | open | 3 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | No integer square has the form 8n+3 (squares are 0,1,4 mod 8). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `no-nat-sq-eq-two-mul-sq-s1` — no-nat-sq-eq-two-mul-sq-s1 | open | 1 | — | — | — |
 | `no-nat-sq-eq-two-mul-sq-s2` — no-nat-sq-eq-two-mul-sq-s2 | open | 1 | — | — | — |
@@ -228,6 +227,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `nat-zero-le` — Every natural number is at least zero. | proved | 1 | — | — | — |
 | `nesbitt-inequality-s2` — nesbitt-inequality-s2 | proved | 1 | — | — | — |
 | `nesbitt-inequality-s3` — nesbitt-inequality-s3 | proved | 1 | — | — | — |
+| `nesbitt-inequality-s4` — nesbitt-inequality-s4 | proved | 1 | — | — | — |
 | `nicomachus-sum-cubes` — Nicomachus's theorem: the sum of the first n cubes equals the square of the sum of the first n naturals. For every natural number n, ∑_{k<n} k³ = (∑_{k<n} k)². | proved | 3 | [packet-ready](upstream/nicomachus-sum-cubes.md) | Phase-2 seeded target (pre-ADR-012) | Nicomachus of Gerasa, *Introduction to Arithmetic* II.20; left as a reader exercise in *Mathematics in Lean* §5 |
 | `nicomachus-sum-cubes-triangular` — For every natural n, the sum over i in 0..n of i^3 equals (n(n+1)/2)^2 (the explicit triangular-number form of Nicomachus' theorem). | proved | 3 | [packet-ready](upstream/nicomachus-sum-cubes-triangular.md) | Freek 100 / classic | Nicomachus of Gerasa, Introduction to Arithmetic, Book II, in explicit closed form; Graham, Knuth & Patashnik, Concrete Mathematics, §2.5 (∑k^3 = (n(n+1)/2)^2). |
 | `no-nat-sq-eq-two-mul-sq-s4` — no-nat-sq-eq-two-mul-sq-s4 | proved | 1 | — | — | — |
