@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**659 goals — 441 open · 7 blocked · 10 translated · 121 proved · 80 archived.** 16 decomposition families shown below; standalone goals are listed in the table.
+**659 goals — 440 open · 7 blocked · 10 translated · 122 proved · 80 archived.** 16 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (117 of 121 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (118 of 122 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -266,7 +266,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`catalan-r3-shift-nat-fib-int`](https://github.com/agenticsnz/unsorry/blob/main/goals/catalan-r3-shift-nat-fib-int.lean) | open | 3 | — | — | — | — |
 | [`cauchy-schwarz-two-term`](https://github.com/agenticsnz/unsorry/blob/main/goals/cauchy-schwarz-two-term.lean) | open | 2 | — | — | — | — |
 | [`consecutive-fib-product-diff-nat-int`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-fib-product-diff-nat-int.lean) | open | 4 | — | — | — | — |
-| [`constrained-pairsum-le-three-sum-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/constrained-pairsum-le-three-sum-three.lean) | open | 2 | — | — | — | — |
 | [`constrained-sum-sq-ge-one-third`](https://github.com/agenticsnz/unsorry/blob/main/goals/constrained-sum-sq-ge-one-third.lean) | open | 2 | — | — | — | — |
 | [`coprime-2n1-2n3`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-2n1-2n3.lean) | open | 2 | — | — | — | — |
 | [`coprime-3n1-4n1`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-3n1-4n1.lean) | open | 2 | — | — | — | — |
@@ -719,6 +718,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`cauchy-schwarz-three-term`](https://github.com/agenticsnz/unsorry/blob/main/goals/cauchy-schwarz-three-term.lean) | proved | 3 | claude-rmt-001 | perttu · `opus` | [#692](https://github.com/agenticsnz/unsorry/pull/692) | 2026-06-15 |
 | [`consecutive-cubes-diff-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-cubes-diff-odd.lean) | proved | 2 | claude-rmt-001 | perttu · `opus` | [#726](https://github.com/agenticsnz/unsorry/pull/726) | 2026-06-15 |
 | [`consecutive-triangular-eq-square`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-triangular-eq-square.lean) | proved | 2 | p3-b1 | cgbarlow · `opus` | [#347](https://github.com/agenticsnz/unsorry/pull/347) | 2026-06-13 |
+| [`constrained-pairsum-le-three-sum-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/constrained-pairsum-le-three-sum-three.lean) | proved | 2 | afnz-zbook-b336 | cgbarlow · `leanstral-2603` | [#842](https://github.com/agenticsnz/unsorry/pull/842) | 2026-06-15 |
 | [`constrained-sum-sq-ge-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/constrained-sum-sq-ge-three.lean) | proved | 2 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#633](https://github.com/agenticsnz/unsorry/pull/633) | 2026-06-15 |
 | [`coprime-2n1-3n2`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-2n1-3n2.lean) | proved | 2 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#680](https://github.com/agenticsnz/unsorry/pull/680) | 2026-06-15 |
 | [`coprime-2n1-n1`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-2n1-n1.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#619](https://github.com/agenticsnz/unsorry/pull/619) | 2026-06-15 |
