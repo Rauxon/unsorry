@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**223 open · 188 proved · 418 total prove-goals.**
+**222 open · 189 proved · 418 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -39,7 +39,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `dvd-504-pow-nine-sub-pow-three` — 504 divides n^9 minus n^3 for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 504 divides n^9 minus n^3 for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-5040-seven-consecutive-product` — 5040 (=7!) divides n·(n^2-1)·(n^2-4)·(n^2-9), the product of seven consecutive integers centred at n. | open | 4 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 5040 (=7!) divides n·(n^2-1)·(n^2-4)·(n^2-9), the product of seven consecutive integers centred at n. Not a named mathlib lemma in this form. |
 | `dvd-510-pow-seventeen-sub-self` — 510 divides n^17 minus n for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 510 divides n^17 minus n for every integer n. Not a named mathlib lemma in this form. |
-| `dvd-798-pow-nineteen-sub-self` — 798 divides n^19 minus n for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 798 divides n^19 minus n for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-fortyeight-coprime-six-pow-four-sub-one` — For every integer n divisible by neither 2 nor 3, 48 divides n^4 minus 1. | open | 4 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | For every integer n divisible by neither 2 nor 3, 48 divides n^4 minus 1. Not a named mathlib lemma in this form. |
 | `dvd-sixteen-odd-pow-four-sub-one` — For every odd integer n, 16 divides n^4 minus 1. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | For every odd integer n, 16 divides n^4 minus 1. Not a named mathlib lemma in this form. |
 | `dvd-sixty-pow-six-sub-sq` — 60 divides n^6 minus n^2 for every integer n. | open | 2 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 60 divides n^6 minus n^2 for every integer n. Not a named mathlib lemma in this form. |
@@ -274,6 +273,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `dvd-30-pow-nine-sub-self` — 30 divides n^9 - n for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family. | 30 divides n^9 - n for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-330-pow-twentyone-sub-self` — 330 divides n^21 minus n for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 330 divides n^21 minus n for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-66-pow-eleven-sub-self` — 66 divides n^11 - n for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family. | 66 divides n^11 - n for every integer n. Not a named mathlib lemma in this form. |
+| `dvd-798-pow-nineteen-sub-self` — 798 divides n^19 minus n for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 798 divides n^19 minus n for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-nine-pow-nine-sub-pow-three` — 9 divides n^9 - n^3 for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family. | 9 divides n^9 - n^3 for every integer n. Not a named mathlib lemma in this form. |
 | `eight-dvd-consecutive-odd-sq-diff` — For every integer n, 8 ∣ (2n+3)² − (2n+1)² (difference of consecutive odd squares). | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For every integer n, 8 ∣ (2n+3)² − (2n+1)² (difference of consecutive odd squares). Not a named mathlib lemma in this concrete form. |
 | `eight-sum-pow-four-ge-sum-pow-four` — For all reals a,b, (a+b)⁴ ≤ 8(a⁴+b⁴). | proved | 3 | — | #400 Identity Engine (ADR-043) — inequalities family. | For all reals a,b, (a+b)⁴ ≤ 8(a⁴+b⁴). Not a named mathlib lemma in this form. |
