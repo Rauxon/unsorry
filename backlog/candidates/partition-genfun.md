@@ -65,9 +65,9 @@ Theme staging file for the Identity Engine (#400, ADR-043). 18 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_Icc_succ_top, then ring/omega on the step · conf: high
 - [ ] `sum_icc_k_mul_three_k_add_one_eq` — The sum of k(3k+1) for k from 1 to n, twice the negative-index generalized pentagonal numbers, equals n(n+1)²
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_Icc_succ_top and ring · conf: high
-- [ ] `two_mul_sum_icc_three_k_sub_two_eq_pentagonal` — Twice the sum of (3k-2) for k from 1 to n equals n(3n-1), making the n-th partial sum the pentagonal number P_n
+- [x] `two_mul_sum_icc_three_k_sub_two_eq_pentagonal` — Twice the sum of (3k-2) for k from 1 to n equals n(3n-1), making the n-th partial sum the pentagonal number P_n
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top, clearing Nat subtraction via the doubled form and omega · conf: high
-- [ ] `sum_range_succ_mul_two_pow_eq_closed` — The derivative-of-geometric-series sum ∑ (k+1)·2^k from k=0 to n has closed form n·2^(n+1)+1
+- [x] `sum_range_succ_mul_two_pow_eq_closed` — The derivative-of-geometric-series sum ∑ (k+1)·2^k from k=0 to n has closed form n·2^(n+1)+1
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ and ring · conf: high
 - [ ] `sum_range_choose_mul_pow_three_eq_two_pow_two_n` — The binomial expansion ∑ binom(n,k)·3^(n-k) equals 4^n = (1+3)^n
       absence: no-local-match · triviality: non-trivial · intended: Rewrite as 1^k·3^(n-k) and apply add_pow / Nat.sum_range_choose_mul_pow (binomial theorem) · conf: high
