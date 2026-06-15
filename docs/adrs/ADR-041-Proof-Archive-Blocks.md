@@ -45,9 +45,30 @@ of the affected archive/pin boundary.
 ## Policy
 
 An archive block is created when the active package reaches roughly 40 proved goals. The
-maintainer may delay a cut to avoid splitting a tightly related decomposition tree, but the
 default target remains 40 because it keeps blocks reviewable and gives CI feedback sooner than a
 50- or 100-proof block.
+
+**Archive closed proof families only — never half-finished decomposition trees.** A decomposition
+family (parent goal + its sublemmas, their proofs, the decomposition metadata, and proof-run
+telemetry) is archived **as one unit, and only when every member is proved**. A family with any
+open member is kept active. Two reasons:
+
+1. **Soundness/validation atomicity.** A decomposition record and its `parent`+`subs` are atomic to
+   Gate B: a package is validated as its own tree, so a sublemma's `src≜decompositions/<D>` must
+   resolve there (GB008) and the `parent` must be a known goal there (GB016); and an active sublemma
+   still referencing a moved decomposition fails GB008 on the active side. So a tree goes to the
+   package entirely or not at all (enforced by the cut; see SPEC-041-A §8 invariant A).
+2. **Recomposition inputs must stay active.** The active recompose/unblock machinery
+   (`unblockable`, `recompose-candidate`, `proved-deps`) and the active Lake build see **only the
+   active `library/`** — archive packages are not active Lake dependencies. So archiving the proved
+   sublemmas of a still-**open** parent would hide the very ingredients the parent's recomposition
+   needs. This is not a real constraint in practice: an open parent whose sublemmas are all proved is
+   a *transient* recompose-candidate — the parent gets re-proved from the active sublemmas, the
+   family closes, and *then* it is archivable. The conservative rule simply waits for that, so it
+   never strands recomposition. Once archived, the family is correctly read-only history: its records
+   are `status≜archived` (excluded from selection) and its decomposition moved into the package
+   (invisible to the active recompose machinery). A later refactor/replace creates a *new* active
+   proof; it never edits an archived block.
 
 Before a block is frozen, it must pass the full Gate A soundness stack for the block:
 
@@ -112,6 +133,43 @@ The first implementation should be conservative:
 5. Record CI timing before and after the first archive cut to decide whether 40 remains the
    right block size.
 
+The step-by-step cut procedure (as performed for 0001/0002) is the runbook in
+[SPEC-041-A §8](specs/SPEC-041-A-Proof-Archive-Blocks.md).
+
+**At scale.** With a high, continuous inflow of proofs (many contributors / agents), the active set
+crosses the block target constantly, and the active package's full-replay/audit cost — Gate A's long
+pole, which on memory-bound runners cannot be parallelised away (ADR-047) — grows between cuts. So
+40 is a **ceiling, not a goal**: cut early and often to keep full validation fast, and promote the
+report-only planner to a *write* mode plus a threshold-triggered retire PR so archiving keeps pace
+without manual effort (SPEC-041-A §9).
+
+### Deferred (own PR/ADR): archive-aware recomposition / dependency reuse
+
+Today archived proofs are validated history, **not** reusable proof inputs: the active package does
+not `require` archive packages, and dependency discovery (`_proved_goals`, `proved-deps`,
+`recompose-candidate`, `unblockable`) scans only the active `library/`. The "closed families only"
+policy above makes this a non-issue for the normal decompose→recompose lifecycle (recomposition
+finishes before a family is archived). The **only** capability it forecloses is letting a *new*
+active proof `import` an already-archived lemma instead of re-proving it — a dependency-reuse
+optimization, not a correctness need. If we ever want it, it is a separate, cross-cutting change:
+
+1. Make active `lakefile.toml` `require` the archive packages (by pinned rev).
+2. Teach `_proved_goals` (and `proved-deps`) to include `packages/unsorry-archive-*/library/index/*.aisp`.
+3. Teach dependency discovery to locate theorem modules in archive packages.
+4. Make proof prompts/imports treat archived modules as valid dependencies.
+5. Update Gate A scope so active PRs validate against archive **pins** without replaying every
+   archived proof (the pin becomes a trust event).
+6. Keep the archiver family-atomic (already required above).
+
+Because it touches Lake deps, dependency discovery, prompt generation, and CI scope, it must land as
+its own ADR/PR — not bundled with the archiver.
+
+**Related gap — retired families.** The "closed families only" rule has no exit for a parent that is
+hard enough to *never* recompose: its proved sublemmas then stay active forever, slowly bloating the
+active set under high inflow. A `retired` parent status (e.g. after N failed recompose attempts, or
+explicit operator retirement) should release the whole family to the archiver, so genuinely-stuck
+trees don't pin the active replay surface. Design this alongside the write-mode tool.
+
 ## References
 
 | Reference ID | Title | Type | Location |
@@ -128,3 +186,4 @@ The first implementation should be conservative:
 |--------|----------|------|
 | Proposed | unsorry maintainers | 2026-06-14 |
 | Accepted | unsorry maintainers | 2026-06-14 |
+| Amended | unsorry maintainers | 2026-06-15 |

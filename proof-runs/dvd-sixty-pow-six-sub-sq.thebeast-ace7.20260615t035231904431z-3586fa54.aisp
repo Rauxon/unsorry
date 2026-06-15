@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-sixty-pow-six-sub-sq.thebeast-ace7.20260615t035231904431z-3586fa54@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t035231904431z-3586fa54; goal≜dvd-sixty-pow-six-sub-sq; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜dvd-sixty-pow-six-sub-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜429; ended≜2026-06-15T03:52:31Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8556/8564] Built Unsorry.AurifeuillianQuarticDvd (7.4s) ✔ [8557/8564] Built Unsorry.FourConsecutiveProductAddOneSquareS3 (8.4s) ✔ [8558/8564] Built Unsorry.EightTriangularAddOneEqOddSq (9.7s) ✖ [8559/8564] Building Unsorry.DvdSixtyPowSixSubSq (10s) trace: .> LEAN_PATH=/home/ad}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

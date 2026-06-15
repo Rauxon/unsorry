@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜no-nat-sq-eq-two-mul-sq
   phase≜prove
-  status≜blocked
+  status≜proved
   difficulty≜4
 }
 ⟦Σ:Source⟧{
@@ -14,6 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/no-nat-sq-eq-two-mul-sq.lean
-  sha≜∅
+  sha≜5c0f89c077896d70c75a9d589179f1a6697689352413c33871ee34d5ee71297e
+  aff≜-4
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

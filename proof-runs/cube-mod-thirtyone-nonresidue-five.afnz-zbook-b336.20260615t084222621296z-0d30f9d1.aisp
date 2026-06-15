@@ -1,0 +1,8 @@
+𝔸5.1.run.cube-mod-thirtyone-nonresidue-five.afnz-zbook-b336.20260615t084222621296z-0d30f9d1@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t084222621296z-0d30f9d1; goal≜cube-mod-thirtyone-nonresidue-five; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜cube-mod-thirtyone-nonresidue-five}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜301; ended≜2026-06-15T08:42:22Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜3c5a5d2307103c55e12558ce5f1f99f7a848339db791b8b7b8c61ecb1d32e9a4}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,20 @@
+𝔸5.1.goal.fib-add-two-sq-sub-fib-sq-eq-fib-two-mul-add-two@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜fib-add-two-sq-sub-fib-sq-eq-fib-two-mul-add-two
+  phase≜prove
+  status≜open
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/fib-add-two-sq-sub-fib-sq-eq-fib-two-mul-add-two.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/fib-add-two-sq-sub-fib-sq-eq-fib-two-mul-add-two.lean
+  sha≜∅
+  aff≜-20
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

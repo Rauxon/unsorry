@@ -464,7 +464,7 @@ def test_docs_leaderboard_html_consumes_generated_ui_json():
     html = (root / "docs" / "leaderboard.html").read_text(encoding="utf-8")
     assert "metrics/leaderboard-ui.json" in html
     assert "schema_version" in html
-    assert "leaderboardData = normalizeRows(payload.contributors)" in html
+    assert "normalizeRows(payload.contributors)" in html
     assert "explicit_solver_proofs" in html
     assert "inferred_git_proofs" in html
     assert "renderHistoricalContributors" not in html
@@ -475,6 +475,36 @@ def test_docs_leaderboard_html_consumes_generated_ui_json():
     assert "LocalDataStore" not in html
     assert "seedData" not in html
     assert "pravatar" not in html
+    # Issue #738: shared top-nav + proofs-over-time toggle consuming payload.timeline.
+    assert 'href="index.html"' in html
+    assert 'href="proofs-contributors-visualisation.html"' in html
+    assert 'id="tab-leaderboard"' in html and 'id="tab-timeline"' in html
+    assert 'id="view-timeline"' in html
+    assert "renderTimeline" in html and "payload.timeline" in html
+    # Top 5 view: a third toggle tab rendering the top five contributors.
+    assert 'id="tab-top5"' in html and 'id="view-top5"' in html
+    assert "renderTop5" in html
+
+
+def test_docs_index_links_readme():
+    # The home page links the repository README so visitors can read about it.
+    root = Path(__file__).resolve().parents[3]
+    html = (root / "docs" / "index.html").read_text(encoding="utf-8")
+    assert "blob/main/README.md" in html
+    assert 'href="leaderboard.html"' in html
+    assert 'href="proofs-contributors-visualisation.html"' in html
+
+
+def test_ui_payload_includes_proof_timeline(tmp_path):
+    # Issue #738: cumulative proofs-over-time series for the leaderboard line graph.
+    _goal(tmp_path, "g1", 1)
+    _goal(tmp_path, "g2", 2)
+    _index(tmp_path, "a" * 64, "g1")
+    _index(tmp_path, "b" * 64, "g2")
+    payload = ui_payload(tmp_path)
+    assert payload["timeline"] == [
+        {"date": "2026-06-13", "proofs": 2, "cumulative_proofs": 2}
+    ]
 
 
 # --- Phantom-solver guard (ADR-037) ------------------------------------------

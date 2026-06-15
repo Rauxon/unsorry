@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-sixty-pow-ten-sub-sq.sovereign-engine.20260615t044309253760z-5a0c355e@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t044309253760z-5a0c355e; goal≜dvd-sixty-pow-ten-sub-sq; agent≜sovereign-engine; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜jackcloudman/Leanstral-2603-GGUF; effort≜high}
+⟦Γ:Goal⟧{goal≜dvd-sixty-pow-ten-sub-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1935; ended≜2026-06-15T04:43:09Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(openai call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

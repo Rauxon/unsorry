@@ -1,0 +1,20 @@
+𝔸5.1.goal.dvd-252-pow-eight-sub-sq@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜dvd-252-pow-eight-sub-sq
+  phase≜prove
+  status≜open
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/dvd-252-pow-eight-sub-sq.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/dvd-252-pow-eight-sub-sq.lean
+  sha≜∅
+  aff≜-30
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,8 @@
+𝔸5.1.lemma.44a1e7582306@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜44a1e75823062a1518e61e03537876c87a721a986c0bbc8217cbf48bc8cbedab; goal≜no-nat-sq-eq-two-mul-sq-s3; name≜square_eq_two_mul_square_halves}
+⟦Σ:Source⟧{src≜goals/no-nat-sq-eq-two-mul-sq-s3.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜adam91holt; agent≜thebeast-ace7; provider≜codex; effort≜high; attempts≜2; solve_s≜340}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

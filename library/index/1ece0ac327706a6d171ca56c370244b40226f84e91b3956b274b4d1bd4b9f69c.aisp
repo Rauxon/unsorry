@@ -1,0 +1,8 @@
+𝔸5.1.lemma.1ece0ac32770@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜1ece0ac327706a6d171ca56c370244b40226f84e91b3956b274b4d1bd4b9f69c; goal≜no-nat-sq-eq-two-mul-sq-s1; name≜square_eq_two_mul_square_left_even}
+⟦Σ:Source⟧{src≜goals/no-nat-sq-eq-two-mul-sq-s1.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜xhigh; attempts≜2; solve_s≜225}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

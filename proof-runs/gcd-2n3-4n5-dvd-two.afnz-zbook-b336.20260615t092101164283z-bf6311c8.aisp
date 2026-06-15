@@ -1,0 +1,9 @@
+𝔸5.1.run.gcd-2n3-4n5-dvd-two.afnz-zbook-b336.20260615t092101164283z-bf6311c8@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t092101164283z-bf6311c8; goal≜gcd-2n3-4n5-dvd-two; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜gcd-2n3-4n5-dvd-two}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜195; ended≜2026-06-15T09:21:01Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8547/8591] Building Unsorry.Gcd2n34n5DvdTwo (211ms) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-gcd-2n3-4n5-dvd-two-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-gcd-2n3-4n5-dvd-two-afnz-zbook-b336/.lake/packages/batteries/.lak}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

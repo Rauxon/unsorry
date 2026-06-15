@@ -1,6 +1,6 @@
 # SPEC-041-A: Proof Archive Blocks
 
-Implements: [ADR-041](../ADR-041-Proof-Archive-Blocks.md) · Status: Living · Updated: 2026-06-14
+Implements: [ADR-041](../ADR-041-Proof-Archive-Blocks.md) · Status: Living · Updated: 2026-06-15
 
 ## 1. Terms
 
@@ -63,14 +63,18 @@ The manifest records:
 
 ## 4. Validation Rules
 
-Before an archive block is frozen, CI must run the full soundness and metadata stack for that block:
+When an archive block is frozen, CI validates **provenance + packaging**, not soundness from scratch
+(ADR-048 verify-on-ingest — the proofs were kernel-verified when active and are byte-identical now):
 
-- `lake build --wfail`;
-- authoritative axiom audit;
-- `leanchecker` kernel replay;
+- byte-identity / immutability: the archived `.lean` is byte-for-byte the already-verified active
+  proof (ADR-018 archive-aware immutability, enforced in `gate-a-prepare`);
+- `lake build --wfail` (packaging sanity — the archive package is a new Lake project);
 - statement-binding regeneration/checks for archived goals;
 - forbidden elaboration option checks;
 - Gate B validation over archived index/proof-run metadata.
+
+It does **not** re-run `leanchecker` kernel replay or the axiom audit on archived proofs — re-running
+them on the same immutable artifact re-proves nothing and OOM-killed memory-bound runners (#764).
 
 After freezing:
 
@@ -88,6 +92,12 @@ Gate A should distinguish three validation scopes:
 3. **Global scope**: toolchain, Lake, Gate A, or archive packaging changes; full-validate active plus affected archive blocks.
 
 The default must always fail toward a larger validation scope when the changed-path classifier cannot decide.
+
+**Runs in the `gate-a-archive` job** (`needs: [detect]`, `if: archive == 'true'`). Under ADR-048
+(verify-on-ingest) this job no longer kernel-replays archived proofs — it does packaging sanity
+(`lake build --wfail`) + provenance, which fits the standard runner. (Earlier cuts — #823's chunking,
+#838's 16 GB pin — tried to make the re-replay fit; ADR-048 removes the re-replay instead, which is
+both cheaper and a better match for what an archive is.)
 
 ## 6. Rollout Plan
 
@@ -107,3 +117,100 @@ The default must always fail toward a larger validation scope when the changed-p
 - A frozen archive block can be validated independently from the active package.
 - A normal proof PR after the first archive cut does not enumerate archived proof modules in the active replay/audit set.
 - A PR changing an archive pin or archive source triggers full validation for the affected archive boundary.
+
+## 8. Cutting a block — runbook
+
+A block moves a set of proved goals from the active package into a new frozen archive package; the
+active `goals/<id>.aisp` records stay (re-pointed to the archive), only the proved artefacts move.
+
+Two non-obvious invariants — both learned the hard way (blocks 0003/0004) — govern a correct cut:
+
+> **(A) Archive whole decomposition trees, never split one.** A decomposition record and its
+> `parent` + all `subs` are *atomic* to Gate B: the package is validated as its own tree, so a
+> sub-lemma's `src≜decompositions/<D>` must resolve there (GB008) and the decomposition's `parent`
+> must be a known goal there (GB016) — and any active sub still referencing a moved decomposition
+> fails GB008 on the active side. So a tree goes to the package **entirely or not at all**.
+>
+> **(B) Never touch generated docs in the cut.** `docs/leaderboard.*`, `docs/metrics/*.json`,
+> `docs/targets.md`, and `docs/proof-graph.*` / `docs/proofs-contributors-visualisation.*` are
+> regenerated and committed by **push-to-`main`** workflows (no PR gate checks them). If the cut
+> regenerates them, it races main's refresh bot and conflicts forever. Leave them at the
+> **merge-base** version (zero delta); main refreshes them after merge.
+
+**1. Plan.** On an up-to-date checkout of `main`:
+
+```bash
+python3 -m tools.archive --size 40 --json   # next block id + candidate goals (module, sha, proof-runs, index)
+```
+
+Confirm `block_id` is the next after existing `packages/unsorry-archive-*` (a stale checkout
+mis-numbers — verify).
+
+**1b. Restrict to whole trees (invariant A).** Build the decomposition graph from active
+`decompositions/*.aisp` (each record's `parent≜…` + `id≜…` subs are one component). Keep a candidate
+goal only if it is standalone (in no decomposition) **or** its entire component is also in the
+candidate set; drop split-tree goals (they archive later when their whole tree is eligible together).
+The block is then whole-trees + standalone goals — which is usually **fewer than 40**; that is
+correct and preferable to a broken 40. (The report-only planner is not yet tree-aware; this is the
+gap the write-mode tool should close.)
+
+**2. Create `packages/unsorry-archive-NNNN/`** (mirror 0002's layout):
+
+- `lakefile.toml` (`name = "unsorryArchiveNNNN"`, one `[[lean_lib]]` `UnsorryArchiveNNNN`,
+  `srcDir = "library"`, `globs = ["Unsorry.+"]`, `mathlib` pinned to the **current** root `rev`),
+  `lean-toolchain` (copy root), `lake-manifest.json`, and `archive-manifest.json`
+  (`block_id`, `target_size`, `proof_count`, `status: "frozen"`, `source_commit`,
+  `validation_commit: null`, `pins`, `notes`, `goals: [{goal, module}, …]`).
+- For each archived goal `<id>` (module `Unsorry.<Mod>`): **move** `library/Unsorry/<Mod>.lean`,
+  its `library/index/<sha>.aisp`, `goals/<id>.lean` (**byte-identical** — required for the ADR-018
+  archive-aware exemption), `backlog/<id>.md`, and its `proof-runs/*`; **copy** `goals/<id>.aisp`
+  (provenance).
+- **Decompositions:** move a `decompositions/<parent>.*.aisp` into the package **only when its whole
+  tree is archived** (invariant A). Then re-point the package's sub-lemma records' `src` to
+  `packages/unsorry-archive-NNNN/decompositions/…`.
+
+**3. Retire from active.** Remove the moved artefacts from the active tree, and edit each active
+`goals/<id>.aisp` to the archived end-state (keep the record, re-point it; `sha` unchanged):
+
+```
+⟦Ω:Goal⟧{ … status≜archived … }
+⟦Σ:Source⟧{ src≜packages/unsorry-archive-NNNN/backlog/<id>.md }
+⟦Λ:Artifact⟧{ lean≜packages/unsorry-archive-NNNN/goals/<id>.lean ; sha≜<unchanged> ; aff≜… }
+```
+
+**4. Leave generated docs alone (invariant B).** Do **not** run the board generators. If any got
+touched, restore them to the merge-base: `git checkout "$(git merge-base origin/main HEAD)" --
+docs/leaderboard.* docs/metrics/*.json docs/targets.md docs/proof-graph.* docs/proofs-contributors-visualisation.*`.
+The PR must show **zero** generated-doc changes; main auto-refreshes them post-merge.
+
+**5. Validate locally** before the PR:
+
+```bash
+python3 -m tools.gate_b validate .                                            # active records
+python3 -m tools.gate_b validate packages/unsorry-archive-NNNN --goals-root packages/unsorry-archive-NNNN  # the package as its own tree (catches A)
+python3 -m tools.gate_a.check_goal_immutability --base <PR base>              # goal-.lean removals (ADR-018)
+git diff --name-only <PR base> -- docs/ | grep -v docs/adrs/ || echo "no generated-doc delta — good"  # invariant B
+```
+
+**6. Open the PR** titled `chore(archive): retire active copies for block NNNN`. Gate A
+full-validates the new archive package (ADR-041 §4) and replays the **shrunk** active library; the
+goal-`.lean` removals pass the ADR-018 immutability gate (byte-identical archived copy in the
+manifest).
+
+## 9. Operating at scale
+
+With a high inflow of proofs (many contributors / many agents), the active set crosses the block
+target continuously, so archiving is **not** a one-off: the active package's full-replay and audit
+cost (the Gate A long pole, especially on memory-bound runners where replay can't parallelise) grows
+between cuts. Two implications:
+
+- **Cut early and often.** Treat 40 as a ceiling, not a goal; a smaller effective active set keeps
+  full validation fast. Cut a new block whenever the planner reports a full block of eligible goals.
+- **Automate the cut.** The §8 runbook is mechanical — it should become a `tools.archive` *write*
+  mode (perform the moves, write the manifest, re-point the active records) plus a scheduled/threshold
+  trigger that opens the retire PR automatically once a whole-tree block is eligible. The write mode
+  **must** encode both invariants from §8: **(A)** select only whole decomposition trees + standalone
+  goals (make the planner tree-aware), and **(B)** never write generated docs (leave them to the
+  push-to-`main` refresh workflows). Both are what made the hand-cuts conflict / fail validation; a
+  tool that bakes them in is the durable fix for a high proof-inflow repo. Until then, follow §8 by
+  hand.

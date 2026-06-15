@@ -1,0 +1,9 @@
+𝔸5.1.run.cube-of-sum-minus-cubes-div-by-sum.afnz-zbook-b336.20260615t111048250715z-16ffdebf@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t111048250715z-16ffdebf; goal≜cube-of-sum-minus-cubes-div-by-sum; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜cube-of-sum-minus-cubes-div-by-sum}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜281; ended≜2026-06-15T11:10:48Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8593/8595] Building Unsorry.CubeOfSumMinusCubesDivBySum (3.8s) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-cube-of-sum-minus-cubes-div-by-sum-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-cube-of-sum-minus-cubes-div-by-sum-afnz}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

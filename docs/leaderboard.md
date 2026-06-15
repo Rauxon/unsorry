@@ -4,37 +4,37 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**159 verified proofs · 73 attributed · 86 historical/unknown · 173 logged terminal runs.**
+**221 verified proofs · 81 attributed · 140 historical/unknown · 283 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 69 |
-| Failed terminal runs | 104 |
-| Decomposed after failure | 15 |
-| Failed without decomposition | 89 |
-| Run success rate | 39.9% |
-| Provider attempts | 213 |
-| Failed attempts | 144 |
-| Attempt yield | 32.4% |
-| Recorded run time | 28h 29m |
-| Median / p90 run time | 4m 52s / 31m 42s |
-| Verified successes per recorded hour | 2.42 |
-| Proofs with run telemetry | 69 (43.4%) |
+| Successful terminal runs | 85 |
+| Failed terminal runs | 198 |
+| Decomposed after failure | 16 |
+| Failed without decomposition | 182 |
+| Run success rate | 30.0% |
+| Provider attempts | 332 |
+| Failed attempts | 247 |
+| Attempt yield | 25.6% |
+| Recorded run time | 56h 45m |
+| Median / p90 run time | 6m 32s / 31m 54s |
+| Verified successes per recorded hour | 1.50 |
+| Proofs with run telemetry | 85 (38.5%) |
 
 ## Work Queue
 
-**307 goals · 80 archived · 7 blocked · 133 open · 77 proved · 10 translated.**
+**659 goals · 80 archived · 7 blocked · 423 open · 139 proved · 10 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 58 | 23 | 39.7% | 50 | 4m 55s |
-| 2 | 63 | 21 | 33.3% | 55 | 4m 19s |
-| 3 | 35 | 21 | 60.0% | 24 | 4m 55s |
-| 4 | 16 | 4 | 25.0% | 14 | 7m 35s |
+| 1 | 66 | 28 | 42.4% | 56 | 4m 55s |
+| 2 | 111 | 26 | 23.4% | 102 | 6m 34s |
+| 3 | 85 | 26 | 30.6% | 71 | 8m 6s |
+| 4 | 20 | 5 | 25.0% | 17 | 8m 32s |
 | 5 | 1 | 0 | 0.0% | 1 | 31m 28s |
 
 ## Unresolved Effort
@@ -44,13 +44,13 @@ Verified output comes from active `library/index` records plus archived index re
 | `am-hm-two-var` | `open` | 2 | 4 | 8 | 53m 57s |
 | `sq-add-sq-eq-three-mul-sq-s4` | `open` | 1 | 2 | 6 | 54m 47s |
 | `am-gm-three-cube-s2-s2` | `open` | 1 | 3 | 5 | 44m 53s |
+| `four-var-qm-am` | `blocked` | 2 | 2 | 4 | 1h 46m |
 | `nesbitt-inequality-s1` | `open` | 1 | 2 | 4 | 47m 0s |
 | `am-gm-three-cube-s2` | `blocked` | 1 | 2 | 4 | 43m 57s |
+| `coprime-2n1-2n3` | `open` | 2 | 2 | 4 | 43m 44s |
 | `cube-sum-ge-three-prod` | `blocked` | 2 | 2 | 4 | 17m 0s |
 | `am-gm-three-cube` | `blocked` | 3 | 2 | 4 | 16m 32s |
-| `cube-sum-ge-mul-sq` | `open` | 2 | 2 | 4 | 5m 47s |
-| `cube-sum-ge-three-prod-s1` | `open` | 1 | 3 | 3 | 1h 6m |
-| `fourth-power-mod-five` | `archived` | 3 | 1 | 3 | 20m 27s |
+| `four-var-qm-am-s2` | `open` | 1 | 3 | 3 | 40m 32s |
 
 ## Contributor Leaderboard
 
@@ -58,31 +58,32 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 93 | 50 | 43 | 137 | 36.5% | 161 | 18425 |
-| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 33 | 0 | 33 | 0 | — | 67 | 7525 |
-| 3 | [@perttu](https://github.com/perttu) | 18 | 18 | 0 | 25 | 72.0% | 35 | 3950 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 102 | 55 | 47 | 206 | 28.6% | 177 | 20250 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 79 | 0 | 79 | 0 | — | 168 | 18775 |
+| 3 | [@perttu](https://github.com/perttu) | 19 | 19 | 0 | 31 | 74.2% | 41 | 4575 |
 | 4 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
-| 5 | [@adam91holt](https://github.com/adam91holt) | 4 | 4 | 0 | 10 | 0.0% | 6 | 700 |
-| 6 | [@OceanLi](https://github.com/OceanLi) | 1 | 0 | 1 | 0 | — | 3 | 325 |
-| 7 | [@yarcles](https://github.com/yarcles) | 1 | 1 | 0 | 1 | 100.0% | 1 | 125 |
+| 5 | [@adam91holt](https://github.com/adam91holt) | 6 | 6 | 0 | 45 | 4.4% | 10 | 1150 |
+| 6 | Perttu Isotalo | 4 | 0 | 4 | 0 | — | 8 | 900 |
+| 7 | [@OceanLi](https://github.com/OceanLi) | 1 | 0 | 1 | 0 | — | 3 | 325 |
+| 8 | [@yarcles](https://github.com/yarcles) | 1 | 1 | 0 | 1 | 100.0% | 1 | 125 |
 
 ## Attribution Notes
 
-**73 explicit solver credits · 86 inferred git credits · 0 uncredited proof records.**
+**81 explicit solver credits · 140 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 159 of 159 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 221 of 221 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
-| `claude / opus` | 42 | 46 | 93.5% | 17 | 3 | 4m 51s | 7.16 |
-| `openai / leanstral-2603` | 10 | 85 | 11.8% | 79 | 1 | 4m 33s | 0.69 |
-| `gemini / gemini-3.1-pro-preview` | 9 | 11 | 81.8% | 6 | 1 | 6m 15s | 7.19 |
-| `codex / unknown` | 7 | 21 | 33.3% | 30 | 2 | 4m 17s | 2.96 |
+| `claude / opus` | 41 | 49 | 93.9% | 18 | 3 | 4m 47s | 7.45 |
+| `openai / leanstral-2603` | 14 | 131 | 12.2% | 119 | 1 | 4m 54s | 0.62 |
+| `codex / unknown` | 14 | 62 | 22.6% | 72 | 2 | 6m 48s | 1.56 |
+| `gemini / gemini-3.1-pro-preview` | 7 | 11 | 81.8% | 6 | 1 | 6m 15s | 7.19 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
-| `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 8 | 0.0% | 8 | 1 | 31m 53s | 0.00 |
+| `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 28 | 0.0% | 28 | 1 | 31m 54s | 0.00 |
 | `codex / gpt-5.3-codex-spark` | 0 | 1 | 0.0% | 3 | 1 | 1m 34s | 0.00 |
 | `openai / leanstral-2603-sovereign` | 0 | 1 | 0.0% | 1 | 1 | 1m 22s | 0.00 |
 
@@ -90,26 +91,26 @@ Git add-author attribution covers 159 of 159 proof index files. It is used only 
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
-| `2026-06-15T02:33:40Z` | `nesbitt-inequality-s1` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `failed` | 3 | 3 | 14m 21s |
-| `2026-06-15T02:24:46Z` | `nesbitt-inequality-s4` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 3m 45s |
-| `2026-06-15T02:23:52Z` | `nesbitt-inequality-s3` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `proved` | 1 | 0 | 3m 51s |
-| `2026-06-15T02:20:43Z` | `nat-sq-lt-two-pow-s2-s1` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 3m 54s |
-| `2026-06-15T02:20:13Z` | `discriminant-nonneg` | [@perttu](https://github.com/perttu) | `gemini / gemini-3.1-pro-preview` | `proved` | 1 | 0 | 9m 35s |
-| `2026-06-15T02:19:50Z` | `lcm-self-succ` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 4m 15s |
-| `2026-06-15T02:16:21Z` | `gcd-lin-3n2-5n3` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 15m 38s |
-| `2026-06-15T02:14:50Z` | `dvd-2730-pow-thirteen-sub-self` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 31m 30s |
-| `2026-06-15T02:13:43Z` | `gcd-self-add-dvd` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 2m 37s |
-| `2026-06-15T02:09:09Z` | `gcd-n1-n4-dvd-three` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 42s |
-| `2026-06-15T02:05:52Z` | `am-hm-two-var-s2` | [@perttu](https://github.com/perttu) | `gemini / gemini-3.1-pro-preview` | `proved` | 1 | 0 | 6m 15s |
-| `2026-06-15T02:03:25Z` | `gcd-consec-odd-eq-one` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 6m 11s |
-| `2026-06-15T02:00:19Z` | `am-gm-three-cube-s2-s2-s1` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 3m 12s |
-| `2026-06-15T01:58:23Z` | `am-hm-two-var-s1` | [@perttu](https://github.com/perttu) | `gemini / gemini-3.1-pro-preview` | `proved` | 1 | 0 | 9m 29s |
-| `2026-06-15T01:56:47Z` | `am-hm-two-var-s3` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 4m 19s |
-| `2026-06-15T01:55:27Z` | `am-hm-two-var-s2` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 26s |
-| `2026-06-15T01:52:05Z` | `am-gm-three-cube-s2-s2-s2` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 5m 9s |
-| `2026-06-15T01:50:09Z` | `am-gm-three-cube-s2-s2-s1` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 33s |
-| `2026-06-15T01:46:35Z` | `fourth-power-mod-thirteen-mem` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 4m 50s |
-| `2026-06-15T01:46:07Z` | `fourth-power-mod-eight-mem` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `proved` | 1 | 0 | 5m 26s |
+| `2026-06-15T15:34:24Z` | `dvd-1365-pow-thirteen-sub-self` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 19s |
+| `2026-06-15T15:20:38Z` | `diff-twelfth-power-dvd-by-diff-cube` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 31m 58s |
+| `2026-06-15T15:17:20Z` | `dvd-170-pow-seventeen-sub-self` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `failed` | 1 | 1 | 10m 8s |
+| `2026-06-15T15:05:36Z` | `diff-twelfth-power-dvd-by-diff-cube` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `failed` | 1 | 1 | 7m 39s |
+| `2026-06-15T15:01:00Z` | `dvd-133-pow-nineteen-sub-self` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 19s |
+| `2026-06-15T14:45:29Z` | `coprime-twopow-sub-one-two` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 31m 56s |
+| `2026-06-15T14:27:05Z` | `diff-sixth-power-dvd-by-sum` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `proved` | 1 | 0 | 6m 59s |
+| `2026-06-15T14:26:34Z` | `coprime-n2p1-n2p2` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `failed` | 1 | 1 | 6m 45s |
+| `2026-06-15T14:19:52Z` | `coprime-n1-nsq1` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 18s |
+| `2026-06-15T14:10:26Z` | `catalan-r3-shift-nat-fib-int` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 31m 47s |
+| `2026-06-15T13:48:22Z` | `coprime-n2p1-n2p2` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `failed` | 1 | 1 | 8m 20s |
+| `2026-06-15T13:46:45Z` | `coprime-fib-sq-fib-succ` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 14s |
+| `2026-06-15T13:41:40Z` | `constrained-sum-sq-ge-one-third` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 9s |
+| `2026-06-15T13:36:41Z` | `catalan-r3-shift-nat-fib-int` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 33s |
+| `2026-06-15T13:35:21Z` | `catalan-r2-shift-nat-fib-int` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 2m 19s |
+| `2026-06-15T13:31:09Z` | `catalan-r2-shift-nat-fib-int` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 2m 44s |
+| `2026-06-15T13:26:28Z` | `alt-sum-range-choose-sq-eq-zero-odd` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 4m 4s |
+| `2026-06-15T13:25:05Z` | `dvd-133-pow-nineteen-sub-self` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 31m 55s |
+| `2026-06-15T13:20:15Z` | `cube-mod-twentyone-mem` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `proved` | 1 | 0 | 4m 25s |
+| `2026-06-15T13:15:27Z` | `constrained-pairsum-le-three-sum-three` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `proved` | 1 | 0 | 7m 15s |
 
 ## Interpretation
 

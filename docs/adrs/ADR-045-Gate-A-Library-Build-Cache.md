@@ -86,6 +86,36 @@ every olean that reaches `main` is kernel-replayed by the **full** post-merge re
 - **Follow-up.** A Namespace cache volume mounted at `.lake` in the runner profile would remove
   even the restore/save step; this PR's cache step becomes redundant and removable if adopted.
 
+## Amendment (2026-06-15): the restored cache did not make `lake build` a no-op — skip it instead
+
+The decision above assumed that restoring `.lake/build` would let `lake build UnsorryLibrary`
+recompile *only* changed modules, so the library would build once per run. **Run logs show it did
+not.** Even on an **exact-key cache hit** (e.g. run 27536559685: `gate-a-audit` restored
+gate-a-prepare's 160 MB `.lake/build` in 8 s), `lake build UnsorryLibrary --wfail` still
+**recompiled the heavy library modules from scratch — ~213 s** — in the audit job, and again in
+replay. The cache restores fine; Lake just does not trust the restored oleans, because
+`lean-action` re-provisions mathlib **after** the cache restore, so the library oleans look stale
+relative to their freshly-laid mathlib dependencies and Lake re-elaborates them. Net: the
+intended "build once" never happened — the full library build ran in all three jobs (~3.5 min ×
+3), the single biggest constant cost of every active-PR gate run.
+
+Forcing Lake to trust the restored oleans (e.g. mtime manipulation) would be **unsound** — a
+genuinely-changed module could be skipped. So instead we **stop audit and replay from building at
+all on an exact-key hit**: `gate-a-prepare` remains the authoritative builder (`lake build
+UnsorryLibrary --wfail`, always), and `gate-a-audit` / `gate-a-replay` guard their library-build
+step with `if: steps.lake_build_cache.outputs.cache-hit != 'true'`. On the exact-commit-sha key
+those jobs restore prepare's exact oleans and **load** them — `axiom_audit` is a standalone
+`lean_exe` (root `AxiomAudit.Main`, imports only `Lean`) run via `lake exe`, and `leanchecker`
+runs via `lake env`; neither triggers a library `lake build` — so the ~213 s rebuild is pure
+waste and is dropped. On a cache miss the build runs as before (self-healing).
+
+Soundness is unchanged and arguably clearer: the kernel replay still kernel-checks every olean it
+loads, the oleans are prepare's build of the *same commit* (exact-sha key), the `--wfail` bar is
+enforced once in prepare, and the push-to-`main` full audit + replay remain the post-merge
+backstop. Prepare's own build is still a full (non-incremental) compile — fixing *that* would
+require resolving the Lake-trust-after-restore issue and is left as a follow-up; this amendment
+removes two of the three redundant builds, which is the bulk of the waste.
+
 ## References
 
 | Reference ID | Title | Type | Location |
@@ -101,3 +131,4 @@ every olean that reaches `main` is kernel-replayed by the **full** post-merge re
 |--------|----------|------|
 | Proposed | unsorry maintainers | 2026-06-15 |
 | Accepted | unsorry maintainers | 2026-06-15 |
+| Amended (skip redundant build in audit/replay on cache hit) | unsorry maintainers | 2026-06-15 |

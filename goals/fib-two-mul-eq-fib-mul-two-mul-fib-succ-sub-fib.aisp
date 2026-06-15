@@ -1,0 +1,20 @@
+𝔸5.1.goal.fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib
+  phase≜prove
+  status≜open
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib.lean
+  sha≜∅
+  aff≜-20
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

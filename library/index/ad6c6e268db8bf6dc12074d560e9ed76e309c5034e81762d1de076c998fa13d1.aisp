@@ -1,0 +1,8 @@
+𝔸5.1.lemma.ad6c6e268db8@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜ad6c6e268db8bf6dc12074d560e9ed76e309c5034e81762d1de076c998fa13d1; goal≜dvd-510-pow-seventeen-sub-self; name≜dvd_510_pow_seventeen_sub_self}
+⟦Σ:Source⟧{src≜goals/dvd-510-pow-seventeen-sub-self.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜300}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

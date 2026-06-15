@@ -1,0 +1,8 @@
+𝔸5.1.run.coprime-n-sq-n-add-one.afnz-zbook-b336.20260615t050930286732z-8ae635c8@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t050930286732z-8ae635c8; goal≜coprime-n-sq-n-add-one; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜coprime-n-sq-n-add-one}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜383; ended≜2026-06-15T05:09:30Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜512d1a07d92ea5e6450b3068338e478a8bdebb6b368704212687ab12be86b5d7}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

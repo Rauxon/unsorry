@@ -1,0 +1,9 @@
+𝔸5.1.run.fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib.thebeast-ace7.20260615t094402379342z-a88c5665@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t094402379342z-a88c5665; goal≜fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜202; ended≜2026-06-15T09:44:02Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜libc++abi: terminating due to uncaught exception of type lean::exception: failed to create thread /home/adam/.unsorry/work/agent-main-thebeast-ace7/swarm/agent.sh: line 2115: 3704992 Aborted (core dumped) lake build UnsorryLibrary --wfail}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
