@@ -1,0 +1,7 @@
+𝔸5.1.claim.cyclotomic-three-divides-pow-six-sub-one.sovereign-engine@2026-06-15
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜cyclotomic-three-divides-pow-six-sub-one; agent≜sovereign-engine}
+⟦Σ:Times⟧{ts≜2026-06-15T11:38:20Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
