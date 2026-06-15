@@ -203,6 +203,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-15",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "8d8f2fdb817f07aa98f0ff839cee9821c7c4da97",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "quartic-ge-cross",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/a34890c31d952d1a0f0534bd75edc1b148a656d7f4cc44489bba7c1daf4119aa.aisp",
+      "review_status": "candidate",
+      "sha": "a34890c31d952d1a0f0534bd75edc1b148a656d7f4cc44489bba7c1daf4119aa"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
       "difficulty": 1,
       "display_name": "chat-bit-01",
       "git_add_commit": "3141062e09717f4acb797b57d5d899483eeaac59",
@@ -1419,9 +1434,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 94,
-    "mapped_missing_solver": 93,
-    "missing_solver_provenance": 94,
+    "git_attributed_missing_solver": 95,
+    "mapped_missing_solver": 94,
+    "missing_solver_provenance": 95,
     "unmapped_missing_solver": 1
   }
 }
