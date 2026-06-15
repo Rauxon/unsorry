@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**131 open · 159 proved · 297 total prove-goals.**
+**130 open · 160 proved · 297 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -44,7 +44,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `nat-sq-lt-two-pow-s2` — nat-sq-lt-two-pow-s2 | open | 1 | — | — | — |
 | `nesbitt-inequality-s1` — nesbitt-inequality-s1 | open | 1 | — | — | — |
 | `no-int-sq-eq-eight-mul-add-three` — No integer square has the form 8n+3 (squares are 0,1,4 mod 8). | open | 3 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | No integer square has the form 8n+3 (squares are 0,1,4 mod 8). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
-| `no-nat-sq-eq-two-mul-sq-s2` — no-nat-sq-eq-two-mul-sq-s2 | open | 1 | — | — | — |
 | `no-nat-sq-eq-two-mul-sq-s3` — no-nat-sq-eq-two-mul-sq-s3 | open | 1 | — | — | — |
 | `one-add-three-x-le-cube` — For x ≥ 0, 1+3x ≤ (1+x)³ (a Bernoulli instance, n=3). | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For x ≥ 0, 1+3x ≤ (1+x)³ (a Bernoulli instance, n=3). Not a named mathlib lemma in this concrete form. |
 | `one-hundred-twenty-dvd-five-consecutive` — 120 = 5! divides the product of any five consecutive integers. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; extends twenty-four-dvd-four-consecutive. | The product of k consecutive integers is divisible by k!; here k=5, k!=120. Extends the accepted twenty-four-dvd-four-consecutive (4!∣4-consecutive). Not a named mathlib lemma in this form. |
@@ -230,6 +229,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `nicomachus-sum-cubes` — Nicomachus's theorem: the sum of the first n cubes equals the square of the sum of the first n naturals. For every natural number n, ∑_{k<n} k³ = (∑_{k<n} k)². | proved | 3 | [packet-ready](upstream/nicomachus-sum-cubes.md) | Phase-2 seeded target (pre-ADR-012) | Nicomachus of Gerasa, *Introduction to Arithmetic* II.20; left as a reader exercise in *Mathematics in Lean* §5 |
 | `nicomachus-sum-cubes-triangular` — For every natural n, the sum over i in 0..n of i^3 equals (n(n+1)/2)^2 (the explicit triangular-number form of Nicomachus' theorem). | proved | 3 | [packet-ready](upstream/nicomachus-sum-cubes-triangular.md) | Freek 100 / classic | Nicomachus of Gerasa, Introduction to Arithmetic, Book II, in explicit closed form; Graham, Knuth & Patashnik, Concrete Mathematics, §2.5 (∑k^3 = (n(n+1)/2)^2). |
 | `no-nat-sq-eq-two-mul-sq-s1` — no-nat-sq-eq-two-mul-sq-s1 | proved | 1 | — | — | — |
+| `no-nat-sq-eq-two-mul-sq-s2` — no-nat-sq-eq-two-mul-sq-s2 | proved | 1 | — | — | — |
 | `no-nat-sq-eq-two-mul-sq-s4` — no-nat-sq-eq-two-mul-sq-s4 | proved | 1 | — | — | — |
 | `not-prime-pow-four-add-four` — For every natural n with n > 1, n^4 + 4 is not prime, via the Sophie Germain factorization n^4+4 = (n^2-2n+2)(n^2+2n+2). | proved | 3 | — | classic identities | Sophie Germain's identity, compositeness corollary. Sierpiński, Elementary Theory of Numbers (PWN/North-Holland, 1988); standard olympiad result. |
 | `odd-fourth-power-mod-sixteen` — The fourth power of every odd natural number leaves remainder 1 on division by 16: if n is odd then n⁴ % 16 = 1. | proved | 2 | — | classic identities (fourth-power congruence tower — leaf; compounds on `odd-sq-mod-eight`) | Standard elementary number theory: odd squares are ≡ 1 (mod 8), so odd fourth powers are ≡ 1 (mod 16). Hardy & Wright, An Introduction to the Theory of Numbers (quadratic-residue preliminaries). One power up from the proved `odd-sq-mod-eight`. |
