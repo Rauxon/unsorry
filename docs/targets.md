@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**439 open · 203 proved · 649 total prove-goals.**
+**438 open · 204 proved · 649 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -39,7 +39,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `coprime-twopow-sub-one-two` — For every positive n, 2^n - 1 is odd and hence coprime to 2. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | For every positive n, 2^n - 1 is odd and hence coprime to 2. Not a named mathlib lemma in this form. |
 | `cube-mod-fourteen-mem` — The cubic residues modulo 14 are exactly 0, 1, 6, 7, 8, and 13. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | The cubic residues modulo 14 are exactly 0, 1, 6, 7, 8, and 13. Not a named mathlib lemma in this form. |
 | `cube-mod-nineteen-mem` — The cubic residues modulo 19 are exactly {0,1,7,8,11,12,18}. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | The cubic residues modulo 19 are exactly {0,1,7,8,11,12,18}. Not a named mathlib lemma in this form. |
-| `cube-mod-twentyone-mem` — Every cube is congruent to one of {0,1,6,7,8,13,14,15,20} modulo 21. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every cube is congruent to one of {0,1,6,7,8,13,14,15,20} modulo 21. Not a named mathlib lemma in this form. |
 | `cube-mod-twentyseven-mem` — The cubic residues modulo 27 are exactly 0, 1, 8, 10, 17, 19, and 26. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | The cubic residues modulo 27 are exactly 0, 1, 8, 10, 17, 19, and 26. Not a named mathlib lemma in this form. |
 | `cube-mod-twentysix-mem` — The cubic residues modulo 26 are exactly 0,1,5,8,12,13,14,18,21,25. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | The cubic residues modulo 26 are exactly 0,1,5,8,12,13,14,18,21,25. Not a named mathlib lemma in this form. |
 | `cube-of-sum-minus-cubes-div-by-sum` — The difference between (a+b+c)³ and a³+b³+c³ is divisible by a+b (it equals 3(a+b)(b+c)(c+a)). | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The difference between (a+b+c)³ and a³+b³+c³ is divisible by a+b (it equals 3(a+b)(b+c)(c+a)). Not a named mathlib lemma in this form. |
@@ -482,6 +481,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `cube-mod-seven` — For every natural n, n³ % 7 ∈ {0,1,6}. | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family. | For every natural n, n³ % 7 ∈ {0,1,6}. Not a named mathlib lemma in this form. |
 | `cube-mod-thirteen-mem` — Every cube is congruent to 0, 1, 5, 8, or 12 modulo 13 (the cubic residues mod 13). | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family. | Every cube is congruent to 0, 1, 5, 8, or 12 modulo 13 (the cubic residues mod 13). Not a named mathlib lemma in this form. |
 | `cube-mod-thirtyone-nonresidue-five` — None of 3, 5, 6, 7 is a cubic residue modulo 31. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | None of 3, 5, 6, 7 is a cubic residue modulo 31. Not a named mathlib lemma in this form. |
+| `cube-mod-twentyone-mem` — Every cube is congruent to one of {0,1,6,7,8,13,14,15,20} modulo 21. | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every cube is congruent to one of {0,1,6,7,8,13,14,15,20} modulo 21. Not a named mathlib lemma in this form. |
 | `cube-sum-ge-mul-sq` — For nonneg reals a,b, a³+b³ ≥ a²b+ab² (since a³+b³−a²b−ab² = (a+b)(a−b)²). | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For nonneg reals a,b, a³+b³ ≥ a²b+ab² (since a³+b³−a²b−ab² = (a+b)(a−b)²). Not a named mathlib lemma in this form. |
 | `cube-sum-ge-three-prod-s1` — cube-sum-ge-three-prod-s1 | proved | 1 | — | — | — |
 | `cube-sum-ge-three-prod-s3` — cube-sum-ge-three-prod-s3 | proved | 1 | — | — | — |
