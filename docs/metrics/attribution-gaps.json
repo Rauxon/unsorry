@@ -353,21 +353,6 @@
     {
       "alias_mapped": true,
       "date": "2026-06-15",
-      "difficulty": 2,
-      "display_name": "chat-bit-01",
-      "git_add_commit": "b4a1a8eb02ecf7e1ee720e859100e4e91c82485d",
-      "git_add_date": "2026-06-15",
-      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
-      "git_author_name": "chat-bit-01",
-      "goal": "sixth-power-mod-seven",
-      "mapped_github": "chat-bit-01",
-      "path": "library/index/a5cfac92ecf34d5691e33e211254c48d7b12e6cd9607f4d28a9d06ad98ccab62.aisp",
-      "review_status": "candidate",
-      "sha": "a5cfac92ecf34d5691e33e211254c48d7b12e6cd9607f4d28a9d06ad98ccab62"
-    },
-    {
-      "alias_mapped": true,
-      "date": "2026-06-15",
       "difficulty": 1,
       "display_name": "chat-bit-01",
       "git_add_commit": "3141062e09717f4acb797b57d5d899483eeaac59",
@@ -1704,9 +1689,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 113,
-    "mapped_missing_solver": 109,
-    "missing_solver_provenance": 113,
+    "git_attributed_missing_solver": 112,
+    "mapped_missing_solver": 108,
+    "missing_solver_provenance": 112,
     "unmapped_missing_solver": 4
   }
 }
