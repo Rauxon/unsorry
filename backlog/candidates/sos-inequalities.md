@@ -20,19 +20,19 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a) · conf: high
 - [x] `amgm_four_cross_three_var` — The sum of fourth powers dominates the sum of squared pairwise products
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a^2 - b^2), sq_nonneg (b^2 - c^2), sq_nonneg (c^2 - a^2) · conf: high
-- [ ] `tangent_line_cube_trick` — The tangent-line bound at x=1 for the cube: 3x is at most x cubed plus two for nonnegative x
+- [x] `tangent_line_cube_trick` — The tangent-line bound at x=1 for the cube: 3x is at most x cubed plus two for nonnegative x
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (x-1) and mul_nonneg hx (sq_nonneg (x-1)) to capture the (x-1)^2(x+2) factorisation · conf: high
-- [ ] `amgm_prod_half_sum_le_cubes` — Twice ab(a+b) is at most twice the sum of cubes for nonnegative reals
+- [x] `amgm_prod_half_sum_le_cubes` — Twice ab(a+b) is at most twice the sum of cubes for nonnegative reals
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with mul_nonneg ha hb and mul_nonneg (add_nonneg ha hb) (sq_nonneg (a-b)) · conf: high
 - [ ] `two_var_quartic_mixed_sos` — A mixed quartic SOS bound: 6a^2b^2 is dominated by a^4+b^4 plus twice the mixed cubic cross terms
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a-b), sq_nonneg (a+b), and sq_nonneg (a^2 - b^2) · conf: med
-- [ ] `sos_weighted_three_one_two` — A weighted AM-GM cubic: 3a^2b is at most 2a^3 plus 2b^3 for nonnegative reals
+- [x] `sos_weighted_three_one_two` — A weighted AM-GM cubic: 3a^2b is at most 2a^3 plus 2b^3 for nonnegative reals
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with mul_nonneg and sq_nonneg (a-b) scaled by nonneg a and b · conf: high
 - [ ] `amgm_ratio_cycle_ge_three` — For positive reals the cyclic ratio sum a/b+b/c+c/a is at least three
       absence: no-local-match · triviality: non-trivial · intended: field_simp to clear denominators, then nlinarith with sq_nonneg differences and product positivity · conf: med
 - [ ] `sum_sq_over_cycle_ge_sum` — The cyclic Engel-form sum a^2/b+b^2/c+c^2/a is at least a+b+c for positive reals
       absence: no-local-match · triviality: non-trivial · intended: field_simp then nlinarith with sq_nonneg (a-b),(b-c),(c-a) times positive denominators · conf: med
-- [ ] `pairwise_product_sum_sq_ge_three_abc_sum` — The square of the pairwise-product sum dominates 3abc(a+b+c)
+- [x] `pairwise_product_sum_sq_ge_three_abc_sum` — The square of the pairwise-product sum dominates 3abc(a+b+c)
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a*b - b*c), sq_nonneg (b*c - c*a), sq_nonneg (c*a - a*b) · conf: high
 - [ ] `cyclic_cube_cross_le_quartic_sum` — For nonnegative reals the cyclic cubic-cross sum is dominated by the sum of fourth powers
       absence: no-local-match · triviality: non-trivial · intended: nlinarith with sq_nonneg (a^2 - a*b) style hints plus sq_nonneg of differences scaled by nonneg vars · conf: med

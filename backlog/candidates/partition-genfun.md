@@ -18,19 +18,19 @@ Theme staging file for the Identity Engine (#400, ADR-043). 18 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Use k·C(m,k)=m·C(m-1,k-1) to reduce to the alternating row sum Int.alternating_sum_range_choose, which is zero for m≥1 · conf: med
 - [ ] `sum_range_choose_mul_choose_succ_eq_central` — Summing the products of horizontally adjacent entries in row n of Pascal's triangle gives the central-adjacent binomial coefficient C(2n, n+1)
       absence: no-local-match · triviality: non-trivial · intended: Vandermonde/Cauchy convolution: rewrite C(n,k+1)=C(n,n-1-k) and apply Nat.add_pow_le / choose_symm with Nat.choose_sum_pow style Vandermonde · conf: med
-- [ ] `sum_range_k_mul_factorial_eq_factorial_succ_sub_one` — The sum of k·k! for k up to n telescopes to (n+1)! - 1
+- [x] `sum_range_k_mul_factorial_eq_factorial_succ_sub_one` — The sum of k·k! for k up to n telescopes to (n+1)! - 1
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ; the step uses k·k! = (k+1)! - k! and Nat.factorial_succ, watching Nat subtraction · conf: high
-- [ ] `sum_range_two_k_add_one_mul_two_pow_closed` — The sum of (2k+1)·2^k for k up to n has the closed form (2n-1)·2^(n+1) + 3 over the integers
+- [x] `sum_range_two_k_add_one_mul_two_pow_closed` — The sum of (2k+1)·2^k for k up to n has the closed form (2n-1)·2^(n+1) + 3 over the integers
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ over ℤ; close each step with ring after push_cast · conf: high
 - [ ] `sum_range_choose_div_succ_eq_two_pow_sub_one_div` — The sum of C(n,k)/(k+1) over a row equals (2^(n+1) - 1)/(n+1) as a rational
       absence: no-local-match · triviality: non-trivial · intended: Use C(n,k)/(k+1) = C(n+1,k+1)/(n+1) (succ_mul_choose_eq) to reindex into a partial row sum, then Nat.sum_range_choose over ℚ · conf: med
 - [ ] `alt_sum_range_choose_sq_odd_eq_zero` — For an odd row, the alternating sum of the squares of the binomial coefficients vanishes
       absence: no-local-match · triviality: non-trivial · intended: Pair term k with term (m-k) using choose_symm and the parity of (-1)^k over an odd-length row; the involution cancels in pairs · conf: med
-- [ ] `sum_range_recip_choose_two_eq_two_n_div_succ` — The sum of the reciprocals of the binomial coefficients C(k+2,2) telescopes to 2n/(n+1)
+- [x] `sum_range_recip_choose_two_eq_two_n_div_succ` — The sum of the reciprocals of the binomial coefficients C(k+2,2) telescopes to 2n/(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Rewrite 1/C(k+2,2) = 2·(1/(k+1) - 1/(k+2)) and telescope via Finset.sum_range_succ over ℚ · conf: high
 - [ ] `central_binom_eq_sum_range_choose_mul_choose` — The central binomial coefficient C(2n,n) is the Vandermonde self-convolution of row n of Pascal's triangle
       absence: no-local-match · triviality: non-trivial · intended: Apply Nat.add_pow_le-free Vandermonde (Nat.choose_symm to fold one factor, then the Cauchy/Vandermonde convolution identity) · conf: high
-- [ ] `fib_two_mul_eq_fib_mul_two_mul_fib_succ_sub_fib` — The Fibonacci doubling identity in additive form: F(2n) + F(n)^2 equals F(n)·2F(n+1)
+- [x] `fib_two_mul_eq_fib_mul_two_mul_fib_succ_sub_fib` — The Fibonacci doubling identity in additive form: F(2n) + F(n)^2 equals F(n)·2F(n+1)
       absence: no-local-match · triviality: non-trivial · intended: Derive from fib_add with m=n minus one, i.e. F(2n)=F(n)(2F(n+1)-F(n)); rearrange over ℕ avoiding subtraction by moving F(n)^2 to the left · conf: high
 - [ ] `sum_range_fib_mul_choose_two_eq` — A weighted Fibonacci partial sum: twice the sum of (k+1)·F(k) over a range equals (n+1)·F(n+2) - F(n+3) + 1
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ, combining the known sum F(k)=F(n+2)-1 with the index-weighted Abel summation; track Nat subtraction carefully · conf: med

@@ -10,9 +10,9 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Use the witness a^2-a*b+b^2 via Dvd.intro and finish with ring · conf: high
 - [ ] `succ_dvd_n_cubed_add_one` — For every integer n, n+1 divides n^3 + 1
       absence: no-local-match · triviality: non-trivial · intended: Witness n^2-n+1 by Dvd.intro and close with ring · conf: high
-- [ ] `three_dvd_n_cubed_add_two_n` — Three always divides n cubed plus twice n
+- [x] `three_dvd_n_cubed_add_two_n` — Three always divides n cubed plus twice n
       absence: no-local-match · triviality: non-trivial · intended: Decide over ZMod 3 (Int.emod_emod_of_dvd / Decidable.decide on the residue), or induct splitting n into residues · conf: high
-- [ ] `quartic_n4_plus_four_dvd_by_shift_quadratic` — The quadratic n^2-2n+2 divides n^4+4, the Sophie Germain factorisation at b equal to one
+- [x] `quartic_n4_plus_four_dvd_by_shift_quadratic` — The quadratic n^2-2n+2 divides n^4+4, the Sophie Germain factorisation at b equal to one
       absence: no-local-match · triviality: non-trivial · intended: Provide the conjugate factor n^2+2*n+2 as the Dvd witness and verify with ring · conf: high
 - [ ] `aurifeuillian_sextic_x6_plus_27_dvd` — The quadratic x^2+3 divides x^6+27, the sum-of-cubes factorisation of (x^2)^3 + 3^3
       absence: no-local-match · triviality: non-trivial · intended: Sum-of-cubes: witness x^4-3*x^2+9 by Dvd.intro, then ring · conf: high
@@ -24,11 +24,11 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Sophie Germain factorisation into (n^2-2nm+2m^2)(n^2+2nm+2m^2); show smaller factor exceeds 1 then apply Nat.Prime.eq_one_of_dvd / not_prime_mul · conf: med
 - [ ] `sextic_x6_plus_27_not_prime` — For integer x at least 2 the value x^6+27 is composite
       absence: no-local-match · triviality: non-trivial · intended: Factor as (x^2+3)(x^4-3x^2+9); bound both factors above 1 and use Int.Prime / not-prime-of-mul with nlinarith bounds · conf: med
-- [ ] `quartic_n4_plus_four_not_prime` — For n at least 2 the value n^4+4 is composite (special case of the Sophie Germain identity)
+- [x] `quartic_n4_plus_four_not_prime` — For n at least 2 the value n^4+4 is composite (special case of the Sophie Germain identity)
       absence: no-local-match · triviality: non-trivial · intended: Factor n^4+4 = (n^2-2n+2)(n^2+2n+2); show 1 < n^2-2n+2 by nlinarith then not_prime_mul · conf: high
-- [ ] `nicomachus_sum_cubes_eq_sum_id_sq` — The sum of the first n cubes equals the square of the sum of the first n naturals (Nicomachus's theorem)
+- [x] `nicomachus_sum_cubes_eq_sum_id_sq` — The sum of the first n cubes equals the square of the sum of the first n naturals (Nicomachus's theorem)
       absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ; rewrite the inner triangular sum via Gauss and close with ring · conf: high
-- [ ] `sum_range_k_mul_factorial_succ` — One plus the sum of k times k-factorial over k below n equals n-factorial
+- [x] `sum_range_k_mul_factorial_succ` — One plus the sum of k times k-factorial over k below n equals n-factorial
       absence: no-local-match · triviality: non-trivial · intended: Induction on n using Finset.sum_range_succ and Nat.factorial_succ; finish with ring/omega on the factorial step · conf: high
 - [ ] `faulhaber_sum_range_pow_four_closed` — Thirty times the sum of fourth powers below n equals the closed Faulhaber polynomial n(n-1)(2n-1)(3n^2-3n-1)
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; clear the factor 30, then ring (cast to ℤ if Nat subtraction bites) · conf: med
