@@ -1,0 +1,9 @@
+𝔸5.1.run.am-hm-two-var-s2.afnz-zbook-b336.20260615t015527473200z-a89dcf07@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t015527473200z-a89dcf07; goal≜am-hm-two-var-s2; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜am-hm-two-var-s2}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜206; ended≜2026-06-15T01:55:27Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8531/8533] Building Unsorry.AmHmTwoVarS2 (1.1s) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-am-hm-two-var-s2-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-am-hm-two-var-s2-afnz-zbook-b336/.lake/packages/batteries/.lake/build/li}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
