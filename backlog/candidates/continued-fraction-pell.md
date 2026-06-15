@@ -99,3 +99,54 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: pure ring identity; both sides expand to the same degree-4 polynomial, closed by ring · conf: high
 - [ ] `pell_d3_form_value_ne_two_zmod3` — The form x²−3y² never takes a value congruent to 2 (mod 3), so x²−3y²=2 (and =−1) are unsolvable
       absence: no-local-match · triviality: non-trivial · intended: push the form into ZMod 3 where it equals x²; decide that x²∈{0,1} over the three residues, never 2 · conf: high
+
+### Replenishment round 3 (scoped 2026-06-15) — 24 candidates
+
+- [ ] `pell_d11_ladder_step_preserves` — Applying the fundamental solution (10,3) of x^2-11y^2=1 to any solution yields another solution
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination on h after expanding, or nlinarith [h] · conf: high
+- [ ] `pell_d12_ladder_step_preserves` — The fundamental solution (7,2) of x^2-12y^2=1 maps any solution to another solution
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination (7^2-12*2^2) * h ; really linear_combination h · conf: high
+- [ ] `pell_d14_ladder_step_preserves` — The fundamental solution (15,4) of x^2-14y^2=1 preserves the Pell relation under the ladder step
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h · conf: high
+- [ ] `pell_d15_ladder_step_preserves` — The fundamental solution (4,1) of x^2-15y^2=1 maps any solution to another solution
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h · conf: high
+- [ ] `pell_d17_ladder_step_preserves` — The fundamental solution (33,8) of x^2-17y^2=1 preserves the Pell relation under the ladder step
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h · conf: high
+- [ ] `pell_d18_ladder_step_preserves` — The fundamental solution (17,4) of x^2-18y^2=1 maps any solution to another solution
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h · conf: high
+- [ ] `pell_d21_ladder_step_preserves` — The fundamental solution (55,12) of x^2-21y^2=1 preserves the Pell relation under the ladder step
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h · conf: high
+- [ ] `pell_d22_ladder_step_preserves` — The large fundamental solution (197,42) of x^2-22y^2=1 maps any solution to another solution
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h (large coefficients exercise the expander) · conf: high
+- [ ] `pell_d23_ladder_step_preserves` — The fundamental solution (24,5) of x^2-23y^2=1 preserves the Pell relation under the ladder step
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h · conf: high
+- [ ] `pell_d2_square_ladder_step_preserves` — The squared fundamental solution (17,12) of x^2-2y^2=1 advances any solution two ladder rungs at once
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h; distinct from the (3,4) one-step lemma · conf: high
+- [ ] `pell_d2_quad_ladder_step_preserves` — The fourth-power solution (99,70) of x^2-2y^2=1 advances any solution four ladder rungs at once
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h · conf: high
+- [ ] `pell_d13_negative_positive_square_step` — Squaring a negative-Pell solution of x^2-13y^2=-1 produces a solution of x^2-13y^2=1
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination (x^2-13*y^2-1)*h ; substitute h then ring/nlinarith · conf: high
+- [ ] `pell_d17_negative_positive_square_step` — Squaring a negative-Pell solution of x^2-17y^2=-1 produces a solution of x^2-17y^2=1
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [h] after expanding the square; the (x^2-dy^2)^2=1 identity · conf: high
+- [ ] `pell_d29_negative_positive_square_step` — Squaring a negative-Pell solution of x^2-29y^2=-1 produces a solution of x^2-29y^2=1
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination using h, since the LHS equals (x^2-29y^2)^2 · conf: high
+- [ ] `pell_negative_norm_compose_to_positive_generic` — Composing two solutions of norm -1 via Brahmagupta's identity yields a solution of norm +1
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination by multiplying h1 and h2; the norm is multiplicative · conf: high
+- [ ] `pell_d11_no_negative_solution_zmod11` — There is no solution to x^2-11y^2=-1 even modulo 11, since -1 is a non-residue mod 11
+      absence: no-local-match · triviality: non-trivial · intended: decide after pushing into ZMod 11; -1 not a QR mod 11 · conf: high
+- [ ] `pell_d19_no_negative_solution_zmod19` — There is no solution to x^2-19y^2=-1 even modulo 19, since -1 is a non-residue mod 19
+      absence: no-local-match · triviality: non-trivial · intended: decide over ZMod 19 (finite check via Decidable instance) · conf: high
+- [ ] `pell_d23_no_negative_solution_zmod23` — There is no solution to x^2-23y^2=-1 even modulo 23, since -1 is a non-residue mod 23
+      absence: no-local-match · triviality: non-trivial · intended: decide over ZMod 23 · conf: high
+- [ ] `pell_d6_no_negative_solution_zmod3` — x^2-6y^2=-1 has no solution mod 3 because it forces x^2 to equal 2, a non-residue mod 3
+      absence: no-local-match · triviality: non-trivial · intended: decide over ZMod 3 · conf: high
+- [ ] `pell_norm_one_d_even_x_odd` — For any even d, a solution of x^2-dy^2=1 must have x odd, since d y^2 is even and x^2 is odd
+      absence: no-local-match · triviality: non-trivial · intended: obtain ⟨k,hk⟩ from hd; show Even (x^2-1) then Int.odd_pow / parity of x · conf: high
+- [ ] `pell_d2_norm_form_value_odd` — For any solution of x^2-2y^2=1 the conjugate-norm value x^2+2y^2 is odd
+      absence: no-local-match · triviality: non-trivial · intended: x^2+2y^2 = 1+4y^2 from h; rewrite and use Odd (1+even) · conf: high
+- [ ] `pell_d3_rational_bound_above` — Any positive-index solution of x^2-3y^2=1 satisfies the strict bound 3y^2 < x^2
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [h, sq_nonneg y, hy]; x^2 = 3y^2+1 · conf: high
+- [ ] `pell_d2_cross_norm_composition` — The conjugate Brahmagupta composition of two solutions of x^2-2y^2=1 is again a solution
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h1*h2-style; norm multiplicativity with the minus sign · conf: high
+- [ ] `pell_d5_fundamental_ladder_step_preserves` — The fundamental solution (9,4) of x^2-5y^2=1 maps any solution to another solution
+      absence: no-local-match · triviality: non-trivial · intended: linear_combination h · conf: high

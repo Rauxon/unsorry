@@ -44,3 +44,34 @@ Theme staging file for the Identity Engine (#400, ADR-043). 21 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; field_simp clears denominators, then ring · conf: med
 - [x] `sum_range_recip_three_consecutive` — The telescoping sum of 1/((k+1)(k+2)(k+3)) over k below n equals 1/4 − 1/(2(n+1)(n+2))
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; field_simp then ring on the telescoped tail · conf: high
+
+### Replenishment round 3 (scoped 2026-06-15) — 14 candidates
+
+- [ ] `alt_sum_range_sq_eq_signed_pronic` — Twice the alternating sum of the first n+1 squares equals (-1)^n times the n-th pronic number n(n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ; ring_nf and a parity case-split on (-1)^(n+1) per step · conf: high
+- [ ] `sum_icc_k_sq_add_one_mul_factorial_eq_pronic_factorial` — The sum over k from 1 to n of (k^2+1)*k! telescopes to n*(n+1)!
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_Icc_succ_top; use (k^2+1)k! step against n((n+1)!) telescope, Nat.factorial_succ + ring/omega · conf: high
+- [ ] `sum_range_recip_odd_pair_step_two_eq_n_div` — The sum over k<n of 1/((2k+1)(2k+3)) telescopes to n/(2n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ; partial-fraction step 1/((2k+1)(2k+3)) and field_simp + ring; positivity of denominators · conf: high
+- [ ] `sum_icc_lucas_sq_via_fib_eq_fib_product` — The sum of the squares of the first n Lucas numbers (written as F(k+1)+F(k-1)) equals L(n)*L(n+1)-2
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_Icc_succ_top; expand L=F(k+1)+F(k-1) and reduce the step via Nat.fib_add_two recurrences (or omega after substitution) · conf: med
+- [ ] `sum_range_fib_mul_lucas_eq_fib_odd_pred` — The sum over k from 0 to n of F(k)*L(k) (Lucas as F(k+1)+F(k-1)) equals F(2n+1)-1
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; pointwise F(k)L(k)=F(2k) via fib double-index, then telescope F(2k) sum to F(2n+1)-1 · conf: med
+- [ ] `sum_icc_harmonic_eq_succ_mul_harmonic_sub_n` — The sum of the first n harmonic numbers equals (n+1)*H(n) - n (a Concrete Mathematics summation-by-parts identity)
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_Icc_succ_top on the outer sum; the inner H(k+1)=H(k)+1/(k+1) step, field_simp + ring · conf: med
+- [ ] `sum_icc_id_mul_harmonic_closed_form` — Four times the sum of k*H(k) for k up to n equals 2n(n+1)H(n) - n(n-1) (a weighted Concrete Mathematics harmonic identity)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; expand H(k+1)=H(k)+1/(k+1), clear denominators with field_simp and close the step with ring · conf: med
+- [ ] `sum_range_three_k_add_one_mul_three_pow_closed` — Four times the sum over k<n of (3k+1)*3^k equals (6n-5)*3^n + 5
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; pow_succ on 3^(n+1) then ring/omega to match the step (work in ℤ or ℕ with care on subtraction) · conf: high
+- [ ] `sum_icc_k_mul_two_k_sub_one_closed_form` — Six times the sum of k(2k-1) for k from 1 to n equals n(n+1)(4n-1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; the step is a cubic identity closed by ring (after clearing the 2k-1 subtraction) or omega · conf: high
+- [ ] `sum_icc_recip_id_mul_add_three_gap_telescope` — The sum of 1/(k(k+3)) for k from 1 to n telescopes to (1/3)(11/6 - (1/(n+1)+1/(n+2)+1/(n+3)))
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; gap-3 partial fraction 1/(k(k+3))=(1/3)(1/k-1/(k+3)), field_simp + ring, denominators nonzero · conf: med
+- [ ] `sum_icc_recip_step_four_pair_eq_n_div` — The sum of 1/((4k-3)(4k+1)) for k from 1 to n telescopes to n/(4n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; partial fraction (1/4)(1/(4k-3)-1/(4k+1)), field_simp + ring, positivity of denominators · conf: high
+- [ ] `sum_icc_three_k_sub_one_mul_two_pow_pred_closed` — The sum of (3k-1)*2^(k-1) for k from 1 to n equals (3n-4)*2^n + 4
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; rewrite 2^(k-1) carefully, pow_succ, and close the step in ℤ via ring (lift to avoid ℕ subtraction) · conf: high
+- [ ] `sum_icc_five_k_sub_two_mul_three_pow_pred_closed` — Four times the sum of (5k-2)*3^(k-1) for k from 1 to n equals (10n-9)*3^n + 9
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; pow_succ on 3^(n+1), lift to ℤ to handle 5k-2 and 10n-9 subtractions, close with ring · conf: high
+- [ ] `sum_icc_harmonic_div_id_eq_half_sq_plus_second` — Twice the sum of H(k)/k for k up to n equals H(n)^2 plus the second-order harmonic sum (Euler's symmetry identity)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_Icc_succ_top; expand H(n+1)=H(n)+1/(n+1) in both H(n)^2 and the second-order sum, field_simp + ring on the step · conf: med
