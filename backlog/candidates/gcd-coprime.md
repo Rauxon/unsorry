@@ -81,26 +81,26 @@ Theme staging file for the Identity Engine (#400, ADR-043). 23 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: n^2+5 = (n+3)(n-3) + 14, so g | (n+3) and g | (n^2+5) forces g | 14 · conf: med
 - [x] `gcd_quad_factored_n1_eq_n1` — Since n^2+3n+2 = (n+1)(n+2), its gcd with n+1 is exactly n+1
       absence: no-local-match · triviality: non-trivial · intended: Rewrite n^2+3n+2 = (n+1)*(n+2), then Nat.gcd_eq_right via (n+1) | (n+1)(n+2) · conf: high
-- [ ] `gcd_factorial_succ_eq_factorial` — The gcd of n! and (n+1)! equals n!, since (n+1)! = (n+1)·n!
+- [x] `gcd_factorial_succ_eq_factorial` — The gcd of n! and (n+1)! equals n!, since (n+1)! = (n+1)·n!
       absence: no-local-match · triviality: non-trivial · intended: Nat.factorial_succ gives (n+1)! = (n+1)*n!, so n! | (n+1)! and gcd is n! by Nat.gcd_eq_left · conf: high
 - [x] `coprime_nsq2_nsq3` — The consecutive values n^2+2 and n^2+3 are coprime for every n
       absence: no-local-match · triviality: non-trivial · intended: They are consecutive (second = first + 1), so Nat.coprime_succ_self_right after rewriting · conf: high
 - [x] `coprime_ncube1_ncube2` — The consecutive values n^3+1 and n^3+2 are coprime for every n
       absence: no-local-match · triviality: non-trivial · intended: Second = first + 1, so coprimality of consecutive integers (Nat.coprime_succ_self) applies · conf: high
-- [ ] `coprime_n1_nsq1` — The gcd of n+1 and n^2+1 always divides 2
+- [x] `coprime_n1_nsq1` — The gcd of n+1 and n^2+1 always divides 2
       absence: no-local-match · triviality: non-trivial · intended: n^2+1 = (n+1)(n-1) + 2; g | n+1 and g | n^2+1 forces g | 2 via Nat.dvd_sub' · conf: high
-- [ ] `coprime_twopow_sub_one_two` — For every positive n, 2^n - 1 is odd and hence coprime to 2
+- [x] `coprime_twopow_sub_one_two` — For every positive n, 2^n - 1 is odd and hence coprime to 2
       absence: no-local-match · triviality: non-trivial · intended: 2^n is even for n>0, so 2^n-1 is odd; reduce mod 2 (Nat.coprime_two_right_iff_odd or Odd.coprime) · conf: high
-- [ ] `coprime_fib_sq_fib_succ` — The square of fib n is coprime to fib (n+1)
+- [x] `coprime_fib_sq_fib_succ` — The square of fib n is coprime to fib (n+1)
       absence: no-local-match · triviality: non-trivial · intended: fib n is coprime to fib (n+1) (Nat.fib_coprime_fib_succ); coprimality is preserved under powers via Nat.Coprime.pow_left · conf: high
 - [ ] `coprime_fib_add_two_fib` — fib (n+2) is coprime to fib n
       absence: no-local-match · triviality: non-trivial · intended: fib(n+2)=fib(n+1)+fib(n); gcd(fib(n+2),fib n)=gcd(fib(n+1),fib n)=1 via Nat.gcd identities and fib_coprime_fib_succ · conf: med
-- [ ] `gcd_4n1_6n1_dvd_two` — The gcd of 4n+1 and 6n+1 always divides 2
+- [x] `gcd_4n1_6n1_dvd_two` — The gcd of 4n+1 and 6n+1 always divides 2
       absence: no-local-match · triviality: non-trivial · intended: g | 3*(4n+1)=12n+3 and g | 2*(6n+1)=12n+2; difference is 1, so actually g | 1 (divides 2 holds trivially) · conf: high
 
 ### Replenishment round 3 (scoped 2026-06-15) — 21 candidates
 
-- [ ] `gcd_np1_2np1_eq_one` — Consecutive-ratio terms n+1 and 2n+1 are always coprime
+- [x] `gcd_np1_2np1_eq_one` — Consecutive-ratio terms n+1 and 2n+1 are always coprime
       absence: no-local-match · triviality: non-trivial · intended: Euclid step: 2*(n+1)-(2n+1)=1, so gcd divides 1; Nat.Coprime via dvd_sub or omega after gcd_rec · conf: high
 - [ ] `gcd_2n3_3n5_eq_one` — The linear forms 2n+3 and 3n+5 (determinant 1) are coprime for every n
       absence: no-local-match · triviality: non-trivial · intended: Bezout: 3*(2n+3)-2*(3n+5)=-1; reduce gcd to gcd of a constant 1 · conf: high
@@ -112,13 +112,13 @@ Theme staging file for the Identity Engine (#400, ADR-043). 23 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Bezout 7*(5n+3)-5*(7n+4)=1 yields a unit combination forcing gcd 1 · conf: high
 - [ ] `gcd_3n2_5n4_dvd_two` — The gcd of 3n+2 and 5n+4 always divides 2
       absence: no-local-match · triviality: non-trivial · intended: Bezout 5*(3n+2)-3*(5n+4)=-2, so any common divisor divides 2; gcd_dvd via dvd_sub · conf: high
-- [ ] `gcd_2n1_2n7_dvd_six` — The gcd of 2n+1 and 2n+7 always divides 6
+- [x] `gcd_2n1_2n7_dvd_six` — The gcd of 2n+1 and 2n+7 always divides 6
       absence: no-local-match · triviality: non-trivial · intended: Difference is 6; common divisor divides (2n+7)-(2n+1)=6, so gcd ∣ 6 · conf: high
 - [ ] `gcd_np1_n2p1_dvd_two` — The gcd of n+1 and n^2+1 always divides 2
       absence: no-local-match · triviality: non-trivial · intended: n^2+1 = (n-1)(n+1) + 2, so gcd(n+1, n^2+1) ∣ 2 via the Euclidean remainder · conf: high
 - [ ] `gcd_n2p1_n2p3_dvd_two` — The gcd of n^2+1 and n^2+3 always divides 2
       absence: no-local-match · triviality: non-trivial · intended: Their difference is 2, so any common divisor divides 2; reduce via Nat.dvd_sub' · conf: high
-- [ ] `coprime_n2p1_n2p2` — n^2+1 and n^2+2 are consecutive integers, hence coprime
+- [x] `coprime_n2p1_n2p2` — n^2+1 and n^2+2 are consecutive integers, hence coprime
       absence: no-local-match · triviality: non-trivial · intended: They are consecutive (differ by 1); apply Nat.coprime_succ_self after rewriting n^2+2 = (n^2+1)+1 · conf: high
 - [ ] `consec_prod_succ_coprime` — Any number n(n+1) is coprime to its successor
       absence: no-local-match · triviality: non-trivial · intended: Direct instance of Nat.coprime_succ_self_right; the n*(n+1) shape blocks a one-line decide · conf: high
@@ -136,11 +136,11 @@ Theme staging file for the Identity Engine (#400, ADR-043). 23 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Common divisor divides their difference 2 and divides the odd 4n+1, so it is 1 · conf: high
 - [ ] `coprime_6n1_6n5` — The forms 6n+1 and 6n+5 differ by 4 yet remain coprime for all n
       absence: no-local-match · triviality: non-trivial · intended: A common divisor divides the difference 4 and the odd, non-multiple-of-2 6n+1, forcing gcd 1 · conf: high
-- [ ] `gcd_2n1_2n5_dvd_four` — The gcd of 2n+1 and 2n+5 always divides 4
+- [x] `gcd_2n1_2n5_dvd_four` — The gcd of 2n+1 and 2n+5 always divides 4
       absence: no-local-match · triviality: non-trivial · intended: Difference is 4, so any common divisor divides 4; conclude via Nat.dvd_sub' · conf: high
-- [ ] `gcd_n2_n6_dvd_four` — The gcd of n+2 and n+6 always divides 4
+- [x] `gcd_n2_n6_dvd_four` — The gcd of n+2 and n+6 always divides 4
       absence: no-local-match · triviality: non-trivial · intended: (n+6)-(n+2)=4, so common divisors divide 4; gcd_dvd_left/right plus Nat.dvd_sub' · conf: high
-- [ ] `gcd_n1_n7_dvd_six` — The gcd of n+1 and n+7 always divides 6
+- [x] `gcd_n1_n7_dvd_six` — The gcd of n+1 and n+7 always divides 6
       absence: no-local-match · triviality: non-trivial · intended: Their difference is 6, so the gcd divides 6 by dvd_sub on the two gcd divisibilities · conf: high
 
 ### Replenishment round 4 (scoped 2026-06-15) — 19 candidates

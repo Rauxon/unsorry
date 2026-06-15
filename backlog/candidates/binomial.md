@@ -97,11 +97,11 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes the linear step · conf: high
 - [x] `sum_range_three_k_add_two_mul_two_pow_closed` — The sum of (3k+2) times two-to-the-k over k below n equals (3n-4)2^n+4
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes the linear step · conf: high
-- [ ] `sum_range_succ_sq_mul_two_pow_closed` — The sum of (k+1)-squared times two-to-the-k over k below n equals (n^2-2n+3)2^n-3
+- [x] `sum_range_succ_sq_mul_two_pow_closed` — The sum of (k+1)-squared times two-to-the-k over k below n equals (n^2-2n+3)2^n-3
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the quadratic coefficient step · conf: high
-- [ ] `sum_range_id_mul_succ_mul_two_pow_closed` — The sum of k(k+1) times two-to-the-k over k below n equals (n^2-3n+4)2^n-4
+- [x] `sum_range_id_mul_succ_mul_two_pow_closed` — The sum of k(k+1) times two-to-the-k over k below n equals (n^2-3n+4)2^n-4
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the quadratic step · conf: high
-- [ ] `sum_range_sq_add_one_mul_two_pow_closed` — The sum of (k^2+1) times two-to-the-k over k below n equals (n^2-4n+7)2^n-7
+- [x] `sum_range_sq_add_one_mul_two_pow_closed` — The sum of (k^2+1) times two-to-the-k over k below n equals (n^2-4n+7)2^n-7
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring on the quadratic coefficient step · conf: high
 - [ ] `sum_range_id_mul_neg_two_pow_closed` — Nine times the sum of k times negative-two-to-the-k over k below n equals (2n-3)(-2)^n-2
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring handles the signed base (-2)^(k+1) step · conf: high
@@ -111,11 +111,11 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; unfold fib recurrence and discharge with omega/simp on the Nat subtraction edge cases · conf: med
 - [ ] `sum_range_sq_mul_choose_eq_quarter` — Four times the sum over k of k-squared times n-choose-k equals n(n+1)2^n
       absence: no-local-match · triviality: non-trivial · intended: Differentiate the binomial identity twice (absorption Nat.succ_mul_choose_eq) or induct via Pascal; reduce to known k*C(n,k) and C(n,k) sums · conf: med
-- [ ] `sum_range_id_mul_choose_eq_half` — Twice the sum over k of k times n-choose-k equals n times two-to-the-n
+- [x] `sum_range_id_mul_choose_eq_half` — Twice the sum over k of k times n-choose-k equals n times two-to-the-n
       absence: no-local-match · triviality: non-trivial · intended: Use the absorption identity k*C(n,k)=n*C(n-1,k-1) (Nat.succ_mul_choose_eq) and Nat.sum_range_choose · conf: high
-- [ ] `sum_range_succ_div_two_pow_eq_four_sub` — The sum of (k+1) over two-to-the-k for k below n equals four minus (2n+4)/2^n
+- [x] `sum_range_succ_div_two_pow_eq_four_sub` — The sum of (k+1) over two-to-the-k for k below n equals four minus (2n+4)/2^n
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ over ℚ; field_simp then ring on the 2^(k+1) denominators · conf: high
-- [ ] `sum_range_id_div_two_pow_eq_two_sub` — The sum of k over two-to-the-k for k below n equals two minus (2n+2)/2^n
+- [x] `sum_range_id_div_two_pow_eq_two_sub` — The sum of k over two-to-the-k for k below n equals two minus (2n+2)/2^n
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ over ℚ; field_simp and ring on the doubling denominator · conf: high
 - [ ] `sum_range_recip_triple_consecutive_shifted_telescope` — The sum of 1/((k+1)(k+2)(k+3)) for k below n telescopes to 1/4 minus 1/(2(n+1)(n+2))
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ over ℚ; field_simp then ring to verify the partial-fraction telescoping step · conf: high
@@ -126,13 +126,13 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
 
 - [ ] `sum_range_k_sq_mul_choose_mul_two_pow_closed` — Nine times the sum over k of k squared times n-choose-k times two-to-the-k equals (4n^2+2n) times three-to-the-n
       absence: no-local-match · triviality: non-trivial · intended: Differentiate the binomial theorem twice (k^2 second moment) or induct with Finset.sum_range_succ and Pascal; multiply out to avoid division · conf: med
-- [ ] `sum_range_k_mul_choose_mul_two_pow_eq_two_n_three_pow` — Three times the sum of k times n-choose-k times two-to-the-k equals two-n times three-to-the-n
+- [x] `sum_range_k_mul_choose_mul_two_pow_eq_two_n_three_pow` — Three times the sum of k times n-choose-k times two-to-the-k equals two-n times three-to-the-n
       absence: no-local-match · triviality: non-trivial · intended: Use k*C(n,k)=n*C(n-1,k-1) reindexing then binomial theorem (1+2)^(n-1), or induct with Finset.sum_range_succ · conf: high
-- [ ] `sum_range_succ_k_mul_choose_mul_two_pow_closed` — Three times the sum of (k+1) times n-choose-k times two-to-the-k equals (2n+3) times three-to-the-n
+- [x] `sum_range_succ_k_mul_choose_mul_two_pow_closed` — Three times the sum of (k+1) times n-choose-k times two-to-the-k equals (2n+3) times three-to-the-n
       absence: no-local-match · triviality: non-trivial · intended: Split (k+1)=k+1 into the k-weighted moment plus the plain binomial sum 3^n, combine closed forms · conf: high
-- [ ] `sum_range_k_mul_choose_mul_three_pow_closed` — Four times the sum of k times n-choose-k times three-to-the-k equals three-n times four-to-the-n
+- [x] `sum_range_k_mul_choose_mul_three_pow_closed` — Four times the sum of k times n-choose-k times three-to-the-k equals three-n times four-to-the-n
       absence: no-local-match · triviality: non-trivial · intended: Reindex k*C(n,k)=n*C(n-1,k-1), apply binomial theorem (1+3)^(n-1)=4^(n-1); or induct over n · conf: high
-- [ ] `sum_range_k_mul_choose_mul_four_pow_closed` — Five times the sum of k times n-choose-k times four-to-the-k equals four-n times five-to-the-n
+- [x] `sum_range_k_mul_choose_mul_four_pow_closed` — Five times the sum of k times n-choose-k times four-to-the-k equals four-n times five-to-the-n
       absence: no-local-match · triviality: non-trivial · intended: Same k*C(n,k)=n*C(n-1,k-1) reindex with binomial theorem (1+4)^(n-1), or induction with Finset.sum_range_succ · conf: high
 - [ ] `sum_range_two_k_add_one_mul_choose_eq_succ_two_pow` — The sum of (2k+1) times n-choose-k equals (n+1) times two-to-the-n
       absence: no-local-match · triviality: non-trivial · intended: Split into 2*(sum k*C(n,k)=n*2^(n-1)) plus (sum C(n,k)=2^n); combine. Induction also works · conf: high
@@ -148,7 +148,7 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Same Vandermonde-convolution-with-symmetry pattern as the shift-two case; reflect index and apply Vandermonde · conf: med
 - [ ] `sum_range_choose_mul_succ_choose_eq_central_shift_half` — The sum of n-choose-k times (n+1)-choose-k equals C(2n+1, n)
       absence: no-local-match · triviality: non-trivial · intended: Vandermonde: rewrite (n+1).choose k = (n+1).choose ((n+1)-k) and apply Nat.add_choose_le / sum_range_choose_mul_choose · conf: high
-- [ ] `sum_range_choose_mul_succ_choose_succ_eq_central_shift` — The sum of n-choose-k times (n+1)-choose-(k+1) equals C(2n+1, n+1)
+- [x] `sum_range_choose_mul_succ_choose_succ_eq_central_shift` — The sum of n-choose-k times (n+1)-choose-(k+1) equals C(2n+1, n+1)
       absence: no-local-match · triviality: non-trivial · intended: Reflect the (n+1) factor via symmetry and apply Vandermonde's convolution to land on C(2n+1,n+1) · conf: high
 - [ ] `sum_range_three_choose_mul_choose_rev_eq_central_two` — The three-term Vandermonde slice summing n-choose-k times n-choose-(2-k) for k under three equals C(2n, 2)
       absence: no-local-match · triviality: non-trivial · intended: Expand the fixed-length range-3 sum into three terms, then prove the polynomial identity in n with ring after rewriting choose 2 and choose 1; or apply Vandermonde at r=2 · conf: high
@@ -156,13 +156,13 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Finite-difference/falling-factorial: write k^2 = k(k-1)+k, each alternating moment is a high-order difference of (1+x)^n at x=-1, zero for n>degree. Reindex and use binomial-theorem over ℤ · conf: med
 - [ ] `alt_sum_range_k_cube_mul_choose_eq_zero` — For n at least four, the alternating sum of (-1)^k times k cubed times n-choose-k vanishes
       absence: no-local-match · triviality: non-trivial · intended: Decompose k^3 into falling factorials k(k-1)(k-2)+3k(k-1)+k; each alternating falling-factorial moment is a finite difference vanishing once n exceeds the degree · conf: med
-- [ ] `alt_sum_range_choose_sq_eq_zero_odd` — For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes
+- [x] `alt_sum_range_choose_sq_eq_zero_odd` — For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes
       absence: no-local-match · triviality: non-trivial · intended: Pair the term k with n-k: their signs differ (n odd) while C(n,k)^2 are equal, so they cancel via Finset.sum_involution / reflection over range · conf: high
 - [ ] `sum_range_choose_mul_neg_two_pow_eq_neg_one_pow` — The sum of n-choose-k times (-2)-to-the-k equals (-1)-to-the-n
       absence: no-local-match · triviality: non-trivial · intended: Apply the integer binomial theorem add_pow / Commute.add_pow to (1 + (-2))^n = (-1)^n over ℤ · conf: high
 - [ ] `sum_range_shifted_choose_succ_eq_two_pow_succ_sub_one` — The sum of (n+1)-choose-(k+1) over k up to n equals two-to-the-(n+1) minus one
       absence: no-local-match · triviality: non-trivial · intended: Reindex to the full row sum of (n+1) minus the k=0 term: Nat.sum_range_choose gives 2^(n+1), subtract the missing C(n+1,0)=1 · conf: high
-- [ ] `sum_range_two_k_sub_n_mul_choose_sq_eq_zero` — The weighted sum of (2k-n) times the square of n-choose-k vanishes
+- [x] `sum_range_two_k_sub_n_mul_choose_sq_eq_zero` — The weighted sum of (2k-n) times the square of n-choose-k vanishes
       absence: no-local-match · triviality: non-trivial · intended: Reflection k<->n-k sends (2k-n) to -(2k-n) while fixing C(n,k)^2; the sum equals its own negation via Finset.sum_involution, hence zero · conf: high
 - [ ] `sum_range_succ_choose_eq_half_succ_two_mul_two_pow` — Twice the sum of (k+1) times n-choose-k equals (n+2) times two-to-the-n
       absence: no-local-match · triviality: non-trivial · intended: Split (k+1)C(n,k) into k*C(n,k) (=n*2^(n-1)) plus C(n,k) (=2^n) and combine the closed forms; or induct with Finset.sum_range_succ and Pascal · conf: high

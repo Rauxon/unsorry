@@ -1,0 +1,20 @@
+𝔸5.1.goal.quartic-x4-plus-x2-plus-one-dvd-by-minus-factor@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜quartic-x4-plus-x2-plus-one-dvd-by-minus-factor
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/quartic-x4-plus-x2-plus-one-dvd-by-minus-factor.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/quartic-x4-plus-x2-plus-one-dvd-by-minus-factor.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

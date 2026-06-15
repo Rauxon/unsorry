@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 from tools.gate_a.archive_packages import (
+    archive_proof_provenance,
     archive_roots_from_paths,
     changed_archive_roots,
     default_targets,
@@ -10,6 +11,19 @@ from tools.gate_a.archive_packages import (
     validate_archive_package,
     validate_changed,
 )
+
+
+def _git(repo: Path, *args: str) -> str:
+    return subprocess.run(
+        ("git", "-C", str(repo), *args), check=True, text=True, capture_output=True
+    ).stdout.strip()
+
+
+def _init_repo(repo: Path) -> None:
+    _git(repo, "init", "-q")
+    _git(repo, "config", "user.email", "t@t.t")
+    _git(repo, "config", "user.name", "t")
+    _git(repo, "config", "commit.gpgsign", "false")
 
 
 def completed(
@@ -116,18 +130,21 @@ def test_validate_archive_package_runs_soundness_steps(tmp_path: Path):
     ) in argv_only
     assert ("lake", "exe", "cache", "get") in argv_only
     assert ("lake", "build", "UnsorryArchive0001", "--wfail") in argv_only
-    assert ("lake", "env", "leanchecker", "Unsorry.One", "Unsorry.OneBinding") in argv_only
+    # ADR-048 (verify-on-ingest): archive validation does NOT re-run leanchecker —
+    # the proofs were kernel-replayed when active and are byte-identical now.
+    assert not any(c[:3] == ("lake", "env", "leanchecker") for c in argv_only)
 
 
-def test_validate_archive_package_chunks_replay_to_bound_memory(tmp_path: Path):
-    # leanchecker holds ~all of mathlib resident, so replaying every module in one
-    # invocation OOM-kills a memory-bound runner (exit 137). Replay must chunk at
-    # ARCHIVE_REPLAY_CHUNK_SIZE; each chunk bounded, every module still replayed.
-    from tools.gate_a.archive_packages import ARCHIVE_REPLAY_CHUNK_SIZE
+def test_validate_archive_package_does_not_replay(tmp_path: Path):
+    # ADR-048 (verify-on-ingest): an archive package — even a large one — is NOT
+    # leanchecker-replayed. The proofs were kernel-verified when active and are
+    # byte-identical now; re-replay re-proves nothing and OOM'd the runner (#764).
+    # Validation is packaging sanity (lake build --wfail) + provenance, not
+    # re-verification.
     package = tmp_path / "packages" / "unsorry-archive-0001"
     (package / "library" / "Unsorry").mkdir(parents=True)
     (package / "goals").mkdir()
-    names = [f"M{i}" for i in range(ARCHIVE_REPLAY_CHUNK_SIZE + 5)]
+    names = [f"M{i}" for i in range(40)]
     for n in names:
         (package / "library" / "Unsorry" / f"{n}.lean").write_text(
             "import Mathlib\n\ntheorem t : True := trivial\n", encoding="utf-8"
@@ -146,10 +163,8 @@ def test_validate_archive_package_chunks_replay_to_bound_memory(tmp_path: Path):
 
     assert validate_archive_package(tmp_path, package, runner) == 0
 
-    replay = [c for c in calls if c[:3] == ("lake", "env", "leanchecker")]
-    assert len(replay) >= 2  # chunked, not one giant call
-    assert all(len(c) - 3 <= ARCHIVE_REPLAY_CHUNK_SIZE for c in replay)  # each chunk bounded
-    assert {m for c in replay for m in c[3:]} == {f"Unsorry.{n}" for n in names}  # all replayed
+    assert not any(c[:3] == ("lake", "env", "leanchecker") for c in calls)  # never replays
+    assert ("lake", "build", "UnsorryArchive0001", "--wfail") in calls  # packaging sanity kept
 
 
 def test_validate_changed_no_archive_changes_is_noop(tmp_path: Path):
@@ -160,3 +175,58 @@ def test_validate_changed_no_archive_changes_is_noop(tmp_path: Path):
         raise AssertionError(argv)
 
     assert validate_changed(tmp_path, "origin/main", runner) == 0
+
+
+def _archive_provenance_repo(tmp_path: Path) -> tuple[Path, str]:
+    """A real git repo: base commit has the active proof; HEAD has it archived
+    byte-identically into a package. Returns (repo, base_sha)."""
+    repo = tmp_path
+    _init_repo(repo)
+    (repo / "library" / "Unsorry").mkdir(parents=True)
+    proof = "import Mathlib\n\ntheorem one : True := trivial\n"
+    (repo / "library" / "Unsorry" / "One.lean").write_text(proof, encoding="utf-8")
+    _git(repo, "add", "-A")
+    _git(repo, "commit", "-q", "-m", "active proof")
+    base = _git(repo, "rev-parse", "HEAD")
+    # archive move: delete active, add byte-identical copy under the package
+    (repo / "library" / "Unsorry" / "One.lean").unlink()
+    pkg = repo / "packages" / "unsorry-archive-0001" / "library" / "Unsorry"
+    pkg.mkdir(parents=True)
+    (pkg / "One.lean").write_text(proof, encoding="utf-8")
+    _git(repo, "add", "-A")
+    _git(repo, "commit", "-q", "-m", "archive 0001")
+    return repo, base
+
+
+def test_archive_provenance_accepts_byte_identical_move(tmp_path: Path):
+    repo, base = _archive_provenance_repo(tmp_path)
+    package = repo / "packages" / "unsorry-archive-0001"
+    assert archive_proof_provenance(repo, package, base) == 0
+
+
+def test_archive_provenance_rejects_tampered_proof(tmp_path: Path):
+    # ADR-048 guard: archived proof bytes differ from the verified active version
+    # (goal statement could be unchanged) -> must be rejected, since we no longer
+    # kernel-replay archives.
+    repo, base = _archive_provenance_repo(tmp_path)
+    package = repo / "packages" / "unsorry-archive-0001"
+    (package / "library" / "Unsorry" / "One.lean").write_text(
+        "import Mathlib\n\ntheorem one : True := sorry\n", encoding="utf-8"
+    )
+    _git(repo, "add", "-A")
+    _git(repo, "commit", "-q", "-m", "tamper")
+    assert archive_proof_provenance(repo, package, base) == 1
+
+
+def test_archive_provenance_rejects_net_new_proof(tmp_path: Path):
+    # A proof that never existed active (no base counterpart) cannot appear in an
+    # archive — it was never kernel-verified.
+    repo, base = _archive_provenance_repo(tmp_path)
+    package = repo / "packages" / "unsorry-archive-0001"
+    pkg = package / "library" / "Unsorry"
+    (pkg / "Sneaky.lean").write_text(
+        "import Mathlib\n\ntheorem sneaky : True := trivial\n", encoding="utf-8"
+    )
+    _git(repo, "add", "-A")
+    _git(repo, "commit", "-q", "-m", "net-new")
+    assert archive_proof_provenance(repo, package, base) == 1

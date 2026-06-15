@@ -1,0 +1,8 @@
+𝔸5.1.lemma.3c4d5b6fb4bb@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜3c4d5b6fb4bb5b42d112fad5f197ff7489e28fcaa46157ce373adab23279c18e; goal≜cube-mod-twentyone-mem; name≜cube_mod_twentyone_mem}
+⟦Σ:Source⟧{src≜goals/cube-mod-twentyone-mem.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜265}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
