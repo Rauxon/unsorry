@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-510-pow-thirtythree-sub-pow-seventeen.afnz-zbook-b336.20260615t191329497122z-11ba86c7@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t191329497122z-11ba86c7; goal≜dvd-510-pow-thirtythree-sub-pow-seventeen; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜dvd-510-pow-thirtythree-sub-pow-seventeen}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜386; ended≜2026-06-15T19:13:29Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8569/8571] Building Unsorry.Dvd510PowThirtythreeSubPowSeventeen (3.9s) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-dvd-510-pow-thirtythree-sub-pow-seventeen-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-dvd-510-pow-thirtythree-}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
