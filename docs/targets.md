@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**128 open · 165 proved · 300 total prove-goals.**
+**127 open · 166 proved · 300 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -85,7 +85,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-centered-cube-eq-biquadratic` — Twice the sum over k<n of k^3+(k+1)^3 equals n^2 times (n^2+1). | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Twice the sum over k<n of k^3+(k+1)^3 equals n^2 times (n^2+1). Not a named mathlib lemma in this form. |
 | `sum-centered-hexagonal-eq-cube` — The sum of the first n centered hexagonal numbers equals n cubed. | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The sum of the first n centered hexagonal numbers equals n cubed. Not a named mathlib lemma in this form. |
 | `sum-cubes-ge-sym-quadratic-two-var` — For nonnegative a,b, a³+b³ ≥ a²b+ab². | open | 2 | — | #400 Identity Engine (ADR-043) — inequalities family. | For nonnegative a,b, a³+b³ ≥ a²b+ab². Not a named mathlib lemma in this form. |
-| `sum-four-pow-ge-sq-prod` — For all real a,b,c, a⁴+b⁴+c⁴ ≥ a²b²+b²c²+c²a². | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c, a⁴+b⁴+c⁴ ≥ a²b²+b²c²+c²a². Not a named mathlib lemma in this form. |
 | `sum-fourth-powers-eq` — Thirty times the sum of fourth powers k^4 over range n equals the Faulhaber quartic closed form. | open | 4 | — | #400 Identity Engine (ADR-043) — figurate family. | Thirty times the sum of fourth powers k^4 over range n equals the Faulhaber quartic closed form. Not a named mathlib lemma in this form. |
 | `sum-hexagonal-eq` — Six times the sum of hexagonal-type terms k(2k-1) over range n equals (n-1)n(4n-5). | open | 3 | — | #400 Identity Engine (ADR-043) — figurate family. | Six times the sum of hexagonal-type terms k(2k-1) over range n equals (n-1)n(4n-5). Not a named mathlib lemma in this form. |
 | `sum-icc-choose-hockey-stick-s1` — sum-icc-choose-hockey-stick-s1 | open | 1 | — | — | — |
@@ -266,6 +265,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sq-add-sq-eq-three-mul-sq-s3` — sq-add-sq-eq-three-mul-sq-s3 | proved | 1 | — | — | — |
 | `sq-mod-three` — The square of any natural number not divisible by 3 leaves remainder 1 on division by 3: if n % 3 ≠ 0 then n^2 % 3 = 1. | proved | 2 | — | classic identities (thread-B depth-chain leaf) | Quadratic residues mod 3; Hardy & Wright, An Introduction to the Theory of Numbers (congruence preliminaries); standard elementary number theory. |
 | `sq-sum-le-two-mul-sum-sq` — For all real a,b, (a+b)² ≤ 2(a²+b²). | proved | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For all real a,b, (a+b)² ≤ 2(a²+b²). Not a named mathlib lemma in this concrete polynomial/abs form. |
+| `sum-four-pow-ge-sq-prod` — For all real a,b,c, a⁴+b⁴+c⁴ ≥ a²b²+b²c²+c²a². | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c, a⁴+b⁴+c⁴ ≥ a²b²+b²c²+c²a². Not a named mathlib lemma in this form. |
 | `sum-four-pow-ge-sq-prod-s1` — sum-four-pow-ge-sq-prod-s1 | proved | 1 | — | — | — |
 | `sum-four-pow-ge-sq-prod-s2` — sum-four-pow-ge-sq-prod-s2 | proved | 1 | — | — | — |
 | `sum-four-sq-ge-two-cross` — For all real a,b,c,d, a²+b²+c²+d² ≥ 2ab+2cd. | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c,d, a²+b²+c²+d² ≥ 2ab+2cd. Not a named mathlib lemma in this form. |
