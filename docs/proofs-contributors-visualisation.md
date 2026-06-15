@@ -6,7 +6,7 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**254 goals — 103 open · 9 blocked · 10 translated · 52 proved · 80 archived.** 13 decomposition families shown below; standalone goals are listed in the table.
+**256 goals — 104 open · 10 blocked · 10 translated · 52 proved · 80 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
 
 Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (48 of 52 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
@@ -35,8 +35,14 @@ flowchart LR
   class g_am_gm_three_cube_s2_s1 proved;
   click g_am_gm_three_cube_s2_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s1.lean" "am-gm-three-cube-s2-s1 — proved"
   g_am_gm_three_cube_s2_s2["am-gm-three-cube-s2-s2"]
-  class g_am_gm_three_cube_s2_s2 open;
-  click g_am_gm_three_cube_s2_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s2.lean" "am-gm-three-cube-s2-s2 — open"
+  class g_am_gm_three_cube_s2_s2 blocked;
+  click g_am_gm_three_cube_s2_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s2.lean" "am-gm-three-cube-s2-s2 — blocked"
+  g_am_gm_three_cube_s2_s2_s1["am-gm-three-cube-s2-s2-s1"]
+  class g_am_gm_three_cube_s2_s2_s1 open;
+  click g_am_gm_three_cube_s2_s2_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s2-s1.lean" "am-gm-three-cube-s2-s2-s1 — open"
+  g_am_gm_three_cube_s2_s2_s2["am-gm-three-cube-s2-s2-s2"]
+  class g_am_gm_three_cube_s2_s2_s2 open;
+  click g_am_gm_three_cube_s2_s2_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s2-s2.lean" "am-gm-three-cube-s2-s2-s2 — open"
   g_cube_sum_ge_three_prod["cube-sum-ge-three-prod"]
   class g_cube_sum_ge_three_prod blocked;
   click g_cube_sum_ge_three_prod "https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod.lean" "cube-sum-ge-three-prod — blocked"
@@ -170,6 +176,8 @@ flowchart LR
   g_am_gm_three_cube --> g_am_gm_three_cube_s2
   g_am_gm_three_cube_s2 --> g_am_gm_three_cube_s2_s1
   g_am_gm_three_cube_s2 --> g_am_gm_three_cube_s2_s2
+  g_am_gm_three_cube_s2_s2 --> g_am_gm_three_cube_s2_s2_s1
+  g_am_gm_three_cube_s2_s2 --> g_am_gm_three_cube_s2_s2_s2
   g_cube_sum_ge_three_prod --> g_cube_sum_ge_three_prod_s1
   g_cube_sum_ge_three_prod --> g_cube_sum_ge_three_prod_s2
   g_cube_sum_ge_three_prod --> g_cube_sum_ge_three_prod_s3
@@ -212,7 +220,8 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | Goal | Status | Difficulty | Agent | Solver / model | PR | Proved |
 | --- | --- | --- | --- | --- | --- | --- |
 | [`abstract-regular-polyhedron-realizable-iff`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-realizable-iff.lean) | open | 4 | — | — | — | — |
-| [`am-gm-three-cube-s2-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s2.lean) | open | 1 | — | — | — | — |
+| [`am-gm-three-cube-s2-s2-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s2-s1.lean) | open | 1 | — | — | — | — |
+| [`am-gm-three-cube-s2-s2-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s2-s2.lean) | open | 1 | — | — | — | — |
 | [`am-hm-two-var`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-hm-two-var.lean) | open | 2 | — | — | — | — |
 | [`cauchy-schwarz-three-term`](https://github.com/agenticsnz/unsorry/blob/main/goals/cauchy-schwarz-three-term.lean) | open | 3 | — | — | — | — |
 | [`consecutive-cubes-diff-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-cubes-diff-odd.lean) | open | 2 | — | — | — | — |
@@ -316,6 +325,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`weighted-am-gm-cubed`](https://github.com/agenticsnz/unsorry/blob/main/goals/weighted-am-gm-cubed.lean) | open | 2 | — | — | — | — |
 | [`am-gm-three-cube`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube.lean) | blocked | 3 | — | — | — | — |
 | [`am-gm-three-cube-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2.lean) | blocked | 1 | — | — | — | — |
+| [`am-gm-three-cube-s2-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s2.lean) | blocked | 1 | — | — | — | — |
 | [`cube-sum-ge-three-prod`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod.lean) | blocked | 2 | — | — | — | — |
 | [`discriminant-nonneg`](https://github.com/agenticsnz/unsorry/blob/main/goals/discriminant-nonneg.lean) | blocked | 3 | — | — | — | — |
 | [`nat-sq-lt-two-pow-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2.lean) | blocked | 1 | — | — | — | — |
