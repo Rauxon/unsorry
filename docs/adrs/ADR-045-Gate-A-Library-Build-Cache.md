@@ -6,7 +6,13 @@
 | **Initiative** | unsorry — Gate A performance |
 | **Proposed By** | unsorry maintainers |
 | **Date** | 2026-06-15 |
-| **Status** | Accepted |
+| **Status** | Superseded by [ADR-046](ADR-046-Gate-A-Namespace-Cache-Volume.md) |
+
+> **Superseded (2026-06-15):** the `actions/cache` mechanism here never warmed on `main`
+> (skipped/cancelled main runs), the three parallel jobs collided on cache reservation, and it
+> never cached mathlib (~19-min Azure re-download every run). ADR-046 replaces it with a
+> Namespace cache volume that bind-mounts the whole `.lake` tree. The cold-build timeout headroom
+> from #599 still applies to the soft-fail/cold path.
 
 ## Context
 
