@@ -1971,17 +1971,25 @@ prove_target_only_changed() {
 }
 
 # Prove step 3: local soundness verification of a candidate proof tree, BEFORE
-# any PR (the agent self-verifying per ADR-006 / design-doc step 6). All three
-# must pass on the tree at <root> for module Unsorry.<camel>:
-#   1. lake build UnsorryLibrary --wfail   (zero-sorry, zero-warning bar)
-#   2. lake exe axiom_audit Unsorry.<camel> (whitelist only, NO --allow-sorry)
-#   3. python3 -m tools.gate_a.check_library_options <root>/library
+# any PR (the agent self-verifying per ADR-006 / design-doc step 6). The local
+# agent builds only the generated module plus its binding obligation: on small
+# machines, a fresh full UnsorryLibrary build fans out enough Lean workers to
+# OOM and falsely discard valid proofs. CI Gate A remains the full-library
+# backstop before merge.
 prove_local_verify() {
   local root="$1" camel="$2"
   ( cd "$root" \
-    && lake build UnsorryLibrary --wfail \
+    && lake build "Unsorry.$camel" "Unsorry.${camel}Binding" --wfail \
     && lake exe axiom_audit "Unsorry.$camel" \
     && python3 -m tools.gate_a.check_library_options library ) >/dev/null 2>&1
+}
+
+prove_local_verify_error() {
+  local root="$1" camel="$2"
+  ( cd "$root" \
+    && lake build "Unsorry.$camel" "Unsorry.${camel}Binding" --wfail \
+    && lake exe axiom_audit "Unsorry.$camel" \
+    && python3 -m tools.gate_a.check_library_options library ) 2>&1 | tail -n 40
 }
 
 # Prove steps 5–6: drive `claude` to write library/Unsorry/<camel>.lean proving
@@ -2105,14 +2113,24 @@ Fix the module so both pass. Write the corrected $target."
     # --wfail build below (and by Gate A in CI), so a proof of a weakened or
     # vacuous statement under the goal's name fails here, not just in review.
     write_binding_module "$prwt" "$goal" "$camel" || { err="(could not emit binding obligation)"; continue; }
-    if prove_local_verify "$prwt" "$camel"; then
+    local verify_attempts="${UNSORRY_VERIFY_ATTEMPTS:-2}" verify_try verified=0
+    [[ "$verify_attempts" =~ ^[1-9][0-9]*$ ]] || verify_attempts=1
+    for verify_try in $(seq 1 "$verify_attempts"); do
+      if prove_local_verify "$prwt" "$camel"; then
+        verified=1
+        break
+      fi
+      if [ "$verify_try" -lt "$verify_attempts" ]; then
+        log "local verification of $goal failed (attempt $attempt, verify retry $verify_try/$verify_attempts) — retrying"
+      fi
+    done
+    if [ "$verified" = 1 ]; then
       PROOF_SOLVE_SECONDS=$(( $(date +%s) - proof_started ))
       log "proof of $goal verified locally — statement bound (attempt $attempt)"
       return 0
     fi
     log "local verification of $goal failed (attempt $attempt)"
-    err="$( ( cd "$prwt" && lake build UnsorryLibrary --wfail \
-      && lake exe axiom_audit "Unsorry.$camel" ) 2>&1 | tail -n 40 )"
+    err="$(prove_local_verify_error "$prwt" "$camel")"
   done
   PROOF_SOLVE_SECONDS=$(( $(date +%s) - proof_started ))
   # ADR-024: the final attempt's verifier output becomes this run's lesson,
@@ -2231,7 +2249,7 @@ check_in_proof() {
 
   submit_pr_tree "$prwt" "$(git -C "$prwt" rev-parse --abbrev-ref HEAD)" \
     "prove($goal): $name by $AGENT_ID" \
-    "Automated Phase-1 proof of goal \`$goal\` by agent \`$AGENT_ID\` (ADR-006, ADR-007, SPEC-007-A). New library module \`library/Unsorry/$camel.lean\` re-states and proves \`$name\`; built with \`lake build UnsorryLibrary --wfail\` and audited with \`lake exe axiom_audit Unsorry.$camel\` (whitelist only). Index entry keyed by the content address of the goal's Lean statement." \
+    "Automated Phase-1 proof of goal \`$goal\` by agent \`$AGENT_ID\` (ADR-006, ADR-007, SPEC-007-A). New library module \`library/Unsorry/$camel.lean\` re-states and proves \`$name\`; locally built with its statement-binding obligation and audited with \`lake exe axiom_audit Unsorry.$camel\` (whitelist only). CI Gate A performs the full-library verification before merge. Index entry keyed by the content address of the goal's Lean statement." \
     library goals proof-runs || return 1
   emit_event proved "$goal"
   emit_event pr-opened "$goal"
