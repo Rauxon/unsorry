@@ -1,0 +1,9 @@
+𝔸5.1.run.fib-add-six-eq-eight-mul-fib-succ-add-five-mul-fib.thebeast-ace7.20260615t051741928782z-aed18af5@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t051741928782z-aed18af5; goal≜fib-add-six-eq-eight-mul-fib-succ-add-five-mul-fib; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜fib-add-six-eq-eight-mul-fib-succ-add-five-mul-fib}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜400; ended≜2026-06-15T05:17:41Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8556/8571] Built Unsorry.EightSumPowFourGeSumPowFour (1.2s) ✔ [8557/8571] Built Unsorry.SumRangeFibOddIndex (2.2s) ✔ [8558/8571] Built Unsorry.ThirtyDvdPowFiveSubSelf (3.4s) ✔ [8559/8571] Built Unsorry.FourConsecutiveProductAddOneSquareS3 (4.3s) ✔ [8560/8571] Built Unsorry.Twe}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
