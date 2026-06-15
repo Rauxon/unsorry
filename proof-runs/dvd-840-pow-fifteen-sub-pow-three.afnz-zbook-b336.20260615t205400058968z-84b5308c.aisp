@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-840-pow-fifteen-sub-pow-three.afnz-zbook-b336.20260615t205400058968z-84b5308c@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t205400058968z-84b5308c; goal≜dvd-840-pow-fifteen-sub-pow-three; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜dvd-840-pow-fifteen-sub-pow-three}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1899; ended≜2026-06-15T20:54:00Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(openai call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
