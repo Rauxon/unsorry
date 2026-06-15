@@ -1,0 +1,9 @@
+𝔸5.1.run.lcm-self-succ.sovereign-engine.20260615t025521072611z-ddf4390b@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t025521072611z-ddf4390b; goal≜lcm-self-succ; agent≜sovereign-engine; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜jackcloudman/Leanstral-2603-GGUF; effort≜high}
+⟦Γ:Goal⟧{goal≜lcm-self-succ}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1897; ended≜2026-06-15T02:55:21Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(openai call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
