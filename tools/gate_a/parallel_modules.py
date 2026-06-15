@@ -25,17 +25,25 @@ from typing import Callable, Sequence
 # memory so the replay step does not OOM the runner as the library grows.
 REPLAY_CHUNK_SIZE = 30
 
-# Incremental replay (ADR-033): changing any of these invalidates the
-# "unchanged module ⇒ unchanged olean" assumption, so we fall back to a FULL
-# replay. Toolchain/lakefile/manifest changes can alter every olean; a change to
-# the gate tooling itself must re-verify everything it now governs.
+# Incremental replay (ADR-033): a FULL replay re-checks every olean against the
+# kernel. An olean changes only with the proof source, the toolchain, or the
+# dependency set — so only those force a full replay. A change to the python
+# orchestration (`tools/gate_a/**`) or the CI workflow (`gate-a.yml`) does NOT
+# change any olean, so it runs an INCREMENTAL replay (covering any changed
+# library module; a no-op when none changed) rather than the memory-bound serial
+# full replay that OOM-killed gate/CI PRs (ADR-047). The orchestration is covered
+# by its own unit tests, and the push-to-main run is a full-replay backstop.
 FULL_REPLAY_PATHS = frozenset(
     {"lean-toolchain", "lakefile.toml", "lakefile.lean", "lake-manifest.json"}
 )
-FULL_REPLAY_PREFIXES = ("tools/gate_a/",)
-FULL_REPLAY_EXACT = (".github/workflows/gate-a.yml",)
-FULL_AUDIT_PREFIXES = FULL_REPLAY_PREFIXES + ("AxiomAudit/", "AuditFixtures/")
-FULL_AUDIT_EXACT = FULL_REPLAY_EXACT
+FULL_REPLAY_PREFIXES: tuple[str, ...] = ()
+FULL_REPLAY_EXACT: tuple[str, ...] = ()
+# The AUDIT is narrowed less: the auditor (`AxiomAudit/`), its fixtures, and its
+# orchestration/whitelist (`tools/gate_a/**`) still force a full audit, since they
+# can change which axioms the audit accepts. collectAxioms is light and parallel,
+# so a full audit does not OOM the way a full replay does.
+FULL_AUDIT_PREFIXES = ("tools/gate_a/", "AxiomAudit/", "AuditFixtures/")
+FULL_AUDIT_EXACT = (".github/workflows/gate-a.yml",)
 
 _IMPORT_RE = re.compile(r"^\s*import\s+(Unsorry\.[A-Za-z0-9_.]+)", re.MULTILINE)
 

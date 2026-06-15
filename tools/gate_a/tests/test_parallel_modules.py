@@ -169,18 +169,29 @@ def test_goal_module_for_path():
 
 
 def test_forces_full_replay():
+    # Only olean-invalidating changes force a full replay.
     assert forces_full_replay(["library/Unsorry/A.lean"]) is None
     assert forces_full_replay(["lean-toolchain"]) == "lean-toolchain"
     assert forces_full_replay(["lakefile.toml"]) == "lakefile.toml"
-    assert forces_full_replay(["x", "tools/gate_a/check.py"]) == "tools/gate_a/check.py"
-    assert forces_full_replay([".github/workflows/gate-a.yml"]) == ".github/workflows/gate-a.yml"
+    assert forces_full_replay(["lake-manifest.json"]) == "lake-manifest.json"
+
+
+def test_replay_trigger_excludes_orchestration_and_workflow():
+    # tools/gate_a and the CI workflow do not change any olean (ADR-033) — they
+    # run an incremental replay, not the memory-bound full replay (ADR-047).
+    assert forces_full_replay(["tools/gate_a/parallel_modules.py"]) is None
+    assert forces_full_replay([".github/workflows/gate-a.yml"]) is None
+    assert forces_full_replay(["x", "tools/gate_a/check.py"]) is None
 
 
 def test_forces_full_audit():
+    # The audit stays conservative: auditor, fixtures, orchestration, workflow.
     assert forces_full_audit(["library/Unsorry/A.lean"]) is None
+    assert forces_full_audit(["lean-toolchain"]) == "lean-toolchain"
     assert forces_full_audit(["AxiomAudit/Main.lean"]) == "AxiomAudit/Main.lean"
     assert forces_full_audit(["AuditFixtures/Opaque.lean"]) == "AuditFixtures/Opaque.lean"
     assert forces_full_audit(["tools/gate_a/parallel_modules.py"]) == "tools/gate_a/parallel_modules.py"
+    assert forces_full_audit([".github/workflows/gate-a.yml"]) == ".github/workflows/gate-a.yml"
 
 
 def test_replay_scope_reverse_closure(tmp_path):

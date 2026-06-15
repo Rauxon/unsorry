@@ -1,0 +1,20 @@
+𝔸5.1.goal.sumsq-ge-ab-plus-bc@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sumsq-ge-ab-plus-bc
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/sumsq-ge-ab-plus-bc.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sumsq-ge-ab-plus-bc.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

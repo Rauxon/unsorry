@@ -295,6 +295,21 @@
       "date": "2026-06-15",
       "difficulty": 2,
       "display_name": "chat-bit-01",
+      "git_add_commit": "f6954cafcb03d74edb226285269cb7ae091b989f",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "six-dvd-three-consecutive-int",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/7b83a02a18f7a57de296c6eab23c11c57891a6b9068c320cd21c25d38f40ab42.aisp",
+      "review_status": "candidate",
+      "sha": "7b83a02a18f7a57de296c6eab23c11c57891a6b9068c320cd21c25d38f40ab42"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
       "git_add_commit": "f60e11468948d0e02950af429eca4006acd7af48",
       "git_add_date": "2026-06-15",
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -353,6 +368,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "822300c06965a18fdee7b54a31fdfa63599bc515",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "cube-mod-eighteen-mem",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/95bf593360d35dd1d7eea18f9100f8f21480eb370dffdc884492be441f593478.aisp",
+      "review_status": "candidate",
+      "sha": "95bf593360d35dd1d7eea18f9100f8f21480eb370dffdc884492be441f593478"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
       "difficulty": 2,
       "display_name": "chat-bit-01",
       "git_add_commit": "02fb6b91f27d3ad90c2944c2a51fabafa3bc4f6d",
@@ -394,6 +424,21 @@
       "path": "library/index/a5cfac92ecf34d5691e33e211254c48d7b12e6cd9607f4d28a9d06ad98ccab62.aisp",
       "review_status": "candidate",
       "sha": "a5cfac92ecf34d5691e33e211254c48d7b12e6cd9607f4d28a9d06ad98ccab62"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "6e40022b854e37f18b5cb35c5fec28980dfacde2",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-5n2-7n3-eq-one",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/a9564a1e9d6a5f41886b13c884818c85fd5d29bb6fca79bd80443e0158d678d0.aisp",
+      "review_status": "candidate",
+      "sha": "a9564a1e9d6a5f41886b13c884818c85fd5d29bb6fca79bd80443e0158d678d0"
     },
     {
       "alias_mapped": true,
@@ -503,6 +548,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "a3c6edc2fac5f96bb97a6ea1d58f9afa35ecd0e5",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "no-int-sq-eq-eight-mul-add-three",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/db78f492da91dae62422c70003bb0776b2f23a247c8ff27f6d85dd1ee224d8b9.aisp",
+      "review_status": "candidate",
+      "sha": "db78f492da91dae62422c70003bb0776b2f23a247c8ff27f6d85dd1ee224d8b9"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
       "difficulty": 2,
       "display_name": "chat-bit-01",
       "git_add_commit": "d4d06df9b3657d750eae4546efd7043e8306e800",
@@ -574,6 +634,21 @@
       "path": "library/index/ec4eec9b97d21d2b1553659fddcc84cfc1aef5309a2324cb40d6da703df0aa5b.aisp",
       "review_status": "candidate",
       "sha": "ec4eec9b97d21d2b1553659fddcc84cfc1aef5309a2324cb40d6da703df0aa5b"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "673a6ae2c9873431447ca31c6ee490147415ca9f",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-4n3-6n5-eq-one",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/f7a245e1b6bbfa26bc19cae38055774f0c48b1b3567fa1d10da0593aef15c059.aisp",
+      "review_status": "candidate",
+      "sha": "f7a245e1b6bbfa26bc19cae38055774f0c48b1b3567fa1d10da0593aef15c059"
     },
     {
       "alias_mapped": true,
@@ -1734,9 +1809,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 115,
-    "mapped_missing_solver": 111,
-    "missing_solver_provenance": 115,
+    "git_attributed_missing_solver": 120,
+    "mapped_missing_solver": 116,
+    "missing_solver_provenance": 120,
     "unmapped_missing_solver": 4
   }
 }
