@@ -1,0 +1,8 @@
+𝔸5.1.lemma.f7ce05b203d5@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜f7ce05b203d54deb84f2bf74d5341229cfe36174bf883afbff1a9670ccd9f15e; goal≜diff-sixth-power-dvd-by-sum; name≜diff_sixth_power_dvd_by_sum}
+⟦Σ:Source⟧{src≜goals/diff-sixth-power-dvd-by-sum.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜419}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
