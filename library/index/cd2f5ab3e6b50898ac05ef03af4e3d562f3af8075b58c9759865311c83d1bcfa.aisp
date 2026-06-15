@@ -1,0 +1,8 @@
+𝔸5.1.lemma.cd2f5ab3e6b5@2026-06-14
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜cd2f5ab3e6b50898ac05ef03af4e3d562f3af8075b58c9759865311c83d1bcfa; goal≜cauchy-schwarz-three-term; name≜cauchy_schwarz_three_term}
+⟦Σ:Source⟧{src≜goals/cauchy-schwarz-three-term.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜537}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
