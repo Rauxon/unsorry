@@ -1,0 +1,12 @@
+𝔸5.1.decomp.four-var-qm-am.oma-2-c50d@2026-06-15
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜four-var-qm-am; agent≜oma-2-c50d}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜four-var-qm-am-s1,sha≜c475b4167aacc58e77acec307bfca687283b0d6d84af683f65f78a310f225b94⟩
+  sub₂≜⟨id≜four-var-qm-am-s2,sha≜5c742193dc99c8d04e5dbdcf37de0484a2223ff9443056d1675b52367fc8c4cd⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
