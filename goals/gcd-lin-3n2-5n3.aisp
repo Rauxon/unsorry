@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜gcd-lin-3n2-5n3
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜3
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/gcd-lin-3n2-5n3.lean
-  sha≜∅
-  aff≜-10
+  sha≜6077a0e4e88095a339d64466786e43ce33eeab7e6103e79f49bc220466dcf03d
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,8 @@
+𝔸5.1.lemma.6077a0e4e880@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜6077a0e4e88095a339d64466786e43ce33eeab7e6103e79f49bc220466dcf03d; goal≜gcd-lin-3n2-5n3; name≜gcd_lin_3n2_5n3}
+⟦Σ:Source⟧{src≜goals/gcd-lin-3n2-5n3.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜938}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
