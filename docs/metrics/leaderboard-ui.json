@@ -118,12 +118,12 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": 0.0333,
+      "attempt_yield": 0.0328,
       "avatar_url": "https://github.com/adam91holt.png?size=96",
       "badges": {
         "difficulty": 10,
         "proofs": 6,
-        "success_rate_percent": 4.08
+        "success_rate_percent": 4.0
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
@@ -133,14 +133,14 @@
       "difficulty_points": 10,
       "display_name": "@adam91holt",
       "explicit_solver_proofs": 6,
-      "failed_attempts": 58,
+      "failed_attempts": 59,
       "github": "adam91holt",
       "inferred_git_proofs": 0,
-      "median_solve_s": 429,
+      "median_solve_s": 438,
       "profile_url": "https://github.com/adam91holt",
       "rank": 5,
-      "run_success_rate": 0.0408,
-      "runs": 49,
+      "run_success_rate": 0.04,
+      "runs": 50,
       "score": 1150,
       "solver": "adam91holt",
       "successes": 2,
@@ -234,7 +234,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-15T17:19:31Z",
+  "generated_at": "2026-06-15T17:32:33Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -351,8 +351,8 @@
     },
     {
       "provider_model": "codex / unknown",
-      "run_success_rate": 0.1587,
-      "runs": 63,
+      "run_success_rate": 0.1562,
+      "runs": 64,
       "verified_proofs": 16
     },
     {
@@ -411,7 +411,7 @@
     "historical_unknown_proofs": 146,
     "inferred_git_proofs": 146,
     "proof_run_coverage": 0.2522,
-    "terminal_runs": 270,
+    "terminal_runs": 271,
     "uncredited_proofs": 0,
     "verified_proofs": 230
   },
