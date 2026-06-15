@@ -1,0 +1,8 @@
+𝔸5.1.run.constrained-sum-le-sumsq-prod-one.1367ab40f0b1-e413.20260615t225241630198z-a444992b@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t225241630198z-a444992b; goal≜constrained-sum-le-sumsq-prod-one; agent≜1367ab40f0b1-e413; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜constrained-sum-le-sumsq-prod-one}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜261; ended≜2026-06-15T22:52:41Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜76adfd0ccbf3fb5fe2667a59ad77c054b54ba7296c6f57259c64dd9bf6b8c010}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

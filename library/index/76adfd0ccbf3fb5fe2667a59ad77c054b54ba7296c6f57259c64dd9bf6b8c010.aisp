@@ -1,0 +1,8 @@
+𝔸5.1.lemma.76adfd0ccbf3@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜76adfd0ccbf3fb5fe2667a59ad77c054b54ba7296c6f57259c64dd9bf6b8c010; goal≜constrained-sum-le-sumsq-prod-one; name≜constrained_sum_le_sumsq_prod_one}
+⟦Σ:Source⟧{src≜goals/constrained-sum-le-sumsq-prod-one.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜261}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
