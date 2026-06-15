@@ -1,0 +1,9 @@
+𝔸5.1.run.cauchy-schwarz-two-term.afnz-zbook-b336.20260615t100006286101z-d291529c@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t100006286101z-d291529c; goal≜cauchy-schwarz-two-term; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜cauchy-schwarz-two-term}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜207; ended≜2026-06-15T10:00:06Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8591/8593] Building Unsorry.CauchySchwarzTwoTerm (1.6s) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-cauchy-schwarz-two-term-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-cauchy-schwarz-two-term-afnz-zbook-b336/.lake/packages/ba}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
