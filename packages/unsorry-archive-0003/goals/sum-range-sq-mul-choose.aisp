@@ -1,0 +1,20 @@
+𝔸5.1.goal.sum-range-sq-mul-choose@2026-06-12
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-range-sq-mul-choose
+  phase≜prove
+  status≜proved
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/sum-range-sq-mul-choose.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-range-sq-mul-choose.lean
+  sha≜546d7188980e240ad56a96296e5e922f0b7247699562d1a5979590b2860caffa
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

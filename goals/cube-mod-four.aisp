@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜cube-mod-four
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/cube-mod-four.md
+  src≜packages/unsorry-archive-0003/backlog/cube-mod-four.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/cube-mod-four.lean
+  lean≜packages/unsorry-archive-0003/goals/cube-mod-four.lean
   sha≜e46626a069168f5990f9acb1bc47bd440a90a4d7f103cddda323030caeeb8e33
   aff≜-19
 }

@@ -1,0 +1,20 @@
+𝔸5.1.goal.pow-four-add-sq-add-one-factor@2026-06-13
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜pow-four-add-sq-add-one-factor
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/pow-four-add-sq-add-one-factor.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/pow-four-add-sq-add-one-factor.lean
+  sha≜6966eb26f19411aab291d60d30ab126aec253f0efc358a38dad8246b0c7342fd
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

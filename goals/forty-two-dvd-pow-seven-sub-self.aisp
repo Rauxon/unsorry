@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜forty-two-dvd-pow-seven-sub-self
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/forty-two-dvd-pow-seven-sub-self.md
+  src≜packages/unsorry-archive-0003/backlog/forty-two-dvd-pow-seven-sub-self.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/forty-two-dvd-pow-seven-sub-self.lean
+  lean≜packages/unsorry-archive-0003/goals/forty-two-dvd-pow-seven-sub-self.lean
   sha≜cb01eaf7e67dcb939bd5c2fd0af2515481b28716038ca750b6c2cb2a161e6f1a
   aff≜-19
 }

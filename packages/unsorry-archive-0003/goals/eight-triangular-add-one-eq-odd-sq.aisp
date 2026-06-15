@@ -1,0 +1,20 @@
+𝔸5.1.goal.eight-triangular-add-one-eq-odd-sq@2026-06-13
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜eight-triangular-add-one-eq-odd-sq
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/eight-triangular-add-one-eq-odd-sq.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/eight-triangular-add-one-eq-odd-sq.lean
+  sha≜bb666b07723cec0507ef7afab9428a21cc8a5d0a752a3f6821e9061d40d5ea5f
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

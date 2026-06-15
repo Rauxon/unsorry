@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜consecutive-triangular-eq-square
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/consecutive-triangular-eq-square.md
+  src≜packages/unsorry-archive-0003/backlog/consecutive-triangular-eq-square.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/consecutive-triangular-eq-square.lean
+  lean≜packages/unsorry-archive-0003/goals/consecutive-triangular-eq-square.lean
   sha≜bdee60636207e29a4cece20e18aa05bf8bd265a7bfd25686452d7fe95562f1f4
   aff≜1
 }

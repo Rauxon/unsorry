@@ -1,0 +1,20 @@
+𝔸5.1.goal.qm-am-three-var@2026-06-14
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜qm-am-three-var
+  phase≜prove
+  status≜proved
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/qm-am-three-var.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/qm-am-three-var.lean
+  sha≜37da97b9dcd781821d70f2c5ba27c7a8c5c9d48de765145255d4e0a2ccc66eca
+  aff≜-9
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

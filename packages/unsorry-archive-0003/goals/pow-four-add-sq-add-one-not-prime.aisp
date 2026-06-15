@@ -1,0 +1,20 @@
+𝔸5.1.goal.pow-four-add-sq-add-one-not-prime@2026-06-13
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜pow-four-add-sq-add-one-not-prime
+  phase≜prove
+  status≜proved
+  difficulty≜3
+}
+⟦Σ:Source⟧{
+  src≜backlog/pow-four-add-sq-add-one-not-prime.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨pow-four-add-sq-add-one-factor⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/pow-four-add-sq-add-one-not-prime.lean
+  sha≜c8e63b53fff3b35cc1bbf189956a539b795c5ace1ed0972dd695465cc8092dcc
+  aff≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

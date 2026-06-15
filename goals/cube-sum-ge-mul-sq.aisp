@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜cube-sum-ge-mul-sq
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜2
 }
 ⟦Σ:Source⟧{
-  src≜backlog/cube-sum-ge-mul-sq.md
+  src≜packages/unsorry-archive-0003/backlog/cube-sum-ge-mul-sq.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/cube-sum-ge-mul-sq.lean
+  lean≜packages/unsorry-archive-0003/goals/cube-sum-ge-mul-sq.lean
   sha≜5a55a2e8a6bd2cfeef757ceb96d1f23d08bab31344427471725fe0d7627ee4e4
   aff≜-19
 }
