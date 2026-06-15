@@ -1,0 +1,8 @@
+𝔸5.1.lemma.38cb3b4970c4@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜38cb3b4970c4b271bbd84079e1ab7788c76147664a02951f1b0d0503b54aba43; goal≜constrained-sum-sq-ge-three; name≜constrained_sum_sq_ge_three}
+⟦Σ:Source⟧{src≜goals/constrained-sum-sq-ge-three.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜188}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

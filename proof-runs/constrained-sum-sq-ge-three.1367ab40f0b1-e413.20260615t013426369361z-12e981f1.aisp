@@ -1,0 +1,8 @@
+𝔸5.1.run.constrained-sum-sq-ge-three.1367ab40f0b1-e413.20260615t013426369361z-12e981f1@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t013426369361z-12e981f1; goal≜constrained-sum-sq-ge-three; agent≜1367ab40f0b1-e413; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜constrained-sum-sq-ge-three}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜188; ended≜2026-06-15T01:34:26Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜38cb3b4970c4b271bbd84079e1ab7788c76147664a02951f1b0d0503b54aba43}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
