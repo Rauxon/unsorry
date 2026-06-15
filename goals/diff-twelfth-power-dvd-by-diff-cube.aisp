@@ -1,0 +1,20 @@
+𝔸5.1.goal.diff-twelfth-power-dvd-by-diff-cube@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜diff-twelfth-power-dvd-by-diff-cube
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/diff-twelfth-power-dvd-by-diff-cube.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/diff-twelfth-power-dvd-by-diff-cube.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
