@@ -7,6 +7,21 @@
   "missing_solver_provenance": [
     {
       "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "93e1b76c5a3b47919904343b52f181913dc8c67d",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "product-le-quarter-of-sum-one",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/000f97d84f723f0d1266d7028bcb2326e394e39f814312cd003183c74b8e9e68.aisp",
+      "review_status": "candidate",
+      "sha": "000f97d84f723f0d1266d7028bcb2326e394e39f814312cd003183c74b8e9e68"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-14",
       "difficulty": 1,
       "display_name": "chat-bit-01",
@@ -1269,9 +1284,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 84,
-    "mapped_missing_solver": 84,
-    "missing_solver_provenance": 84,
+    "git_attributed_missing_solver": 85,
+    "mapped_missing_solver": 85,
+    "missing_solver_provenance": 85,
     "unmapped_missing_solver": 0
   }
 }

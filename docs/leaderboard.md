@@ -4,7 +4,7 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**153 verified proofs · 69 attributed · 84 historical/unknown · 167 logged terminal runs.**
+**154 verified proofs · 69 attributed · 85 historical/unknown · 167 logged terminal runs.**
 
 ## Efficiency Baseline
 
@@ -21,11 +21,11 @@ Verified output comes from active `library/index` records plus archived index re
 | Recorded run time | 27h 38m |
 | Median / p90 run time | 4m 52s / 31m 42s |
 | Verified successes per recorded hour | 2.32 |
-| Proofs with run telemetry | 64 (41.8%) |
+| Proofs with run telemetry | 64 (41.6%) |
 
 ## Work Queue
 
-**259 goals · 80 archived · 8 blocked · 90 open · 71 proved · 10 translated.**
+**259 goals · 80 archived · 8 blocked · 89 open · 72 proved · 10 translated.**
 
 ## Efficiency by Difficulty
 
@@ -59,7 +59,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
 | 1 | [@cgbarlow](https://github.com/cgbarlow) | 89 | 47 | 42 | 133 | 34.6% | 155 | 17725 |
-| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 32 | 0 | 32 | 0 | — | 65 | 7300 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 33 | 0 | 33 | 0 | — | 67 | 7525 |
 | 3 | [@perttu](https://github.com/perttu) | 17 | 17 | 0 | 24 | 70.8% | 32 | 3625 |
 | 4 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 5 | [@adam91holt](https://github.com/adam91holt) | 4 | 4 | 0 | 9 | 0.0% | 6 | 700 |
@@ -68,9 +68,9 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 ## Attribution Notes
 
-**69 explicit solver credits · 84 inferred git credits · 0 uncredited proof records.**
+**69 explicit solver credits · 85 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 153 of 153 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 154 of 154 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
