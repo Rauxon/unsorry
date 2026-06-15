@@ -1,0 +1,9 @@
+𝔸5.1.run.lcm-self-succ.afnz-zbook-b336.20260615t021950109833z-431b2219@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t021950109833z-431b2219; goal≜lcm-self-succ; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜lcm-self-succ}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜255; ended≜2026-06-15T02:19:50Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [815/1100] Building Unsorry.LcmSelfSucc (290ms) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-lcm-self-succ-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-lcm-self-succ-afnz-zbook-b336/.lake/packages/batteries/.lake/build/lib/lean:}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
