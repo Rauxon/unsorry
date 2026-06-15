@@ -129,16 +129,23 @@ jobs:
       # attached, falling back to the GitHub caches below.
       - name: Namespace .lake cache volume
         if: needs.detect.outputs.volume == 'true'
+        id: ns_lake_cache
         continue-on-error: true
         uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
         with:
           path: ${{ github.workspace }}/.lake
 
-      # GitHub-cache fallback for the local oleans — non-Namespace only (the
-      # volume covers this on Namespace). Keyed on the commit sha so audit/replay
-      # restore prepare's exact build (ADR-045).
+      - name: Namespace .lake cache diagnostics
+        if: needs.detect.outputs.volume == 'true'
+        run: |
+          echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          du -sh .lake .lake/packages .lake/build 2>/dev/null || true
+
+      # GitHub-cache fallback for the local oleans. Keep this active even on
+      # Namespace: the volume is shared and keyless, while ADR-045's cache is
+      # exact to this commit so audit/replay can restore prepare's build and
+      # skip the duplicate library build safely.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
-        if: needs.detect.outputs.volume != 'true'
         id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
@@ -163,9 +170,9 @@ jobs:
         if: needs.detect.outputs.active == 'true'
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
-          # On Namespace the .lake volume (ADR-046) supplies mathlib, so skip the
-          # redundant GitHub-cache restore; off-Namespace, keep it as the fallback.
-          use-github-cache: ${{ needs.detect.outputs.volume != 'true' }}
+          # On a warm Namespace .lake volume, mathlib is already resident. If the
+          # volume misses/errors, fall back to lean-action's GitHub cache.
+          use-github-cache: ${{ needs.detect.outputs.volume != 'true' || steps.ns_lake_cache.outputs.cache-hit != 'true' }}
           build-args: "UnsorryGoals"
 
       # ADR-011 statement binding: Gate A REGENERATES the binding obligation for
@@ -252,16 +259,23 @@ jobs:
       # attached, falling back to the GitHub caches below.
       - name: Namespace .lake cache volume
         if: needs.detect.outputs.volume == 'true'
+        id: ns_lake_cache
         continue-on-error: true
         uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
         with:
           path: ${{ github.workspace }}/.lake
 
-      # GitHub-cache fallback for the local oleans — non-Namespace only (the
-      # volume covers this on Namespace). Keyed on the commit sha so audit/replay
-      # restore prepare's exact build (ADR-045).
+      - name: Namespace .lake cache diagnostics
+        if: needs.detect.outputs.volume == 'true'
+        run: |
+          echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          du -sh .lake .lake/packages .lake/build 2>/dev/null || true
+
+      # GitHub-cache fallback for the local oleans. Keep this active even on
+      # Namespace: the volume is shared and keyless, while ADR-045's cache is
+      # exact to this commit so audit/replay can restore prepare's build and
+      # skip the duplicate library build safely.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
-        if: needs.detect.outputs.volume != 'true'
         id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
@@ -273,9 +287,9 @@ jobs:
       - name: Build (lean-action, mathlib binary cache)
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
-          # On Namespace the .lake volume (ADR-046) supplies mathlib, so skip the
-          # redundant GitHub-cache restore; off-Namespace, keep it as the fallback.
-          use-github-cache: ${{ needs.detect.outputs.volume != 'true' }}
+          # On a warm Namespace .lake volume, mathlib is already resident. If the
+          # volume misses/errors, fall back to lean-action's GitHub cache.
+          use-github-cache: ${{ needs.detect.outputs.volume != 'true' || steps.ns_lake_cache.outputs.cache-hit != 'true' }}
           build-args: "UnsorryGoals"
 
       - name: Generate statement-binding obligations
@@ -365,16 +379,23 @@ jobs:
       # attached, falling back to the GitHub caches below.
       - name: Namespace .lake cache volume
         if: needs.detect.outputs.volume == 'true'
+        id: ns_lake_cache
         continue-on-error: true
         uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
         with:
           path: ${{ github.workspace }}/.lake
 
-      # GitHub-cache fallback for the local oleans — non-Namespace only (the
-      # volume covers this on Namespace). Keyed on the commit sha so audit/replay
-      # restore prepare's exact build (ADR-045).
+      - name: Namespace .lake cache diagnostics
+        if: needs.detect.outputs.volume == 'true'
+        run: |
+          echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          du -sh .lake .lake/packages .lake/build 2>/dev/null || true
+
+      # GitHub-cache fallback for the local oleans. Keep this active even on
+      # Namespace: the volume is shared and keyless, while ADR-045's cache is
+      # exact to this commit so audit/replay can restore prepare's build and
+      # skip the duplicate library build safely.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
-        if: needs.detect.outputs.volume != 'true'
         id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
@@ -416,9 +437,9 @@ jobs:
       - name: Build (lean-action, mathlib binary cache)
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
-          # On Namespace the .lake volume (ADR-046) supplies mathlib, so skip the
-          # redundant GitHub-cache restore; off-Namespace, keep it as the fallback.
-          use-github-cache: ${{ needs.detect.outputs.volume != 'true' }}
+          # On a warm Namespace .lake volume, mathlib is already resident. If the
+          # volume misses/errors, fall back to lean-action's GitHub cache.
+          use-github-cache: ${{ needs.detect.outputs.volume != 'true' || steps.ns_lake_cache.outputs.cache-hit != 'true' }}
           build-args: "UnsorryGoals"
 
       - name: Generate statement-binding obligations

@@ -6,9 +6,10 @@ Implements: [ADR-046](../ADR-046-Gate-A-Namespace-Cache-Volume.md) · Status: Li
 
 On Namespace runner profiles, Gate A's three Lean jobs mount a persistent cache volume at
 `${GITHUB_WORKSPACE}/.lake`, so mathlib oleans and the local `UnsorryLibrary`/`UnsorryGoals` build
-survive across jobs and runs. `lean-action`'s GitHub mathlib cache is disabled there (the volume
-supplies mathlib). On any non-Namespace profile, or if no volume is attached, the gate falls back
-to the existing GitHub caches with no behavioural change.
+survive across jobs and runs. The Namespace mount is disabled completely on non-Namespace profiles.
+When the Namespace volume reports a cache hit, `lean-action`'s GitHub mathlib cache is disabled
+because the volume supplies mathlib. On any non-Namespace profile, or if the Namespace volume
+misses/errors, the gate falls back to the existing GitHub caches with no behavioural change.
 
 ## Implementation (`.github/workflows/gate-a.yml`)
 
@@ -20,6 +21,7 @@ to the existing GitHub caches with no behavioural change.
   ```yaml
   - name: Namespace .lake cache volume
     if: needs.detect.outputs.volume == 'true'
+    id: ns_lake_cache
     continue-on-error: true
     uses: namespacelabs/nscloud-cache-action@15799a6b54e5765f85b2aac25b3f0df43ed571c0 # v1.4.3
     with:
@@ -27,13 +29,17 @@ to the existing GitHub caches with no behavioural change.
   ```
   The action is keyless (volume-backed bind-mount). The absolute `${{ github.workspace }}/.lake`
   path is required — a relative `.lake` mounts the wrong directory.
-- **GitHub-cache fallback gated off on Namespace.** The ADR-045 `.lake/build` `actions/cache` step
-  now carries `if: needs.detect.outputs.volume != 'true'`, and the build `lean-action` step uses
-  `use-github-cache: ${{ needs.detect.outputs.volume != 'true' }}`.
-- **Build-skip interaction (ADR-045).** With the `.lake/build` cache step skipped on Namespace,
-  `steps.lake_build_cache.outputs.cache-hit` is empty, so the audit/replay build guard
-  (`!= 'true'`) lets the build run — correct, because the volume keeps mathlib stable so that build
-  is a fast Lake-incremental, not a cold rebuild.
+- **Namespace diagnostics.** Each job prints the Namespace `cache-hit` output plus compact `.lake`
+  size information so a cold/missed volume is visible in logs.
+- **GitHub-cache fallback remains live.** The ADR-045 `.lake/build` `actions/cache` step still runs
+  on all profiles because it is keyed to the exact commit sha and is the safe same-run handoff from
+  prepare to audit/replay. The build `lean-action` step uses
+  `use-github-cache: ${{ needs.detect.outputs.volume != 'true' || steps.ns_lake_cache.outputs.cache-hit != 'true' }}`,
+  so GitHub mathlib cache is skipped only for a known Namespace volume hit.
+- **Build-skip interaction (ADR-045).** With the `.lake/build` cache step still active on Namespace,
+  audit/replay can see `steps.lake_build_cache.outputs.cache-hit == 'true'` for the exact commit sha
+  that prepare just saved. Their library build guard (`!= 'true'`) then skips the duplicate
+  `lake build UnsorryLibrary --wfail`; on a cache miss the build still runs and self-heals.
 
 ## Safety
 
@@ -47,7 +53,8 @@ gate (false negative), never a false PASS.
 
 - Non-Namespace profile → `volume=false` → mount step skipped, GitHub caches active (today's path).
 - Namespace profile, no volume attached / action error → `continue-on-error` keeps the job running;
-  mathlib is provisioned from the reservoir (one-time on a cold volume).
+  mathlib is provisioned through the GitHub cache fallback.
+- Namespace profile, cold/missed volume → GitHub caches active; the volume can warm at job cleanup.
 
 ## Operator note
 
@@ -58,9 +65,11 @@ adopt or to revert.
 ## Acceptance criteria
 
 - `detect.volume` is `true` for `namespace-*` profiles and `false` otherwise.
-- On a Namespace profile, the mount step runs, `use-github-cache` resolves to `false`, and the
-  `.lake/build` `actions/cache` step is skipped.
+- On a Namespace profile, the mount step runs and `use-github-cache` resolves to `false` only when
+  the Namespace cache reports a hit.
 - On a non-Namespace profile, the mount step is skipped, `use-github-cache` resolves to `true`, and
   the `.lake/build` cache step runs (ADR-045 behaviour).
+- The `.lake/build` cache step runs on Namespace too, so audit/replay can restore prepare's
+  commit-exact build and skip duplicate library builds.
 - A cold volume run completes within the 45-min prepare/audit and 120-min replay timeouts.
 - `gate-a.yml` parses; the three jobs each contain exactly one `nscloud-cache-action` step.
