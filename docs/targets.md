@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**220 open · 191 proved · 418 total prove-goals.**
+**219 open · 192 proved · 418 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -25,7 +25,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `coprime-succ-sq-add` — n+1 is coprime to n²+n+1. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | n+1 is coprime to n²+n+1. Not a named mathlib lemma in this form. |
 | `cube-mod-eighteen-mem` — The cubes modulo 18 are exactly {0,1,8,9,10,17}. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | The cubes modulo 18 are exactly {0,1,8,9,10,17}. Not a named mathlib lemma in this form. |
 | `cube-mod-nineteen-mem` — The cubic residues modulo 19 are exactly {0,1,7,8,11,12,18}. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | The cubic residues modulo 19 are exactly {0,1,7,8,11,12,18}. Not a named mathlib lemma in this form. |
-| `cube-mod-thirtyone-nonresidue-five` — None of 3, 5, 6, 7 is a cubic residue modulo 31. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | None of 3, 5, 6, 7 is a cubic residue modulo 31. Not a named mathlib lemma in this form. |
 | `cube-sum-ge-three-prod-s2` — cube-sum-ge-three-prod-s2 | open | 1 | — | — | — |
 | `cyclic-quad-ge-abc-times-sum` — The sum of squared pairwise products dominates abc(a+b+c) for all reals. | open | 3 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The sum of squared pairwise products dominates abc(a+b+c) for all reals. Not a named mathlib lemma in this form. |
 | `diff-two-squares-zmod-four-ne-two` — A difference of two integer squares is never congruent to 2 modulo 4. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | A difference of two integer squares is never congruent to 2 modulo 4. Not a named mathlib lemma in this form. |
@@ -260,6 +259,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `cube-mod-nine` — For every natural number n, the cube n³ is ≡ 0, 1, or 8 (mod 9). | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family. | The cubic residues mod 9 are exactly {0,1,8}. Not a named mathlib lemma. |
 | `cube-mod-seven` — For every natural n, n³ % 7 ∈ {0,1,6}. | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family. | For every natural n, n³ % 7 ∈ {0,1,6}. Not a named mathlib lemma in this form. |
 | `cube-mod-thirteen-mem` — Every cube is congruent to 0, 1, 5, 8, or 12 modulo 13 (the cubic residues mod 13). | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family. | Every cube is congruent to 0, 1, 5, 8, or 12 modulo 13 (the cubic residues mod 13). Not a named mathlib lemma in this form. |
+| `cube-mod-thirtyone-nonresidue-five` — None of 3, 5, 6, 7 is a cubic residue modulo 31. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | None of 3, 5, 6, 7 is a cubic residue modulo 31. Not a named mathlib lemma in this form. |
 | `cube-sum-ge-mul-sq` — For nonneg reals a,b, a³+b³ ≥ a²b+ab² (since a³+b³−a²b−ab² = (a+b)(a−b)²). | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For nonneg reals a,b, a³+b³ ≥ a²b+ab² (since a³+b³−a²b−ab² = (a+b)(a−b)²). Not a named mathlib lemma in this form. |
 | `cube-sum-ge-three-prod-s1` — cube-sum-ge-three-prod-s1 | proved | 1 | — | — | — |
 | `cube-sum-ge-three-prod-s3` — cube-sum-ge-three-prod-s3 | proved | 1 | — | — | — |
