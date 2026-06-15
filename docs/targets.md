@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**412 open · 233 proved · 653 total prove-goals.**
+**411 open · 234 proved · 653 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -30,7 +30,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `coprime-fib-sq-fib-succ` — The square of fib n is coprime to fib (n+1). | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The square of fib n is coprime to fib (n+1). Not a named mathlib lemma in this form. |
 | `coprime-n-cube-add-one` — n is coprime to n cubed plus one. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | n is coprime to n cubed plus one. Not a named mathlib lemma in this form. |
 | `coprime-n1-nsq1` — The gcd of n+1 and n^2+1 always divides 2. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of n+1 and n^2+1 always divides 2. Not a named mathlib lemma in this form. |
-| `coprime-n2p1-n2p2` — n^2+1 and n^2+2 are consecutive integers, hence coprime. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | n^2+1 and n^2+2 are consecutive integers, hence coprime. Not a named mathlib lemma in this form. |
 | `coprime-ncube1-ncube2` — The consecutive values n^3+1 and n^3+2 are coprime for every n. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The consecutive values n^3+1 and n^3+2 are coprime for every n. Not a named mathlib lemma in this form. |
 | `coprime-nsq2-nsq3` — The consecutive values n^2+2 and n^2+3 are coprime for every n. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The consecutive values n^2+2 and n^2+3 are coprime for every n. Not a named mathlib lemma in this form. |
 | `coprime-twopow-sub-one-two` — For every positive n, 2^n - 1 is odd and hence coprime to 2. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | For every positive n, 2^n - 1 is odd and hence coprime to 2. Not a named mathlib lemma in this form. |
@@ -451,6 +450,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `coprime-2n1-n1` — 2n+1 and n+1 are coprime for every n. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | 2n+1 and n+1 are coprime for every n. Not a named mathlib lemma in this form. |
 | `coprime-3n1-4n1` — 3n+1 and 4n+1 are always coprime. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | 3n+1 and 4n+1 are always coprime. Not a named mathlib lemma in this form. |
 | `coprime-n-sq-n-add-one` — n is coprime to n squared plus n plus one. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | n is coprime to n squared plus n plus one. Not a named mathlib lemma in this form. |
+| `coprime-n2p1-n2p2` — n^2+1 and n^2+2 are consecutive integers, hence coprime. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | n^2+1 and n^2+2 are consecutive integers, hence coprime. Not a named mathlib lemma in this form. |
 | `coprime-succ-sq-add` — n+1 is coprime to n²+n+1. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | n+1 is coprime to n²+n+1. Not a named mathlib lemma in this form. |
 | `cube-eq-triangular-sq-diff` — For every natural n, Tₙ₋₁² + n³ = Tₙ², where Tₙ = ∑_{i≤n} i; equivalently n³ = Tₙ² − Tₙ₋₁², the per-term form of Nicomachus's theorem (the n-th cube is the n-th difference of squared triangular numbers). | proved | 2 | — | classic identities (triangular-number gems — the term-wise Nicomachus; compounds on `nicomachus-sum-cubes`) | The telescoping core of Nicomachus's identity ∑k³ = (∑k)² = Tₙ²: each cube n³ = Tₙ² − Tₙ₋₁². Conway & Guy, The Book of Numbers; Mathematics in Lean §5 (the Nicomachus exercise). |
 | `cube-mod-eighteen-mem` — The cubes modulo 18 are exactly {0,1,8,9,10,17}. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | The cubes modulo 18 are exactly {0,1,8,9,10,17}. Not a named mathlib lemma in this form. |
