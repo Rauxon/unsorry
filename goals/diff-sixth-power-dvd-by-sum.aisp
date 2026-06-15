@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜diff-sixth-power-dvd-by-sum
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜2
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/diff-sixth-power-dvd-by-sum.lean
-  sha≜∅
-  aff≜-10
+  sha≜f7ce05b203d54deb84f2bf74d5341229cfe36174bf883afbff1a9670ccd9f15e
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
