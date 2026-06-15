@@ -89,3 +89,46 @@ Theme staging file for the Identity Engine (#400, ADR-043). 22 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Cast to ZMod 273, `decide` x^14 = x^2 over residues, lift via intCast_zmod_eq_zero_iff_dvd · conf: high
 - [ ] `dvd_630_pow_fourteen_sub_sq` — The integer 630 = 2·3^2·5·7 divides n^14 - n^2 for every integer n
       absence: no-local-match · triviality: non-trivial · intended: ZMod 630 decide bridge on x^14 - x^2 = 0; the 3^2 factor needs the n^2 head, distinguishing it from a squarefree n^a-n fact · conf: high
+
+### Replenishment round 3 (scoped 2026-06-15) — 20 candidates
+
+- [ ] `dvd_1806_pow_fortythree_sub_self` — For every integer n, 1806 divides n raised to the 43rd power minus n
+      absence: no-local-match · triviality: non-trivial · intended: 1806 = 2·3·7·43; reduce mod each prime via ZMod and decide, combine with Nat.Coprime.mul_dvd · conf: high
+- [ ] `dvd_14322_pow_thirtyone_sub_self` — For every integer n, 14322 divides n raised to the 31st power minus n
+      absence: no-local-match · triviality: non-trivial · intended: 14322 = 2·3·7·11·31; per-prime ZMod.decide with set_option maxRecDepth, glue via coprime product · conf: med
+- [ ] `dvd_13530_pow_fortyone_sub_self` — For every integer n, 13530 divides n raised to the 41st power minus n
+      absence: no-local-match · triviality: non-trivial · intended: 13530 = 2·3·5·11·41; reduce to ZMod p for each prime factor and decide, recombine by coprimality · conf: med
+- [ ] `dvd_46410_pow_fortynine_sub_self` — For every integer n, 46410 divides n raised to the 49th power minus n
+      absence: no-local-match · triviality: non-trivial · intended: 46410 = 2·3·5·7·13·17; per-prime ZMod decide (maxRecDepth), assemble via coprime product dvd · conf: med
+- [ ] `dvd_56786730_pow_sixtyone_sub_self` — For every integer n, 56786730 divides n raised to the 61st power minus n
+      absence: no-local-match · triviality: non-trivial · intended: 56786730 = 2·3·5·7·11·13·31·61 (the largest such modulus); decide n^61=n in each ZMod p with high maxRecDepth, combine by coprimality · conf: med
+- [ ] `dvd_903_pow_fortythree_sub_self` — For every integer n, 903 divides n raised to the 43rd power minus n
+      absence: no-local-match · triviality: non-trivial · intended: 903 = 3·7·43; reduce mod each prime via ZMod.decide and combine with coprime product divisibility · conf: high
+- [ ] `dvd_6765_pow_fortyone_sub_self` — For every integer n, 6765 divides n raised to the 41st power minus n
+      absence: no-local-match · triviality: non-trivial · intended: 6765 = 3·5·11·41; per-prime ZMod decide of n^41=n, glue via Nat.Coprime.mul_dvd · conf: high
+- [ ] `dvd_170_pow_seventeen_sub_self` — For every integer n, 170 divides n raised to the 17th power minus n
+      absence: no-local-match · triviality: non-trivial · intended: 170 = 2·5·17; reduce to ZMod 2, ZMod 5, ZMod 17 and decide, then combine by coprimality · conf: high
+- [ ] `dvd_255_pow_seventeen_sub_self` — For every integer n, 255 divides n raised to the 17th power minus n
+      absence: no-local-match · triviality: non-trivial · intended: 255 = 3·5·17; per-prime ZMod.decide of n^17=n, recombine via coprime product divisibility · conf: high
+- [ ] `dvd_2730_pow_twentyfive_sub_pow_thirteen` — For every integer n, 2730 divides n to the 25th power minus n to the 13th power
+      absence: no-local-match · triviality: non-trivial · intended: 2730 = 2·3·5·7·13; factor n^13(n^12-1) and decide n^25=n^13 in each ZMod p, combine by coprimality · conf: med
+- [ ] `dvd_2730_pow_nineteen_sub_pow_seven` — For every integer n, 2730 divides n to the 19th power minus n to the 7th power
+      absence: no-local-match · triviality: non-trivial · intended: 2730 = 2·3·5·7·13; per-prime ZMod.decide of n^19=n^7, recombine via coprime product dvd · conf: med
+- [ ] `dvd_510_pow_thirtythree_sub_pow_seventeen` — For every integer n, 510 divides n to the 33rd power minus n to the 17th power
+      absence: no-local-match · triviality: non-trivial · intended: 510 = 2·3·5·17; decide n^33=n^17 in each ZMod p and glue with Nat.Coprime.mul_dvd · conf: high
+- [ ] `dvd_510_pow_twentyone_sub_pow_five` — For every integer n, 510 divides n to the 21st power minus n to the 5th power
+      absence: no-local-match · triviality: non-trivial · intended: 510 = 2·3·5·17; per-prime ZMod.decide of n^21=n^5, combine by coprimality · conf: high
+- [ ] `dvd_798_pow_fiftyseven_sub_pow_three` — For every integer n, 798 divides n to the 57th power minus n to the 3rd power
+      absence: no-local-match · triviality: non-trivial · intended: 798 = 2·3·7·19; decide n^57=n^3 in each ZMod p (maxRecDepth for exponent 57), recombine via coprime dvd · conf: med
+- [ ] `dvd_66_pow_twentyone_sub_pow_eleven` — For every integer n, 66 divides n to the 21st power minus n to the 11th power
+      absence: no-local-match · triviality: non-trivial · intended: 66 = 2·3·11; decide n^21=n^11 in ZMod 2, ZMod 3, ZMod 11, combine by coprimality · conf: high
+- [ ] `dvd_330_pow_twentythree_sub_pow_three` — For every integer n, 330 divides n to the 23rd power minus n to the 3rd power
+      absence: no-local-match · triviality: non-trivial · intended: 330 = 2·3·5·11; per-prime ZMod.decide of n^23=n^3, recombine via Nat.Coprime.mul_dvd · conf: high
+- [ ] `dvd_1806_pow_fortynine_sub_pow_seven` — For every integer n, 1806 divides n to the 49th power minus n to the 7th power
+      absence: no-local-match · triviality: non-trivial · intended: 1806 = 2·3·7·43; decide n^49=n^7 in each ZMod p (maxRecDepth), combine by coprimality · conf: med
+- [ ] `dvd_910_pow_twentyfive_sub_pow_thirteen` — For every integer n, 910 divides n to the 25th power minus n to the 13th power
+      absence: no-local-match · triviality: non-trivial · intended: 910 = 2·5·7·13; per-prime ZMod.decide of n^25=n^13, recombine via coprime product dvd · conf: high
+- [ ] `dvd_2730_pow_thirtyseven_sub_pow_thirteen` — For every integer n, 2730 divides n to the 37th power minus n to the 13th power
+      absence: no-local-match · triviality: non-trivial · intended: 2730 = 2·3·5·7·13; decide n^37=n^13 in each ZMod p with high maxRecDepth, combine by coprimality · conf: med
+- [ ] `dvd_510_pow_nineteen_sub_pow_three` — For every integer n, 510 divides n to the 19th power minus n to the 3rd power
+      absence: no-local-match · triviality: non-trivial · intended: 510 = 2·3·5·17; per-prime ZMod.decide of n^19=n^3, recombine via Nat.Coprime.mul_dvd · conf: high

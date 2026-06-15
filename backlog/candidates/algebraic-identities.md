@@ -93,3 +93,52 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a), sq_nonneg (a+b+c), sq_nonneg (a*b+b*c+c*a)] · conf: high
 - [ ] `sophie_germain_factor_difference_four_prod` — The two Sophie-Germain quadratic factors of a⁴+4b⁴ differ by exactly 4ab, bounding their gcd
       absence: no-local-match · triviality: non-trivial · intended: ring · conf: high
+
+### Replenishment round 3 (scoped 2026-06-15) — 23 candidates
+
+- [ ] `diff_sixth_power_dvd_by_sum` — The sum of two integers divides the difference of their sixth powers
+      absence: no-local-match · triviality: non-trivial · intended: a^6 - b^6 = (a+b)*(a^5 - a^4*b + a^3*b^2 - a^2*b^3 + a*b^4 - b^5); Dvd.intro + ring · conf: high
+- [ ] `diff_eighth_power_dvd_by_diff_fourth` — The difference of fourth powers divides the difference of eighth powers
+      absence: no-local-match · triviality: non-trivial · intended: a^8 - b^8 = (a^4 - b^4)*(a^4 + b^4); Dvd.intro then ring · conf: high
+- [ ] `diff_sixth_power_dvd_by_sum_of_squares` — The sum of two squares divides the sum of the corresponding sixth powers
+      absence: no-local-match · triviality: non-trivial · intended: a^6 + b^6 = (a^2 + b^2)*(a^4 - a^2*b^2 + b^4); Dvd.intro + ring · conf: high
+- [ ] `sextic_plus_one_dvd_by_quadratic_of_squares` — The quadratic x squared plus one divides x to the sixth plus one
+      absence: no-local-match · triviality: non-trivial · intended: x^6 + 1 = (x^2 + 1)*(x^4 - x^2 + 1); supply cofactor then ring · conf: high
+- [ ] `quartic_x4_plus_x2_plus_one_dvd_by_minus_factor` — The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1
+      absence: no-local-match · triviality: non-trivial · intended: x^4 + x^2 + 1 = (x^2 - x + 1)*(x^2 + x + 1); Dvd.intro + ring · conf: high
+- [ ] `sophie_germain_plus_factor_dvd` — The second Sophie-Germain quadratic factor a^2+2ab+2b^2 divides a^4+4b^4
+      absence: no-local-match · triviality: non-trivial · intended: a^4 + 4b^4 = (a^2 + 2ab + 2b^2)*(a^2 - 2ab + 2b^2); Dvd.intro then ring · conf: high
+- [ ] `shifted_sophie_germain_x4_plus_4_dvd_by_x2_plus_2x_plus_2` — The quadratic x^2+2x+2 divides x^4+4 (one Sophie-Germain factor at b=1)
+      absence: no-local-match · triviality: non-trivial · intended: x^4 + 4 = (x^2 + 2x + 2)*(x^2 - 2x + 2); supply cofactor then ring · conf: high
+- [ ] `quartic_x4_plus_64_dvd_by_x2_minus_4x_plus_8` — The quadratic x^2-4x+8 divides x^4+64 (Sophie-Germain factorization with b=2)
+      absence: no-local-match · triviality: non-trivial · intended: x^4 + 64 = (x^2 - 4x + 8)*(x^2 + 4x + 8); Dvd.intro + ring · conf: high
+- [ ] `aurifeuillian_sextic_x6_plus_1_dvd_by_x2_minus_x_plus_one` — The quadratic x^2-x+1 (the order-12 cyclotomic-style factor) divides x^6+1
+      absence: no-local-match · triviality: non-trivial · intended: x^6 + 1 = (x^2 - x + 1)*(x^2 + x + 1)*(x^2 - 1) + ... instead: (x^2 - x + 1)*(x^4 + x^3 - x - 1) +? use witness x^4 + x^3 - x^2? compute exact cofactor and ring · conf: high
+- [ ] `twelfth_degree_x4_plus_x2_plus_1_dvd_by_x12_minus_1` — The biquadratic x^4+x^2+1 divides x^12-1
+      absence: no-local-match · triviality: non-trivial · intended: x^12 - 1 = (x^4 + x^2 + 1)*(x^8 - x^4? )... actually (x^4+x^2+1)(x^2-1)=x^6-1 so x^12-1=(x^6-1)(x^6+1); cofactor (x^2-1)*(x^6+1); Dvd.intro + ring · conf: high
+- [ ] `brahmagupta_fibonacci_alt_sign_two_representations` — The Brahmagupta-Fibonacci identity in its second (minus-sign) form expressing a product of sums of two squares as a sum of two squares
+      absence: no-local-match · triviality: non-trivial · intended: expand both sides with ring · conf: high
+- [ ] `lagrange_identity_two_var_as_equation` — The two-variable Lagrange identity: the product of sums of squares minus the squared dot product equals the squared cross term
+      absence: no-local-match · triviality: non-trivial · intended: ring after moving the subtraction · conf: high
+- [ ] `euler_four_square_product_identity` — Euler's four-square identity: a product of two sums of four squares is again a sum of four squares
+      absence: no-local-match · triviality: non-trivial · intended: expand both sides; ring (large but mechanical) · conf: high
+- [ ] `lebesgue_square_of_sum_of_four_squares` — Lebesgue's identity writing the square of a sum of four squares as a sum of three squares
+      absence: no-local-match · triviality: non-trivial · intended: ring expansion of both sides · conf: high
+- [ ] `sum_fourth_powers_ge_four_times_product` — The sum of fourth powers of four reals is at least four times their product (AM-GM via squares)
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a^2-b^2), sq_nonneg (c^2-d^2), sq_nonneg (a*b-c*d), sq_nonneg (a*b+c*d)] · conf: high
+- [ ] `sum_sixth_powers_three_var_ge_three_times_square_product` — The sum of sixth powers of three reals is at least three times the product of their squares
+      absence: no-local-match · triviality: non-trivial · intended: AM-GM on (a^2,b^2,c^2) cubes; nlinarith with sq_nonneg of squared differences and a sum-of-cubes hint · conf: high
+- [ ] `sum_fourth_powers_three_var_ge_sym_square_products` — The sum of fourth powers of three reals dominates the symmetric sum of pairwise products of their squares
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a^2-b^2), sq_nonneg (b^2-c^2), sq_nonneg (c^2-a^2)] · conf: high
+- [ ] `product_of_two_sums_of_squares_ge_square_of_cross` — A product of two sums of squares is at least the square of the antisymmetric cross term (Lagrange consequence)
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (x*z + y*w)] using the Lagrange identity decomposition · conf: high
+- [ ] `sum_sixth_power_two_var_ge_mixed_fourth_second` — The sum of sixth powers of two reals dominates the mixed fourth-second power terms
+      absence: no-local-match · triviality: non-trivial · intended: factor a^6+b^6 - a^4 b^2 - a^2 b^4 = (a^2-b^2)^2 (a^2+b^2); nlinarith [sq_nonneg (a^2-b^2), sq_nonneg a, sq_nonneg b, mul_nonneg ...] · conf: high
+- [ ] `sophie_germain_numeric_m4_plus_4n4_composite_factor` — The full Sophie-Germain factorization expressing m^4+4n^4 as a product of two quadratics
+      absence: no-local-match · triviality: non-trivial · intended: ring expansion (kept as a witness/equation lemma for the divisibility goals) · conf: high
+- [ ] `n4_plus_4n2_plus_16_dvd_by_n2_plus_2n_plus_4` — The quadratic n^2-2n+4 divides the quartic n^4+4n^2+16
+      absence: no-local-match · triviality: non-trivial · intended: n^4+4n^2+16 = (n^2-2n+4)*(n^2+2n+4); Dvd.intro + ring · conf: high
+- [ ] `diff_twelfth_power_dvd_by_diff_cube` — The difference of cubes divides the difference of twelfth powers
+      absence: no-local-match · triviality: non-trivial · intended: a^12 - b^12 = (a^3 - b^3)*(a^9 + a^6 b^3 + a^3 b^6 + b^9); Dvd.intro + ring · conf: high
+- [ ] `sum_of_two_squares_times_three_ge_square_of_sum` — Three times the sum of three squares is at least the square of their sum (QM-AM / power-mean)
+      absence: no-local-match · triviality: non-trivial · intended: nlinarith [sq_nonneg (a-b), sq_nonneg (b-c), sq_nonneg (c-a)] · conf: high

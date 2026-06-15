@@ -95,3 +95,44 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the step is a quadratic ring identity, no division · conf: high
 - [ ] `hexagonal_eq_triangular_odd_index` — The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number
       absence: no-local-match · triviality: non-trivial · intended: Rewrite the (2n-1)*(2n)/2 division exactly via Nat.mul_div_cancel on the even factor, then ring/omega · conf: high
+
+### Replenishment round 3 (scoped 2026-06-15) — 19 candidates
+
+- [ ] `sum_heptagonal_numbers_closed_form` — Three times the sum of the first n heptagonal numbers (twice each, as k(5k-3)) equals n(n+1)(5n-2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction on n with Finset.sum_range_succ, then ring (Nat subtraction stays nonnegative for k,n ≥ 1) · conf: high
+- [ ] `sum_octagonal_numbers_closed_form` — Twice the running sum of the first n octagonal numbers k(3k-2) equals n(n+1)(2n-1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring; the doubling clears the /2 in the octagonal closed form · conf: high
+- [ ] `sum_nonagonal_numbers_closed_form` — Three times the running sum of the first n nonagonal numbers (as k(7k-5)) equals n(n+1)(7n-4)
+      absence: no-local-match · triviality: non-trivial · intended: Induction over Finset.range with sum_range_succ; ring closes the step · conf: high
+- [ ] `sum_decagonal_numbers_closed_form` — Six times the running sum of the first n decagonal numbers k(4k-3) equals n(n+1)(8n-5)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring; factor of 6 clears the /2 · conf: high
+- [ ] `sum_centered_square_numbers_closed_form` — Three times the running sum of centered square numbers 2k(k+1)+1 equals n(2n^2+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction over Finset.range n with sum_range_succ; ring closes after the factor-3 clears denominators · conf: high
+- [ ] `sum_stella_octangula_closed_form` — Twice the running sum of stella octangula numbers k(2k^2-1) equals n(n+1)(n^2+n-1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; reduces to a cubic identity closed by ring (Nat subtraction valid for the indexed terms) · conf: high
+- [ ] `sum_centered_octahedral_closed_form` — The running sum of three-times-centered-octahedral terms (2k+1)(2k^2+2k+3) equals n^2(n^2+2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction over Finset.range n with sum_range_succ; the quartic step is closed by ring · conf: high
+- [ ] `sum_centered_tetrahedral_closed_form` — Twice the running sum of (2k+1)(k^2+k+3) equals n^2(n^2+5), a centered-tetrahedral closed form
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the doubling clears /2 and ring finishes the quartic step · conf: high
+- [ ] `sum_centered_triangular_running_closed_form` — The running sum of twice-centered-triangular terms 3k^2+3k+2 equals n(n^2+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction over Finset.range n with sum_range_succ then ring · conf: high
+- [ ] `sum_rhombic_dodecahedral_eq_fourth_power` — The running sum of the rhombic-dodecahedral gnomons (2k-1)(2k^2-2k+1) equals n^4 exactly
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the k=0 term vanishes and the gnomon (n+1)^4 - n^4 expansion is closed by ring after Nat-subtraction care · conf: high
+- [ ] `sum_consecutive_product_skip_two_closed_form` — Six times the sum of k(k+2) over the first n terms equals n(n+1)(2n+7)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; ring closes after the factor-6 clears the /6 · conf: high
+- [ ] `sum_four_consecutive_product_closed_form` — Five times the sum of products of four consecutive integers telescopes to the product of five consecutive integers
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ (telescoping product); ring closes the degree-5 step · conf: high
+- [ ] `sum_product_consecutive_odds_closed_form` — Three times the sum of products of consecutive odd numbers (2k-1)(2k+1) equals n(4n^2+6n-1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; the summand is 4k^2-1, ring closes after factor-3 · conf: high
+- [ ] `sum_k_mul_succ_sq_closed_form` — Twelve times the sum of k(k+1)^2 equals n(n+1)(n+2)(3n+5)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring; factor-12 clears the rational closed form · conf: high
+- [ ] `sum_second_hexagonal_closed_form` — Six times the running sum of k(2k-1) equals n(n+1)(4n-1)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; summand 2k^2-k, ring closes after factor-6 · conf: high
+- [ ] `sum_k_mul_two_k_add_one_closed_form` — Six times the running sum of k(2k+1) equals n(n+1)(4n+5)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring · conf: high
+- [ ] `sum_decagonal_second_kind_closed_form` — Three times the running sum of the second-kind decagonal terms k(5k+1) equals n(n+1)(5n+4)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; summand 5k^2+k, ring closes after factor-3 · conf: high
+- [ ] `sum_cube_add_id_closed_form` — Four times the sum of (k^3 + k) equals n(n+1)(n^2+n+2)
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ then ring; combines Nicomachus and triangular pieces · conf: high
+- [ ] `sum_cube_sub_id_eq_four_consecutive` — Four times the sum of (k^3 - k) equals (n-1)n(n+1)(n+2), a product of four consecutive integers
+      absence: no-local-match · triviality: non-trivial · intended: Induction with Finset.sum_range_succ; k^3-k = (k-1)k(k+1) telescopes, ring after Nat-subtraction handling · conf: high

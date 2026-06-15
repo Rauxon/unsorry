@@ -89,3 +89,48 @@ Theme staging file for the Identity Engine (#400, ADR-043). 20 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: Expand fib(n+2),fib(n+3) via Int.fib_add_two, reduce to Cassini, and finish with ring and parity · conf: high
 - [ ] `cassini_odd_index_nat` — fib(2n+1)·fib(2n−1) = fib(2n)² + 1, the even-index Cassini identity in Nat form
       absence: no-local-match · triviality: non-trivial · intended: Cast to Int via Cassini fib_succ_mul_fib_pred_sub_fib_sq at an even index where the sign is +1, then descend to Nat · conf: high
+
+### Replenishment round 3 (scoped 2026-06-15) — 21 candidates
+
+- [ ] `catalan_r2_shift_nat_fib_int` — Over the integers, the square of fib(n+2) minus fib(n) times fib(n+4) equals (-1)^n, a Catalan identity at offset two shifted to stay in the naturals
+      absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, expand fib(n+4),fib(n+3) via Int.fib_add_two down to fib(n),fib(n+1), reduce to Cassini, then ring with parity of (-1)^n · conf: high
+- [ ] `catalan_r3_shift_nat_fib_int` — Over the integers, the square of fib(n+3) minus fib(n) times fib(n+6) equals four times (-1)^n, a Catalan identity at offset three
+      absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, repeatedly expand fib(n+k) via Int.fib_add_two to fib(n),fib(n+1), reduce to Cassini, ring_nf with the (-1)^n parity term (fib(3)^2 = 4) · conf: high
+- [ ] `catalan_r4_shift_nat_fib_int` — Over the integers, the square of fib(n+4) minus fib(n) times fib(n+8) equals nine times (-1)^n, a Catalan identity at offset four
+      absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, telescope fib(n+8),fib(n+4) via Int.fib_add_two to fib(n),fib(n+1), reduce to Cassini, ring with parity (fib(4)^2 = 9) · conf: med
+- [ ] `catalan_r5_shift_nat_fib_int` — Over the integers, the square of fib(n+5) minus fib(n) times fib(n+10) equals twenty-five times (-1)^n, a Catalan identity at offset five
+      absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, expand fib(n+10),fib(n+5) via repeated Int.fib_add_two to fib(n),fib(n+1), reduce to Cassini, ring_nf with parity (fib(5)^2 = 25) · conf: med
+- [ ] `fib_prod_cross_shift_nat_int` — Over the integers, fib(n+1) times fib(n+2) minus fib(n) times fib(n+3) equals (-1)^n
+      absence: no-local-match · triviality: non-trivial · intended: Cast to ℤ, rewrite fib(n+3)=fib(n+1)+fib(n+2) and fib(n+2)=fib(n)+fib(n+1) via Int.fib_add_two, reduce to Cassini fib(n)*fib(n+2)-fib(n+1)^2, ring with parity · conf: high
+- [ ] `fib_sq_diff_eq_fib_prod_skip_nat` — The difference of the squares fib(n+2)^2 and fib(n+1)^2 equals fib(n) times fib(n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Factor the LHS as (fib(n+2)-fib(n+1))(fib(n+2)+fib(n+1)) = fib(n)*fib(n+3) using Nat.fib_add_two twice; discharge the Nat subtraction with omega / Nat.fib monotonicity guard · conf: high
+- [ ] `fib_sq_add_fib_three_sq_eq_two_fib_two_mul_add_three` — The sum of fib(n) squared and fib(n+3) squared equals twice fib(2n+3)
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite fib(n+3)=fib(n+1)+fib(n+2) via fib_add_two, expand, and use Nat.fib_two_mul_add_one (fib(2n+1)=fib(n+1)^2+fib(n)^2) at shifted indices; ring · conf: high
+- [ ] `two_dvd_fib_three_mul_nat` — Two divides fib(3n), since fib(3)=2 divides fib of every multiple of three
+      absence: no-local-match · triviality: non-trivial · intended: Apply Nat.fib_dvd with (3 : ℕ) ∣ 3 * n and rewrite Nat.fib 3 = 2 to get 2 ∣ fib(3n) · conf: high
+- [ ] `fib_dvd_fib_three_mul_nat` — Fib(n) divides fib(3n), since n divides 3n
+      absence: no-local-match · triviality: non-trivial · intended: Apply Nat.fib_dvd with n ∣ 3 * n (Dvd.intro / dvd_mul_left) · conf: high
+- [ ] `seven_dvd_fib_eight_mul_nat` — Seven divides fib(8n), since fib(8)=21 is a multiple of seven and divides fib of every multiple of eight
+      absence: no-local-match · triviality: non-trivial · intended: Use Nat.fib_dvd to get fib(8) ∣ fib(8n), rewrite Nat.fib 8 = 21, and chain 7 ∣ 21 by dvd_trans · conf: high
+- [ ] `four_dvd_fib_six_mul_nat` — Four divides fib(6n), since fib(6)=8 is a multiple of four and divides fib of every multiple of six
+      absence: no-local-match · triviality: non-trivial · intended: Nat.fib_dvd gives fib(6) ∣ fib(6n); rewrite Nat.fib 6 = 8 and chain 4 ∣ 8 by dvd_trans · conf: high
+- [ ] `eleven_dvd_fib_ten_mul_nat` — Eleven divides fib(10n), since fib(10)=55 is a multiple of eleven and divides fib of every multiple of ten
+      absence: no-local-match · triviality: non-trivial · intended: Nat.fib_dvd gives fib(10) ∣ fib(10n); rewrite Nat.fib 10 = 55 and chain 11 ∣ 55 by dvd_trans · conf: high
+- [ ] `thirteen_dvd_fib_seven_mul_nat` — Thirteen divides fib(7n), since fib(7)=13 divides fib of every multiple of seven
+      absence: no-local-match · triviality: non-trivial · intended: Nat.fib_dvd gives fib(7) ∣ fib(7n); rewrite Nat.fib 7 = 13 · conf: high
+- [ ] `six_dvd_fib_twelve_mul_nat` — Six divides fib(12n), since fib(12)=144 is a multiple of six and divides fib of every multiple of twelve
+      absence: no-local-match · triviality: non-trivial · intended: Nat.fib_dvd gives fib(12) ∣ fib(12n); rewrite Nat.fib 12 = 144 and chain 6 ∣ 144 by dvd_trans · conf: high
+- [ ] `nine_dvd_fib_twelve_mul_nat` — Nine divides fib(12n), since fib(12)=144 is a multiple of nine and divides fib of every multiple of twelve
+      absence: no-local-match · triviality: non-trivial · intended: Nat.fib_dvd gives fib(12) ∣ fib(12n); rewrite Nat.fib 12 = 144 and chain 9 ∣ 144 by dvd_trans · conf: high
+- [ ] `seventeen_dvd_fib_nine_mul_nat` — Seventeen divides fib(9n), since fib(9)=34 is a multiple of seventeen and divides fib of every multiple of nine
+      absence: no-local-match · triviality: non-trivial · intended: Nat.fib_dvd gives fib(9) ∣ fib(9n); rewrite Nat.fib 9 = 34 and chain 17 ∣ 34 by dvd_trans · conf: high
+- [ ] `twenty_nine_dvd_fib_fourteen_mul_nat` — Twenty-nine divides fib(14n), since fib(14)=377 is a multiple of twenty-nine and divides fib of every multiple of fourteen
+      absence: no-local-match · triviality: non-trivial · intended: Nat.fib_dvd gives fib(14) ∣ fib(14n); rewrite Nat.fib 14 = 377 and chain 29 ∣ 377 by dvd_trans · conf: high
+- [ ] `coprime_fib_two_mul_fib_two_mul_add_two_nat` — Fib(2n) and fib(2n+2) are coprime, because the gcd of their indices is two and fib(2)=1
+      absence: no-local-match · triviality: non-trivial · intended: Unfold Nat.Coprime to gcd; use Nat.fib_gcd to turn gcd(fib(2n),fib(2n+2)) into fib(gcd(2n,2n+2)), show gcd(2n,2n+2)=2 (omega/Nat.Coprime), and Nat.fib 2 = 1 · conf: high
+- [ ] `sum_range_window_five_fib_eq_fib_diff_nat` — The sum of five consecutive Fibonacci numbers starting at fib(n) equals fib(n+6) minus fib(n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Expand the fixed-size Finset.range 5 sum with Finset.sum_range_succ (or decide/simp on the literal), rewrite the fib(n+k) via fib_add_two, and close with omega over the Nat subtraction (fib monotone) · conf: high
+- [ ] `sum_range_window_four_fib_eq_fib_diff_nat` — The sum of four consecutive Fibonacci numbers starting at fib(n) equals fib(n+5) minus fib(n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Expand the Finset.range 4 sum with Finset.sum_range_succ, rewrite fib(n+k) via fib_add_two, and discharge the Nat subtraction with omega (fib monotone) · conf: high
+- [ ] `sum_range_fib_prod_two_apart_even_nat` — The sum of fib(i) times fib(i+2) over the first 2n indices equals fib(2n) times fib(2n+1)
+      absence: no-local-match · triviality: non-trivial · intended: Induct on n, peeling two terms per step with Finset.sum_range_succ at indices 2n and 2n+1, then reduce using fib_add_two and the fib doubling identities (fib_two_mul, fib_two_mul_add_one) with ring/omega · conf: med

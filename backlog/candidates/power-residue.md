@@ -101,3 +101,56 @@ Theme staging file for the Identity Engine (#400, ADR-043). 24 vetted candidates
       absence: no-local-match · triviality: non-trivial · intended: decide over the finite ZMod 9 cubed domain (the classic obstruction to representing 4,5 mod 9 as three cubes) · conf: high
 - [ ] `cube_mod_twentysix_mem` — The cubic residues modulo 26 are exactly 0,1,5,8,12,13,14,18,21,25
       absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod, case-split on n % 26, decide each of the 26 residue branches · conf: high
+
+### Replenishment round 3 (scoped 2026-06-15) — 25 candidates
+
+- [ ] `sq_mod_fourteen_mem` — Every perfect square is congruent to 0, 1, 2, 4, 7, 8, 9 or 11 modulo 14
+      absence: no-local-match · triviality: non-trivial · intended: Reduce via Nat.pow_mod, then decide over the 14 residues of n%14 (interval_cases on n%14) · conf: high
+- [ ] `sq_mod_eighteen_mem` — Every perfect square lies in {0,1,4,7,9,10,13,16} modulo 18
+      absence: no-local-match · triviality: non-trivial · intended: Rewrite n^2 % 18 with Nat.pow_mod and case-split on n % 18 via decide · conf: high
+- [ ] `sq_mod_twentytwo_mem` — Every perfect square modulo 22 is one of the twelve quadratic residues {0,1,3,4,5,9,11,12,14,15,16,20}
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod to depend only on n % 22, then decide over all 22 residues · conf: high
+- [ ] `sq_mod_twentyfive_mem` — Every perfect square modulo the prime-power 25 lies in {0,1,4,6,9,11,14,16,19,21,24}
+      absence: no-local-match · triviality: non-trivial · intended: Reduce to n % 25 via Nat.pow_mod and decide; prime-power modulus gives an asymmetric residue set · conf: high
+- [ ] `cube_mod_twentyone_mem` — Every cube is congruent to one of {0,1,6,7,8,13,14,15,20} modulo 21
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod reduces n^3 % 21 to a function of n % 21; decide over the 21 cases · conf: high
+- [ ] `cube_mod_thirtyseven_mem` — The cubic residues modulo the prime 37 are exactly {0,1,6,8,10,11,14,23,26,27,29,31,36}
+      absence: no-local-match · triviality: non-trivial · intended: Since 3 divides 36, cubes hit only the 13 cubic residues; reduce via Nat.pow_mod and decide over n % 37 (needs raised maxRecDepth) · conf: high
+- [ ] `cube_mod_fortythree_mem` — The cubic residues modulo the prime 43 are exactly the fifteen values {0,1,2,4,8,11,16,21,22,27,32,35,39,41,42}
+      absence: no-local-match · triviality: non-trivial · intended: 3 | 42 so only 15 cubic residues occur; Nat.pow_mod plus decide over n % 43 with raised maxRecDepth · conf: high
+- [ ] `fourth_power_mod_nine_mem` — Every fourth power is congruent to 0, 1, 4 or 7 modulo 9
+      absence: no-local-match · triviality: non-trivial · intended: Nat.pow_mod reduces n^4 % 9 to n % 9; decide over the 9 residues · conf: high
+- [ ] `fourth_power_mod_twentyfive_mem` — Every fourth power modulo 25 lies in the arithmetic-progression set {0,1,6,11,16,21}
+      absence: no-local-match · triviality: non-trivial · intended: Reduce to n % 25 via Nat.pow_mod and decide; nonzero residues are exactly 1 mod 5 · conf: high
+- [ ] `fourth_power_mod_fortyone_mem` — The fourth-power residues modulo the prime 41 are exactly {0,1,4,10,16,18,23,25,31,37,40}
+      absence: no-local-match · triviality: non-trivial · intended: 4 | 40 gives only 11 quartic residues; Nat.pow_mod and decide over n % 41 with raised maxRecDepth · conf: high
+- [ ] `fourth_power_mod_fortyeight_mem` — Every fourth power is congruent to only 0, 1, 16 or 33 modulo 48
+      absence: no-local-match · triviality: non-trivial · intended: Strong collapse from 48 residues to 4 values; Nat.pow_mod then decide over n % 48 with raised maxRecDepth · conf: high
+- [ ] `fourth_power_mod_eighty_mem` — Every fourth power is congruent to only 0, 1, 16 or 65 modulo 80
+      absence: no-local-match · triviality: non-trivial · intended: 80 residues collapse to 4 quartic residues; Nat.pow_mod plus decide over n % 80 with raised maxRecDepth · conf: high
+- [ ] `fourth_power_mod_hundred_mem` — The last two decimal digits of a fourth power are always one of twelve values {00,01,16,21,25,36,41,56,61,76,81,96}
+      absence: no-local-match · triviality: non-trivial · intended: n^4 mod 100 depends only on n % 100; Nat.pow_mod then decide over 100 residues with raised maxRecDepth · conf: high
+- [ ] `fifth_power_mod_fortyone_mem` — The fifth-power residues modulo the prime 41 are exactly {0,1,3,9,14,27,32,38,40}
+      absence: no-local-match · triviality: non-trivial · intended: 5 | 40 yields only 9 quintic residues; Nat.pow_mod and decide over n % 41 with raised maxRecDepth · conf: high
+- [ ] `sixth_power_mod_nineteen_mem` — Every sixth power is congruent to only 0, 1, 7 or 11 modulo the prime 19
+      absence: no-local-match · triviality: non-trivial · intended: 6 | 18 so the nonzero sixth powers form the order-3 subgroup; Nat.pow_mod then decide over n % 19 · conf: high
+- [ ] `sixth_power_mod_thirtyone_mem` — Every sixth power modulo the prime 31 lies in the order-5 subgroup {1,2,4,8,16} together with 0
+      absence: no-local-match · triviality: non-trivial · intended: 6 | 30, so nonzero sixth powers form the 5-element subgroup of powers of 2; Nat.pow_mod then decide over n % 31 · conf: high
+- [ ] `sixth_power_mod_fortynine_mem` — Every sixth power modulo the prime-power 49 lies in the eight values {0,1,8,15,22,29,36,43}
+      absence: no-local-match · triviality: non-trivial · intended: Nonzero residues are exactly 1 mod 7; Nat.pow_mod then decide over n % 49 with raised maxRecDepth · conf: high
+- [ ] `eighth_power_mod_fifteen_mem` — Every eighth power is congruent to only 0, 1, 6 or 10 modulo 15
+      absence: no-local-match · triviality: non-trivial · intended: By CRT mod 3 and 5 the eighth powers collapse to four values; Nat.pow_mod then decide over n % 15 · conf: high
+- [ ] `eighth_power_mod_sixteen_mem` — Every eighth power is congruent to only 0 or 1 modulo 16
+      absence: no-local-match · triviality: non-trivial · intended: Odd^8 ≡ 1 and even^8 ≡ 0 mod 16; Nat.pow_mod then decide over n % 16 · conf: high
+- [ ] `eighth_power_mod_thirtytwo_mem` — Every eighth power is congruent to only 0 or 1 modulo 32
+      absence: no-local-match · triviality: non-trivial · intended: Odd eighth powers are ≡1 mod 32 (since the multiplicative exponent of (Z/32)* divides 8); Nat.pow_mod then decide over n % 32 · conf: high
+- [ ] `ninth_power_mod_nineteen_mem` — Every ninth power is congruent to only 0, 1 or 18 modulo the prime 19
+      absence: no-local-match · triviality: non-trivial · intended: 9 | 18, so nonzero ninth powers are exactly ±1 mod 19; Nat.pow_mod then decide over n % 19 · conf: high
+- [ ] `tenth_power_mod_eleven_mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case)
+      absence: no-local-match · triviality: non-trivial · intended: Fermat: nonzero n^10 ≡ 1 mod 11; Nat.pow_mod then decide over n % 11 · conf: high
+- [ ] `eleventh_power_mod_twentythree_mem` — Every eleventh power is congruent to only 0, 1 or 22 modulo the prime 23
+      absence: no-local-match · triviality: non-trivial · intended: 11 | 22 so nonzero eleventh powers are ±1 (the quadratic-residue Euler criterion); Nat.pow_mod then decide over n % 23 · conf: high
+- [ ] `twelfth_power_mod_thirteen_mem` — Every twelfth power is congruent to only 0 or 1 modulo the prime 13 (Fermat's little theorem boundary case)
+      absence: no-local-match · triviality: non-trivial · intended: Fermat: nonzero n^12 ≡ 1 mod 13; Nat.pow_mod then decide over n % 13 · conf: high
+- [ ] `sixteenth_power_mod_seventeen_mem` — Every sixteenth power is congruent to only 0 or 1 modulo the prime 17 (Fermat's little theorem boundary case)
+      absence: no-local-match · triviality: non-trivial · intended: Fermat: nonzero n^16 ≡ 1 mod 17; Nat.pow_mod then decide over n % 17 · conf: high
