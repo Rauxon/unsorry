@@ -97,6 +97,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-15",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "a7d84da8391e318dc92f4f0bb4184cded9486421",
+      "git_add_date": "2026-06-15",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "cube-sum-ge-mul-sq",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/5a55a2e8a6bd2cfeef757ceb96d1f23d08bab31344427471725fe0d7627ee4e4.aisp",
+      "review_status": "candidate",
+      "sha": "5a55a2e8a6bd2cfeef757ceb96d1f23d08bab31344427471725fe0d7627ee4e4"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-14",
       "difficulty": 2,
       "display_name": "chat-bit-01",
@@ -1299,9 +1314,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 86,
-    "mapped_missing_solver": 86,
-    "missing_solver_provenance": 86,
+    "git_attributed_missing_solver": 87,
+    "mapped_missing_solver": 87,
+    "missing_solver_provenance": 87,
     "unmapped_missing_solver": 0
   }
 }
