@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-sixty-pow-ten-sub-sq.thebeast-ace7.20260615t044921384460z-eefcd977@2026-06-15
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260615t044921384460z-eefcd977; goal≜dvd-sixty-pow-ten-sub-sq; agent≜thebeast-ace7; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜dvd-sixty-pow-ten-sub-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜403; ended≜2026-06-15T04:49:21Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✔ [8545/8570] Built Unsorry.SumFourPowGeSqProd (51s) ✔ [8546/8570] Built Unsorry.CauchySchwarzThreeTerm (53s) ✔ [8547/8570] Built Unsorry.ProductLeQuarterOfSumOne (55s) ✔ [8548/8570] Built Unsorry.SumSqAddOneGeMulAdd (57s) ✔ [8549/8570] Built Unsorry.FourVarQmAmS3 (59s) ✔ [8550/8}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
