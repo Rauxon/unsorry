@@ -1,0 +1,8 @@
+𝔸5.1.lemma.8a583ca6bbaf@2026-06-15
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜8a583ca6bbaf9b45aebda3b466b4c7e91d1f02a51e024bf1e719e8d710bbd2cb; goal≜consec-prod-succ-coprime; name≜consec_prod_succ_coprime}
+⟦Σ:Source⟧{src≜goals/consec-prod-succ-coprime.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜1367ab40f0b1-e413; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜186}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
