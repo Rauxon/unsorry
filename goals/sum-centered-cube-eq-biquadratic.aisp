@@ -1,0 +1,20 @@
+𝔸5.1.goal.sum-centered-cube-eq-biquadratic@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜sum-centered-cube-eq-biquadratic
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/sum-centered-cube-eq-biquadratic.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/sum-centered-cube-eq-biquadratic.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

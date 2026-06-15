@@ -1,0 +1,20 @@
+𝔸5.1.goal.coprime-2n1-3n2@2026-06-15
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜coprime-2n1-3n2
+  phase≜prove
+  status≜open
+  difficulty≜2
+}
+⟦Σ:Source⟧{
+  src≜backlog/coprime-2n1-3n2.md
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/coprime-2n1-3n2.lean
+  sha≜∅
+  aff≜-10
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
