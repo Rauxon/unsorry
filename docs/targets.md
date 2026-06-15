@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**293 open · 195 proved · 495 total prove-goals.**
+**292 open · 196 proved · 495 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -82,7 +82,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gcd-2n3-4n5-dvd-two` — The gcd of 2n+3 and 4n+5 always divides 2. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 2n+3 and 4n+5 always divides 2. Not a named mathlib lemma in this form. |
 | `gcd-3n1-9n4-eq-one` — The gcd of 3n+1 and 9n+4 is always one. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 3n+1 and 9n+4 is always one. Not a named mathlib lemma in this form. |
 | `gcd-4n3-6n5-eq-one` — The gcd of 4n+3 and 6n+5 is always one. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 4n+3 and 6n+5 is always one. Not a named mathlib lemma in this form. |
-| `gcd-5n2-7n3-eq-one` — The gcd of 5n+2 and 7n+3 is always one. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 5n+2 and 7n+3 is always one. Not a named mathlib lemma in this form. |
 | `gcd-6n5-6n11-eq-one` — The values 6n+5 and 6n+11 are coprime for every natural number n. | open | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The values 6n+5 and 6n+11 are coprime for every natural number n. Not a named mathlib lemma in this form. |
 | `gcd-consec-odd-eq-one` — Two consecutive odd numbers 2n+1 and 2n+3 are coprime. | open | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | Two consecutive odd numbers 2n+1 and 2n+3 are coprime. Not a named mathlib lemma in this form. |
 | `gcd-fib-add-two-eq-gcd-fib-succ` — gcd(F_n, F_{n+2}) equals gcd(F_n, F_{n+1}). | open | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | gcd(F_n, F_{n+2}) equals gcd(F_n, F_{n+1}). Not a named mathlib lemma in this form. |
@@ -380,6 +379,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `fourth-power-mod-sixteen-mem` — Every natural number's fourth power is congruent to 0 or 1 modulo 16. | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every natural number's fourth power is congruent to 0 or 1 modulo 16. Not a named mathlib lemma in this form. |
 | `fourth-power-mod-thirteen-mem` — Every fourth power is congruent to 0, 1, 3, or 9 modulo 13 (the quartic residues mod 13). | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family. | Every fourth power is congruent to 0, 1, 3, or 9 modulo 13 (the quartic residues mod 13). Not a named mathlib lemma in this form. |
 | `fourth-power-mod-three` — The fourth power of any natural number not divisible by 3 leaves remainder 1 on division by 3: if n % 3 ≠ 0 then n⁴ % 3 = 1. | proved | 2 | — | classic identities (fourth-power congruence tower — leaf; compounds on `sq-mod-three`) | Quadratic residues mod 3: n² ≡ 1 (mod 3) for 3∤n, hence n⁴ ≡ 1 (mod 3). Hardy & Wright, An Introduction to the Theory of Numbers. One power up from the proved `sq-mod-three`. |
+| `gcd-5n2-7n3-eq-one` — The gcd of 5n+2 and 7n+3 is always one. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 5n+2 and 7n+3 is always one. Not a named mathlib lemma in this form. |
 | `gcd-lin-3n2-5n3` — The linear forms 3n+2 and 5n+3 are coprime for every n. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The linear forms 3n+2 and 5n+3 are coprime for every n. Not a named mathlib lemma in this form. |
 | `gcd-n1-n4-dvd-three` — The gcd of n+1 and n+4 always divides 3. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The gcd of n+1 and n+4 always divides 3. Not a named mathlib lemma in this form. |
 | `gcd-self-add-dvd` — The gcd of n and n+k divides k. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The gcd of n and n+k divides k. Not a named mathlib lemma in this form. |
