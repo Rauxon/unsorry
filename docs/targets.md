@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**490 open · 252 proved · 750 total prove-goals.**
+**489 open · 253 proved · 750 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -46,7 +46,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `diff-two-cubes-zmod-seven-ne-three-four` — A difference of two integer cubes is never congruent to 3 or 4 modulo 7. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A difference of two integer cubes is never congruent to 3 or 4 modulo 7. Not a named mathlib lemma in this form. |
 | `diff-two-squares-zmod-four-ne-two` — A difference of two integer squares is never congruent to 2 modulo 4. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | A difference of two integer squares is never congruent to 2 modulo 4. Not a named mathlib lemma in this form. |
 | `dvd-1023-pow-thirtyone-sub-self` — The integer 1023 = 3·11·31 divides n^31 - n for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | The integer 1023 = 3·11·31 divides n^31 - n for every integer n. Not a named mathlib lemma in this form. |
-| `dvd-120-five-consecutive-product` — 120 (=5!) divides n·(n^2-1)·(n^2-4), the product of five consecutive integers centred at n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog. | 120 (=5!) divides n·(n^2-1)·(n^2-4), the product of five consecutive integers centred at n. Not a named mathlib lemma in this form. |
 | `dvd-120-pow-eleven-sub-pow-three` — 120 divides n^11 minus n^3 for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 120 divides n^11 minus n^3 for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-120-pow-seven-sub-pow-three` — 120 divides n^7 minus n^3 for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 120 divides n^7 minus n^3 for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-1302-pow-thirtyone-sub-self` — The integer 1302 = 2·3·7·31 divides n^31 - n for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | The integer 1302 = 2·3·7·31 divides n^31 - n for every integer n. Not a named mathlib lemma in this form. |
@@ -560,6 +559,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `discriminant-nonneg-s1` — discriminant-nonneg-s1 | proved | 1 | — | — | — |
 | `discriminant-nonneg-s2` — discriminant-nonneg-s2 | proved | 1 | — | — | — |
 | `discriminant-nonneg-s3` — discriminant-nonneg-s3 | proved | 1 | — | — | — |
+| `dvd-120-five-consecutive-product` — 120 (=5!) divides n·(n^2-1)·(n^2-4), the product of five consecutive integers centred at n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog. | 120 (=5!) divides n·(n^2-1)·(n^2-4), the product of five consecutive integers centred at n. Not a named mathlib lemma in this form. |
 | `dvd-210-pow-fifteen-sub-pow-three-s3` — dvd-210-pow-fifteen-sub-pow-three-s3 | proved | 1 | — | — | — |
 | `dvd-264-pow-thirteen-sub-pow-three` — The integer 264 = 2^3·3·11 divides n^13 - n^3 for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | The integer 264 = 2^3·3·11 divides n^13 - n^3 for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-30-pow-nine-sub-self` — 30 divides n^9 - n for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family. | 30 divides n^9 - n for every integer n. Not a named mathlib lemma in this form. |
