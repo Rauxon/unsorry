@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**391 open · 201 proved · 599 total prove-goals.**
+**390 open · 202 proved · 599 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -200,7 +200,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sixth-power-mod-fourteen-mem` — Every natural number's sixth power is congruent to 0, 1, 7, or 8 modulo 14. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every natural number's sixth power is congruent to 0, 1, 7, or 8 modulo 14. Not a named mathlib lemma in this form. |
 | `sixth-power-mod-nineteen-mem` — Every sixth power is congruent to only 0, 1, 7 or 11 modulo the prime 19. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every sixth power is congruent to only 0, 1, 7 or 11 modulo the prime 19. Not a named mathlib lemma in this form. |
 | `sixth-power-mod-sixtythree-mem` — Every natural number's sixth power is congruent to 0, 1, 28, or 36 modulo 63. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every natural number's sixth power is congruent to 0, 1, 28, or 36 modulo 63. Not a named mathlib lemma in this form. |
-| `sixth-power-mod-thirteen-mem` — Every natural number's sixth power is congruent to 0, 1, or 12 modulo 13. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every natural number's sixth power is congruent to 0, 1, or 12 modulo 13. Not a named mathlib lemma in this form. |
 | `sixth-power-mod-thirtyone-mem` — Every sixth power modulo the prime 31 lies in the order-5 subgroup {1,2,4,8,16} together with 0. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every sixth power modulo the prime 31 lies in the order-5 subgroup {1,2,4,8,16} together with 0. Not a named mathlib lemma in this form. |
 | `sixth-power-mod-twentyone-mem` — Every natural number's sixth power is congruent to 0, 1, 7, or 15 modulo 21. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every natural number's sixth power is congruent to 0, 1, 7, or 15 modulo 21. Not a named mathlib lemma in this form. |
 | `sophie-germain-factor-dvd` — The Sophie Germain factor a²−2ab+2b² always divides a⁴+4b⁴. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic family. | The Sophie Germain factor a²−2ab+2b² always divides a⁴+4b⁴. Not a named mathlib lemma in this form. |
@@ -556,6 +555,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `six-dvd-three-consecutive-int` — For every integer n, 6 ∣ n(n+1)(n+2) — divisibility of the product of three consecutive integers, over ℤ. | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 6 ∣ n(n+1)(n+2) — divisibility of the product of three consecutive integers, over ℤ. mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `sixth-power-mod-nine-mem` — Every natural number's sixth power is congruent to 0 or 1 modulo 9. | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every natural number's sixth power is congruent to 0 or 1 modulo 9. Not a named mathlib lemma in this form. |
 | `sixth-power-mod-seven` — For every natural n, n⁶ % 7 ∈ {0,1} (Fermat). | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family. | For every natural n, n⁶ % 7 ∈ {0,1} (Fermat). Not a named mathlib lemma in this form. |
+| `sixth-power-mod-thirteen-mem` — Every natural number's sixth power is congruent to 0, 1, or 12 modulo 13. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every natural number's sixth power is congruent to 0, 1, or 12 modulo 13. Not a named mathlib lemma in this form. |
 | `sq-add-sq-eq-three-mul-sq-s1` — sq-add-sq-eq-three-mul-sq-s1 | proved | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s2` — sq-add-sq-eq-three-mul-sq-s2 | proved | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s3` — sq-add-sq-eq-three-mul-sq-s3 | proved | 1 | — | — | — |
