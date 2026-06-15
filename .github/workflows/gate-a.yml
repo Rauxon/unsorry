@@ -9,6 +9,12 @@ permissions:
   contents: read
   pull-requests: write
 
+env:
+  # Lake's mathlib cache archives live outside .lake by default
+  # ($HOME/.cache/mathlib). Put them under .lake so the Namespace cache volume
+  # persists both the unpacked oleans and the .ltar archives.
+  MATHLIB_CACHE_DIR: ${{ github.workspace }}/.lake/mathlib-cache
+
 concurrency:
   group: gate-a-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
