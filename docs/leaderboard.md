@@ -4,23 +4,23 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**230 verified proofs · 84 attributed · 146 historical/unknown · 272 logged terminal runs.**
+**230 verified proofs · 84 attributed · 146 historical/unknown · 273 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
 | Successful terminal runs | 58 |
-| Failed terminal runs | 214 |
+| Failed terminal runs | 215 |
 | Decomposed after failure | 17 |
-| Failed without decomposition | 197 |
-| Run success rate | 21.3% |
-| Provider attempts | 318 |
-| Failed attempts | 260 |
+| Failed without decomposition | 198 |
+| Run success rate | 21.2% |
+| Provider attempts | 319 |
+| Failed attempts | 261 |
 | Attempt yield | 18.2% |
-| Recorded run time | 57h 27m |
-| Median / p90 run time | 6m 37s / 31m 58s |
-| Verified successes per recorded hour | 1.01 |
+| Recorded run time | 57h 59m |
+| Median / p90 run time | 6m 38s / 31m 58s |
+| Verified successes per recorded hour | 1.00 |
 | Proofs with run telemetry | 58 (25.2%) |
 
 ## Work Queue
@@ -31,7 +31,7 @@ Verified output comes from active `library/index` records plus archived index re
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 69 | 23 | 33.3% | 64 | 5m 3s |
+| 1 | 70 | 23 | 32.9% | 65 | 5m 6s |
 | 2 | 99 | 10 | 10.1% | 108 | 6m 43s |
 | 3 | 84 | 21 | 25.0% | 72 | 8m 16s |
 | 4 | 19 | 4 | 21.1% | 15 | 7m 35s |
@@ -46,11 +46,11 @@ Verified output comes from active `library/index` records plus archived index re
 | `am-gm-three-cube-s2-s2` | `open` | 1 | 3 | 5 | 44m 53s |
 | `consecutive-cubes-diff-odd` | `archived` | 2 | 3 | 5 | 21m 11s |
 | `four-var-qm-am` | `blocked` | 2 | 2 | 4 | 1h 46m |
+| `dvd-210-pow-fifteen-sub-pow-three-s4` | `open` | 1 | 4 | 4 | 53m 3s |
 | `nesbitt-inequality-s1` | `open` | 1 | 2 | 4 | 47m 0s |
 | `am-gm-three-cube-s2` | `blocked` | 1 | 2 | 4 | 43m 57s |
 | `cube-sum-ge-three-prod` | `blocked` | 2 | 2 | 4 | 17m 0s |
 | `am-gm-three-cube` | `blocked` | 3 | 2 | 4 | 16m 32s |
-| `dvd-210-pow-fifteen-sub-pow-three` | `blocked` | 2 | 2 | 4 | 7m 0s |
 
 ## Contributor Leaderboard
 
@@ -58,7 +58,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 103 | 56 | 47 | 200 | 21.5% | 180 | 20575 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 103 | 56 | 47 | 201 | 21.4% | 180 | 20575 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 85 | 0 | 85 | 0 | — | 182 | 20325 |
 | 3 | [@perttu](https://github.com/perttu) | 21 | 21 | 0 | 22 | 59.1% | 45 | 5025 |
 | 4 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
@@ -83,7 +83,7 @@ Git add-author attribution covers 230 of 230 proof index files. It is used only 
 | `gemini / gemini-3.1-pro-preview` | 7 | 7 | 71.4% | 6 | 1 | 6m 32s | 5.32 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
-| `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 31 | 0.0% | 31 | 1 | 31m 56s | 0.00 |
+| `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 32 | 0.0% | 32 | 1 | 31m 56s | 0.00 |
 | `codex / gpt-5.3-codex-spark` | 0 | 1 | 0.0% | 3 | 1 | 1m 34s | 0.00 |
 | `openai / leanstral-2603-sovereign` | 0 | 1 | 0.0% | 1 | 1 | 1m 22s | 0.00 |
 
@@ -91,6 +91,7 @@ Git add-author attribution covers 230 of 230 proof index files. It is used only 
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-15T17:54:42Z` | `dvd-210-pow-fifteen-sub-pow-three-s4` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 32m 2s |
 | `2026-06-15T17:39:18Z` | `dvd-273-pow-fourteen-sub-sq` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 21s |
 | `2026-06-15T17:32:33Z` | `dvd-210-pow-fifteen-sub-pow-three-s4` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `failed` | 1 | 1 | 8m 52s |
 | `2026-06-15T17:19:31Z` | `dvd-210-pow-fifteen-sub-pow-three-s2` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 32m 5s |
@@ -110,7 +111,6 @@ Git add-author attribution covers 230 of 230 proof index files. It is used only 
 | `2026-06-15T15:45:15Z` | `dvd-210-pow-fifteen-sub-pow-three` | [@perttu](https://github.com/perttu) | `codex / unknown` | `decomposed` | 3 | 3 | 1m 35s |
 | `2026-06-15T15:41:48Z` | `dvd-210-pow-fifteen-sub-pow-three` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 5m 25s |
 | `2026-06-15T15:34:24Z` | `dvd-1365-pow-thirteen-sub-self` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 19s |
-| `2026-06-15T15:20:38Z` | `diff-twelfth-power-dvd-by-diff-cube` | [@cgbarlow](https://github.com/cgbarlow) | `openai / jackcloudman/Leanstral-2603-GGUF` | `failed` | 1 | 1 | 31m 58s |
 
 ## Interpretation
 
