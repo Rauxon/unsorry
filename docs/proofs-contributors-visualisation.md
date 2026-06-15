@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**310 goals — 130 open · 8 blocked · 10 translated · 82 proved · 80 archived.** 16 decomposition families shown below; standalone goals are listed in the table.
+**310 goals — 129 open · 8 blocked · 10 translated · 83 proved · 80 archived.** 16 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (78 of 82 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (79 of 83 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -252,7 +252,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`abstract-regular-polyhedron-realizable-iff`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-realizable-iff.lean) | open | 4 | — | — | — | — |
 | [`am-gm-three-cube-s2-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s2.lean) | open | 1 | — | — | — | — |
 | [`am-hm-two-var`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-hm-two-var.lean) | open | 2 | — | — | — | — |
-| [`amgm-four-cross-three-var`](https://github.com/agenticsnz/unsorry/blob/main/goals/amgm-four-cross-three-var.lean) | open | 3 | — | — | — | — |
 | [`coprime-2n1-2n3`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-2n1-2n3.lean) | open | 2 | — | — | — | — |
 | [`coprime-3n1-4n1`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-3n1-4n1.lean) | open | 2 | — | — | — | — |
 | [`coprime-n-cube-add-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/coprime-n-cube-add-one.lean) | open | 2 | — | — | — | — |
@@ -404,6 +403,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`am-hm-two-var-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-hm-two-var-s1.lean) | proved | 1 | oma-2-c50d | perttu · `gemini-3.1-pro-preview` | [#647](https://github.com/agenticsnz/unsorry/pull/647) | 2026-06-15 |
 | [`am-hm-two-var-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-hm-two-var-s2.lean) | proved | 1 | oma-2-c50d | perttu · `gemini-3.1-pro-preview` | [#652](https://github.com/agenticsnz/unsorry/pull/652) | 2026-06-15 |
 | [`am-hm-two-var-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-hm-two-var-s3.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#646](https://github.com/agenticsnz/unsorry/pull/646) | 2026-06-15 |
+| [`amgm-four-cross-three-var`](https://github.com/agenticsnz/unsorry/blob/main/goals/amgm-four-cross-three-var.lean) | proved | 3 | thebeast-ace7 | adam91holt | [#678](https://github.com/agenticsnz/unsorry/pull/678) | 2026-06-15 |
 | [`aurifeuillian-quartic-dvd`](https://github.com/agenticsnz/unsorry/blob/main/goals/aurifeuillian-quartic-dvd.lean) | proved | 2 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#617](https://github.com/agenticsnz/unsorry/pull/617) | 2026-06-15 |
 | [`cauchy-schwarz-three-term`](https://github.com/agenticsnz/unsorry/blob/main/goals/cauchy-schwarz-three-term.lean) | proved | 3 | oma-2-c50d | perttu · `opus` | [#586](https://github.com/agenticsnz/unsorry/pull/586) | 2026-06-15 |
 | [`consecutive-cubes-diff-odd`](https://github.com/agenticsnz/unsorry/blob/main/goals/consecutive-cubes-diff-odd.lean) | proved | 2 | oma-2-c50d | perttu · `opus` | [#593](https://github.com/agenticsnz/unsorry/pull/593) | 2026-06-15 |
