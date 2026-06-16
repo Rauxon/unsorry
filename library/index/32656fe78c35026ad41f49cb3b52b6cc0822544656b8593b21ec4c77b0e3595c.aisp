@@ -1,0 +1,8 @@
+𝔸5.1.lemma.32656fe78c35@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜32656fe78c35026ad41f49cb3b52b6cc0822544656b8593b21ec4c77b0e3595c; goal≜sum-icc-id-mul-two-pow-pred; name≜sum_icc_id_mul_two_pow_pred}
+⟦Σ:Source⟧{src≜goals/sum-icc-id-mul-two-pow-pred.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ruvnet; agent≜ruvnet-swarm; provider≜openrouter}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
