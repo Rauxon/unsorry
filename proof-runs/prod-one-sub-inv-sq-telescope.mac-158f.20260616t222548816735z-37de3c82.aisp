@@ -1,0 +1,8 @@
+𝔸5.1.run.prod-one-sub-inv-sq-telescope.mac-158f.20260616t222548816735z-37de3c82@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t222548816735z-37de3c82; goal≜prod-one-sub-inv-sq-telescope; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-telescope}
+⟦Γ:Goal⟧{goal≜prod-one-sub-inv-sq-telescope}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:25:48Z}
+⟦Σ:Artifact⟧{sha≜8ad9f7bc039a8d755caf4ce1346dc0eb73276b9a77385d9492199a5313e893d7}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
