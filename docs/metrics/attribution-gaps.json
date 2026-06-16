@@ -488,6 +488,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-16",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "304aa6f504f2800db22604cd9b5d7f2637da48fb",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-fib-add-two-eq-gcd-fib-succ",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/6078a1d0a9e163095b8bf600311609308c6e1a7eb0e42c583aee984ca3e8072a.aisp",
+      "review_status": "candidate",
+      "sha": "6078a1d0a9e163095b8bf600311609308c6e1a7eb0e42c583aee984ca3e8072a"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
       "difficulty": 2,
       "display_name": "chat-bit-01",
       "git_add_commit": "7c91ac1c2446be098852e15c2e72026010260352",
@@ -2769,9 +2784,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 184,
-    "mapped_missing_solver": 180,
-    "missing_solver_provenance": 184,
+    "git_attributed_missing_solver": 185,
+    "mapped_missing_solver": 181,
+    "missing_solver_provenance": 185,
     "unmapped_missing_solver": 4
   }
 }
