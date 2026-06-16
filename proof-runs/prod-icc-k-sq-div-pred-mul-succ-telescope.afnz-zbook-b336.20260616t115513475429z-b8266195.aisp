@@ -1,0 +1,9 @@
+𝔸5.1.run.prod-icc-k-sq-div-pred-mul-succ-telescope.afnz-zbook-b336.20260616t115513475429z-b8266195@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t115513475429z-b8266195; goal≜prod-icc-k-sq-div-pred-mul-succ-telescope; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜prod-icc-k-sq-div-pred-mul-succ-telescope}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1881; ended≜2026-06-16T11:55:13Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(openai call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
