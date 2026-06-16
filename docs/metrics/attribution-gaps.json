@@ -982,6 +982,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-16",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "140d7a8d238528d538a66494f4f4a4d8cb57d568",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-quad-factored-n1-eq-n1",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/f3f5db6b6d94637f6ba8e13001fbb369dd29d4a63e7c1fee0531ad30b30ffce8.aisp",
+      "review_status": "candidate",
+      "sha": "f3f5db6b6d94637f6ba8e13001fbb369dd29d4a63e7c1fee0531ad30b30ffce8"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-15",
       "difficulty": 3,
       "display_name": "chat-bit-01",
@@ -2619,9 +2634,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 174,
-    "mapped_missing_solver": 170,
-    "missing_solver_provenance": 174,
+    "git_attributed_missing_solver": 175,
+    "mapped_missing_solver": 171,
+    "missing_solver_provenance": 175,
     "unmapped_missing_solver": 4
   }
 }
