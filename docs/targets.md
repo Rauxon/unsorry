@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**396 open · 346 proved · 750 total prove-goals.**
+**395 open · 347 proved · 750 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -402,7 +402,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `two-mul-sum-range-fib-triple-eq-fib-pred` — Twice the sum of fib at multiples of three up to 3n is one less than fib(3n-1). | open | 4 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog (#610). | Twice the sum of fib at multiples of three up to 3n is one less than fib(3n-1). Not a named mathlib lemma in this form. |
 | `two-squares-zmod-sixteen-ne-three-seven-eleven` — A sum of two integer squares is never congruent to 3, 7, 11, or 15 modulo 16. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A sum of two integer squares is never congruent to 3, 7, 11, or 15 modulo 16. Not a named mathlib lemma in this form. |
 | `two-sum-cubes-ge-sym-quadratics` — For nonnegative a,b,c, 2(a³+b³+c³) ≥ ab(a+b)+bc(b+c)+ca(c+a). | open | 3 | — | #400 Identity Engine (ADR-043) — inequalities family. | For nonnegative a,b,c, 2(a³+b³+c³) ≥ ab(a+b)+bc(b+c)+ca(c+a). Not a named mathlib lemma in this form. |
-| `two-var-sq-add-one-ge-cross-plus-sum` — For any two reals a^2+b^2+1 is at least ab + a + b. | open | 2 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | For any two reals a^2+b^2+1 is at least ab + a + b. Not a named mathlib lemma in this form. |
 | `weighted-am-gm-cubed` — For nonneg reals x,y, 2x³+y³ ≥ 3x²y — a weighted AM–GM, since 2x³+y³−3x²y = (x−y)²(2x+y). | open | 2 | — | Classic real inequality (library-growth batch, #400 plan Phase 3). The project had almost no inequalities; this seeds the SOS/nlinarith family. | For nonneg reals x,y, 2x³+y³ ≥ 3x²y — a weighted AM–GM, since 2x³+y³−3x²y = (x−y)²(2x+y). mathlib has the abstract Cauchy–Schwarz / power-mean lemmas but not this concrete polynomial form as a named lemma. |
 | `am-gm-three-cube` — For nonneg reals, 27abc ≤ (a+b+c)³ — AM-GM for three terms (polynomial form). | blocked | 3 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For nonneg reals, 27abc ≤ (a+b+c)³ — AM-GM for three terms (polynomial form). Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `am-gm-three-cube-s2` — am-gm-three-cube-s2 | blocked | 1 | — | — | — |
@@ -758,3 +757,4 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `twenty-four-dvd-four-consecutive` — For every integer n, 24 ∣ n(n+1)(n+2)(n+3) — the product of four consecutive integers is divisible by 24. | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For every integer n, 24 ∣ n(n+1)(n+2)(n+3) — the product of four consecutive integers is divisible by 24. Not a named mathlib lemma in this form. |
 | `two-abs-le-sq-add-one` — For all real x, 2 | proved | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For all real x, 2 Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `two-abs-mul-le-sq-add-sq` — For all real a,b, 2 | proved | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For all real a,b, 2 Not a named mathlib lemma in this concrete polynomial/abs form. |
+| `two-var-sq-add-one-ge-cross-plus-sum` — For any two reals a^2+b^2+1 is at least ab + a + b. | proved | 2 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | For any two reals a^2+b^2+1 is at least ab + a + b. Not a named mathlib lemma in this form. |
