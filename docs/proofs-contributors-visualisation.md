@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**760 goals — 480 open · 8 blocked · 10 translated · 124 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
+**760 goals — 479 open · 8 blocked · 10 translated · 125 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (120 of 124 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (121 of 125 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -358,7 +358,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gcd-three-pow-succ-three-pow-add-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-three-pow-succ-three-pow-add-one.lean) | open | 3 | — | — | — | — |
 | [`gcd-threen-n7-dvd-twentyone`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-threen-n7-dvd-twentyone.lean) | open | 3 | — | — | — | — |
 | [`gcd-two-pow-add-one-sub-one-dvd-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-two-pow-add-one-sub-one-dvd-two.lean) | open | 3 | — | — | — | — |
-| [`gcd-twon-n5-dvd-ten`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-twon-n5-dvd-ten.lean) | open | 3 | — | — | — | — |
 | [`hexagonal-eq-triangular-odd-index`](https://github.com/agenticsnz/unsorry/blob/main/goals/hexagonal-eq-triangular-odd-index.lean) | open | 1 | — | — | — | — |
 | [`lcm-self-succ`](https://github.com/agenticsnz/unsorry/blob/main/goals/lcm-self-succ.lean) | open | 2 | — | — | — | — |
 | [`lucas-succ-add-lucas-pred-eq-five-mul-fib`](https://github.com/agenticsnz/unsorry/blob/main/goals/lucas-succ-add-lucas-pred-eq-five-mul-fib.lean) | open | 2 | — | — | — | — |
@@ -827,6 +826,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gcd-n3-2n7-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-n3-2n7-eq-one.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#954](https://github.com/agenticsnz/unsorry/pull/954) | 2026-06-15 |
 | [`gcd-np1-2np1-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-np1-2np1-eq-one.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#867](https://github.com/agenticsnz/unsorry/pull/867) | 2026-06-15 |
 | [`gcd-nsq1-nsq3-dvd-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-nsq1-nsq3-dvd-two.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#951](https://github.com/agenticsnz/unsorry/pull/951) | 2026-06-15 |
+| [`gcd-twon-n5-dvd-ten`](https://github.com/agenticsnz/unsorry/blob/main/goals/gcd-twon-n5-dvd-ten.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#994](https://github.com/agenticsnz/unsorry/pull/994) | 2026-06-16 |
 | [`nat-sq-lt-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow.lean) | proved | 3 | — | adam91holt · `gpt-5.5` | — | 2026-06-14 |
 | [`nat-sq-lt-two-pow-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s1.lean) | proved | 1 | oma-2-c50d | perttu | [#442](https://github.com/agenticsnz/unsorry/pull/442) | 2026-06-14 |
 | [`nat-sq-lt-two-pow-s2-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s1.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#666](https://github.com/agenticsnz/unsorry/pull/666) | 2026-06-15 |
