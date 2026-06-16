@@ -1,0 +1,9 @@
+𝔸5.1.run.prod-icc-one-sub-recip-sq-eq-frac.afnz-zbook-b336.20260616t132642825469z-5fb7f46f@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t132642825469z-5fb7f46f; goal≜prod-icc-one-sub-recip-sq-eq-frac; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜prod-icc-one-sub-recip-sq-eq-frac}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜256; ended≜2026-06-16T13:26:42Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8704/8706] Building Unsorry.ProdIccOneSubRecipSqEqFrac (1.2s) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-prod-icc-one-sub-recip-sq-eq-frac-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-prod-icc-one-sub-recip-sq-eq-frac-afnz-zb}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
