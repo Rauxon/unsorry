@@ -1,0 +1,7 @@
+𝔸5.1.claim.quartic-x4-plus-x2-plus-one-dvd-by-minus-factor.afnz-zbook-b336@2026-06-16
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜quartic-x4-plus-x2-plus-one-dvd-by-minus-factor; agent≜afnz-zbook-b336}
+⟦Σ:Times⟧{ts≜2026-06-16T16:23:24Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
