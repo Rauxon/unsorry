@@ -1,0 +1,9 @@
+𝔸5.1.run.lucas-succ-add-lucas-pred-eq-five-mul-fib.afnz-zbook-b336.20260616t052957376496z-af1ff1b0@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t052957376496z-af1ff1b0; goal≜lucas-succ-add-lucas-pred-eq-five-mul-fib; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜lucas-succ-add-lucas-pred-eq-five-mul-fib}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜210; ended≜2026-06-16T05:29:57Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8642/8644] Building Unsorry.LucasSuccAddLucasPredEqFiveMulFib (3.6s) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-lucas-succ-add-lucas-pred-eq-five-mul-fib-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-lucas-succ-add-lucas-pred-}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
