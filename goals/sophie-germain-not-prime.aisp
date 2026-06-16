@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜sophie-germain-not-prime
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜4
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/sophie-germain-not-prime.lean
-  sha≜∅
-  aff≜-10
+  sha≜136dd02266cfaa21c26ecb022ccb7015c04e1ba4f2ca81b9d1fa5c8491133de8
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

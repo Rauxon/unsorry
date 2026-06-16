@@ -1,0 +1,8 @@
+𝔸5.1.run.sophie-germain-not-prime.oma-2-c50d.20260616t201940502081z-75b95513@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t201940502081z-75b95513; goal≜sophie-germain-not-prime; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜sophie-germain-not-prime}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜716; ended≜2026-06-16T20:19:40Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜136dd02266cfaa21c26ecb022ccb7015c04e1ba4f2ca81b9d1fa5c8491133de8}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
