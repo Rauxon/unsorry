@@ -1,0 +1,8 @@
+𝔸5.1.lemma.23fafd7ff411@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜23fafd7ff4117e4bb83e43e411020f4bf55a3d0a17e83eabb66da43b1b2779ad; goal≜quartic-x4-plus-64-dvd-by-x2-minus-4x-plus-8; name≜quartic_x4_plus_64_dvd_by_x2_minus_4x_plus_8}
+⟦Σ:Source⟧{src≜goals/quartic-x4-plus-64-dvd-by-x2-minus-4x-plus-8.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜754}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
