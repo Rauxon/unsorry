@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**366 open · 379 proved · 750 total prove-goals.**
+**365 open · 380 proved · 750 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -92,7 +92,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `fib-two-mul-eq-fib-mul-two-mul-fib-succ-sub-fib` — The Fibonacci doubling identity in additive form: F(2n) + F(n)^2 equals F(n)·2F(n+1). | open | 3 | — | #400 Identity Engine (ADR-043) — partition/generating-function family; promoted from candidate backlog (#610). | The Fibonacci doubling identity in additive form: F(2n) + F(n)^2 equals F(n)·2F(n+1). Not a named mathlib lemma in this form. |
 | `fib-two-mul-sq-diff-int` — fib(2n) = fib(n+1)² − fib(n−1)², a difference-of-squares doubling formula. | open | 3 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog (#610). | fib(2n) = fib(n+1)² − fib(n−1)², a difference-of-squares doubling formula. Not a named mathlib lemma in this form. |
 | `five-var-qm-am` — The square of a five-term sum is at most five times the sum of the five squares (QM-AM, five variables). | open | 3 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The square of a five-term sum is at most five times the sum of the five squares (QM-AM, five variables). Not a named mathlib lemma in this form. |
-| `four-var-qm-am` — For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. | open | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. Not a named mathlib lemma in this form. |
 | `fourth-power-mod-fortyone-mem` — The fourth-power residues modulo the prime 41 are exactly {0,1,4,10,16,18,23,25,31,37,40}. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | The fourth-power residues modulo the prime 41 are exactly {0,1,4,10,16,18,23,25,31,37,40}. Not a named mathlib lemma in this form. |
 | `hexagonal-eq-triangular-odd-index` — The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. | open | 1 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. Not a named mathlib lemma in this form. |
 | `lcm-self-succ` — The lcm of n and n+1 is their product n(n+1). | open | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The lcm of n and n+1 is their product n(n+1). Not a named mathlib lemma in this form. |
@@ -495,6 +494,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `four-mul-prod-le-sq-sum` — For all real a,b, 4ab ≤ (a+b)² (the unnormalized AM-GM kernel). | proved | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For all real a,b, 4ab ≤ (a+b)² (the unnormalized AM-GM kernel). Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `four-not-dvd-sq-add-two` — 4 never divides n^2 + 2, since n^2 mod 4 is 0 or 1. | proved | 3 | — | #400 Identity Engine (ADR-043) — modular-arith family. | 4 never divides n^2 + 2, since n^2 mod 4 is 0 or 1. Not a named mathlib lemma in this form. |
 | `four-var-cyclic-sos` — For all real a,b,c,d, a²+b²+c²+d² ≥ ab+bc+cd+da — the four-variable cyclic sum-of-squares bound. | proved | 2 | — | Classic real inequality (library-growth batch, #400 plan Phase 3). The project had almost no inequalities; this seeds the SOS/nlinarith family. | For all real a,b,c,d, a²+b²+c²+d² ≥ ab+bc+cd+da — the four-variable cyclic sum-of-squares bound. mathlib has the abstract Cauchy–Schwarz / power-mean lemmas but not this concrete polynomial form as a named lemma. |
+| `four-var-qm-am` — For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c,d, (a+b+c+d)² ≤ 4(a²+b²+c²+d²) — the 4-variable QM–AM inequality. Not a named mathlib lemma in this form. |
 | `four-var-qm-am-s1` — four-var-qm-am-s1 | proved | 1 | — | — | — |
 | `four-var-qm-am-s2` — four-var-qm-am-s2 | proved | 1 | — | — | — |
 | `four-var-qm-am-s3` — four-var-qm-am-s3 | proved | 1 | — | — | — |
