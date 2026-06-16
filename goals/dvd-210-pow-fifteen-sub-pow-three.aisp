@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜dvd-210-pow-fifteen-sub-pow-three
   phase≜prove
-  status≜blocked
+  status≜open
   difficulty≜2
 }
 ⟦Σ:Source⟧{
