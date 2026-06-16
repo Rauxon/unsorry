@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-d2-positive-multiple-of-form.mac-158f.20260616t225502005315z-2a497f48@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t225502005315z-2a497f48; goal≜pell-d2-positive-multiple-of-form; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜swarm-sonnet}
+⟦Γ:Goal⟧{goal≜pell-d2-positive-multiple-of-form}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:55:02Z}
+⟦Σ:Artifact⟧{sha≜993ad50fa4406a14667039ecef9b4f73d7f93a8adcad7b95bfb494a6cb12b201}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
