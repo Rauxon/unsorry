@@ -1,0 +1,8 @@
+𝔸5.1.lemma.d42a499246b1@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜d42a499246b1d8ea1dfb17ca4bd110fd5100adaa6b3454b390bad1279ec85694; goal≜dvd-210-pow-fifteen-sub-pow-three-s1; name≜dvd_2_pow_fifteen_sub_pow_three}
+⟦Σ:Source⟧{src≜goals/dvd-210-pow-fifteen-sub-pow-three-s1.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-zmod-decide; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
