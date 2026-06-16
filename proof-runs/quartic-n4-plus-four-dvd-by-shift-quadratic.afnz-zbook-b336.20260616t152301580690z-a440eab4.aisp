@@ -1,0 +1,8 @@
+𝔸5.1.run.quartic-n4-plus-four-dvd-by-shift-quadratic.afnz-zbook-b336.20260616t152301580690z-a440eab4@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t152301580690z-a440eab4; goal≜quartic-n4-plus-four-dvd-by-shift-quadratic; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜quartic-n4-plus-four-dvd-by-shift-quadratic}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜342; ended≜2026-06-16T15:23:01Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜d1c197c8c22be8a753d10e172ada2e30e69c9b96c91cb45657c10d31951b6369}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
