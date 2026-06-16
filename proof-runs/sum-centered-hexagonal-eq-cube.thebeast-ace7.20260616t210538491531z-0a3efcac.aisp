@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-centered-hexagonal-eq-cube.thebeast-ace7.20260616t210538491531z-0a3efcac@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t210538491531z-0a3efcac; goal≜sum-centered-hexagonal-eq-cube; agent≜thebeast-ace7; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-centered-hexagonal-eq-cube}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1378; ended≜2026-06-16T21:05:38Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜a3dc8ebfa63e5cf293fa631199a6417da658984033466977b8b4dbf88c853f79}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
