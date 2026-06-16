@@ -1,0 +1,9 @@
+𝔸5.1.run.five-var-qm-am.afnz-zbook-b336.20260616t043806132750z-5f9f3698@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t043806132750z-5f9f3698; goal≜five-var-qm-am; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜five-var-qm-am}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1882; ended≜2026-06-16T04:38:06Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(openai call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
