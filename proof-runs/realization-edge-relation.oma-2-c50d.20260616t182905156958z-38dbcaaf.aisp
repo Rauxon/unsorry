@@ -1,0 +1,8 @@
+𝔸5.1.run.realization-edge-relation.oma-2-c50d.20260616t182905156958z-38dbcaaf@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t182905156958z-38dbcaaf; goal≜realization-edge-relation; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜gemini; model≜gemini-3.1-pro-preview; effort≜high}
+⟦Γ:Goal⟧{goal≜realization-edge-relation}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜744; ended≜2026-06-16T18:29:05Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜0f44f8012823784ab85eeaf6ea0d1c15c7610093755ed5532eab085372ce7a84}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
