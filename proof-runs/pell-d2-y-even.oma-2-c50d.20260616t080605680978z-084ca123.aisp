@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-d2-y-even.oma-2-c50d.20260616t080605680978z-084ca123@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t080605680978z-084ca123; goal≜pell-d2-y-even; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜pell-d2-y-even}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜397; ended≜2026-06-16T08:06:05Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜85463cd742e7bcf2dc4e90388a7472ac33479ae3aa0c30d7abf754db9e98e6ec}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

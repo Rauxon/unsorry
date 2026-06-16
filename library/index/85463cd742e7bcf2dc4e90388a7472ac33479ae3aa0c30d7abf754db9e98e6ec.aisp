@@ -1,0 +1,8 @@
+𝔸5.1.lemma.85463cd742e7@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜85463cd742e7bcf2dc4e90388a7472ac33479ae3aa0c30d7abf754db9e98e6ec; goal≜pell-d2-y-even; name≜pell_d2_y_even}
+⟦Σ:Source⟧{src≜goals/pell-d2-y-even.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜397}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
