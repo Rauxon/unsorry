@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**762 goals — 332 open · 4 blocked · 10 translated · 278 proved · 138 archived.** 15 decomposition families shown below; standalone goals are listed in the table.
+**762 goals — 332 open · 3 blocked · 10 translated · 279 proved · 138 archived.** 15 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (274 of 278 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (275 of 279 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -155,8 +155,8 @@ flowchart LR
   class g_no_nat_sq_eq_two_mul_sq_s4 open;
   click g_no_nat_sq_eq_two_mul_sq_s4 "https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s4.lean" "no-nat-sq-eq-two-mul-sq-s4 — open"
   g_six_dvd_pow_three_add_five_mul["six-dvd-pow-three-add-five-mul"]
-  class g_six_dvd_pow_three_add_five_mul blocked;
-  click g_six_dvd_pow_three_add_five_mul "https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-pow-three-add-five-mul.lean" "six-dvd-pow-three-add-five-mul — blocked"
+  class g_six_dvd_pow_three_add_five_mul open;
+  click g_six_dvd_pow_three_add_five_mul "https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-pow-three-add-five-mul.lean" "six-dvd-pow-three-add-five-mul — open"
   g_six_dvd_pow_three_add_five_mul_s1["six-dvd-pow-three-add-five-mul-s1"]
   class g_six_dvd_pow_three_add_five_mul_s1 proved;
   click g_six_dvd_pow_three_add_five_mul_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-pow-three-add-five-mul-s1.lean" "six-dvd-pow-three-add-five-mul-s1 — proved"
@@ -269,7 +269,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`dvd-170-pow-seventeen-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-170-pow-seventeen-sub-self.lean) | open | 3 | — | — | — | — |
 | [`dvd-1806-pow-fortythree-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-1806-pow-fortythree-sub-self.lean) | open | 3 | — | — | — | — |
 | [`dvd-210-pow-fifteen-sub-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-210-pow-fifteen-sub-pow-three.lean) | open | 2 | — | — | — | — |
-| [`dvd-240-pow-eight-sub-pow-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-240-pow-eight-sub-pow-four.lean) | open | 3 | — | — | — | — |
 | [`dvd-240-pow-nine-sub-pow-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-240-pow-nine-sub-pow-five.lean) | open | 3 | — | — | — | — |
 | [`dvd-252-pow-eight-sub-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-252-pow-eight-sub-sq.lean) | open | 3 | — | — | — | — |
 | [`dvd-255-pow-seventeen-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-255-pow-seventeen-sub-self.lean) | open | 3 | — | — | — | — |
@@ -351,6 +350,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`realization-edge-in-set`](https://github.com/agenticsnz/unsorry/blob/main/goals/realization-edge-in-set.lean) | open | 4 | — | — | — | — |
 | [`realization-edge-relation`](https://github.com/agenticsnz/unsorry/blob/main/goals/realization-edge-relation.lean) | open | 2 | — | — | — | — |
 | [`sextic-x6-plus-x3-plus-one-composite-shift`](https://github.com/agenticsnz/unsorry/blob/main/goals/sextic-x6-plus-x3-plus-one-composite-shift.lean) | open | 2 | — | — | — | — |
+| [`six-dvd-pow-three-add-five-mul`](https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-pow-three-add-five-mul.lean) | open | 2 | — | — | — | — |
 | [`sophie-germain-plus-factor-dvd`](https://github.com/agenticsnz/unsorry/blob/main/goals/sophie-germain-plus-factor-dvd.lean) | open | 2 | — | — | — | — |
 | [`sos-weighted-three-one-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/sos-weighted-three-one-two.lean) | open | 3 | — | — | — | — |
 | [`sq-add-sq-eq-three-mul-sq-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s4.lean) | open | 1 | — | — | — | — |
@@ -575,7 +575,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`two-squares-zmod-sixteen-ne-three-seven-eleven`](https://github.com/agenticsnz/unsorry/blob/main/goals/two-squares-zmod-sixteen-ne-three-seven-eleven.lean) | open | 2 | — | — | — | — |
 | [`two-sum-cubes-ge-sym-quadratics`](https://github.com/agenticsnz/unsorry/blob/main/goals/two-sum-cubes-ge-sym-quadratics.lean) | open | 3 | — | — | — | — |
 | [`nesbitt-inequality`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality.lean) | blocked | 4 | — | — | — | — |
-| [`six-dvd-pow-three-add-five-mul`](https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-pow-three-add-five-mul.lean) | blocked | 2 | — | — | — | — |
 | [`sq-add-sq-eq-three-mul-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq.lean) | blocked | 4 | — | — | — | — |
 | [`sum-icc-choose-hockey-stick`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-icc-choose-hockey-stick.lean) | blocked | 3 | — | — | — | — |
 | [`nat-add-assoc`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-add-assoc.lean) | translated | — | — | — | — | — |
@@ -659,6 +658,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`dvd-210-pow-fifteen-sub-pow-three-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-210-pow-fifteen-sub-pow-three-s2.lean) | proved | 1 | mac-158f | ohdearquant · `template-zmod-decide` | [#1208](https://github.com/agenticsnz/unsorry/pull/1208) | 2026-06-16 |
 | [`dvd-210-pow-fifteen-sub-pow-three-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-210-pow-fifteen-sub-pow-three-s3.lean) | proved | 1 | oma-2-c50d | perttu | [#890](https://github.com/agenticsnz/unsorry/pull/890) | 2026-06-15 |
 | [`dvd-210-pow-fifteen-sub-pow-three-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-210-pow-fifteen-sub-pow-three-s4.lean) | proved | 1 | mac-158f | ohdearquant · `template-zmod-decide` | [#1209](https://github.com/agenticsnz/unsorry/pull/1209) | 2026-06-16 |
+| [`dvd-240-pow-eight-sub-pow-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-240-pow-eight-sub-pow-four.lean) | proved | 3 | mac-158f | ohdearquant · `template-zmod-crt` | [#1238](https://github.com/agenticsnz/unsorry/pull/1238) | 2026-06-16 |
 | [`dvd-264-pow-thirteen-sub-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-264-pow-thirteen-sub-pow-three.lean) | proved | 3 | oma-2-c50d | perttu | [#884](https://github.com/agenticsnz/unsorry/pull/884) | 2026-06-15 |
 | [`dvd-30-pow-nine-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-30-pow-nine-sub-self.lean) | proved | 3 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#628](https://github.com/agenticsnz/unsorry/pull/628) | 2026-06-15 |
 | [`dvd-30-pow-twentyone-sub-pow-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-30-pow-twentyone-sub-pow-five.lean) | proved | 2 | mac-158f | ohdearquant · `template-zmod-decide` | [#1210](https://github.com/agenticsnz/unsorry/pull/1210) | 2026-06-16 |
