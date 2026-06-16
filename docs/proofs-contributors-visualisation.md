@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**760 goals — 431 open · 8 blocked · 10 translated · 173 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
+**760 goals — 430 open · 8 blocked · 10 translated · 174 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (169 of 173 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (170 of 174 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -336,7 +336,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`nesbitt-inequality-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality-s1.lean) | open | 1 | — | — | — | — |
 | [`nicomachus-sum-cubes-eq-sum-id-sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/nicomachus-sum-cubes-eq-sum-id-sq.lean) | open | 3 | — | — | — | — |
 | [`no-nat-sq-eq-two-mul-sq-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s4.lean) | open | 1 | claude-rmt-001 | chat-bit-01 | [#440](https://github.com/agenticsnz/unsorry/pull/440) | 2026-06-14 |
-| [`numderangements-add-two-int-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/numderangements-add-two-int-form.lean) | open | 2 | — | — | — | — |
 | [`one-hundred-twenty-dvd-five-consecutive`](https://github.com/agenticsnz/unsorry/blob/main/goals/one-hundred-twenty-dvd-five-consecutive.lean) | open | 3 | — | — | — | — |
 | [`pair-sum-sq-ge-three-abc-sum`](https://github.com/agenticsnz/unsorry/blob/main/goals/pair-sum-sq-ge-three-abc-sum.lean) | open | 2 | — | — | — | — |
 | [`pairwise-product-sum-sq-ge-three-abc-sum`](https://github.com/agenticsnz/unsorry/blob/main/goals/pairwise-product-sum-sq-ge-three-abc-sum.lean) | open | 3 | — | — | — | — |
@@ -823,6 +822,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`no-nat-sq-eq-two-mul-sq-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s1.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#670](https://github.com/agenticsnz/unsorry/pull/670) | 2026-06-15 |
 | [`no-nat-sq-eq-two-mul-sq-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s2.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#671](https://github.com/agenticsnz/unsorry/pull/671) | 2026-06-15 |
 | [`no-nat-sq-eq-two-mul-sq-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s3.lean) | proved | 1 | thebeast-ace7 | adam91holt | [#673](https://github.com/agenticsnz/unsorry/pull/673) | 2026-06-15 |
+| [`numderangements-add-two-int-form`](https://github.com/agenticsnz/unsorry/blob/main/goals/numderangements-add-two-int-form.lean) | proved | 2 | oma-2-c50d | perttu | [#1064](https://github.com/agenticsnz/unsorry/pull/1064) | 2026-06-16 |
 | [`pell-d10-fundamental-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d10-fundamental-ladder-step-preserves.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1046](https://github.com/agenticsnz/unsorry/pull/1046) | 2026-06-16 |
 | [`pell-d11-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d11-ladder-step-preserves.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1042](https://github.com/agenticsnz/unsorry/pull/1042) | 2026-06-16 |
 | [`pell-d12-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d12-ladder-step-preserves.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1044](https://github.com/agenticsnz/unsorry/pull/1044) | 2026-06-16 |
