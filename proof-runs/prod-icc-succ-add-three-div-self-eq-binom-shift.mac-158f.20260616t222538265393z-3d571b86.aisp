@@ -1,0 +1,8 @@
+𝔸5.1.run.prod-icc-succ-add-three-div-self-eq-binom-shift.mac-158f.20260616t222538265393z-3d571b86@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t222538265393z-3d571b86; goal≜prod-icc-succ-add-three-div-self-eq-binom-shift; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-telescope}
+⟦Γ:Goal⟧{goal≜prod-icc-succ-add-three-div-self-eq-binom-shift}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:25:38Z}
+⟦Σ:Artifact⟧{sha≜660d3f336cb96b7c9c2ca7bd3b4f70f8d7ecd4a0f896c4a6bb589657989cb351}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
