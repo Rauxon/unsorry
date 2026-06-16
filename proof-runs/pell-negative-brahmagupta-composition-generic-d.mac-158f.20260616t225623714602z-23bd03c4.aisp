@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-negative-brahmagupta-composition-generic-d.mac-158f.20260616t225623714602z-23bd03c4@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t225623714602z-23bd03c4; goal≜pell-negative-brahmagupta-composition-generic-d; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜swarm-sonnet}
+⟦Γ:Goal⟧{goal≜pell-negative-brahmagupta-composition-generic-d}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:56:23Z}
+⟦Σ:Artifact⟧{sha≜c8e0cedbdaced8402b58cc5bd7bc0e62d55a28d3d900448bb6eba1ea94caebe4}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
