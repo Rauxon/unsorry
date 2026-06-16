@@ -1,0 +1,8 @@
+𝔸5.1.run.dvd-twentyfour-pow-six-sub-pow-four.mac-158f.20260616t201011479292z-845c8d67@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t201011479292z-845c8d67; goal≜dvd-twentyfour-pow-six-sub-pow-four; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-zmod-decide}
+⟦Γ:Goal⟧{goal≜dvd-twentyfour-pow-six-sub-pow-four}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T20:10:11Z}
+⟦Σ:Artifact⟧{sha≜0acd174c034a73c2371b6529300dc17ebee10bf6169b25e395d4112da0782183}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
