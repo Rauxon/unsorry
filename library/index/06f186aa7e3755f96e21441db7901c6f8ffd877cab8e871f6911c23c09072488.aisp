@@ -1,0 +1,8 @@
+𝔸5.1.lemma.06f186aa7e37@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜06f186aa7e3755f96e21441db7901c6f8ffd877cab8e871f6911c23c09072488; goal≜pell-d2-y-lt-x-of-pos; name≜pell_d2_y_lt_x_of_pos}
+⟦Σ:Source⟧{src≜goals/pell-d2-y-lt-x-of-pos.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜524}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
