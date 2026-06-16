@@ -1,0 +1,8 @@
+𝔸5.1.lemma.44f0a937e3a7@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜44f0a937e3a75a9233d5a52342162844e3e90a7c99211e0a7ba37ca25042983f; goal≜pell-d2-rational-bound-gap; name≜pell_d2_rational_bound_gap}
+⟦Σ:Source⟧{src≜goals/pell-d2-rational-bound-gap.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜455}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

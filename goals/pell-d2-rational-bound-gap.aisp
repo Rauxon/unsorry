@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜pell-d2-rational-bound-gap
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜2
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/pell-d2-rational-bound-gap.lean
-  sha≜∅
-  aff≜-10
+  sha≜44f0a937e3a75a9233d5a52342162844e3e90a7c99211e0a7ba37ca25042983f
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-d2-rational-bound-gap.afnz-zbook-b336.20260616t072723460810z-1e08c5d1@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t072723460810z-1e08c5d1; goal≜pell-d2-rational-bound-gap; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜pell-d2-rational-bound-gap}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜455; ended≜2026-06-16T07:27:23Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜44f0a937e3a75a9233d5a52342162844e3e90a7c99211e0a7ba37ca25042983f}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
