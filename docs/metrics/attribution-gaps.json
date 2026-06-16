@@ -398,6 +398,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-16",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "d28a0e0b7fd4c10cb481743701e794945f038c4a",
+      "git_add_date": "2026-06-17",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "shifted-sophie-germain-x4-plus-4-dvd-by-x2-plus-2x-plus-2",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/30489b00f67d4bcd045978ddf98f748731f4c67a7ec0bfd65b5ac5ecc6b71c89.aisp",
+      "review_status": "candidate",
+      "sha": "30489b00f67d4bcd045978ddf98f748731f4c67a7ec0bfd65b5ac5ecc6b71c89"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
       "difficulty": 3,
       "display_name": "chat-bit-01",
       "git_add_commit": "0edd90bac062f63ca49761370a4bc5fc2f838c19",
@@ -4014,9 +4029,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 267,
-    "mapped_missing_solver": 263,
-    "missing_solver_provenance": 267,
+    "git_attributed_missing_solver": 268,
+    "mapped_missing_solver": 264,
+    "missing_solver_provenance": 268,
     "unmapped_missing_solver": 4
   }
 }
