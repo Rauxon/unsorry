@@ -1,7 +1,8 @@
-𝔸5.1.lemma.77bda8deb46e@2026-06-15
+𝔸5.1.lemma.77bda8deb46e@2026-06-16
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜77bda8deb46e2f039468ff87285c91b8ee79a17b760017f45dd6487a226303ad; goal≜gcd-n2-n4-dvd-two; name≜gcd_n2_n4_dvd_two}
 ⟦Σ:Source⟧{src≜goals/gcd-n2-n4-dvd-two.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-gcd-bezout; attempts≜1}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
