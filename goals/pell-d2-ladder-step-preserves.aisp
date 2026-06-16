@@ -15,6 +15,6 @@
 ⟦Λ:Artifact⟧{
   lean≜goals/pell-d2-ladder-step-preserves.lean
   sha≜edc8e30925574bf17ddc375c28afa827181108a29373248f50a624352a49ea61
-  aff≜-10
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
