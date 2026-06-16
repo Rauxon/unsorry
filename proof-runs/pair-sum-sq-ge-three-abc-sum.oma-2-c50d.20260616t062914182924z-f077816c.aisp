@@ -1,0 +1,8 @@
+𝔸5.1.run.pair-sum-sq-ge-three-abc-sum.oma-2-c50d.20260616t062914182924z-f077816c@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t062914182924z-f077816c; goal≜pair-sum-sq-ge-three-abc-sum; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜pair-sum-sq-ge-three-abc-sum}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜259; ended≜2026-06-16T06:29:14Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜806fa7ee4f56d688c209a5e632d31a9b3e6e49faca199b59099661203575ac6b}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
