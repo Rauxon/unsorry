@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**760 goals — 402 open · 8 blocked · 10 translated · 202 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
+**760 goals — 401 open · 8 blocked · 10 translated · 203 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (198 of 202 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (199 of 203 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -340,7 +340,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`pell-d2-solution-coords-coprime`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d2-solution-coords-coprime.lean) | open | 2 | — | — | — | — |
 | [`pell-d2-x-sq-congr-one-mod-eight`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d2-x-sq-congr-one-mod-eight.lean) | open | 2 | — | — | — | — |
 | [`pell-d3-no-small-nontrivial-y`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d3-no-small-nontrivial-y.lean) | open | 3 | — | — | — | — |
-| [`pell-d3-rational-bound-above`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d3-rational-bound-above.lean) | open | 2 | — | — | — | — |
 | [`platonic-pairs-realizable`](https://github.com/agenticsnz/unsorry/blob/main/goals/platonic-pairs-realizable.lean) | open | 3 | — | — | — | — |
 | [`pow-five-add-pow-five-ge-quartic-mul`](https://github.com/agenticsnz/unsorry/blob/main/goals/pow-five-add-pow-five-ge-quartic-mul.lean) | open | 3 | — | — | — | — |
 | [`pow-four-add-pow-four-ge-cube-mul`](https://github.com/agenticsnz/unsorry/blob/main/goals/pow-four-add-pow-four-ge-cube-mul.lean) | open | 2 | — | — | — | — |
@@ -831,6 +830,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`pell-d3-fundamental-square-doubling`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d3-fundamental-square-doubling.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1070](https://github.com/agenticsnz/unsorry/pull/1070) | 2026-06-16 |
 | [`pell-d3-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d3-ladder-step-preserves.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1041](https://github.com/agenticsnz/unsorry/pull/1041) | 2026-06-16 |
 | [`pell-d3-no-negative-solution-zmod3`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d3-no-negative-solution-zmod3.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#1093](https://github.com/agenticsnz/unsorry/pull/1093) | 2026-06-16 |
+| [`pell-d3-rational-bound-above`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d3-rational-bound-above.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1104](https://github.com/agenticsnz/unsorry/pull/1104) | 2026-06-16 |
 | [`pell-d3-x-coord-pos-gt-y`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d3-x-coord-pos-gt-y.lean) | proved | 3 | claude-rmt-001 | chat-bit-01 | [#1101](https://github.com/agenticsnz/unsorry/pull/1101) | 2026-06-16 |
 | [`pell-d5-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d5-ladder-step-preserves.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1057](https://github.com/agenticsnz/unsorry/pull/1057) | 2026-06-16 |
 | [`pell-d5-negative-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d5-negative-ladder-step-preserves.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1065](https://github.com/agenticsnz/unsorry/pull/1065) | 2026-06-16 |
