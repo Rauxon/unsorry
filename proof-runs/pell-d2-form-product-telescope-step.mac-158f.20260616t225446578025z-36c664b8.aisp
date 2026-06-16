@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-d2-form-product-telescope-step.mac-158f.20260616t225446578025z-36c664b8@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t225446578025z-36c664b8; goal≜pell-d2-form-product-telescope-step; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜swarm-sonnet}
+⟦Γ:Goal⟧{goal≜pell-d2-form-product-telescope-step}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:54:46Z}
+⟦Σ:Artifact⟧{sha≜70238bd30c936e7b29cfa5a32337c3dd915bedbfd8bc799804c38bb5c203f3dd}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
