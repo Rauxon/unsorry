@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-d2-stormer-seven-ladder-preserves.mac-158f.20260616t225527378070z-1c2347cc@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t225527378070z-1c2347cc; goal≜pell-d2-stormer-seven-ladder-preserves; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜swarm-sonnet}
+⟦Γ:Goal⟧{goal≜pell-d2-stormer-seven-ladder-preserves}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:55:27Z}
+⟦Σ:Artifact⟧{sha≜28430dc534bd3d28d5e9cce499c96b18d08ad4251a63a9ad60acb10db46782f6}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
