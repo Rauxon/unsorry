@@ -1,0 +1,7 @@
+𝔸5.1.claim.six-dvd-n-mul-succ-mul-two-n-add-one.sovereign-engine@2026-06-16
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜six-dvd-n-mul-succ-mul-two-n-add-one; agent≜sovereign-engine}
+⟦Σ:Times⟧{ts≜2026-06-16T18:31:51Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
