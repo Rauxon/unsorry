@@ -4,6 +4,8 @@ Every PR carries labels classified from its title — the titles are machine-gen
 
 **The title shape is enforced (ADR-026).** The `pr-conventions` check (`.github/workflows/pr-conventions.yml`) runs `python3 -m tools.repo.pr_labels enforce "<title>"` and **fails any PR whose title matches no known shape**. Title discipline is the contract: fix the title, not the classifier.
 
+The type **must be the first token** — no bracket/tool prefixes. A title like `[codex] ci: …` fails the gate (the type is no longer at the start); use `ci: …`. Agents that auto-prefix their PR titles (e.g. Codex) must strip the prefix; the gate's rejection message names the exact fix.
+
 | Label | Applied to (title shape) | Meaning |
 |---|---|---|
 | `swarm:translate` | `tr(<goal>): …`, `converge(<goal>): …` | Agent translation/convergence PR (Phase-0/1 loop) |
