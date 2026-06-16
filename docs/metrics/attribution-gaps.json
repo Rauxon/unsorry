@@ -202,6 +202,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-16",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "c33d73e7d3622fe8bf182a80f1081bcecd045385",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "pell-d3-x-coord-pos-gt-y",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/17c1353ccec31c7998ffdd5e0adcfd1af313c58dc8525db88d51a7f5272fff13.aisp",
+      "review_status": "candidate",
+      "sha": "17c1353ccec31c7998ffdd5e0adcfd1af313c58dc8525db88d51a7f5272fff13"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-15",
       "difficulty": 3,
       "display_name": "Chris Barlow",
@@ -3534,9 +3549,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 235,
-    "mapped_missing_solver": 231,
-    "missing_solver_provenance": 235,
+    "git_attributed_missing_solver": 236,
+    "mapped_missing_solver": 232,
+    "missing_solver_provenance": 236,
     "unmapped_missing_solver": 4
   }
 }
