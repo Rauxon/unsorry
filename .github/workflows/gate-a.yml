@@ -73,8 +73,8 @@ jobs:
               - 'lakefile.lean'
               - 'lake-manifest.json'
       # Route by replay workload (ADR-048 Phase 2): a routine proof PR AND a push
-      # to main now replay INCREMENTALLY (light) → namespace-profile-unsorry-1
-      # (8 GB). Only an olean-invalidating change (toolchain/lakefile/manifest)
+      # to main now replay INCREMENTALLY (light) -> namespace-profile-unsorry-1
+      # (4 GB). Only an olean-invalidating change (toolchain/lakefile/manifest)
       # forces a FULL replay (heavy) → namespace-profile-unsorry-2 (16 GB), so a
       # rare slow full-replay never hogs the frequent proof runner.
       #
@@ -105,7 +105,7 @@ jobs:
     needs: detect
     # Namespace managed (ephemeral) runner, chosen by detect.profile (ADR-048
     # Phase 2):
-    #   namespace-profile-unsorry-1 (8 GB) — routine proof PRs AND push to main,
+    #   namespace-profile-unsorry-1 (4 GB) — routine proof PRs AND push to main,
     #                                 both incremental + light.
     #   namespace-profile-unsorry-2 (16 GB) — only an olean-invalidating change
     #                                 (toolchain/lakefile/manifest) that forces a
@@ -113,7 +113,7 @@ jobs:
     #                                 runs in its own pool and never blocks the
     #                                 frequent proof PRs on unsorry-1.
     # The scheduled gate-a-full-replay workflow runs the full backstop on the
-    # 8 GB profile with a small UNSORRY_REPLAY_CHUNK.
+    # routine profile with a small UNSORRY_REPLAY_CHUNK.
     # This prepare job warms/restores the Lean cache, generates binding modules,
     # and runs the cheap authoritative checks once before the heavy audit/replay
     # jobs start in parallel.
@@ -476,7 +476,7 @@ jobs:
       # workflow is the defense-in-depth full backstop (ADR-048 Phase 2).
       # Replay is intentionally serial: the tool accepts --jobs for CLI symmetry
       # but reports effective jobs=1. A forced FULL replay routes to the 16 GB
-      # profile; on an 8 GB runner set UNSORRY_REPLAY_CHUNK to a small value
+      # profile; on a constrained runner set UNSORRY_REPLAY_CHUNK to a small value
       # (e.g. 6) so leanchecker's per-chunk peak fits (SPEC-048-B).
       - name: Kernel replay (leanchecker)
         env:

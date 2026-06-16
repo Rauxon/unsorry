@@ -12,8 +12,8 @@
 
 Gate A's implicit model has been *re-verify in CI*: the full kernel replay (`leanchecker`) and
 axiom audit re-run over large module sets — on every push to `main` (full backstop) and, until now,
-on every archive-block PR (which re-replayed the archived proofs). On the available 16 GB (and
-8 GB proof-PR) Namespace runners this is the dominant cost and the source of the exit-137 OOM class:
+on every archive-block PR (which re-replayed the archived proofs). On the available 16 GB heavy
+Namespace runner and constrained routine Namespace runner this is the dominant cost and the source of the exit-137 OOM class:
 each archive package is a separate Lake project whose `leanchecker` loads its own full mathlib image
 (>8 GB resident), so re-replaying a block OOM-killed even a 16 GB runner regardless of chunk size
 (#764). But the *same proofs validate fine when active*, because their kernel replay runs once on the
@@ -33,7 +33,7 @@ profile just to re-check already-verified, immutable proofs,
 
 **facing** the fact that this re-verification is redundant whenever the proof artifact and its
 verification context are unchanged, and that the redundancy is precisely what blocks downscaling CI
-to 8 GB,
+to the routine namespace profile,
 
 **we decided for** a **verify-on-ingest** model: a proof is kernel-verified **exactly once**, by the
 **trusted CI pipeline**, at the PR that introduces it (the normal incremental Gate A: build,
@@ -51,8 +51,8 @@ unblocker that re-checks what's already verified), because verify-on-ingest matc
 *are* (frozen, already-verified blocks),
 
 **to achieve** removal of the archive-OOM class entirely, archive PRs that are provenance + packaging
-validation (cheap, fit 8 GB), and — with the rollout below — downscaling routine CI from 16 GB to
-8 GB and a faster pipeline,
+validation (cheap, fits the routine namespace profile), and — with the rollout below — downscaling routine CI from 16 GB to
+the routine profile and a faster pipeline,
 
 **accepting that** the residual risk shifts from *Lean soundness* to *bookkeeping soundness*: the
 system must reliably know an archived proof is exactly the one CI verified (guardrails below), that a
@@ -89,16 +89,16 @@ defense-in-depth.
 ## Rollout
 
 - **Phase 1 (this ADR):** archive validation drops the `leanchecker` replay — provenance +
-  `lake build --wfail` only. Removes the archive-OOM class; archive PRs fit 8 GB. (Supersedes the
+  `lake build --wfail` only. Removes the archive-OOM class; archive PRs fit the routine namespace profile. (Supersedes the
   #823 chunking and #838 16 GB-runner tactical fixes for archives.)
 - **Phase 2 (implemented — SPEC-048-B):** the push-to-`main` replay + audit are now **incremental**
   (re-check only the pushed diff, base = `github.event.before`), with a **scheduled daily** full replay
   + audit + archive re-validation as the defense-in-depth backstop
   (`.github/workflows/gate-a-full-replay.yml`). Routine Gate A (proof PRs **and** push to `main`) routes
-  to the 8 GB `namespace-profile-unsorry-1`; only an olean-invalidating change
+  to the 4 GB `namespace-profile-unsorry-1`; only an olean-invalidating change
   (`forces_full_replay`: toolchain/lakefile/manifest) forces a FULL replay on the 16 GB
   `namespace-profile-unsorry-2`. `REPLAY_CHUNK_SIZE` is overridable via `UNSORRY_REPLAY_CHUNK` so a full
-  replay fits 8 GB with a small chunk — the backstop uses `6`. The change is additive and zero-gap (the
+  replay fits a constrained routine runner with a small chunk — the backstop uses `6`. The change is additive and zero-gap (the
   backstop ships with the incremental-push change) and does not hard-require `unsorry-2`: if it is
   retired, forced full-replays move to `unsorry-1` with the small-chunk path. This realises the
   downscale + speed-up.
@@ -117,7 +117,7 @@ byte-identity enforcement) covers the bookkeeping risk.
 | Reference ID | Title | Type | Location |
 |--------------|-------|------|----------|
 | REF-1 | Verify-on-ingest provenance spec (Phase 1) | Specification | specs/SPEC-048-A-Verify-On-Ingest.md |
-| REF-1b | Incremental push + scheduled backstop + 8 GB sizing (Phase 2) | Specification | specs/SPEC-048-B-Verify-On-Ingest-Phase2.md |
+| REF-1b | Incremental push + scheduled backstop + routine runner sizing (Phase 2) | Specification | specs/SPEC-048-B-Verify-On-Ingest-Phase2.md |
 | REF-2 | Archive-aware immutability / byte-identity | Decision | ADR-018-Goal-Statement-Immutability.md |
 | REF-3 | Incremental kernel replay + full-replay triggers | Decision | ADR-033-Incremental-Kernel-Replay.md |
 | REF-4 | Proof archive blocks | Decision | ADR-041-Proof-Archive-Blocks.md |
