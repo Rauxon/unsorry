@@ -1,0 +1,8 @@
+𝔸5.1.lemma.2643495bc3eb@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜2643495bc3ebc0a98cd248b537399d6320231293d1db5da79331efd54f2103d8; goal≜prod-icc-one-sub-recip-sq-eq-frac; name≜prod_icc_one_sub_recip_sq_eq_frac}
+⟦Σ:Source⟧{src≜goals/prod-icc-one-sub-recip-sq-eq-frac.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-telescope; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
