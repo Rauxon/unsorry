@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜six-dvd-pow-three-add-five-mul-s1
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜1
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,8 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/six-dvd-pow-three-add-five-mul-s1.lean
-  sha≜∅
+  sha≜de8008ca4b5182c76953e4b78a70fe1d9b2b40ea7b60497c17757ae7a1d31438
+  aff≜1
   depth≜1
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

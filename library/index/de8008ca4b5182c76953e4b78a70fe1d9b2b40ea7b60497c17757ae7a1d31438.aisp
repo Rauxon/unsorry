@@ -1,0 +1,8 @@
+𝔸5.1.lemma.de8008ca4b51@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜de8008ca4b5182c76953e4b78a70fe1d9b2b40ea7b60497c17757ae7a1d31438; goal≜six-dvd-pow-three-add-five-mul-s1; name≜two_dvd_pow_three_add_five_mul}
+⟦Σ:Source⟧{src≜goals/six-dvd-pow-three-add-five-mul-s1.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜769}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
