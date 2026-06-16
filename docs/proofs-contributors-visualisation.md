@@ -6,7 +6,7 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**760 goals — 384 open · 7 blocked · 10 translated · 221 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
+**760 goals — 385 open · 6 blocked · 10 translated · 221 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
 
 Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (217 of 221 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
@@ -29,8 +29,8 @@ flowchart LR
   class g_am_gm_three_cube_s1 proved;
   click g_am_gm_three_cube_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s1.lean" "am-gm-three-cube-s1 — proved"
   g_am_gm_three_cube_s2["am-gm-three-cube-s2"]
-  class g_am_gm_three_cube_s2 blocked;
-  click g_am_gm_three_cube_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2.lean" "am-gm-three-cube-s2 — blocked"
+  class g_am_gm_three_cube_s2 open;
+  click g_am_gm_three_cube_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2.lean" "am-gm-three-cube-s2 — open"
   g_am_gm_three_cube_s2_s1["am-gm-three-cube-s2-s1"]
   class g_am_gm_three_cube_s2_s1 proved;
   click g_am_gm_three_cube_s2_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2-s1.lean" "am-gm-three-cube-s2-s1 — proved"
@@ -238,6 +238,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`alt-sum-range-two-k-add-one-eq-signed-n`](https://github.com/agenticsnz/unsorry/blob/main/goals/alt-sum-range-two-k-add-one-eq-signed-n.lean) | open | 2 | — | — | — | — |
 | [`alternating-sum-k-mul-choose-eq-zero`](https://github.com/agenticsnz/unsorry/blob/main/goals/alternating-sum-k-mul-choose-eq-zero.lean) | open | 4 | — | — | — | — |
 | [`alternating-sum-shifted-choose-eq-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/alternating-sum-shifted-choose-eq-one.lean) | open | 4 | — | — | — | — |
+| [`am-gm-three-cube-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2.lean) | open | 1 | — | — | — | — |
 | [`am-hm-two-var`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-hm-two-var.lean) | open | 2 | — | — | — | — |
 | [`amgm-prod-half-sum-le-cubes`](https://github.com/agenticsnz/unsorry/blob/main/goals/amgm-prod-half-sum-le-cubes.lean) | open | 3 | — | — | — | — |
 | [`candido-sum-quartics-twice-square`](https://github.com/agenticsnz/unsorry/blob/main/goals/candido-sum-quartics-twice-square.lean) | open | 2 | — | — | — | — |
@@ -616,7 +617,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`two-squares-zmod-sixteen-ne-three-seven-eleven`](https://github.com/agenticsnz/unsorry/blob/main/goals/two-squares-zmod-sixteen-ne-three-seven-eleven.lean) | open | 2 | — | — | — | — |
 | [`two-sum-cubes-ge-sym-quadratics`](https://github.com/agenticsnz/unsorry/blob/main/goals/two-sum-cubes-ge-sym-quadratics.lean) | open | 3 | — | — | — | — |
 | [`am-gm-three-cube`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube.lean) | blocked | 3 | — | — | — | — |
-| [`am-gm-three-cube-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/am-gm-three-cube-s2.lean) | blocked | 1 | — | — | — | — |
 | [`cube-sum-ge-three-prod`](https://github.com/agenticsnz/unsorry/blob/main/goals/cube-sum-ge-three-prod.lean) | blocked | 2 | — | — | — | — |
 | [`dvd-210-pow-fifteen-sub-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-210-pow-fifteen-sub-pow-three.lean) | blocked | 2 | — | — | — | — |
 | [`nesbitt-inequality`](https://github.com/agenticsnz/unsorry/blob/main/goals/nesbitt-inequality.lean) | blocked | 4 | — | — | — | — |
