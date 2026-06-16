@@ -1,7 +1,8 @@
-𝔸5.1.lemma.afdadce96271@2026-06-15
+𝔸5.1.lemma.afdadce96271@2026-06-16
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜afdadce96271f9e56b5619e0584141959c7991d31f52420289d11d71a58e3c2d; goal≜sq-mod-fifteen-mem; name≜sq_mod_fifteen_mem}
 ⟦Σ:Source⟧{src≜goals/sq-mod-fifteen-mem.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-powmod; attempts≜1}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
