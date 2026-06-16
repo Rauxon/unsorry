@@ -1,0 +1,9 @@
+𝔸5.1.run.prod-range-one-sub-recip-succ-sq.afnz-zbook-b336.20260616t151151089333z-053e0f96@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t151151089333z-053e0f96; goal≜prod-range-one-sub-recip-succ-sq; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜prod-range-one-sub-recip-succ-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜725; ended≜2026-06-16T15:11:51Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8713/8715] Building Unsorry.ProdRangeOneSubRecipSuccSq (4.9s) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-prod-range-one-sub-recip-succ-sq-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-prod-range-one-sub-recip-succ-sq-afnz-zboo}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
