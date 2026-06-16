@@ -1,0 +1,8 @@
+𝔸5.1.run.gcd-2n1-2n5-dvd-four.mac-158f.20260616t224550636975z-0c612b57@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t224550636975z-0c612b57; goal≜gcd-2n1-2n5-dvd-four; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-gcd-bezout}
+⟦Γ:Goal⟧{goal≜gcd-2n1-2n5-dvd-four}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:45:50Z}
+⟦Σ:Artifact⟧{sha≜0ce08074c693b7882582630e2e2e952585bcaab7db64e9ee45a7d65772c1aef2}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
