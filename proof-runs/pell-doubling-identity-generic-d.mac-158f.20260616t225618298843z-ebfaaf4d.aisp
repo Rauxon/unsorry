@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-doubling-identity-generic-d.mac-158f.20260616t225618298843z-ebfaaf4d@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t225618298843z-ebfaaf4d; goal≜pell-doubling-identity-generic-d; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜swarm-sonnet}
+⟦Γ:Goal⟧{goal≜pell-doubling-identity-generic-d}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:56:18Z}
+⟦Σ:Artifact⟧{sha≜e4a769ba7e4d750003e39fe66cd4f4c58795ff47e46cf505d5c7b50608d3a25a}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
