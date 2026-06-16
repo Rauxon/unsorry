@@ -640,6 +640,21 @@
       "date": "2026-06-16",
       "difficulty": 2,
       "display_name": "chat-bit-01",
+      "git_add_commit": "cc287a0a7365a16255a5d1b3934f27709e44e794",
+      "git_add_date": "2026-06-17",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "quad-form-ge-three-quarter-sq",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/4330b2d25ab32ef89c0a1f7250b0c59593aa68d9a0828ec0443eafcb4b337f5e.aisp",
+      "review_status": "candidate",
+      "sha": "4330b2d25ab32ef89c0a1f7250b0c59593aa68d9a0828ec0443eafcb4b337f5e"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
       "git_add_commit": "df489d72b1c4e61c5ba2b83d8a1c533808ae6c77",
       "git_add_date": "2026-06-16",
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -4044,9 +4059,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 269,
-    "mapped_missing_solver": 265,
-    "missing_solver_provenance": 269,
+    "git_attributed_missing_solver": 270,
+    "mapped_missing_solver": 266,
+    "missing_solver_provenance": 270,
     "unmapped_missing_solver": 4
   }
 }
