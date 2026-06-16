@@ -1,0 +1,9 @@
+𝔸5.1.run.fib-two-mul-sq-diff-int.afnz-zbook-b336.20260616t040459098373z-1c6c67a6@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t040459098373z-1c6c67a6; goal≜fib-two-mul-sq-diff-int; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜fib-two-mul-sq-diff-int}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1305; ended≜2026-06-16T04:04:59Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8545/8628] Building Unsorry.FibTwoMulSqDiffInt (197ms) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-fib-two-mul-sq-diff-int-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-fib-two-mul-sq-diff-int-afnz-zbook-b336/.lake/packages/bat}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
