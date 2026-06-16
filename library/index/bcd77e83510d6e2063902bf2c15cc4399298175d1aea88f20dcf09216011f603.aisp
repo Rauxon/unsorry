@@ -1,7 +1,8 @@
-𝔸5.1.lemma.bcd77e83510d@2026-06-15
+𝔸5.1.lemma.bcd77e83510d@2026-06-16
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜bcd77e83510d6e2063902bf2c15cc4399298175d1aea88f20dcf09216011f603; goal≜eighth-power-mod-fifteen-mem; name≜eighth_power_mod_fifteen_mem}
 ⟦Σ:Source⟧{src≜goals/eighth-power-mod-fifteen-mem.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-powmod; attempts≜1}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
