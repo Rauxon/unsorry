@@ -8,6 +8,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-16",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "5cae089bbea03f72064221dca9de4c5e7517b027",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "pell-d2-positive-to-negative-step",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/02ebc9df1277b42087a8e67810bb10377abae59e31781e270e21830cc64a7192.aisp",
+      "review_status": "candidate",
+      "sha": "02ebc9df1277b42087a8e67810bb10377abae59e31781e270e21830cc64a7192"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
       "difficulty": 3,
       "display_name": "chat-bit-01",
       "git_add_commit": "de81ccb6fe2033c7102308ef5b7f1e32be57bf33",
@@ -3369,9 +3384,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 224,
-    "mapped_missing_solver": 220,
-    "missing_solver_provenance": 224,
+    "git_attributed_missing_solver": 225,
+    "mapped_missing_solver": 221,
+    "missing_solver_provenance": 225,
     "unmapped_missing_solver": 4
   }
 }
