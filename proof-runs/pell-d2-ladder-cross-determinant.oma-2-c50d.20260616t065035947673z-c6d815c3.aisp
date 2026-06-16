@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-d2-ladder-cross-determinant.oma-2-c50d.20260616t065035947673z-c6d815c3@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t065035947673z-c6d815c3; goal≜pell-d2-ladder-cross-determinant; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜pell-d2-ladder-cross-determinant}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜235; ended≜2026-06-16T06:50:35Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜f3f54f92a2c9c6b3601030ef30ab9d69039f9704c74edbc7172cad8829dffb51}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

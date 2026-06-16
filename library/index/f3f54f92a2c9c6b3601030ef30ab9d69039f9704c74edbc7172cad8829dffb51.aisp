@@ -1,0 +1,8 @@
+𝔸5.1.lemma.f3f54f92a2c9@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜f3f54f92a2c9c6b3601030ef30ab9d69039f9704c74edbc7172cad8829dffb51; goal≜pell-d2-ladder-cross-determinant; name≜pell_d2_ladder_cross_determinant}
+⟦Σ:Source⟧{src≜goals/pell-d2-ladder-cross-determinant.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜235}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
