@@ -1448,6 +1448,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-16",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "5e294272c815782d339963ec9e40861899d12bab",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "two-var-sq-add-one-ge-cross-plus-sum",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/b0bd02f87be84e71296f407c0d02e8eafb86473bdaceb2d3cc586f08785f1077.aisp",
+      "review_status": "candidate",
+      "sha": "b0bd02f87be84e71296f407c0d02e8eafb86473bdaceb2d3cc586f08785f1077"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
       "difficulty": 3,
       "display_name": "chat-bit-01",
       "git_add_commit": "84f027d23c55b9308ecfeafd7c8d74176e7f22eb",
@@ -3639,9 +3654,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 242,
-    "mapped_missing_solver": 238,
-    "missing_solver_provenance": 242,
+    "git_attributed_missing_solver": 243,
+    "mapped_missing_solver": 239,
+    "missing_solver_provenance": 243,
     "unmapped_missing_solver": 4
   }
 }
