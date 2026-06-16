@@ -1,0 +1,9 @@
+𝔸5.1.run.four-var-qm-am.afnz-zbook-b336.20260616t111343167000z-8e346e10@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t111343167000z-8e346e10; goal≜four-var-qm-am; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜four-var-qm-am}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜266; ended≜2026-06-16T11:13:43Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8552/8694] Building Unsorry.FourVarQmAm (208ms) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-four-var-qm-am-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-four-var-qm-am-afnz-zbook-b336/.lake/packages/batteries/.lake/build/lib/le}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
