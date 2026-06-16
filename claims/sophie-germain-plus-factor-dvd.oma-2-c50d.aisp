@@ -1,7 +1,0 @@
-𝔸5.1.claim.sophie-germain-plus-factor-dvd.oma-2-c50d@2026-06-16
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜sophie-germain-plus-factor-dvd; agent≜oma-2-c50d}
-⟦Σ:Times⟧{ts≜2026-06-16T20:17:44Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
