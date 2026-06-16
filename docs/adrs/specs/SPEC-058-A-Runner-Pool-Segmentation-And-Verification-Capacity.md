@@ -112,6 +112,43 @@ aggregation lane, while namespace remains the trusted verifier lane.
 Runner segmentation is a live operations change. It must handle existing PRs
 and queued jobs, not only new work.
 
+### 5.0 Coordinated prove admission governor
+
+`swarm/agent.sh --prove` now has a cheap admission layer before the trusted
+verifier lane. After syncing the repository, and before claim, unblock,
+decompose, demote, or proof PR creation, the agent reads live GitHub state:
+
+```text
+open_prove_prs       = open PRs with titles beginning prove(
+gate_a_in_flight     = queued gate-a.yml runs + in-progress gate-a.yml runs
+```
+
+The default policy is:
+
+```text
+UNSORRY_SUBMISSION_GOVERNOR=1
+UNSORRY_MAX_OPEN_PROVE_PRS=40
+UNSORRY_MAX_GATE_A_IN_FLIGHT=20
+UNSORRY_SUBMISSION_FREEZE=0
+UNSORRY_GOVERNOR_SCAN_LIMIT=200
+```
+
+If the freeze is truthy, or either threshold is reached, coordinated `--prove`
+exits cleanly with no new claim and no new PR. If the GitHub API read fails,
+the governor fails closed and pauses the cycle. Operators can set
+`UNSORRY_SUBMISSION_GOVERNOR=0` for a deliberate override, or set either max to
+`-1` to disable only that limit.
+
+This is the first concrete two-layer implementation:
+
+- **Cheap admission layer:** GitHub-hosted metadata/API visibility decides
+  whether new proof work may enter the queue.
+- **Trusted verifier layer:** namespace Gate A remains the only lane that can
+  admit Lean content.
+
+`--prove-local` and `--dry-run` are exempt because they produce no remote
+claims, branches, PRs, or namespace verifier demand.
+
 ### 5.1 Required-check continuity
 
 The cutover must preserve required check names:

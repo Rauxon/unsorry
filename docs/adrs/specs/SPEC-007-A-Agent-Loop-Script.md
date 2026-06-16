@@ -39,6 +39,11 @@ Must be run from the repository root (script verifies `swarm/protocol.aisp` exis
 | `UNSORRY_WALL` | `1800` | Wall-clock seconds per cycle (`timeout` around the claude call) |
 | `UNSORRY_TTL` | read from `tools/gate_b/config.py` (7200) | Claim TTL; the script reads the config value — never hardcodes it (DRY with the contract) |
 | `UNSORRY_ATTEMPTS` | `3` for `--prove` and `--prove-local`; otherwise read from `tools/gate_b/config.py` `BUDGET_ATTEMPTS` (2) | Prove build/audit attempts; later attempts receive the previous build/audit error in the prompt. |
+| `UNSORRY_SUBMISSION_GOVERNOR` | `1` for coordinated `--prove` | Enables the live submission governor. Set `0` only for an operator-approved override. `--prove-local` and `--dry-run` never create remote work and are exempt. |
+| `UNSORRY_SUBMISSION_FREEZE` | `0` | Emergency coordinated-`--prove` pause. Truthy values make the agent exit cleanly before claim, unblock, decompose, demote, or proof PR creation. |
+| `UNSORRY_MAX_OPEN_PROVE_PRS` | `40` | Pause coordinated `--prove` when this many open `prove(...)` PRs already exist. Set `-1` to disable this limit. |
+| `UNSORRY_MAX_GATE_A_IN_FLIGHT` | `20` | Pause coordinated `--prove` when queued plus in-progress `gate-a.yml` runs reach this count. Set `-1` to disable this limit. |
+| `UNSORRY_GOVERNOR_SCAN_LIMIT` | `200` | Maximum PR/run rows fetched for each governor query. |
 
 Authentication: the selected provider CLI must be authenticated, or
 `OPENAI_API_KEY` must be set for `openai`; `gh` must be authenticated for PR
@@ -85,6 +90,7 @@ Local smoke defaults to the same three-attempt proof budget as coordinated prove
 
 A `prove`-phase goal carries `goals/<id>.lean` — a `theorem <name> <signature> := by sorry` — and no AISP statement. The cycle reuses the translate skeleton's claim/PR/release plumbing; only the work and verify steps differ.
 
+0. **Admission governor**: after syncing `main` and before any claim or PR-producing maintenance work, the coordinated `--prove` loop checks the live operations lane. If `UNSORRY_SUBMISSION_FREEZE` is truthy, if open `prove(...)` PRs are at or above `UNSORRY_MAX_OPEN_PROVE_PRS`, or if queued plus in-progress `gate-a.yml` runs are at or above `UNSORRY_MAX_GATE_A_IN_FLIGHT`, the agent exits 0 without claiming work. GitHub API read failures fail closed for coordinated `--prove`: when queue pressure cannot be observed during a flood, the safe action is to avoid adding new verifier demand. `--prove-local` and `--dry-run` are exempt because they do not create remote work.
 1. **Pull** `main`; refresh the claims worktree (identical to translate step 1). No convergence sweep — that is a translate-only step.
 2. **Enumerate candidates**: goals with `phase ≡ prove`, `status ≡ open`, fewer than `config.PROVE_CLAIM_CAP` (= 1) live claims by distinct other agents, no live claim by self, and **not already proved**. A goal is *proved* iff a `library/index/<sha>.aisp` entry names it (`goal≜<id>`) — the index entry is the authoritative proved marker (the merge edits both the goal record and the index, but the index entry is what a racing agent on a stale checkout can still see). Lexicographic goal-id order.
 3. **Select**: first candidate in lexicographic goal-id order (same rationale as translate).

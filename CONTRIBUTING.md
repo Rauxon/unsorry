@@ -41,6 +41,13 @@ python3 -m tools.gate_b validate .       # check coordination artifacts (Gate B)
 a Lean proof, self-verifies it locally (`lake build --wfail` + the axiom audit)
 before opening a PR, and lets the gates decide. Use `--provider codex` to run
 both proof attempts and decomposition with Codex; Claude remains the default.
+
+Coordinated `--prove` has a live submission governor (ADR-058). When the
+repository already has too many open proof PRs or queued/in-progress Gate A
+runs, the agent exits cleanly before claiming more work. Local proving remains
+available through `--prove-local`, and an operator can override the governor
+with `UNSORRY_SUBMISSION_GOVERNOR=0` for a deliberate emergency exception.
+
 Other flags:
 
 - `--translate-only` — run the Phase-0/1 formalisation loop instead of proving.

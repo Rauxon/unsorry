@@ -123,6 +123,24 @@ Environment:
                     normal prove pipeline (retry with accumulated lessons,
                     ADR-024; decompose on failure, ADR-009) instead of going
                     idle (default: 1; set 0 to disable)
+  UNSORRY_SUBMISSION_GOVERNOR
+                    Coordinated --prove admission control (default: 1). When
+                    enabled, the agent checks open prove PR count and Gate A
+                    queue pressure before claiming new prove work. Set 0 only
+                    for an operator-approved override
+  UNSORRY_SUBMISSION_FREEZE
+                    Emergency pause for coordinated --prove submissions
+                    (default: 0). Truthy values make the agent exit cleanly
+                    before claim/PR-producing work
+  UNSORRY_MAX_OPEN_PROVE_PRS
+                    Pause coordinated --prove when this many open prove PRs
+                    already exist (default: 40; set -1 to disable this limit)
+  UNSORRY_MAX_GATE_A_IN_FLIGHT
+                    Pause coordinated --prove when queued + in-progress Gate A
+                    workflow runs reach this count (default: 20; set -1 to
+                    disable this limit)
+  UNSORRY_GOVERNOR_SCAN_LIMIT
+                    Max PR/runs rows fetched per governor query (default: 200)
 EOF
 }
 
@@ -1376,6 +1394,96 @@ open_prove_pr_exists() {
     case "$t" in "prove($goal):"*) return 0 ;; esac
   done <<< "$titles"
   return 1
+}
+
+env_truthy() {
+  case "${1:-}" in
+    1|true|TRUE|yes|YES|on|ON) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+validate_integer_knob() {
+  local name="$1" value="$2" allow_minus_one="${3:-0}"
+  if [ "$allow_minus_one" = 1 ] && [ "$value" = -1 ]; then
+    return 0
+  fi
+  [[ "$value" =~ ^[0-9]+$ ]] \
+    || {
+      if [ "$allow_minus_one" = 1 ]; then
+        die_config "$name '$value' must be a non-negative integer or -1"
+      else
+        die_config "$name '$value' must be a non-negative integer"
+      fi
+    }
+}
+
+# Pure decision helper for the coordinated prove submission governor. Prints a
+# pause reason when the agent must not start new claim/PR-producing work; prints
+# nothing when admission is allowed.
+submission_governor_reason() {
+  local freeze="$1" open_prove="$2" gate_a_in_flight="$3" max_open="$4" max_gate="$5"
+  if env_truthy "$freeze"; then
+    echo "submission freeze is active"
+    return 0
+  fi
+  if [ "$max_open" -ge 0 ] && [ "$open_prove" -ge "$max_open" ]; then
+    echo "open prove PRs $open_prove >= limit $max_open"
+    return 0
+  fi
+  if [ "$max_gate" -ge 0 ] && [ "$gate_a_in_flight" -ge "$max_gate" ]; then
+    echo "Gate A queued+in-progress runs $gate_a_in_flight >= limit $max_gate"
+    return 0
+  fi
+  return 1
+}
+
+count_open_prove_prs() {
+  gh pr list --state open --limit "$UNSORRY_GOVERNOR_SCAN_LIMIT" \
+    --json title \
+    --jq '[.[].title | select(startswith("prove("))] | length'
+}
+
+count_gate_a_runs() {
+  local status="$1"
+  gh run list --workflow gate-a.yml --status "$status" \
+    --limit "$UNSORRY_GOVERNOR_SCAN_LIMIT" \
+    --json databaseId --jq 'length'
+}
+
+# The cheap admission layer in front of the trusted verifier lane (ADR-058).
+# Fail closed on GitHub API errors: if the operator cannot see queue pressure,
+# the safe response during a flood is to avoid opening more proof PRs. This only
+# applies to coordinated --prove; --prove-local remains fully local.
+submission_governor_allows() {
+  [ "$PROVE" -eq 1 ] || return 0
+  [ "$DRY_RUN" -eq 1 ] && return 0
+  [ "${UNSORRY_SUBMISSION_GOVERNOR:-1}" = 0 ] && return 0
+
+  local open_prove queued in_progress gate_a_total reason
+  if ! open_prove="$(count_open_prove_prs 2>/dev/null)"; then
+    log "submission governor paused: could not read open proof PR count"
+    return 1
+  fi
+  if ! queued="$(count_gate_a_runs queued 2>/dev/null)"; then
+    log "submission governor paused: could not read queued Gate A runs"
+    return 1
+  fi
+  if ! in_progress="$(count_gate_a_runs in_progress 2>/dev/null)"; then
+    log "submission governor paused: could not read in-progress Gate A runs"
+    return 1
+  fi
+  [[ "$open_prove" =~ ^[0-9]+$ ]] || { log "submission governor paused: invalid open PR count '$open_prove'"; return 1; }
+  [[ "$queued" =~ ^[0-9]+$ ]] || { log "submission governor paused: invalid queued Gate A count '$queued'"; return 1; }
+  [[ "$in_progress" =~ ^[0-9]+$ ]] || { log "submission governor paused: invalid in-progress Gate A count '$in_progress'"; return 1; }
+  gate_a_total=$((queued + in_progress))
+
+  if reason="$(submission_governor_reason "$UNSORRY_SUBMISSION_FREEZE" "$open_prove" "$gate_a_total" "$UNSORRY_MAX_OPEN_PROVE_PRS" "$UNSORRY_MAX_GATE_A_IN_FLIGHT")"; then
+    log "submission governor paused: $reason (open_prove_prs=$open_prove gate_a_queued=$queued gate_a_in_progress=$in_progress)"
+    return 1
+  fi
+  log "submission governor open: open_prove_prs=$open_prove gate_a_queued=$queued gate_a_in_progress=$in_progress"
+  return 0
 }
 
 decompose_blocked_by_open_prove_pr() {
@@ -4281,6 +4389,65 @@ test_decompose_open_prove_guard() {
   return 0
 }
 
+test_submission_governor_reason() {
+  local got
+  got="$(submission_governor_reason 1 0 0 40 20)"
+  [ "$got" = "submission freeze is active" ] \
+    || { log "  freeze reason mismatch: '$got'"; return 1; }
+  got="$(submission_governor_reason 0 40 0 40 20)"
+  [ "$got" = "open prove PRs 40 >= limit 40" ] \
+    || { log "  open PR threshold mismatch: '$got'"; return 1; }
+  got="$(submission_governor_reason 0 10 20 40 20)"
+  [ "$got" = "Gate A queued+in-progress runs 20 >= limit 20" ] \
+    || { log "  Gate A threshold mismatch: '$got'"; return 1; }
+  if submission_governor_reason 0 100 100 -1 -1 >/dev/null; then
+    log "  disabled thresholds still paused"
+    return 1
+  fi
+}
+
+test_submission_governor_allows_with_stubbed_gh() {
+  local calls=0
+  local PROVE=1
+  local UNSORRY_SUBMISSION_GOVERNOR=1
+  local UNSORRY_SUBMISSION_FREEZE=0
+  local UNSORRY_MAX_OPEN_PROVE_PRS=40
+  local UNSORRY_MAX_GATE_A_IN_FLIGHT=20
+  local UNSORRY_GOVERNOR_SCAN_LIMIT=200
+
+  gh() {
+    case "$1 $2 $3" in
+      "pr list --state") echo 12 ;;
+      "run list --workflow")
+        calls=$((calls + 1))
+        if [ "$calls" -eq 1 ]; then echo 3; else echo 4; fi
+        ;;
+      *) return 1 ;;
+    esac
+  }
+  submission_governor_allows \
+    || { unset -f gh; log "  below threshold was paused"; return 1; }
+  unset -f gh
+
+  gh() {
+    case "$1 $2 $3" in
+      "pr list --state") echo 41 ;;
+      "run list --workflow") echo 0 ;;
+      *) return 1 ;;
+    esac
+  }
+  if submission_governor_allows; then
+    unset -f gh
+    log "  above open-PR threshold was allowed"
+    return 1
+  fi
+  unset -f gh
+
+  UNSORRY_SUBMISSION_GOVERNOR=0
+  submission_governor_allows \
+    || { log "  disabled governor did not allow"; return 1; }
+}
+
 test_render_decomp_gateb() {
   # A rendered decomposition record + its sub goal records validate under the
   # real Gate B (acyclic, subs are known goals, none re-emits the parent).
@@ -4371,6 +4538,8 @@ run_self_tests() {
     test_effort_ladder
     test_infra_failure_classifier
     test_open_pr_claim_guard
+    test_submission_governor_reason
+    test_submission_governor_allows_with_stubbed_gh
     test_demote_open_prove_records_telemetry_only
     test_floored_recompose_noop_records_telemetry_only
     test_render_decomp_gateb
@@ -4727,6 +4896,18 @@ main() {
     || die_config "UNSORRY_ATTEMPTS '$UNSORRY_ATTEMPTS' is not a positive integer"
   UNSORRY_WORKDIR="${UNSORRY_WORKDIR:-$HOME/.unsorry/work}"
   mkdir -p "$UNSORRY_WORKDIR" || die_config "cannot create UNSORRY_WORKDIR '$UNSORRY_WORKDIR'"
+  UNSORRY_SUBMISSION_GOVERNOR="${UNSORRY_SUBMISSION_GOVERNOR:-1}"
+  UNSORRY_SUBMISSION_FREEZE="${UNSORRY_SUBMISSION_FREEZE:-0}"
+  UNSORRY_MAX_OPEN_PROVE_PRS="${UNSORRY_MAX_OPEN_PROVE_PRS:-40}"
+  UNSORRY_MAX_GATE_A_IN_FLIGHT="${UNSORRY_MAX_GATE_A_IN_FLIGHT:-20}"
+  UNSORRY_GOVERNOR_SCAN_LIMIT="${UNSORRY_GOVERNOR_SCAN_LIMIT:-200}"
+  case "$UNSORRY_SUBMISSION_GOVERNOR" in
+    0|1) ;;
+    *) die_config "UNSORRY_SUBMISSION_GOVERNOR '$UNSORRY_SUBMISSION_GOVERNOR' must be 0 or 1" ;;
+  esac
+  validate_integer_knob UNSORRY_MAX_OPEN_PROVE_PRS "$UNSORRY_MAX_OPEN_PROVE_PRS" 1
+  validate_integer_knob UNSORRY_MAX_GATE_A_IN_FLIGHT "$UNSORRY_MAX_GATE_A_IN_FLIGHT" 1
+  validate_integer_knob UNSORRY_GOVERNOR_SCAN_LIMIT "$UNSORRY_GOVERNOR_SCAN_LIMIT"
 
   resolve_agent_id
   if [ "$DRY_RUN" -eq 0 ]; then
@@ -4758,7 +4939,7 @@ main() {
       effort_disp="ladder(high→xhigh→max)"
     fi
   fi
-  log "agent $AGENT_ID starting ($mode; provider=$UNSORRY_PROVIDER model=${UNSORRY_MODEL:-default} effort=$effort_disp attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
+  log "agent $AGENT_ID starting ($mode; provider=$UNSORRY_PROVIDER model=${UNSORRY_MODEL:-default} effort=$effort_disp attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s governor=${UNSORRY_SUBMISSION_GOVERNOR})"
 
   declare -A HANDLED=()
   declare -A SWEPT=()
@@ -4769,6 +4950,9 @@ main() {
     # brought a newer agent.sh (so the cycle runs the latest code, #428).
     sync_repo || { log "repository sync failed"; exit 1; }
     maybe_reexec_on_harness_update
+    if [ "$PROVE" -eq 1 ] && ! submission_governor_allows; then
+      break
+    fi
 
     # Steps 1b–3 — enumerate and select (mode-specific). The convergence
     # sweep is a translate-only janitor step; the unblock sweep is its prove
