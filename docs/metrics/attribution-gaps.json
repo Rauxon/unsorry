@@ -475,6 +475,21 @@
       "date": "2026-06-16",
       "difficulty": 2,
       "display_name": "chat-bit-01",
+      "git_add_commit": "9c1eb8cff35a81cd521cd5b3b7d66e3382e2484b",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "pell-d5-positive-from-negative-square",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/3eb676018565a5babdc8308b2eeaae7b4f995dec695b2b79cf0b4858afd8d469.aisp",
+      "review_status": "candidate",
+      "sha": "3eb676018565a5babdc8308b2eeaae7b4f995dec695b2b79cf0b4858afd8d469"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
       "git_add_commit": "7e81e052742d09ed783594faeea6209f756bc0cb",
       "git_add_date": "2026-06-16",
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -3429,9 +3444,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 228,
-    "mapped_missing_solver": 224,
-    "missing_solver_provenance": 228,
+    "git_attributed_missing_solver": 229,
+    "mapped_missing_solver": 225,
+    "missing_solver_provenance": 229,
     "unmapped_missing_solver": 4
   }
 }
