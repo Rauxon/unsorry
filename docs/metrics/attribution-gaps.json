@@ -532,6 +532,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-16",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "219f240cbbaa6d20b8f356ee5350d3ad1bb58668",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "pell-d23-ladder-step-preserves",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/4c585e52ac13f8e051e3441b9061406d04a9ec909540f81d373a81f4d7d93a50.aisp",
+      "review_status": "candidate",
+      "sha": "4c585e52ac13f8e051e3441b9061406d04a9ec909540f81d373a81f4d7d93a50"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-10",
       "difficulty": 0,
       "display_name": "Chris Barlow",
@@ -3174,9 +3189,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 211,
-    "mapped_missing_solver": 207,
-    "missing_solver_provenance": 211,
+    "git_attributed_missing_solver": 212,
+    "mapped_missing_solver": 208,
+    "missing_solver_provenance": 212,
     "unmapped_missing_solver": 4
   }
 }
