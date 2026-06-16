@@ -1,0 +1,8 @@
+𝔸5.1.lemma.4a83e7b199c4@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜4a83e7b199c4187dc59e29da91f2fbb3a938b1643392c91329ccce527b51d3bb; goal≜pell-d2-rational-bound-above; name≜pell_d2_rational_bound_above}
+⟦Σ:Source⟧{src≜goals/pell-d2-rational-bound-above.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜581}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

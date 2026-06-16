@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-d2-rational-bound-above.oma-2-c50d.20260616t072106186350z-8b2f1a56@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t072106186350z-8b2f1a56; goal≜pell-d2-rational-bound-above; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜pell-d2-rational-bound-above}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜581; ended≜2026-06-16T07:21:06Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜4a83e7b199c4187dc59e29da91f2fbb3a938b1643392c91329ccce527b51d3bb}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
