@@ -1,0 +1,8 @@
+𝔸5.1.lemma.6a41a39e3958@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜6a41a39e3958204ff23d9b847d5d800de0fd9e4871e1d323995e28bad5e39e3d; goal≜sixth-power-mod-fourteen-mem; name≜sixth_power_mod_fourteen_mem}
+⟦Σ:Source⟧{src≜goals/sixth-power-mod-fourteen-mem.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-decide; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
