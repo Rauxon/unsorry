@@ -1285,6 +1285,21 @@
       "date": "2026-06-16",
       "difficulty": 2,
       "display_name": "chat-bit-01",
+      "git_add_commit": "558bba3c91a5cc17d956f12be4ffc23740cb844f",
+      "git_add_date": "2026-06-17",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-cubes-sym-divisible-by-quadratic",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/7e5551b77e932224bc3b772bb5898e57c49eee72fa966e89729eae574dcb64da.aisp",
+      "review_status": "candidate",
+      "sha": "7e5551b77e932224bc3b772bb5898e57c49eee72fa966e89729eae574dcb64da"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
       "git_add_commit": "a9ee538998f377c45c28dd725d310e838a51c020",
       "git_add_date": "2026-06-16",
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -4074,9 +4089,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 271,
-    "mapped_missing_solver": 267,
-    "missing_solver_provenance": 271,
+    "git_attributed_missing_solver": 272,
+    "mapped_missing_solver": 268,
+    "missing_solver_provenance": 272,
     "unmapped_missing_solver": 4
   }
 }
