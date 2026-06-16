@@ -577,6 +577,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-16",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "f2434e12f71bd6448889013ba99e479797afe38c",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "gcd-three-pow-succ-three-pow-add-one",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/85fcc952e2a4189a5ab1a4f205bd93bcd33e22aa0b5e4a3c2326d1057c6bb866.aisp",
+      "review_status": "candidate",
+      "sha": "85fcc952e2a4189a5ab1a4f205bd93bcd33e22aa0b5e4a3c2326d1057c6bb866"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-15",
       "difficulty": 2,
       "display_name": "chat-bit-01",
@@ -2724,9 +2739,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 181,
-    "mapped_missing_solver": 177,
-    "missing_solver_provenance": 181,
+    "git_attributed_missing_solver": 182,
+    "mapped_missing_solver": 178,
+    "missing_solver_provenance": 182,
     "unmapped_missing_solver": 4
   }
 }
