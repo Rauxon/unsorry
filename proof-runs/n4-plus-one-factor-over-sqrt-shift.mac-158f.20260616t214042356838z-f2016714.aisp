@@ -1,0 +1,8 @@
+𝔸5.1.run.n4-plus-one-factor-over-sqrt-shift.mac-158f.20260616t214042356838z-f2016714@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t214042356838z-f2016714; goal≜n4-plus-one-factor-over-sqrt-shift; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜swarm-sonnet}
+⟦Γ:Goal⟧{goal≜n4-plus-one-factor-over-sqrt-shift}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T21:40:42Z}
+⟦Σ:Artifact⟧{sha≜cb1a907cbef8ad253e2442f3609c807dd88feb96fc89dd1cf4f8f3569976515c}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
