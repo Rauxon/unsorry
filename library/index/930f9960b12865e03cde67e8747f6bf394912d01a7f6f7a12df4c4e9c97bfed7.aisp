@@ -1,0 +1,8 @@
+𝔸5.1.lemma.930f9960b128@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜930f9960b12865e03cde67e8747f6bf394912d01a7f6f7a12df4c4e9c97bfed7; goal≜catalan-r2-shift-nat-fib-int; name≜catalan_r2_shift_nat_fib_int}
+⟦Σ:Source⟧{src≜goals/catalan-r2-shift-nat-fib-int.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ruvnet; agent≜ruvnet-swarm; provider≜openrouter}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
