@@ -179,6 +179,41 @@ existing PRs are untouched, existing required checks remain stable, and new
 proof work does not consume GitHub PR or namespace Gate A capacity until the
 dispatcher admits it.
 
+### 5.0.2 Repository-side admission for uncontrolled producers
+
+The queue-backed producer mode is cooperative: a running `agent.sh` process does
+not hot-reload itself after `main` changes, and external contributors may run
+custom scripts. The repository therefore enforces the same cutover policy at PR
+ingress.
+
+The cutoff is the merge time of the queued dispatcher:
+
+```text
+queued-proof cutover = 2026-06-16T22:24:44Z
+```
+
+Post-cutover PRs are rejected when they look like direct proof submissions:
+
+```text
+head ref starts with feature/goal-
+head ref starts with prove/
+title starts with prove(
+```
+
+Dispatcher submissions are admitted only through:
+
+```text
+queued/prove/<goal>/<agent>-<suffix>
+```
+
+`.github/workflows/pr-admission.yml` runs on `pull_request_target`, checks the
+base-repository policy from `tools.repo.pr_admission`, labels rejected PRs
+`blocked-direct-submit`, comments with restart instructions, and closes them.
+Gate A, Gate B, `agent-lint`, `triviality`, and `attribution-advisory` run the
+same admission check and short-circuit rejected PRs so that a direct-submission
+flood cannot keep consuming GitHub-hosted or Namespace runner capacity while the
+close workflow is pending.
+
 ### 5.1 Required-check continuity
 
 The cutover must preserve required check names:
