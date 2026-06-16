@@ -184,3 +184,23 @@ def test_grandfathered_entry_without_goal_lean_is_skipped(tmp_path):
         f"⟦Ω:Lemma⟧{{sha≜{sha}; goal≜grand-old; name≜grand}}\n", encoding="utf-8")
     assert generate(tmp_path) == 0
     assert not list((tmp_path / "library" / "Unsorry").glob("*Binding.lean"))
+
+
+def test_generate_skips_private_name_collision(tmp_path):
+    # A theorem name can collide with a `private` helper in an alphabetically
+    # earlier module (a recompose proof re-using a sub-lemma's name). The binding
+    # must bind to the PUBLIC proof module, not the unreferenceable private one.
+    # Regression: goal nat-sq-lt-two-pow-s2 looped on #679/#963/#1173 because the
+    # binding imported the parent's `private theorem sq_lt_two_pow_step_from_five`.
+    _make_proved(tmp_path, "nat-step-s2",
+                 "theorem step_from_five (n : Nat) : n = n",
+                 proof="rfl")
+    # alphabetically-earlier module re-declaring the same name as private
+    (tmp_path / "library" / "Unsorry" / "NatStep.lean").write_text(
+        "import Mathlib\n\nprivate theorem step_from_five (n : Nat) : n = n := rfl\n",
+        encoding="utf-8")
+    assert generate(tmp_path) == 0
+    binding = (tmp_path / "library" / "Unsorry" / "NatStepS2Binding.lean").read_text(encoding="utf-8")
+    assert "import Unsorry.NatStepS2\n" in binding      # the public proof module
+    assert "import Unsorry.NatStep\n" not in binding    # not the private collision
+    assert ":= step_from_five\n" in binding

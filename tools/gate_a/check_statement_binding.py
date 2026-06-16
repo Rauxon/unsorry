@@ -38,14 +38,23 @@ BINDING_SUFFIX = "Binding.lean"
 
 
 def _module_declaring(unsorry_dir: Path, name: str) -> str | None:
-    """The `Unsorry.<Stem>` module that declares `theorem/lemma <name>` — found
-    by content, not by an assumed path (so a grandfathered module such as
-    `Basic.lean` is handled, not only the `<Camel>.lean` convention)."""
-    decl = re.compile(rf"\b(?:theorem|lemma)\s+{re.escape(name)}\b")
+    """The `Unsorry.<Stem>` module that declares a **referenceable** `theorem/lemma
+    <name>` — found by content, not by an assumed path (so a grandfathered module
+    such as `Basic.lean` is handled, not only the `<Camel>.lean` convention).
+
+    A `private` declaration is skipped: the binding module imports this one and
+    references the name by value, which a `private` decl does not export → "unknown
+    identifier". This bit goal nat-sq-lt-two-pow-s2 (#679/#963/#1173): a recompose
+    proof in the alphabetically-earlier `NatSqLtTwoPow` re-used the sub-lemma name
+    `sq_lt_two_pow_step_from_five` as a `private` helper, so the binding bound to
+    that instead of the public proof in `NatSqLtTwoPowS2` and every attempt failed."""
+    decl = re.compile(rf"^(?P<mods>[^\n]*?)\b(?:theorem|lemma)\s+{re.escape(name)}\b", re.MULTILINE)
     for path in sorted(unsorry_dir.glob("*.lean")):
         if path.name.endswith(BINDING_SUFFIX):
             continue
-        if decl.search(path.read_text(encoding="utf-8")):
+        for m in decl.finditer(path.read_text(encoding="utf-8")):
+            if "private" in m.group("mods").split():
+                continue  # not exported — cannot be the binding target
             return f"Unsorry.{path.stem}"
     return None
 
