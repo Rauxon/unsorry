@@ -1,0 +1,9 @@
+𝔸5.1.run.realization-edge-in-set.afnz-zbook-b336.20260616t174314059104z-17441df7@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t174314059104z-17441df7; goal≜realization-edge-in-set; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜realization-edge-in-set}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1886; ended≜2026-06-16T17:43:14Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(openai call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
