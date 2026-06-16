@@ -1958,6 +1958,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-16",
+      "difficulty": 1,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "d91f9d61bfb9e03942ca1996d046f8b95f8d38c9",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "am-gm-three-cube-s2-s2",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/dc8432bcd7d41f9a5a6d6349a6680b24ba292cee188c6f63741cb94bfbf9c097.aisp",
+      "review_status": "candidate",
+      "sha": "dc8432bcd7d41f9a5a6d6349a6680b24ba292cee188c6f63741cb94bfbf9c097"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
       "difficulty": 3,
       "display_name": "chat-bit-01",
       "git_add_commit": "32a2641146d558b78da97b85afc681644dc963ee",
@@ -3834,9 +3849,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 255,
-    "mapped_missing_solver": 251,
-    "missing_solver_provenance": 255,
+    "git_attributed_missing_solver": 256,
+    "mapped_missing_solver": 252,
+    "missing_solver_provenance": 256,
     "unmapped_missing_solver": 4
   }
 }

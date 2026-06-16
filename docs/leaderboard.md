@@ -4,7 +4,7 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**360 verified proofs · 105 attributed · 255 historical/unknown · 367 logged terminal runs.**
+**361 verified proofs · 105 attributed · 256 historical/unknown · 367 logged terminal runs.**
 
 ## Efficiency Baseline
 
@@ -25,7 +25,7 @@ Verified output comes from active `library/index` records plus archived index re
 
 ## Work Queue
 
-**760 goals · 138 archived · 7 blocked · 385 open · 220 proved · 10 translated.**
+**760 goals · 138 archived · 7 blocked · 384 open · 221 proved · 10 translated.**
 
 ## Efficiency by Difficulty
 
@@ -45,12 +45,12 @@ Verified output comes from active `library/index` records plus archived index re
 | `sq-add-sq-eq-three-mul-sq-s4` | `open` | 1 | 2 | 6 | 54m 47s |
 | `nat-sq-lt-two-pow-s2` | `open` | 1 | 4 | 6 | 52m 47s |
 | `four-var-qm-am` | `open` | 2 | 3 | 5 | 1h 50m |
-| `am-gm-three-cube-s2-s2` | `open` | 1 | 3 | 5 | 44m 53s |
 | `consecutive-cubes-diff-odd` | `archived` | 2 | 3 | 5 | 21m 11s |
 | `dvd-210-pow-fifteen-sub-pow-three-s2` | `open` | 1 | 4 | 4 | 1h 20m |
 | `dvd-210-pow-fifteen-sub-pow-three-s4` | `open` | 1 | 4 | 4 | 53m 3s |
 | `nesbitt-inequality-s1` | `open` | 1 | 2 | 4 | 47m 0s |
 | `am-gm-three-cube-s2` | `blocked` | 1 | 2 | 4 | 43m 57s |
+| `cube-sum-ge-three-prod` | `blocked` | 2 | 2 | 4 | 17m 0s |
 
 ## Contributor Leaderboard
 
@@ -58,7 +58,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@chat-bit-01](https://github.com/chat-bit-01) | 194 | 0 | 194 | 0 | — | 436 | 48450 |
+| 1 | [@chat-bit-01](https://github.com/chat-bit-01) | 195 | 0 | 195 | 0 | — | 437 | 48575 |
 | 2 | [@cgbarlow](https://github.com/cgbarlow) | 115 | 68 | 47 | 278 | 19.8% | 207 | 23575 |
 | 3 | [@perttu](https://github.com/perttu) | 30 | 30 | 0 | 32 | 68.8% | 67 | 7450 |
 | 4 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
@@ -69,9 +69,9 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 ## Attribution Notes
 
-**105 explicit solver credits · 255 inferred git credits · 0 uncredited proof records.**
+**105 explicit solver credits · 256 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 360 of 360 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 361 of 361 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
