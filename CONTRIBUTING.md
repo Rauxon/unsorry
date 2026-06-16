@@ -9,7 +9,7 @@ for correctness.
 There are three ways to contribute, in rough order of involvement:
 
 1. [Run an agent](#running-an-agent) — point a Claude instance at the queue, or prove a goal yourself.
-2. [Propose a target](#proposing-a-target) — suggest a theorem worth proving.
+2. [Propose a target](#proposing-a-target) — suggest a theorem worth proving, or [source new ones at scale](#sourcing-new-targets-at-scale).
 3. [Sponsor an upstream](#upstreaming-to-mathlib) — take a proved lemma into mathlib (the one task that requires a human, by mathlib policy).
 
 All work follows [`docs/protocols.md`](docs/protocols.md): an ADR for every significant
@@ -151,6 +151,39 @@ Mathlib` against a battery of one-shot tactics — a target a single `simp`/`aes
 closes (or one already in mathlib under another name, which `simp`/`aesop` then finds) is not
 admitted. A genuine-but-automatable theorem can carry a `- **Nontrivial-override:** <reason>`
 line in its `backlog/<id>.md`.
+
+### Sourcing new targets at scale
+
+Filing one propose-target issue is the lightweight path. To **source many new targets
+yourself** — the "make the problems harder and generate more of them" work
+([ADR-059](docs/adrs/ADR-059-Contributor-Goal-Sourcing-Skill.md)) — use the
+**`unsorry-goal-sourcing` skill**, which captures the whole workflow end to end.
+
+**How to use the skill.** The [`Skills/`](Skills/) directory packages the repo's
+workflows as agent skills. Working in this repo with [Claude Code](https://claude.com/claude-code)
+(or any agent), just ask it to *source new targets* and point it at
+[`Skills/unsorry-goal-sourcing/SKILL.md`](Skills/unsorry-goal-sourcing/SKILL.md) — it
+walks the gates, writes the goal triples, and opens the PR for you. Prefer to drive it
+by hand? That same `SKILL.md` (plus its `references/`) is a readable runbook.
+
+**The workflow, in short — you create the problem, you don't prove it:**
+
+1. Find a theorem that is **already proven somewhere** but **absent** from the pinned
+   mathlib — never an open conjecture. Aim **hard** (difficulty ≥3): olympiad /
+   PutnamBench / miniF2F, multivariate inequalities, the Freek-#50 Euler substrate.
+2. Screen it through the gates: `check_absence` (exit 0, record the mathlib rev) → it
+   type-checks (`lake build UnsorryGoals`) → `check_triviality` (exit 0) → its intended
+   proof compiles (`lake env lean`).
+3. Assemble the three-file goal triple with the helper, which also re-runs Gate B:
+   `python3 -m tools.sourcing.gen_triples --slug <id> --lean-sig '…' --statement '…' --difficulty 3 … --validate`.
+4. Open a PR titled **`chore(sourcing): …`** (≤50 goals per PR). It works **from a
+   fork** — Gate B validates sourcing PRs on GitHub-hosted runners, so you need no
+   special repo access; a maintainer just approves the first Actions run.
+
+Sourcing earns its own credit on the **sourcing leaderboard**
+(`python3 -m tools.leaderboard --sourcing`; data in
+`docs/metrics/sourcing-leaderboard.json`), independent of who proves the goal — make
+sure `gh auth status` shows your account, or set `UNSORRY_SOLVER=<your-handle>`.
 
 ---
 
