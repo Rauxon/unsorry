@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**379 open · 366 proved · 750 total prove-goals.**
+**378 open · 367 proved · 750 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -25,7 +25,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `consecutive-fib-product-diff-nat-int` — Over the integers, fib n times fib(n+3) minus fib(n+1) times fib(n+2) equals (-1)^(n+1). | open | 4 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog (#610). | Over the integers, fib n times fib(n+3) minus fib(n+1) times fib(n+2) equals (-1)^(n+1). Not a named mathlib lemma in this form. |
 | `cube-sum-ge-three-prod` — For nonneg reals, 3abc ≤ a³+b³+c³ — AM-GM for cubes (a³+b³+c³−3abc = (a+b+c)·½Σ(a−b)²). | open | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For nonneg reals, 3abc ≤ a³+b³+c³ — AM-GM for cubes (a³+b³+c³−3abc = (a+b+c)·½Σ(a−b)²). Not a named mathlib lemma in this concrete polynomial/abs form. |
 | `cyclic-cube-sum-ge-asym-quad-cubic` — For nonnegative reals the sum of cubes dominates the cyclic sum a^2 b + b^2 c + c^2 a. | open | 2 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog. | For nonnegative reals the sum of cubes dominates the cyclic sum a^2 b + b^2 c + c^2 a. Not a named mathlib lemma in this form. |
-| `cyclic-quad-ge-abc-times-sum` — The sum of squared pairwise products dominates abc(a+b+c) for all reals. | open | 3 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The sum of squared pairwise products dominates abc(a+b+c) for all reals. Not a named mathlib lemma in this form. |
 | `cyclotomic-five-divides-pow-five-sub-one` — The 5th cyclotomic polynomial n⁴+n³+n²+n+1 divides n⁵-1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The 5th cyclotomic polynomial n⁴+n³+n²+n+1 divides n⁵-1. Not a named mathlib lemma in this form. |
 | `cyclotomic-three-divides-pow-six-sub-one` — The polynomial n²+n+1 divides n⁶-1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The polynomial n²+n+1 divides n⁶-1. Not a named mathlib lemma in this form. |
 | `diff-tetrahedral-eq-triangular` — The difference of two consecutive tetrahedral numbers equals the intervening triangular number. | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The difference of two consecutive tetrahedral numbers equals the intervening triangular number. Not a named mathlib lemma in this form. |
@@ -453,6 +452,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `cube-sum-ge-three-prod-s1` — cube-sum-ge-three-prod-s1 | proved | 1 | — | — | — |
 | `cube-sum-ge-three-prod-s2` — cube-sum-ge-three-prod-s2 | proved | 1 | — | — | — |
 | `cube-sum-ge-three-prod-s3` — cube-sum-ge-three-prod-s3 | proved | 1 | — | — | — |
+| `cyclic-quad-ge-abc-times-sum` — The sum of squared pairwise products dominates abc(a+b+c) for all reals. | proved | 3 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The sum of squared pairwise products dominates abc(a+b+c) for all reals. Not a named mathlib lemma in this form. |
 | `cyclic-quartic-ge-asym-cubic-cross` — For nonnegative reals the sum of fourth powers dominates the cyclic sum a^3 b + b^3 c + c^3 a. | proved | 2 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog. | For nonnegative reals the sum of fourth powers dominates the cyclic sum a^3 b + b^3 c + c^3 a. Not a named mathlib lemma in this form. |
 | `descartes-total-angular-defect` — Descartes' theorem: the total angular defect of an abstract regular {p,q} polyhedron is 4π — V(2π − q·(p−2)/p·π) = 4π. | proved | 4 | — | Freek #50 combinatorial classification, Track-1 completion (ADR-031; #400 plan Phase 1). | Descartes' theorem: the total angular defect of an abstract regular {p,q} polyhedron is 4π — V(2π − q·(p−2)/p·π) = 4π. Not in mathlib (no abstract-regular-polyhedron theory). |
 | `diff-sixth-power-dvd-by-sum` — The sum of two integers divides the difference of their sixth powers. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The sum of two integers divides the difference of their sixth powers. Not a named mathlib lemma in this form. |
