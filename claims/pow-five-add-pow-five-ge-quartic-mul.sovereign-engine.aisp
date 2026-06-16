@@ -1,7 +1,0 @@
-𝔸5.1.claim.pow-five-add-pow-five-ge-quartic-mul.sovereign-engine@2026-06-16
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜pow-five-add-pow-five-ge-quartic-mul; agent≜sovereign-engine}
-⟦Σ:Times⟧{ts≜2026-06-16T09:21:52Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
