@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**760 goals — 446 open · 8 blocked · 10 translated · 158 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
+**760 goals — 445 open · 8 blocked · 10 translated · 159 proved · 138 archived.** 14 decomposition families shown below; standalone goals are listed in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (154 of 158 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (155 of 159 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -343,7 +343,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`pell-brahmagupta-composition-d2`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-brahmagupta-composition-d2.lean) | open | 3 | — | — | — | — |
 | [`pell-brahmagupta-composition-generic-d`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-brahmagupta-composition-generic-d.lean) | open | 3 | — | — | — | — |
 | [`pell-d10-fundamental-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d10-fundamental-ladder-step-preserves.lean) | open | 2 | — | — | — | — |
-| [`pell-d11-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d11-ladder-step-preserves.lean) | open | 2 | — | — | — | — |
 | [`pell-d12-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d12-ladder-step-preserves.lean) | open | 2 | — | — | — | — |
 | [`pell-d13-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d13-ladder-step-preserves.lean) | open | 3 | — | — | — | — |
 | [`pell-d14-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d14-ladder-step-preserves.lean) | open | 2 | — | — | — | — |
@@ -838,6 +837,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`no-nat-sq-eq-two-mul-sq-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s1.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#670](https://github.com/agenticsnz/unsorry/pull/670) | 2026-06-15 |
 | [`no-nat-sq-eq-two-mul-sq-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s2.lean) | proved | 1 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#671](https://github.com/agenticsnz/unsorry/pull/671) | 2026-06-15 |
 | [`no-nat-sq-eq-two-mul-sq-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/no-nat-sq-eq-two-mul-sq-s3.lean) | proved | 1 | thebeast-ace7 | adam91holt | [#673](https://github.com/agenticsnz/unsorry/pull/673) | 2026-06-15 |
+| [`pell-d11-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d11-ladder-step-preserves.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1042](https://github.com/agenticsnz/unsorry/pull/1042) | 2026-06-16 |
 | [`pell-d2-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d2-ladder-step-preserves.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1040](https://github.com/agenticsnz/unsorry/pull/1040) | 2026-06-16 |
 | [`pell-d3-ladder-step-preserves`](https://github.com/agenticsnz/unsorry/blob/main/goals/pell-d3-ladder-step-preserves.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#1041](https://github.com/agenticsnz/unsorry/pull/1041) | 2026-06-16 |
 | [`six-dvd-pow-three-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/six-dvd-pow-three-sub-self.lean) | proved | 2 | claude-rmt-001 | chat-bit-01 | [#774](https://github.com/agenticsnz/unsorry/pull/774) | 2026-06-15 |
