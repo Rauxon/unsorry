@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-brahmagupta-composition-d2.oma-2-c50d.20260616t064113531217z-6b7624f0@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t064113531217z-6b7624f0; goal≜pell-brahmagupta-composition-d2; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜pell-brahmagupta-composition-d2}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜270; ended≜2026-06-16T06:41:13Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜ada08066aac117231c634841c86f77011cd17c45ac51465352d37da3c05bbdff}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

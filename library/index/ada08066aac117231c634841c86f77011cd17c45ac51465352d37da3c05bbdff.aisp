@@ -1,0 +1,8 @@
+𝔸5.1.lemma.ada08066aac1@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜ada08066aac117231c634841c86f77011cd17c45ac51465352d37da3c05bbdff; goal≜pell-brahmagupta-composition-d2; name≜pell_brahmagupta_composition_d2}
+⟦Σ:Source⟧{src≜goals/pell-brahmagupta-composition-d2.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜270}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
