@@ -1366,17 +1366,25 @@ submit_pr_tree() {
 # pre-filter and the verdict comes from an exact title-prefix match.
 # Best-effort: a gh error means "unknown" (rc 1) and claiming proceeds —
 # selection must not depend on API health.
-open_prove_pr_exists() {
-  local goal="$1" titles t
+# True iff an OPEN PR's title begins with exactly "<kind>(<goal>):". GitHub
+# search tokenizes punctuation, so the search is only a coarse pre-filter and
+# the verdict comes from an exact title-prefix match (the #198 sibling-token
+# regression). Best-effort: a gh error means "unknown" (rc 1) so selection
+# never depends on API health.
+open_kind_pr_exists() {
+  local kind="$1" goal="$2" titles t
   titles="$(gh pr list --state open --limit 30 \
-    --search "\"prove($goal):\" in:title" \
+    --search "\"$kind($goal):\" in:title" \
     --json title --jq '.[].title' 2>/dev/null)" || return 1
   [ -n "$titles" ] || return 1
   while IFS= read -r t; do
-    case "$t" in "prove($goal):"*) return 0 ;; esac
+    case "$t" in "$kind($goal):"*) return 0 ;; esac
   done <<< "$titles"
   return 1
 }
+
+open_prove_pr_exists()   { open_kind_pr_exists prove   "$1"; }
+open_unblock_pr_exists() { open_kind_pr_exists unblock "$1"; }
 
 decompose_blocked_by_open_prove_pr() {
   local goal="$1"
@@ -4263,6 +4271,35 @@ test_open_pr_claim_guard() {
   return 0
 }
 
+test_open_unblock_pr_guard() {
+  local rc
+  # An open unblock PR for exactly this parent → detected (rc 0). Each agent has
+  # its own SWEPT set, so without this remote check N agents open N dupes (the
+  # #1357 symptom). gh is stubbed — the suite stays hermetic.
+  gh() { printf 'unblock(some-parent): sub-lemmas proved, re-opening (ADR-009)\n'; }
+  if ! open_unblock_pr_exists some-parent; then
+    unset -f gh; log "  open unblock PR not detected"; return 1
+  fi
+  # A SIBLING parent's PR shares the search tokens but must not match.
+  gh() { printf 'unblock(some-parent-s2): sub-lemmas proved, re-opening (ADR-009)\n'; }
+  rc=0; open_unblock_pr_exists some-parent || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  sibling unblock PR matched the parent"; return 1; }
+  # A prove PR for the same goal must not be mistaken for an unblock PR.
+  gh() { printf 'prove(some-parent): thm by agent-x\n'; }
+  rc=0; open_unblock_pr_exists some-parent || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  prove PR matched the unblock guard"; return 1; }
+  # No open PR / a gh failure both fail open (rc 1) — selection never depends on
+  # API health.
+  gh() { :; }
+  rc=0; open_unblock_pr_exists some-parent || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  empty list treated as an open PR"; return 1; }
+  gh() { return 9; }
+  rc=0; open_unblock_pr_exists some-parent || rc=$?
+  [ "$rc" -eq 1 ] || { unset -f gh; log "  gh failure did not fail open"; return 1; }
+  unset -f gh
+  return 0
+}
+
 test_decompose_open_prove_guard() {
   local rc
   gh() { printf 'prove(parent-goal): theorem_name by agent-a\n'; }
@@ -4371,6 +4408,7 @@ run_self_tests() {
     test_effort_ladder
     test_infra_failure_classifier
     test_open_pr_claim_guard
+    test_open_unblock_pr_guard
     test_demote_open_prove_records_telemetry_only
     test_floored_recompose_noop_records_telemetry_only
     test_render_decomp_gateb
@@ -4528,13 +4566,21 @@ select_local_prove_goal() {
 # own signature with the subs available as imports. A small gated PR per parent
 # (editing only the goal record's status, not a Lean path → Gate A
 # short-circuits). Best-effort and idempotent: a racing duplicate re-open
-# produces the same edit. Tracks parents swept this session to avoid re-trying.
+# produces the same edit. Tracks parents swept this session to avoid re-trying,
+# and — because each agent runs its own session (its own SWEPT set) — skips a
+# parent that already has an open unblock PR from any agent, so N agents seeing
+# the same unblockable parent open one PR between them rather than N (the
+# ADR-017 open-PR guard, applied to unblock as it already is to prove).
 unblock_sweep() {
   local parent prwt branch
   while IFS= read -r parent; do
     [ -n "$parent" ] || continue
     [ -n "${SWEPT[$parent]:-}" ] && continue
     SWEPT[$parent]=1
+    if open_unblock_pr_exists "$parent"; then
+      log "unblock($parent): an open unblock PR is already in flight — skipping"
+      continue
+    fi
     branch="$(feature_branch unblock "$parent")" || continue
     prwt="$UNSORRY_WORKDIR/unblock-${parent}-${AGENT_ID}"
     open_pr_worktree "$prwt" "$branch" || continue
