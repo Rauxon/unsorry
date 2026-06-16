@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜am-gm-three-cube-s2
   phase≜prove
-  status≜blocked
+  status≜open
   difficulty≜1
 }
 ⟦Σ:Source⟧{
