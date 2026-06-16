@@ -2078,6 +2078,39 @@ prove_target_only_changed() {
   done < <(git -C "$root" status --porcelain=v1 --untracked-files=all)
 }
 
+# Keep THIS agent checkout's UnsorryLibrary oleans warm. Called once per cycle
+# after sync_repo (so the working tree is at origin/main, the same commit each
+# prove worktree branches from). The first call pays a full library build; later
+# calls are incremental — only newly-merged modules compile. The result is the
+# seed source for seed_library_cache. Best-effort and opt-out via
+# UNSORRY_SEED_LIBRARY=0; on failure prove verifies just fall back to the prior
+# full-build behaviour.
+ensure_warm_library() {
+  [ "${UNSORRY_SEED_LIBRARY:-1}" = 0 ] && return 0
+  WARM_LIBRARY_ROOT=""
+  if ( lake exe cache get && lake build UnsorryLibrary ) >/dev/null 2>&1; then
+    WARM_LIBRARY_ROOT="$PWD"
+  else
+    log "warning: warm library build failed — prove verifies will do a full build this cycle"
+  fi
+}
+
+# Seed <prwt>'s .lake/build from the warm checkout so `lake build UnsorryLibrary`
+# in the prove worktree compiles only the agent's new module instead of the
+# whole library. A full copy (not a hardlink) keeps the prove worktree's build
+# from ever touching the warm tree's oleans. Both trees sit at the same
+# origin/main commit, so Lean's content-hashed traces treat the copied oleans as
+# up to date. Best-effort: no warm root (build failed or opted out) ⇒ no-op, and
+# the verify falls back to a full build.
+seed_library_cache() {
+  local prwt="$1" warm="${WARM_LIBRARY_ROOT:-}"
+  [ -n "$warm" ] || return 0
+  [ -d "$warm/.lake/build" ] || return 0
+  [ -e "$prwt/.lake/build" ] && return 0
+  mkdir -p "$prwt/.lake" || return 0
+  cp -a "$warm/.lake/build" "$prwt/.lake/build" 2>/dev/null || true
+}
+
 # Prove step 3: local soundness verification of a candidate proof tree, BEFORE
 # any PR (the agent self-verifying per ADR-006 / design-doc step 6). All three
 # must pass on the tree at <root> for module Unsorry.<camel>:
@@ -2122,6 +2155,16 @@ run_proof() {
   if ! ( cd "$prwt" && lake exe cache get ) >/dev/null 2>&1; then
     log "warning: 'lake exe cache get' failed in the prove worktree for $goal — verification may be slow"
   fi
+  # cache get restores only *mathlib* oleans; the project's own UnsorryLibrary
+  # modules (hundreds, and growing with every merged proof) are not in any cache
+  # and would otherwise be recompiled from scratch in this fresh worktree on
+  # every verify (~9 min, and far worse when many agents contend for cores).
+  # Seed them from this agent's warm checkout (kept built by ensure_warm_library,
+  # pinned to the same origin/main commit the prove worktree branches from) so
+  # the verify compiles only the new module. Soundness is unaffected: CI Gate A
+  # re-verifies the whole library from scratch (ADR-049), so this only speeds the
+  # local pre-check. Best-effort: a miss just falls back to the full build.
+  seed_library_cache "$prwt"
   # ADR-014 dependency reuse: surface this goal's PROVED dependencies (declared
   # deps + the subs of its own decomposition) as importable library modules, so
   # merged work compounds instead of being re-proved.
@@ -4341,6 +4384,32 @@ test_infra_failure_classifier() {
   [ "$got" = real ] || { log "  boundary: want 'real', got '$got'"; return 1; }
 }
 
+test_seed_library_cache() {
+  local warm prwt rc
+  warm="$(mktemp -d)"; prwt="$(mktemp -d)"
+  mkdir -p "$warm/.lake/build/lib/lean/Unsorry" "$warm/.lake/build/bin"
+  : > "$warm/.lake/build/lib/lean/Unsorry/Foo.olean"
+  : > "$warm/.lake/build/bin/axiom_audit"
+  # Warm root set → the prove worktree is seeded with the oleans and the exe.
+  WARM_LIBRARY_ROOT="$warm"
+  seed_library_cache "$prwt"
+  rc=0
+  [ -f "$prwt/.lake/build/lib/lean/Unsorry/Foo.olean" ] || { log "  olean not seeded"; rc=1; }
+  [ -f "$prwt/.lake/build/bin/axiom_audit" ] || { log "  audit exe not seeded"; rc=1; }
+  # An existing build dir is never clobbered (a started build owns it).
+  local prwt2; prwt2="$(mktemp -d)"; mkdir -p "$prwt2/.lake/build"; : > "$prwt2/.lake/build/SENTINEL"
+  seed_library_cache "$prwt2"
+  [ -f "$prwt2/.lake/build/SENTINEL" ] || { log "  clobbered an existing build dir"; rc=1; }
+  [ -e "$prwt2/.lake/build/lib" ] && { log "  seeded over an existing build dir"; rc=1; }
+  # No warm root (build failed or UNSORRY_SEED_LIBRARY=0) → no-op, no crash.
+  local prwt3; prwt3="$(mktemp -d)"
+  WARM_LIBRARY_ROOT=""
+  seed_library_cache "$prwt3"
+  [ -e "$prwt3/.lake" ] && { log "  seeded with no warm root"; rc=1; }
+  rm -rf "$warm" "$prwt" "$prwt2" "$prwt3"
+  return "$rc"
+}
+
 test_open_pr_claim_guard() {
   local rc
   # ADR-017: an open prove PR for exactly this goal → skip it (rc 0). gh is
@@ -4486,6 +4555,7 @@ run_self_tests() {
     test_candidate_filtering
     test_sweep_detection
     test_goal_rewrite
+    test_seed_library_cache
     test_convergence_rewrite
     test_record_validation
     test_require_main_checkout
@@ -4958,6 +5028,9 @@ main() {
     # sweep is a translate-only janitor step; the unblock sweep is its prove
     # analogue (ADR-009): re-open blocked parents whose sub-lemmas are all proved.
     if [ "$PROVE" -eq 1 ]; then
+      # Warm this checkout's library oleans (at origin/main) so each prove
+      # worktree's verify is seeded and compiles only its new module.
+      ensure_warm_library
       unblock_sweep || overall=1
       candidates="$(select_prove_candidates)"
     else
