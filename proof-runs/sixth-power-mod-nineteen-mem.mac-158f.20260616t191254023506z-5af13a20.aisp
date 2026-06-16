@@ -1,0 +1,8 @@
+𝔸5.1.run.sixth-power-mod-nineteen-mem.mac-158f.20260616t191254023506z-5af13a20@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t191254023506z-5af13a20; goal≜sixth-power-mod-nineteen-mem; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-decide}
+⟦Γ:Goal⟧{goal≜sixth-power-mod-nineteen-mem}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T19:12:54Z}
+⟦Σ:Artifact⟧{sha≜73da6e31af798749c5b1b6d812ce67f27b2ab7697c76e352ec580d169148d9e0}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
