@@ -1,0 +1,8 @@
+𝔸5.1.run.gcd-5n3-7n4-eq-one.mac-158f.20260616t230151247083z-6f61bf14@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t230151247083z-6f61bf14; goal≜gcd-5n3-7n4-eq-one; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-gcd-bezout}
+⟦Γ:Goal⟧{goal≜gcd-5n3-7n4-eq-one}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T23:01:51Z}
+⟦Σ:Artifact⟧{sha≜a966b6ae8e0a8c236a9d91bcd9ced22f0b3bfce874cfb7265bf341aa1729205b}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
