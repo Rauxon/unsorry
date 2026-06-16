@@ -652,6 +652,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-16",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "37c1791cdc8866bb5ef80e5229d0daa017bbd4d9",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "pell-d3-no-negative-solution-zmod3",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/4eafe0404cd821737858eb505855fefb65b162320c8551d689f758d97ecd164e.aisp",
+      "review_status": "candidate",
+      "sha": "4eafe0404cd821737858eb505855fefb65b162320c8551d689f758d97ecd164e"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-15",
       "difficulty": 2,
       "display_name": "chat-bit-01",
@@ -3459,9 +3474,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 230,
-    "mapped_missing_solver": 226,
-    "missing_solver_provenance": 230,
+    "git_attributed_missing_solver": 231,
+    "mapped_missing_solver": 227,
+    "missing_solver_provenance": 231,
     "unmapped_missing_solver": 4
   }
 }
