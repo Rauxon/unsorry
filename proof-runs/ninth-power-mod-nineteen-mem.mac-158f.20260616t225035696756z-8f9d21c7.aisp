@@ -1,0 +1,8 @@
+𝔸5.1.run.ninth-power-mod-nineteen-mem.mac-158f.20260616t225035696756z-8f9d21c7@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t225035696756z-8f9d21c7; goal≜ninth-power-mod-nineteen-mem; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-powmod}
+⟦Γ:Goal⟧{goal≜ninth-power-mod-nineteen-mem}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:50:35Z}
+⟦Σ:Artifact⟧{sha≜d7db9810b4e482ee6e95bd9fdbe9177d86a426210872ec4133e31e01c160e44a}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
