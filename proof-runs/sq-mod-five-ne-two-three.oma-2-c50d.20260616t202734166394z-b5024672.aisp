@@ -1,0 +1,8 @@
+𝔸5.1.run.sq-mod-five-ne-two-three.oma-2-c50d.20260616t202734166394z-b5024672@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t202734166394z-b5024672; goal≜sq-mod-five-ne-two-three; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜sq-mod-five-ne-two-three}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜425; ended≜2026-06-16T20:27:34Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜cacd76bd1724af64d63a3dc76a9c6e723a1d601c3277751329ef55d89972ce1f}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
