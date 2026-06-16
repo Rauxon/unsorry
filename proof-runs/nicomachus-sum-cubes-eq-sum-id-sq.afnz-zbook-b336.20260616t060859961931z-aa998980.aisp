@@ -1,0 +1,9 @@
+𝔸5.1.run.nicomachus-sum-cubes-eq-sum-id-sq.afnz-zbook-b336.20260616t060859961931z-aa998980@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t060859961931z-aa998980; goal≜nicomachus-sum-cubes-eq-sum-id-sq; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜nicomachus-sum-cubes-eq-sum-id-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜219; ended≜2026-06-16T06:08:59Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8545/8650] Building Unsorry.NicomachusSumCubesEqSumIdSq (261ms) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-nicomachus-sum-cubes-eq-sum-id-sq-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-nicomachus-sum-cubes-eq-sum-id-sq-afnz-}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
