@@ -1,0 +1,9 @@
+𝔸5.1.run.prod-icc-succ-add-three-div-self-eq-binom-shift.afnz-zbook-b336.20260616t141617755650z-d265bce5@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t141617755650z-d265bce5; goal≜prod-icc-succ-add-three-div-self-eq-binom-shift; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜prod-icc-succ-add-three-div-self-eq-binom-shift}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜478; ended≜2026-06-16T14:16:17Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8708/8710] Building Unsorry.ProdIccSuccAddThreeDivSelfEqBinomShift (915ms) trace: .> LEAN_PATH=/home/chris/.unsorry/work/prove-prod-icc-succ-add-three-div-self-eq-binom-shift-afnz-zbook-b336/.lake/packages/Cli/.lake/build/lib/lean:/home/chris/.unsorry/work/prove-prod-icc-succ-}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
