@@ -1,0 +1,8 @@
+𝔸5.1.run.am-gm-three-cube.mac-158f.20260616t214340741573z-f997181d@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t214340741573z-f997181d; goal≜am-gm-three-cube; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-nlinarith}
+⟦Γ:Goal⟧{goal≜am-gm-three-cube}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T21:43:40Z}
+⟦Σ:Artifact⟧{sha≜d8e19dd27937e13fae4f4fbb18cd1e174b8b9cc54acca679adaf83e6c4d5ada2}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
