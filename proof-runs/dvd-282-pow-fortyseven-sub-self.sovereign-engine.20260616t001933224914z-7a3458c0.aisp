@@ -1,0 +1,9 @@
+𝔸5.1.run.dvd-282-pow-fortyseven-sub-self.sovereign-engine.20260616t001933224914z-7a3458c0@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t001933224914z-7a3458c0; goal≜dvd-282-pow-fortyseven-sub-self; agent≜sovereign-engine; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜jackcloudman/Leanstral-2603-GGUF; effort≜high}
+⟦Γ:Goal⟧{goal≜dvd-282-pow-fortyseven-sub-self}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜1922; ended≜2026-06-16T00:19:33Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(openai call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
