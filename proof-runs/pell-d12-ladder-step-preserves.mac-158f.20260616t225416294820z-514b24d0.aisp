@@ -1,0 +1,8 @@
+𝔸5.1.run.pell-d12-ladder-step-preserves.mac-158f.20260616t225416294820z-514b24d0@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t225416294820z-514b24d0; goal≜pell-d12-ladder-step-preserves; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜swarm-sonnet}
+⟦Γ:Goal⟧{goal≜pell-d12-ladder-step-preserves}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:54:16Z}
+⟦Σ:Artifact⟧{sha≜6f4aa7b31addfc3f3f35799df348045c674dc4f1e78703074e4905c8f6d080cb}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
