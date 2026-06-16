@@ -1,0 +1,8 @@
+𝔸5.1.run.prod-range-one-sub-recip-succ-sq.mac-158f.20260616t222554231982z-43ec0548@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t222554231982z-43ec0548; goal≜prod-range-one-sub-recip-succ-sq; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-telescope}
+⟦Γ:Goal⟧{goal≜prod-range-one-sub-recip-succ-sq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:25:54Z}
+⟦Σ:Artifact⟧{sha≜6d24032d11aec887b339c8c703313b0ba2164912fcb7cb0ccd0b0dc1a029e8e3}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,8 @@
+𝔸5.1.lemma.6d24032d11ae@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜6d24032d11aec887b339c8c703313b0ba2164912fcb7cb0ccd0b0dc1a029e8e3; goal≜prod-range-one-sub-recip-succ-sq; name≜prod_range_one_sub_recip_succ_sq}
+⟦Σ:Source⟧{src≜goals/prod-range-one-sub-recip-succ-sq.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-telescope; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
