@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-two-mul-add-one.mac-158f.20260616t205330494924z-94fcdff4@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t205330494924z-94fcdff4; goal≜sum-range-two-mul-add-one; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-sum-induction}
+⟦Γ:Goal⟧{goal≜sum-range-two-mul-add-one}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T20:53:30Z}
+⟦Σ:Artifact⟧{sha≜a66fbf8628955461050212c200108d4187ff241718f9a1d586f8cb74511c1304}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
