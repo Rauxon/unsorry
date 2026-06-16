@@ -1,7 +1,8 @@
-𝔸5.1.lemma.82f90b2ebd38@2026-06-15
+𝔸5.1.lemma.82f90b2ebd38@2026-06-16
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜82f90b2ebd38b64da550fc3f3d2e19aba9978450062d748206b79d9f4a7f868a; goal≜gcd-3n1-5n2-eq-one; name≜gcd_3n1_5n2_eq_one}
 ⟦Σ:Source⟧{src≜goals/gcd-3n1-5n2-eq-one.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-gcd-bezout; attempts≜1}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
