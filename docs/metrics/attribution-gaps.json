@@ -895,6 +895,21 @@
       "date": "2026-06-16",
       "difficulty": 2,
       "display_name": "chat-bit-01",
+      "git_add_commit": "69abf77a3629dd7cdcc4d50626428cdf5a03d5c0",
+      "git_add_date": "2026-06-17",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-fourth-powers-ge-cube-times-sum",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/59c76dd9108598ea71fced282aa4ec9cb2bf826bfe0d7d6315a5ad01926df91e.aisp",
+      "review_status": "candidate",
+      "sha": "59c76dd9108598ea71fced282aa4ec9cb2bf826bfe0d7d6315a5ad01926df91e"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
       "git_add_commit": "658d3ea809855cce076d7d22b15affa45c7b8c6b",
       "git_add_date": "2026-06-16",
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -4059,9 +4074,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 270,
-    "mapped_missing_solver": 266,
-    "missing_solver_provenance": 270,
+    "git_attributed_missing_solver": 271,
+    "mapped_missing_solver": 267,
+    "missing_solver_provenance": 271,
     "unmapped_missing_solver": 4
   }
 }
