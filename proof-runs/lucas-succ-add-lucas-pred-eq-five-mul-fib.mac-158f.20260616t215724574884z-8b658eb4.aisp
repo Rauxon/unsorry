@@ -1,0 +1,8 @@
+𝔸5.1.run.lucas-succ-add-lucas-pred-eq-five-mul-fib.mac-158f.20260616t215724574884z-8b658eb4@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t215724574884z-8b658eb4; goal≜lucas-succ-add-lucas-pred-eq-five-mul-fib; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-induction}
+⟦Γ:Goal⟧{goal≜lucas-succ-add-lucas-pred-eq-five-mul-fib}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T21:57:24Z}
+⟦Σ:Artifact⟧{sha≜f560d5fd762d6df87a0d33a1528ffc147f193ac2e82f1d37ffbdf69d92d01c8a}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
