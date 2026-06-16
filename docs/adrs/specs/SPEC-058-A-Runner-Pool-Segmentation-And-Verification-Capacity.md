@@ -149,6 +149,36 @@ This is the first concrete two-layer implementation:
 `--prove-local` and `--dry-run` are exempt because they produce no remote
 claims, branches, PRs, or namespace verifier demand.
 
+### 5.0.1 Queue-backed producer / dispatcher mode
+
+The compatible cutover path is:
+
+```text
+old proof PRs already open       -> continue through the existing Gate A lane
+new proof producers              -> default queued submit mode
+queued proof branches            -> no PR, no Gate A spend
+queue dispatcher                 -> opens bounded PRs when the governor allows
+```
+
+`./swarm/agent.sh --prove` still claims a goal, generates a proof, locally
+verifies it, writes the same library/index/goal tree, and releases the claim.
+By default it now pushes the verified tree to:
+
+```text
+queued/prove/<goal>/<agent>-<suffix>
+```
+
+`./swarm/agent.sh --dispatch-queue` fetches queued proof branches, skips any
+branch that already has a PR, checks the same live admission governor, and
+opens at most `UNSORRY_DISPATCH_LIMIT` PRs per pass.
+`UNSORRY_GOVERNOR_WAIT` defaults to `300`, so producers and dispatchers poll
+rather than exit when the governor is closed or no work is available.
+
+This lets operators switch the production engine while the old PR queue drains:
+existing PRs are untouched, existing required checks remain stable, and new
+proof work does not consume GitHub PR or namespace Gate A capacity until the
+dispatcher admits it.
+
 ### 5.1 Required-check continuity
 
 The cutover must preserve required check names:
@@ -190,8 +220,13 @@ Before changing actual runner profile sizes, operators should:
 5. Cancel only superseded or clearly stuck runs.
 6. Confirm new PRs route routine work to `unsorry-1` and olean-invalidating
    work to `unsorry-2`.
-7. Wait for one scheduled `gate-a-full-replay` run after the cutover.
-8. Record the cutover event with profile sizes and queue state.
+7. Let producer agents pull/re-exec the latest harness, or restart them if
+   they are inside a long provider call; default coordinated `--prove` now
+   queues verified branches.
+8. Start one dispatcher with `./swarm/agent.sh --dispatch-queue` and a small
+   `UNSORRY_DISPATCH_LIMIT`.
+9. Wait for one scheduled `gate-a-full-replay` run after the cutover.
+10. Record the cutover event with profile sizes and queue state.
 
 The pause in step 2 can be manual at first. ADR-053/ADR-054 should later make
 it an explicit claim/quota control.

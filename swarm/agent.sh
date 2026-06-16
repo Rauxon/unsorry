@@ -6,6 +6,7 @@
 #   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
 #   ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex] [--dry-run]
 #   ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai]
+#   ./swarm/agent.sh --dispatch-queue [--once] [--dry-run]
 #   ./swarm/agent.sh --self-test
 #
 # Must be run from the repository root. Swarm modes additionally require `main`
@@ -22,7 +23,7 @@
 # infrastructure failure (the selected proof CLI cannot run — quota, auth, network —
 # the agent stops without applying any queue penalty, ADR-016).
 #
-# shellcheck disable=SC2317  # test_* functions are invoked indirectly ("$t")
+# shellcheck disable=SC2317,SC2329  # test_* functions are invoked indirectly ("$t")
 set -euo pipefail
 
 # ----------------------------------------------------------------- constants
@@ -48,6 +49,7 @@ Usage:
   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
   ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex|gemini|openai] [-pi [<model>]] [--dry-run]
   ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai] [-pi [<model>]]
+  ./swarm/agent.sh --dispatch-queue [--once] [--dry-run]
   ./swarm/agent.sh --self-test
 
 Flags:
@@ -55,6 +57,8 @@ Flags:
   --prove           Phase-1 mode: only phase≡prove, unproved goals are candidates
   --prove-local     Prove one goal from local HEAD without any remote, claim,
                     PR, or GitHub operation; auto-selects unless --goal is set
+  --dispatch-queue  Open queued proof branches as PRs when the ADR-058
+                    submission governor admits more verifier work
   --provider <name> Proof provider: claude (default), codex, gemini, or openai
   --once            Run exactly one cycle then exit
   --goal <id>       Restrict or override automatic selection to one goal
@@ -123,6 +127,16 @@ Environment:
                     normal prove pipeline (retry with accumulated lessons,
                     ADR-024; decompose on failure, ADR-009) instead of going
                     idle (default: 1; set 0 to disable)
+  UNSORRY_SUBMIT_MODE
+                    Coordinated --prove submit mode: queue pushes a verified
+                    proof branch under queued/prove/ without opening a PR
+                    (default); pr opens the PR immediately
+  UNSORRY_DISPATCH_LIMIT
+                    Max queued proof branches --dispatch-queue opens per run
+                    (default: 1; --once also limits to one)
+  UNSORRY_GOVERNOR_WAIT
+                    Seconds to sleep before polling again when the governor is
+                    closed or no work is available (default: 300; --once exits)
   UNSORRY_SUBMISSION_GOVERNOR
                     Coordinated --prove admission control (default: 1). When
                     enabled, the agent checks open prove PR count and Gate A
@@ -1006,6 +1020,12 @@ feature_branch() {
   printf 'feature/goal-%s-%s-%s-%s\n' "$goal" "$kind" "$AGENT_ID" "$hex"
 }
 
+queued_prove_branch() {
+  local goal="$1" hex
+  hex="$(od -An -N3 -tx1 /dev/urandom | tr -d ' \n')" || return 1
+  printf 'queued/prove/%s/%s-%s\n' "$goal" "$AGENT_ID" "$hex"
+}
+
 # Claim record per the SPEC-003-B template; header date = UTC date of ts.
 render_claim_record() {
   local goal="$1" agent="$2" ts="$3" ttl="$4"
@@ -1372,6 +1392,81 @@ submit_pr_tree() {
   return 0
 }
 
+queue_pr_tree() {
+  local prwt="$1" branch="$2" title="$3"
+  shift 3
+  if ! python3 -m tools.gate_b validate "$prwt" >/dev/null; then
+    log "queued tree on $branch fails Gate B — not pushing"
+    return 1
+  fi
+  git -C "$prwt" add "$@" || return 1
+  git -C "$prwt" commit -q -m "$title" || return 1
+  git -C "$prwt" push -q origin "$branch" || return 1
+  return 0
+}
+
+fetch_queued_prove_branches() {
+  git fetch -q origin '+refs/heads/queued/prove/*:refs/remotes/origin/queued/prove/*'
+}
+
+queued_branch_has_pr() {
+  local branch="$1" count
+  count="$(gh pr list --state all --head "$branch" --json number --jq 'length' 2>/dev/null)" \
+    || return 1
+  [ "$count" -gt 0 ]
+}
+
+dispatch_queued_proof_branch() {
+  local branch="$1" title body goal name
+  local remote_ref="origin/$branch"
+  title="$(git log -1 --format=%s "$remote_ref")" || return 1
+  case "$title" in
+    prove\(*:*) ;;
+    *) log "queue dispatcher skipped $branch — commit title is not a prove title"; return 1 ;;
+  esac
+  goal="${branch#queued/prove/}"
+  goal="${goal%%/*}"
+  name="${title#*: }"
+  name="${name% by *}"
+  body="Queued proof dispatch (ADR-058, SPEC-007-A): branch \`$branch\` was produced by coordinated \`--prove\` in \`UNSORRY_SUBMIT_MODE=queue\` after local verification passed. The dispatcher opened this PR only after the submission governor admitted more verifier work. New library proof: \`$name\` for goal \`$goal\`."
+  if [ "$DRY_RUN" -eq 1 ]; then
+    printf 'dry-run: would dispatch queued branch %s as "%s"\n' "$branch" "$title"
+    return 0
+  fi
+  (
+    gh pr create --base main --head "$branch" --title "$title" --body "$body" \
+      && gh pr merge --auto --squash "$branch"
+  ) || return 1
+  log "dispatched queued proof branch $branch"
+  return 0
+}
+
+dispatch_queue() {
+  local limit="${UNSORRY_DISPATCH_LIMIT:-1}" branch dispatched=0 failures=0
+  [ "$ONCE" -eq 1 ] && limit=1
+  validate_integer_knob UNSORRY_DISPATCH_LIMIT "$limit"
+  fetch_queued_prove_branches || { log "queue dispatcher: no queued proof branches found"; return 0; }
+  while IFS= read -r branch; do
+    [ -n "$branch" ] || continue
+    branch="${branch#origin/}"
+    if queued_branch_has_pr "$branch"; then
+      log "queue dispatcher skipped $branch — PR already exists"
+      continue
+    fi
+    if ! submission_governor_allows; then
+      [ "$dispatched" -gt 0 ] && return "$failures"
+      return 0
+    fi
+    if dispatch_queued_proof_branch "$branch"; then
+      dispatched=$((dispatched + 1))
+    else
+      failures=$((failures + 1))
+    fi
+    [ "$dispatched" -ge "$limit" ] && break
+  done < <(git for-each-ref --format='%(refname:short)' refs/remotes/origin/queued/prove)
+  [ "$failures" -eq 0 ]
+}
+
 # ----------------------------------------------------------------- the cycle
 
 # ADR-017: a goal whose prove PR is already open is done being worked — the
@@ -1394,6 +1489,11 @@ open_prove_pr_exists() {
     case "$t" in "prove($goal):"*) return 0 ;; esac
   done <<< "$titles"
   return 1
+}
+
+queued_prove_branch_exists() {
+  local goal="$1"
+  git ls-remote --exit-code --heads origin "queued/prove/$goal/*" >/dev/null 2>&1
 }
 
 env_truthy() {
@@ -2311,7 +2411,7 @@ check_in_failed_run_only() {
 # the verified module (run_proof wrote it into <prwt>).
 check_in_proof() {
   local goal="$1" prwt="$2" camel="$3"
-  local name sha
+  local name sha title body branch
   local -a provenance=(
     --solver "$SOLVER"
     --agent "$AGENT_ID"
@@ -2337,10 +2437,18 @@ check_in_proof() {
   # (ADR-011, SPEC-011-A). Remove it from the PR tree.
   rm -f "$prwt/library/Unsorry/${camel}Binding.lean"
 
-  submit_pr_tree "$prwt" "$(git -C "$prwt" rev-parse --abbrev-ref HEAD)" \
-    "prove($goal): $name by $AGENT_ID" \
-    "Automated Phase-1 proof of goal \`$goal\` by agent \`$AGENT_ID\` (ADR-006, ADR-007, SPEC-007-A). New library module \`library/Unsorry/$camel.lean\` re-states and proves \`$name\`; built with \`lake build UnsorryLibrary --wfail\` and audited with \`lake exe axiom_audit Unsorry.$camel\` (whitelist only). Index entry keyed by the content address of the goal's Lean statement." \
-    library goals proof-runs || return 1
+  branch="$(git -C "$prwt" rev-parse --abbrev-ref HEAD)" || return 1
+  title="prove($goal): $name by $AGENT_ID"
+  body="Automated Phase-1 proof of goal \`$goal\` by agent \`$AGENT_ID\` (ADR-006, ADR-007, SPEC-007-A). New library module \`library/Unsorry/$camel.lean\` re-states and proves \`$name\`; built with \`lake build UnsorryLibrary --wfail\` and audited with \`lake exe axiom_audit Unsorry.$camel\` (whitelist only). Index entry keyed by the content address of the goal's Lean statement."
+  if [ "$UNSORRY_SUBMIT_MODE" = queue ]; then
+    queue_pr_tree "$prwt" "$branch" "$title" library goals proof-runs || return 1
+    emit_event proved "$goal"
+    emit_event queued "$goal"
+    log "queued verified proof branch $branch for $goal (sha ${sha:0:12})"
+    return 0
+  fi
+
+  submit_pr_tree "$prwt" "$branch" "$title" "$body" library goals proof-runs || return 1
   emit_event proved "$goal"
   emit_event pr-opened "$goal"
   log "opened auto-merge prove PR for $goal (sha ${sha:0:12})"
@@ -2355,7 +2463,11 @@ prove_goal() {
   local goal="$1"
   local camel prwt branch ok=0 prc=0 drc=0
   camel="$(py_helper camel-name "$goal")" || return 1
-  branch="$(feature_branch prove "$goal")" || return 1
+  if [ "$UNSORRY_SUBMIT_MODE" = queue ]; then
+    branch="$(queued_prove_branch "$goal")" || return 1
+  else
+    branch="$(feature_branch prove "$goal")" || return 1
+  fi
   prwt="$UNSORRY_WORKDIR/prove-${goal}-${AGENT_ID}"
 
   open_pr_worktree "$prwt" "$branch" || return 1
@@ -4448,6 +4560,23 @@ test_submission_governor_allows_with_stubbed_gh() {
     || { log "  disabled governor did not allow"; return 1; }
 }
 
+test_queued_branch_claim_guard() {
+  local PROVE=1 CLAIMED_GOAL="" claimed=""
+  open_prove_pr_exists() { return 1; }
+  queued_prove_branch_exists() { [ "$1" = queued-goal ]; }
+  claim_goal() { claimed="$1"; return 0; }
+  claim_from_pool "$(printf 'queued-goal\nfree-goal\n')" || {
+    unset -f open_prove_pr_exists queued_prove_branch_exists claim_goal
+    log "  claim_from_pool failed"
+    return 1
+  }
+  unset -f open_prove_pr_exists queued_prove_branch_exists claim_goal
+  [ "$CLAIMED_GOAL" = free-goal ] \
+    || { log "  expected free-goal after queued skip, got '$CLAIMED_GOAL'"; return 1; }
+  [ "$claimed" = free-goal ] \
+    || { log "  expected claim of free-goal, got '$claimed'"; return 1; }
+}
+
 test_render_decomp_gateb() {
   # A rendered decomposition record + its sub goal records validate under the
   # real Gate B (acyclic, subs are known goals, none re-emits the parent).
@@ -4540,6 +4669,7 @@ run_self_tests() {
     test_open_pr_claim_guard
     test_submission_governor_reason
     test_submission_governor_allows_with_stubbed_gh
+    test_queued_branch_claim_guard
     test_demote_open_prove_records_telemetry_only
     test_floored_recompose_noop_records_telemetry_only
     test_render_decomp_gateb
@@ -4566,6 +4696,7 @@ run_self_tests() {
 TRANSLATE_ONLY=0
 PROVE=0
 PROVE_LOCAL=0
+DISPATCH_QUEUE=0
 ONCE=0
 GOAL_FILTER=""
 DRY_RUN=0
@@ -4605,6 +4736,7 @@ parse_args() {
       --translate-only) TRANSLATE_ONLY=1 ;;
       --prove) PROVE=1 ;;
       --prove-local) PROVE_LOCAL=1; PROVE=1; ONCE=1 ;;
+      --dispatch-queue) DISPATCH_QUEUE=1; PROVE=1 ;;
       --provider)
         [ $# -ge 2 ] || { usage >&2; die_config "--provider requires a value"; }
         UNSORRY_PROVIDER="$2"
@@ -4746,6 +4878,10 @@ claim_from_pool() {
       log "skipping $cand — an open prove PR is already in flight"
       continue
     fi
+    if [ "$PROVE" -eq 1 ] && queued_prove_branch_exists "$cand"; then
+      log "skipping $cand — a queued prove branch is waiting for dispatch"
+      continue
+    fi
     if claim_goal "$cand"; then
       CLAIMED_GOAL="$cand"
       return 0
@@ -4772,10 +4908,41 @@ main() {
   fi
 
   if [ "$TRANSLATE_ONLY" -eq 1 ] && [ "$PROVE" -eq 1 ]; then
-    die_config "--translate-only and --prove are mutually exclusive"
+    die_config "--translate-only, --prove, and --dispatch-queue are mutually exclusive"
   fi
   [ "$TRANSLATE_ONLY" -eq 1 ] || [ "$PROVE" -eq 1 ] \
-    || die_config "select a mode: --translate-only or --prove (or --self-test)"
+    || die_config "select a mode: --translate-only, --prove, or --dispatch-queue (or --self-test)"
+
+  if [ "$DISPATCH_QUEUE" -eq 1 ]; then
+    [ -z "$GOAL_FILTER" ] || die_config "--goal is not supported with --dispatch-queue"
+    require_cmd git gh
+    require_unsorry_origin
+    require_main_checkout
+    UNSORRY_SUBMISSION_GOVERNOR="${UNSORRY_SUBMISSION_GOVERNOR:-1}"
+    UNSORRY_SUBMISSION_FREEZE="${UNSORRY_SUBMISSION_FREEZE:-0}"
+    UNSORRY_MAX_OPEN_PROVE_PRS="${UNSORRY_MAX_OPEN_PROVE_PRS:-40}"
+    UNSORRY_MAX_GATE_A_IN_FLIGHT="${UNSORRY_MAX_GATE_A_IN_FLIGHT:-20}"
+    UNSORRY_GOVERNOR_SCAN_LIMIT="${UNSORRY_GOVERNOR_SCAN_LIMIT:-200}"
+    UNSORRY_DISPATCH_LIMIT="${UNSORRY_DISPATCH_LIMIT:-1}"
+    UNSORRY_GOVERNOR_WAIT="${UNSORRY_GOVERNOR_WAIT:-300}"
+    case "$UNSORRY_SUBMISSION_GOVERNOR" in
+      0|1) ;;
+      *) die_config "UNSORRY_SUBMISSION_GOVERNOR '$UNSORRY_SUBMISSION_GOVERNOR' must be 0 or 1" ;;
+    esac
+    validate_integer_knob UNSORRY_MAX_OPEN_PROVE_PRS "$UNSORRY_MAX_OPEN_PROVE_PRS" 1
+    validate_integer_knob UNSORRY_MAX_GATE_A_IN_FLIGHT "$UNSORRY_MAX_GATE_A_IN_FLIGHT" 1
+    validate_integer_knob UNSORRY_GOVERNOR_SCAN_LIMIT "$UNSORRY_GOVERNOR_SCAN_LIMIT"
+    validate_integer_knob UNSORRY_DISPATCH_LIMIT "$UNSORRY_DISPATCH_LIMIT"
+    validate_integer_knob UNSORRY_GOVERNOR_WAIT "$UNSORRY_GOVERNOR_WAIT"
+    gh auth status >/dev/null 2>&1 || die_config "gh is not authenticated"
+    while :; do
+      dispatch_queue || exit 1
+      [ "$ONCE" -eq 1 ] && exit 0
+      [ "$UNSORRY_GOVERNOR_WAIT" -gt 0 ] || exit 0
+      log "queue dispatcher waiting ${UNSORRY_GOVERNOR_WAIT}s before next dispatch pass"
+      sleep "$UNSORRY_GOVERNOR_WAIT"
+    done
+  fi
 
   # ADR-042: relocate into a dedicated per-agent worktree before any provider,
   # auth, or model resolution, so all of it runs once in the isolated tree.
@@ -4898,16 +5065,23 @@ main() {
   mkdir -p "$UNSORRY_WORKDIR" || die_config "cannot create UNSORRY_WORKDIR '$UNSORRY_WORKDIR'"
   UNSORRY_SUBMISSION_GOVERNOR="${UNSORRY_SUBMISSION_GOVERNOR:-1}"
   UNSORRY_SUBMISSION_FREEZE="${UNSORRY_SUBMISSION_FREEZE:-0}"
+  UNSORRY_SUBMIT_MODE="${UNSORRY_SUBMIT_MODE:-queue}"
   UNSORRY_MAX_OPEN_PROVE_PRS="${UNSORRY_MAX_OPEN_PROVE_PRS:-40}"
   UNSORRY_MAX_GATE_A_IN_FLIGHT="${UNSORRY_MAX_GATE_A_IN_FLIGHT:-20}"
   UNSORRY_GOVERNOR_SCAN_LIMIT="${UNSORRY_GOVERNOR_SCAN_LIMIT:-200}"
+  UNSORRY_GOVERNOR_WAIT="${UNSORRY_GOVERNOR_WAIT:-300}"
   case "$UNSORRY_SUBMISSION_GOVERNOR" in
     0|1) ;;
     *) die_config "UNSORRY_SUBMISSION_GOVERNOR '$UNSORRY_SUBMISSION_GOVERNOR' must be 0 or 1" ;;
   esac
+  case "$UNSORRY_SUBMIT_MODE" in
+    pr|queue) ;;
+    *) die_config "UNSORRY_SUBMIT_MODE '$UNSORRY_SUBMIT_MODE' must be pr or queue" ;;
+  esac
   validate_integer_knob UNSORRY_MAX_OPEN_PROVE_PRS "$UNSORRY_MAX_OPEN_PROVE_PRS" 1
   validate_integer_knob UNSORRY_MAX_GATE_A_IN_FLIGHT "$UNSORRY_MAX_GATE_A_IN_FLIGHT" 1
   validate_integer_knob UNSORRY_GOVERNOR_SCAN_LIMIT "$UNSORRY_GOVERNOR_SCAN_LIMIT"
+  validate_integer_knob UNSORRY_GOVERNOR_WAIT "$UNSORRY_GOVERNOR_WAIT"
 
   resolve_agent_id
   if [ "$DRY_RUN" -eq 0 ]; then
@@ -4939,7 +5113,7 @@ main() {
       effort_disp="ladder(high→xhigh→max)"
     fi
   fi
-  log "agent $AGENT_ID starting ($mode; provider=$UNSORRY_PROVIDER model=${UNSORRY_MODEL:-default} effort=$effort_disp attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s governor=${UNSORRY_SUBMISSION_GOVERNOR})"
+  log "agent $AGENT_ID starting ($mode; provider=$UNSORRY_PROVIDER model=${UNSORRY_MODEL:-default} effort=$effort_disp attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s submit=$UNSORRY_SUBMIT_MODE governor=${UNSORRY_SUBMISSION_GOVERNOR})"
 
   declare -A HANDLED=()
   declare -A SWEPT=()
@@ -4951,6 +5125,11 @@ main() {
     sync_repo || { log "repository sync failed"; exit 1; }
     maybe_reexec_on_harness_update
     if [ "$PROVE" -eq 1 ] && ! submission_governor_allows; then
+      if [ "$UNSORRY_GOVERNOR_WAIT" -gt 0 ] && [ "$ONCE" -eq 0 ]; then
+        log "submission governor waiting ${UNSORRY_GOVERNOR_WAIT}s before retry"
+        sleep "$UNSORRY_GOVERNOR_WAIT"
+        continue
+      fi
       break
     fi
 
@@ -5010,6 +5189,11 @@ main() {
     fi
     if [ -z "$goal" ]; then
       log "no viable or recoverable prove work this pass"
+      if [ "$PROVE" -eq 1 ] && [ "$UNSORRY_GOVERNOR_WAIT" -gt 0 ] && [ "$ONCE" -eq 0 ]; then
+        log "waiting ${UNSORRY_GOVERNOR_WAIT}s for new prove work"
+        sleep "$UNSORRY_GOVERNOR_WAIT"
+        continue
+      fi
       break
     fi
 
