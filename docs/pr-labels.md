@@ -9,6 +9,7 @@ Every PR carries labels classified from its title — the titles are machine-gen
 | `swarm:translate` | `tr(<goal>): …`, `converge(<goal>): …` | Agent translation/convergence PR (Phase-0/1 loop) |
 | `swarm:prove` | `prove(<goal>): …` | Agent proof PR — **theorem proved** (the product surface) |
 | `swarm:decompose` | `decompose(<goal>): …` | **Theorem not proved** — split into sub-lemmas (ADR-009) |
+| `swarm:unblock` | `unblock(<goal>): …` | **Theorem not yet proved** — a `blocked` parent re-opened after its sub-lemmas were proved (ADR-009) |
 | `swarm:demote` | `affinity(<goal>): …` | **Theorem not proved** — attempt failed, goal demoted (ADR-010) |
 | `red-team` | `redteam<round>(<vector>): …` | Adversarial gate-bypass attempt — a **closed** red-team PR means the gates held |
 | `release` | `docs(vX.Y.Z): …` | Version housekeeping + tag |
@@ -16,7 +17,7 @@ Every PR carries labels classified from its title — the titles are machine-gen
 | `metrics` | `docs: … (run NNN)` / `… metrics …` / `… red-team round NNN` | Run-evidence records (always alongside `docs`) |
 | `feat` / `fix` / `chore` / `ci` / `test` / `refactor` / `perf` / `build` | Conventional-Commits prefixes (scope optional, `:` required) | Maintainer changes to the machinery |
 
-So a glance at the title says what a PR *is*: `prove(...)` is a theorem that **passed**; `decompose(...)` / `affinity(...)` are theorems that **did not pass** (split / demoted); `feat:`/`fix:` are the machinery evolving; `docs:` is documentation.
+So a glance at the title says what a PR *is*: `prove(...)` is a theorem that **passed**; `decompose(...)` / `affinity(...)` are theorems that **did not pass** (split / demoted); `unblock(...)` re-opens a decomposed parent once its sub-lemmas land (ADR-009); `feat:`/`fix:` are the machinery evolving; `docs:` is documentation.
 
 **One logical change per PR (trunk-based).** A proof is a proof; a fix is a fix; a feature is a feature — don't bundle (e.g. a harness fix riding a proof PR). One short-lived branch off `main`, squash-merged on green gates, deleted after. See [`CONTRIBUTING.md`](../CONTRIBUTING.md) and [ADR-026](adrs/ADR-026-PR-Convention-Enforcement.md). Further separation (blocking PRs that mix proof and harness content) and harness-regression gates are tracked in issue #302.
 
