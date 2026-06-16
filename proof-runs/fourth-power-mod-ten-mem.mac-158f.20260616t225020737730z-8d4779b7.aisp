@@ -1,0 +1,8 @@
+𝔸5.1.run.fourth-power-mod-ten-mem.mac-158f.20260616t225020737730z-8d4779b7@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t225020737730z-8d4779b7; goal≜fourth-power-mod-ten-mem; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-powmod}
+⟦Γ:Goal⟧{goal≜fourth-power-mod-ten-mem}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T22:50:20Z}
+⟦Σ:Artifact⟧{sha≜d788b5467706467e8c80f54b45d6fd94f2da777f6e612e1b6d2dbfe58dbe0f52}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
