@@ -1,7 +1,8 @@
-𝔸5.1.lemma.c91c009b5db9@2026-06-15
+𝔸5.1.lemma.c91c009b5db9@2026-06-16
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜c91c009b5db95b8423b9498f86830cc194b6dbd6146d28069a5856fbeedfb742; goal≜fourth-power-mod-five-mem; name≜fourth_power_mod_five_mem}
 ⟦Σ:Source⟧{src≜goals/fourth-power-mod-five-mem.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-powmod; attempts≜1}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
