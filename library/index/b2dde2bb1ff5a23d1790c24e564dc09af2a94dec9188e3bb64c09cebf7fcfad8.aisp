@@ -1,0 +1,8 @@
+𝔸5.1.lemma.b2dde2bb1ff5@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜b2dde2bb1ff5a23d1790c24e564dc09af2a94dec9188e3bb64c09cebf7fcfad8; goal≜sq-mod-fourteen-mem; name≜sq_mod_fourteen_mem}
+⟦Σ:Source⟧{src≜goals/sq-mod-fourteen-mem.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ohdearquant; agent≜mac-158f; provider≜claude; model≜template-decide; attempts≜1}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
