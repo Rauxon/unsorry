@@ -92,18 +92,18 @@
       "attempt_yield": 1.0,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "badges": {
-        "difficulty": 20,
-        "proofs": 10,
+        "difficulty": 22,
+        "proofs": 11,
         "success_rate_percent": 100.0
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 10,
-      "difficulty_points": 20,
+      "credited_proofs": 11,
+      "difficulty_points": 22,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 10,
+      "explicit_solver_proofs": 11,
       "failed_attempts": 0,
       "github": "ohdearquant",
       "inferred_git_proofs": 0,
@@ -111,11 +111,11 @@
       "profile_url": "https://github.com/ohdearquant",
       "rank": 4,
       "run_success_rate": 1.0,
-      "runs": 10,
-      "score": 2250,
+      "runs": 11,
+      "score": 2475,
       "solver": "ohdearquant",
-      "successes": 10,
-      "verified_proofs": 10
+      "successes": 11,
+      "verified_proofs": 11
     },
     {
       "attempt_yield": null,
@@ -308,15 +308,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/OceanLi.png?size=96",
-      "difficulty_points": 23,
+      "difficulty_points": 25,
       "display_name": "OceanLi",
       "github": "OceanLi",
-      "index_files_added": 11,
+      "index_files_added": 12,
       "missing_solver_provenance": 1,
       "profile_url": "https://github.com/OceanLi",
       "rank": 4,
       "solver_credit": false,
-      "solver_provenance_proofs": 10
+      "solver_provenance_proofs": 11
     },
     {
       "attribution_source": "git-add-author",
@@ -393,8 +393,8 @@
     {
       "provider_model": "claude / template-decide",
       "run_success_rate": 1.0,
-      "runs": 9,
-      "verified_proofs": 9
+      "runs": 10,
+      "verified_proofs": 10
     },
     {
       "provider_model": "gemini / gemini-3.1-pro-preview",
@@ -442,19 +442,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 118,
+    "attributed_proofs": 119,
     "attribution_gap_count": 272,
     "credited_contributors": 9,
-    "credited_proofs": 390,
-    "explicit_solver_proofs": 118,
-    "git_attributed_index_files": 390,
+    "credited_proofs": 391,
+    "explicit_solver_proofs": 119,
+    "git_attributed_index_files": 391,
     "historical_contributors": 8,
     "historical_unknown_proofs": 272,
     "inferred_git_proofs": 272,
-    "proof_run_coverage": 0.2359,
-    "terminal_runs": 403,
+    "proof_run_coverage": 0.2379,
+    "terminal_runs": 404,
     "uncredited_proofs": 0,
-    "verified_proofs": 390
+    "verified_proofs": 391
   },
   "timeline": [
     {
@@ -488,9 +488,9 @@
       "proofs": 136
     },
     {
-      "cumulative_proofs": 390,
+      "cumulative_proofs": 391,
       "date": "2026-06-16",
-      "proofs": 130
+      "proofs": 131
     }
   ]
 }
