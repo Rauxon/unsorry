@@ -15,6 +15,6 @@
 ⟦Λ:Artifact⟧{
   lean≜goals/pell-d2-positive-to-negative-step.lean
   sha≜02ebc9df1277b42087a8e67810bb10377abae59e31781e270e21830cc64a7192
-  aff≜-10
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
