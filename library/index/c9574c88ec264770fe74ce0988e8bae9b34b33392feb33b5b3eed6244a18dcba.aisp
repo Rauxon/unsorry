@@ -1,0 +1,8 @@
+𝔸5.1.lemma.c9574c88ec26@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜c9574c88ec264770fe74ce0988e8bae9b34b33392feb33b5b3eed6244a18dcba; goal≜numderangements-add-two-int-form; name≜numderangements_add_two_int_form}
+⟦Σ:Source⟧{src≜goals/numderangements-add-two-int-form.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜319}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
