@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜cube-sum-ge-three-prod
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜2
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/cube-sum-ge-three-prod.lean
-  sha≜∅
-  aff≜-5
+  sha≜f62453c1993f675e58cf07d20bd719166b8d63c79dbf48f311a4f60b513b2391
+  aff≜-4
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

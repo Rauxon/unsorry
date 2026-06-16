@@ -1,0 +1,8 @@
+𝔸5.1.lemma.f62453c1993f@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜f62453c1993f675e58cf07d20bd719166b8d63c79dbf48f311a4f60b513b2391; goal≜cube-sum-ge-three-prod; name≜cube_sum_ge_three_prod}
+⟦Σ:Source⟧{src≜goals/cube-sum-ge-three-prod.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜perttu; agent≜oma-2-c50d; provider≜codex; effort≜medium; attempts≜1; solve_s≜515}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

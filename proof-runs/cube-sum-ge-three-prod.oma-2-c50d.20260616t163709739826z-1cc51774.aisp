@@ -1,0 +1,8 @@
+𝔸5.1.run.cube-sum-ge-three-prod.oma-2-c50d.20260616t163709739826z-1cc51774@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t163709739826z-1cc51774; goal≜cube-sum-ge-three-prod; agent≜oma-2-c50d; outcome≜proved}
+⟦Π:Provenance⟧{solver≜perttu; provider≜codex; effort≜medium}
+⟦Γ:Goal⟧{goal≜cube-sum-ge-three-prod}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜515; ended≜2026-06-16T16:37:09Z; lessons≜3}
+⟦Σ:Artifact⟧{sha≜f62453c1993f675e58cf07d20bd719166b8d63c79dbf48f311a4f60b513b2391}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
