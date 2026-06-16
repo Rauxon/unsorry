@@ -4,35 +4,35 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**395 verified proofs · 123 attributed · 272 historical/unknown · 408 logged terminal runs.**
+**396 verified proofs · 124 attributed · 272 historical/unknown · 409 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 97 |
+| Successful terminal runs | 98 |
 | Failed terminal runs | 311 |
 | Decomposed after failure | 18 |
 | Failed without decomposition | 293 |
-| Run success rate | 23.8% |
-| Provider attempts | 458 |
+| Run success rate | 24.0% |
+| Provider attempts | 459 |
 | Failed attempts | 361 |
-| Attempt yield | 21.2% |
+| Attempt yield | 21.3% |
 | Recorded run time | 94h 31m |
-| Median / p90 run time | 7m 5s / 32m 0s |
-| Verified successes per recorded hour | 1.03 |
-| Proofs with run telemetry | 97 (24.6%) |
+| Median / p90 run time | 7m 2s / 32m 0s |
+| Verified successes per recorded hour | 1.04 |
+| Proofs with run telemetry | 98 (24.8%) |
 
 ## Work Queue
 
-**762 goals · 138 archived · 6 blocked · 353 open · 255 proved · 10 translated.**
+**762 goals · 138 archived · 6 blocked · 352 open · 256 proved · 10 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 78 | 23 | 29.5% | 73 | 5m 25s |
-| 2 | 174 | 39 | 22.4% | 155 | 6m 51s |
+| 2 | 175 | 40 | 22.9% | 155 | 6m 49s |
 | 3 | 132 | 31 | 23.5% | 113 | 9m 13s |
 | 4 | 22 | 4 | 18.2% | 18 | 6m 50s |
 | 5 | 2 | 0 | 0.0% | 2 | 31m 25s |
@@ -61,7 +61,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 | 1 | [@chat-bit-01](https://github.com/chat-bit-01) | 211 | 0 | 211 | 0 | — | 471 | 52375 |
 | 2 | [@cgbarlow](https://github.com/cgbarlow) | 117 | 70 | 47 | 302 | 18.9% | 211 | 24025 |
 | 3 | [@perttu](https://github.com/perttu) | 31 | 31 | 0 | 33 | 69.7% | 69 | 7675 |
-| 4 | [@ohdearquant](https://github.com/ohdearquant) | 15 | 15 | 0 | 15 | 100.0% | 33 | 3675 |
+| 4 | [@ohdearquant](https://github.com/ohdearquant) | 16 | 16 | 0 | 16 | 100.0% | 35 | 3900 |
 | 5 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 6 | [@adam91holt](https://github.com/adam91holt) | 6 | 6 | 0 | 57 | 3.5% | 10 | 1150 |
 | 7 | Perttu Isotalo | 4 | 0 | 4 | 0 | — | 8 | 900 |
@@ -70,9 +70,9 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 ## Attribution Notes
 
-**123 explicit solver credits · 272 inferred git credits · 0 uncredited proof records.**
+**124 explicit solver credits · 272 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 395 of 395 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 396 of 396 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -81,7 +81,7 @@ Git add-author attribution covers 395 of 395 proof index files. It is used only 
 | `claude / opus` | 55 | 52 | 90.4% | 19 | 5 | 4m 28s | 6.68 |
 | `codex / unknown` | 21 | 76 | 19.7% | 87 | 2 | 7m 38s | 1.27 |
 | `openai / leanstral-2603` | 20 | 209 | 7.2% | 198 | 1 | 6m 28s | 0.30 |
-| `claude / template-decide` | 14 | 14 | 100.0% | 0 | 1 | 0s | — |
+| `claude / template-decide` | 15 | 15 | 100.0% | 0 | 1 | 0s | — |
 | `gemini / gemini-3.1-pro-preview` | 7 | 7 | 71.4% | 6 | 1 | 6m 32s | 5.32 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
 | `claude / sonnet` | 1 | 1 | 100.0% | 0 | 1 | 42s | 85.71 |
@@ -97,6 +97,7 @@ Git add-author attribution covers 395 of 395 proof index files. It is used only 
 | `2026-06-16T19:23:21Z` | `six-dvd-n-mul-succ-mul-two-n-add-one` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 39s |
 | `2026-06-16T19:14:56Z` | `tenth-power-mod-eleven-mem` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T19:14:41Z` | `sq-mod-twentyfive-mem` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-decide` | `proved` | 1 | 0 | 0s |
+| `2026-06-16T19:14:30Z` | `sq-mod-twelve-mem` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T19:14:25Z` | `sq-mod-thirtytwo-mem` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T19:14:14Z` | `sq-mod-sixteen-mem` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T19:14:08Z` | `sq-mod-nine` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-decide` | `proved` | 1 | 0 | 0s |
@@ -113,7 +114,6 @@ Git add-author attribution covers 395 of 395 proof index files. It is used only 
 | `2026-06-16T18:50:00Z` | `sextic-x6-plus-x3-plus-one-composite-shift` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 51s |
 | `2026-06-16T18:36:37Z` | `four-var-qm-am` | [@ohdearquant](https://github.com/ohdearquant) | `claude / sonnet` | `proved` | 1 | 0 | 42s |
 | `2026-06-16T18:16:21Z` | `realization-edge-relation` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 18s |
-| `2026-06-16T17:43:14Z` | `realization-edge-in-set` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 31m 26s |
 
 ## Interpretation
 
