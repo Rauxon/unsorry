@@ -1,7 +1,0 @@
-𝔸5.1.claim.pair-sum-sq-ge-three-abc-sum.afnz-zbook-b336@2026-06-16
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜pair-sum-sq-ge-three-abc-sum; agent≜afnz-zbook-b336}
-⟦Σ:Times⟧{ts≜2026-06-16T06:15:18Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
