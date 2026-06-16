@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜pell-d2-convergent-cross-difference
   phase≜prove
-  status≜open
+  status≜proved
   difficulty≜2
 }
 ⟦Σ:Source⟧{
@@ -14,7 +14,7 @@
 }
 ⟦Λ:Artifact⟧{
   lean≜goals/pell-d2-convergent-cross-difference.lean
-  sha≜∅
-  aff≜-10
+  sha≜501c5cf9f4c7062bb19ea849137d059e489109998c283d3404d5b454d6cbc444
+  aff≜-9
 }
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
