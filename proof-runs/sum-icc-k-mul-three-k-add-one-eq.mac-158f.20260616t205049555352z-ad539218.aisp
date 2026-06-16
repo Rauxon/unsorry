@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-icc-k-mul-three-k-add-one-eq.mac-158f.20260616t205049555352z-ad539218@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t205049555352z-ad539218; goal≜sum-icc-k-mul-three-k-add-one-eq; agent≜mac-158f; outcome≜proved}
+⟦Π:Provenance⟧{solver≜ohdearquant; provider≜claude; model≜template-sum-induction}
+⟦Γ:Goal⟧{goal≜sum-icc-k-mul-three-k-add-one-eq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜0; ended≜2026-06-16T20:50:49Z}
+⟦Σ:Artifact⟧{sha≜5259626714da72025318afdf16ac606845a3d941e4b8f3cb57c12509ac2fa1ea}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
