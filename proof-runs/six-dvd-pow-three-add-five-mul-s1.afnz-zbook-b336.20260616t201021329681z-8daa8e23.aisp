@@ -1,0 +1,8 @@
+𝔸5.1.run.six-dvd-pow-three-add-five-mul-s1.afnz-zbook-b336.20260616t201021329681z-8daa8e23@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t201021329681z-8daa8e23; goal≜six-dvd-pow-three-add-five-mul-s1; agent≜afnz-zbook-b336; outcome≜proved}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜six-dvd-pow-three-add-five-mul-s1}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜769; ended≜2026-06-16T20:10:21Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜de8008ca4b5182c76953e4b78a70fe1d9b2b40ea7b60497c17757ae7a1d31438}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
