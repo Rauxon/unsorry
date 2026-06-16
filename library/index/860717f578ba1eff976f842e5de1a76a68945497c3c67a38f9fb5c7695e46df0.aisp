@@ -1,0 +1,8 @@
+𝔸5.1.lemma.860717f578ba@2026-06-16
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜860717f578ba1eff976f842e5de1a76a68945497c3c67a38f9fb5c7695e46df0; goal≜pell-d2-negative-seven-ladder-preserves; name≜pell_d2_negative_seven_ladder_preserves}
+⟦Σ:Source⟧{src≜goals/pell-d2-negative-seven-ladder-preserves.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜cgbarlow; agent≜afnz-zbook-b336; provider≜openai; model≜leanstral-2603; effort≜high; attempts≜1; solve_s≜553}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
