@@ -758,6 +758,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-16",
+      "difficulty": 2,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "d6c1dd8ab61ef15a0c474711d3dc7ec88163720f",
+      "git_add_date": "2026-06-16",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "candido-sum-quartics-twice-square",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/4e4548b172a1a282f1ed538104d0e6fd95689969df69d133c667a3ab88e4bfa3.aisp",
+      "review_status": "candidate",
+      "sha": "4e4548b172a1a282f1ed538104d0e6fd95689969df69d133c667a3ab88e4bfa3"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
       "difficulty": 3,
       "display_name": "chat-bit-01",
       "git_add_commit": "37c1791cdc8866bb5ef80e5229d0daa017bbd4d9",
@@ -3894,9 +3909,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 259,
-    "mapped_missing_solver": 255,
-    "missing_solver_provenance": 259,
+    "git_attributed_missing_solver": 260,
+    "mapped_missing_solver": 256,
+    "missing_solver_provenance": 260,
     "unmapped_missing_solver": 4
   }
 }
