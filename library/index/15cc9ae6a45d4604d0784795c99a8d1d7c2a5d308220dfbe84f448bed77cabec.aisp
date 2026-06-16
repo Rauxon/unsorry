@@ -1,7 +1,8 @@
-𝔸5.1.lemma.15cc9ae6a45d@2026-06-14
+𝔸5.1.lemma.15cc9ae6a45d@2026-06-16
 γ≔unsorry.lemma.index
 ⟦Ω:Lemma⟧{sha≜15cc9ae6a45d4604d0784795c99a8d1d7c2a5d308220dfbe84f448bed77cabec; goal≜no-nat-sq-eq-two-mul-sq-s4; name≜positive_half_lt_of_even_nat}
 ⟦Σ:Source⟧{src≜goals/no-nat-sq-eq-two-mul-sq-s4.lean}
 ⟦Γ:Tags⟧{tags≜⟨⟩}
 ⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜ruvnet; agent≜ruvnet-swarm; provider≜openrouter}
 ⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
