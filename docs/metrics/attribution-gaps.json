@@ -8,6 +8,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-16",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "3bafa1a7c626fa9c8f659d8c829cb57695f7a2b3",
+      "git_add_date": "2026-06-17",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "dvd-120-pow-seven-sub-pow-three",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/011cd4398f607ac4392afce56b393b1ec6c83afe39afcd18b31a08a72b5d8c6f.aisp",
+      "review_status": "candidate",
+      "sha": "011cd4398f607ac4392afce56b393b1ec6c83afe39afcd18b31a08a72b5d8c6f"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-16",
       "difficulty": 2,
       "display_name": "chat-bit-01",
       "git_add_commit": "5cae089bbea03f72064221dca9de4c5e7517b027",
@@ -4089,9 +4104,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 272,
-    "mapped_missing_solver": 268,
-    "missing_solver_provenance": 272,
+    "git_attributed_missing_solver": 273,
+    "mapped_missing_solver": 269,
+    "missing_solver_provenance": 273,
     "unmapped_missing_solver": 4
   }
 }
