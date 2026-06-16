@@ -1,0 +1,9 @@
+𝔸5.1.run.prod-icc-one-sub-two-div-pronic.afnz-zbook-b336.20260616t140632299478z-6d63657a@2026-06-16
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260616t140632299478z-6d63657a; goal≜prod-icc-one-sub-two-div-pronic; agent≜afnz-zbook-b336; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜openai; model≜leanstral-2603; effort≜high}
+⟦Γ:Goal⟧{goal≜prod-icc-one-sub-two-div-pronic}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜2289; ended≜2026-06-16T14:06:32Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(openai call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
