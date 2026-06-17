@@ -1,0 +1,8 @@
+𝔸5.1.lemma.58ab2876e729@2026-06-17
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜58ab2876e72949724b314df25b6784050179f5900d75308531b6c51800e244aa; goal≜sum-range-lucas-shift-nat; name≜sum_range_lucas_shift_nat}
+⟦Σ:Source⟧{src≜goals/sum-range-lucas-shift-nat.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜adam91holt; agent≜beast-cccc; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜450}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
