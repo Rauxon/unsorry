@@ -4,30 +4,30 @@
       "attempt_yield": null,
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
       "badges": {
-        "difficulty": 474,
-        "proofs": 212,
+        "difficulty": 476,
+        "proofs": 213,
         "success_rate_percent": null
       },
       "credit_source_summary": "inferred",
       "credit_sources": [
         "inferred-git-add-author"
       ],
-      "credited_proofs": 212,
-      "difficulty_points": 474,
+      "credited_proofs": 213,
+      "difficulty_points": 476,
       "display_name": "@chat-bit-01",
       "explicit_solver_proofs": 0,
       "failed_attempts": 0,
       "github": "chat-bit-01",
-      "inferred_git_proofs": 212,
+      "inferred_git_proofs": 213,
       "median_solve_s": null,
       "profile_url": "https://github.com/chat-bit-01",
       "rank": 1,
       "run_success_rate": null,
       "runs": 0,
-      "score": 52700,
+      "score": 52925,
       "solver": "chat-bit-01",
       "successes": 0,
-      "verified_proofs": 212
+      "verified_proofs": 213
     },
     {
       "attempt_yield": 0.1774,
@@ -178,6 +178,35 @@
     },
     {
       "attempt_yield": null,
+      "avatar_url": "https://github.com/ruvnet.png?size=96",
+      "badges": {
+        "difficulty": 4,
+        "proofs": 1,
+        "success_rate_percent": null
+      },
+      "credit_source_summary": "explicit",
+      "credit_sources": [
+        "explicit-solver"
+      ],
+      "credited_proofs": 1,
+      "difficulty_points": 4,
+      "display_name": "@ruvnet",
+      "explicit_solver_proofs": 1,
+      "failed_attempts": 0,
+      "github": "ruvnet",
+      "inferred_git_proofs": 0,
+      "median_solve_s": null,
+      "profile_url": "https://github.com/ruvnet",
+      "rank": 7,
+      "run_success_rate": null,
+      "runs": 0,
+      "score": 425,
+      "solver": "ruvnet",
+      "successes": 0,
+      "verified_proofs": 1
+    },
+    {
+      "attempt_yield": null,
       "avatar_url": "https://github.com/OceanLi.png?size=96",
       "badges": {
         "difficulty": 3,
@@ -197,7 +226,7 @@
       "inferred_git_proofs": 1,
       "median_solve_s": null,
       "profile_url": "https://github.com/OceanLi",
-      "rank": 7,
+      "rank": 8,
       "run_success_rate": null,
       "runs": 0,
       "score": 325,
@@ -226,7 +255,7 @@
       "inferred_git_proofs": 0,
       "median_solve_s": 456,
       "profile_url": "https://github.com/perttu-mp",
-      "rank": 8,
+      "rank": 9,
       "run_success_rate": 0.3333,
       "runs": 3,
       "score": 125,
@@ -255,7 +284,7 @@
       "inferred_git_proofs": 0,
       "median_solve_s": null,
       "profile_url": "https://github.com/yarcles",
-      "rank": 9,
+      "rank": 10,
       "run_success_rate": null,
       "runs": 0,
       "score": 125,
@@ -270,11 +299,11 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
-      "difficulty_points": 474,
+      "difficulty_points": 476,
       "display_name": "chat-bit-01",
       "github": "chat-bit-01",
-      "index_files_added": 212,
-      "missing_solver_provenance": 212,
+      "index_files_added": 213,
+      "missing_solver_provenance": 213,
       "profile_url": "https://github.com/chat-bit-01",
       "rank": 1,
       "solver_credit": false,
@@ -348,15 +377,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 6,
+      "difficulty_points": 10,
       "display_name": "adam91holt",
       "github": null,
-      "index_files_added": 3,
+      "index_files_added": 4,
       "missing_solver_provenance": 0,
       "profile_url": null,
       "rank": 7,
       "solver_credit": false,
-      "solver_provenance_proofs": 3
+      "solver_provenance_proofs": 4
     },
     {
       "attribution_source": "git-add-author",
@@ -440,6 +469,12 @@
       "verified_proofs": 1
     },
     {
+      "provider_model": "openrouter / unknown",
+      "run_success_rate": null,
+      "runs": 0,
+      "verified_proofs": 1
+    },
+    {
       "provider_model": "openai / jackcloudman/Leanstral-2603-GGUF",
       "run_success_rate": 0.0,
       "runs": 47,
@@ -461,19 +496,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 155,
-    "attribution_gap_count": 273,
-    "credited_contributors": 9,
-    "credited_proofs": 428,
-    "explicit_solver_proofs": 155,
-    "git_attributed_index_files": 428,
+    "attributed_proofs": 156,
+    "attribution_gap_count": 274,
+    "credited_contributors": 10,
+    "credited_proofs": 430,
+    "explicit_solver_proofs": 156,
+    "git_attributed_index_files": 430,
     "historical_contributors": 8,
-    "historical_unknown_proofs": 273,
-    "inferred_git_proofs": 273,
-    "proof_run_coverage": 0.3014,
+    "historical_unknown_proofs": 274,
+    "inferred_git_proofs": 274,
+    "proof_run_coverage": 0.3,
     "terminal_runs": 448,
     "uncredited_proofs": 0,
-    "verified_proofs": 428
+    "verified_proofs": 430
   },
   "timeline": [
     {
@@ -507,9 +542,14 @@
       "proofs": 136
     },
     {
-      "cumulative_proofs": 428,
+      "cumulative_proofs": 429,
       "date": "2026-06-16",
-      "proofs": 168
+      "proofs": 169
+    },
+    {
+      "cumulative_proofs": 430,
+      "date": "2026-06-17",
+      "proofs": 1
     }
   ]
 }
