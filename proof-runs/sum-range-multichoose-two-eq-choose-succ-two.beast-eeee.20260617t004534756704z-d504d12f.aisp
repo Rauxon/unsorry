@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-multichoose-two-eq-choose-succ-two.beast-eeee.20260617t004534756704z-d504d12f@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t004534756704z-d504d12f; goal≜sum-range-multichoose-two-eq-choose-succ-two; agent≜beast-eeee; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-multichoose-two-eq-choose-succ-two}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜411; ended≜2026-06-17T00:45:34Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜ab6a9f0d9a6cf30c5c6916f580402f8e77c89f99ba9f8452bb9910476e28d990}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
