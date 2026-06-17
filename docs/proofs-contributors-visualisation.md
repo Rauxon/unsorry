@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**774 goals — 223 open · 3 blocked · 9 translated · 401 proved · 138 archived.** 15 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**774 goals — 222 open · 3 blocked · 9 translated · 402 proved · 138 archived.** 15 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (396 of 401 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (397 of 402 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -234,11 +234,11 @@ flowchart LR
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s1
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s2
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s3
-  cluster_open(["open · 215"])
+  cluster_open(["open · 214"])
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 356"])
+  cluster_proved(["proved · 357"])
   class cluster_proved proved;
   cluster_archived(["archived · 138"])
   class cluster_archived unknown;
@@ -366,7 +366,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sum-range-id-mul-add-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-mul-add-two.lean) | open | 3 | — | — | — | — |
 | [`sum-range-id-mul-choose-eq-half`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-mul-choose-eq-half.lean) | open | 3 | — | — | — | — |
 | [`sum-range-id-mul-four-pow-closed`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-mul-four-pow-closed.lean) | open | 2 | — | — | — | — |
-| [`sum-range-id-mul-neg-two-pow-closed`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-mul-neg-two-pow-closed.lean) | open | 2 | — | — | — | — |
 | [`sum-range-id-mul-three-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-mul-three-pow.lean) | open | 3 | — | — | — | — |
 | [`sum-range-k-div-succ-factorial-eq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-k-div-succ-factorial-eq.lean) | open | 3 | — | — | — | — |
 | [`sum-range-k-div-succ-factorial-telescope`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-k-div-succ-factorial-telescope.lean) | open | 3 | — | — | — | — |
@@ -870,6 +869,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sum-range-cube-diff-eq-cube`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-diff-eq-cube.lean) | proved | 2 | mac-158f | ohdearquant · `template-sum-induction` | [#2051](https://github.com/agenticsnz/unsorry/pull/2051) | 2026-06-17 |
 | [`sum-range-cube-mul-two-pow-closed`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-cube-mul-two-pow-closed.lean) | proved | 3 | mac-158f | ohdearquant · `template-sum-closedform` | [#2054](https://github.com/agenticsnz/unsorry/pull/2054) | 2026-06-17 |
 | [`sum-range-four-cube-diff-eq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-four-cube-diff-eq.lean) | proved | 2 | mac-158f | ohdearquant · `template-sum-induction` | [#2057](https://github.com/agenticsnz/unsorry/pull/2057) | 2026-06-17 |
+| [`sum-range-id-mul-neg-two-pow-closed`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-mul-neg-two-pow-closed.lean) | proved | 2 | mac-158f | ohdearquant · `template-sum-induction` | [#2060](https://github.com/agenticsnz/unsorry/pull/2060) | 2026-06-17 |
 | [`sum-range-id-mul-succ-mul-two-pow-closed`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-mul-succ-mul-two-pow-closed.lean) | proved | 3 | mac-158f | ohdearquant · `template-sum-closedform` | [#2061](https://github.com/agenticsnz/unsorry/pull/2061) | 2026-06-17 |
 | [`sum-range-id-mul-three-pow-closed`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-id-mul-three-pow-closed.lean) | proved | 2 | mac-158f | ohdearquant · `template-sum-induction` | [#2063](https://github.com/agenticsnz/unsorry/pull/2063) | 2026-06-17 |
 | [`sum-range-k-sq-mul-four-pow-closed`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-k-sq-mul-four-pow-closed.lean) | proved | 2 | mac-158f | ohdearquant · `template-sum-induction` | [#2067](https://github.com/agenticsnz/unsorry/pull/2067) | 2026-06-17 |
