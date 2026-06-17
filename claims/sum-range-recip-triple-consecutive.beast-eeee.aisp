@@ -1,7 +1,0 @@
-𝔸5.1.claim.sum-range-recip-triple-consecutive.beast-eeee@2026-06-17
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜sum-range-recip-triple-consecutive; agent≜beast-eeee}
-⟦Σ:Times⟧{ts≜2026-06-17T01:30:14Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
