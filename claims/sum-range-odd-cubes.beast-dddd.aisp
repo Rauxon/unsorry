@@ -1,7 +1,0 @@
-𝔸5.1.claim.sum-range-odd-cubes.beast-dddd@2026-06-17
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜sum-range-odd-cubes; agent≜beast-dddd}
-⟦Σ:Times⟧{ts≜2026-06-17T00:38:59Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
