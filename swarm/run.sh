@@ -15,6 +15,17 @@
 # additional `./swarm/supervise.sh --prove` provers elsewhere — do not start
 # more dispatchers.
 #
+# NOTE: if the repository's scheduled `queue-dispatcher` workflow (.github/
+# workflows/queue-dispatcher.yml) is enabled, IT is already that one dispatcher.
+# Launching run.sh then adds a SECOND dispatcher. ADR-064 goal-level dedup makes
+# this mostly safe — both read the same open-PR set and skip a goal already
+# proved or already PR'd — but two passes can still both open a PR for the same
+# goal inside the window before one is visible to the other (first-merge-wins
+# then closes the loser as a conflict, wasting a Gate A slot). So on a repo with
+# the scheduled dispatcher, run a prover only — `./swarm/supervise.sh --prove` —
+# rather than run.sh. Use run.sh for a standalone/forked deployment that has no
+# scheduled dispatcher.
+#
 # Usage:
 #   ./swarm/run.sh [--goal <id>] [--provider <name>] [-pi [<model>]] [...]
 # Args are passed through to the prover (see ./swarm/agent.sh --help).

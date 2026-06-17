@@ -72,6 +72,14 @@ start additional `./swarm/supervise.sh --prove` only. Existing proof PRs continu
 through the old path and drain normally. Set `UNSORRY_SUBMIT_MODE=pr` only for an
 operator-approved immediate-PR exception.
 
+> **If the repo's scheduled `queue-dispatcher` workflow is enabled, it already
+> _is_ the one dispatcher.** Launching `run.sh` then runs a second one. ADR-064
+> goal dedup keeps this mostly harmless (both skip a goal that is already proved
+> or already has an open PR), but they can still race within a pass. So when the
+> scheduled dispatcher is active, run a prover only — `./swarm/supervise.sh
+> --prove` — instead of `run.sh`. Use `run.sh` for a standalone deployment with
+> no scheduled dispatcher.
+
 Other flags:
 
 - `--translate-only` — run the Phase-0/1 formalisation loop instead of proving.

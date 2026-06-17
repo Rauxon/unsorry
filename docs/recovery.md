@@ -139,6 +139,7 @@ the complementary lever so one agent cannot park hundreds of PRs at once.
 | Task | Command / setting |
 |---|---|
 | Enable the scheduled dispatcher | set the `REFRESH_TOKEN` secret (admin PAT/App) |
+| Run a local prover when the scheduled dispatcher is on | `./swarm/supervise.sh --prove` (not `run.sh` — that would start a second dispatcher; see [ADR-064] dedup) |
 | Dispatch one pass by hand | `./swarm/agent.sh --dispatch-queue --once` |
 | Re-route one stranded PR | `python3 -m tools.repo.reroute_stranded --pr <n> --push` |
 | Close superseded originals | `python3 -m tools.repo.close_superseded [--author <l>] [--dry-run]` |
@@ -146,6 +147,7 @@ the complementary lever so one agent cannot park hundreds of PRs at once.
 | Emergency pause | `UNSORRY_SUBMISSION_FREEZE=1` |
 
 [ADR-058]: adrs/ADR-058-Runner-Pool-Segmentation-And-Verification-Capacity.md
+[ADR-064]: adrs/ADR-064-Goal-Level-Dispatch-Deduplication.md
 [ADR-053]: adrs/ADR-053-Volunteer-Scale-Claim-Substrate.md
 [ADR-054]: adrs/ADR-054-Agent-Identity-Quotas-And-Reputation.md
 [SPEC-007-A]: adrs/specs/SPEC-007-A-Agent-Loop-Script.md
