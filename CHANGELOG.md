@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 `python3 -m tools.changelog --preview`; a release folds them in here with
 `python3 -m tools.changelog --release <version> <date>`. -->
 
+## [1.22.1] - 2026-06-17
+
+### Fixed
+
+- Fixed a mobile layout glitch on the [leaderboard](docs/leaderboard.html) **Sourcing** view where the `N sourced` bar label overflowed the bar area on narrow viewports and was clipped by the card (it spilled off to the right and wasn't visible). The label now shows just the count on small screens and restores the full ` sourced` wording from `sm:` up, so it always fits — matching the contributor view's shorter `N pts` label.
+- Fixed the queued-proofs board ([`docs/queue.html`](docs/queue.html)) dumping every solver's full submission list at once — unwieldy with hundreds of queued proofs. Each solver is now a **collapsible section, collapsed by default** (native `<details>`/`<summary>`, ADR-066): the page opens as a short, scannable list of solver names ranked biggest-queue-first, and tapping a solver reveals that solver's queued proofs. The internal `ADR-058` reference was also dropped from the page copy.
+
 ## [1.22.0] - 2026-06-17
 
 ### Added
