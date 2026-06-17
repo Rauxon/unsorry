@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-k-mul-choose-mul-four-pow-closed.beast-eeee.20260617t002048007903z-80a1bba5@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t002048007903z-80a1bba5; goal≜sum-range-k-mul-choose-mul-four-pow-closed; agent≜beast-eeee; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-k-mul-choose-mul-four-pow-closed}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜490; ended≜2026-06-17T00:20:48Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜a1d5bb9dd7ab3a1267ada2cc1324f4868a84507f789bb56cb1bb97eba6e00230}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
