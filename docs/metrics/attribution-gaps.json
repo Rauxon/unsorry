@@ -442,6 +442,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-17",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "582736bdd03b47eae084c5b065611ded5556aa22",
+      "git_add_date": "2026-06-17",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-icc-k-div-three-shifted-consecutive-telescope",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/2e079ccbf3f42668ae6f3caeaa74a419b01b7aaae75d49f0cd030683f7649af0.aisp",
+      "review_status": "candidate",
+      "sha": "2e079ccbf3f42668ae6f3caeaa74a419b01b7aaae75d49f0cd030683f7649af0"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-16",
       "difficulty": 3,
       "display_name": "chat-bit-01",
@@ -4284,9 +4299,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 285,
-    "mapped_missing_solver": 285,
-    "missing_solver_provenance": 285,
+    "git_attributed_missing_solver": 286,
+    "mapped_missing_solver": 286,
+    "missing_solver_provenance": 286,
     "unmapped_missing_solver": 0
   }
 }

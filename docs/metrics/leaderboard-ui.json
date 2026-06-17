@@ -4,30 +4,30 @@
       "attempt_yield": null,
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
       "badges": {
-        "difficulty": 499,
-        "proofs": 224,
+        "difficulty": 502,
+        "proofs": 225,
         "success_rate_percent": null
       },
       "credit_source_summary": "inferred",
       "credit_sources": [
         "inferred-git-add-author"
       ],
-      "credited_proofs": 224,
-      "difficulty_points": 499,
+      "credited_proofs": 225,
+      "difficulty_points": 502,
       "display_name": "@chat-bit-01",
       "explicit_solver_proofs": 0,
       "failed_attempts": 0,
       "github": "chat-bit-01",
-      "inferred_git_proofs": 224,
+      "inferred_git_proofs": 225,
       "median_solve_s": null,
       "profile_url": "https://github.com/chat-bit-01",
       "rank": 1,
       "run_success_rate": null,
       "runs": 0,
-      "score": 55500,
+      "score": 55825,
       "solver": "chat-bit-01",
       "successes": 0,
-      "verified_proofs": 224
+      "verified_proofs": 225
     },
     {
       "attempt_yield": 0.1774,
@@ -180,18 +180,18 @@
       "attempt_yield": null,
       "avatar_url": "https://github.com/ruvnet.png?size=96",
       "badges": {
-        "difficulty": 11,
-        "proofs": 3,
+        "difficulty": 13,
+        "proofs": 4,
         "success_rate_percent": null
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 3,
-      "difficulty_points": 11,
+      "credited_proofs": 4,
+      "difficulty_points": 13,
       "display_name": "@ruvnet",
-      "explicit_solver_proofs": 3,
+      "explicit_solver_proofs": 4,
       "failed_attempts": 0,
       "github": "ruvnet",
       "inferred_git_proofs": 0,
@@ -200,10 +200,10 @@
       "rank": 7,
       "run_success_rate": null,
       "runs": 0,
-      "score": 1175,
+      "score": 1400,
       "solver": "ruvnet",
       "successes": 0,
-      "verified_proofs": 3
+      "verified_proofs": 4
     },
     {
       "attempt_yield": null,
@@ -299,11 +299,11 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
-      "difficulty_points": 499,
+      "difficulty_points": 502,
       "display_name": "chat-bit-01",
       "github": "chat-bit-01",
-      "index_files_added": 224,
-      "missing_solver_provenance": 224,
+      "index_files_added": 225,
+      "missing_solver_provenance": 225,
       "profile_url": "https://github.com/chat-bit-01",
       "rank": 1,
       "solver_credit": false,
@@ -364,15 +364,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 17,
+      "difficulty_points": 19,
       "display_name": "adam91holt",
       "github": null,
-      "index_files_added": 6,
+      "index_files_added": 7,
       "missing_solver_provenance": 0,
       "profile_url": null,
       "rank": 6,
       "solver_credit": false,
-      "solver_provenance_proofs": 6
+      "solver_provenance_proofs": 7
     },
     {
       "attribution_source": "git-add-author",
@@ -454,7 +454,7 @@
       "provider_model": "openrouter / unknown",
       "run_success_rate": null,
       "runs": 0,
-      "verified_proofs": 3
+      "verified_proofs": 4
     },
     {
       "provider_model": "claude / sonnet",
@@ -496,19 +496,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 158,
-    "attribution_gap_count": 285,
+    "attributed_proofs": 159,
+    "attribution_gap_count": 286,
     "credited_contributors": 10,
-    "credited_proofs": 443,
-    "explicit_solver_proofs": 158,
-    "git_attributed_index_files": 443,
+    "credited_proofs": 445,
+    "explicit_solver_proofs": 159,
+    "git_attributed_index_files": 445,
     "historical_contributors": 8,
-    "historical_unknown_proofs": 285,
-    "inferred_git_proofs": 285,
-    "proof_run_coverage": 0.2912,
+    "historical_unknown_proofs": 286,
+    "inferred_git_proofs": 286,
+    "proof_run_coverage": 0.2899,
     "terminal_runs": 448,
     "uncredited_proofs": 0,
-    "verified_proofs": 443
+    "verified_proofs": 445
   },
   "timeline": [
     {
@@ -542,14 +542,14 @@
       "proofs": 136
     },
     {
-      "cumulative_proofs": 431,
+      "cumulative_proofs": 432,
       "date": "2026-06-16",
-      "proofs": 171
+      "proofs": 172
     },
     {
-      "cumulative_proofs": 443,
+      "cumulative_proofs": 445,
       "date": "2026-06-17",
-      "proofs": 12
+      "proofs": 13
     }
   ]
 }
