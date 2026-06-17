@@ -51,7 +51,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 35,
+      "difficulty_points": 37,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -62,7 +62,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 13
+      "verified_proofs": 14
     },
     {
       "attempt_yield": 0.0294,
@@ -114,17 +114,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 206,
+    "attributed_proofs": 207,
     "historical_unknown_proofs": 291,
-    "proof_run_coverage": 0.336,
+    "proof_run_coverage": 0.3353,
     "successful_proofs_with_run_telemetry": 167,
     "terminal_runs": 486,
-    "verified_proofs": 497
+    "verified_proofs": 498
   },
   "credit": {
     "credited_contributors": 10,
-    "credited_proofs": 497,
-    "explicit_solver_proofs": 206,
+    "credited_proofs": 498,
+    "explicit_solver_proofs": 207,
     "inferred_git_proofs": 291,
     "uncredited_proofs": 0
   },
@@ -251,10 +251,10 @@
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 13,
-      "difficulty_points": 35,
+      "credited_proofs": 14,
+      "difficulty_points": 37,
       "display_name": "@ruvnet",
-      "explicit_solver_proofs": 13,
+      "explicit_solver_proofs": 14,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": null,
@@ -269,7 +269,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 13
+      "verified_proofs": 14
     },
     {
       "attempt_yield": null,
@@ -3952,7 +3952,7 @@
       "p90_solve_s": 232,
       "run_success_rate": 0.0,
       "runs": 1,
-      "status": "open",
+      "status": "proved",
       "successes": 0,
       "successes_per_recorded_hour": 0.0,
       "total_solve_s": 232
@@ -5853,18 +5853,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": null,
-        "difficulty_points": 73,
+        "difficulty_points": 75,
         "display_name": "adam91holt",
         "git_author": "adam91holt <mail@adamholt.co.nz>",
         "git_author_name": "adam91holt",
         "github": null,
-        "index_files_added": 27,
+        "index_files_added": 28,
         "missing_solver_provenance": 0,
         "profile_url": null,
-        "sample_add_commit": "fa902a32f2a71964476cd12c38023aacb4881688",
+        "sample_add_commit": "0494e9b1e7959ea5f0022739988d9ddfb6b089f9",
         "sample_add_date": "2026-06-17",
         "solver_credit": false,
-        "solver_provenance_proofs": 27
+        "solver_provenance_proofs": 28
       },
       {
         "attribution_source": "git-add-author",
@@ -5915,8 +5915,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 497,
-    "records": 497,
+    "git_attributed_index_files": 498,
+    "records": 498,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -6003,22 +6003,6 @@
       "verified_proofs": 19
     },
     {
-      "attempt_yield": 1.0,
-      "attempts": 13,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": 0,
-      "p90_solve_s": 0,
-      "provider_model": "claude / template-zmod-decide",
-      "run_success_rate": 1.0,
-      "runs": 13,
-      "solvers": 1,
-      "successes": 13,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 13
-    },
-    {
       "attempt_yield": null,
       "attempts": 0,
       "failed_attempts": 0,
@@ -6030,6 +6014,22 @@
       "runs": 0,
       "solvers": 1,
       "successes": 0,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0,
+      "verified_proofs": 14
+    },
+    {
+      "attempt_yield": 1.0,
+      "attempts": 13,
+      "failed_attempts": 0,
+      "failures": 0,
+      "median_solve_s": 0,
+      "p90_solve_s": 0,
+      "provider_model": "claude / template-zmod-decide",
+      "run_success_rate": 1.0,
+      "runs": 13,
+      "solvers": 1,
+      "successes": 13,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
       "verified_proofs": 13
@@ -6210,8 +6210,8 @@
     "status_counts": {
       "archived": 138,
       "blocked": 3,
-      "open": 253,
-      "proved": 359,
+      "open": 252,
+      "proved": 360,
       "translated": 9
     }
   },
