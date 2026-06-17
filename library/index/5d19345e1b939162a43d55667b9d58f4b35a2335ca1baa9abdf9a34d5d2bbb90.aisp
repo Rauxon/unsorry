@@ -1,0 +1,8 @@
+𝔸5.1.lemma.5d19345e1b93@2026-06-17
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜5d19345e1b939162a43d55667b9d58f4b35a2335ca1baa9abdf9a34d5d2bbb90; goal≜sum-range-k-div-succ-factorial-eq; name≜sum_range_k_div_succ_factorial_eq}
+⟦Σ:Source⟧{src≜goals/sum-range-k-div-succ-factorial-eq.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜adam91holt; agent≜beast-cccc; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜170}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
