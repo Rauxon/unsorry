@@ -1520,6 +1520,18 @@ queued_branch_refs() {
   git for-each-ref --format='%(refname:short)' refs/remotes/origin/queued/prove
 }
 
+# ADR-064: goals that already have an OPEN prove PR, collected in ONE list-API
+# call (core quota, 5000/h). The dispatch loop checks membership in this set
+# rather than a per-branch open_prove_pr_exists, whose `gh ... --search` hits the
+# GitHub search API (only 30/min) — a per-branch search across a large queue
+# exhausts that bucket and stalls the whole pass on retry backoff. Best-effort: a
+# gh error yields an empty set and dispatch proceeds, since queued_branch_has_pr
+# and the post-create PR state still prevent a genuine double-open.
+dispatch_open_pr_goals() {
+  gh pr list --state open --limit 1000 --json title \
+    --jq '.[].title | select(startswith("prove(")) | sub("^prove\\(";"") | sub("\\):.*$";"")' 2>/dev/null
+}
+
 # ADR-064: the queue holds one branch per (goal, agent) but only one proof per
 # goal can ever merge. The prove-time selection race (queued_prove_branch_exists
 # is a non-atomic pre-check) lets several agents prove the same goal, and a goal
@@ -1534,6 +1546,8 @@ dispatch_queue() {
   validate_integer_knob UNSORRY_DISPATCH_LIMIT "$limit"
   fetch_queued_prove_branches || { log "queue dispatcher: no queued proof branches found"; return 0; }
   fetch_main_ref || true
+  local open_pr_goals
+  open_pr_goals=" $(dispatch_open_pr_goals | tr '\n' ' ') "
   while IFS= read -r branch; do
     [ -n "$branch" ] || continue
     branch="${branch#origin/}"
@@ -1549,7 +1563,12 @@ dispatch_queue() {
       seen_goals="$seen_goals$goal "
       continue
     fi
-    if queued_branch_has_pr "$branch" || open_prove_pr_exists "$goal"; then
+    # In-memory open-PR check first (free); fall back to the exact-branch list
+    # lookup (core API) only when the goal isn't already known to have an open PR
+    # — this catches a closed/merged PR for this exact branch.
+    local has_pr=0
+    case "$open_pr_goals" in *" $goal "*) has_pr=1 ;; esac
+    if [ "$has_pr" -eq 1 ] || queued_branch_has_pr "$branch"; then
       log "queue dispatcher skipped $branch — a prove PR for goal $goal already exists"
       seen_goals="$seen_goals$goal "
       continue
@@ -4817,13 +4836,14 @@ test_render_decomp_gateb() {
 }
 
 test_dispatch_goal_dedup() {
-  # ADR-064: the dispatcher opens at most one prove PR per goal. Given two
-  # queued branches for goal g1 plus one branch for an already-proved goal g2,
-  # exactly one branch (a g1 branch) is dispatched — the g1 duplicate is skipped
-  # as already-handled-this-pass and g2 as already-proved-on-main.
+  # ADR-064: the dispatcher opens at most one prove PR per goal, resolving open-PR
+  # membership from the upfront dispatch_open_pr_goals set (one list call) rather
+  # than a per-branch search (the search API is 30/min). Given two queued branches
+  # for g1, one for an already-proved goal g2, and one for g3 that already has an
+  # open prove PR, exactly one branch (a g1) is dispatched — g2 skipped as proved,
+  # g3 skipped via the open-PR set, the g1 duplicate skipped as handled-this-pass.
   # NB: accumulator must not be named `dispatched` — dispatch_queue uses that as
-  # its internal integer counter and dynamic scoping would let the stub clobber
-  # it, turning the counter into a string.
+  # its internal integer counter and dynamic scoping would let the stub clobber it.
   local ONCE=0 DRY_RUN=0 UNSORRY_DISPATCH_LIMIT=10 sent="" rc
   fetch_queued_prove_branches() { return 0; }
   fetch_main_ref() { return 0; }
@@ -4831,24 +4851,25 @@ test_dispatch_goal_dedup() {
     printf 'origin/queued/prove/g1/agent-a-1111\n'
     printf 'origin/queued/prove/g1/agent-b-2222\n'
     printf 'origin/queued/prove/g2/agent-c-3333\n'
+    printf 'origin/queued/prove/g3/agent-d-4444\n'
   }
   goal_already_proved() { [ "$1" = g2 ]; }
+  dispatch_open_pr_goals() { printf 'g3\n'; }
   queued_branch_has_pr() { return 1; }
-  open_prove_pr_exists() { return 1; }
   submission_governor_allows() { return 0; }
   dispatch_queued_proof_branch() { printf -v sent '%s%s\n' "$sent" "$1"; return 0; }
   dispatch_queue
   rc=$?
   unset -f fetch_queued_prove_branches fetch_main_ref queued_branch_refs \
-    goal_already_proved queued_branch_has_pr open_prove_pr_exists \
+    goal_already_proved dispatch_open_pr_goals queued_branch_has_pr \
     submission_governor_allows dispatch_queued_proof_branch
   [ "$rc" -eq 0 ] || { log "  dispatch_queue returned $rc"; return 1; }
   local count
   count="$(printf '%s' "$sent" | grep -c '^queued/prove/g1/')"
   [ "$count" -eq 1 ] \
-    || { log "  expected exactly one g1 dispatch (one per goal, g2 proved), got '$sent'"; return 1; }
+    || { log "  expected exactly one g1 dispatch (one per goal), got '$sent'"; return 1; }
   [ "$(printf '%s' "$sent" | grep -cv '^$')" -eq 1 ] \
-    || { log "  expected exactly one dispatch total, got '$sent'"; return 1; }
+    || { log "  expected one dispatch total (g2 proved, g3 has open PR), got '$sent'"; return 1; }
 }
 
 run_self_tests() {

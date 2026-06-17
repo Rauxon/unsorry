@@ -28,15 +28,28 @@ goal="${goal%%/*}"               # <goal>
 1. **Already handled this pass** — the goal is in the in-pass seen-set. Skip.
 2. **Already proved on `main`** — `goal_already_proved` returns true. Skip and
    add the goal to the seen-set.
-3. **Prove PR already exists** — `queued_branch_has_pr <branch>` (this exact
-   branch) **or** `open_prove_pr_exists <goal>` (any branch, exact title-prefix
-   match). Skip and add the goal to the seen-set.
+3. **Prove PR already exists** — the goal is in the upfront open-PR-goal set
+   (`dispatch_open_pr_goals`, any sibling branch) **or** `queued_branch_has_pr
+   <branch>` (this exact branch, any state — catches a closed/merged PR). Skip
+   and add the goal to the seen-set.
 
 A branch passing all three is eligible for dispatch, subject to the existing
 `submission_governor_allows` gate and `UNSORRY_DISPATCH_LIMIT`. On successful
 dispatch the goal is added to the seen-set; on dispatch *failure* it is not, so a
 sibling may be attempted (and will itself be caught by predicate 3 if the failed
 attempt nonetheless created a PR).
+
+### Rate-limit constraint (why the open-PR check is collected upfront)
+
+The open-PR membership in predicate 3 is resolved from a **single** list-API call
+made once per pass (`dispatch_open_pr_goals`: `gh pr list --state open`, core
+quota, 5000/h), not a per-branch `gh ... --search`. The GitHub **search API is
+30 requests/min**; a per-branch search over a large queue exhausts that bucket
+and stalls the whole pass on retry backoff (observed: ~9 min for a ~283-branch
+queue at `UNSORRY_DISPATCH_LIMIT` ≥ 10). The set is built before the loop and
+checked by string membership — O(1) API cost regardless of queue size. A `gh`
+error yields an empty set; `queued_branch_has_pr` and the post-create PR state
+still prevent a genuine double-open.
 
 ## 4. `goal_already_proved`
 
@@ -61,12 +74,14 @@ best-effort posture of `open_prove_pr_exists` (ADR-017).
 
 - `queued_branch_refs` — emits the candidate branch refs; stubbable in tests.
 - `fetch_main_ref` — fetches `origin/main`; stubbable in tests.
-- `goal_already_proved`, `open_prove_pr_exists`, `queued_branch_has_pr`,
-  `submission_governor_allows`, `dispatch_queued_proof_branch` — all stubbable.
+- `dispatch_open_pr_goals` — emits the open-PR goal set; stubbable in tests.
+- `goal_already_proved`, `queued_branch_has_pr`, `submission_governor_allows`,
+  `dispatch_queued_proof_branch` — all stubbable.
 
 `test_dispatch_goal_dedup` exercises the invariant: given two queued branches for
-goal `g1` and one for an already-proved goal `g2`, exactly one (a `g1`) branch is
-dispatched.
+goal `g1`, one for an already-proved goal `g2`, and one for `g3` that already has
+an open prove PR (in the `dispatch_open_pr_goals` set), exactly one (a `g1`)
+branch is dispatched.
 
 ## 6. Out of scope
 
