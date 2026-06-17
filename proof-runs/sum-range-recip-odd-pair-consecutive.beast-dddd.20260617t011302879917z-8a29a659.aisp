@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-recip-odd-pair-consecutive.beast-dddd.20260617t011302879917z-8a29a659@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t011302879917z-8a29a659; goal≜sum-range-recip-odd-pair-consecutive; agent≜beast-dddd; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-recip-odd-pair-consecutive}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜205; ended≜2026-06-17T01:13:02Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜882737b0da036b773b1d2d41a01139ba979a5e06534a95fb3e76ccbab786d151}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
