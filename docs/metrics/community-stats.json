@@ -2,19 +2,19 @@
   "contributors": [
     {
       "attempt_yield": 1.0,
-      "attempts": 82,
-      "difficulty_points": 196,
+      "attempts": 83,
+      "difficulty_points": 198,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": 0,
       "p90_solve_s": 0,
       "run_success_rate": 1.0,
-      "runs": 82,
+      "runs": 83,
       "solver": "ohdearquant",
-      "successes": 82,
-      "successes_per_recorded_hour": 7028.571,
+      "successes": 83,
+      "successes_per_recorded_hour": 7114.286,
       "total_solve_s": 42,
-      "verified_proofs": 82
+      "verified_proofs": 83
     },
     {
       "attempt_yield": 0.1774,
@@ -114,17 +114,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 208,
+    "attributed_proofs": 209,
     "historical_unknown_proofs": 291,
-    "proof_run_coverage": 0.3367,
-    "successful_proofs_with_run_telemetry": 168,
-    "terminal_runs": 487,
-    "verified_proofs": 499
+    "proof_run_coverage": 0.338,
+    "successful_proofs_with_run_telemetry": 169,
+    "terminal_runs": 488,
+    "verified_proofs": 500
   },
   "credit": {
     "credited_contributors": 10,
-    "credited_proofs": 499,
-    "explicit_solver_proofs": 208,
+    "credited_proofs": 500,
+    "explicit_solver_proofs": 209,
     "inferred_git_proofs": 291,
     "uncredited_proofs": 0
   },
@@ -188,16 +188,16 @@
     },
     {
       "attempt_yield": 1.0,
-      "attempts": 82,
+      "attempts": 83,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 82,
-      "difficulty_points": 196,
+      "credited_proofs": 83,
+      "difficulty_points": 198,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 82,
+      "explicit_solver_proofs": 83,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": null,
@@ -207,12 +207,12 @@
       "p90_solve_s": 0,
       "profile_url": "https://github.com/ohdearquant",
       "run_success_rate": 1.0,
-      "runs": 82,
+      "runs": 83,
       "solver": "ohdearquant",
-      "successes": 82,
-      "successes_per_recorded_hour": 7028.571,
+      "successes": 83,
+      "successes_per_recorded_hour": 7114.286,
       "total_solve_s": 42,
-      "verified_proofs": 82
+      "verified_proofs": 83
     },
     {
       "attempt_yield": 0.4386,
@@ -471,15 +471,15 @@
     },
     {
       "attempt_yield": 1.0,
-      "attempts": 6,
+      "attempts": 7,
       "date": "2026-06-17",
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": 0,
       "p90_solve_s": 0,
       "run_success_rate": 1.0,
-      "runs": 6,
-      "successes": 6,
+      "runs": 7,
+      "successes": 7,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0
     }
@@ -500,17 +500,17 @@
       "total_solve_s": 56300
     },
     {
-      "attempt_yield": 0.313,
-      "attempts": 230,
+      "attempt_yield": 0.316,
+      "attempts": 231,
       "difficulty": 2,
       "failed_attempts": 158,
       "failures": 138,
-      "median_solve_s": 339,
+      "median_solve_s": 337,
       "p90_solve_s": 1914,
-      "run_success_rate": 0.3429,
-      "runs": 210,
-      "successes": 72,
-      "successes_per_recorded_hour": 1.818,
+      "run_success_rate": 0.346,
+      "runs": 211,
+      "successes": 73,
+      "successes_per_recorded_hour": 1.843,
       "total_solve_s": 142600
     },
     {
@@ -601,16 +601,16 @@
     },
     {
       "attempt_yield": 1.0,
-      "attempts": 82,
+      "attempts": 83,
       "effort": "unknown",
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": 0,
       "p90_solve_s": 0,
       "run_success_rate": 1.0,
-      "runs": 82,
-      "successes": 82,
-      "successes_per_recorded_hour": 7028.571,
+      "runs": 83,
+      "successes": 83,
+      "successes_per_recorded_hour": 7114.286,
       "total_solve_s": 42
     },
     {
@@ -5771,6 +5771,22 @@
       "difficulty": 2,
       "failed_attempts": 0,
       "failures": 0,
+      "goal": "sum-even-cubes-eq-twice-square",
+      "median_solve_s": 0,
+      "p90_solve_s": 0,
+      "run_success_rate": 1.0,
+      "runs": 1,
+      "status": "proved",
+      "successes": 1,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0
+    },
+    {
+      "attempt_yield": 1.0,
+      "attempts": 1,
+      "difficulty": 2,
+      "failed_attempts": 0,
+      "failures": 0,
       "goal": "tenth-power-mod-eleven-mem",
       "median_solve_s": 0,
       "p90_solve_s": 0,
@@ -5837,18 +5853,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/OceanLi.png?size=96",
-        "difficulty_points": 126,
+        "difficulty_points": 128,
         "display_name": "OceanLi",
         "git_author": "OceanLi <quantocean.li@gmail.com>",
         "git_author_name": "OceanLi",
         "github": "OceanLi",
-        "index_files_added": 57,
+        "index_files_added": 58,
         "missing_solver_provenance": 1,
         "profile_url": "https://github.com/OceanLi",
         "sample_add_commit": "d309dd0838929f53368c58388cacb09e0642a7dd",
         "sample_add_date": "2026-06-17",
         "solver_credit": false,
-        "solver_provenance_proofs": 56
+        "solver_provenance_proofs": 57
       },
       {
         "attribution_source": "git-add-author",
@@ -5931,8 +5947,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 499,
-    "records": 499,
+    "git_attributed_index_files": 500,
+    "records": 500,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -6052,19 +6068,19 @@
     },
     {
       "attempt_yield": 1.0,
-      "attempts": 7,
+      "attempts": 8,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": 0,
       "p90_solve_s": 0,
       "provider_model": "claude / template-sum-induction",
       "run_success_rate": 1.0,
-      "runs": 7,
+      "runs": 8,
       "solvers": 1,
-      "successes": 7,
+      "successes": 8,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 7
+      "verified_proofs": 8
     },
     {
       "attempt_yield": 0.4545,
@@ -6198,19 +6214,19 @@
   "outcome_counts": {
     "decomposed": 18,
     "failed": 301,
-    "proved": 168
+    "proved": 169
   },
   "outcomes": {
-    "attempt_yield": 0.3128,
-    "attempts": 537,
+    "attempt_yield": 0.3141,
+    "attempts": 538,
     "failed_attempts": 369,
     "failures": 319,
-    "median_solve_s": 356,
+    "median_solve_s": 354,
     "p90_solve_s": 1917,
-    "run_success_rate": 0.345,
-    "runs": 487,
-    "successes": 168,
-    "successes_per_recorded_hour": 1.713,
+    "run_success_rate": 0.3463,
+    "runs": 488,
+    "successes": 169,
+    "successes_per_recorded_hour": 1.723,
     "total_solve_s": 353149
   },
   "queue": {
@@ -6226,12 +6242,26 @@
     "status_counts": {
       "archived": 138,
       "blocked": 3,
-      "open": 251,
-      "proved": 361,
+      "open": 250,
+      "proved": 362,
       "translated": 9
     }
   },
   "recent_runs": [
+    {
+      "agent": "mac-158f",
+      "attempts": 1,
+      "difficulty": 2,
+      "effort": null,
+      "ended": "2026-06-17T00:19:32Z",
+      "goal": "sum-even-cubes-eq-twice-square",
+      "id": "20260617t001932432174z-7a0eae7a",
+      "model": "template-sum-induction",
+      "outcome": "proved",
+      "provider": "claude",
+      "solve_s": 0,
+      "solver": "ohdearquant"
+    },
     {
       "agent": "mac-158f",
       "attempts": 1,
@@ -6492,20 +6522,6 @@
       "ended": "2026-06-16T23:55:04Z",
       "goal": "dvd-510-pow-nineteen-sub-pow-three",
       "id": "20260616t235504649185z-e0ef4bfe",
-      "model": "template-zmod-crt",
-      "outcome": "proved",
-      "provider": "claude",
-      "solve_s": 0,
-      "solver": "ohdearquant"
-    },
-    {
-      "agent": "mac-158f",
-      "attempts": 1,
-      "difficulty": 2,
-      "effort": null,
-      "ended": "2026-06-16T23:55:02Z",
-      "goal": "dvd-510-pow-fortynine-sub-pow-seventeen",
-      "id": "20260616t235502213704z-914975f2",
       "model": "template-zmod-crt",
       "outcome": "proved",
       "provider": "claude",
