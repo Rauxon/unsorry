@@ -1,0 +1,20 @@
+𝔸5.1.goal.abstract-regular-polyhedron-realizable-iff-s1@2026-06-17
+γ≔unsorry.goal
+⟦Ω:Goal⟧{
+  id≜abstract-regular-polyhedron-realizable-iff-s1
+  phase≜prove
+  status≜open
+  difficulty≜1
+}
+⟦Σ:Source⟧{
+  src≜decompositions/abstract-regular-polyhedron-realizable-iff.thebeast-ace7.aisp
+}
+⟦Γ:Deps⟧{
+  deps≜⟨⟩
+}
+⟦Λ:Artifact⟧{
+  lean≜goals/abstract-regular-polyhedron-realizable-iff-s1.lean
+  sha≜∅
+  depth≜1
+}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

@@ -1,0 +1,9 @@
+𝔸5.1.run.abstract-regular-polyhedron-realizable-iff.thebeast-ace7.20260617t154439301217z-46edfb28@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t154439301217z-46edfb28; goal≜abstract-regular-polyhedron-realizable-iff; agent≜thebeast-ace7; outcome≜decomposed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜codex; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜abstract-regular-polyhedron-realizable-iff}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜923; ended≜2026-06-17T15:44:39Z; lessons≜2}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜hp_six : 6 ≤ p hF : 6 * F ≤ 2 * E hV : 3 * V ≤ 2 * E ⊢ 6 * V = 2 * (3 * V) error: library/Unsorry/AbstractRegularPolyhedronRealizableIff.lean:70:28: `simp` made no progress error: library/Unsorry/AbstractRegularPolyhedronRealizableIff.lean:87:39: unsolved goals p q : ℕ hp : 3 ≤ p}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

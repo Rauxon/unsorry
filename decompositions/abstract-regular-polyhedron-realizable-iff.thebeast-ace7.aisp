@@ -1,0 +1,13 @@
+𝔸5.1.decomp.abstract-regular-polyhedron-realizable-iff.thebeast-ace7@2026-06-17
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜abstract-regular-polyhedron-realizable-iff; agent≜thebeast-ace7}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜abstract-regular-polyhedron-realizable-iff-s1,sha≜901aa2cef51f3074206f086e6a541392c06cafb34a6be9a164a4d8c5f781f682⟩
+  sub₂≜⟨id≜abstract-regular-polyhedron-realizable-iff-s2,sha≜2cef34417150dc0014873aa8c319592e71fb7f5e2ce7727760243499242940b8⟩
+  sub₃≜⟨id≜abstract-regular-polyhedron-realizable-iff-s3,sha≜5c982895208c3594f742efa49e6b9d804d8fd661aa58d0ca38c038a8846e0bc2⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
