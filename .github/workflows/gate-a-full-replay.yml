@@ -12,7 +12,7 @@ name: gate-a-full-replay
 #
 # This workflow closes that gap. On a daily cron it re-runs the FULL kernel
 # replay + FULL axiom audit over the entire active library (no --base), and
-# re-validates every archive package, on the 8 GB namespace-profile-unsorry-1
+# re-validates every archive package, on the namespace-profile-unsorry-replay
 # runner with a small UNSORRY_REPLAY_CHUNK so leanchecker's per-chunk peak fits
 # (SPEC-048-B). It is ADDITIVE: it ships with the Phase 2 incremental change, so
 # there is never a window with no full re-verify path.
@@ -38,18 +38,17 @@ concurrency:
 
 env:
   MATHLIB_CACHE_DIR: ${{ github.workspace }}/.lake/mathlib-cache
-  # Small chunk so a FULL leanchecker replay fits the 8 GB runner: leanchecker
-  # holds ~all of mathlib resident per process, so a smaller chunk trims the
-  # few-olean peak on top of that image (ADR-048 Phase 2 / SPEC-048-B). Bad value
-  # falls back to the 30-module default in parallel_modules.py.
+  # Small chunk so a FULL leanchecker replay stays inside the replay lane's
+  # memory envelope. leanchecker holds ~all of mathlib resident per process, so
+  # a smaller chunk trims the few-olean peak on top of that image (ADR-048 Phase
+  # 2 / SPEC-048-B). Bad value falls back to the 30-module default in
+  # parallel_modules.py.
   UNSORRY_REPLAY_CHUNK: "6"
 
 jobs:
   full-replay:
     name: gate-a-full-replay
-    # 8 GB profile: Phase 2 makes the full backstop fit the routine runner via the
-    # small UNSORRY_REPLAY_CHUNK, so unsorry-2 (16 GB) is not required here.
-    runs-on: namespace-profile-unsorry-1
+    runs-on: namespace-profile-unsorry-replay
     # Generous: a serial full replay of the whole library in small chunks is the
     # slowest path; the small chunk trades wall-clock for memory headroom.
     timeout-minutes: 180
@@ -74,7 +73,7 @@ jobs:
           du -sh .lake .lake/packages .lake/build 2>/dev/null || true
 
       # Best-effort swap so leanchecker pages cold mathlib regions instead of
-      # OOMing on the 8 GB runner (same pattern as gate-a-replay). Namespace
+      # OOMing on the constrained routine runner (same pattern as gate-a-replay). Namespace
       # runners disallow swapon; there the small chunk keeps the peak in RAM, so a
       # failure here is a warning, not a gate failure.
       - name: Add swap headroom for leanchecker (best-effort)

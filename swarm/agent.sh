@@ -6,6 +6,7 @@
 #   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
 #   ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex] [--dry-run]
 #   ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai]
+#   ./swarm/agent.sh --dispatch-queue [--once] [--dry-run]
 #   ./swarm/agent.sh --self-test
 #
 # Must be run from the repository root. Swarm modes additionally require `main`
@@ -19,10 +20,12 @@
 #
 # Exit codes: 0 success or nothing-to-do · 1 cycle failure · 2 configuration
 # error (not at repo root, missing tools, unauthenticated gh) · 3
-# infrastructure failure (the selected proof CLI cannot run — quota, auth, network —
-# the agent stops without applying any queue penalty, ADR-016).
+# infrastructure failure — the selected proof CLI cannot run (quota, auth,
+# network; the agent stops without applying any queue penalty, ADR-016), or a
+# git fetch on the shared object store could not complete after retries
+# (ADR-059, #983). Either way supervise.sh backs off and reschedules.
 #
-# shellcheck disable=SC2317  # test_* functions are invoked indirectly ("$t")
+# shellcheck disable=SC2317,SC2329  # test_* functions are invoked indirectly ("$t")
 set -euo pipefail
 
 # ----------------------------------------------------------------- constants
@@ -42,12 +45,21 @@ die_config() {
   exit 2
 }
 
+# ADR-059: the infrastructure-failure counterpart to die_config, for the
+# pre-loop startup path (relocation) where there is no cycle to return a code
+# up through. Exit 3 routes supervise.sh to its ADR-016 exponential backoff.
+die_infra() {
+  printf '[agent.sh] infrastructure failure: %s\n' "$*" >&2
+  exit 3
+}
+
 usage() {
   cat <<'EOF'
 Usage:
   ./swarm/agent.sh --translate-only [--once] [--goal <id>] [--dry-run]
   ./swarm/agent.sh --prove [--once] [--goal <id>] [--provider claude|codex|gemini|openai] [-pi [<model>]] [--dry-run]
   ./swarm/agent.sh --prove-local [--goal <id>] [--provider claude|codex|gemini|openai] [-pi [<model>]]
+  ./swarm/agent.sh --dispatch-queue [--once] [--dry-run]
   ./swarm/agent.sh --self-test
 
 Flags:
@@ -55,6 +67,8 @@ Flags:
   --prove           Phase-1 mode: only phase≡prove, unproved goals are candidates
   --prove-local     Prove one goal from local HEAD without any remote, claim,
                     PR, or GitHub operation; auto-selects unless --goal is set
+  --dispatch-queue  Open queued proof branches as PRs when the ADR-058
+                    submission governor admits more verifier work
   --provider <name> Proof provider: claude (default), codex, gemini, or openai
   --once            Run exactly one cycle then exit
   --goal <id>       Restrict or override automatic selection to one goal
@@ -123,6 +137,41 @@ Environment:
                     normal prove pipeline (retry with accumulated lessons,
                     ADR-024; decompose on failure, ADR-009) instead of going
                     idle (default: 1; set 0 to disable)
+  UNSORRY_FETCH_RETRIES
+                    Attempts for a `git fetch` on the shared object store before
+                    it is called an infrastructure failure (ADR-059, #983;
+                    default: 3)
+  UNSORRY_FETCH_BACKOFF
+                    Base seconds for the exponential backoff between fetch
+                    retries (default: 2; doubles per attempt, capped at 30)
+  UNSORRY_SUBMIT_MODE
+                    Coordinated --prove submit mode: queue pushes a verified
+                    proof branch under queued/prove/ without opening a PR
+                    (default); pr opens the PR immediately
+  UNSORRY_DISPATCH_LIMIT
+                    Max queued proof branches --dispatch-queue opens per run
+                    (default: 1; --once also limits to one)
+  UNSORRY_GOVERNOR_WAIT
+                    Seconds to sleep before polling again when the governor is
+                    closed or no work is available (default: 300; --once exits)
+  UNSORRY_SUBMISSION_GOVERNOR
+                    Coordinated --prove admission control (default: 1). When
+                    enabled, the agent checks open prove PR count and Gate A
+                    queue pressure before claiming new prove work. Set 0 only
+                    for an operator-approved override
+  UNSORRY_SUBMISSION_FREEZE
+                    Emergency pause for coordinated --prove submissions
+                    (default: 0). Truthy values make the agent exit cleanly
+                    before claim/PR-producing work
+  UNSORRY_MAX_OPEN_PROVE_PRS
+                    Pause coordinated --prove when this many open prove PRs
+                    already exist (default: 40; set -1 to disable this limit)
+  UNSORRY_MAX_GATE_A_IN_FLIGHT
+                    Pause coordinated --prove when queued + in-progress Gate A
+                    workflow runs reach this count (default: 20; set -1 to
+                    disable this limit)
+  UNSORRY_GOVERNOR_SCAN_LIMIT
+                    Max PR/runs rows fetched per governor query (default: 200)
 EOF
 }
 
@@ -988,6 +1037,12 @@ feature_branch() {
   printf 'feature/goal-%s-%s-%s-%s\n' "$goal" "$kind" "$AGENT_ID" "$hex"
 }
 
+queued_prove_branch() {
+  local goal="$1" hex
+  hex="$(od -An -N3 -tx1 /dev/urandom | tr -d ' \n')" || return 1
+  printf 'queued/prove/%s/%s-%s\n' "$goal" "$AGENT_ID" "$hex"
+}
+
 # Claim record per the SPEC-003-B template; header date = UTC date of ts.
 render_claim_record() {
   local goal="$1" agent="$2" ts="$3" ttl="$4"
@@ -1199,13 +1254,56 @@ emit_event() {
 
 # ------------------------------------------------------------- git plumbing
 
+# ADR-059 pure backoff schedule: seconds to wait before the next fetch retry.
+# <attempt> is the 1-based index of the just-failed attempt; delay is
+# base*2^(attempt-1), the shift clamped at 6 to bound the arithmetic, then
+# capped. base 0 yields 0 for every attempt (the self-test uses this to avoid
+# real sleeps). Mirrors supervise.sh:next_action's doubling-with-cap shape.
+fetch_retry_delay() {
+  local attempt="$1" base="$2" cap="$3" delay shift_n
+  shift_n=$((attempt - 1)); [ "$shift_n" -gt 6 ] && shift_n=6
+  delay=$(( base * (1 << shift_n) ))
+  [ "$delay" -gt "$cap" ] && delay="$cap"
+  echo "$delay"
+}
+
+# ADR-059: git fetch into the SHARED object store (all ADR-042 per-agent
+# worktrees on a host share one .git/objects) is not concurrency-safe — a
+# sibling agent's fetch, or a gc.auto repack, can leave a thin-pack base object
+# momentarily unreadable while this fetch's unpack needs it ("failed to read
+# delta-pack base object" / "unpack-objects error", #983). The failure is
+# transient, so retry with exponential backoff; -c gc.auto=0 stops a concurrent
+# repack from racing this fetch. <dir> is the repo to fetch into ("." for the
+# current worktree, "$CLAIMS_WT" for the claims worktree) — one helper covers
+# every site. Returns 0 on success, or the infrastructure code 3 once all
+# attempts are spent (callers propagate it so the loop exits 3 and supervise.sh
+# backs off, rather than dying on the first blip).
+git_fetch_retry() {
+  local dir="$1"; shift
+  local attempts="${UNSORRY_FETCH_RETRIES:-3}" base="${UNSORRY_FETCH_BACKOFF:-2}" cap=30
+  local n=1 delay
+  while :; do
+    if git -C "$dir" -c gc.auto=0 fetch "$@"; then
+      return 0
+    fi
+    if [ "$n" -ge "$attempts" ]; then
+      log "git fetch ($*) failed after $attempts attempt(s) — infrastructure failure (#983, ADR-059)"
+      return 3
+    fi
+    delay="$(fetch_retry_delay "$n" "$base" "$cap")"
+    log "git fetch ($*) failed (attempt $n/$attempts) — retrying in ${delay}s (#983)"
+    sleep "$delay"
+    n=$((n + 1))
+  done
+}
+
 # Step 1: pull main, ensure the claims worktree exists and is freshly pulled.
 # ADR-042: an isolated agent worktree is a throwaway detached checkout, so it is
 # hard-reset to origin/main (re-entrant: clears anything a dead cycle left
 # behind, like the claims worktree does). The non-isolated path keeps the
 # conservative --ff-only merge of the operator's own main checkout.
 sync_repo() {
-  git fetch -q origin || return 1
+  git_fetch_retry . -q origin || return $?  # ADR-059: 3 on exhausted retries
   if [ "${UNSORRY_IN_WT:-0}" = 1 ]; then
     git reset --hard -q origin/main || return 1
   else
@@ -1266,7 +1364,8 @@ relocate_into_agent_worktree() {
   [ "${UNSORRY_NO_ISOLATE:-0}" = 1 ] && return 0
 
   require_unsorry_origin
-  git fetch -q origin || die_config "cannot fetch origin before relocating into an isolated worktree"
+  git_fetch_retry . -q origin \
+    || die_infra "cannot fetch origin before relocating into an isolated worktree (ADR-059, #983)"
 
   local workdir wt
   workdir="${UNSORRY_WORKDIR:-$HOME/.unsorry/work}"
@@ -1305,7 +1404,7 @@ ensure_claims_worktree() {
   fi
   # Unconditional at every cycle start: whatever the previous cycle left
   # behind (unpushed commits, dirty files), start from the true origin tip.
-  git -C "$CLAIMS_WT" fetch -q origin claims || return 1
+  git_fetch_retry "$CLAIMS_WT" -q origin claims || return $?  # ADR-059: 3 on exhausted retries
   git -C "$CLAIMS_WT" reset --hard -q origin/claims || return 1
 }
 
@@ -1354,6 +1453,81 @@ submit_pr_tree() {
   return 0
 }
 
+queue_pr_tree() {
+  local prwt="$1" branch="$2" title="$3"
+  shift 3
+  if ! python3 -m tools.gate_b validate "$prwt" >/dev/null; then
+    log "queued tree on $branch fails Gate B — not pushing"
+    return 1
+  fi
+  git -C "$prwt" add "$@" || return 1
+  git -C "$prwt" commit -q -m "$title" || return 1
+  git -C "$prwt" push -q origin "$branch" || return 1
+  return 0
+}
+
+fetch_queued_prove_branches() {
+  git fetch -q origin '+refs/heads/queued/prove/*:refs/remotes/origin/queued/prove/*'
+}
+
+queued_branch_has_pr() {
+  local branch="$1" count
+  count="$(gh pr list --state all --head "$branch" --json number --jq 'length' 2>/dev/null)" \
+    || return 1
+  [ "$count" -gt 0 ]
+}
+
+dispatch_queued_proof_branch() {
+  local branch="$1" title body goal name
+  local remote_ref="origin/$branch"
+  title="$(git log -1 --format=%s "$remote_ref")" || return 1
+  case "$title" in
+    prove\(*:*) ;;
+    *) log "queue dispatcher skipped $branch — commit title is not a prove title"; return 1 ;;
+  esac
+  goal="${branch#queued/prove/}"
+  goal="${goal%%/*}"
+  name="${title#*: }"
+  name="${name% by *}"
+  body="Queued proof dispatch (ADR-058, SPEC-007-A): branch \`$branch\` was produced by coordinated \`--prove\` in \`UNSORRY_SUBMIT_MODE=queue\` after local verification passed. The dispatcher opened this PR only after the submission governor admitted more verifier work. New library proof: \`$name\` for goal \`$goal\`."
+  if [ "$DRY_RUN" -eq 1 ]; then
+    printf 'dry-run: would dispatch queued branch %s as "%s"\n' "$branch" "$title"
+    return 0
+  fi
+  (
+    gh pr create --base main --head "$branch" --title "$title" --body "$body" \
+      && gh pr merge --auto --squash "$branch"
+  ) || return 1
+  log "dispatched queued proof branch $branch"
+  return 0
+}
+
+dispatch_queue() {
+  local limit="${UNSORRY_DISPATCH_LIMIT:-1}" branch dispatched=0 failures=0
+  [ "$ONCE" -eq 1 ] && limit=1
+  validate_integer_knob UNSORRY_DISPATCH_LIMIT "$limit"
+  fetch_queued_prove_branches || { log "queue dispatcher: no queued proof branches found"; return 0; }
+  while IFS= read -r branch; do
+    [ -n "$branch" ] || continue
+    branch="${branch#origin/}"
+    if queued_branch_has_pr "$branch"; then
+      log "queue dispatcher skipped $branch — PR already exists"
+      continue
+    fi
+    if ! submission_governor_allows; then
+      [ "$dispatched" -gt 0 ] && return "$failures"
+      return 0
+    fi
+    if dispatch_queued_proof_branch "$branch"; then
+      dispatched=$((dispatched + 1))
+    else
+      failures=$((failures + 1))
+    fi
+    [ "$dispatched" -ge "$limit" ] && break
+  done < <(git for-each-ref --format='%(refname:short)' refs/remotes/origin/queued/prove)
+  [ "$failures" -eq 0 ]
+}
+
 # ----------------------------------------------------------------- the cycle
 
 # ADR-017: a goal whose prove PR is already open is done being worked — the
@@ -1376,6 +1550,101 @@ open_prove_pr_exists() {
     case "$t" in "prove($goal):"*) return 0 ;; esac
   done <<< "$titles"
   return 1
+}
+
+queued_prove_branch_exists() {
+  local goal="$1"
+  git ls-remote --exit-code --heads origin "queued/prove/$goal/*" >/dev/null 2>&1
+}
+
+env_truthy() {
+  case "${1:-}" in
+    1|true|TRUE|yes|YES|on|ON) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+validate_integer_knob() {
+  local name="$1" value="$2" allow_minus_one="${3:-0}"
+  if [ "$allow_minus_one" = 1 ] && [ "$value" = -1 ]; then
+    return 0
+  fi
+  [[ "$value" =~ ^[0-9]+$ ]] \
+    || {
+      if [ "$allow_minus_one" = 1 ]; then
+        die_config "$name '$value' must be a non-negative integer or -1"
+      else
+        die_config "$name '$value' must be a non-negative integer"
+      fi
+    }
+}
+
+# Pure decision helper for the coordinated prove submission governor. Prints a
+# pause reason when the agent must not start new claim/PR-producing work; prints
+# nothing when admission is allowed.
+submission_governor_reason() {
+  local freeze="$1" open_prove="$2" gate_a_in_flight="$3" max_open="$4" max_gate="$5"
+  if env_truthy "$freeze"; then
+    echo "submission freeze is active"
+    return 0
+  fi
+  if [ "$max_open" -ge 0 ] && [ "$open_prove" -ge "$max_open" ]; then
+    echo "open prove PRs $open_prove >= limit $max_open"
+    return 0
+  fi
+  if [ "$max_gate" -ge 0 ] && [ "$gate_a_in_flight" -ge "$max_gate" ]; then
+    echo "Gate A queued+in-progress runs $gate_a_in_flight >= limit $max_gate"
+    return 0
+  fi
+  return 1
+}
+
+count_open_prove_prs() {
+  gh pr list --state open --limit "$UNSORRY_GOVERNOR_SCAN_LIMIT" \
+    --json title \
+    --jq '[.[].title | select(startswith("prove("))] | length'
+}
+
+count_gate_a_runs() {
+  local status="$1"
+  gh run list --workflow gate-a.yml --status "$status" \
+    --limit "$UNSORRY_GOVERNOR_SCAN_LIMIT" \
+    --json databaseId --jq 'length'
+}
+
+# The cheap admission layer in front of the trusted verifier lane (ADR-058).
+# Fail closed on GitHub API errors: if the operator cannot see queue pressure,
+# the safe response during a flood is to avoid opening more proof PRs. This only
+# applies to coordinated --prove; --prove-local remains fully local.
+submission_governor_allows() {
+  [ "$PROVE" -eq 1 ] || return 0
+  [ "$DRY_RUN" -eq 1 ] && return 0
+  [ "${UNSORRY_SUBMISSION_GOVERNOR:-1}" = 0 ] && return 0
+
+  local open_prove queued in_progress gate_a_total reason
+  if ! open_prove="$(count_open_prove_prs 2>/dev/null)"; then
+    log "submission governor paused: could not read open proof PR count"
+    return 1
+  fi
+  if ! queued="$(count_gate_a_runs queued 2>/dev/null)"; then
+    log "submission governor paused: could not read queued Gate A runs"
+    return 1
+  fi
+  if ! in_progress="$(count_gate_a_runs in_progress 2>/dev/null)"; then
+    log "submission governor paused: could not read in-progress Gate A runs"
+    return 1
+  fi
+  [[ "$open_prove" =~ ^[0-9]+$ ]] || { log "submission governor paused: invalid open PR count '$open_prove'"; return 1; }
+  [[ "$queued" =~ ^[0-9]+$ ]] || { log "submission governor paused: invalid queued Gate A count '$queued'"; return 1; }
+  [[ "$in_progress" =~ ^[0-9]+$ ]] || { log "submission governor paused: invalid in-progress Gate A count '$in_progress'"; return 1; }
+  gate_a_total=$((queued + in_progress))
+
+  if reason="$(submission_governor_reason "$UNSORRY_SUBMISSION_FREEZE" "$open_prove" "$gate_a_total" "$UNSORRY_MAX_OPEN_PROVE_PRS" "$UNSORRY_MAX_GATE_A_IN_FLIGHT")"; then
+    log "submission governor paused: $reason (open_prove_prs=$open_prove gate_a_queued=$queued gate_a_in_progress=$in_progress)"
+    return 1
+  fi
+  log "submission governor open: open_prove_prs=$open_prove gate_a_queued=$queued gate_a_in_progress=$in_progress"
+  return 0
 }
 
 decompose_blocked_by_open_prove_pr() {
@@ -1970,6 +2239,39 @@ prove_target_only_changed() {
   done < <(git -C "$root" status --porcelain=v1 --untracked-files=all)
 }
 
+# Keep THIS agent checkout's UnsorryLibrary oleans warm. Called once per cycle
+# after sync_repo (so the working tree is at origin/main, the same commit each
+# prove worktree branches from). The first call pays a full library build; later
+# calls are incremental — only newly-merged modules compile. The result is the
+# seed source for seed_library_cache. Best-effort and opt-out via
+# UNSORRY_SEED_LIBRARY=0; on failure prove verifies just fall back to the prior
+# full-build behaviour.
+ensure_warm_library() {
+  [ "${UNSORRY_SEED_LIBRARY:-1}" = 0 ] && return 0
+  WARM_LIBRARY_ROOT=""
+  if ( lake exe cache get && lake build UnsorryLibrary ) >/dev/null 2>&1; then
+    WARM_LIBRARY_ROOT="$PWD"
+  else
+    log "warning: warm library build failed — prove verifies will do a full build this cycle"
+  fi
+}
+
+# Seed <prwt>'s .lake/build from the warm checkout so `lake build UnsorryLibrary`
+# in the prove worktree compiles only the agent's new module instead of the
+# whole library. A full copy (not a hardlink) keeps the prove worktree's build
+# from ever touching the warm tree's oleans. Both trees sit at the same
+# origin/main commit, so Lean's content-hashed traces treat the copied oleans as
+# up to date. Best-effort: no warm root (build failed or opted out) ⇒ no-op, and
+# the verify falls back to a full build.
+seed_library_cache() {
+  local prwt="$1" warm="${WARM_LIBRARY_ROOT:-}"
+  [ -n "$warm" ] || return 0
+  [ -d "$warm/.lake/build" ] || return 0
+  [ -e "$prwt/.lake/build" ] && return 0
+  mkdir -p "$prwt/.lake" || return 0
+  cp -a "$warm/.lake/build" "$prwt/.lake/build" 2>/dev/null || true
+}
+
 # Prove step 3: local soundness verification of a candidate proof tree, BEFORE
 # any PR (the agent self-verifying per ADR-006 / design-doc step 6). All three
 # must pass on the tree at <root> for module Unsorry.<camel>:
@@ -2014,6 +2316,16 @@ run_proof() {
   if ! ( cd "$prwt" && lake exe cache get ) >/dev/null 2>&1; then
     log "warning: 'lake exe cache get' failed in the prove worktree for $goal — verification may be slow"
   fi
+  # cache get restores only *mathlib* oleans; the project's own UnsorryLibrary
+  # modules (hundreds, and growing with every merged proof) are not in any cache
+  # and would otherwise be recompiled from scratch in this fresh worktree on
+  # every verify (~9 min, and far worse when many agents contend for cores).
+  # Seed them from this agent's warm checkout (kept built by ensure_warm_library,
+  # pinned to the same origin/main commit the prove worktree branches from) so
+  # the verify compiles only the new module. Soundness is unaffected: CI Gate A
+  # re-verifies the whole library from scratch (ADR-049), so this only speeds the
+  # local pre-check. Best-effort: a miss just falls back to the full build.
+  seed_library_cache "$prwt"
   # ADR-014 dependency reuse: surface this goal's PROVED dependencies (declared
   # deps + the subs of its own decomposition) as importable library modules, so
   # merged work compounds instead of being re-proved.
@@ -2203,7 +2515,7 @@ check_in_failed_run_only() {
 # the verified module (run_proof wrote it into <prwt>).
 check_in_proof() {
   local goal="$1" prwt="$2" camel="$3"
-  local name sha
+  local name sha title body branch
   local -a provenance=(
     --solver "$SOLVER"
     --agent "$AGENT_ID"
@@ -2229,10 +2541,18 @@ check_in_proof() {
   # (ADR-011, SPEC-011-A). Remove it from the PR tree.
   rm -f "$prwt/library/Unsorry/${camel}Binding.lean"
 
-  submit_pr_tree "$prwt" "$(git -C "$prwt" rev-parse --abbrev-ref HEAD)" \
-    "prove($goal): $name by $AGENT_ID" \
-    "Automated Phase-1 proof of goal \`$goal\` by agent \`$AGENT_ID\` (ADR-006, ADR-007, SPEC-007-A). New library module \`library/Unsorry/$camel.lean\` re-states and proves \`$name\`; built with \`lake build UnsorryLibrary --wfail\` and audited with \`lake exe axiom_audit Unsorry.$camel\` (whitelist only). Index entry keyed by the content address of the goal's Lean statement." \
-    library goals proof-runs || return 1
+  branch="$(git -C "$prwt" rev-parse --abbrev-ref HEAD)" || return 1
+  title="prove($goal): $name by $AGENT_ID"
+  body="Automated Phase-1 proof of goal \`$goal\` by agent \`$AGENT_ID\` (ADR-006, ADR-007, SPEC-007-A). New library module \`library/Unsorry/$camel.lean\` re-states and proves \`$name\`; built with \`lake build UnsorryLibrary --wfail\` and audited with \`lake exe axiom_audit Unsorry.$camel\` (whitelist only). Index entry keyed by the content address of the goal's Lean statement."
+  if [ "$UNSORRY_SUBMIT_MODE" = queue ]; then
+    queue_pr_tree "$prwt" "$branch" "$title" library goals proof-runs || return 1
+    emit_event proved "$goal"
+    emit_event queued "$goal"
+    log "queued verified proof branch $branch for $goal (sha ${sha:0:12})"
+    return 0
+  fi
+
+  submit_pr_tree "$prwt" "$branch" "$title" "$body" library goals proof-runs || return 1
   emit_event proved "$goal"
   emit_event pr-opened "$goal"
   log "opened auto-merge prove PR for $goal (sha ${sha:0:12})"
@@ -2247,7 +2567,11 @@ prove_goal() {
   local goal="$1"
   local camel prwt branch ok=0 prc=0 drc=0
   camel="$(py_helper camel-name "$goal")" || return 1
-  branch="$(feature_branch prove "$goal")" || return 1
+  if [ "$UNSORRY_SUBMIT_MODE" = queue ]; then
+    branch="$(queued_prove_branch "$goal")" || return 1
+  else
+    branch="$(feature_branch prove "$goal")" || return 1
+  fi
   prwt="$UNSORRY_WORKDIR/prove-${goal}-${AGENT_ID}"
 
   open_pr_worktree "$prwt" "$branch" || return 1
@@ -2866,6 +3190,47 @@ test_require_main_matches_origin() {
   ( cd "$tmp" && require_main_matches_origin ) >/dev/null 2>&1 || rc=$?
   [ "$rc" -eq 2 ] \
     || { log "  local-only main returned $rc, expected config error 2"; return 1; }
+}
+
+# ADR-059: the pure fetch-retry backoff — base*2^(attempt-1), capped, and a
+# zero base never sleeps (the self-test relies on that to stay fast).
+test_fetch_retry_delay() {
+  local got
+  got="$(fetch_retry_delay 1 2 30)"; [ "$got" = 2 ]  || { log "  attempt1: want 2, got $got"; return 1; }
+  got="$(fetch_retry_delay 2 2 30)"; [ "$got" = 4 ]  || { log "  attempt2: want 4, got $got"; return 1; }
+  got="$(fetch_retry_delay 3 2 30)"; [ "$got" = 8 ]  || { log "  attempt3: want 8, got $got"; return 1; }
+  got="$(fetch_retry_delay 9 2 30)"; [ "$got" = 30 ] || { log "  cap: want 30, got $got"; return 1; }
+  got="$(fetch_retry_delay 1 0 30)"; [ "$got" = 0 ]  || { log "  zero-base: want 0, got $got"; return 1; }
+  return 0
+}
+
+# ADR-059 (#983): git_fetch_retry succeeds against a healthy origin, and after
+# exhausting its attempts against a dead remote returns the infra code 3, having
+# really looped (attempts-1 inter-attempt retry logs). Hermetic: a bare file://
+# origin, no network, zero backoff so it never sleeps.
+test_git_fetch_retry() {
+  local tmp origin rc=0 err retries=3
+  tmp="$(mktemp -d "$SESSION_TMP/fetch-retry.XXXXXX")" || return 1
+  origin="$tmp/origin.git"
+  git init -q --bare "$origin" || return 1
+  git init -q -b main "$tmp/clone" || return 1
+  fixture_git_id "$tmp/clone" || return 1
+  git -C "$tmp/clone" commit -q --allow-empty -m seed || return 1
+  git -C "$tmp/clone" remote add origin "$origin" || return 1
+  git -C "$tmp/clone" push -q origin main || return 1
+  # Success path: a fetch against the healthy origin returns 0.
+  ( cd "$tmp/clone" && UNSORRY_FETCH_BACKOFF=0 git_fetch_retry . -q origin ) \
+    || { log "  fetch against a healthy origin failed"; return 1; }
+  # Exhaustion path: a non-existent remote returns infra 3 after the retries.
+  err="$( ( cd "$tmp/clone" && UNSORRY_FETCH_RETRIES="$retries" UNSORRY_FETCH_BACKOFF=0 \
+            git_fetch_retry . -q "$tmp/nonexistent.git" ) 2>&1 )" || rc=$?
+  [ "$rc" -eq 3 ] \
+    || { log "  exhausted fetch returned $rc, expected infra 3"; return 1; }
+  printf '%s\n' "$err" | grep -q "after $retries attempt" \
+    || { log "  exhausted fetch did not log the attempt count"; return 1; }
+  [ "$(printf '%s\n' "$err" | grep -c "retrying in")" -eq $((retries - 1)) ] \
+    || { log "  expected $((retries - 1)) retry logs before exhaustion"; return 1; }
+  return 0
 }
 
 # #428: the re-exec decision — stale iff the running and on-disk shas differ and
@@ -4233,6 +4598,32 @@ test_infra_failure_classifier() {
   [ "$got" = real ] || { log "  boundary: want 'real', got '$got'"; return 1; }
 }
 
+test_seed_library_cache() {
+  local warm prwt rc
+  warm="$(mktemp -d)"; prwt="$(mktemp -d)"
+  mkdir -p "$warm/.lake/build/lib/lean/Unsorry" "$warm/.lake/build/bin"
+  : > "$warm/.lake/build/lib/lean/Unsorry/Foo.olean"
+  : > "$warm/.lake/build/bin/axiom_audit"
+  # Warm root set → the prove worktree is seeded with the oleans and the exe.
+  WARM_LIBRARY_ROOT="$warm"
+  seed_library_cache "$prwt"
+  rc=0
+  [ -f "$prwt/.lake/build/lib/lean/Unsorry/Foo.olean" ] || { log "  olean not seeded"; rc=1; }
+  [ -f "$prwt/.lake/build/bin/axiom_audit" ] || { log "  audit exe not seeded"; rc=1; }
+  # An existing build dir is never clobbered (a started build owns it).
+  local prwt2; prwt2="$(mktemp -d)"; mkdir -p "$prwt2/.lake/build"; : > "$prwt2/.lake/build/SENTINEL"
+  seed_library_cache "$prwt2"
+  [ -f "$prwt2/.lake/build/SENTINEL" ] || { log "  clobbered an existing build dir"; rc=1; }
+  [ -e "$prwt2/.lake/build/lib" ] && { log "  seeded over an existing build dir"; rc=1; }
+  # No warm root (build failed or UNSORRY_SEED_LIBRARY=0) → no-op, no crash.
+  local prwt3; prwt3="$(mktemp -d)"
+  WARM_LIBRARY_ROOT=""
+  seed_library_cache "$prwt3"
+  [ -e "$prwt3/.lake" ] && { log "  seeded with no warm root"; rc=1; }
+  rm -rf "$warm" "$prwt" "$prwt2" "$prwt3"
+  return "$rc"
+}
+
 test_open_pr_claim_guard() {
   local rc
   # ADR-017: an open prove PR for exactly this goal → skip it (rc 0). gh is
@@ -4281,6 +4672,82 @@ test_decompose_open_prove_guard() {
   return 0
 }
 
+test_submission_governor_reason() {
+  local got
+  got="$(submission_governor_reason 1 0 0 40 20)"
+  [ "$got" = "submission freeze is active" ] \
+    || { log "  freeze reason mismatch: '$got'"; return 1; }
+  got="$(submission_governor_reason 0 40 0 40 20)"
+  [ "$got" = "open prove PRs 40 >= limit 40" ] \
+    || { log "  open PR threshold mismatch: '$got'"; return 1; }
+  got="$(submission_governor_reason 0 10 20 40 20)"
+  [ "$got" = "Gate A queued+in-progress runs 20 >= limit 20" ] \
+    || { log "  Gate A threshold mismatch: '$got'"; return 1; }
+  if submission_governor_reason 0 100 100 -1 -1 >/dev/null; then
+    log "  disabled thresholds still paused"
+    return 1
+  fi
+}
+
+test_submission_governor_allows_with_stubbed_gh() {
+  local calls=0
+  local PROVE=1
+  local UNSORRY_SUBMISSION_GOVERNOR=1
+  local UNSORRY_SUBMISSION_FREEZE=0
+  local UNSORRY_MAX_OPEN_PROVE_PRS=40
+  local UNSORRY_MAX_GATE_A_IN_FLIGHT=20
+  local UNSORRY_GOVERNOR_SCAN_LIMIT=200
+
+  gh() {
+    case "$1 $2 $3" in
+      "pr list --state") echo 12 ;;
+      "run list --workflow")
+        calls=$((calls + 1))
+        if [ "$calls" -eq 1 ]; then echo 3; else echo 4; fi
+        ;;
+      *) return 1 ;;
+    esac
+  }
+  submission_governor_allows \
+    || { unset -f gh; log "  below threshold was paused"; return 1; }
+  unset -f gh
+
+  gh() {
+    case "$1 $2 $3" in
+      "pr list --state") echo 41 ;;
+      "run list --workflow") echo 0 ;;
+      *) return 1 ;;
+    esac
+  }
+  if submission_governor_allows; then
+    unset -f gh
+    log "  above open-PR threshold was allowed"
+    return 1
+  fi
+  unset -f gh
+
+  UNSORRY_SUBMISSION_GOVERNOR=0
+  submission_governor_allows \
+    || { log "  disabled governor did not allow"; return 1; }
+}
+
+test_queued_branch_claim_guard() {
+  local PROVE=1 CLAIMED_GOAL="" claimed=""
+  open_prove_pr_exists() { return 1; }
+  queued_prove_branch_exists() { [ "$1" = queued-goal ]; }
+  claim_goal() { claimed="$1"; return 0; }
+  claim_from_pool "$(printf 'queued-goal\nfree-goal\n')" || {
+    unset -f open_prove_pr_exists queued_prove_branch_exists claim_goal
+    log "  claim_from_pool failed"
+    return 1
+  }
+  unset -f open_prove_pr_exists queued_prove_branch_exists claim_goal
+  [ "$CLAIMED_GOAL" = free-goal ] \
+    || { log "  expected free-goal after queued skip, got '$CLAIMED_GOAL'"; return 1; }
+  [ "$claimed" = free-goal ] \
+    || { log "  expected claim of free-goal, got '$claimed'"; return 1; }
+}
+
 test_render_decomp_gateb() {
   # A rendered decomposition record + its sub goal records validate under the
   # real Gate B (acyclic, subs are known goals, none re-emits the parent).
@@ -4319,10 +4786,13 @@ run_self_tests() {
     test_candidate_filtering
     test_sweep_detection
     test_goal_rewrite
+    test_seed_library_cache
     test_convergence_rewrite
     test_record_validation
     test_require_main_checkout
     test_require_main_matches_origin
+    test_fetch_retry_delay
+    test_git_fetch_retry
     test_harness_is_stale
     test_relocate_into_worktree_noop
     test_require_main_checkout_isolated
@@ -4371,6 +4841,9 @@ run_self_tests() {
     test_effort_ladder
     test_infra_failure_classifier
     test_open_pr_claim_guard
+    test_submission_governor_reason
+    test_submission_governor_allows_with_stubbed_gh
+    test_queued_branch_claim_guard
     test_demote_open_prove_records_telemetry_only
     test_floored_recompose_noop_records_telemetry_only
     test_render_decomp_gateb
@@ -4397,6 +4870,7 @@ run_self_tests() {
 TRANSLATE_ONLY=0
 PROVE=0
 PROVE_LOCAL=0
+DISPATCH_QUEUE=0
 ONCE=0
 GOAL_FILTER=""
 DRY_RUN=0
@@ -4436,6 +4910,7 @@ parse_args() {
       --translate-only) TRANSLATE_ONLY=1 ;;
       --prove) PROVE=1 ;;
       --prove-local) PROVE_LOCAL=1; PROVE=1; ONCE=1 ;;
+      --dispatch-queue) DISPATCH_QUEUE=1; PROVE=1 ;;
       --provider)
         [ $# -ge 2 ] || { usage >&2; die_config "--provider requires a value"; }
         UNSORRY_PROVIDER="$2"
@@ -4577,6 +5052,10 @@ claim_from_pool() {
       log "skipping $cand — an open prove PR is already in flight"
       continue
     fi
+    if [ "$PROVE" -eq 1 ] && queued_prove_branch_exists "$cand"; then
+      log "skipping $cand — a queued prove branch is waiting for dispatch"
+      continue
+    fi
     if claim_goal "$cand"; then
       CLAIMED_GOAL="$cand"
       return 0
@@ -4603,10 +5082,41 @@ main() {
   fi
 
   if [ "$TRANSLATE_ONLY" -eq 1 ] && [ "$PROVE" -eq 1 ]; then
-    die_config "--translate-only and --prove are mutually exclusive"
+    die_config "--translate-only, --prove, and --dispatch-queue are mutually exclusive"
   fi
   [ "$TRANSLATE_ONLY" -eq 1 ] || [ "$PROVE" -eq 1 ] \
-    || die_config "select a mode: --translate-only or --prove (or --self-test)"
+    || die_config "select a mode: --translate-only, --prove, or --dispatch-queue (or --self-test)"
+
+  if [ "$DISPATCH_QUEUE" -eq 1 ]; then
+    [ -z "$GOAL_FILTER" ] || die_config "--goal is not supported with --dispatch-queue"
+    require_cmd git gh
+    require_unsorry_origin
+    require_main_checkout
+    UNSORRY_SUBMISSION_GOVERNOR="${UNSORRY_SUBMISSION_GOVERNOR:-1}"
+    UNSORRY_SUBMISSION_FREEZE="${UNSORRY_SUBMISSION_FREEZE:-0}"
+    UNSORRY_MAX_OPEN_PROVE_PRS="${UNSORRY_MAX_OPEN_PROVE_PRS:-40}"
+    UNSORRY_MAX_GATE_A_IN_FLIGHT="${UNSORRY_MAX_GATE_A_IN_FLIGHT:-20}"
+    UNSORRY_GOVERNOR_SCAN_LIMIT="${UNSORRY_GOVERNOR_SCAN_LIMIT:-200}"
+    UNSORRY_DISPATCH_LIMIT="${UNSORRY_DISPATCH_LIMIT:-1}"
+    UNSORRY_GOVERNOR_WAIT="${UNSORRY_GOVERNOR_WAIT:-300}"
+    case "$UNSORRY_SUBMISSION_GOVERNOR" in
+      0|1) ;;
+      *) die_config "UNSORRY_SUBMISSION_GOVERNOR '$UNSORRY_SUBMISSION_GOVERNOR' must be 0 or 1" ;;
+    esac
+    validate_integer_knob UNSORRY_MAX_OPEN_PROVE_PRS "$UNSORRY_MAX_OPEN_PROVE_PRS" 1
+    validate_integer_knob UNSORRY_MAX_GATE_A_IN_FLIGHT "$UNSORRY_MAX_GATE_A_IN_FLIGHT" 1
+    validate_integer_knob UNSORRY_GOVERNOR_SCAN_LIMIT "$UNSORRY_GOVERNOR_SCAN_LIMIT"
+    validate_integer_knob UNSORRY_DISPATCH_LIMIT "$UNSORRY_DISPATCH_LIMIT"
+    validate_integer_knob UNSORRY_GOVERNOR_WAIT "$UNSORRY_GOVERNOR_WAIT"
+    gh auth status >/dev/null 2>&1 || die_config "gh is not authenticated"
+    while :; do
+      dispatch_queue || exit 1
+      [ "$ONCE" -eq 1 ] && exit 0
+      [ "$UNSORRY_GOVERNOR_WAIT" -gt 0 ] || exit 0
+      log "queue dispatcher waiting ${UNSORRY_GOVERNOR_WAIT}s before next dispatch pass"
+      sleep "$UNSORRY_GOVERNOR_WAIT"
+    done
+  fi
 
   # ADR-042: relocate into a dedicated per-agent worktree before any provider,
   # auth, or model resolution, so all of it runs once in the isolated tree.
@@ -4727,6 +5237,25 @@ main() {
     || die_config "UNSORRY_ATTEMPTS '$UNSORRY_ATTEMPTS' is not a positive integer"
   UNSORRY_WORKDIR="${UNSORRY_WORKDIR:-$HOME/.unsorry/work}"
   mkdir -p "$UNSORRY_WORKDIR" || die_config "cannot create UNSORRY_WORKDIR '$UNSORRY_WORKDIR'"
+  UNSORRY_SUBMISSION_GOVERNOR="${UNSORRY_SUBMISSION_GOVERNOR:-1}"
+  UNSORRY_SUBMISSION_FREEZE="${UNSORRY_SUBMISSION_FREEZE:-0}"
+  UNSORRY_SUBMIT_MODE="${UNSORRY_SUBMIT_MODE:-queue}"
+  UNSORRY_MAX_OPEN_PROVE_PRS="${UNSORRY_MAX_OPEN_PROVE_PRS:-40}"
+  UNSORRY_MAX_GATE_A_IN_FLIGHT="${UNSORRY_MAX_GATE_A_IN_FLIGHT:-20}"
+  UNSORRY_GOVERNOR_SCAN_LIMIT="${UNSORRY_GOVERNOR_SCAN_LIMIT:-200}"
+  UNSORRY_GOVERNOR_WAIT="${UNSORRY_GOVERNOR_WAIT:-300}"
+  case "$UNSORRY_SUBMISSION_GOVERNOR" in
+    0|1) ;;
+    *) die_config "UNSORRY_SUBMISSION_GOVERNOR '$UNSORRY_SUBMISSION_GOVERNOR' must be 0 or 1" ;;
+  esac
+  case "$UNSORRY_SUBMIT_MODE" in
+    pr|queue) ;;
+    *) die_config "UNSORRY_SUBMIT_MODE '$UNSORRY_SUBMIT_MODE' must be pr or queue" ;;
+  esac
+  validate_integer_knob UNSORRY_MAX_OPEN_PROVE_PRS "$UNSORRY_MAX_OPEN_PROVE_PRS" 1
+  validate_integer_knob UNSORRY_MAX_GATE_A_IN_FLIGHT "$UNSORRY_MAX_GATE_A_IN_FLIGHT" 1
+  validate_integer_knob UNSORRY_GOVERNOR_SCAN_LIMIT "$UNSORRY_GOVERNOR_SCAN_LIMIT"
+  validate_integer_knob UNSORRY_GOVERNOR_WAIT "$UNSORRY_GOVERNOR_WAIT"
 
   resolve_agent_id
   if [ "$DRY_RUN" -eq 0 ]; then
@@ -4758,22 +5287,35 @@ main() {
       effort_disp="ladder(high→xhigh→max)"
     fi
   fi
-  log "agent $AGENT_ID starting ($mode; provider=$UNSORRY_PROVIDER model=${UNSORRY_MODEL:-default} effort=$effort_disp attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s)"
+  log "agent $AGENT_ID starting ($mode; provider=$UNSORRY_PROVIDER model=${UNSORRY_MODEL:-default} effort=$effort_disp attempts=$UNSORRY_ATTEMPTS wall=${UNSORRY_WALL}s ttl=${UNSORRY_TTL}s submit=$UNSORRY_SUBMIT_MODE governor=${UNSORRY_SUBMISSION_GOVERNOR})"
 
   declare -A HANDLED=()
   declare -A SWEPT=()
-  local overall=0 translations_dir candidates goal cand stmt cycle_failed prc
+  local overall=0 translations_dir candidates goal cand stmt cycle_failed prc rc
 
   while :; do
     # Step 1 — pull main, refresh the claims worktree, then re-exec if main
     # brought a newer agent.sh (so the cycle runs the latest code, #428).
-    sync_repo || { log "repository sync failed"; exit 1; }
+    # ADR-059: an exhausted fetch returns 3 (infra → supervise.sh backs off);
+    # other sync failures (reset/merge) stay 1 (cycle retry).
+    sync_repo || { rc=$?; log "repository sync failed (rc=$rc)"; exit "$rc"; }
     maybe_reexec_on_harness_update
+    if [ "$PROVE" -eq 1 ] && ! submission_governor_allows; then
+      if [ "$UNSORRY_GOVERNOR_WAIT" -gt 0 ] && [ "$ONCE" -eq 0 ]; then
+        log "submission governor waiting ${UNSORRY_GOVERNOR_WAIT}s before retry"
+        sleep "$UNSORRY_GOVERNOR_WAIT"
+        continue
+      fi
+      break
+    fi
 
     # Steps 1b–3 — enumerate and select (mode-specific). The convergence
     # sweep is a translate-only janitor step; the unblock sweep is its prove
     # analogue (ADR-009): re-open blocked parents whose sub-lemmas are all proved.
     if [ "$PROVE" -eq 1 ]; then
+      # Warm this checkout's library oleans (at origin/main) so each prove
+      # worktree's verify is seeded and compiles only its new module.
+      ensure_warm_library
       unblock_sweep || overall=1
       candidates="$(select_prove_candidates)"
     else
@@ -4826,6 +5368,11 @@ main() {
     fi
     if [ -z "$goal" ]; then
       log "no viable or recoverable prove work this pass"
+      if [ "$PROVE" -eq 1 ] && [ "$UNSORRY_GOVERNOR_WAIT" -gt 0 ] && [ "$ONCE" -eq 0 ]; then
+        log "waiting ${UNSORRY_GOVERNOR_WAIT}s for new prove work"
+        sleep "$UNSORRY_GOVERNOR_WAIT"
+        continue
+      fi
       break
     fi
 
