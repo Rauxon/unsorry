@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-k-plus-one-mul-choose.beast-eeee.20260617t003207848019z-b1d1a2fc@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t003207848019z-b1d1a2fc; goal≜sum-range-k-plus-one-mul-choose; agent≜beast-eeee; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-k-plus-one-mul-choose}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜271; ended≜2026-06-17T00:32:07Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜79fbea943fd1f3b6e734ae9ee085fdbd4fee8385a3f74396bfa0b739e27bb1ca}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
