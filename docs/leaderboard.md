@@ -4,35 +4,35 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**493 verified proofs · 202 attributed · 291 historical/unknown · 483 logged terminal runs.**
+**495 verified proofs · 204 attributed · 291 historical/unknown · 485 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 164 |
+| Successful terminal runs | 166 |
 | Failed terminal runs | 319 |
 | Decomposed after failure | 18 |
 | Failed without decomposition | 301 |
-| Run success rate | 34.0% |
-| Provider attempts | 533 |
+| Run success rate | 34.2% |
+| Provider attempts | 535 |
 | Failed attempts | 369 |
-| Attempt yield | 30.8% |
+| Attempt yield | 31.0% |
 | Recorded run time | 98h 5m |
-| Median / p90 run time | 6m 8s / 31m 57s |
-| Verified successes per recorded hour | 1.67 |
-| Proofs with run telemetry | 164 (33.3%) |
+| Median / p90 run time | 6m 5s / 31m 57s |
+| Verified successes per recorded hour | 1.69 |
+| Proofs with run telemetry | 166 (33.5%) |
 
 ## Work Queue
 
-**762 goals · 138 archived · 3 blocked · 257 open · 355 proved · 9 translated.**
+**762 goals · 138 archived · 3 blocked · 255 open · 357 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 85 | 29 | 34.1% | 74 | 5m 24s |
-| 2 | 206 | 68 | 33.0% | 158 | 5m 45s |
+| 2 | 208 | 70 | 33.7% | 158 | 5m 43s |
 | 3 | 165 | 60 | 36.4% | 117 | 6m 36s |
 | 4 | 25 | 7 | 28.0% | 18 | 6m 5s |
 | 5 | 2 | 0 | 0.0% | 2 | 31m 25s |
@@ -60,7 +60,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
 | 1 | [@chat-bit-01](https://github.com/chat-bit-01) | 230 | 0 | 230 | 0 | — | 515 | 57250 |
 | 2 | [@cgbarlow](https://github.com/cgbarlow) | 118 | 71 | 47 | 310 | 18.7% | 212 | 24150 |
-| 3 | [@ohdearquant](https://github.com/ohdearquant) | 78 | 78 | 0 | 78 | 100.0% | 188 | 20750 |
+| 3 | [@ohdearquant](https://github.com/ohdearquant) | 80 | 80 | 0 | 80 | 100.0% | 192 | 21200 |
 | 4 | [@perttu](https://github.com/perttu) | 37 | 33 | 4 | 35 | 71.4% | 83 | 9225 |
 | 5 | [@ruvnet](https://github.com/ruvnet) | 12 | 12 | 0 | 0 | — | 33 | 3600 |
 | 6 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
@@ -71,9 +71,9 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 ## Attribution Notes
 
-**202 explicit solver credits · 291 inferred git credits · 0 uncredited proof records.**
+**204 explicit solver credits · 291 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 493 of 493 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 495 of 495 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -87,8 +87,8 @@ Git add-author attribution covers 493 of 493 proof index files. It is used only 
 | `claude / template-zmod-decide` | 13 | 13 | 100.0% | 0 | 1 | 0s | — |
 | `openrouter / unknown` | 12 | 0 | — | 0 | 1 | — | — |
 | `gemini / gemini-3.1-pro-preview` | 7 | 7 | 71.4% | 6 | 1 | 6m 32s | 5.32 |
+| `claude / template-sum-induction` | 5 | 5 | 100.0% | 0 | 1 | 0s | — |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
-| `claude / template-sum-induction` | 3 | 3 | 100.0% | 0 | 1 | 0s | — |
 | `claude / sonnet` | 1 | 1 | 100.0% | 0 | 1 | 42s | 85.71 |
 | `claude / template-nlinarith` | 1 | 1 | 100.0% | 0 | 1 | 0s | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
@@ -100,6 +100,8 @@ Git add-author attribution covers 493 of 493 proof index files. It is used only 
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-17T00:19:20Z` | `sum-centered-tetrahedral-closed-form` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
+| `2026-06-17T00:19:18Z` | `sum-centered-square-numbers-closed-form` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:19:16Z` | `sum-centered-octahedral-closed-form` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:19:11Z` | `sum-centered-cube-eq-biquadratic` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T23:55:36Z` | `one-hundred-twenty-dvd-five-consecutive` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
@@ -118,8 +120,6 @@ Git add-author attribution covers 493 of 493 proof index files. It is used only 
 | `2026-06-16T23:55:02Z` | `dvd-510-pow-fortynine-sub-pow-seventeen` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T23:54:59Z` | `dvd-5040-seven-consecutive-product` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T23:54:57Z` | `dvd-504-pow-nine-sub-pow-three` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
-| `2026-06-16T23:54:53Z` | `dvd-455-pow-fifteen-sub-pow-three` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
-| `2026-06-16T23:54:48Z` | `dvd-360-pow-fifteen-sub-pow-three` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
 
 ## Interpretation
 
