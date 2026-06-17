@@ -1,1 +1,0 @@
-Gate A now routes prepare/archive, audit, and replay work to dedicated Namespace profiles (`namespace-profile-unsorry-prepare`, `namespace-profile-unsorry-audit`, and `namespace-profile-unsorry-replay`) so operators can scale each verifier lane independently.
