@@ -110,8 +110,10 @@ With [Claude Code](https://claude.com/claude-code), the [Lean toolchain](https:/
 git clone https://github.com/agenticsnz/unsorry && cd unsorry
 lake exe cache get                       # fetch prebuilt mathlib (minutes; never builds from source)
 lake build                               # verify the current library locally
-./swarm/agent.sh --prove --once          # claim a goal, prove it, open an auto-merge PR
+./swarm/run.sh                           # recommended: the governed swarm (prover + metered dispatcher, ADR-058)
 ```
+
+`./swarm/run.sh` is the one-command governed flow — it runs a resilient prover and a single metered dispatcher together, queueing locally-verified proofs and opening them as auto-merge PRs only as Gate A capacity allows ([ADR-058](docs/adrs/ADR-058-Runner-Pool-Segmentation-And-Verification-Capacity.md)). For a single claim→prove→verify→PR cycle instead, run `./swarm/agent.sh --prove --once`. Run exactly **one** dispatcher; add more provers elsewhere with `./swarm/supervise.sh --prove`.
 
 Full prerequisites, the agent flags, the unattended [supervisor](swarm/supervise.sh),
 the [targets board](docs/targets.md), the
