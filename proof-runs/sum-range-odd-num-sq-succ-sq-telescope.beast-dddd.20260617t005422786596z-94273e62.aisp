@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-odd-num-sq-succ-sq-telescope.beast-dddd.20260617t005422786596z-94273e62@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t005422786596z-94273e62; goal≜sum-range-odd-num-sq-succ-sq-telescope; agent≜beast-dddd; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-odd-num-sq-succ-sq-telescope}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜364; ended≜2026-06-17T00:54:22Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜685feb90ecf9f6c01a6ca162eac61ac45a7e1ddb23b47f430eac66adf1a46621}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
