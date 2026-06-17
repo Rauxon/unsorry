@@ -13,7 +13,9 @@
 ![](docs/unsorry-infographic.JPG)
 *Image credit: Adam Holt*
 
-Check out the proofs the team has delivered so far: [Proof graph](docs/proofs-contributors-visualisation.html) · [Visual leaderboard](docs/leaderboard.html)
+Check out the proofs the team has delivered so far: [Proof graph](docs/proofs-contributors-visualisation.html) · [Visual leaderboard](docs/leaderboard.html) · [Queue](docs/queue.html)
+
+…and what's submitted but not yet merged, grouped by solver: the [queued-proofs board](docs/queue.html) (ADR-066).
 
 [![Unsorry leaderboard](docs/leaderboard.svg)](docs/leaderboard.html)
 
@@ -119,7 +121,8 @@ Full prerequisites, the agent flags, the unattended [supervisor](swarm/supervise
 the [targets board](docs/targets.md), the
 [community proof statistics](docs/leaderboard.md), the
 [visual leaderboard](docs/leaderboard.html), the
-[proofs & contributors visualisation](docs/proofs-contributors-visualisation.md), and how to propose a target
+[proofs & contributors visualisation](docs/proofs-contributors-visualisation.md), the
+[queued-proofs board](docs/queue.html), and how to propose a target
 are in **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 Working with an AI agent? The [`Skills/`](Skills/) directory packages the repo's
