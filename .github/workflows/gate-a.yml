@@ -154,6 +154,9 @@ jobs:
         if: needs.detect.outputs.prepare_volume == 'true'
         run: |
           echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          if [ "${{ steps.ns_lake_cache.outputs.cache-hit }}" != "true" ]; then
+            echo "::warning::Namespace .lake cache MISS on this profile — Gate A cold-builds mathlib + the library (slow, #1921). Check the volume is attached (ADR-046)."
+          fi
           du -sh .lake .lake/packages .lake/build 2>/dev/null || true
 
       # GitHub-cache fallback for the local oleans — NON-Namespace only. On a
@@ -164,7 +167,7 @@ jobs:
       # the warm volume makes audit/replay's library build a cheap incremental
       # instead — the #801 exact-key build-skip just doesn't fire there.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
-        if: needs.detect.outputs.volume != 'true'
+        if: needs.detect.outputs.prepare_volume != 'true'
         id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
@@ -271,6 +274,9 @@ jobs:
         if: needs.detect.outputs.audit_volume == 'true'
         run: |
           echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          if [ "${{ steps.ns_lake_cache.outputs.cache-hit }}" != "true" ]; then
+            echo "::warning::Namespace .lake cache MISS on this profile — Gate A cold-builds mathlib + the library (slow, #1921). Check the volume is attached (ADR-046)."
+          fi
           du -sh .lake .lake/packages .lake/build 2>/dev/null || true
 
       # GitHub-cache fallback for the local oleans — NON-Namespace only. On a
@@ -281,7 +287,7 @@ jobs:
       # the warm volume makes audit/replay's library build a cheap incremental
       # instead — the #801 exact-key build-skip just doesn't fire there.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
-        if: needs.detect.outputs.volume != 'true'
+        if: needs.detect.outputs.audit_volume != 'true'
         id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
@@ -441,6 +447,9 @@ jobs:
         if: needs.detect.outputs.replay_volume == 'true'
         run: |
           echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
+          if [ "${{ steps.ns_lake_cache.outputs.cache-hit }}" != "true" ]; then
+            echo "::warning::Namespace .lake cache MISS on this profile — Gate A cold-builds mathlib + the library (slow, #1921). Check the volume is attached (ADR-046)."
+          fi
           du -sh .lake .lake/packages .lake/build 2>/dev/null || true
 
       # GitHub-cache fallback for the local oleans — NON-Namespace only. On a
@@ -451,7 +460,7 @@ jobs:
       # the warm volume makes audit/replay's library build a cheap incremental
       # instead — the #801 exact-key build-skip just doesn't fire there.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
-        if: needs.detect.outputs.volume != 'true'
+        if: needs.detect.outputs.replay_volume != 'true'
         id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
