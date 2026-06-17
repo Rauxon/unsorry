@@ -38,8 +38,10 @@ case "${1:-}" in
   -h|--help) usage; exit 0 ;;
 esac
 
-[ -f swarm/agent.sh ] && [ -f swarm/supervise.sh ] \
-  || { echo "swarm/run.sh: run from the repository root" >&2; exit 2; }
+if [ ! -f swarm/agent.sh ] || [ ! -f swarm/supervise.sh ]; then
+  echo "swarm/run.sh: run from the repository root" >&2
+  exit 2
+fi
 
 log() { printf '[run %s] %s\n' "$(date -u +%H:%M:%SZ)" "$*"; }
 
