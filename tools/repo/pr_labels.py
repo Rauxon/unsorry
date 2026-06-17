@@ -62,6 +62,10 @@ _METRICS_RE = re.compile(r"\(run \d+\)|metrics|red-team round \d+", re.IGNORECAS
 _CONVENTIONAL_RE = re.compile(
     r"^(?P<type>build|chore|ci|docs|feat|fix|perf|refactor|test)(?:\([^)]*\))?!?:"
 )
+#: A leading `[tool]` / `[codex]` bracket prefix is the most common reason an
+#: otherwise-valid title fails the gate (the conventional type is no longer the
+#: first token). Detect it so the diagnostic can name the exact fix.
+_BRACKET_PREFIX_RE = re.compile(r"^\s*\[[^\]]*\]\s*")
 
 
 def classify(title: str) -> list[str]:
@@ -94,6 +98,22 @@ def is_conforming(title: str) -> bool:
     return bool(classify(title))
 
 
+def diagnose(title: str) -> str:
+    """A targeted hint for a common nonconforming pattern, or '' if none applies.
+    Agents (e.g. Codex) read CI failure output and self-correct, so naming the
+    exact fix — rather than only listing the valid shapes — is what stops the
+    pattern recurring. Currently catches the leading `[codex]`-style bracket
+    prefix that pushes the conventional type out of first position."""
+    m = _BRACKET_PREFIX_RE.match(title)
+    if m and is_conforming(title[m.end():]):
+        return (
+            f"The title starts with a bracket prefix {title[:m.end()].strip()!r}; "
+            "the conventional type must be the FIRST token. Remove the prefix — "
+            f"use {title[m.end():].strip()!r}."
+        )
+    return ""
+
+
 #: Human-readable catalogue of accepted shapes, shown when the gate rejects.
 VALID_SHAPES = (
     "Conventional Commits (scope optional): "
@@ -118,9 +138,11 @@ def main(argv: list[str] | None = None) -> int:
     if len(argv) == 2 and argv[0] == "enforce":
         if is_conforming(argv[1]):
             return 0
+        hint = diagnose(argv[1])
         print(
             f"PR title does not match any allowed shape:\n  {argv[1].strip()!r}\n\n"
-            f"Use one of — {VALID_SHAPES}\n\n"
+            + (hint + "\n\n" if hint else "")
+            + f"Use one of — {VALID_SHAPES}\n\n"
             "See docs/pr-labels.md and ADR-026. One logical change per PR; "
             "do not mix a proof with harness/tooling changes.",
             file=sys.stderr,

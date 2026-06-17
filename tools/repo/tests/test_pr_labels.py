@@ -2,7 +2,7 @@
 exists in the repo's PR history)."""
 from __future__ import annotations
 
-from tools.repo.pr_labels import classify, is_conforming
+from tools.repo.pr_labels import classify, diagnose, is_conforming
 
 
 def test_swarm_surfaces():
@@ -65,6 +65,18 @@ def test_swarm_and_redteam_require_the_colon():
 
 def test_unknown_title_gets_no_labels():
     assert classify("something nonconforming entirely") == []
+
+
+def test_bracket_prefix_is_rejected_with_a_targeted_hint():
+    # A leading [codex]/[tool] prefix pushes the conventional type out of first
+    # position, so the title is (correctly) nonconforming — but the diagnostic
+    # must name the exact fix so agents that read CI output self-correct.
+    assert not is_conforming("[codex] ci: add queued proof dispatcher")
+    hint = diagnose("[codex] ci: add queued proof dispatcher")
+    assert "[codex]" in hint and "ci: add queued proof dispatcher" in hint
+    # No hint for a conforming title, or for a title that is broken some other way.
+    assert diagnose("ci: add queued proof dispatcher") == ""
+    assert diagnose("totally nonconforming title") == ""
 
 
 def test_enforce_gate_accepts_known_shapes_rejects_prose():
