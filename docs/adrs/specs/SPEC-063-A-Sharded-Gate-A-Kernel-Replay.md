@@ -91,16 +91,31 @@ jobs:
 It gates nothing; it is the ADR-058-required real-runner validation before
 promotion.
 
-## 5. Promotion (deferred — pilot-gated follow-up)
+## 5. Promotion (landed — required `gate-a.yml`)
 
-Once the pilot is green across a full run and at least one forced-full (toolchain)
-run, the required `gate-a.yml` replay job is replaced by the same three-job shape:
-a `gate_a_replay_plan` job, a `gate_a_replay` **matrix** job
-(`if: plan.count != '0'`), and a `gate_a_replay_cover` job; the aggregator `gate-a`
-adds them to `needs:` and accepts a skipped replay when `count == 0`. The required
-context name `gate-a` is **unchanged** (ADR-058: do not rename required contexts).
-The daily `gate-a-full-replay` backstop is retained (and may itself shard with a
-cover assert). This promotion is its own PR with its own CODEOWNERS review.
+After the `gate-a-shard-pilot` validated the matrix on real runners, the required
+`gate-a.yml` replay was promoted to the same three-job shape:
+
+- **`gate_a_replay_plan`** (`ubuntu-latest`, `needs: [detect, gate_a_prepare]`) —
+  runs `plan --shards ${{ vars.UNSORRY_REPLAY_SHARDS || 8 }} [--base BASE_SHA]`
+  (the incremental BASE_SHA logic the serial replay used) and outputs `matrix`
+  (the shard index list) + `count`.
+- **`gate_a_replay`** (`needs: […, gate_a_replay_plan]`, `if: … && count != '0'`,
+  `strategy.fail-fast: false`, `matrix.shard: fromJSON(plan.matrix)`) — each leg
+  keeps the existing replay setup (Namespace volume / GitHub-cache restore of
+  gate-a-prepare's oleans, the `--wfail` build skipped on the exact-sha cache hit)
+  and runs `replay-shard --shard-index ${{ matrix.shard }} --shard-total N
+  [--base BASE_SHA]`.
+- **`gate_a_replay_cover`** (`if: always() && active`) — fails closed unless the
+  plan succeeded **and** (`count == 0`, replay skipped → vacuous) **or** the
+  replay matrix is `success` (every leg green). This is the single replay signal.
+
+The aggregator `gate-a` adds the three jobs to `needs:` and reads
+`gate_a_replay_cover.result` for the replay outcome; the required context name
+`gate-a` is **unchanged** (ADR-058: do not rename required contexts). `N` is the
+operator capacity knob `vars.UNSORRY_REPLAY_SHARDS` (default 8). The daily
+`gate-a-full-replay` backstop is retained (and may itself shard later). The
+`gate-a-shard-pilot` workflow stays as the ongoing experimentation surface.
 
 ## 6. Out of scope (fast-follow)
 

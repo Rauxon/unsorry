@@ -360,11 +360,55 @@ jobs:
             gh api "repos/${{ github.repository }}/issues/$PR/comments" -F body=@comment.md >/dev/null
           fi
 
-  gate_a_replay:
-    name: gate-a-replay
+  # ADR-063: plan the kernel replay into N disjoint shards. Reads source + the PR
+  # diff only (no build), so it's a fast ubuntu job that drives the replay matrix
+  # below. count==0 (no changed library module) → empty matrix → the replay job
+  # is skipped and gate_a_replay_cover passes vacuously. The shard count N is
+  # `vars.UNSORRY_REPLAY_SHARDS` (operator capacity knob, default 8).
+  gate_a_replay_plan:
+    name: gate-a-replay-plan
     needs: [detect, gate_a_prepare]
     if: needs.detect.outputs.admitted == 'true' && needs.detect.outputs.active == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      count: ${{ steps.plan.outputs.count }}
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+      - name: Plan replay shards (ADR-063)
+        id: plan
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || (github.event_name == 'push' && github.event.before || '') }}
+          SHARDS: ${{ vars.UNSORRY_REPLAY_SHARDS || '8' }}
+        run: |
+          set -euo pipefail
+          if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] || [ -z "$BASE_SHA" ]; then
+            out=$(python3 -m tools.gate_a.parallel_modules plan --shards "$SHARDS")
+          else
+            out=$(python3 -m tools.gate_a.parallel_modules plan --shards "$SHARDS" --base "$BASE_SHA")
+          fi
+          echo "plan: $out"
+          echo "matrix=$(printf '%s' "$out" | python3 -c 'import sys,json;print(json.dumps(json.load(sys.stdin)["shards"]))')" >> "$GITHUB_OUTPUT"
+          echo "count=$(printf '%s' "$out" | python3 -c 'import sys,json;print(json.load(sys.stdin)["count"])')" >> "$GITHUB_OUTPUT"
+
+  gate_a_replay:
+    name: gate-a-replay
+    needs: [detect, gate_a_prepare, gate_a_replay_plan]
+    # ADR-063: one matrix leg per shard. Skip when no library module changed
+    # (count==0) — the empty matrix would expand to zero legs; the cover job then
+    # passes vacuously. Each leg restores gate-a-prepare's oleans and replays its
+    # disjoint shard, so every olean is still kernel-replayed exactly once.
+    if: needs.detect.outputs.admitted == 'true' && needs.detect.outputs.active == 'true' && needs.gate_a_replay_plan.outputs.count != '0'
     runs-on: ${{ needs.detect.outputs.replay_profile }}
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.gate_a_replay_plan.outputs.matrix) }}
     # 120m (not 60m): a FULL replay (toolchain/dep change, or the scheduled
     # backstop) is serial on a memory-bound runner and needs the headroom to
     # finish rather than time out (ADR-047). Incremental PR and push-to-main
@@ -484,15 +528,51 @@ jobs:
       # but reports effective jobs=1. A forced FULL replay routes to the 16 GB
       # profile; on a constrained runner set UNSORRY_REPLAY_CHUNK to a small value
       # (e.g. 6) so leanchecker's per-chunk peak fits (SPEC-048-B).
-      - name: Kernel replay (leanchecker)
+      - name: Kernel replay shard ${{ matrix.shard }} (leanchecker, ADR-063)
         env:
           BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || (github.event_name == 'push' && github.event.before || '') }}
+          SHARDS: ${{ vars.UNSORRY_REPLAY_SHARDS || '8' }}
         run: |
           if [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ] || [ -z "$BASE_SHA" ]; then
-            python3 -m tools.gate_a.parallel_modules replay --jobs 1
+            python3 -m tools.gate_a.parallel_modules replay-shard \
+              --shard-index ${{ matrix.shard }} --shard-total "$SHARDS"
           else
-            python3 -m tools.gate_a.parallel_modules replay --jobs 1 --base "$BASE_SHA"
+            python3 -m tools.gate_a.parallel_modules replay-shard \
+              --shard-index ${{ matrix.shard }} --shard-total "$SHARDS" --base "$BASE_SHA"
           fi
+
+  # ADR-063: the replay matrix's coverage assert and the single signal the
+  # aggregator reads for replay. split_evenly partitions the target set
+  # disjoint+covering (unit-tested), so with fail-fast:false the matrix is
+  # 'success' only when every leg is green ⟺ every olean replayed exactly once.
+  # Fails closed on a planner failure or any non-green shard; passes vacuously
+  # when count==0 (no library change → replay matrix skipped).
+  gate_a_replay_cover:
+    name: gate-a-replay-cover
+    needs: [detect, gate_a_replay_plan, gate_a_replay]
+    if: always() && needs.detect.outputs.admitted == 'true' && needs.detect.outputs.active == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assert every shard replayed green
+        env:
+          COUNT: ${{ needs.gate_a_replay_plan.outputs.count }}
+          PLAN_RESULT: ${{ needs.gate_a_replay_plan.result }}
+          REPLAY_RESULT: ${{ needs.gate_a_replay.result }}
+        run: |
+          set -euo pipefail
+          if [ "$PLAN_RESULT" != "success" ]; then
+            echo "::error::gate-a-replay-plan concluded '$PLAN_RESULT' — cannot trust the shard plan"
+            exit 1
+          fi
+          if [ "$COUNT" = "0" ]; then
+            echo "no changed library modules — nothing to replay (matrix skipped)"
+            exit 0
+          fi
+          if [ "$REPLAY_RESULT" != "success" ]; then
+            echo "::error::replay matrix result='$REPLAY_RESULT' — a shard failed or was skipped; coverage NOT proven"
+            exit 1
+          fi
+          echo "all $COUNT module(s) replayed across the shards (every olean exactly once)"
 
   gate_a_archive:
     name: gate-a-archive
@@ -548,7 +628,7 @@ jobs:
           fi
 
   gate-a:
-    needs: [detect, gate_a_prepare, gate_a_audit, gate_a_replay, gate_a_archive]
+    needs: [detect, gate_a_prepare, gate_a_audit, gate_a_replay_plan, gate_a_replay, gate_a_replay_cover, gate_a_archive]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -560,7 +640,9 @@ jobs:
           ADMITTED: ${{ needs.detect.outputs.admitted }}
           PREPARE_RESULT: ${{ needs.gate_a_prepare.result }}
           AUDIT_RESULT: ${{ needs.gate_a_audit.result }}
-          REPLAY_RESULT: ${{ needs.gate_a_replay.result }}
+          # ADR-063: the sharded replay's single signal is the cover job, which
+          # asserts the plan succeeded + every shard is green (or count==0).
+          REPLAY_RESULT: ${{ needs.gate_a_replay_cover.result }}
           ARCHIVE_RELEVANT: ${{ needs.detect.outputs.archive }}
           ARCHIVE_RESULT: ${{ needs.gate_a_archive.result }}
         run: |
