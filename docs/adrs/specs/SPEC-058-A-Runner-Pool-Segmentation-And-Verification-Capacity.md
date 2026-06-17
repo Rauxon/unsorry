@@ -38,9 +38,9 @@ part of the operator-visible verifier surface.
 
 | Profile | Intended size | Use |
 |---------|---------------|-----|
-| `unsorry-prepare` | 1 vCPU / 2 GB | prepare/build lane, cache warming, archive package validation |
-| `unsorry-audit` | operator-sized | serial axiom-audit lane |
-| `unsorry-replay` | 2 vCPU / 8 GB | leanchecker replay lane |
+| `namespace-profile-unsorry-prepare` | 1 vCPU / 2 GB | prepare/build lane, cache warming, archive package validation |
+| `namespace-profile-unsorry-audit` | operator-sized | serial axiom-audit lane |
+| `namespace-profile-unsorry-replay` | 2 vCPU / 8 GB | leanchecker replay lane |
 
 The workflow must route by verification job role, not by trust in the author.
 A trusted maintainer PR that reaches kernel replay still uses the replay lane.
@@ -53,10 +53,10 @@ stage.
 
 ```text
 detect:              GitHub-hosted
-gate-a-prepare:      unsorry-prepare
-gate-a-audit:        unsorry-audit
-gate-a-replay:       unsorry-replay
-gate-a-archive:      unsorry-prepare when archive paths changed
+gate-a-prepare:      namespace-profile-unsorry-prepare
+gate-a-audit:        namespace-profile-unsorry-audit
+gate-a-replay:       namespace-profile-unsorry-replay
+gate-a-archive:      namespace-profile-unsorry-prepare when archive paths changed
 gate-a aggregate:    GitHub-hosted
 ```
 
@@ -64,10 +64,10 @@ The `detect` job emits the role-specific runner labels and per-job cache-volume
 flags:
 
 ```text
-prepare_profile = unsorry-prepare
-audit_profile   = unsorry-audit
-replay_profile  = unsorry-replay
-archive_profile = unsorry-prepare
+prepare_profile = namespace-profile-unsorry-prepare
+audit_profile   = namespace-profile-unsorry-audit
+replay_profile  = namespace-profile-unsorry-replay
+archive_profile = namespace-profile-unsorry-prepare
 ```
 
 The olean-invalidating set still belongs to `tools.gate_a.parallel_modules`;
@@ -252,11 +252,11 @@ Before changing actual runner profile sizes, operators should:
 1. Capture the current open PR count and queued Gate A count.
 2. Pause new autonomous proof PR creation if the namespace queue is already
    saturated.
-3. Keep `unsorry-prepare`, `unsorry-audit`, and `unsorry-replay` available.
+3. Keep `namespace-profile-unsorry-prepare`, `namespace-profile-unsorry-audit`, and `namespace-profile-unsorry-replay` available.
 4. Let existing in-progress Gate A jobs finish.
 5. Cancel only superseded or clearly stuck runs.
-6. Confirm new PRs route prepare/archive work to `unsorry-prepare`, audit work
-   to `unsorry-audit`, and replay work to `unsorry-replay`.
+6. Confirm new PRs route prepare/archive work to `namespace-profile-unsorry-prepare`, audit work
+   to `namespace-profile-unsorry-audit`, and replay work to `namespace-profile-unsorry-replay`.
 7. Let producer agents pull/re-exec the latest harness, or restart them if
    they are inside a long provider call; default coordinated `--prove` now
    queues verified branches.
@@ -368,9 +368,9 @@ ADR-058 is implemented when:
 
 - Gate A detection and aggregation remain on GitHub-hosted runners.
 - Gate A verifier jobs remain on namespace profiles.
-- Prepare/archive work routes to `unsorry-prepare`.
-- Axiom audit work routes to `unsorry-audit`.
-- Kernel replay work routes to `unsorry-replay`.
+- Prepare/archive work routes to `namespace-profile-unsorry-prepare`.
+- Axiom audit work routes to `namespace-profile-unsorry-audit`.
+- Kernel replay work routes to `namespace-profile-unsorry-replay`.
 - Existing docs/specs describe the current role-specific namespace profile split.
 - Fork-support work references this runner policy before enabling automated
   namespace verifier spend for unknown contributors.

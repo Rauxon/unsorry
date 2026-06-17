@@ -17,7 +17,7 @@ Gate A also sets `MATHLIB_CACHE_DIR=${{ github.workspace }}/.lake/mathlib-cache`
 ## Implementation (`.github/workflows/gate-a.yml`)
 
 - **Per-job volume flags.** The `profiles` step emits role-specific runner labels, then sets
-  `<job>_volume=true` iff the label matches `namespace-*` or `unsorry-*`, else `false`; exposed as
+  `<job>_volume=true` iff the label matches `namespace-*`, else `false`; exposed as
   `detect` job outputs such as `prepare_volume`, `audit_volume`, `replay_volume`, and
   `archive_volume`.
 - **Mathlib archive cache location.** The workflow-level environment sets
@@ -66,13 +66,13 @@ gate (false negative), never a false PASS.
 
 ## Operator note
 
-Attach a cache volume (~20 GB is ample) to `unsorry-prepare`, `unsorry-audit`, and
-`unsorry-replay` so `${GITHUB_WORKSPACE}/.lake` persists. No code change is needed to adopt or to
+Attach a cache volume (~20 GB is ample) to `namespace-profile-unsorry-prepare`, `namespace-profile-unsorry-audit`, and
+`namespace-profile-unsorry-replay` so `${GITHUB_WORKSPACE}/.lake` persists. No code change is needed to adopt or to
 revert.
 
 ## Acceptance criteria
 
-- Per-job volume flags are `true` for `namespace-*`/`unsorry-*` profiles and `false` otherwise.
+- Per-job volume flags are `true` for `namespace-*` profiles and `false` otherwise.
 - `MATHLIB_CACHE_DIR` points under `${{ github.workspace }}/.lake` so the mounted volume contains
   both unpacked oleans and downloaded mathlib `.ltar` archives.
 - On a Namespace profile, the mount step runs and `use-github-cache` resolves to `false` only when

@@ -16,8 +16,8 @@ verify-on-ingest shift so routine Gate A can be split across role-specific Names
    `workflow_dispatch`), replaying + auditing the WHOLE active library (no `--base`) and re-validating
    every archive package. This is the defense-in-depth re-derivation of soundness that the incremental
    push no longer does inline.
-3. **Routine runs route by job role.** `detect` sends prepare/archive work to `unsorry-prepare`, axiom
-   audit to `unsorry-audit`, and kernel replay to `unsorry-replay`. Only an **olean-invalidating**
+3. **Routine runs route by job role.** `detect` sends prepare/archive work to `namespace-profile-unsorry-prepare`, axiom
+   audit to `namespace-profile-unsorry-audit`, and kernel replay to `namespace-profile-unsorry-replay`. Only an **olean-invalidating**
    change (`lean-toolchain`, `lakefile.toml`, `lakefile.lean`, `lake-manifest.json` — the
    `forces_full_replay` set) forces a FULL replay, but it still runs in the replay lane.
 4. **A full replay can fit a constrained runner via a small chunk.** `UNSORRY_REPLAY_CHUNK` overrides
@@ -41,9 +41,9 @@ verify-on-ingest shift so routine Gate A can be split across role-specific Names
 
 ### `.github/workflows/gate-a.yml`
 
-- `detect` emits role-specific Namespace runner outputs: `prepare_profile=unsorry-prepare`,
-  `audit_profile=unsorry-audit`, `replay_profile=unsorry-replay`, and
-  `archive_profile=unsorry-prepare`.
+- `detect` emits role-specific Namespace runner outputs: `prepare_profile=namespace-profile-unsorry-prepare`,
+  `audit_profile=namespace-profile-unsorry-audit`, `replay_profile=namespace-profile-unsorry-replay`, and
+  `archive_profile=namespace-profile-unsorry-prepare`.
 - Runner routing no longer depends on the `forces_full_replay` set. That set remains in
   `parallel_modules.py` and controls replay scope only.
 - `gate_a_audit` and `gate_a_replay` set
@@ -62,7 +62,7 @@ verify-on-ingest shift so routine Gate A can be split across role-specific Names
 
 - `schedule: cron "11 4 * * *"` (daily) + `workflow_dispatch`; `concurrency: gate-a-full-replay`
   (`cancel-in-progress: false` — never abort an in-flight backstop).
-- `runs-on: unsorry-replay`; `env.UNSORRY_REPLAY_CHUNK: "6"`;
+- `runs-on: namespace-profile-unsorry-replay`; `env.UNSORRY_REPLAY_CHUNK: "6"`;
   `timeout-minutes: 180`.
 - Steps mirror `gate_a_replay`: checkout `fetch-depth: 0`, Namespace `.lake` volume (ADR-046),
   best-effort swap, `lean-action` build of `UnsorryGoals`, statement-binding generation,
@@ -78,8 +78,8 @@ verify-on-ingest shift so routine Gate A can be split across role-specific Names
   runs through Gate A.
 - **PR-incremental path unchanged:** proof PRs replay/audit exactly as before.
 - **Works after downscale:** routing depends on job role, not on a hidden runner size. The current
-  operator model keeps prepare/archive on `unsorry-prepare`, audit on `unsorry-audit`, and replay on
-  `unsorry-replay`. The scheduled backstop uses the replay lane with the small-chunk path.
+  operator model keeps prepare/archive on `namespace-profile-unsorry-prepare`, audit on `namespace-profile-unsorry-audit`, and replay on
+  `namespace-profile-unsorry-replay`. The scheduled backstop uses the replay lane with the small-chunk path.
 - **Provenance check unchanged:** `archive_proof_provenance` still runs at every archive PR.
 
 ## Safety

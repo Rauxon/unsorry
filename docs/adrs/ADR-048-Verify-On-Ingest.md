@@ -95,8 +95,8 @@ defense-in-depth.
   (re-check only the pushed diff, base = `github.event.before`), with a **scheduled daily** full replay
   + audit + archive re-validation as the defense-in-depth backstop
   (`.github/workflows/gate-a-full-replay.yml`). Routine Gate A (proof PRs **and** push to `main`) routes
-  by job role: prepare/archive to `unsorry-prepare`, axiom audit to `unsorry-audit`, and kernel replay
-  to `unsorry-replay`. An olean-invalidating change (`forces_full_replay`: toolchain/lakefile/manifest)
+  by job role: prepare/archive to `namespace-profile-unsorry-prepare`, axiom audit to `namespace-profile-unsorry-audit`, and kernel replay
+  to `namespace-profile-unsorry-replay`. An olean-invalidating change (`forces_full_replay`: toolchain/lakefile/manifest)
   still forces a FULL replay, but it runs in the replay lane rather than selecting a separate workflow
   profile. `REPLAY_CHUNK_SIZE` is overridable via `UNSORRY_REPLAY_CHUNK` so a full replay can be made
   to fit a constrained runner with a small chunk — the backstop uses `6`. This realises the downscale +

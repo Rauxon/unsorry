@@ -83,10 +83,10 @@ jobs:
       # on the cheap build lane; audit has its own serial axiom-audit lane.
       - id: profiles
         run: |
-          prepare=unsorry-prepare
-          audit=unsorry-audit
-          replay=unsorry-replay
-          archive=unsorry-prepare
+          prepare=namespace-profile-unsorry-prepare
+          audit=namespace-profile-unsorry-audit
+          replay=namespace-profile-unsorry-replay
+          archive=namespace-profile-unsorry-prepare
 
           echo "prepare=$prepare" >> "$GITHUB_OUTPUT"
           echo "audit=$audit" >> "$GITHUB_OUTPUT"
@@ -99,7 +99,7 @@ jobs:
           for key in prepare audit replay archive; do
             eval label="\$$key"
             case "$label" in
-              namespace-*|unsorry-*) value=true ;;
+              namespace-*) value=true ;;
               *)                     value=false ;;
             esac
             echo "${key}_volume=$value" >> "$GITHUB_OUTPUT"
