@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 `python3 -m tools.changelog --preview`; a release folds them in here with
 `python3 -m tools.changelog --release <version> <date>`. -->
 
+## [1.22.2] - 2026-06-17
+
+### Fixed
+
+- Fixed the leaderboard view-section headers (Goals sourced, Model distribution, Top 5, Proofs over time) overflowing off the right edge on narrow viewports. The heading and its subtitle sat in a non-wrapping `flex … justify-between` row, so a long subtitle (e.g. the Sourcing view's "who added each goal · ADR-060") spilled off-screen. The headers now stack — subtitle under the heading — on mobile and restore the side-by-side layout from `sm:` up.
+
 ## [1.22.1] - 2026-06-17
 
 ### Fixed
