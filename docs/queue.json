@@ -3,2315 +3,39 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 507,
-    "waiting": 468,
-    "in_flight": 39,
-    "distinct_goals": 292,
-    "solvers": 7
+    "queued_submissions": 323,
+    "waiting": 285,
+    "in_flight": 38,
+    "distinct_goals": 290,
+    "solvers": 5
   },
   "solvers": [
-    {
-      "solver": "ruvnet",
-      "github": "ruvnet",
-      "display_name": "@ruvnet",
-      "profile_url": "https://github.com/ruvnet",
-      "submissions": 285,
-      "waiting": 283,
-      "in_flight": 2,
-      "distinct_goals": 195,
-      "queued": [
-        {
-          "goal": "dvd-210-pow-fifteen-sub-pow-three",
-          "branch": "queued/prove/dvd-210-pow-fifteen-sub-pow-three/reroute-7918ae",
-          "sha": "49ccf326",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "dvd-210-pow-fifteen-sub-pow-three",
-          "branch": "queued/prove/dvd-210-pow-fifteen-sub-pow-three/ruvnet-a86df1",
-          "sha": "7bc08158",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "dvd-thirtytwo-odd-pow-eight-sub-one",
-          "branch": "queued/prove/dvd-thirtytwo-odd-pow-eight-sub-one/reroute-4aabc3",
-          "sha": "6351e6bd",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
-        {
-          "goal": "fib-prod-cross-shift-nat-int",
-          "branch": "queued/prove/fib-prod-cross-shift-nat-int/reroute-3af324",
-          "sha": "8030943a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
-        {
-          "goal": "five-var-qm-am",
-          "branch": "queued/prove/five-var-qm-am/reroute-9ba575",
-          "sha": "e40a1087",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "fourth-power-mod-fortyone-mem",
-          "branch": "queued/prove/fourth-power-mod-fortyone-mem/reroute-e6bbca",
-          "sha": "c605e62a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "hexagonal-eq-triangular-odd-index",
-          "branch": "queued/prove/hexagonal-eq-triangular-odd-index/reroute-35d094",
-          "sha": "d95a7799",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "n4-plus-one-factor-over-sqrt-shift",
-          "branch": "queued/prove/n4-plus-one-factor-over-sqrt-shift/ruvnet-cfd479",
-          "sha": "58a0269a",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "nat-sq-lt-two-pow-s2",
-          "branch": "queued/prove/nat-sq-lt-two-pow-s2/reroute-106132",
-          "sha": "ef5b6995",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "nat-sq-lt-two-pow-s2",
-          "branch": "queued/prove/nat-sq-lt-two-pow-s2/ruvnet-aaac31",
-          "sha": "bc0890ff",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "nesbitt-inequality-s1",
-          "branch": "queued/prove/nesbitt-inequality-s1/reroute-59b0e7",
-          "sha": "9ebc936c",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "nicomachus-sum-cubes-eq-sum-id-sq",
-          "branch": "queued/prove/nicomachus-sum-cubes-eq-sum-id-sq/reroute-726c3f",
-          "sha": "8fa71e2b",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "platonic-pairs-realizable",
-          "branch": "queued/prove/platonic-pairs-realizable/ruvnet-671743",
-          "sha": "d494b273",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "pow-five-add-pow-five-ge-quartic-mul",
-          "branch": "queued/prove/pow-five-add-pow-five-ge-quartic-mul/reroute-a75344",
-          "sha": "0fb8d96e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prime-pow-eight-mod-480",
-          "branch": "queued/prove/prime-pow-eight-mod-480/reroute-0a6187",
-          "sha": "d5ac0412",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prime-pow-six-mod-504",
-          "branch": "queued/prove/prime-pow-six-mod-504/reroute-0b0579",
-          "sha": "6c82ead8",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-k-mul-add-two-div-succ-sq-telescope",
-          "branch": "queued/prove/prod-icc-k-mul-add-two-div-succ-sq-telescope/reroute-ecd7c9",
-          "sha": "67c6a39e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-k-mul-add-two-div-succ-sq-telescope-half",
-          "branch": "queued/prove/prod-icc-k-mul-add-two-div-succ-sq-telescope-half/reroute-538478",
-          "sha": "b8dbcfce",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-k-sq-div-pred-mul-succ-telescope",
-          "branch": "queued/prove/prod-icc-k-sq-div-pred-mul-succ-telescope/reroute-4319af",
-          "sha": "7772fe60",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-one-add-recip-eq-succ",
-          "branch": "queued/prove/prod-icc-one-add-recip-eq-succ/reroute-a3cb08",
-          "sha": "987fed4f",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-one-add-recip-k-sq-sub-one-telescope",
-          "branch": "queued/prove/prod-icc-one-add-recip-k-sq-sub-one-telescope/reroute-d9dc0b",
-          "sha": "22eee12b",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-one-add-recip-pronic",
-          "branch": "queued/prove/prod-icc-one-add-recip-pronic/reroute-f3c13f",
-          "sha": "3087ab4b",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-one-sub-recip-sq-eq-frac",
-          "branch": "queued/prove/prod-icc-one-sub-recip-sq-eq-frac/reroute-9210fb",
-          "sha": "5195cdab",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-one-sub-two-div-pronic",
-          "branch": "queued/prove/prod-icc-one-sub-two-div-pronic/reroute-36538c",
-          "sha": "7d8bf7bc",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-succ-add-three-div-self-eq-binom-shift",
-          "branch": "queued/prove/prod-icc-succ-add-three-div-self-eq-binom-shift/reroute-ffa5b7",
-          "sha": "158ff34e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-icc-succ-sq-div-k-mul-add-two-telescope",
-          "branch": "queued/prove/prod-icc-succ-sq-div-k-mul-add-two-telescope/reroute-234307",
-          "sha": "128ecc66",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "prod-one-sub-inv-sq-telescope",
-          "branch": "queued/prove/prod-one-sub-inv-sq-telescope/reroute-1c8a1a",
-          "sha": "8852ce03",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "quartic-n4-plus-four-composite",
-          "branch": "queued/prove/quartic-n4-plus-four-composite/reroute-450c38",
-          "sha": "036095c9",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "quartic-n4-plus-four-not-prime",
-          "branch": "queued/prove/quartic-n4-plus-four-not-prime/reroute-15e2ea",
-          "sha": "a0b77ada",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "quartic-plus-four-not-prime",
-          "branch": "queued/prove/quartic-plus-four-not-prime/reroute-38c60c",
-          "sha": "534e75f0",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "quartic-x4-plus-x2-plus-one-dvd-by-minus-factor",
-          "branch": "queued/prove/quartic-x4-plus-x2-plus-one-dvd-by-minus-factor/ruvnet-bbc29b",
-          "sha": "68ee1452",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "realization-edge-relation",
-          "branch": "queued/prove/realization-edge-relation/reroute-26bc58",
-          "sha": "303b8e98",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sextic-x6-plus-x3-plus-one-composite-shift",
-          "branch": "queued/prove/sextic-x6-plus-x3-plus-one-composite-shift/ruvnet-d37eb5",
-          "sha": "5ce7640c",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "six-dvd-pow-three-add-five-mul",
-          "branch": "queued/prove/six-dvd-pow-three-add-five-mul/reroute-c5016c",
-          "sha": "83969dc4",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "six-dvd-pow-three-add-five-mul",
-          "branch": "queued/prove/six-dvd-pow-three-add-five-mul/ruvnet-db2e41",
-          "sha": "1dd05100",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sophie-germain-plus-factor-dvd",
-          "branch": "queued/prove/sophie-germain-plus-factor-dvd/reroute-bfe3d3",
-          "sha": "cc578f7e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sos-weighted-three-one-two",
-          "branch": "queued/prove/sos-weighted-three-one-two/reroute-a0782f",
-          "sha": "30342a8e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sq-mod-five-ne-two-three",
-          "branch": "queued/prove/sq-mod-five-ne-two-three/ruvnet-6d2ee0",
-          "sha": "c01cbe52",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sq-mod-ten-ne-two-three-seven-eight",
-          "branch": "queued/prove/sq-mod-ten-ne-two-three-seven-eight/ruvnet-4e2510",
-          "sha": "a5ac822a",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-centered-triangular-closed-form",
-          "branch": "queued/prove/sum-centered-triangular-closed-form/reroute-2c545d",
-          "sha": "64dc9f9b",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-decagonal-closed-form",
-          "branch": "queued/prove/sum-decagonal-closed-form/reroute-bc3286",
-          "sha": "7daff7f4",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-four-consecutive-eq-hyper-tetrahedral",
-          "branch": "queued/prove/sum-four-consecutive-eq-hyper-tetrahedral/ruvnet-f51b5a",
-          "sha": "aafb5733",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-heptagonal-closed-form",
-          "branch": "queued/prove/sum-heptagonal-closed-form/reroute-41b55c",
-          "sha": "4d345f4a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-heptagonal-numbers-closed-form",
-          "branch": "queued/prove/sum-heptagonal-numbers-closed-form/reroute-ed3c95",
-          "sha": "bdf6fbff",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-hexagonal-eq",
-          "branch": "queued/prove/sum-hexagonal-eq/ruvnet-a4521d",
-          "sha": "6dfacb07",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-hexagonal-numbers-closed-form",
-          "branch": "queued/prove/sum-hexagonal-numbers-closed-form/reroute-139d2e",
-          "sha": "d47b7c66",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-icc-choose-hockey-stick-s1",
-          "branch": "queued/prove/sum-icc-choose-hockey-stick-s1/reroute-89c4b3",
-          "sha": "481d0276",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-icc-choose-hockey-stick-s2",
-          "branch": "queued/prove/sum-icc-choose-hockey-stick-s2/reroute-7c350a",
-          "sha": "3d251132",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-icc-choose-hockey-stick-s3",
-          "branch": "queued/prove/sum-icc-choose-hockey-stick-s3/reroute-381274",
-          "sha": "7c14f5cf",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-icc-eight-k-div-odd-sq-pair-telescope",
-          "branch": "queued/prove/sum-icc-eight-k-div-odd-sq-pair-telescope/reroute-3dee5e",
-          "sha": "0e3c85ec",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-icc-five-k-sub-two-mul-three-pow-pred-closed",
-          "branch": "queued/prove/sum-icc-five-k-sub-two-mul-three-pow-pred-closed/ruvnet-37f83e",
-          "sha": "dc2cf40c",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-octagonal-eq",
-          "branch": "queued/prove/sum-octagonal-eq/ruvnet-999962",
-          "sha": "5267fed8",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-octagonal-running-closed-form",
-          "branch": "queued/prove/sum-octagonal-running-closed-form/reroute-bde4da",
-          "sha": "eb58963c",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-octahedral-centered-squares",
-          "branch": "queued/prove/sum-octahedral-centered-squares/reroute-e11e70",
-          "sha": "916d95f2",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-odd-gnomon-squares-closed-form",
-          "branch": "queued/prove/sum-odd-gnomon-squares-closed-form/reroute-699c8a",
-          "sha": "7e3b1d26",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-odd-squares-eq",
-          "branch": "queued/prove/sum-odd-squares-eq/ruvnet-9ece1f",
-          "sha": "0107a146",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-odd-squares-faulhaber",
-          "branch": "queued/prove/sum-odd-squares-faulhaber/reroute-a101f0",
-          "sha": "0e23dcf7",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-one-div-four-k-plus-one-mul-four-k-plus-five",
-          "branch": "queued/prove/sum-one-div-four-k-plus-one-mul-four-k-plus-five/reroute-b7a863",
-          "sha": "8905461c",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-one-div-succ-mul-add-four-telescope",
-          "branch": "queued/prove/sum-one-div-succ-mul-add-four-telescope/reroute-ae6e83",
-          "sha": "1554e419",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-one-div-three-k-plus-one-mul-three-k-plus-four",
-          "branch": "queued/prove/sum-one-div-three-k-plus-one-mul-three-k-plus-four/reroute-90aa6c",
-          "sha": "ed508a87",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-pentagonal-eq",
-          "branch": "queued/prove/sum-pentagonal-eq/reroute-1a51c9",
-          "sha": "71f54fff",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-pentagonal-running-eq-pyramidal",
-          "branch": "queued/prove/sum-pentagonal-running-eq-pyramidal/reroute-d45afd",
-          "sha": "df650fd5",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-product-consecutive-odds-closed-form",
-          "branch": "queued/prove/sum-product-consecutive-odds-closed-form/reroute-03a278",
-          "sha": "d6609c31",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-pronic-eq-thrice-tetrahedral",
-          "branch": "queued/prove/sum-pronic-eq-thrice-tetrahedral/reroute-623cd4",
-          "sha": "2e9b6d02",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-quintic-gnomon-eq-fifth-power",
-          "branch": "queued/prove/sum-quintic-gnomon-eq-fifth-power/ruvnet-3d2c98",
-          "sha": "9cde9cba",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-catalan-mul-catalan-eq-catalan-succ",
-          "branch": "queued/prove/sum-range-catalan-mul-catalan-eq-catalan-succ/reroute-14f26f",
-          "sha": "6bf07fc8",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-choose-mul-choose-three-eq",
-          "branch": "queued/prove/sum-range-choose-mul-choose-three-eq/reroute-7cbadc",
-          "sha": "6cae5629",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-choose-mul-k-mul-comp-eq",
-          "branch": "queued/prove/sum-range-choose-mul-k-mul-comp-eq/reroute-df1616",
-          "sha": "62c86d85",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-choose-mul-succ-choose-eq",
-          "branch": "queued/prove/sum-range-choose-mul-succ-choose-eq/reroute-0f6c42",
-          "sha": "df88716e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-choose-mul-succ-choose-succ-eq-central-shift",
-          "branch": "queued/prove/sum-range-choose-mul-succ-choose-succ-eq-central-shift/reroute-8de400",
-          "sha": "4576d8b0",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-choose-sq-eq-central",
-          "branch": "queued/prove/sum-range-choose-sq-eq-central/reroute-f017f8",
-          "sha": "dd41265a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-comp-mul-choose-sq-eq",
-          "branch": "queued/prove/sum-range-comp-mul-choose-sq-eq/reroute-180583",
-          "sha": "ffb7ec76",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-compositions-count-eq-two-pow",
-          "branch": "queued/prove/sum-range-compositions-count-eq-two-pow/reroute-7a543e",
-          "sha": "3e367e07",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-compositions-count-eq-two-pow",
-          "branch": "queued/prove/sum-range-compositions-count-eq-two-pow/reroute-f923d4",
-          "sha": "385905b4",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-cube-mul-three-pow-closed",
-          "branch": "queued/prove/sum-range-cube-mul-three-pow-closed/ruvnet-22dd0e",
-          "sha": "e59369a0",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-cube-sym-choose-sq-eq-zero",
-          "branch": "queued/prove/sum-range-cube-sym-choose-sq-eq-zero/reroute-62fb75",
-          "sha": "a8280a13",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-disp-mul-choose-eq-zero",
-          "branch": "queued/prove/sum-range-disp-mul-choose-eq-zero/reroute-62afb0",
-          "sha": "b1d8044a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-disp-mul-choose-eq-zero",
-          "branch": "queued/prove/sum-range-disp-mul-choose-eq-zero/ruvnet-5ec588",
-          "sha": "5cea1e0f",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-disp-mul-choose-sq-eq-zero",
-          "branch": "queued/prove/sum-range-disp-mul-choose-sq-eq-zero/reroute-d69cc6",
-          "sha": "7f943d97",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-disp-mul-choose-sq-eq-zero",
-          "branch": "queued/prove/sum-range-disp-mul-choose-sq-eq-zero/ruvnet-2375d7",
-          "sha": "7fd87dca",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-even-cols-eq-two-pow",
-          "branch": "queued/prove/sum-range-even-cols-eq-two-pow/reroute-a9dd74",
-          "sha": "e5b11196",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-fall-three-mul-choose",
-          "branch": "queued/prove/sum-range-fall-three-mul-choose/reroute-ec554a",
-          "sha": "e97fd935",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-fib-mul-two-pow-rev-eq",
-          "branch": "queued/prove/sum-range-fib-mul-two-pow-rev-eq/reroute-8cecbd",
-          "sha": "a9b6e0aa",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-fib-prod-shift-even-nat",
-          "branch": "queued/prove/sum-range-fib-prod-shift-even-nat/reroute-d9a69a",
-          "sha": "a3f816d3",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-fib-sq-eq-fib-mul-fib-succ",
-          "branch": "queued/prove/sum-range-fib-sq-eq-fib-mul-fib-succ/reroute-790de8",
-          "sha": "eb7dec0c",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-fib-sq-eq-prod",
-          "branch": "queued/prove/sum-range-fib-sq-eq-prod/reroute-6b6577",
-          "sha": "d698f1b4",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-fib-sq-mul-two-eq",
-          "branch": "queued/prove/sum-range-fib-sq-mul-two-eq/reroute-fb5657",
-          "sha": "0836a365",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-fib-two-mul-succ-eq-fib-pred",
-          "branch": "queued/prove/sum-range-fib-two-mul-succ-eq-fib-pred/reroute-cac5bf",
-          "sha": "d8ea1d63",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-four-consecutive-product",
-          "branch": "queued/prove/sum-range-four-consecutive-product/reroute-32521c",
-          "sha": "a27bfbbd",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-four-mul-add-one",
-          "branch": "queued/prove/sum-range-four-mul-add-one/reroute-c69ef6",
-          "sha": "258656da",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-half-even-row-choose-eq",
-          "branch": "queued/prove/sum-range-half-even-row-choose-eq/reroute-55ddf9",
-          "sha": "c3d1ae8a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-id-div-two-pow",
-          "branch": "queued/prove/sum-range-id-div-two-pow/reroute-104107",
-          "sha": "0cd4b578",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-id-div-two-pow-eq-two-sub",
-          "branch": "queued/prove/sum-range-id-div-two-pow-eq-two-sub/reroute-da4772",
-          "sha": "c0834168",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-id-mul-add-two",
-          "branch": "queued/prove/sum-range-id-mul-add-two/reroute-46caf7",
-          "sha": "4d536980",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-id-mul-choose-eq-half",
-          "branch": "queued/prove/sum-range-id-mul-choose-eq-half/reroute-fb4965",
-          "sha": "a65dc098",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-id-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-id-mul-four-pow-closed/ruvnet-820a09",
-          "sha": "284a5bf9",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-id-mul-neg-two-pow-closed",
-          "branch": "queued/prove/sum-range-id-mul-neg-two-pow-closed/ruvnet-baeea5",
-          "sha": "8e0c305e",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-id-mul-three-pow",
-          "branch": "queued/prove/sum-range-id-mul-three-pow/ruvnet-49c431",
-          "sha": "0f018e41",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-div-succ-factorial-eq",
-          "branch": "queued/prove/sum-range-k-div-succ-factorial-eq/reroute-01a71b",
-          "sha": "c01caf48",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-div-succ-factorial-eq",
-          "branch": "queued/prove/sum-range-k-div-succ-factorial-eq/ruvnet-7b87ba",
-          "sha": "da0ec2dc",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-div-succ-factorial-telescope",
-          "branch": "queued/prove/sum-range-k-div-succ-factorial-telescope/reroute-d66a3a",
-          "sha": "d75d824c",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-div-succ-factorial-telescope",
-          "branch": "queued/prove/sum-range-k-div-succ-factorial-telescope/ruvnet-4acf3c",
-          "sha": "ee1a8117",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-choose-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-k-mul-choose-mul-four-pow-closed/reroute-3caa93",
-          "sha": "16c72236",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-choose-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-k-mul-choose-mul-four-pow-closed/ruvnet-59c9d6",
-          "sha": "e0b808c2",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-choose-mul-three-pow-closed",
-          "branch": "queued/prove/sum-range-k-mul-choose-mul-three-pow-closed/reroute-a41f3f",
-          "sha": "6a82bf45",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-choose-mul-three-pow-closed",
-          "branch": "queued/prove/sum-range-k-mul-choose-mul-three-pow-closed/ruvnet-8cd002",
-          "sha": "f70efe0d",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-choose-mul-two-pow-eq-two-n-three-pow",
-          "branch": "queued/prove/sum-range-k-mul-choose-mul-two-pow-eq-two-n-three-pow/reroute-18abca",
-          "sha": "45c38465",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-choose-mul-two-pow-eq-two-n-three-pow",
-          "branch": "queued/prove/sum-range-k-mul-choose-mul-two-pow-eq-two-n-three-pow/ruvnet-bdab73",
-          "sha": "60dcddcf",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-choose-sq-eq-central",
-          "branch": "queued/prove/sum-range-k-mul-choose-sq-eq-central/reroute-d5373a",
-          "sha": "487b5ced",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-factorial-eq-factorial-succ-sub-one",
-          "branch": "queued/prove/sum-range-k-mul-factorial-eq-factorial-succ-sub-one/reroute-e51e53",
-          "sha": "f99fb80f",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-factorial-eq-factorial-succ-sub-one",
-          "branch": "queued/prove/sum-range-k-mul-factorial-eq-factorial-succ-sub-one/ruvnet-d7b70f",
-          "sha": "367f3f93",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-factorial-succ",
-          "branch": "queued/prove/sum-range-k-mul-factorial-succ/reroute-4e2c61",
-          "sha": "1992ddbd",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-factorial-succ",
-          "branch": "queued/prove/sum-range-k-mul-factorial-succ/ruvnet-964f0b",
-          "sha": "fb573460",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-mul-two-pow-eq",
-          "branch": "queued/prove/sum-range-k-mul-two-pow-eq/reroute-99a5f9",
-          "sha": "35d0c56e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-plus-one-mul-choose",
-          "branch": "queued/prove/sum-range-k-plus-one-mul-choose/reroute-1fc1b6",
-          "sha": "8efcadba",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-plus-one-mul-choose",
-          "branch": "queued/prove/sum-range-k-plus-one-mul-choose/ruvnet-fa3d60",
-          "sha": "cc310261",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-sq-mul-choose-eq",
-          "branch": "queued/prove/sum-range-k-sq-mul-choose-eq/reroute-e59107",
-          "sha": "87773f45",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-sq-mul-choose-eq",
-          "branch": "queued/prove/sum-range-k-sq-mul-choose-eq/ruvnet-583f26",
-          "sha": "2e42d53d",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-sq-mul-five-pow-closed",
-          "branch": "queued/prove/sum-range-k-sq-mul-five-pow-closed/ruvnet-ac9439",
-          "sha": "efc4838e",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-sq-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-k-sq-mul-four-pow-closed/ruvnet-27a686",
-          "sha": "4c63c842",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-sub-one-div-factorial-telescope",
-          "branch": "queued/prove/sum-range-k-sub-one-div-factorial-telescope/reroute-67d399",
-          "sha": "caed7339",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-sub-one-div-factorial-telescope",
-          "branch": "queued/prove/sum-range-k-sub-one-div-factorial-telescope/ruvnet-4630db",
-          "sha": "00324d06",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-lower-triangle-choose-eq-two-pow",
-          "branch": "queued/prove/sum-range-lower-triangle-choose-eq-two-pow/reroute-62c993",
-          "sha": "ddd72e7e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-lower-triangle-choose-eq-two-pow",
-          "branch": "queued/prove/sum-range-lower-triangle-choose-eq-two-pow/ruvnet-d406f2",
-          "sha": "5e18d954",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-lucas-shift-nat",
-          "branch": "queued/prove/sum-range-lucas-shift-nat/reroute-0935f2",
-          "sha": "df4eebb4",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-lucas-shift-nat",
-          "branch": "queued/prove/sum-range-lucas-shift-nat/ruvnet-6f89bf",
-          "sha": "8d50adff",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-multichoose-two-eq-choose-succ-two",
-          "branch": "queued/prove/sum-range-multichoose-two-eq-choose-succ-two/reroute-583db1",
-          "sha": "7aa423eb",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-multichoose-two-eq-choose-succ-two",
-          "branch": "queued/prove/sum-range-multichoose-two-eq-choose-succ-two/ruvnet-7528ac",
-          "sha": "ea864275",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-odd-cubes",
-          "branch": "queued/prove/sum-range-odd-cubes/reroute-2ab590",
-          "sha": "55e07941",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-odd-cubes",
-          "branch": "queued/prove/sum-range-odd-cubes/ruvnet-943d6b",
-          "sha": "f1c0740c",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-odd-div-two-pow",
-          "branch": "queued/prove/sum-range-odd-div-two-pow/reroute-9bb98e",
-          "sha": "97ba2aa0",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-odd-div-two-pow",
-          "branch": "queued/prove/sum-range-odd-div-two-pow/ruvnet-9ea575",
-          "sha": "120e21c4",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-odd-index-choose-eq-two-pow",
-          "branch": "queued/prove/sum-range-odd-index-choose-eq-two-pow/reroute-25c95c",
-          "sha": "dc6369df",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-odd-index-choose-eq-two-pow",
-          "branch": "queued/prove/sum-range-odd-index-choose-eq-two-pow/ruvnet-04b6e0",
-          "sha": "120fe1b8",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-odd-num-sq-succ-sq-telescope",
-          "branch": "queued/prove/sum-range-odd-num-sq-succ-sq-telescope/reroute-5d1bae",
-          "sha": "cf63b48e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-odd-num-sq-succ-sq-telescope",
-          "branch": "queued/prove/sum-range-odd-num-sq-succ-sq-telescope/ruvnet-36290c",
-          "sha": "fc243f0e",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-pascal-diagonal-eq-choose",
-          "branch": "queued/prove/sum-range-pascal-diagonal-eq-choose/reroute-517469",
-          "sha": "b0c39eb5",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-pascal-diagonal-eq-choose",
-          "branch": "queued/prove/sum-range-pascal-diagonal-eq-choose/ruvnet-e95652",
-          "sha": "807b08e7",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-choose-two-eq-two-n-div-succ",
-          "branch": "queued/prove/sum-range-recip-choose-two-eq-two-n-div-succ/reroute-b85e97",
-          "sha": "8beb31d4",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-choose-two-eq-two-n-div-succ",
-          "branch": "queued/prove/sum-range-recip-choose-two-eq-two-n-div-succ/ruvnet-4c34d2",
-          "sha": "f414cf98",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-consecutive",
-          "branch": "queued/prove/sum-range-recip-consecutive/reroute-869b71",
-          "sha": "db8ba975",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-consecutive",
-          "branch": "queued/prove/sum-range-recip-consecutive/ruvnet-b638aa",
-          "sha": "cc25d9cc",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-five-step-product",
-          "branch": "queued/prove/sum-range-recip-five-step-product/reroute-8eec14",
-          "sha": "9f2fc9a7",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-five-step-product",
-          "branch": "queued/prove/sum-range-recip-five-step-product/ruvnet-11a19d",
-          "sha": "bd04c9dd",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-five-step-residue-one",
-          "branch": "queued/prove/sum-range-recip-five-step-residue-one/reroute-84ee15",
-          "sha": "b382f5f8",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-five-step-residue-one",
-          "branch": "queued/prove/sum-range-recip-five-step-residue-one/ruvnet-625453",
-          "sha": "f001c93c",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-four-consec-product",
-          "branch": "queued/prove/sum-range-recip-four-consec-product/reroute-1f43d0",
-          "sha": "f9a180c7",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-four-consec-product",
-          "branch": "queued/prove/sum-range-recip-four-consec-product/ruvnet-48a68f",
-          "sha": "c10d8b57",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-four-step-product",
-          "branch": "queued/prove/sum-range-recip-four-step-product/reroute-72c4e0",
-          "sha": "cfae84b0",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-four-step-product",
-          "branch": "queued/prove/sum-range-recip-four-step-product/ruvnet-e267ef",
-          "sha": "f81c68ed",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-four-step-residue-one",
-          "branch": "queued/prove/sum-range-recip-four-step-residue-one/reroute-f8b0b2",
-          "sha": "10b5c98c",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-four-step-residue-one",
-          "branch": "queued/prove/sum-range-recip-four-step-residue-one/ruvnet-8ba5f9",
-          "sha": "c0ae93e5",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-odd-consecutive",
-          "branch": "queued/prove/sum-range-recip-odd-consecutive/reroute-4c1e02",
-          "sha": "c38dfe92",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-odd-consecutive",
-          "branch": "queued/prove/sum-range-recip-odd-consecutive/ruvnet-b6c8c9",
-          "sha": "b984d783",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-odd-pair-consecutive",
-          "branch": "queued/prove/sum-range-recip-odd-pair-consecutive/reroute-7c29da",
-          "sha": "7f447281",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-odd-pair-consecutive",
-          "branch": "queued/prove/sum-range-recip-odd-pair-consecutive/ruvnet-0956f0",
-          "sha": "38d18847",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-odd-pair-step-two-eq-n-div",
-          "branch": "queued/prove/sum-range-recip-odd-pair-step-two-eq-n-div/reroute-c8160d",
-          "sha": "2853e615",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-odd-pair-step-two-eq-n-div",
-          "branch": "queued/prove/sum-range-recip-odd-pair-step-two-eq-n-div/ruvnet-9575d9",
-          "sha": "d55c5a29",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-odd-product",
-          "branch": "queued/prove/sum-range-recip-odd-product/reroute-b27e29",
-          "sha": "da1fa6b1",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-odd-product",
-          "branch": "queued/prove/sum-range-recip-odd-product/ruvnet-b846b8",
-          "sha": "36d58fed",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-shift-two-shift-five-telescope",
-          "branch": "queued/prove/sum-range-recip-shift-two-shift-five-telescope/reroute-6eef93",
-          "sha": "08f14f3d",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-shift-two-shift-five-telescope",
-          "branch": "queued/prove/sum-range-recip-shift-two-shift-five-telescope/ruvnet-7c2e59",
-          "sha": "17e78b08",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-three-consec-odd-telescope",
-          "branch": "queued/prove/sum-range-recip-three-consec-odd-telescope/reroute-af8d30",
-          "sha": "da90c22d",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-three-consec-odd-telescope",
-          "branch": "queued/prove/sum-range-recip-three-consec-odd-telescope/ruvnet-18545b",
-          "sha": "58a2b391",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-three-consec-shifted",
-          "branch": "queued/prove/sum-range-recip-three-consec-shifted/reroute-80463b",
-          "sha": "64bd4744",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-three-consec-shifted",
-          "branch": "queued/prove/sum-range-recip-three-consec-shifted/ruvnet-ba3e03",
-          "sha": "5d442d66",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-three-consecutive",
-          "branch": "queued/prove/sum-range-recip-three-consecutive/reroute-098a08",
-          "sha": "3dfa344e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-three-consecutive",
-          "branch": "queued/prove/sum-range-recip-three-consecutive/ruvnet-0ba144",
-          "sha": "9068c86f",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-three-step-residue-one",
-          "branch": "queued/prove/sum-range-recip-three-step-residue-one/reroute-a1fb71",
-          "sha": "47d6d281",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-three-step-residue-one",
-          "branch": "queued/prove/sum-range-recip-three-step-residue-one/ruvnet-639682",
-          "sha": "ad7f2308",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-triple-consecutive",
-          "branch": "queued/prove/sum-range-recip-triple-consecutive/reroute-8bba8b",
-          "sha": "856af19f",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-recip-triple-consecutive",
-          "branch": "queued/prove/sum-range-recip-triple-consecutive/ruvnet-d62bc7",
-          "sha": "bb23605f",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-shifted-choose-eq-two-pow-sub-one",
-          "branch": "queued/prove/sum-range-shifted-choose-eq-two-pow-sub-one/reroute-4a19ba",
-          "sha": "524b1354",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-shifted-choose-eq-two-pow-sub-one",
-          "branch": "queued/prove/sum-range-shifted-choose-eq-two-pow-sub-one/ruvnet-2c57ad",
-          "sha": "a8f90e7f",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-sq-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-sq-mul-four-pow-closed/ruvnet-619d1f",
-          "sha": "826122a5",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-sq-mul-three-pow",
-          "branch": "queued/prove/sum-range-sq-mul-three-pow/ruvnet-65348d",
-          "sha": "9f520235",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-sq-mul-three-pow-closed",
-          "branch": "queued/prove/sum-range-sq-mul-three-pow-closed/ruvnet-0bc7cc",
-          "sha": "3b32aa4b",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-sq-mul-two-pow",
-          "branch": "queued/prove/sum-range-sq-mul-two-pow/ruvnet-33b1ad",
-          "sha": "1f29d37a",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-stirling-first-row-eq-factorial",
-          "branch": "queued/prove/sum-range-stirling-first-row-eq-factorial/reroute-4294a4",
-          "sha": "99219d4e",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-stirling-first-row-eq-factorial",
-          "branch": "queued/prove/sum-range-stirling-first-row-eq-factorial/ruvnet-5360e7",
-          "sha": "ca32feab",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-div-factorial-add-two-telescope",
-          "branch": "queued/prove/sum-range-succ-div-factorial-add-two-telescope/reroute-5f78c0",
-          "sha": "31c8bd34",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-div-factorial-add-two-telescope",
-          "branch": "queued/prove/sum-range-succ-div-factorial-add-two-telescope/ruvnet-abcc38",
-          "sha": "369653f8",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-div-two-pow-eq-four-sub",
-          "branch": "queued/prove/sum-range-succ-div-two-pow-eq-four-sub/reroute-a8d587",
-          "sha": "3c5f564a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-k-mul-choose-mul-two-pow-closed",
-          "branch": "queued/prove/sum-range-succ-k-mul-choose-mul-two-pow-closed/reroute-1da714",
-          "sha": "540e32e7",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-mul-choose-sq-eq",
-          "branch": "queued/prove/sum-range-succ-mul-choose-sq-eq/reroute-d1e065",
-          "sha": "d98673a8",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-mul-choose-sq-eq",
-          "branch": "queued/prove/sum-range-succ-mul-choose-sq-eq/ruvnet-9f829e",
-          "sha": "d14d9da0",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-mul-factorial-eq",
-          "branch": "queued/prove/sum-range-succ-mul-factorial-eq/reroute-7f9380",
-          "sha": "b1fbaf06",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-mul-factorial-eq",
-          "branch": "queued/prove/sum-range-succ-mul-factorial-eq/ruvnet-c4d9c2",
-          "sha": "86559bcd",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-mul-factorial-succ",
-          "branch": "queued/prove/sum-range-succ-mul-factorial-succ/reroute-83f41f",
-          "sha": "27caae25",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-mul-factorial-succ",
-          "branch": "queued/prove/sum-range-succ-mul-factorial-succ/ruvnet-620ca9",
-          "sha": "1a142f77",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-mul-two-pow-eq-closed",
-          "branch": "queued/prove/sum-range-succ-mul-two-pow-eq-closed/ruvnet-022009",
-          "sha": "36f5230c",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-succ-sq-mul-two-pow-closed",
-          "branch": "queued/prove/sum-range-succ-sq-mul-two-pow-closed/reroute-3e44fc",
-          "sha": "641cea2a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-three-k-add-two-mul-two-pow-closed",
-          "branch": "queued/prove/sum-range-three-k-add-two-mul-two-pow-closed/reroute-fa79c3",
-          "sha": "666edd0f",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-three-mul-add-one",
-          "branch": "queued/prove/sum-range-three-mul-add-one/reroute-e49458",
-          "sha": "4d8243d0",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-three-mul-add-one",
-          "branch": "queued/prove/sum-range-three-mul-add-one/ruvnet-b93d61",
-          "sha": "e28eb3eb",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-triangular-eq-tetrahedral",
-          "branch": "queued/prove/sum-range-triangular-eq-tetrahedral/reroute-4d93d6",
-          "sha": "62749db2",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-triangular-eq-tetrahedral",
-          "branch": "queued/prove/sum-range-triangular-eq-tetrahedral/ruvnet-1c5b7e",
-          "sha": "eab36e80",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-two-k-add-one-div-two-pow-closed",
-          "branch": "queued/prove/sum-range-two-k-add-one-div-two-pow-closed/reroute-12158e",
-          "sha": "aa1de403",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-two-k-add-one-mul-two-pow-closed",
-          "branch": "queued/prove/sum-range-two-k-add-one-mul-two-pow-closed/reroute-5bf930",
-          "sha": "659f7c38",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-two-k-sub-n-mul-choose-sq-eq-zero",
-          "branch": "queued/prove/sum-range-two-k-sub-n-mul-choose-sq-eq-zero/reroute-0988ab",
-          "sha": "40434f5a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-two-k-sub-n-mul-choose-sq-eq-zero",
-          "branch": "queued/prove/sum-range-two-k-sub-n-mul-choose-sq-eq-zero/ruvnet-8e2b01",
-          "sha": "b1adcc70",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-two-k-sub-one-mul-three-pow-closed",
-          "branch": "queued/prove/sum-range-two-k-sub-one-mul-three-pow-closed/reroute-b41c5f",
-          "sha": "b3bb1034",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-two-k-succ-mul-choose-eq",
-          "branch": "queued/prove/sum-range-two-k-succ-mul-choose-eq/reroute-b45a20",
-          "sha": "f7c70f92",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-two-k-succ-mul-choose-eq",
-          "branch": "queued/prove/sum-range-two-k-succ-mul-choose-eq/ruvnet-58554d",
-          "sha": "2f5a93f2",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-two-mul-add-one",
-          "branch": "queued/prove/sum-range-two-mul-add-one/ruvnet-c47704",
-          "sha": "798b069f",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-vandermonde-self-eq-central-choose",
-          "branch": "queued/prove/sum-range-vandermonde-self-eq-central-choose/reroute-bfb2c0",
-          "sha": "5e7cedd4",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-vandermonde-self-eq-central-choose",
-          "branch": "queued/prove/sum-range-vandermonde-self-eq-central-choose/ruvnet-ea32f3",
-          "sha": "318b299c",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-window-five-fib-eq-fib-diff-nat",
-          "branch": "queued/prove/sum-range-window-five-fib-eq-fib-diff-nat/reroute-fd6ae4",
-          "sha": "25e01937",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-window-five-fib-eq-fib-diff-nat",
-          "branch": "queued/prove/sum-range-window-five-fib-eq-fib-diff-nat/ruvnet-480789",
-          "sha": "cdb90a82",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-window-four-fib-eq-fib-diff-nat",
-          "branch": "queued/prove/sum-range-window-four-fib-eq-fib-diff-nat/reroute-7e09fb",
-          "sha": "2d026f09",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-window-four-fib-eq-fib-diff-nat",
-          "branch": "queued/prove/sum-range-window-four-fib-eq-fib-diff-nat/ruvnet-e87023",
-          "sha": "d8965b27",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-recip-times-sum-ge-nine",
-          "branch": "queued/prove/sum-recip-times-sum-ge-nine/reroute-68ea60",
-          "sha": "ed3dc6cd",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-recip-times-sum-ge-nine",
-          "branch": "queued/prove/sum-recip-times-sum-ge-nine/ruvnet-17abe4",
-          "sha": "6e8675c1",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-rhombic-dodecahedral-eq-fourth-power",
-          "branch": "queued/prove/sum-rhombic-dodecahedral-eq-fourth-power/reroute-194417",
-          "sha": "554ee040",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-rhombic-dodecahedral-eq-fourth-power",
-          "branch": "queued/prove/sum-rhombic-dodecahedral-eq-fourth-power/ruvnet-15b4a4",
-          "sha": "f29a0805",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-sixth-ge-mixed-fourth-second",
-          "branch": "queued/prove/sum-sixth-ge-mixed-fourth-second/reroute-0f9fd4",
-          "sha": "07b1e280",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-sixth-ge-mixed-fourth-second",
-          "branch": "queued/prove/sum-sixth-ge-mixed-fourth-second/ruvnet-072107",
-          "sha": "533901a0",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-square-pyramidal-eq-hyper",
-          "branch": "queued/prove/sum-square-pyramidal-eq-hyper/reroute-0f07b6",
-          "sha": "0f8adee5",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-square-pyramidal-eq-hyper",
-          "branch": "queued/prove/sum-square-pyramidal-eq-hyper/ruvnet-3e27f9",
-          "sha": "24cc09ec",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-squares-eq-square-pyramidal",
-          "branch": "queued/prove/sum-squares-eq-square-pyramidal/reroute-bcf3f8",
-          "sha": "39168735",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-squares-eq-square-pyramidal",
-          "branch": "queued/prove/sum-squares-eq-square-pyramidal/ruvnet-1d814f",
-          "sha": "1c0127e7",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-star-numbers-closed-form",
-          "branch": "queued/prove/sum-star-numbers-closed-form/reroute-0d81a2",
-          "sha": "33f463ac",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-star-numbers-closed-form",
-          "branch": "queued/prove/sum-star-numbers-closed-form/ruvnet-dd3e20",
-          "sha": "976986d8",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-stella-octangula-closed-form",
-          "branch": "queued/prove/sum-stella-octangula-closed-form/reroute-52ef40",
-          "sha": "3dc17253",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-stella-octangula-closed-form",
-          "branch": "queued/prove/sum-stella-octangula-closed-form/ruvnet-161f36",
-          "sha": "3ceae9f8",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-tetrahedral-eq-pentatope",
-          "branch": "queued/prove/sum-tetrahedral-eq-pentatope/reroute-e37d18",
-          "sha": "d5eb830f",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-tetrahedral-eq-pentatope",
-          "branch": "queued/prove/sum-tetrahedral-eq-pentatope/ruvnet-3fa932",
-          "sha": "b25ffc5b",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-three-squares-zmod-eight-ne-seven",
-          "branch": "queued/prove/sum-three-squares-zmod-eight-ne-seven/reroute-2cca43",
-          "sha": "920ee29a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-three-squares-zmod-eight-ne-seven",
-          "branch": "queued/prove/sum-three-squares-zmod-eight-ne-seven/ruvnet-825c65",
-          "sha": "306c1579",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-three-squares-zmod-sixteen-ne-fifteen",
-          "branch": "queued/prove/sum-three-squares-zmod-sixteen-ne-fifteen/reroute-7c61b6",
-          "sha": "ec386f4d",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-three-squares-zmod-sixteen-ne-fifteen",
-          "branch": "queued/prove/sum-three-squares-zmod-sixteen-ne-fifteen/ruvnet-bdc35a",
-          "sha": "3ee5cd60",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-triangular-squared-closed-form",
-          "branch": "queued/prove/sum-triangular-squared-closed-form/reroute-33f6a6",
-          "sha": "2bc395af",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-triangular-squared-closed-form",
-          "branch": "queued/prove/sum-triangular-squared-closed-form/ruvnet-30ecdf",
-          "sha": "d56e76d3",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-triple-product-eq",
-          "branch": "queued/prove/sum-triple-product-eq/reroute-8782fd",
-          "sha": "f28c1486",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-triple-product-eq",
-          "branch": "queued/prove/sum-triple-product-eq/ruvnet-d60780",
-          "sha": "32cbdd69",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-cubes-zmod-nine-ne-four",
-          "branch": "queued/prove/sum-two-cubes-zmod-nine-ne-four/reroute-5e1be6",
-          "sha": "439275cb",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-cubes-zmod-nine-ne-four",
-          "branch": "queued/prove/sum-two-cubes-zmod-nine-ne-four/ruvnet-6f4aa3",
-          "sha": "64fa4f52",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-cubes-zmod-seven-mem",
-          "branch": "queued/prove/sum-two-cubes-zmod-seven-mem/reroute-b28be1",
-          "sha": "bdd4e4ad",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-cubes-zmod-seven-mem",
-          "branch": "queued/prove/sum-two-cubes-zmod-seven-mem/ruvnet-455445",
-          "sha": "1fe83cef",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-fourth-powers-zmod-sixteen-mem",
-          "branch": "queued/prove/sum-two-fourth-powers-zmod-sixteen-mem/reroute-21daed",
-          "sha": "6ce4947c",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-fourth-powers-zmod-sixteen-mem",
-          "branch": "queued/prove/sum-two-fourth-powers-zmod-sixteen-mem/ruvnet-d86732",
-          "sha": "45cbac37",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-k-add-one-mul-two-pow",
-          "branch": "queued/prove/sum-two-k-add-one-mul-two-pow/reroute-5907c5",
-          "sha": "1737f05d",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-k-plus-one-div-sq-succ-sq-telescope",
-          "branch": "queued/prove/sum-two-k-plus-one-div-sq-succ-sq-telescope/reroute-9f064f",
-          "sha": "90c53ab0",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-k-plus-one-div-sq-succ-sq-telescope",
-          "branch": "queued/prove/sum-two-k-plus-one-div-sq-succ-sq-telescope/ruvnet-87c2ca",
-          "sha": "8ddf9315",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-k-sub-one-mul-two-pow",
-          "branch": "queued/prove/sum-two-k-sub-one-mul-two-pow/reroute-e992fc",
-          "sha": "11ff7eda",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-k-sub-one-mul-two-pow",
-          "branch": "queued/prove/sum-two-k-sub-one-mul-two-pow/ruvnet-1d97b4",
-          "sha": "8f3b2838",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-six",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-six/reroute-f60467",
-          "sha": "6683212c",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-six",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-six/ruvnet-75b37a",
-          "sha": "39380b46",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-four-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-four-ne-three/reroute-ffd0b8",
-          "sha": "84922565",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-four-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-four-ne-three/ruvnet-6c571e",
-          "sha": "06b00cdf",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-vandermonde-diagonal-eq-choose",
-          "branch": "queued/prove/sum-vandermonde-diagonal-eq-choose/reroute-ec7711",
-          "sha": "bdebc140",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-vandermonde-diagonal-eq-choose",
-          "branch": "queued/prove/sum-vandermonde-diagonal-eq-choose/ruvnet-eaa873",
-          "sha": "be6691d7",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sumsq-ge-ab-plus-bc",
-          "branch": "queued/prove/sumsq-ge-ab-plus-bc/reroute-bfb753",
-          "sha": "8395b4ab",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sumsq-ge-ab-plus-bc",
-          "branch": "queued/prove/sumsq-ge-ab-plus-bc/ruvnet-f692a2",
-          "sha": "18edee42",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sumsq-products-ge-abc-times-sum",
-          "branch": "queued/prove/sumsq-products-ge-abc-times-sum/reroute-6f23f5",
-          "sha": "604b432d",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sumsq-products-ge-abc-times-sum",
-          "branch": "queued/prove/sumsq-products-ge-abc-times-sum/ruvnet-6f4124",
-          "sha": "782bb6b1",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sym-deg-three-ge-six-mul",
-          "branch": "queued/prove/sym-deg-three-ge-six-mul/reroute-2185a9",
-          "sha": "c1e76822",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sym-deg-three-ge-six-mul",
-          "branch": "queued/prove/sym-deg-three-ge-six-mul/ruvnet-bc6fdf",
-          "sha": "3fef864b",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sym-grouped-deg-three-ge-six-abc",
-          "branch": "queued/prove/sym-grouped-deg-three-ge-six-abc/reroute-108dbd",
-          "sha": "dc55db99",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sym-grouped-deg-three-ge-six-abc",
-          "branch": "queued/prove/sym-grouped-deg-three-ge-six-abc/ruvnet-5bd69e",
-          "sha": "ee5670a8",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "tangent-line-cube-trick",
-          "branch": "queued/prove/tangent-line-cube-trick/reroute-284214",
-          "sha": "79eb3dd4",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "tangent-line-cube-trick",
-          "branch": "queued/prove/tangent-line-cube-trick/ruvnet-a92143",
-          "sha": "d720ba87",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-cubes-minus-three-prod-dvd-sum",
-          "branch": "queued/prove/three-cubes-minus-three-prod-dvd-sum/reroute-9ff5f9",
-          "sha": "0877c13a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-cubes-minus-three-prod-dvd-sum",
-          "branch": "queued/prove/three-cubes-minus-three-prod-dvd-sum/ruvnet-c3164a",
-          "sha": "050bf32a",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-cubes-zmod-nine-ne-four-five",
-          "branch": "queued/prove/three-cubes-zmod-nine-ne-four-five/reroute-b7603e",
-          "sha": "a5060db4",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-cubes-zmod-nine-ne-four-five",
-          "branch": "queued/prove/three-cubes-zmod-nine-ne-four-five/ruvnet-785a75",
-          "sha": "ebadb4ee",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-fourth-powers-zmod-sixteen-mem",
-          "branch": "queued/prove/three-fourth-powers-zmod-sixteen-mem/reroute-8cb0eb",
-          "sha": "f2c85918",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-fourth-powers-zmod-sixteen-mem",
-          "branch": "queued/prove/three-fourth-powers-zmod-sixteen-mem/ruvnet-e655ae",
-          "sha": "71cc61b3",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-mul-fib-eq-fib-add-two-add-fib-sub-two",
-          "branch": "queued/prove/three-mul-fib-eq-fib-add-two-add-fib-sub-two/reroute-5b96f6",
-          "sha": "47aad56d",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-mul-fib-eq-fib-add-two-add-fib-sub-two",
-          "branch": "queued/prove/three-mul-fib-eq-fib-add-two-add-fib-sub-two/ruvnet-502325",
-          "sha": "a4ca314c",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-quartic-sum-ge-sumsq-sq",
-          "branch": "queued/prove/three-quartic-sum-ge-sumsq-sq/reroute-6ec150",
-          "sha": "cfa13e75",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-quartic-sum-ge-sumsq-sq",
-          "branch": "queued/prove/three-quartic-sum-ge-sumsq-sq/ruvnet-b7c060",
-          "sha": "d0d5a77b",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-cubes-zmod-nine-ne-three-four-five-six",
-          "branch": "queued/prove/two-cubes-zmod-nine-ne-three-four-five-six/reroute-5de729",
-          "sha": "a797a8e6",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-cubes-zmod-nine-ne-three-four-five-six",
-          "branch": "queued/prove/two-cubes-zmod-nine-ne-three-four-five-six/ruvnet-2df560",
-          "sha": "e8614d93",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-fib-add-int",
-          "branch": "queued/prove/two-fib-add-int/reroute-697d64",
-          "sha": "28fc9c82",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-fib-add-int",
-          "branch": "queued/prove/two-fib-add-int/ruvnet-2fcbe7",
-          "sha": "db4a525b",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-fourth-powers-zmod-five-ne-three-four",
-          "branch": "queued/prove/two-fourth-powers-zmod-five-ne-three-four/reroute-ab35d4",
-          "sha": "0ef460d6",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-fourth-powers-zmod-five-ne-three-four",
-          "branch": "queued/prove/two-fourth-powers-zmod-five-ne-three-four/ruvnet-3338bb",
-          "sha": "9fbd499e",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-mul-sum-icc-three-k-sub-two-eq-pentagonal",
-          "branch": "queued/prove/two-mul-sum-icc-three-k-sub-two-eq-pentagonal/reroute-2660e5",
-          "sha": "5cb0f106",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-mul-sum-icc-three-k-sub-two-eq-pentagonal",
-          "branch": "queued/prove/two-mul-sum-icc-three-k-sub-two-eq-pentagonal/ruvnet-99046f",
-          "sha": "48ad9c74",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-mul-sum-range-fib-triple-eq-fib-pred",
-          "branch": "queued/prove/two-mul-sum-range-fib-triple-eq-fib-pred/reroute-8bfddb",
-          "sha": "7ea54c46",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-squares-zmod-sixteen-ne-three-seven-eleven",
-          "branch": "queued/prove/two-squares-zmod-sixteen-ne-three-seven-eleven/reroute-27fff4",
-          "sha": "8a77d39c",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-squares-zmod-sixteen-ne-three-seven-eleven",
-          "branch": "queued/prove/two-squares-zmod-sixteen-ne-three-seven-eleven/ruvnet-723630",
-          "sha": "b9a92866",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-sum-cubes-ge-sym-quadratics",
-          "branch": "queued/prove/two-sum-cubes-ge-sym-quadratics/reroute-c0f23c",
-          "sha": "a925fdcc",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "two-sum-cubes-ge-sym-quadratics",
-          "branch": "queued/prove/two-sum-cubes-ge-sym-quadratics/ruvnet-60b199",
-          "sha": "7fdfc641",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        }
-      ]
-    },
     {
       "solver": "ohdearquant",
       "github": "ohdearquant",
       "display_name": "@ohdearquant",
       "profile_url": "https://github.com/ohdearquant",
-      "submissions": 206,
-      "waiting": 173,
+      "submissions": 171,
+      "waiting": 138,
       "in_flight": 33,
-      "distinct_goals": 142,
+      "distinct_goals": 138,
       "queued": [
+        {
+          "goal": "dvd-210-pow-fifteen-sub-pow-three",
+          "branch": "queued/prove/dvd-210-pow-fifteen-sub-pow-three/mac-158f-0d2f8e",
+          "sha": "3eaddce2",
+          "model": "template-zmod-crt",
+          "date": "2026-06-16",
+          "state": "waiting"
+        },
+        {
+          "goal": "dvd-210-pow-fifteen-sub-pow-three",
+          "branch": "queued/prove/dvd-210-pow-fifteen-sub-pow-three/mac-158f-5d67b6",
+          "sha": "a782aeec",
+          "model": "template-zmod-crt",
+          "date": "2026-06-17",
+          "state": "in-flight"
+        },
         {
           "goal": "gfac-d0-c1",
           "branch": "queued/prove/gfac-d0-c1/mac-158f-3cf649",
@@ -3049,14 +773,6 @@
           "state": "in-flight"
         },
         {
-          "goal": "sum-four-consecutive-eq-hyper-tetrahedral",
-          "branch": "queued/prove/sum-four-consecutive-eq-hyper-tetrahedral/reroute-d6de9f",
-          "sha": "a92227c5",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-hexagonal-eq",
           "branch": "queued/prove/sum-hexagonal-eq/mac-158f-ed048f",
           "sha": "f0374e6c",
@@ -3068,14 +784,6 @@
           "goal": "sum-hexagonal-eq",
           "branch": "queued/prove/sum-hexagonal-eq/mac-158f-f91100",
           "sha": "1e90911a",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-hexagonal-eq",
-          "branch": "queued/prove/sum-hexagonal-eq/reroute-20fcbd",
-          "sha": "47185127",
           "model": "template-sum-induction",
           "date": "2026-06-17",
           "state": "waiting"
@@ -3097,14 +805,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sum-icc-five-k-sub-two-mul-three-pow-pred-closed",
-          "branch": "queued/prove/sum-icc-five-k-sub-two-mul-three-pow-pred-closed/reroute-b4b899",
-          "sha": "60d6d1a7",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-k-sq-mul-succ-closed-form",
           "branch": "queued/prove/sum-k-sq-mul-succ-closed-form/mac-158f-1bca2a",
           "sha": "01a0eabd",
@@ -3118,14 +818,6 @@
           "sha": "51697b93",
           "model": "template-sum-induction",
           "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-k-sq-mul-succ-closed-form",
-          "branch": "queued/prove/sum-k-sq-mul-succ-closed-form/mac-158f-a38e4c",
-          "sha": "36a94f60",
-          "model": "template-sum-induction",
-          "date": "2026-06-16",
           "state": "waiting"
         },
         {
@@ -3145,14 +837,6 @@
           "state": "in-flight"
         },
         {
-          "goal": "sum-octagonal-eq",
-          "branch": "queued/prove/sum-octagonal-eq/reroute-8c5da2",
-          "sha": "ee94936c",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-odd-squares-eq",
           "branch": "queued/prove/sum-odd-squares-eq/mac-158f-496eb1",
           "sha": "4aff3cd0",
@@ -3164,14 +848,6 @@
           "goal": "sum-odd-squares-eq",
           "branch": "queued/prove/sum-odd-squares-eq/mac-158f-9428ee",
           "sha": "dc18d3a7",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-odd-squares-eq",
-          "branch": "queued/prove/sum-odd-squares-eq/reroute-fc801d",
-          "sha": "1632c04a",
           "model": "template-sum-induction",
           "date": "2026-06-17",
           "state": "waiting"
@@ -3201,14 +877,6 @@
           "state": "in-flight"
         },
         {
-          "goal": "sum-quintic-gnomon-eq-fifth-power",
-          "branch": "queued/prove/sum-quintic-gnomon-eq-fifth-power/reroute-e82a56",
-          "sha": "589ba00a",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-range-cube-mul-three-pow-closed",
           "branch": "queued/prove/sum-range-cube-mul-three-pow-closed/mac-158f-19e5fd",
           "sha": "3e75e60c",
@@ -3220,14 +888,6 @@
           "goal": "sum-range-cube-mul-three-pow-closed",
           "branch": "queued/prove/sum-range-cube-mul-three-pow-closed/mac-158f-1bad63",
           "sha": "f72e88ed",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-cube-mul-three-pow-closed",
-          "branch": "queued/prove/sum-range-cube-mul-three-pow-closed/reroute-296cef",
-          "sha": "d6a44656",
           "model": "template-sum-induction",
           "date": "2026-06-17",
           "state": "waiting"
@@ -3273,14 +933,6 @@
           "state": "in-flight"
         },
         {
-          "goal": "sum-range-id-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-id-mul-four-pow-closed/reroute-1ba58a",
-          "sha": "32a39dcc",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-range-id-mul-neg-two-pow-closed",
           "branch": "queued/prove/sum-range-id-mul-neg-two-pow-closed/mac-158f-c854ae",
           "sha": "f91e1597",
@@ -3297,14 +949,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sum-range-id-mul-neg-two-pow-closed",
-          "branch": "queued/prove/sum-range-id-mul-neg-two-pow-closed/reroute-20d343",
-          "sha": "7d81248f",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-range-id-mul-three-pow",
           "branch": "queued/prove/sum-range-id-mul-three-pow/mac-158f-1c5fde",
           "sha": "b336dabe",
@@ -3316,14 +960,6 @@
           "goal": "sum-range-id-mul-three-pow",
           "branch": "queued/prove/sum-range-id-mul-three-pow/mac-158f-ee27bf",
           "sha": "6a64205a",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-id-mul-three-pow",
-          "branch": "queued/prove/sum-range-id-mul-three-pow/reroute-924792",
-          "sha": "69d4dda0",
           "model": "template-sum-induction",
           "date": "2026-06-17",
           "state": "waiting"
@@ -3353,38 +989,6 @@
           "state": "in-flight"
         },
         {
-          "goal": "sum-range-k-sq-mul-five-pow-closed",
-          "branch": "queued/prove/sum-range-k-sq-mul-five-pow-closed/reroute-8b46af",
-          "sha": "8ebbfccd",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-sq-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-k-sq-mul-four-pow-closed/mac-158f-5705d6",
-          "sha": "ac3b7a31",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-k-sq-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-k-sq-mul-four-pow-closed/mac-158f-9e4a7e",
-          "sha": "6ec0e27a",
-          "model": "template-sum-induction",
-          "date": "2026-06-16",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-range-k-sq-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-k-sq-mul-four-pow-closed/reroute-0979d4",
-          "sha": "87894f9f",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-range-sq-mul-four-pow-closed",
           "branch": "queued/prove/sum-range-sq-mul-four-pow-closed/mac-158f-4b76b0",
           "sha": "5434b3b9",
@@ -3398,14 +1002,6 @@
           "sha": "69d7ab3a",
           "model": "template-sum-induction",
           "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-sq-mul-four-pow-closed",
-          "branch": "queued/prove/sum-range-sq-mul-four-pow-closed/reroute-c8631f",
-          "sha": "a5f8482a",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
           "state": "waiting"
         },
         {
@@ -3425,14 +1021,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sum-range-sq-mul-three-pow",
-          "branch": "queued/prove/sum-range-sq-mul-three-pow/reroute-8b3f1d",
-          "sha": "06507112",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-range-sq-mul-three-pow-closed",
           "branch": "queued/prove/sum-range-sq-mul-three-pow-closed/mac-158f-354fbc",
           "sha": "45512b56",
@@ -3444,14 +1032,6 @@
           "goal": "sum-range-sq-mul-three-pow-closed",
           "branch": "queued/prove/sum-range-sq-mul-three-pow-closed/mac-158f-c8df01",
           "sha": "87ed30f8",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-sq-mul-three-pow-closed",
-          "branch": "queued/prove/sum-range-sq-mul-three-pow-closed/reroute-b3b47a",
-          "sha": "b129d1db",
           "model": "template-sum-induction",
           "date": "2026-06-17",
           "state": "waiting"
@@ -3470,14 +1050,6 @@
           "sha": "6994e12c",
           "model": "template-sum-induction",
           "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-range-sq-mul-two-pow",
-          "branch": "queued/prove/sum-range-sq-mul-two-pow/reroute-ac5bc2",
-          "sha": "6163f9f6",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
           "state": "waiting"
         },
         {
@@ -3503,14 +1075,6 @@
           "model": "template-sum-induction",
           "date": "2026-06-16",
           "state": "in-flight"
-        },
-        {
-          "goal": "sum-range-succ-mul-two-pow-eq-closed",
-          "branch": "queued/prove/sum-range-succ-mul-two-pow-eq-closed/reroute-582192",
-          "sha": "db6190ec",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
         },
         {
           "goal": "sum-range-succ-sq-mul-two-pow-closed",
@@ -3569,14 +1133,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sum-range-two-mul-add-one",
-          "branch": "queued/prove/sum-range-two-mul-add-one/reroute-ad090e",
-          "sha": "91e0f722",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-sixth-ge-mixed-fourth-second",
           "branch": "queued/prove/sum-sixth-ge-mixed-fourth-second/mac-158f-4aa2f5",
           "sha": "5f2e677f",
@@ -3590,14 +1146,6 @@
           "sha": "60cc4d0b",
           "model": "template-nlinarith",
           "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-sixth-ge-mixed-fourth-second",
-          "branch": "queued/prove/sum-sixth-ge-mixed-fourth-second/reroute-150ffa",
-          "sha": "3cdb09c7",
-          "model": "template-nlinarith",
-          "date": "2026-06-17",
           "state": "waiting"
         },
         {
@@ -3617,14 +1165,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sum-squares-eq-square-pyramidal",
-          "branch": "queued/prove/sum-squares-eq-square-pyramidal/reroute-628d41",
-          "sha": "1f7b4fba",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-stella-octangula-closed-form",
           "branch": "queued/prove/sum-stella-octangula-closed-form/mac-158f-224187",
           "sha": "f35bb3f2",
@@ -3636,14 +1176,6 @@
           "goal": "sum-stella-octangula-closed-form",
           "branch": "queued/prove/sum-stella-octangula-closed-form/mac-158f-479d84",
           "sha": "15c2fdec",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-stella-octangula-closed-form",
-          "branch": "queued/prove/sum-stella-octangula-closed-form/reroute-43dd92",
-          "sha": "774734eb",
           "model": "template-sum-induction",
           "date": "2026-06-17",
           "state": "waiting"
@@ -3681,14 +1213,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sum-triangular-squared-closed-form",
-          "branch": "queued/prove/sum-triangular-squared-closed-form/reroute-3130bd",
-          "sha": "c6fac1aa",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-triple-product-eq",
           "branch": "queued/prove/sum-triple-product-eq/mac-158f-686ffa",
           "sha": "ef94cae8",
@@ -3705,33 +1229,9 @@
           "state": "waiting"
         },
         {
-          "goal": "sum-triple-product-eq",
-          "branch": "queued/prove/sum-triple-product-eq/reroute-d4af0a",
-          "sha": "5ebf7f60",
-          "model": "template-sum-induction",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-cubes-zmod-nine-ne-four",
-          "branch": "queued/prove/sum-two-cubes-zmod-nine-ne-four/reroute-7973ab",
-          "sha": "2b0d610b",
-          "model": "template-zmod-decide",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-two-cubes-zmod-seven-mem",
           "branch": "queued/prove/sum-two-cubes-zmod-seven-mem/reroute-5b2292",
           "sha": "602306cf",
-          "model": "template-zmod-decide",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-fourth-powers-zmod-sixteen-mem",
-          "branch": "queued/prove/sum-two-fourth-powers-zmod-sixteen-mem/reroute-ca84d9",
-          "sha": "63eb3434",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
           "state": "waiting"
@@ -3785,14 +1285,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sumsq-ge-ab-plus-bc",
-          "branch": "queued/prove/sumsq-ge-ab-plus-bc/reroute-d2794e",
-          "sha": "11b6868e",
-          "model": "template-nlinarith",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sumsq-products-ge-abc-times-sum",
           "branch": "queued/prove/sumsq-products-ge-abc-times-sum/mac-158f-3085d9",
           "sha": "c8e1ca0b",
@@ -3804,14 +1296,6 @@
           "goal": "sumsq-products-ge-abc-times-sum",
           "branch": "queued/prove/sumsq-products-ge-abc-times-sum/mac-158f-bf09c1",
           "sha": "1d1cc331",
-          "model": "template-nlinarith",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sumsq-products-ge-abc-times-sum",
-          "branch": "queued/prove/sumsq-products-ge-abc-times-sum/reroute-cce3fa",
-          "sha": "0ca41e1c",
           "model": "template-nlinarith",
           "date": "2026-06-17",
           "state": "waiting"
@@ -3833,14 +1317,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sym-deg-three-ge-six-mul",
-          "branch": "queued/prove/sym-deg-three-ge-six-mul/reroute-f665ee",
-          "sha": "42963bc6",
-          "model": "template-nlinarith",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sym-grouped-deg-three-ge-six-abc",
           "branch": "queued/prove/sym-grouped-deg-three-ge-six-abc/mac-158f-70cc62",
           "sha": "0792429f",
@@ -3854,22 +1330,6 @@
           "sha": "5fd8cbd3",
           "model": "template-nlinarith",
           "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sym-grouped-deg-three-ge-six-abc",
-          "branch": "queued/prove/sym-grouped-deg-three-ge-six-abc/reroute-8b54ab",
-          "sha": "bd372a71",
-          "model": "template-nlinarith",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-cubes-minus-three-prod-dvd-sum",
-          "branch": "queued/prove/three-cubes-minus-three-prod-dvd-sum/reroute-ddb8e5",
-          "sha": "dd23ee96",
-          "model": "swarm-sonnet",
-          "date": "2026-06-17",
           "state": "waiting"
         },
         {
@@ -3889,26 +1349,10 @@
           "state": "waiting"
         },
         {
-          "goal": "three-cubes-zmod-nine-ne-four-five",
-          "branch": "queued/prove/three-cubes-zmod-nine-ne-four-five/reroute-556df2",
-          "sha": "4dfbca34",
-          "model": "template-zmod-decide",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "three-fourth-powers-zmod-sixteen-mem",
           "branch": "queued/prove/three-fourth-powers-zmod-sixteen-mem/reroute-387a25",
           "sha": "d56ae920",
           "model": "template-zmod-decide",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "three-mul-fib-eq-fib-add-two-add-fib-sub-two",
-          "branch": "queued/prove/three-mul-fib-eq-fib-add-two-add-fib-sub-two/reroute-d7ef34",
-          "sha": "99e85f14",
-          "model": "template-induction",
           "date": "2026-06-17",
           "state": "waiting"
         },
@@ -3929,14 +1373,6 @@
           "state": "waiting"
         },
         {
-          "goal": "three-quartic-sum-ge-sumsq-sq",
-          "branch": "queued/prove/three-quartic-sum-ge-sumsq-sq/reroute-09b339",
-          "sha": "3c7e9dda",
-          "model": "template-nlinarith",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "two-sum-cubes-ge-sym-quadratics",
           "branch": "queued/prove/two-sum-cubes-ge-sym-quadratics/mac-158f-359f11",
           "sha": "6b7f04ac",
@@ -3951,12 +1387,1128 @@
           "model": "template-nlinarith",
           "date": "2026-06-17",
           "state": "waiting"
+        }
+      ]
+    },
+    {
+      "solver": "ruvnet",
+      "github": "ruvnet",
+      "display_name": "@ruvnet",
+      "profile_url": "https://github.com/ruvnet",
+      "submissions": 139,
+      "waiting": 137,
+      "in_flight": 2,
+      "distinct_goals": 139,
+      "queued": [
+        {
+          "goal": "dvd-thirtytwo-odd-pow-eight-sub-one",
+          "branch": "queued/prove/dvd-thirtytwo-odd-pow-eight-sub-one/reroute-4aabc3",
+          "sha": "6351e6bd",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "in-flight"
         },
         {
-          "goal": "two-sum-cubes-ge-sym-quadratics",
-          "branch": "queued/prove/two-sum-cubes-ge-sym-quadratics/reroute-29d3b9",
-          "sha": "c03c415b",
-          "model": "template-nlinarith",
+          "goal": "fib-prod-cross-shift-nat-int",
+          "branch": "queued/prove/fib-prod-cross-shift-nat-int/reroute-3af324",
+          "sha": "8030943a",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "in-flight"
+        },
+        {
+          "goal": "five-var-qm-am",
+          "branch": "queued/prove/five-var-qm-am/reroute-9ba575",
+          "sha": "e40a1087",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "fourth-power-mod-fortyone-mem",
+          "branch": "queued/prove/fourth-power-mod-fortyone-mem/reroute-e6bbca",
+          "sha": "c605e62a",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "hexagonal-eq-triangular-odd-index",
+          "branch": "queued/prove/hexagonal-eq-triangular-odd-index/reroute-35d094",
+          "sha": "d95a7799",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "nat-sq-lt-two-pow-s2",
+          "branch": "queued/prove/nat-sq-lt-two-pow-s2/reroute-106132",
+          "sha": "ef5b6995",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "nesbitt-inequality-s1",
+          "branch": "queued/prove/nesbitt-inequality-s1/reroute-59b0e7",
+          "sha": "9ebc936c",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "nicomachus-sum-cubes-eq-sum-id-sq",
+          "branch": "queued/prove/nicomachus-sum-cubes-eq-sum-id-sq/reroute-726c3f",
+          "sha": "8fa71e2b",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "platonic-pairs-realizable",
+          "branch": "queued/prove/platonic-pairs-realizable/ruvnet-671743",
+          "sha": "d494b273",
+          "model": null,
+          "date": "2026-06-16",
+          "state": "waiting"
+        },
+        {
+          "goal": "pow-five-add-pow-five-ge-quartic-mul",
+          "branch": "queued/prove/pow-five-add-pow-five-ge-quartic-mul/reroute-a75344",
+          "sha": "0fb8d96e",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prime-pow-eight-mod-480",
+          "branch": "queued/prove/prime-pow-eight-mod-480/reroute-0a6187",
+          "sha": "d5ac0412",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prime-pow-six-mod-504",
+          "branch": "queued/prove/prime-pow-six-mod-504/reroute-0b0579",
+          "sha": "6c82ead8",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-k-mul-add-two-div-succ-sq-telescope",
+          "branch": "queued/prove/prod-icc-k-mul-add-two-div-succ-sq-telescope/reroute-ecd7c9",
+          "sha": "67c6a39e",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-k-mul-add-two-div-succ-sq-telescope-half",
+          "branch": "queued/prove/prod-icc-k-mul-add-two-div-succ-sq-telescope-half/reroute-538478",
+          "sha": "b8dbcfce",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-k-sq-div-pred-mul-succ-telescope",
+          "branch": "queued/prove/prod-icc-k-sq-div-pred-mul-succ-telescope/reroute-4319af",
+          "sha": "7772fe60",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-one-add-recip-eq-succ",
+          "branch": "queued/prove/prod-icc-one-add-recip-eq-succ/reroute-a3cb08",
+          "sha": "987fed4f",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-one-add-recip-k-sq-sub-one-telescope",
+          "branch": "queued/prove/prod-icc-one-add-recip-k-sq-sub-one-telescope/reroute-d9dc0b",
+          "sha": "22eee12b",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-one-add-recip-pronic",
+          "branch": "queued/prove/prod-icc-one-add-recip-pronic/reroute-f3c13f",
+          "sha": "3087ab4b",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-one-sub-recip-sq-eq-frac",
+          "branch": "queued/prove/prod-icc-one-sub-recip-sq-eq-frac/reroute-9210fb",
+          "sha": "5195cdab",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-one-sub-two-div-pronic",
+          "branch": "queued/prove/prod-icc-one-sub-two-div-pronic/reroute-36538c",
+          "sha": "7d8bf7bc",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-succ-add-three-div-self-eq-binom-shift",
+          "branch": "queued/prove/prod-icc-succ-add-three-div-self-eq-binom-shift/reroute-ffa5b7",
+          "sha": "158ff34e",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-icc-succ-sq-div-k-mul-add-two-telescope",
+          "branch": "queued/prove/prod-icc-succ-sq-div-k-mul-add-two-telescope/reroute-234307",
+          "sha": "128ecc66",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "prod-one-sub-inv-sq-telescope",
+          "branch": "queued/prove/prod-one-sub-inv-sq-telescope/reroute-1c8a1a",
+          "sha": "8852ce03",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "quartic-n4-plus-four-composite",
+          "branch": "queued/prove/quartic-n4-plus-four-composite/reroute-450c38",
+          "sha": "036095c9",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "quartic-n4-plus-four-not-prime",
+          "branch": "queued/prove/quartic-n4-plus-four-not-prime/reroute-15e2ea",
+          "sha": "a0b77ada",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "quartic-plus-four-not-prime",
+          "branch": "queued/prove/quartic-plus-four-not-prime/reroute-38c60c",
+          "sha": "534e75f0",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "realization-edge-relation",
+          "branch": "queued/prove/realization-edge-relation/reroute-26bc58",
+          "sha": "303b8e98",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sophie-germain-plus-factor-dvd",
+          "branch": "queued/prove/sophie-germain-plus-factor-dvd/reroute-bfe3d3",
+          "sha": "cc578f7e",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sq-mod-five-ne-two-three",
+          "branch": "queued/prove/sq-mod-five-ne-two-three/ruvnet-6d2ee0",
+          "sha": "c01cbe52",
+          "model": null,
+          "date": "2026-06-16",
+          "state": "waiting"
+        },
+        {
+          "goal": "sq-mod-ten-ne-two-three-seven-eight",
+          "branch": "queued/prove/sq-mod-ten-ne-two-three-seven-eight/ruvnet-4e2510",
+          "sha": "a5ac822a",
+          "model": null,
+          "date": "2026-06-16",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-centered-triangular-closed-form",
+          "branch": "queued/prove/sum-centered-triangular-closed-form/reroute-2c545d",
+          "sha": "64dc9f9b",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-decagonal-closed-form",
+          "branch": "queued/prove/sum-decagonal-closed-form/reroute-bc3286",
+          "sha": "7daff7f4",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-heptagonal-closed-form",
+          "branch": "queued/prove/sum-heptagonal-closed-form/reroute-41b55c",
+          "sha": "4d345f4a",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-heptagonal-numbers-closed-form",
+          "branch": "queued/prove/sum-heptagonal-numbers-closed-form/reroute-ed3c95",
+          "sha": "bdf6fbff",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-hexagonal-numbers-closed-form",
+          "branch": "queued/prove/sum-hexagonal-numbers-closed-form/reroute-139d2e",
+          "sha": "d47b7c66",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-icc-choose-hockey-stick-s1",
+          "branch": "queued/prove/sum-icc-choose-hockey-stick-s1/reroute-89c4b3",
+          "sha": "481d0276",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-icc-choose-hockey-stick-s2",
+          "branch": "queued/prove/sum-icc-choose-hockey-stick-s2/reroute-7c350a",
+          "sha": "3d251132",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-icc-choose-hockey-stick-s3",
+          "branch": "queued/prove/sum-icc-choose-hockey-stick-s3/reroute-381274",
+          "sha": "7c14f5cf",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-icc-eight-k-div-odd-sq-pair-telescope",
+          "branch": "queued/prove/sum-icc-eight-k-div-odd-sq-pair-telescope/reroute-3dee5e",
+          "sha": "0e3c85ec",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-octagonal-running-closed-form",
+          "branch": "queued/prove/sum-octagonal-running-closed-form/reroute-bde4da",
+          "sha": "eb58963c",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-octahedral-centered-squares",
+          "branch": "queued/prove/sum-octahedral-centered-squares/reroute-e11e70",
+          "sha": "916d95f2",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-odd-gnomon-squares-closed-form",
+          "branch": "queued/prove/sum-odd-gnomon-squares-closed-form/reroute-699c8a",
+          "sha": "7e3b1d26",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-odd-squares-faulhaber",
+          "branch": "queued/prove/sum-odd-squares-faulhaber/reroute-a101f0",
+          "sha": "0e23dcf7",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-one-div-four-k-plus-one-mul-four-k-plus-five",
+          "branch": "queued/prove/sum-one-div-four-k-plus-one-mul-four-k-plus-five/reroute-b7a863",
+          "sha": "8905461c",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-one-div-succ-mul-add-four-telescope",
+          "branch": "queued/prove/sum-one-div-succ-mul-add-four-telescope/reroute-ae6e83",
+          "sha": "1554e419",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-one-div-three-k-plus-one-mul-three-k-plus-four",
+          "branch": "queued/prove/sum-one-div-three-k-plus-one-mul-three-k-plus-four/reroute-90aa6c",
+          "sha": "ed508a87",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-pentagonal-running-eq-pyramidal",
+          "branch": "queued/prove/sum-pentagonal-running-eq-pyramidal/reroute-d45afd",
+          "sha": "df650fd5",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-product-consecutive-odds-closed-form",
+          "branch": "queued/prove/sum-product-consecutive-odds-closed-form/reroute-03a278",
+          "sha": "d6609c31",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-pronic-eq-thrice-tetrahedral",
+          "branch": "queued/prove/sum-pronic-eq-thrice-tetrahedral/reroute-623cd4",
+          "sha": "2e9b6d02",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-catalan-mul-catalan-eq-catalan-succ",
+          "branch": "queued/prove/sum-range-catalan-mul-catalan-eq-catalan-succ/reroute-14f26f",
+          "sha": "6bf07fc8",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-choose-mul-choose-three-eq",
+          "branch": "queued/prove/sum-range-choose-mul-choose-three-eq/reroute-7cbadc",
+          "sha": "6cae5629",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-choose-mul-k-mul-comp-eq",
+          "branch": "queued/prove/sum-range-choose-mul-k-mul-comp-eq/reroute-df1616",
+          "sha": "62c86d85",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-choose-mul-succ-choose-eq",
+          "branch": "queued/prove/sum-range-choose-mul-succ-choose-eq/reroute-0f6c42",
+          "sha": "df88716e",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-choose-mul-succ-choose-succ-eq-central-shift",
+          "branch": "queued/prove/sum-range-choose-mul-succ-choose-succ-eq-central-shift/reroute-8de400",
+          "sha": "4576d8b0",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-choose-sq-eq-central",
+          "branch": "queued/prove/sum-range-choose-sq-eq-central/reroute-f017f8",
+          "sha": "dd41265a",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-comp-mul-choose-sq-eq",
+          "branch": "queued/prove/sum-range-comp-mul-choose-sq-eq/reroute-180583",
+          "sha": "ffb7ec76",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-compositions-count-eq-two-pow",
+          "branch": "queued/prove/sum-range-compositions-count-eq-two-pow/reroute-7a543e",
+          "sha": "3e367e07",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-cube-sym-choose-sq-eq-zero",
+          "branch": "queued/prove/sum-range-cube-sym-choose-sq-eq-zero/reroute-62fb75",
+          "sha": "a8280a13",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-disp-mul-choose-eq-zero",
+          "branch": "queued/prove/sum-range-disp-mul-choose-eq-zero/reroute-62afb0",
+          "sha": "b1d8044a",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-disp-mul-choose-sq-eq-zero",
+          "branch": "queued/prove/sum-range-disp-mul-choose-sq-eq-zero/reroute-d69cc6",
+          "sha": "7f943d97",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-even-cols-eq-two-pow",
+          "branch": "queued/prove/sum-range-even-cols-eq-two-pow/reroute-a9dd74",
+          "sha": "e5b11196",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-fall-three-mul-choose",
+          "branch": "queued/prove/sum-range-fall-three-mul-choose/reroute-ec554a",
+          "sha": "e97fd935",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-fib-mul-two-pow-rev-eq",
+          "branch": "queued/prove/sum-range-fib-mul-two-pow-rev-eq/reroute-8cecbd",
+          "sha": "a9b6e0aa",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-fib-prod-shift-even-nat",
+          "branch": "queued/prove/sum-range-fib-prod-shift-even-nat/reroute-d9a69a",
+          "sha": "a3f816d3",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-fib-sq-eq-prod",
+          "branch": "queued/prove/sum-range-fib-sq-eq-prod/reroute-6b6577",
+          "sha": "d698f1b4",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-fib-sq-mul-two-eq",
+          "branch": "queued/prove/sum-range-fib-sq-mul-two-eq/reroute-fb5657",
+          "sha": "0836a365",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-fib-two-mul-succ-eq-fib-pred",
+          "branch": "queued/prove/sum-range-fib-two-mul-succ-eq-fib-pred/reroute-cac5bf",
+          "sha": "d8ea1d63",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-four-consecutive-product",
+          "branch": "queued/prove/sum-range-four-consecutive-product/reroute-32521c",
+          "sha": "a27bfbbd",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-four-mul-add-one",
+          "branch": "queued/prove/sum-range-four-mul-add-one/reroute-c69ef6",
+          "sha": "258656da",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-half-even-row-choose-eq",
+          "branch": "queued/prove/sum-range-half-even-row-choose-eq/reroute-55ddf9",
+          "sha": "c3d1ae8a",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-id-mul-add-two",
+          "branch": "queued/prove/sum-range-id-mul-add-two/reroute-46caf7",
+          "sha": "4d536980",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-id-mul-choose-eq-half",
+          "branch": "queued/prove/sum-range-id-mul-choose-eq-half/reroute-fb4965",
+          "sha": "a65dc098",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-div-succ-factorial-eq",
+          "branch": "queued/prove/sum-range-k-div-succ-factorial-eq/reroute-01a71b",
+          "sha": "c01caf48",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-div-succ-factorial-telescope",
+          "branch": "queued/prove/sum-range-k-div-succ-factorial-telescope/reroute-d66a3a",
+          "sha": "d75d824c",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-mul-choose-mul-four-pow-closed",
+          "branch": "queued/prove/sum-range-k-mul-choose-mul-four-pow-closed/reroute-3caa93",
+          "sha": "16c72236",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-mul-choose-mul-three-pow-closed",
+          "branch": "queued/prove/sum-range-k-mul-choose-mul-three-pow-closed/reroute-a41f3f",
+          "sha": "6a82bf45",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-mul-choose-mul-two-pow-eq-two-n-three-pow",
+          "branch": "queued/prove/sum-range-k-mul-choose-mul-two-pow-eq-two-n-three-pow/reroute-18abca",
+          "sha": "45c38465",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-mul-choose-sq-eq-central",
+          "branch": "queued/prove/sum-range-k-mul-choose-sq-eq-central/reroute-d5373a",
+          "sha": "487b5ced",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-mul-factorial-eq-factorial-succ-sub-one",
+          "branch": "queued/prove/sum-range-k-mul-factorial-eq-factorial-succ-sub-one/reroute-e51e53",
+          "sha": "f99fb80f",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-mul-factorial-succ",
+          "branch": "queued/prove/sum-range-k-mul-factorial-succ/reroute-4e2c61",
+          "sha": "1992ddbd",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-plus-one-mul-choose",
+          "branch": "queued/prove/sum-range-k-plus-one-mul-choose/reroute-1fc1b6",
+          "sha": "8efcadba",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-sq-mul-choose-eq",
+          "branch": "queued/prove/sum-range-k-sq-mul-choose-eq/reroute-e59107",
+          "sha": "87773f45",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-k-sub-one-div-factorial-telescope",
+          "branch": "queued/prove/sum-range-k-sub-one-div-factorial-telescope/reroute-67d399",
+          "sha": "caed7339",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-lower-triangle-choose-eq-two-pow",
+          "branch": "queued/prove/sum-range-lower-triangle-choose-eq-two-pow/reroute-62c993",
+          "sha": "ddd72e7e",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-lucas-shift-nat",
+          "branch": "queued/prove/sum-range-lucas-shift-nat/reroute-0935f2",
+          "sha": "df4eebb4",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-multichoose-two-eq-choose-succ-two",
+          "branch": "queued/prove/sum-range-multichoose-two-eq-choose-succ-two/reroute-583db1",
+          "sha": "7aa423eb",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-odd-cubes",
+          "branch": "queued/prove/sum-range-odd-cubes/reroute-2ab590",
+          "sha": "55e07941",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-odd-div-two-pow",
+          "branch": "queued/prove/sum-range-odd-div-two-pow/reroute-9bb98e",
+          "sha": "97ba2aa0",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-odd-index-choose-eq-two-pow",
+          "branch": "queued/prove/sum-range-odd-index-choose-eq-two-pow/reroute-25c95c",
+          "sha": "dc6369df",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-odd-num-sq-succ-sq-telescope",
+          "branch": "queued/prove/sum-range-odd-num-sq-succ-sq-telescope/reroute-5d1bae",
+          "sha": "cf63b48e",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-pascal-diagonal-eq-choose",
+          "branch": "queued/prove/sum-range-pascal-diagonal-eq-choose/reroute-517469",
+          "sha": "b0c39eb5",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-choose-two-eq-two-n-div-succ",
+          "branch": "queued/prove/sum-range-recip-choose-two-eq-two-n-div-succ/reroute-b85e97",
+          "sha": "8beb31d4",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-consecutive",
+          "branch": "queued/prove/sum-range-recip-consecutive/reroute-869b71",
+          "sha": "db8ba975",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-five-step-product",
+          "branch": "queued/prove/sum-range-recip-five-step-product/reroute-8eec14",
+          "sha": "9f2fc9a7",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-five-step-residue-one",
+          "branch": "queued/prove/sum-range-recip-five-step-residue-one/reroute-84ee15",
+          "sha": "b382f5f8",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-four-consec-product",
+          "branch": "queued/prove/sum-range-recip-four-consec-product/reroute-1f43d0",
+          "sha": "f9a180c7",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-four-step-product",
+          "branch": "queued/prove/sum-range-recip-four-step-product/reroute-72c4e0",
+          "sha": "cfae84b0",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-four-step-residue-one",
+          "branch": "queued/prove/sum-range-recip-four-step-residue-one/reroute-f8b0b2",
+          "sha": "10b5c98c",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-odd-consecutive",
+          "branch": "queued/prove/sum-range-recip-odd-consecutive/reroute-4c1e02",
+          "sha": "c38dfe92",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-odd-pair-consecutive",
+          "branch": "queued/prove/sum-range-recip-odd-pair-consecutive/reroute-7c29da",
+          "sha": "7f447281",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-odd-pair-step-two-eq-n-div",
+          "branch": "queued/prove/sum-range-recip-odd-pair-step-two-eq-n-div/reroute-c8160d",
+          "sha": "2853e615",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-odd-product",
+          "branch": "queued/prove/sum-range-recip-odd-product/reroute-b27e29",
+          "sha": "da1fa6b1",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-shift-two-shift-five-telescope",
+          "branch": "queued/prove/sum-range-recip-shift-two-shift-five-telescope/reroute-6eef93",
+          "sha": "08f14f3d",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-three-consec-odd-telescope",
+          "branch": "queued/prove/sum-range-recip-three-consec-odd-telescope/reroute-af8d30",
+          "sha": "da90c22d",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-three-consec-shifted",
+          "branch": "queued/prove/sum-range-recip-three-consec-shifted/reroute-80463b",
+          "sha": "64bd4744",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-three-consecutive",
+          "branch": "queued/prove/sum-range-recip-three-consecutive/reroute-098a08",
+          "sha": "3dfa344e",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-three-step-residue-one",
+          "branch": "queued/prove/sum-range-recip-three-step-residue-one/reroute-a1fb71",
+          "sha": "47d6d281",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-recip-triple-consecutive",
+          "branch": "queued/prove/sum-range-recip-triple-consecutive/reroute-8bba8b",
+          "sha": "856af19f",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-shifted-choose-eq-two-pow-sub-one",
+          "branch": "queued/prove/sum-range-shifted-choose-eq-two-pow-sub-one/reroute-4a19ba",
+          "sha": "524b1354",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-stirling-first-row-eq-factorial",
+          "branch": "queued/prove/sum-range-stirling-first-row-eq-factorial/reroute-4294a4",
+          "sha": "99219d4e",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-succ-div-factorial-add-two-telescope",
+          "branch": "queued/prove/sum-range-succ-div-factorial-add-two-telescope/reroute-5f78c0",
+          "sha": "31c8bd34",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-succ-mul-choose-sq-eq",
+          "branch": "queued/prove/sum-range-succ-mul-choose-sq-eq/reroute-d1e065",
+          "sha": "d98673a8",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-succ-mul-factorial-eq",
+          "branch": "queued/prove/sum-range-succ-mul-factorial-eq/reroute-7f9380",
+          "sha": "b1fbaf06",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-succ-mul-factorial-succ",
+          "branch": "queued/prove/sum-range-succ-mul-factorial-succ/reroute-83f41f",
+          "sha": "27caae25",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-three-mul-add-one",
+          "branch": "queued/prove/sum-range-three-mul-add-one/reroute-e49458",
+          "sha": "4d8243d0",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-triangular-eq-tetrahedral",
+          "branch": "queued/prove/sum-range-triangular-eq-tetrahedral/reroute-4d93d6",
+          "sha": "62749db2",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-two-k-sub-n-mul-choose-sq-eq-zero",
+          "branch": "queued/prove/sum-range-two-k-sub-n-mul-choose-sq-eq-zero/reroute-0988ab",
+          "sha": "40434f5a",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-two-k-succ-mul-choose-eq",
+          "branch": "queued/prove/sum-range-two-k-succ-mul-choose-eq/reroute-b45a20",
+          "sha": "f7c70f92",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-vandermonde-self-eq-central-choose",
+          "branch": "queued/prove/sum-range-vandermonde-self-eq-central-choose/reroute-bfb2c0",
+          "sha": "5e7cedd4",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-window-five-fib-eq-fib-diff-nat",
+          "branch": "queued/prove/sum-range-window-five-fib-eq-fib-diff-nat/reroute-fd6ae4",
+          "sha": "25e01937",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-range-window-four-fib-eq-fib-diff-nat",
+          "branch": "queued/prove/sum-range-window-four-fib-eq-fib-diff-nat/reroute-7e09fb",
+          "sha": "2d026f09",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-recip-times-sum-ge-nine",
+          "branch": "queued/prove/sum-recip-times-sum-ge-nine/reroute-68ea60",
+          "sha": "ed3dc6cd",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-rhombic-dodecahedral-eq-fourth-power",
+          "branch": "queued/prove/sum-rhombic-dodecahedral-eq-fourth-power/reroute-194417",
+          "sha": "554ee040",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-square-pyramidal-eq-hyper",
+          "branch": "queued/prove/sum-square-pyramidal-eq-hyper/reroute-0f07b6",
+          "sha": "0f8adee5",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-star-numbers-closed-form",
+          "branch": "queued/prove/sum-star-numbers-closed-form/reroute-0d81a2",
+          "sha": "33f463ac",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-tetrahedral-eq-pentatope",
+          "branch": "queued/prove/sum-tetrahedral-eq-pentatope/reroute-e37d18",
+          "sha": "d5eb830f",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-two-cubes-zmod-nine-ne-four",
+          "branch": "queued/prove/sum-two-cubes-zmod-nine-ne-four/reroute-5e1be6",
+          "sha": "439275cb",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-two-fourth-powers-zmod-sixteen-mem",
+          "branch": "queued/prove/sum-two-fourth-powers-zmod-sixteen-mem/reroute-21daed",
+          "sha": "6ce4947c",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-two-k-plus-one-div-sq-succ-sq-telescope",
+          "branch": "queued/prove/sum-two-k-plus-one-div-sq-succ-sq-telescope/reroute-9f064f",
+          "sha": "90c53ab0",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-vandermonde-diagonal-eq-choose",
+          "branch": "queued/prove/sum-vandermonde-diagonal-eq-choose/reroute-ec7711",
+          "sha": "bdebc140",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "tangent-line-cube-trick",
+          "branch": "queued/prove/tangent-line-cube-trick/reroute-284214",
+          "sha": "79eb3dd4",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "three-cubes-minus-three-prod-dvd-sum",
+          "branch": "queued/prove/three-cubes-minus-three-prod-dvd-sum/reroute-9ff5f9",
+          "sha": "0877c13a",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "three-mul-fib-eq-fib-add-two-add-fib-sub-two",
+          "branch": "queued/prove/three-mul-fib-eq-fib-add-two-add-fib-sub-two/reroute-5b96f6",
+          "sha": "47aad56d",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "two-cubes-zmod-nine-ne-three-four-five-six",
+          "branch": "queued/prove/two-cubes-zmod-nine-ne-three-four-five-six/reroute-5de729",
+          "sha": "a797a8e6",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "two-fib-add-int",
+          "branch": "queued/prove/two-fib-add-int/reroute-697d64",
+          "sha": "28fc9c82",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "two-fourth-powers-zmod-five-ne-three-four",
+          "branch": "queued/prove/two-fourth-powers-zmod-five-ne-three-four/reroute-ab35d4",
+          "sha": "0ef460d6",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "two-mul-sum-icc-three-k-sub-two-eq-pentagonal",
+          "branch": "queued/prove/two-mul-sum-icc-three-k-sub-two-eq-pentagonal/reroute-2660e5",
+          "sha": "5cb0f106",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "two-mul-sum-range-fib-triple-eq-fib-pred",
+          "branch": "queued/prove/two-mul-sum-range-fib-triple-eq-fib-pred/reroute-8bfddb",
+          "sha": "7ea54c46",
+          "model": null,
+          "date": "2026-06-17",
+          "state": "waiting"
+        },
+        {
+          "goal": "two-squares-zmod-sixteen-ne-three-seven-eleven",
+          "branch": "queued/prove/two-squares-zmod-sixteen-ne-three-seven-eleven/reroute-27fff4",
+          "sha": "8a77d39c",
+          "model": null,
           "date": "2026-06-17",
           "state": "waiting"
         }
@@ -4063,34 +2615,6 @@
       ]
     },
     {
-      "solver": null,
-      "github": null,
-      "display_name": "OceanLi",
-      "profile_url": null,
-      "submissions": 2,
-      "waiting": 1,
-      "in_flight": 1,
-      "distinct_goals": 1,
-      "queued": [
-        {
-          "goal": "dvd-210-pow-fifteen-sub-pow-three",
-          "branch": "queued/prove/dvd-210-pow-fifteen-sub-pow-three/mac-158f-0d2f8e",
-          "sha": "3eaddce2",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "dvd-210-pow-fifteen-sub-pow-three",
-          "branch": "queued/prove/dvd-210-pow-fifteen-sub-pow-three/mac-158f-5d67b6",
-          "sha": "a782aeec",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        }
-      ]
-    },
-    {
       "solver": "cgbarlow",
       "github": "cgbarlow",
       "display_name": "@cgbarlow",
@@ -4124,26 +2648,6 @@
           "goal": "sum-range-succ-k-mul-choose-mul-two-pow-closed",
           "branch": "queued/prove/sum-range-succ-k-mul-choose-mul-two-pow-closed/claude-web-1e1e95",
           "sha": "0366b798",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        }
-      ]
-    },
-    {
-      "solver": null,
-      "github": null,
-      "display_name": "github-actions[bot]",
-      "profile_url": null,
-      "submissions": 1,
-      "waiting": 1,
-      "in_flight": 0,
-      "distinct_goals": 1,
-      "queued": [
-        {
-          "goal": "sum-nonagonal-closed-form",
-          "branch": "queued/prove/sum-nonagonal-closed-form/1367ab40f0b1-e413-d5a9f0",
-          "sha": "4bdb2300",
           "model": null,
           "date": "2026-06-17",
           "state": "waiting"
