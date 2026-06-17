@@ -1,7 +1,0 @@
-𝔸5.1.claim.sum-icc-eight-k-div-odd-sq-pair-telescope.beast-1111@2026-06-16
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜sum-icc-eight-k-div-odd-sq-pair-telescope; agent≜beast-1111}
-⟦Σ:Times⟧{ts≜2026-06-16T21:41:00Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
