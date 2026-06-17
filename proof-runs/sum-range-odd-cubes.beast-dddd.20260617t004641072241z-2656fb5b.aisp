@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-odd-cubes.beast-dddd.20260617t004641072241z-2656fb5b@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t004641072241z-2656fb5b; goal≜sum-range-odd-cubes; agent≜beast-dddd; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-odd-cubes}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜459; ended≜2026-06-17T00:46:41Z; lessons≜1}
+⟦Σ:Artifact⟧{sha≜dca47ed1c90ac960f332c7fb4c03a014e455b5fb5bd281ca522d620a664292c6}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
