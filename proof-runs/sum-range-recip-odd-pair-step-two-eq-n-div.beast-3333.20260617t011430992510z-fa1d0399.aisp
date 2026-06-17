@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-recip-odd-pair-step-two-eq-n-div.beast-3333.20260617t011430992510z-fa1d0399@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t011430992510z-fa1d0399; goal≜sum-range-recip-odd-pair-step-two-eq-n-div; agent≜beast-3333; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-recip-odd-pair-step-two-eq-n-div}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜192; ended≜2026-06-17T01:14:31Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜e9a83ec7127c3e011b591758981f087df27ddbc26b87a1f4b09d57eb0d991ea4}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
