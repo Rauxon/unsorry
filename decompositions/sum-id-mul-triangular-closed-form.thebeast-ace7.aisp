@@ -1,0 +1,13 @@
+𝔸5.1.decomp.sum-id-mul-triangular-closed-form.thebeast-ace7@2026-06-17
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜sum-id-mul-triangular-closed-form; agent≜thebeast-ace7}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜sum-id-mul-triangular-closed-form-s1,sha≜ad6fdf7744066964abc2cd565d218505e72778d4176fcb562544a366554dfc07⟩
+  sub₂≜⟨id≜sum-id-mul-triangular-closed-form-s2,sha≜e2f12294c266ce1c94ae2cd1288ec778b441070bd02fbc0d051f20451fa9817a⟩
+  sub₃≜⟨id≜sum-id-mul-triangular-closed-form-s3,sha≜bcbc4b243ca347ce0ca3e5b83d61dc8b3f89c3a6d62d34443a73ce38ac9d7a47⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
