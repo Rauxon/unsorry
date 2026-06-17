@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-shifted-choose-eq-two-pow-sub-one.beast-bbbb.20260617t013424547276z-8a2df176@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t013424547276z-8a2df176; goal≜sum-range-shifted-choose-eq-two-pow-sub-one; agent≜beast-bbbb; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-shifted-choose-eq-two-pow-sub-one}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜147; ended≜2026-06-17T01:34:24Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜652da5852ede46b51fde662a5c2c3f97746dcde4771e1762ac595f37fff0706c}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
