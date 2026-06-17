@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-k-mul-choose-mul-two-pow-eq-two-n-three-pow.beast-dddd.20260617t002253323578z-959f4b64@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t002253323578z-959f4b64; goal≜sum-range-k-mul-choose-mul-two-pow-eq-two-n-three-pow; agent≜beast-dddd; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-k-mul-choose-mul-two-pow-eq-two-n-three-pow}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜335; ended≜2026-06-17T00:22:53Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜29c959d7b473739052dcc4098b39b2bf0443dac06186847c0beb4d2231d3fc71}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
