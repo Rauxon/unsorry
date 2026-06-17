@@ -1,0 +1,12 @@
+𝔸5.1.decomp.sum-icc-k-sub-one-div-factorial-eq-one-sub.thebeast-ace7@2026-06-17
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜sum-icc-k-sub-one-div-factorial-eq-one-sub; agent≜thebeast-ace7}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜sum-icc-k-sub-one-div-factorial-eq-one-sub-s1,sha≜671565e9297dceaf587d6cb1e74af06c561930b1d2d6b4fc93d7c589e6040276⟩
+  sub₂≜⟨id≜sum-icc-k-sub-one-div-factorial-eq-one-sub-s2,sha≜a18d306b823c7b6ede2781f2df1d1798beebf3f8f3e395d982b3174eacdc2fe0⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩

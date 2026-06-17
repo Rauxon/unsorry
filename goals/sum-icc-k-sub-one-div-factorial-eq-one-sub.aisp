@@ -3,7 +3,7 @@
 ⟦Ω:Goal⟧{
   id≜sum-icc-k-sub-one-div-factorial-eq-one-sub
   phase≜prove
-  status≜open
+  status≜blocked
   difficulty≜3
 }
 ⟦Σ:Source⟧{
