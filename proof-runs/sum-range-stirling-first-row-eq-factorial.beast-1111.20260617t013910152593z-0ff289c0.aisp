@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-stirling-first-row-eq-factorial.beast-1111.20260617t013910152593z-0ff289c0@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t013910152593z-0ff289c0; goal≜sum-range-stirling-first-row-eq-factorial; agent≜beast-1111; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-stirling-first-row-eq-factorial}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜260; ended≜2026-06-17T01:39:10Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜fdd18fade9604d510736c4301c616e5ce45f938c309c2ea0e0500993cc0867db}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
