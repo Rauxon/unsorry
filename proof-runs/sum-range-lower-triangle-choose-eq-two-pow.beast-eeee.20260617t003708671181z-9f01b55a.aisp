@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-lower-triangle-choose-eq-two-pow.beast-eeee.20260617t003708671181z-9f01b55a@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t003708671181z-9f01b55a; goal≜sum-range-lower-triangle-choose-eq-two-pow; agent≜beast-eeee; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-lower-triangle-choose-eq-two-pow}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜223; ended≜2026-06-17T00:37:08Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜cf13af6183fd9789fb6d221a4a1fa3a6659daf803dea25e441d37c519bbe844a}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
