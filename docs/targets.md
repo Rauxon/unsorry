@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**291 open · 458 proved · 752 total prove-goals.**
+**290 open · 459 proved · 752 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -15,7 +15,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `dvd-120-pow-eleven-sub-pow-three` — 120 divides n^11 minus n^3 for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 120 divides n^11 minus n^3 for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-1302-pow-thirtyone-sub-self` — The integer 1302 = 2·3·7·31 divides n^31 - n for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | The integer 1302 = 2·3·7·31 divides n^31 - n for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-133-pow-nineteen-sub-self` — The integer 133 = 7·19 divides n^19 - n for every integer n. | open | 2 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | The integer 133 = 7·19 divides n^19 - n for every integer n. Not a named mathlib lemma in this form. |
-| `dvd-1806-pow-fortythree-sub-self` — For every integer n, 1806 divides n raised to the 43rd power minus n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | For every integer n, 1806 divides n raised to the 43rd power minus n. Not a named mathlib lemma in this form. |
 | `dvd-210-pow-fifteen-sub-pow-three` — The integer 210 = 2·3·5·7 divides n^15 - n^3 for every integer n. | open | 2 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | The integer 210 = 2·3·5·7 divides n^15 - n^3 for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-240-pow-nine-sub-pow-five` — 240 divides n^9 minus n^5 for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 240 divides n^9 minus n^5 for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-252-pow-eight-sub-sq` — 252 divides n^8 minus n^2 for every integer n. | open | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | 252 divides n^8 minus n^2 for every integer n. Not a named mathlib lemma in this form. |
@@ -400,6 +399,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `dvd-138-pow-fortyfive-sub-pow-twentythree` — 138 divides n^45 - n^23 for every integer n. | proved | 2 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog. | 138 divides n^45 - n^23 for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-138-pow-twentythree-sub-self` — 138 divides n^23 - n for every integer n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog. | 138 divides n^23 - n for every integer n. Not a named mathlib lemma in this form. |
 | `dvd-170-pow-seventeen-sub-self` — For every integer n, 170 divides n raised to the 17th power minus n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | For every integer n, 170 divides n raised to the 17th power minus n. Not a named mathlib lemma in this form. |
+| `dvd-1806-pow-fortythree-sub-self` — For every integer n, 1806 divides n raised to the 43rd power minus n. | proved | 3 | — | #400 Identity Engine (ADR-043) — divisibility family; promoted from candidate backlog (#610). | For every integer n, 1806 divides n raised to the 43rd power minus n. Not a named mathlib lemma in this form. |
 | `dvd-210-pow-fifteen-sub-pow-three-s1` — dvd-210-pow-fifteen-sub-pow-three-s1 | proved | 1 | — | — | — |
 | `dvd-210-pow-fifteen-sub-pow-three-s2` — dvd-210-pow-fifteen-sub-pow-three-s2 | proved | 1 | — | — | — |
 | `dvd-210-pow-fifteen-sub-pow-three-s3` — dvd-210-pow-fifteen-sub-pow-three-s3 | proved | 1 | — | — | — |
