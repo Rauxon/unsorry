@@ -1,7 +1,0 @@
-𝔸5.1.claim.sum-id-mul-triangular-closed-form.1367ab40f0b1-e413@2026-06-17
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜sum-id-mul-triangular-closed-form; agent≜1367ab40f0b1-e413}
-⟦Σ:Times⟧{ts≜2026-06-17T14:34:26Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
