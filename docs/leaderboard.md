@@ -4,36 +4,36 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**460 verified proofs · 169 attributed · 291 historical/unknown · 452 logged terminal runs.**
+**462 verified proofs · 171 attributed · 291 historical/unknown · 454 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 133 |
+| Successful terminal runs | 135 |
 | Failed terminal runs | 319 |
 | Decomposed after failure | 18 |
 | Failed without decomposition | 301 |
-| Run success rate | 29.4% |
-| Provider attempts | 502 |
+| Run success rate | 29.7% |
+| Provider attempts | 504 |
 | Failed attempts | 369 |
-| Attempt yield | 26.5% |
+| Attempt yield | 26.8% |
 | Recorded run time | 98h 5m |
-| Median / p90 run time | 6m 40s / 31m 58s |
-| Verified successes per recorded hour | 1.36 |
-| Proofs with run telemetry | 133 (28.9%) |
+| Median / p90 run time | 6m 39s / 31m 58s |
+| Verified successes per recorded hour | 1.38 |
+| Proofs with run telemetry | 135 (29.2%) |
 
 ## Work Queue
 
-**762 goals · 138 archived · 3 blocked · 290 open · 322 proved · 9 translated.**
+**762 goals · 138 archived · 3 blocked · 288 open · 324 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 85 | 29 | 34.1% | 74 | 5m 24s |
-| 2 | 195 | 57 | 29.2% | 158 | 6m 30s |
-| 3 | 147 | 42 | 28.6% | 117 | 8m 24s |
+| 2 | 196 | 58 | 29.6% | 158 | 6m 30s |
+| 3 | 148 | 43 | 29.0% | 117 | 8m 15s |
 | 4 | 23 | 5 | 21.7% | 18 | 7m 35s |
 | 5 | 2 | 0 | 0.0% | 2 | 31m 25s |
 
@@ -60,7 +60,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
 | 1 | [@chat-bit-01](https://github.com/chat-bit-01) | 230 | 0 | 230 | 0 | — | 515 | 57250 |
 | 2 | [@cgbarlow](https://github.com/cgbarlow) | 118 | 71 | 47 | 310 | 18.7% | 212 | 24150 |
-| 3 | [@ohdearquant](https://github.com/ohdearquant) | 47 | 47 | 0 | 47 | 100.0% | 104 | 11575 |
+| 3 | [@ohdearquant](https://github.com/ohdearquant) | 49 | 49 | 0 | 49 | 100.0% | 109 | 12125 |
 | 4 | [@perttu](https://github.com/perttu) | 37 | 33 | 4 | 35 | 71.4% | 83 | 9225 |
 | 5 | [@ruvnet](https://github.com/ruvnet) | 10 | 10 | 0 | 0 | — | 28 | 3050 |
 | 6 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
@@ -71,9 +71,9 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 ## Attribution Notes
 
-**169 explicit solver credits · 291 inferred git credits · 0 uncredited proof records.**
+**171 explicit solver credits · 291 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 460 of 460 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 462 of 462 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -83,7 +83,7 @@ Git add-author attribution covers 460 of 460 proof index files. It is used only 
 | `codex / unknown` | 23 | 79 | 21.5% | 88 | 3 | 7m 37s | 1.39 |
 | `openai / leanstral-2603` | 21 | 217 | 7.4% | 205 | 1 | 6m 30s | 0.30 |
 | `claude / template-decide` | 19 | 19 | 100.0% | 0 | 1 | 0s | — |
-| `claude / template-zmod-crt` | 13 | 13 | 100.0% | 0 | 1 | 0s | — |
+| `claude / template-zmod-crt` | 15 | 15 | 100.0% | 0 | 1 | 0s | — |
 | `claude / template-zmod-decide` | 13 | 13 | 100.0% | 0 | 1 | 0s | — |
 | `openrouter / unknown` | 10 | 0 | — | 0 | 1 | — | — |
 | `gemini / gemini-3.1-pro-preview` | 7 | 7 | 71.4% | 6 | 1 | 6m 32s | 5.32 |
@@ -99,6 +99,8 @@ Git add-author attribution covers 460 of 460 proof index files. It is used only 
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-16T23:54:36Z` | `dvd-273-pow-fourteen-sub-sq` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
+| `2026-06-16T23:54:27Z` | `dvd-240-pow-nine-sub-pow-five` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T23:54:22Z` | `dvd-1806-pow-fortythree-sub-self` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T23:54:20Z` | `dvd-170-pow-seventeen-sub-self` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T23:54:18Z` | `dvd-138-pow-twentythree-sub-self` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
@@ -117,8 +119,6 @@ Git add-author attribution covers 460 of 460 proof index files. It is used only 
 | `2026-06-16T20:25:38Z` | `dvd-282-pow-fortyseven-sub-self` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T20:25:27Z` | `dvd-273-pow-thirteen-sub-self` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
 | `2026-06-16T20:24:53Z` | `dvd-240-pow-eight-sub-pow-four` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
-| `2026-06-16T20:24:30Z` | `dvd-1365-pow-thirteen-sub-self` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
-| `2026-06-16T20:23:56Z` | `dvd-1023-pow-thirtyone-sub-self` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-crt` | `proved` | 1 | 0 | 0s |
 
 ## Interpretation
 
