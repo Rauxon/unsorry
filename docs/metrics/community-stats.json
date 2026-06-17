@@ -67,7 +67,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 4,
+      "difficulty_points": 7,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -78,7 +78,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1
+      "verified_proofs": 2
     },
     {
       "attempt_yield": 0.3333,
@@ -114,17 +114,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 156,
+    "attributed_proofs": 157,
     "historical_unknown_proofs": 282,
-    "proof_run_coverage": 0.2945,
+    "proof_run_coverage": 0.2938,
     "successful_proofs_with_run_telemetry": 129,
     "terminal_runs": 448,
-    "verified_proofs": 438
+    "verified_proofs": 439
   },
   "credit": {
     "credited_contributors": 10,
-    "credited_proofs": 438,
-    "explicit_solver_proofs": 156,
+    "credited_proofs": 439,
+    "explicit_solver_proofs": 157,
     "inferred_git_proofs": 282,
     "uncredited_proofs": 0
   },
@@ -307,10 +307,10 @@
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 1,
-      "difficulty_points": 4,
+      "credited_proofs": 2,
+      "difficulty_points": 7,
       "display_name": "@ruvnet",
-      "explicit_solver_proofs": 1,
+      "explicit_solver_proofs": 2,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": null,
@@ -325,7 +325,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1
+      "verified_proofs": 2
     },
     {
       "attempt_yield": null,
@@ -882,7 +882,7 @@
       "p90_solve_s": 736,
       "run_success_rate": 0.0,
       "runs": 2,
-      "status": "open",
+      "status": "proved",
       "successes": 0,
       "successes_per_recorded_hour": 0.0,
       "total_solve_s": 992
@@ -5759,6 +5759,22 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": null,
+        "difficulty_points": 13,
+        "display_name": "adam91holt",
+        "git_author": "adam91holt <mail@adamholt.co.nz>",
+        "git_author_name": "adam91holt",
+        "github": null,
+        "index_files_added": 5,
+        "missing_solver_provenance": 0,
+        "profile_url": null,
+        "sample_add_commit": "7d0d409ced11b43684b424326e7d0efea7ffb08b",
+        "sample_add_date": "2026-06-17",
+        "solver_credit": false,
+        "solver_provenance_proofs": 5
+      },
+      {
+        "attribution_source": "git-add-author",
+        "avatar_url": null,
         "difficulty_points": 6,
         "display_name": "Adam Holt",
         "git_author": "Adam Holt <adam@adamholt.co.nz>",
@@ -5769,22 +5785,6 @@
         "profile_url": null,
         "sample_add_commit": "f404fd672dcede78ba2bff365ad3e04a198ca1e0",
         "sample_add_date": "2026-06-14",
-        "solver_credit": false,
-        "solver_provenance_proofs": 4
-      },
-      {
-        "attribution_source": "git-add-author",
-        "avatar_url": null,
-        "difficulty_points": 10,
-        "display_name": "adam91holt",
-        "git_author": "adam91holt <mail@adamholt.co.nz>",
-        "git_author_name": "adam91holt",
-        "github": null,
-        "index_files_added": 4,
-        "missing_solver_provenance": 0,
-        "profile_url": null,
-        "sample_add_commit": "7d0d409ced11b43684b424326e7d0efea7ffb08b",
-        "sample_add_date": "2026-06-17",
         "solver_credit": false,
         "solver_provenance_proofs": 4
       },
@@ -5805,8 +5805,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 438,
-    "records": 438,
+    "git_attributed_index_files": 439,
+    "records": 439,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -5941,6 +5941,22 @@
       "verified_proofs": 4
     },
     {
+      "attempt_yield": null,
+      "attempts": 0,
+      "failed_attempts": 0,
+      "failures": 0,
+      "median_solve_s": null,
+      "p90_solve_s": null,
+      "provider_model": "openrouter / unknown",
+      "run_success_rate": null,
+      "runs": 0,
+      "solvers": 1,
+      "successes": 0,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0,
+      "verified_proofs": 2
+    },
+    {
       "attempt_yield": 1.0,
       "attempts": 1,
       "failed_attempts": 0,
@@ -5980,22 +5996,6 @@
       "median_solve_s": null,
       "p90_solve_s": null,
       "provider_model": "claude / unknown",
-      "run_success_rate": null,
-      "runs": 0,
-      "solvers": 1,
-      "successes": 0,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 1
-    },
-    {
-      "attempt_yield": null,
-      "attempts": 0,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": null,
-      "p90_solve_s": null,
-      "provider_model": "openrouter / unknown",
       "run_success_rate": null,
       "runs": 0,
       "solvers": 1,
@@ -6084,8 +6084,8 @@
     "status_counts": {
       "archived": 138,
       "blocked": 3,
-      "open": 312,
-      "proved": 300,
+      "open": 311,
+      "proved": 301,
       "translated": 9
     }
   },

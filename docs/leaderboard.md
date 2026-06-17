@@ -4,7 +4,7 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**438 verified proofs · 156 attributed · 282 historical/unknown · 448 logged terminal runs.**
+**439 verified proofs · 157 attributed · 282 historical/unknown · 448 logged terminal runs.**
 
 ## Efficiency Baseline
 
@@ -25,7 +25,7 @@ Verified output comes from active `library/index` records plus archived index re
 
 ## Work Queue
 
-**762 goals · 138 archived · 3 blocked · 312 open · 300 proved · 9 translated.**
+**762 goals · 138 archived · 3 blocked · 311 open · 301 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
@@ -45,12 +45,12 @@ Verified output comes from active `library/index` records plus archived index re
 | `nat-sq-lt-two-pow-s2` | `open` | 1 | 4 | 6 | 52m 47s |
 | `consecutive-cubes-diff-odd` | `archived` | 2 | 3 | 5 | 21m 11s |
 | `nesbitt-inequality-s1` | `open` | 1 | 2 | 4 | 47m 0s |
-| `am-gm-three-cube` | `open` | 3 | 2 | 4 | 16m 32s |
 | `dvd-210-pow-fifteen-sub-pow-three` | `open` | 2 | 2 | 4 | 7m 0s |
 | `cube-sum-ge-mul-sq` | `archived` | 2 | 2 | 4 | 5m 47s |
 | `prod-one-sub-inv-sq-telescope` | `open` | 4 | 3 | 3 | 1h 9m |
 | `six-dvd-pow-three-add-five-mul` | `open` | 2 | 3 | 3 | 46m 45s |
 | `fourth-power-mod-five` | `archived` | 3 | 1 | 3 | 20m 27s |
+| `cube-eq-triangular-sq-diff` | `archived` | 2 | 1 | 3 | 14m 49s |
 
 ## Contributor Leaderboard
 
@@ -64,16 +64,16 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 | 4 | [@perttu](https://github.com/perttu) | 37 | 33 | 4 | 35 | 71.4% | 83 | 9225 |
 | 5 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
 | 6 | [@adam91holt](https://github.com/adam91holt) | 6 | 6 | 0 | 57 | 3.5% | 10 | 1150 |
-| 7 | [@ruvnet](https://github.com/ruvnet) | 1 | 1 | 0 | 0 | — | 4 | 425 |
+| 7 | [@ruvnet](https://github.com/ruvnet) | 2 | 2 | 0 | 0 | — | 7 | 750 |
 | 8 | [@OceanLi](https://github.com/OceanLi) | 1 | 0 | 1 | 0 | — | 3 | 325 |
 | 9 | [@perttu-mp](https://github.com/perttu-mp) | 1 | 1 | 0 | 3 | 33.3% | 1 | 125 |
 | 10 | [@yarcles](https://github.com/yarcles) | 1 | 1 | 0 | 0 | — | 1 | 125 |
 
 ## Attribution Notes
 
-**156 explicit solver credits · 282 inferred git credits · 0 uncredited proof records.**
+**157 explicit solver credits · 282 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 438 of 438 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 439 of 439 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -87,10 +87,10 @@ Git add-author attribution covers 438 of 438 proof index files. It is used only 
 | `claude / template-zmod-crt` | 9 | 9 | 100.0% | 0 | 1 | 0s | — |
 | `gemini / gemini-3.1-pro-preview` | 7 | 7 | 71.4% | 6 | 1 | 6m 32s | 5.32 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
+| `openrouter / unknown` | 2 | 0 | — | 0 | 1 | — | — |
 | `claude / sonnet` | 1 | 1 | 100.0% | 0 | 1 | 42s | 85.71 |
 | `claude / template-sum-induction` | 1 | 1 | 100.0% | 0 | 1 | 0s | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
-| `openrouter / unknown` | 1 | 0 | — | 0 | 1 | — | — |
 | `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 47 | 0.0% | 47 | 1 | 31m 57s | 0.00 |
 | `codex / gpt-5.3-codex-spark` | 0 | 1 | 0.0% | 3 | 1 | 1m 34s | 0.00 |
 | `openai / leanstral-2603-sovereign` | 0 | 1 | 0.0% | 1 | 1 | 1m 22s | 0.00 |
