@@ -1,0 +1,8 @@
+𝔸5.1.lemma.6ac2558f9391@2026-06-17
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜6ac2558f9391d54598dcb45d0b94a20dbdea452c6b204ef47e09e0d780f4d2a9; goal≜sum-range-recip-odd-consecutive; name≜sum_range_recip_odd_consecutive}
+⟦Σ:Source⟧{src≜goals/sum-range-recip-odd-consecutive.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜adam91holt; agent≜beast-bbbb; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜304}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
