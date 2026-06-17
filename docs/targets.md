@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**318 open · 431 proved · 752 total prove-goals.**
+**317 open · 432 proved · 752 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -71,7 +71,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `five-var-qm-am` — The square of a five-term sum is at most five times the sum of the five squares (QM-AM, five variables). | open | 3 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The square of a five-term sum is at most five times the sum of the five squares (QM-AM, five variables). Not a named mathlib lemma in this form. |
 | `fourth-power-mod-fortyone-mem` — The fourth-power residues modulo the prime 41 are exactly {0,1,4,10,16,18,23,25,31,37,40}. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | The fourth-power residues modulo the prime 41 are exactly {0,1,4,10,16,18,23,25,31,37,40}. Not a named mathlib lemma in this form. |
 | `hexagonal-eq-triangular-odd-index` — The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. | open | 1 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. Not a named mathlib lemma in this form. |
-| `lucas-succ-add-lucas-pred-eq-five-mul-fib` — The sum of the Lucas numbers at n+2 and n equals five times fib(n+1) (stated with a +1 index shift to keep terms in Nat). | open | 2 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog. | The sum of the Lucas numbers at n+2 and n equals five times fib(n+1) (stated with a +1 index shift to keep terms in Nat). Not a named mathlib lemma in this form. |
 | `n4-plus-one-factor-over-sqrt-shift` — The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. Not a named mathlib lemma in this form. |
 | `nat-sq-lt-two-pow-s2` — nat-sq-lt-two-pow-s2 | open | 1 | — | — | — |
 | `nesbitt-inequality-s1` — nesbitt-inequality-s1 | open | 1 | — | — | — |
@@ -541,6 +540,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `int-sub-eq-add-neg` — Integer subtraction equals adding the negation. | proved | 1 | — | — | — |
 | `lcm-self-succ` — The lcm of n and n+1 is their product n(n+1). | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd-coprime family. | The lcm of n and n+1 is their product n(n+1). Not a named mathlib lemma in this form. |
 | `list-reverse-reverse` — Reversing a list twice yields the original list. | proved | 1 | — | — | — |
+| `lucas-succ-add-lucas-pred-eq-five-mul-fib` — The sum of the Lucas numbers at n+2 and n equals five times fib(n+1) (stated with a +1 index shift to keep terms in Nat). | proved | 2 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog. | The sum of the Lucas numbers at n+2 and n equals five times fib(n+1) (stated with a +1 index shift to keep terms in Nat). Not a named mathlib lemma in this form. |
 | `nat-add-assoc-thm` — Addition of natural numbers is associative. | proved | 1 | — | — | — |
 | `nat-add-comm-thm` — Addition of natural numbers is commutative. | proved | 1 | — | — | — |
 | `nat-add-left-cancel` — Left addition is cancellative on the naturals. | proved | 1 | — | — | — |
