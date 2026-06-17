@@ -4,7 +4,7 @@
 <rect width="900" height="100%" rx="18" fill="#ffffff"/>
 <rect x="0.5" y="0.5" width="899" height="485" rx="18" fill="none" stroke="#e2e8f0"/>
 <text x="32" y="44" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="#334155">Unsorry Leaderboard</text>
-<text x="32" y="72" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#64748b">495 credited proofs · 204 explicit · 291 inferred from git · 10 contributors</text>
+<text x="32" y="72" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#64748b">496 credited proofs · 205 explicit · 291 inferred from git · 10 contributors</text>
 <text x="34" y="148" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#fbbf24">1</text>
 <a href="https://github.com/chat-bit-01">
 <text x="82" y="138" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@chat-bit-01</text>
@@ -45,10 +45,10 @@
 <a href="https://github.com/ruvnet">
 <text x="82" y="394" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@ruvnet</text>
 </a>
-<text x="82" y="414" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">12 proofs · 33 difficulty · 12 explicit · 0 inferred · 0 runs</text>
+<text x="82" y="414" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">13 proofs · 35 difficulty · 13 explicit · 0 inferred · 0 runs</text>
 <rect x="320" y="383" width="420" height="26" rx="13" fill="#f1f5f9"/>
-<rect x="320" y="383" width="24" height="26" rx="13" fill="#e0f2fe"/>
-<text x="760" y="402" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">3600 pts</text>
+<rect x="320" y="383" width="26" height="26" rx="13" fill="#e0f2fe"/>
+<text x="760" y="402" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">3825 pts</text>
 <text x="760" y="418" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b">explicit</text>
 <text x="32" y="454" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">Inferred credits use git add-author history only when explicit solver provenance is missing.</text>
 </svg>

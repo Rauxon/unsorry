@@ -51,7 +51,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 33,
+      "difficulty_points": 35,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -62,7 +62,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 12
+      "verified_proofs": 13
     },
     {
       "attempt_yield": 0.0294,
@@ -114,17 +114,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 204,
+    "attributed_proofs": 205,
     "historical_unknown_proofs": 291,
-    "proof_run_coverage": 0.3354,
+    "proof_run_coverage": 0.3347,
     "successful_proofs_with_run_telemetry": 166,
     "terminal_runs": 485,
-    "verified_proofs": 495
+    "verified_proofs": 496
   },
   "credit": {
     "credited_contributors": 10,
-    "credited_proofs": 495,
-    "explicit_solver_proofs": 204,
+    "credited_proofs": 496,
+    "explicit_solver_proofs": 205,
     "inferred_git_proofs": 291,
     "uncredited_proofs": 0
   },
@@ -251,10 +251,10 @@
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 12,
-      "difficulty_points": 33,
+      "credited_proofs": 13,
+      "difficulty_points": 35,
       "display_name": "@ruvnet",
-      "explicit_solver_proofs": 12,
+      "explicit_solver_proofs": 13,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": null,
@@ -269,7 +269,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 12
+      "verified_proofs": 13
     },
     {
       "attempt_yield": null,
@@ -3360,7 +3360,7 @@
       "p90_solve_s": 414,
       "run_success_rate": 0.0,
       "runs": 1,
-      "status": "open",
+      "status": "proved",
       "successes": 0,
       "successes_per_recorded_hour": 0.0,
       "total_solve_s": 414
@@ -5837,18 +5837,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": null,
-        "difficulty_points": 71,
+        "difficulty_points": 73,
         "display_name": "adam91holt",
         "git_author": "adam91holt <mail@adamholt.co.nz>",
         "git_author_name": "adam91holt",
         "github": null,
-        "index_files_added": 26,
+        "index_files_added": 27,
         "missing_solver_provenance": 0,
         "profile_url": null,
         "sample_add_commit": "fa902a32f2a71964476cd12c38023aacb4881688",
         "sample_add_date": "2026-06-17",
         "solver_credit": false,
-        "solver_provenance_proofs": 26
+        "solver_provenance_proofs": 27
       },
       {
         "attribution_source": "git-add-author",
@@ -5899,8 +5899,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 495,
-    "records": 495,
+    "git_attributed_index_files": 496,
+    "records": 496,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -6016,7 +6016,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 12
+      "verified_proofs": 13
     },
     {
       "attempt_yield": 0.4545,
@@ -6194,8 +6194,8 @@
     "status_counts": {
       "archived": 138,
       "blocked": 3,
-      "open": 255,
-      "proved": 357,
+      "open": 254,
+      "proved": 358,
       "translated": 9
     }
   },
