@@ -173,11 +173,15 @@ jobs:
           echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
           du -sh .lake .lake/packages .lake/build 2>/dev/null || true
 
-      # GitHub-cache fallback for the local oleans. Keep this active even on
-      # Namespace: the volume is shared and keyless, while ADR-045's cache is
-      # exact to this commit so audit/replay can restore prepare's build and
-      # skip the duplicate library build safely.
+      # GitHub-cache fallback for the local oleans — NON-Namespace only. On a
+      # Namespace profile the .lake cache volume (ADR-046) already persists
+      # .lake/build across jobs and runs, so this GitHub cache is pure churn there:
+      # a ~320 MB per-commit entry (keyed on github.sha) that thrashes the 10 GB
+      # repo cache. Gating it to volume!='true' keeps the cache small. On Namespace
+      # the warm volume makes audit/replay's library build a cheap incremental
+      # instead — the #801 exact-key build-skip just doesn't fire there.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        if: needs.detect.outputs.volume != 'true'
         id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
@@ -286,11 +290,15 @@ jobs:
           echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
           du -sh .lake .lake/packages .lake/build 2>/dev/null || true
 
-      # GitHub-cache fallback for the local oleans. Keep this active even on
-      # Namespace: the volume is shared and keyless, while ADR-045's cache is
-      # exact to this commit so audit/replay can restore prepare's build and
-      # skip the duplicate library build safely.
+      # GitHub-cache fallback for the local oleans — NON-Namespace only. On a
+      # Namespace profile the .lake cache volume (ADR-046) already persists
+      # .lake/build across jobs and runs, so this GitHub cache is pure churn there:
+      # a ~320 MB per-commit entry (keyed on github.sha) that thrashes the 10 GB
+      # repo cache. Gating it to volume!='true' keeps the cache small. On Namespace
+      # the warm volume makes audit/replay's library build a cheap incremental
+      # instead — the #801 exact-key build-skip just doesn't fire there.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        if: needs.detect.outputs.volume != 'true'
         id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
@@ -408,11 +416,15 @@ jobs:
           echo "nscloud cache-hit=${{ steps.ns_lake_cache.outputs.cache-hit }}"
           du -sh .lake .lake/packages .lake/build 2>/dev/null || true
 
-      # GitHub-cache fallback for the local oleans. Keep this active even on
-      # Namespace: the volume is shared and keyless, while ADR-045's cache is
-      # exact to this commit so audit/replay can restore prepare's build and
-      # skip the duplicate library build safely.
+      # GitHub-cache fallback for the local oleans — NON-Namespace only. On a
+      # Namespace profile the .lake cache volume (ADR-046) already persists
+      # .lake/build across jobs and runs, so this GitHub cache is pure churn there:
+      # a ~320 MB per-commit entry (keyed on github.sha) that thrashes the 10 GB
+      # repo cache. Gating it to volume!='true' keeps the cache small. On Namespace
+      # the warm volume makes audit/replay's library build a cheap incremental
+      # instead — the #801 exact-key build-skip just doesn't fire there.
       - name: Cache local Lake build (.lake/build) — incremental library (ADR-045)
+        if: needs.detect.outputs.volume != 'true'
         id: lake_build_cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
