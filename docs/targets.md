@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**251 open · 498 proved · 752 total prove-goals.**
+**250 open · 499 proved · 752 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -64,7 +64,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-cube-add-id-closed-form` — Four times the sum of (k^3 + k) equals n(n+1)(n^2+n+2). | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Four times the sum of (k^3 + k) equals n(n+1)(n^2+n+2). Not a named mathlib lemma in this form. |
 | `sum-decagonal-closed-form` — Six times the sum of the first n decagonal numbers equals n(n+1)(8n-5). | open | 3 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Six times the sum of the first n decagonal numbers equals n(n+1)(8n-5). Not a named mathlib lemma in this form. |
 | `sum-decagonal-numbers-closed-form` — Six times the running sum of the first n decagonal numbers k(4k-3) equals n(n+1)(8n-5). | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog. | Six times the running sum of the first n decagonal numbers k(4k-3) equals n(n+1)(8n-5). Not a named mathlib lemma in this form. |
-| `sum-even-cubes-eq-twice-square` — The sum of the first n even cubes equals 2n^2(n+1)^2. | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The sum of the first n even cubes equals 2n^2(n+1)^2. Not a named mathlib lemma in this form. |
 | `sum-even-index-triangular-closed-form` — Six times the sum of the even-index triangular numbers T_{2k}=k(2k+1) equals n(n+1)(4n+5). | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Six times the sum of the even-index triangular numbers T_{2k}=k(2k+1) equals n(n+1)(4n+5). Not a named mathlib lemma in this form. |
 | `sum-even-squares-faulhaber` — Three times the sum of the first n even squares equals 2n(n+1)(2n+1). | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Three times the sum of the first n even squares equals 2n(n+1)(2n+1). Not a named mathlib lemma in this form. |
 | `sum-five-consecutive-product-closed-form` — Six times the sum of five consecutive integer products equals the six-term product n through n+5, the 5-simplex closed form. | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Six times the sum of five consecutive integer products equals the six-term product n through n+5, the 5-simplex closed form. Not a named mathlib lemma in this form. |
@@ -695,6 +694,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-cubes-ge-sym-quadratic-two-var` — For nonnegative a,b, a³+b³ ≥ a²b+ab². | proved | 2 | — | #400 Identity Engine (ADR-043) — inequalities family. | For nonnegative a,b, a³+b³ ≥ a²b+ab². Not a named mathlib lemma in this form. |
 | `sum-cubes-sym-divisible-by-quadratic` — The symmetric quadratic a²+b²+c²-ab-bc-ca divides a³+b³+c³-3abc. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The symmetric quadratic a²+b²+c²-ab-bc-ca divides a³+b³+c³-3abc. Not a named mathlib lemma in this form. |
 | `sum-decagonal-second-kind-closed-form` — Three times the running sum of the second-kind decagonal terms k(5k+1) equals n(n+1)(5n+4). | proved | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Three times the running sum of the second-kind decagonal terms k(5k+1) equals n(n+1)(5n+4). Not a named mathlib lemma in this form. |
+| `sum-even-cubes-eq-twice-square` — The sum of the first n even cubes equals 2n^2(n+1)^2. | proved | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The sum of the first n even cubes equals 2n^2(n+1)^2. Not a named mathlib lemma in this form. |
 | `sum-four-pow-ge-sq-prod` — For all real a,b,c, a⁴+b⁴+c⁴ ≥ a²b²+b²c²+c²a². | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3). | For all real a,b,c, a⁴+b⁴+c⁴ ≥ a²b²+b²c²+c²a². Not a named mathlib lemma in this form. |
 | `sum-four-pow-ge-sq-prod-s1` — sum-four-pow-ge-sq-prod-s1 | proved | 1 | — | — | — |
 | `sum-four-pow-ge-sq-prod-s2` — sum-four-pow-ge-sq-prod-s2 | proved | 1 | — | — | — |
