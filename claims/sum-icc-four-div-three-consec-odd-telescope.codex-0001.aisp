@@ -1,7 +1,0 @@
-𝔸5.1.claim.sum-icc-four-div-three-consec-odd-telescope.codex-0001@2026-06-17
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜sum-icc-four-div-three-consec-odd-telescope; agent≜codex-0001}
-⟦Σ:Times⟧{ts≜2026-06-17T10:22:14Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
