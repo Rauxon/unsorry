@@ -1,0 +1,7 @@
+𝔸5.1.claim.sum-icc-recip-step-four-pair-eq-n-div.codex-0005@2026-06-17
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜sum-icc-recip-step-four-pair-eq-n-div; agent≜codex-0005}
+⟦Σ:Times⟧{ts≜2026-06-17T11:19:56Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
