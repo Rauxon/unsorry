@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-odd-div-two-pow.beast-cccc.20260617t004936858561z-1a525958@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t004936858561z-1a525958; goal≜sum-range-odd-div-two-pow; agent≜beast-cccc; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-odd-div-two-pow}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜285; ended≜2026-06-17T00:49:36Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜697c8589b7259bb7b8368f2e115f12b81326bff796fa6e03d22993d79328ef8a}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
