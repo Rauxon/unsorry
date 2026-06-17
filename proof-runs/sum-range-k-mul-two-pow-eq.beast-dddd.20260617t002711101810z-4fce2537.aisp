@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-k-mul-two-pow-eq.beast-dddd.20260617t002711101810z-4fce2537@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t002711101810z-4fce2537; goal≜sum-range-k-mul-two-pow-eq; agent≜beast-dddd; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-k-mul-two-pow-eq}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜183; ended≜2026-06-17T00:27:11Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜f72c067fa72aa7c1859946260c4f26d72a4c09f80b3751ea2390b70c6569c936}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
