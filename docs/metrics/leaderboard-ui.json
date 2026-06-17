@@ -63,18 +63,18 @@
       "attempt_yield": 1.0,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "badges": {
-        "difficulty": 182,
-        "proofs": 75,
+        "difficulty": 184,
+        "proofs": 76,
         "success_rate_percent": 100.0
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 75,
-      "difficulty_points": 182,
+      "credited_proofs": 76,
+      "difficulty_points": 184,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 75,
+      "explicit_solver_proofs": 76,
       "failed_attempts": 0,
       "github": "ohdearquant",
       "inferred_git_proofs": 0,
@@ -82,11 +82,11 @@
       "profile_url": "https://github.com/ohdearquant",
       "rank": 3,
       "run_success_rate": 1.0,
-      "runs": 75,
-      "score": 20075,
+      "runs": 76,
+      "score": 20300,
       "solver": "ohdearquant",
-      "successes": 75,
-      "verified_proofs": 75
+      "successes": 76,
+      "verified_proofs": 76
     },
     {
       "attempt_yield": 0.4386,
@@ -324,6 +324,19 @@
     },
     {
       "attribution_source": "git-add-author",
+      "avatar_url": "https://github.com/OceanLi.png?size=96",
+      "difficulty_points": 114,
+      "display_name": "OceanLi",
+      "github": "OceanLi",
+      "index_files_added": 51,
+      "missing_solver_provenance": 1,
+      "profile_url": "https://github.com/OceanLi",
+      "rank": 3,
+      "solver_credit": false,
+      "solver_provenance_proofs": 50
+    },
+    {
+      "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/perttu.png?size=96",
       "difficulty_points": 121,
       "display_name": "Perttu Isotalo",
@@ -331,22 +344,9 @@
       "index_files_added": 51,
       "missing_solver_provenance": 4,
       "profile_url": "https://github.com/perttu",
-      "rank": 3,
-      "solver_credit": false,
-      "solver_provenance_proofs": 47
-    },
-    {
-      "attribution_source": "git-add-author",
-      "avatar_url": "https://github.com/OceanLi.png?size=96",
-      "difficulty_points": 112,
-      "display_name": "OceanLi",
-      "github": "OceanLi",
-      "index_files_added": 50,
-      "missing_solver_provenance": 1,
-      "profile_url": "https://github.com/OceanLi",
       "rank": 4,
       "solver_credit": false,
-      "solver_provenance_proofs": 49
+      "solver_provenance_proofs": 47
     },
     {
       "attribution_source": "git-add-author",
@@ -463,6 +463,12 @@
       "verified_proofs": 1
     },
     {
+      "provider_model": "claude / template-nlinarith",
+      "run_success_rate": 1.0,
+      "runs": 1,
+      "verified_proofs": 1
+    },
+    {
       "provider_model": "claude / template-sum-induction",
       "run_success_rate": 1.0,
       "runs": 1,
@@ -496,19 +502,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 197,
+    "attributed_proofs": 198,
     "attribution_gap_count": 291,
     "credited_contributors": 10,
-    "credited_proofs": 488,
-    "explicit_solver_proofs": 197,
-    "git_attributed_index_files": 488,
+    "credited_proofs": 489,
+    "explicit_solver_proofs": 198,
+    "git_attributed_index_files": 489,
     "historical_contributors": 8,
     "historical_unknown_proofs": 291,
     "inferred_git_proofs": 291,
-    "proof_run_coverage": 0.3299,
-    "terminal_runs": 480,
+    "proof_run_coverage": 0.3313,
+    "terminal_runs": 481,
     "uncredited_proofs": 0,
-    "verified_proofs": 488
+    "verified_proofs": 489
   },
   "timeline": [
     {
@@ -542,12 +548,12 @@
       "proofs": 136
     },
     {
-      "cumulative_proofs": 470,
+      "cumulative_proofs": 471,
       "date": "2026-06-16",
-      "proofs": 210
+      "proofs": 211
     },
     {
-      "cumulative_proofs": 488,
+      "cumulative_proofs": 489,
       "date": "2026-06-17",
       "proofs": 18
     }
