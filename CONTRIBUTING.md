@@ -49,18 +49,27 @@ available through `--prove-local`, and an operator can override the governor
 with `UNSORRY_SUBMISSION_GOVERNOR=0` for a deliberate emergency exception.
 
 Coordinated `--prove` queues verified work by default so it does not
-immediately become PR/CI load:
+immediately become PR/CI load. The simplest way to run the full governed flow
+is the one-command launcher, which starts the prover and the dispatcher together
+and stops them together:
 
 ```bash
-./swarm/agent.sh --prove
-./swarm/agent.sh --dispatch-queue
+./swarm/run.sh                 # one dispatcher + one resilient prover (recommended)
 ```
 
-The first command produces locally verified proof branches under
-`queued/prove/`; the second opens those branches as ordinary auto-merge PRs
-only when the governor admits more Gate A work. Both loops poll every 300s by
-default when saturated or empty. Existing proof PRs continue through the old
-path and drain normally. Set `UNSORRY_SUBMIT_MODE=pr` only for an
+It is equivalent to running both loops yourself:
+
+```bash
+./swarm/agent.sh --prove          # produces verified branches under queued/prove/
+./swarm/agent.sh --dispatch-queue # opens them as auto-merge PRs when the governor admits
+```
+
+The prover produces locally verified proof branches under `queued/prove/`; the
+dispatcher opens those branches as ordinary auto-merge PRs only when the governor
+admits more Gate A work. Both loops poll every 300s by default when saturated or
+empty. Run exactly **one** dispatcher (`run.sh` starts one); for more provers,
+start additional `./swarm/supervise.sh --prove` only. Existing proof PRs continue
+through the old path and drain normally. Set `UNSORRY_SUBMIT_MODE=pr` only for an
 operator-approved immediate-PR exception.
 
 Other flags:
