@@ -97,9 +97,11 @@
                 <div class="inline-flex items-center bg-slate-100 rounded-full px-4 py-1 text-xs font-semibold text-slate-600 uppercase tracking-wider w-max">
                     <span id="generated-at">Loading proof stats</span>
                 </div>
-                <!-- View toggle: full leaderboard · top 5 · cumulative proofs over time.
-                     Scrolls horizontally on narrow viewports so the three tabs stay usable. -->
-                <div class="mt-3 inline-flex max-w-full overflow-x-auto rounded-xl border border-slate-200 p-1 bg-white" role="tablist" aria-label="Leaderboard view">
+                <!-- View toggle: leaderboard · top 5 · proofs over time · sourcing.
+                     Wraps to multiple rows on narrow viewports so every tab (incl.
+                     the last, "Sourcing") stays visible — the old inline-flex strip
+                     overflowed off the right edge and was clipped on mobile. -->
+                <div class="mt-3 flex flex-wrap gap-1 sm:w-max max-w-full rounded-xl border border-slate-200 p-1 bg-white" role="tablist" aria-label="Leaderboard view">
                     <button id="tab-leaderboard" type="button" role="tab" aria-selected="true"
                         class="px-4 py-1.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-800 transition-colors whitespace-nowrap flex-shrink-0">Leaderboard</button>
                     <button id="tab-top5" type="button" role="tab" aria-selected="false"
