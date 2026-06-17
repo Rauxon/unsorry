@@ -1,0 +1,7 @@
+𝔸5.1.claim.sum-range-succ-div-two-pow-eq-four-sub.beast-3333@2026-06-17
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜sum-range-succ-div-two-pow-eq-four-sub; agent≜beast-3333}
+⟦Σ:Times⟧{ts≜2026-06-17T01:39:40Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
