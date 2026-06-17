@@ -1,0 +1,9 @@
+𝔸5.1.run.sq-add-sq-eq-three-mul-sq-s4.beast-bbbb.20260617t021052966575z-c213665e@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t021052966575z-c213665e; goal≜sq-add-sq-eq-three-mul-sq-s4; agent≜beast-bbbb; outcome≜failed}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜max}
+⟦Γ:Goal⟧{goal≜sq-add-sq-eq-three-mul-sq-s4}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜1017; ended≜2026-06-17T02:10:53Z; lessons≜2}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜✖ [8553/8761] Building Unsorry.SqAddSqEqThreeMulSqS4 (207ms) trace: .> LEAN_PATH=/home/adam/.unsorry/work-beast-bbbb/prove-sq-add-sq-eq-three-mul-sq-s4-beast-bbbb/.lake/packages/Cli/.lake/build/lib/lean:/home/adam/.unsorry/work-beast-bbbb/prove-sq-add-sq-eq-three-mul-sq-s4-beast-}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
