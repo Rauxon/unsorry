@@ -63,18 +63,18 @@
       "attempt_yield": 1.0,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "badges": {
-        "difficulty": 92,
-        "proofs": 43,
+        "difficulty": 95,
+        "proofs": 44,
         "success_rate_percent": 100.0
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 43,
-      "difficulty_points": 92,
+      "credited_proofs": 44,
+      "difficulty_points": 95,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 43,
+      "explicit_solver_proofs": 44,
       "failed_attempts": 0,
       "github": "ohdearquant",
       "inferred_git_proofs": 0,
@@ -82,11 +82,11 @@
       "profile_url": "https://github.com/ohdearquant",
       "rank": 3,
       "run_success_rate": 1.0,
-      "runs": 43,
-      "score": 10275,
+      "runs": 44,
+      "score": 10600,
       "solver": "ohdearquant",
-      "successes": 43,
-      "verified_proofs": 43
+      "successes": 44,
+      "verified_proofs": 44
     },
     {
       "attempt_yield": 0.4386,
@@ -293,7 +293,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-16T22:22:57Z",
+  "generated_at": "2026-06-16T23:54:13Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -351,15 +351,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 34,
+      "difficulty_points": 37,
       "display_name": "adam91holt",
       "github": null,
-      "index_files_added": 13,
+      "index_files_added": 14,
       "missing_solver_provenance": 0,
       "profile_url": null,
       "rank": 5,
       "solver_credit": false,
-      "solver_provenance_proofs": 13
+      "solver_provenance_proofs": 14
     },
     {
       "attribution_source": "git-add-author",
@@ -433,16 +433,16 @@
       "verified_proofs": 13
     },
     {
+      "provider_model": "claude / template-zmod-crt",
+      "run_success_rate": 1.0,
+      "runs": 10,
+      "verified_proofs": 10
+    },
+    {
       "provider_model": "openrouter / unknown",
       "run_success_rate": null,
       "runs": 0,
       "verified_proofs": 10
-    },
-    {
-      "provider_model": "claude / template-zmod-crt",
-      "run_success_rate": 1.0,
-      "runs": 9,
-      "verified_proofs": 9
     },
     {
       "provider_model": "gemini / gemini-3.1-pro-preview",
@@ -496,19 +496,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 165,
+    "attributed_proofs": 166,
     "attribution_gap_count": 291,
     "credited_contributors": 10,
-    "credited_proofs": 456,
-    "explicit_solver_proofs": 165,
-    "git_attributed_index_files": 456,
+    "credited_proofs": 457,
+    "explicit_solver_proofs": 166,
+    "git_attributed_index_files": 457,
     "historical_contributors": 8,
     "historical_unknown_proofs": 291,
     "inferred_git_proofs": 291,
-    "proof_run_coverage": 0.2829,
-    "terminal_runs": 448,
+    "proof_run_coverage": 0.2845,
+    "terminal_runs": 449,
     "uncredited_proofs": 0,
-    "verified_proofs": 456
+    "verified_proofs": 457
   },
   "timeline": [
     {
@@ -542,12 +542,12 @@
       "proofs": 136
     },
     {
-      "cumulative_proofs": 438,
+      "cumulative_proofs": 439,
       "date": "2026-06-16",
-      "proofs": 178
+      "proofs": 179
     },
     {
-      "cumulative_proofs": 456,
+      "cumulative_proofs": 457,
       "date": "2026-06-17",
       "proofs": 18
     }
