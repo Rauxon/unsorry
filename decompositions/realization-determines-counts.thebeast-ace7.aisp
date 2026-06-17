@@ -1,0 +1,13 @@
+𝔸5.1.decomp.realization-determines-counts.thebeast-ace7@2026-06-17
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜realization-determines-counts; agent≜thebeast-ace7}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜realization-determines-counts-s1,sha≜20f98b26a583ff2e5fb116ec68d6a5d92e57567e4764139c901f8d1faf1d5a0c⟩
+  sub₂≜⟨id≜realization-determines-counts-s2,sha≜c3b9185421048c74b3f83cfc3357eee487b4da98610d48d91734861552617316⟩
+  sub₃≜⟨id≜realization-determines-counts-s3,sha≜6f583347141feca5dec31d55061d44f4b94a8184b3664f5821f86d0ed2700afe⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
