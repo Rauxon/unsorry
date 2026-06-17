@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**762 goals — 292 open · 3 blocked · 9 translated · 320 proved · 138 archived.** 15 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**762 goals — 291 open · 3 blocked · 9 translated · 321 proved · 138 archived.** 15 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (315 of 320 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (316 of 321 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -234,11 +234,11 @@ flowchart LR
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s1
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s2
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s3
-  cluster_open(["open · 284"])
+  cluster_open(["open · 283"])
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 275"])
+  cluster_proved(["proved · 276"])
   class cluster_proved proved;
   cluster_archived(["archived · 138"])
   class cluster_archived unknown;
@@ -257,7 +257,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`dvd-120-pow-eleven-sub-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-120-pow-eleven-sub-pow-three.lean) | open | 3 | — | — | — | — |
 | [`dvd-1302-pow-thirtyone-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-1302-pow-thirtyone-sub-self.lean) | open | 3 | — | — | — | — |
 | [`dvd-133-pow-nineteen-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-133-pow-nineteen-sub-self.lean) | open | 2 | — | — | — | — |
-| [`dvd-170-pow-seventeen-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-170-pow-seventeen-sub-self.lean) | open | 3 | — | — | — | — |
 | [`dvd-1806-pow-fortythree-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-1806-pow-fortythree-sub-self.lean) | open | 3 | — | — | — | — |
 | [`dvd-210-pow-fifteen-sub-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-210-pow-fifteen-sub-pow-three.lean) | open | 2 | — | — | — | — |
 | [`dvd-240-pow-nine-sub-pow-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-240-pow-nine-sub-pow-five.lean) | open | 3 | — | — | — | — |
@@ -638,6 +637,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`dvd-1365-pow-thirteen-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-1365-pow-thirteen-sub-self.lean) | proved | 2 | mac-158f | ohdearquant · `template-zmod-crt` | [#1234](https://github.com/agenticsnz/unsorry/pull/1234) | 2026-06-17 |
 | [`dvd-138-pow-fortyfive-sub-pow-twentythree`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-138-pow-fortyfive-sub-pow-twentythree.lean) | proved | 2 | 1367ab40f0b1-e413 | cgbarlow · `opus` | [#978](https://github.com/agenticsnz/unsorry/pull/978) | 2026-06-15 |
 | [`dvd-138-pow-twentythree-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-138-pow-twentythree-sub-self.lean) | proved | 3 | mac-158f | ohdearquant · `template-zmod-crt` | [#1957](https://github.com/agenticsnz/unsorry/pull/1957) | 2026-06-17 |
+| [`dvd-170-pow-seventeen-sub-self`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-170-pow-seventeen-sub-self.lean) | proved | 3 | mac-158f | ohdearquant · `template-zmod-crt` | [#1958](https://github.com/agenticsnz/unsorry/pull/1958) | 2026-06-17 |
 | [`dvd-210-pow-fifteen-sub-pow-three-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-210-pow-fifteen-sub-pow-three-s1.lean) | proved | 1 | mac-158f | ohdearquant · `template-zmod-decide` | [#1207](https://github.com/agenticsnz/unsorry/pull/1207) | 2026-06-16 |
 | [`dvd-210-pow-fifteen-sub-pow-three-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-210-pow-fifteen-sub-pow-three-s2.lean) | proved | 1 | mac-158f | ohdearquant · `template-zmod-decide` | [#1208](https://github.com/agenticsnz/unsorry/pull/1208) | 2026-06-16 |
 | [`dvd-210-pow-fifteen-sub-pow-three-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/dvd-210-pow-fifteen-sub-pow-three-s3.lean) | proved | 1 | oma-2-c50d | perttu | [#890](https://github.com/agenticsnz/unsorry/pull/890) | 2026-06-15 |
