@@ -1,4 +1,4 @@
-"""gen_triples tests (ADR-059 / SPEC-059-A). A generated triple must round-trip
+"""gen_triples tests (ADR-060 / SPEC-060-A). A generated triple must round-trip
 through Gate B clean, and match the SPEC-003-A fresh-goal schema exactly."""
 from __future__ import annotations
 

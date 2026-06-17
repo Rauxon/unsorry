@@ -8,7 +8,7 @@
 <N> new open goals (≤50), all four gates clear, all `status≜open`.
 
 - **Theme(s):** <theme>
-- **Difficulty:** <distribution, e.g. 4×diff-3, 2×diff-4> — target ≥3 (ADR-059).
+- **Difficulty:** <distribution, e.g. 4×diff-3, 2×diff-4> — target ≥3 (ADR-060).
 - **Absence:** name-grep + family-grep clean at mathlib `<rev>` (<date>).
 - **Triviality:** machine-checked non-trivial (battery v1) — `nlinarith`/SOS family
   survives by design (ADR-035).

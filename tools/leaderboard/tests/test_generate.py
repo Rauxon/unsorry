@@ -582,7 +582,7 @@ def test_audit_provenance_cli_exit_codes(tmp_path):
     assert main(["--audit-provenance", str(tmp_path)]) == 0
 
 
-# --- sourcing leaderboard (ADR-059 §6) ---------------------------------------
+# --- sourcing leaderboard (ADR-060 §6) ---------------------------------------
 
 
 def _sourcing_repo(tmp_path: Path) -> None:

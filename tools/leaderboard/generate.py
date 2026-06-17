@@ -1197,7 +1197,7 @@ def goal_add_authors(root: Path, goal_ids: list[str]) -> dict[str, GitAuthor]:
     """git add-author for each ``goals/<id>.aisp`` — who **sourced** the goal
     (the earliest commit that added the record). Mirrors ``git_add_authors`` but
     for goal records; goals are never archived under ``packages/``, so no
-    attribution-path remapping is needed (ADR-059 §6)."""
+    attribution-path remapping is needed (ADR-060 §6)."""
     lookup = {goal_id: f"goals/{goal_id}.aisp" for goal_id in goal_ids}
     if not lookup:
         return {}
@@ -1288,13 +1288,13 @@ def render_sourcing_json(root: Path) -> str:
 
 
 def render_sourcing(root: Path) -> str:
-    """Markdown view of the sourcing leaderboard (ADR-059 §6)."""
+    """Markdown view of the sourcing leaderboard (ADR-060 §6)."""
     rows = sourcing_contributors(root)
     lines = [
         "# Sourcing leaderboard",
         "",
         "Who **sourced** the goals — added `goals/<id>.aisp` — independent of who "
-        "proves them. Attribution is git add-author (ADR-059); a contributor may "
+        "proves them. Attribution is git add-author (ADR-060); a contributor may "
         "also appear on the proof [leaderboard](../leaderboard.md).",
         "",
         "| # | Contributor | Sourced | Difficulty pts | Proved | Open |",
