@@ -68,15 +68,20 @@ must be exported into repository evidence.
 
 ## 5. Backends
 
-| Backend | Suitable scale | Notes |
-|---------|----------------|-------|
-| Single `claims` branch | controlled swarm | Current ADR-004 behavior; simplest audit story |
-| Sharded claims branches | medium fleets | Reduces branch hot-spotting but keeps git write contention |
-| Lease API + durable store | volunteer fleets | Better concurrency; requires auth, uptime, evidence export |
-| Append-only signed log | high auditability | Good for later reconstruction; needs compaction/read model |
+| Backend | Suitable scale | Write access | Notes |
+|---------|----------------|--------------|-------|
+| **Claimless + merge-time dedup** | forks / Tier 0 | none (read-only) | No lease; the degenerate point of this contract. `acquire` always succeeds; "one live owner" is enforced by the upstream kernel + first-merge-wins, not by a lease. The **fork onramp** (ADR-068 / SPEC-068-A): a fork that cannot write `origin/claims` proves claimless and submits by cross-repo PR. Cost: duplicate verifier work, never soundness. |
+| Single `claims` branch | controlled swarm | upstream write | Current ADR-004 behavior; simplest audit story |
+| Sharded claims branches | medium fleets | upstream write | Reduces branch hot-spotting but keeps git write contention |
+| Lease API + durable store | volunteer fleets | broker-mediated | Better concurrency; requires auth, uptime, evidence export. A **fork-writable** broker (GitHub App / token-scoped endpoint) is what lets forks *claim* rather than go claimless — a Phase-2 backend, paired with ADR-054 identity/quota. |
+| Append-only signed log | high auditability | fork-appendable | Forks can append claim events (e.g. via PR / API) for later reconstruction; needs compaction/read model |
 
 The backend is an implementation detail. The contract and evidence are the
-portable surface.
+portable surface. **Access vs contention:** the upstream-write backends solve
+*contention*; the claimless and fork-writable rows solve *access* for
+contributors with no upstream write (ADR-068 ships the claimless row now; the
+fork-writable lease is justified only when measured duplicate-verifier waste
+warrants it).
 
 ## 6. Failure Behavior
 

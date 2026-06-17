@@ -26,6 +26,21 @@ The system therefore needs a claim substrate contract that preserves the
 current semantics while allowing the backing implementation to evolve from a
 git branch to a sharded or service-backed lease layer.
 
+**Two dimensions, not one.** This ADR addresses claim **contention** — too many
+*write-capable* nodes on one hot branch. It does **not**, on its own, solve claim
+**access**: a contributor running from a **fork** has no write access to
+`origin/claims` at all, and every backend enumerated in SPEC-053-A (single
+branch, sharded branches, lease API, signed log) is an *upstream-write*
+substrate, so a contention fix does not make a fork able to claim. The fork
+onramp is handled separately and earlier by **ADR-068 (Fork-Native Contribution
+Mode)**, which proves *claimless* (no pre-claim + merge-time dedup, the ADR-060
+pattern) and submits via cross-repo PR — the degenerate "no-lease" point of this
+contract, where the "one live owner" guarantee is satisfied by the kernel +
+first-merge-wins rather than by a lease. A fork-*writable* lease (a GitHub-App
+broker or an append-only claim log forks can append to) is a future backend under
+this contract, justified only when measured duplicate-verifier waste warrants it
+and paired with ADR-054 identity/quota.
+
 ## WH(Y) Decision Statement
 
 **In the context of** unsorry's repository-native autonomous trunk model and
@@ -92,6 +107,7 @@ Every implementation must provide:
 | REF-3 | Autonomous Trunk Skeleton | Decision | ADR-050-Autonomous-Trunk-Skeleton.md |
 | REF-4 | Autonomous Trunk Experience Layer | Decision | ADR-051-Autonomous-Trunk-Experience-Layer.md |
 | REF-5 | Verification Tiers and Auditability | Decision | ADR-052-Verification-Tiers-And-Auditability.md |
+| REF-6 | Fork-Native Contribution Mode (claimless fork onramp) | Decision | ADR-068-Fork-Native-Contribution-Mode.md |
 
 ## Status History
 
