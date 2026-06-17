@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-recip-five-step-residue-one.beast-cccc.20260617t010421389748z-2e725556@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t010421389748z-2e725556; goal≜sum-range-recip-five-step-residue-one; agent≜beast-cccc; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sum-range-recip-five-step-residue-one}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜283; ended≜2026-06-17T01:04:21Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜07e885c9afa2fa7c2c5b993b9bad5375b12737791f7f6596d115ecf533a362d9}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
