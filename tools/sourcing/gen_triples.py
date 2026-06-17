@@ -1,4 +1,4 @@
-"""Goal-triple assembler (backlog sourcing, ADR-059 / SPEC-059-A).
+"""Goal-triple assembler (backlog sourcing, ADR-060 / SPEC-060-A).
 
 A freshly *sourced* goal is three on-disk files (the "triple"), all for a goal
 that is `status≜open` and unproved:
@@ -15,7 +15,7 @@ memorising the `.aisp` grammar. It is the assembler the ``unsorry-goal-sourcing`
 skill invokes; it does no network and no git (the skill owns sync + dedup).
 
 Scope: this tool *assembles* a triple that already passed the sourcing gates
-(absence / non-triviality / provable-compile / skeptic — SPEC-059-A §1). It does
+(absence / non-triviality / provable-compile / skeptic — SPEC-060-A §1). It does
 not re-run those gates; it records their verdicts into the backlog entry and
 makes the result Gate-B-clean.
 

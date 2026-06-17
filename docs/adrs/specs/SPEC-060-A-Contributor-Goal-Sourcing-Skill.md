@@ -1,6 +1,6 @@
-# SPEC-059-A: Contributor-Facing Goal-Sourcing Skill
+# SPEC-060-A: Contributor-Facing Goal-Sourcing Skill
 
-Implements: [ADR-059](../ADR-059-Contributor-Goal-Sourcing-Skill.md) · Status: Living · Updated: 2026-06-16
+Implements: [ADR-060](../ADR-060-Contributor-Goal-Sourcing-Skill.md) · Status: Living · Updated: 2026-06-16
 
 Three deliverables, each its own PR: (1) `Skills/unsorry-goal-sourcing/` (the
 skill), (2) `tools/sourcing/gen_triples.py` (the triple assembler), (3) a
@@ -29,7 +29,7 @@ sanctioned **hard-target** family (ADR-035).
 ## 2. Difficulty bar (skill-enforced; gate-unenforced)
 
 The `difficulty` field (0–5, SPEC-003-A) is self-tagged and not checked by any
-gate. The skill enforces ADR-059's maximum-difficulty mandate:
+gate. The skill enforces ADR-060's maximum-difficulty mandate:
 
 - Target **difficulty ≥ 3**; a sourced goal SHOULD carry **≥ 1 decomposition
   edge** in its backlog decomposition-sketch (a goal a contributor can see how to
@@ -143,7 +143,7 @@ Adds a mode that credits whoever **sourced** a goal, independent of proof credit
 - **Attribution source:** git add-author over `goals/*.aisp` (the earliest commit
   that added the file) — the same `git_add_authors()` mechanism the proof
   leaderboard already uses for historical attribution; reuse it, do not
-  reimplement. No `.aisp` schema change (ADR-059). Apply the existing
+  reimplement. No `.aisp` schema change (ADR-060). Apply the existing
   `docs/metrics/contributor-aliases.json` mapping.
 - **CLI:** `python3 -m tools.leaderboard --sourcing [<root>]` prints the sourcing
   leaderboard markdown; `--write` additionally emits

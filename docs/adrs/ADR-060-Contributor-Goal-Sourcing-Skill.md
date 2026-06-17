@@ -1,8 +1,8 @@
-# ADR-059: Contributor-Facing Goal-Sourcing Skill
+# ADR-060: Contributor-Facing Goal-Sourcing Skill
 
 | Field | Value |
 |-------|-------|
-| **Decision ID** | ADR-059 |
+| **Decision ID** | ADR-060 |
 | **Initiative** | contributor scale / problem supply |
 | **Proposed By** | unsorry maintainers |
 | **Date** | 2026-06-16 |
@@ -103,7 +103,7 @@ gates catch survivors); that sourcing credit via git add-author is approximate
 and that opening sourcing to the world at "ludicrous" scale should still wait on
 ADR-054 quota/abuse controls before the fork path is advertised broadly.
 
-## What the skill enforces (summary; full contract in SPEC-059-A)
+## What the skill enforces (summary; full contract in SPEC-060-A)
 
 1. **Scope** — source only theorems already proven and plausibly **absent** from
    the pinned mathlib; never open conjectures (ADR-012).
@@ -143,7 +143,7 @@ ADR-054 quota/abuse controls before the fork path is advertised broadly.
 
 | Reference ID | Title | Type | Location |
 |--------------|-------|------|----------|
-| REF-1 | Contributor goal-sourcing skill spec | Specification | specs/SPEC-059-A-Contributor-Goal-Sourcing-Skill.md |
+| REF-1 | Contributor goal-sourcing skill spec | Specification | specs/SPEC-060-A-Contributor-Goal-Sourcing-Skill.md |
 | REF-2 | Backlog Sourcing | Decision | ADR-012-Backlog-Sourcing.md |
 | REF-3 | Non-Trivial Theorem Enforcement | Decision | ADR-035-Non-Trivial-Theorem-Enforcement.md |
 | REF-4 | Identity Engine | Decision | ADR-043-Identity-Engine.md |

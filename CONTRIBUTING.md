@@ -156,7 +156,7 @@ line in its `backlog/<id>.md`.
 
 Filing one propose-target issue is the lightweight path. To **source many new targets
 yourself** — the "make the problems harder and generate more of them" work
-([ADR-059](docs/adrs/ADR-059-Contributor-Goal-Sourcing-Skill.md)) — use the
+([ADR-060](docs/adrs/ADR-060-Contributor-Goal-Sourcing-Skill.md)) — use the
 **`unsorry-goal-sourcing` skill**, which captures the whole workflow end to end.
 
 **How to use the skill.** The [`Skills/`](Skills/) directory packages the repo's

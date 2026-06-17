@@ -14,7 +14,7 @@ gates, and recorded as a three-file *triple*. You are filling the top of the
 funnel, not the bottom: you never write the proof here (that is
 `unsorry-proof-authoring`).
 
-The mandate (ADR-059, from #400): **harder problems, and many more of them** —
+The mandate (ADR-060, from #400): **harder problems, and many more of them** —
 without lowering the bar or colliding with other contributors. Difficulty is
 self-tagged and **not gate-enforced**, so *you* are the difficulty bar.
 
