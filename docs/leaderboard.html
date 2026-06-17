@@ -553,7 +553,10 @@
 
                 <div class="flex-grow flex items-center relative h-12 md:h-14 min-w-0">
                     <div class="h-8 md:h-10 bg-brand-blue rounded-r-3xl progress-bar-fill shadow-sm flex-shrink-0 max-w-full" style="width: 0%;" data-target-width="min(${Math.min(widthPercent, 100)}%, calc(100% - 6rem))"></div>
-                    <span class="text-brand-text font-bold text-sm md:text-base whitespace-nowrap ml-3 opacity-0 transition-opacity duration-500 delay-500">${formatNumber(goals)} sourced</span>
+                    <!-- On narrow viewports show just the count; the wider " sourced"
+                         label is restored from sm: up so it no longer overflows the
+                         bar area and gets clipped by the card (mobile UX fix). -->
+                    <span class="text-brand-text font-bold text-sm md:text-base whitespace-nowrap ml-3 opacity-0 transition-opacity duration-500 delay-500">${formatNumber(goals)}<span class="hidden sm:inline"> sourced</span></span>
                 </div>
             `;
             return row;
