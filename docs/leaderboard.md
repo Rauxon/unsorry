@@ -4,35 +4,35 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**535 verified proofs · 244 attributed · 291 historical/unknown · 516 logged terminal runs.**
+**536 verified proofs · 245 attributed · 291 historical/unknown · 517 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 197 |
+| Successful terminal runs | 198 |
 | Failed terminal runs | 319 |
 | Decomposed after failure | 18 |
 | Failed without decomposition | 301 |
-| Run success rate | 38.2% |
-| Provider attempts | 568 |
+| Run success rate | 38.3% |
+| Provider attempts | 569 |
 | Failed attempts | 371 |
-| Attempt yield | 34.7% |
+| Attempt yield | 34.8% |
 | Recorded run time | 98h 15m |
 | Median / p90 run time | 5m 24s / 31m 55s |
-| Verified successes per recorded hour | 2.00 |
-| Proofs with run telemetry | 197 (36.8%) |
+| Verified successes per recorded hour | 2.02 |
+| Proofs with run telemetry | 198 (36.9%) |
 
 ## Work Queue
 
-**774 goals · 138 archived · 3 blocked · 227 open · 397 proved · 9 translated.**
+**774 goals · 138 archived · 3 blocked · 226 open · 398 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 85 | 29 | 34.1% | 74 | 5m 24s |
-| 2 | 228 | 90 | 39.5% | 158 | 4m 51s |
+| 2 | 229 | 91 | 39.7% | 158 | 4m 50s |
 | 3 | 175 | 70 | 40.0% | 119 | 6m 11s |
 | 4 | 26 | 8 | 30.8% | 18 | 5m 53s |
 | 5 | 2 | 0 | 0.0% | 2 | 31m 25s |
@@ -60,7 +60,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
 | 1 | [@chat-bit-01](https://github.com/chat-bit-01) | 230 | 0 | 230 | 0 | — | 515 | 57250 |
 | 2 | [@cgbarlow](https://github.com/cgbarlow) | 118 | 71 | 47 | 310 | 18.7% | 212 | 24150 |
-| 3 | [@ohdearquant](https://github.com/ohdearquant) | 110 | 110 | 0 | 110 | 100.0% | 263 | 29050 |
+| 3 | [@ohdearquant](https://github.com/ohdearquant) | 111 | 111 | 0 | 111 | 100.0% | 265 | 29275 |
 | 4 | [@perttu](https://github.com/perttu) | 37 | 33 | 4 | 35 | 71.4% | 83 | 9225 |
 | 5 | [@ruvnet](https://github.com/ruvnet) | 21 | 21 | 0 | 0 | — | 55 | 6025 |
 | 6 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
@@ -71,9 +71,9 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 ## Attribution Notes
 
-**244 explicit solver credits · 291 inferred git credits · 0 uncredited proof records.**
+**245 explicit solver credits · 291 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 535 of 535 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 536 of 536 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -81,7 +81,7 @@ Git add-author attribution covers 535 of 535 proof index files. It is used only 
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
 | `claude / opus` | 56 | 53 | 90.6% | 19 | 5 | 4m 30s | 6.48 |
 | `claude / template-zmod-crt` | 41 | 41 | 100.0% | 0 | 1 | 0s | — |
-| `claude / template-sum-induction` | 28 | 28 | 100.0% | 0 | 1 | 0s | — |
+| `claude / template-sum-induction` | 29 | 29 | 100.0% | 0 | 1 | 0s | — |
 | `codex / unknown` | 24 | 80 | 22.5% | 90 | 3 | 7m 38s | 1.45 |
 | `openai / leanstral-2603` | 21 | 217 | 7.4% | 205 | 1 | 6m 30s | 0.30 |
 | `openrouter / unknown` | 21 | 0 | — | 0 | 1 | — | — |
@@ -106,6 +106,7 @@ Git add-author attribution covers 535 of 535 proof index files. It is used only 
 | `2026-06-17T00:20:47Z` | `sum-range-odd-mul-three-pow` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:20:38Z` | `sum-range-id-mul-three-pow-closed` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:20:31Z` | `sum-range-four-cube-diff-eq` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
+| `2026-06-17T00:20:26Z` | `sum-range-cube-diff-eq-cube` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:20:21Z` | `sum-quadruple-product-closed-form` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:20:19Z` | `sum-pentatope-triple-product` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:20:16Z` | `sum-pentagonal-pyramidal-closed-form` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
@@ -121,7 +122,6 @@ Git add-author attribution covers 535 of 535 proof index files. It is used only 
 | `2026-06-17T00:19:37Z` | `sum-even-squares-faulhaber` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:19:34Z` | `sum-even-index-triangular-closed-form` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:19:32Z` | `sum-even-cubes-eq-twice-square` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
-| `2026-06-17T00:19:30Z` | `sum-decagonal-second-kind-closed-form` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 
 ## Interpretation
 
