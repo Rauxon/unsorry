@@ -66,8 +66,13 @@ jobs:
         if: steps.tok.outputs.present == 'true'
         env:
           GH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
-          # One pass per scheduled run; the cron cadence is the loop, and the
-          # governor (open-PR + in-flight Gate A caps) bounds how many actually
-          # dispatch. Override the per-run cap via workflow_dispatch input.
+          # One pass per scheduled run, dispatching up to UNSORRY_DISPATCH_LIMIT
+          # branches (the cron cadence is the outer loop). UNSORRY_GOVERNOR_WAIT=0
+          # makes the agent run a single dispatch pass and exit instead of looping;
+          # the governor (open-PR + in-flight Gate A caps) still bounds how many
+          # actually dispatch. Override the per-run cap via workflow_dispatch input.
+          # NB: do NOT pass --once — it caps the pass to a single PR (documented
+          # behavior), which would silently defeat UNSORRY_DISPATCH_LIMIT.
           UNSORRY_DISPATCH_LIMIT: ${{ github.event.inputs.limit || '10' }}
-        run: ./swarm/agent.sh --dispatch-queue --once
+          UNSORRY_GOVERNOR_WAIT: "0"
+        run: ./swarm/agent.sh --dispatch-queue
