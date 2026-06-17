@@ -1,0 +1,8 @@
+𝔸5.1.run.sum-range-pascal-diagonal-eq-choose.beast-cccc.20260617t005816707500z-732b2720@2026-06-17
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260617t005816707500z-732b2720; goal≜sum-range-pascal-diagonal-eq-choose; agent≜beast-cccc; outcome≜proved}
+⟦Π:Provenance⟧{solver≜adam91holt; provider≜claude; model≜opus; effort≜xhigh}
+⟦Γ:Goal⟧{goal≜sum-range-pascal-diagonal-eq-choose}
+⟦Λ:Metrics⟧{attempts≜2; solve_s≜439; ended≜2026-06-17T00:58:16Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜ad8ab918c9f7e0b2e00af4c9e85aa0a858a17c58f507308655600edbe1aae22f}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
