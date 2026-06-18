@@ -4,8 +4,8 @@
   "pr_status_known": true,
   "summary": {
     "queued_submissions": 260,
-    "waiting": 220,
-    "in_flight": 40,
+    "waiting": 209,
+    "in_flight": 51,
     "distinct_goals": 255,
     "solvers": 6
   },
@@ -1140,8 +1140,8 @@
       "display_name": "@ohdearquant",
       "profile_url": "https://github.com/ohdearquant",
       "submissions": 100,
-      "waiting": 75,
-      "in_flight": 25,
+      "waiting": 64,
+      "in_flight": 36,
       "distinct_goals": 96,
       "queued": [
         {
@@ -1302,7 +1302,7 @@
           "sha": "a419fda5",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gfac-d3-c3",
@@ -1310,7 +1310,7 @@
           "sha": "3b7ac1c6",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gfac-d3-c4",
@@ -1318,7 +1318,7 @@
           "sha": "ff1fa77c",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "ggeom-pred-pow-eight-sub-one",
@@ -1326,7 +1326,7 @@
           "sha": "2c286a90",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "ggeom-pred-pow-eleven-sub-one",
@@ -1334,7 +1334,7 @@
           "sha": "477ef561",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "ggeom-pred-pow-five-sub-one",
@@ -1342,7 +1342,7 @@
           "sha": "0406f7a3",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "ggeom-pred-pow-four-sub-one",
@@ -1350,7 +1350,7 @@
           "sha": "91fe64b8",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "ggeom-pred-pow-nine-sub-one",
@@ -1358,7 +1358,7 @@
           "sha": "837d6e59",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "ggeom-pred-pow-seven-sub-one",
@@ -1366,7 +1366,7 @@
           "sha": "dfe23d69",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "ggeom-pred-pow-six-sub-one",
@@ -1374,7 +1374,7 @@
           "sha": "48a8ed29",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "ggeom-pred-pow-ten-sub-one",
@@ -1382,7 +1382,7 @@
           "sha": "8d3bdfd4",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "ggeom-pred-pow-three-sub-one",
