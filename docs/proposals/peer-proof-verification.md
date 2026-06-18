@@ -243,6 +243,8 @@ number of audited volunteer verifiers** instead of one operator's runner pool.
 | **Signing-credential theft** (malicious build reads the key and forges verdicts) | §5.2 detached signing — no key in the sandbox; supervisor signs the validated result bundle outside the untrusted job |
 | **Host compromise escalation** (one bad host → owner reputation / other hosts) | Per-host key; bounded blast radius (revoke that host's key only) |
 
+## 9. What already exists vs. what must be built
+
 **Reusable today:** kernel determinism + `leanchecker` (the anchor); ADR-048
 immutable-artifact/provenance + verify-once; ADR-002 pinning; ADR-018
 content-addressing; the ADR-003 AISP record *format* (for the verdict record);
