@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**210 open · 551 proved · 764 total prove-goals.**
+**210 open · 552 proved · 765 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -611,6 +611,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `quartic-sum-ge-abc-times-sum` — The sum of fourth powers of three reals dominates abc times their sum a+b+c. | proved | 2 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog. | The sum of fourth powers of three reals dominates abc times their sum a+b+c. Not a named mathlib lemma in this form. |
 | `quartic-x4-plus-64-dvd-by-x2-minus-4x-plus-8` — The quadratic x^2-4x+8 divides x^4+64 (Sophie-Germain factorization with b=2). | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The quadratic x^2-4x+8 divides x^4+64 (Sophie-Germain factorization with b=2). Not a named mathlib lemma in this form. |
 | `recip-succ-lt-recip` — For n ≥ 1, 1/(n+1) < 1/n over ℝ — the harmonic sequence is strictly decreasing. | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For n ≥ 1, 1/(n+1) < 1/n over ℝ — the harmonic sequence is strictly decreasing. Not a named mathlib lemma in this concrete form. |
+| `self-dvd-cube-add-square` — n divides n cubed plus n squared. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n divides n cubed plus n squared. Provable by exhibiting the cofactor and `ring`. |
 | `shifted-sophie-germain-x4-plus-4-dvd-by-x2-plus-2x-plus-2` — The quadratic x^2+2x+2 divides x^4+4 (one Sophie-Germain factor at b=1). | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The quadratic x^2+2x+2 divides x^4+4 (one Sophie-Germain factor at b=1). Not a named mathlib lemma in this form. |
 | `shifted-sum-sq-ge-twice-sum-three-var` — Each variable's square plus one dominates twice the variable, summed over three variables. | proved | 2 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | Each variable's square plus one dominates twice the variable, summed over three variables. Not a named mathlib lemma in this form. |
 | `six-dvd-n-mul-succ-mul-two-n-add-one` — 6 divides n(n+1)(2n+1) for every integer n (the numerator of ∑k²). | proved | 2 | — | #400 Identity Engine (ADR-043) — divisibility family. | 6 divides n(n+1)(2n+1) for every integer n (the numerator of ∑k²). Not a named mathlib lemma in this form. |
