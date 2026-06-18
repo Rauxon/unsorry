@@ -112,7 +112,9 @@ These compose. None alone is sufficient; together they make a peer verdict
 *economically and probabilistically* as good as a central one — while *never*
 weakening the absolute backstop (the kernel re-check that anyone can perform).
 
-## 5. The soundness invariant a peer verifier MUST honour
+## 5. The invariants a peer verifier MUST honour: soundness *and* host safety
+
+### 5.1 Soundness invariant
 
 From ADR-049 / ADR-011 (the load-bearing rules a distributed verifier cannot relax):
 
@@ -128,16 +130,36 @@ From ADR-049 / ADR-011 (the load-bearing rules a distributed verifier cannot rel
   `leanchecker`. (This is exactly what Gate A does; a peer is "Gate A on someone
   else's machine".)
 
+### 5.2 Host-safety invariant — the candidate is hostile input
+
+A volunteer runs **untrusted proof/build code on their own machine**, so the work
+unit is an attack surface, not just something to check. A malicious candidate can
+try to exhaust CPU/RAM/disk, abuse the network, or steal the verifier's signing
+credential. The verifier-host contract:
+
+- **Sandboxed build** — run the check in a disposable, network-policied
+  container/VM with a clean worktree and hard CPU / memory / disk / wall-clock
+  limits. A candidate that exhausts resources or abuses the network is *contained*,
+  and the verdict is `error`/`inconclusive`, never a host compromise.
+- **No secrets in the sandbox** — the build environment holds **no** signing key,
+  token, or credential.
+- **Detached signing** — the sandbox emits only a deterministic *result bundle*
+  (verdict + context hashes + logs). A **supervisor outside the sandbox** validates
+  the bundle's paths/context and signs it. The untrusted job can never sign,
+  exfiltrate a key, or forge a verdict (see §9, item 2).
+- **Bounded blast radius** — a host compromise must not escalate beyond revoking
+  that host's key; it must not implicate the owner's reputation or other hosts.
+
 So a "peer verification" is precisely **ADR-049's decentralised runner, run by a
-volunteer, plus an integrity layer (audit + reputation) that lets its verdict
-count without being blindly trusted.**
+volunteer, in a sandbox with detached signing, plus an integrity layer (audit +
+reputation) that lets its verdict count without being blindly trusted.**
 
 ## 6. Design options
 
 | Option | What | Capacity win | Soundness | Verdict |
 |---|---|---|---|---|
 | **A. Advisory peer pre-check + central gate** | Peers verify to filter/cache; the central kernel still gates every merge | None (central still gates) | Absolute (status quo) | Safe, but doesn't solve the bottleneck |
-| **B. Optimistic audited re-verification** | Peers run the full check, sign a verdict; accept on a sufficiently-trusted verdict; central **spot-audits a random sample**; slash provable lies | **High** — most proofs never touch central | Absolute-by-reproducibility + probabilistic-by-audit | **Recommended core** |
+| **B. Optimistic audited re-verification** | Peers run the full check, sign a verdict; accept on a sufficiently-trusted verdict; central **spot-audits a random sample**; slash provable lies | **High** — most proofs never touch central | Absolute-by-reproducibility + probabilistic-by-audit | **Recommended *future* core — requires a superseding ADR (§1)** |
 | **C. K-independent agreement** | K independent peers verify the same artifact; accept on unanimous (deterministic) agreement; any disagreement → escalate to central | Medium (K× cost) | Strong detection, needs real independence | Good complement to B for high-risk items |
 | **D. BFT / N-of-M consensus** | Quorum vote decides acceptance | High | **Unsound for Lean** (gameable poll, ADR-049) | Rejected |
 
@@ -216,8 +238,10 @@ number of audited volunteer verifiers** instead of one operator's runner pool.
 | **Reputation farming** (self-verify own proofs to climb tiers) | Verifier ≠ prover separation for reputation credit; audit; cross-owner corroboration |
 | **Toolchain mismatch** (verdict under a different toolchain) | Pinned context hashes in the verdict; verdict invalid if context hash ≠ artifact's |
 | **Grinding** (retry until a lie slips audit) | Slashing on first catch makes expected value negative; low audit-survival probability over many attempts |
-
-## 9. What already exists vs. what must be built
+| **Hostile candidate → resource exhaustion** (CPU/RAM/disk/wall bomb on the verifier host) | §5.2 sandbox with hard resource + wall-clock limits; over-limit ⇒ verdict `error`, host unharmed |
+| **Hostile candidate → network abuse** (build phones home / attacks third parties) | §5.2 network-policied sandbox (egress denied/allowlisted) |
+| **Signing-credential theft** (malicious build reads the key and forges verdicts) | §5.2 detached signing — no key in the sandbox; supervisor signs the validated result bundle outside the untrusted job |
+| **Host compromise escalation** (one bad host → owner reputation / other hosts) | Per-host key; bounded blast radius (revoke that host's key only) |
 
 **Reusable today:** kernel determinism + `leanchecker` (the anchor); ADR-048
 immutable-artifact/provenance + verify-once; ADR-002 pinning; ADR-018
@@ -231,11 +255,18 @@ verdict intake — see §7.3.)
    unbuilt), extended with a **verifier ledger** (audit-agreement, false-accept,
    false-reject, independence, revocation — §7.6) kept *separate* from solver
    provenance. *Hard prerequisite.* Without it, nothing here is safe.
-2. **Signed verdicts** — extend ADR-052 evidence with verifier identity, context
-   hashes, and a signature; key management (GitHub-account-bound or PAT-signed, or
-   minimal PKI).
-3. **Decentralised verifier worker** — ADR-049 (Accepted, Phase 1 not pursued):
-   the volunteer "Gate A on your machine" honouring §5.
+2. **Signed verdicts + detached signing** (§5.2) — extend ADR-052 evidence with
+   verifier identity, context hashes, and a signature. **Detached signing is
+   mandatory:** the untrusted build sandbox emits a deterministic *result bundle*
+   only; a supervisor *outside* the sandbox validates the bundle's paths/context and
+   signs it, so the signing key is never reachable by candidate code. A PAT is **not**
+   a signing primitive (it is a coarse bearer credential and must never sit inside a
+   build job) — use a dedicated per-host signing key (or a minimal verifier PKI / a
+   GitHub App attestation), held only by the supervisor and per-host revocable.
+3. **Sandboxed decentralised verifier worker** — ADR-049 (Accepted, Phase 1 not
+   pursued): the volunteer "Gate A on your machine" honouring **both** §5.1
+   (soundness) and §5.2 (host isolation: disposable sandbox, resource + network
+   limits, no secrets inside).
 4. **Risk-tiered audit + challenge + rollback** — *new*: per-tier/per-impact audit
    policy, random sampler, counter-verdict/challenge handling, auto-revert/freeze,
    slashing with an appeal/repro path. This is the integrity core and the main novel
