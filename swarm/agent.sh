@@ -1890,6 +1890,24 @@ claim_goal() {
     git -C "$CLAIMS_WT" add "$file" || break
     git -C "$CLAIMS_WT" commit -q -m "claim: $goal $AGENT_ID" || break
     if git -C "$CLAIMS_WT" push -q origin claims 2>/dev/null; then
+      # ADR-072: post-SUCCESS recheck. Claim files are per-agent
+      # (claims/<goal>.<agent>.aisp), so a rival's claim lands as a CLEAN
+      # fast-forward — no push rejection — whenever our base already contained it
+      # (we fetched after they pushed). The only recheck above runs on rejection,
+      # so two agents whose claims both pushed cleanly would BOTH prove the goal:
+      # the prove-time race that creates the sibling branches behind the
+      # post-ADR-064 duplicates. Re-fetch and re-apply the per-mode cap; if other
+      # agents now meet it, withdraw. Conservative: a tight tie can make both
+      # withdraw and the goal is re-selected next cycle — never two provers on one
+      # goal. Best-effort: a failed re-fetch leaves the claim (TTL/Gate-B catch it).
+      if git -C "$CLAIMS_WT" fetch -q origin claims 2>/dev/null \
+        && git -C "$CLAIMS_WT" reset --hard -q origin/claims \
+        && ! py_helper "$recheck" "$CLAIMS_WT/claims" "$goal" "$AGENT_ID"; then
+        release_claim "$goal" || true
+        emit_event collision "$goal"
+        log "lost $goal on post-claim recheck — withdrawing"
+        return 1
+      fi
       emit_event claimed "$goal"
       log "claimed $goal (attempt $attempt)"
       return 0
@@ -3939,6 +3957,38 @@ test_release_push_reentrancy() {
 # (claim filenames are per-agent — first-push-wins never collides on path).
 # Prove mode must withdraw (SPEC-007-A prove step 4: PROVE_CLAIM_CAP, cap 1);
 # translate mode must still claim (TRANSLATE_CLAIM_CAP, cap 2).
+test_claim_post_success_recheck() {
+  # ADR-072: when a rival's per-agent claim is already in our base, our own claim
+  # pushes as a CLEAN fast-forward (no rejection) — the on-rejection recheck never
+  # runs. The post-SUCCESS recheck must then catch the rival and withdraw, so two
+  # agents never both prove one goal.
+  local AGENT_ID=agent-self UNSORRY_WORKDIR UNSORRY_TTL CLAIMS_WT PROVE FORK_MODE=0
+  local tmp ttl now_ts
+  tmp="$(mktemp -d "$SESSION_TMP/postrecheck.XXXXXX")" || return 1
+  ttl="$(py_helper ttl)" || return 1
+  UNSORRY_WORKDIR="$tmp" UNSORRY_TTL="$ttl" CLAIMS_WT="$tmp/clone"
+  make_claims_fixture "$tmp" "$ttl" || { log "  fixture setup failed"; return 1; }
+  now_ts="$(py_helper now)" || return 1
+  # Live rival claim on origin AND synced into our worktree → our push is a clean
+  # fast-forward that succeeds without rejection.
+  advance_claims_remote "$tmp" "$ttl" nat-add-comm "$now_ts" \
+    || { log "  fixture advance failed"; return 1; }
+  git -C "$CLAIMS_WT" fetch -q origin claims || return 1
+  git -C "$CLAIMS_WT" reset --hard -q origin/claims || return 1
+  PROVE=1
+  if claim_goal nat-add-comm; then
+    log "  post-success recheck did not withdraw on a live rival (clean-ff race)"
+    return 1
+  fi
+  if git -C "$tmp/origin.git" ls-tree -r --name-only claims \
+    | grep -qx "claims/nat-add-comm.agent-self.aisp"; then
+    log "  withdrawn claim still on origin/claims after clean-ff race"
+    return 1
+  fi
+  grep -q '"event": "collision", "goal": "nat-add-comm"' "$tmp/metrics.jsonl" \
+    || { log "  no collision event on post-success withdrawal"; return 1; }
+}
+
 test_claim_recheck_prove_cap() {
   local AGENT_ID=agent-self UNSORRY_WORKDIR UNSORRY_TTL CLAIMS_WT PROVE
   local tmp ttl now_ts
@@ -5164,6 +5214,7 @@ run_self_tests() {
     test_claim_push_reentrancy
     test_release_push_reentrancy
     test_claim_recheck_prove_cap
+    test_claim_post_success_recheck
     test_camel_name
     test_lean_statement_helpers
     test_lean_sha_determinism
