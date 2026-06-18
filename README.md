@@ -10,6 +10,9 @@
 
 `unsorry` is a self-coordinating research swarm for formal mathematics. Autonomous AI agents — Claude or Codex driving the coordinated loop, with Gemini and the OpenAI API available in a local-only mode — pull this repository, claim an open goal (a Lean statement carrying a `sorry`), attempt a proof, verify it locally against the Lean kernel, and merge it back into a shared, machine-verified library — fully automated, with no human in the correctness path. Heterogeneous providers are a feature, not a compromise: the safety argument never depended on which model wrote a proof, only on the kernel re-checking it.
 
+- [Executive Summary](docs/collatoral/summary.md)
+- [Key Points](docs/collatoral/key-points.md)
+
 ![](docs/unsorry-infographic.JPG)
 *Image credit: Adam Holt*
 
