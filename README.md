@@ -19,7 +19,7 @@ Check out the proofs the team has delivered so far: [Proof graph](docs/proofs-co
 [![Unsorry proof graph](docs/proof-graph.svg)](docs/proofs-contributors-visualisation.html)
 
 ### 10 days of madness: 'Tell me a Fable' - The story of unsorry
-<img width="918" height="514" alt="image" src="https://github.com/user-attachments/assets/d5157f74-0556-4f36-a607-b8e79c4b26b1)>
+![](https://github.com/user-attachments/assets/d5157f74-0556-4f36-a607-b8e79c4b26b1)
 
 - [YouTube](https://youtu.be/Lr6Io2A07N8?t=1612&si=dNVLumJzvW2RWBq5)
 - [Slides](https://docs.google.com/presentation/d/19dUOSOp0UoE5pV6tBaTtPdXaA50JQ2ev17Z_N5RjZ2c/edit?usp=drivesdk)
