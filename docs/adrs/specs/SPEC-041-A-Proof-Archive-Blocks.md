@@ -224,4 +224,10 @@ between cuts. Two implications:
   `lake-manifest.json` / `archive-manifest.json`. Seed/translate goals with `lean≜∅` (e.g.
   `Unsorry.Basic`) are skipped — they are not archivable proof modules. The tool deliberately does
   **not** run git or open the PR: validate per §8 step 5, then open the retire PR by hand. The
-  scheduled/threshold auto-trigger remains future work.
+  scheduled/threshold auto-trigger is implemented by `tools/archive/auto_cut.sh` +
+  the `auto-archive` workflow (hourly + `workflow_dispatch`): when active
+  proved-not-archived ≥ a ceiling (default 40) and no archive PR is open, it cuts
+  one block, validates (Gate B active + package, ADR-018 immutability, zero-docs),
+  and opens an auto-merge retire PR. Bounding the active set this way keeps Gate A
+  full-replay / `lake build --wfail` under memory — the durable fix for the
+  exit-137 OOM on a high proof-inflow repo.
