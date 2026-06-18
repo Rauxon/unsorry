@@ -367,6 +367,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-17",
+      "difficulty": 4,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "35dc5cd94ae9f0f1d91aee48ea6327e0a2531a85",
+      "git_add_date": "2026-06-18",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "prod-pair-sums-ge-eight-ninths-sum-prod",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/1e94fa89cc4650ab33a99bf0bd79f57ae56b72325260073157b067cf23317dce.aisp",
+      "review_status": "candidate",
+      "sha": "1e94fa89cc4650ab33a99bf0bd79f57ae56b72325260073157b067cf23317dce"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-15",
       "difficulty": 1,
       "display_name": "Chris Barlow",
@@ -4404,9 +4419,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 293,
-    "mapped_missing_solver": 293,
-    "missing_solver_provenance": 293,
+    "git_attributed_missing_solver": 294,
+    "mapped_missing_solver": 294,
+    "missing_solver_provenance": 294,
     "unmapped_missing_solver": 0
   }
 }
