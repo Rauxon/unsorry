@@ -16,8 +16,26 @@ Today every proof is verified by one trusted central pipeline (Gate A on
 namespace.so runners). This whole week's operational pain — saturation, cancelled
 Gate A jobs, the in-flight cap — is **central verifier capacity** being the binding
 constraint. "Let peers verify each other's proofs" is, at root, a proposal to
-**scale verification past one operator's runners**. So the real goal is *capacity*,
-and any design must keep *soundness* at least as strong as today.
+**scale verification past one operator's runners**. The goal is *capacity*.
+
+**Soundness framing (important, and a correction to an earlier draft of this
+study).** This proposal spans two regimes that must not be conflated:
+
+- **Advisory peer verification** keeps the current soundness contract *unchanged*:
+  the central re-check stays the sole merge-admitting gate (SPEC-049-A §2), peers
+  only pre-filter/cache. This is "at least as strong as today."
+- **Optimistic acceptance** (admitting a proof on a trusted peer verdict *without*
+  central re-check, §7) is **not** a compatible extension — it deliberately
+  **supersedes** the current absolute-central-gate policy, trading *absolute*
+  soundness for *absolute-by-reproducibility + probabilistic-by-audit*. Adopting it
+  requires a future ADR that consciously **supersedes ADR-049 / ADR-052's
+  current merge-admission rule**, with the risk explicitly accepted. It is **not**
+  "soundness at least as strong as today," and this study should not be read as
+  claiming so.
+
+The phased rollout (§10) is built around this split: ship the advisory regime
+under today's policy; only enter the optimistic regime behind an explicit
+superseding ADR.
 
 ## 2. The property everything hinges on: Lean verification is deterministic and reproducible
 
@@ -78,6 +96,11 @@ The only sound answers are:
 2. **Random audit** — the trusted tier re-runs a sampled fraction *f* of peer
    verdicts. A peer that lies on fraction *p* of its work is caught with
    probability ~`1-(1-f)^(p·n)` over *n* verdicts → caught fast unless *p* is tiny.
+   *Caveat:* random audit is **deterrence**, not a pre-merge bound — a single
+   high-value malicious acceptance still survives with probability `1-f` until
+   audited. Bounding that risk *before* merge needs the risk-tiered acceptance
+   policy in §7.4 (high-impact and trial-tier verdicts get 100% audit), not just a
+   uniform sample.
 3. **Redundancy with independence** — K independent peers verify the same artifact;
    because the function is deterministic, honest peers *always* agree, so any
    disagreement flags a liar/broken-env. But "independence" must be real (Sybil
@@ -129,23 +152,48 @@ A layered **"trust-by-reproducibility, capacity-by-audit"** model:
    the full sound check (§5), emits a **signed VerificationEvidence** record
    (ADR-052 schema, *extended* with: verifier identity, verifier public key /
    signature, toolchain+mathlib hashes, artifact hash, verdict, logs link).
-3. **Coordination via a `verdicts/` branch** (reuse ADR-003 AISP + ADR-004
-   first-push-wins): peers publish verdict records the way agents publish claims —
-   git-native, no central service.
-4. **Acceptance policy by verifier trust tier** (ADR-054):
-   - `trusted`-tier verifier's signed verdict → admits (subject to audit).
-   - `trial`-tier verdict → requires **corroboration**: a second *independent*
-     verdict (Option C) or a central audit, before merge.
-   - Tiers are *earned* from a history of audited-correct verdicts.
-5. **Random audit + slashing** (new mechanism): the trusted/central tier re-runs a
-   random sample of peer verdicts. Because the check is deterministic, an honest
-   verdict *always* matches; a mismatch → slash the verifier's reputation/tier,
-   re-verify the artifact, and alert. Audit rate *f* is the tunable soundness/cost
-   dial.
-6. **Sybil resistance** (ADR-054, the hard prerequisite): identities bound to an
-   accountable owner; reputation *derived* from merged `⟦Π:Provenance⟧` (ADR-023);
-   only *independent* identities count toward corroboration/quorum. Without this,
-   Options B/C collapse (one owner = many "independent" verifiers).
+3. **Scalable verdict intake** — *not* a central first-push-wins branch. Verdicts
+   will be higher-volume than claims, and untrusted peers/forks have no central
+   write access, so a single `claims`-style git branch (ADR-004) would reproduce
+   exactly the central-contention/scaling failure this study is trying to escape.
+   Intake must use an **ADR-053-style pluggable substrate** (sharded refs, an
+   append-only log, or an API/queue-backed intake) that accepts verdicts from
+   write-less peers and absorbs volume. The AISP record *format* (ADR-003) is
+   reusable; the central-branch *transport* is not.
+4. **Risk-tiered acceptance + audit policy** (verifier tier × artifact impact).
+   Random audit alone is deterrence, not a pre-merge bound — a single high-value
+   malicious acceptance survives with probability 1−*f* until audited. So acceptance
+   is gated *before* merge by both the verifier's tier and the artifact's impact:
+   - **trial-tier verifiers → 100% audited** (every verdict re-checked, or
+     corroborated by an independent verdict, before merge).
+   - **high-impact artifacts** (library entries many proofs import; toolchain/infra-
+     adjacent) → **100% central audit**, regardless of verifier tier.
+   - **trusted-tier verdicts on ordinary artifacts** → admit *provisionally* under
+     random audit rate *f*, with a defined challenge/audit **SLA** and automatic
+     **revert/freeze** if the artifact stays unverified past the SLA or fails audit.
+   Tiers are earned from audited-correct *verification* history (item 6), never from
+   prover output.
+5. **Audit, challenge & rollback operations** (new mechanism): the trusted/central
+   tier re-runs the sampled/required fraction; because the check is deterministic an
+   honest verdict *always* matches, so any mismatch is a provable lie → slash the
+   verifier's verification reputation/tier, **auto-revert/quarantine** the artifact,
+   and alert. The audit rate *f*, the per-tier/per-impact audit requirement, and the
+   revert SLA together are the soundness/cost dial. A false audit (a verifier's
+   broken environment vs. a genuine lie) must be appealable via a reproduction path
+   before slashing is final.
+6. **Sybil resistance + verifier-specific reputation** (ADR-054, the hard
+   prerequisite) — two distinct things an earlier draft wrongly conflated:
+   - **Sybil resistance**: identities bound to an accountable owner; only
+     *independent owners* count toward corroboration/quorum (one owner = one weight,
+     however many agent IDs). Without this, Options B/C collapse.
+   - **Verifier reputation must be earned from audited VERIFICATION, not solver
+     provenance.** A good *prover* is no evidence of an honest *verifier*. Trust
+     comes from the verifier's own audited record — audit-agreement rate,
+     false-accept / false-reject history, independence, and revocation events — a
+     **separate ledger** from the `⟦Π:Provenance⟧` solver attribution (ADR-023).
+     Deriving verifier trust from merged proofs (as an earlier draft did) would let
+     a prolific prover become a "trusted verifier" without ever proving it verifies
+     honestly.
 7. **Backstops (unchanged)**: scheduled full re-replay (ADR-048) and an open
    **challenge** path — anyone may re-run any artifact and publish a counter-verdict;
    a valid challenge forces re-verification and fix-forward. The kernel remains the
@@ -173,35 +221,47 @@ number of audited volunteer verifiers** instead of one operator's runner pool.
 
 **Reusable today:** kernel determinism + `leanchecker` (the anchor); ADR-048
 immutable-artifact/provenance + verify-once; ADR-002 pinning; ADR-018
-content-addressing; ADR-003/004 AISP + first-push-wins coordination; ADR-052
-evidence schema (centralised form); ADR-049 decentralised-runner soundness rules.
+content-addressing; the ADR-003 AISP record *format* (for the verdict record);
+ADR-052 evidence schema (centralised form); ADR-049 decentralised-runner soundness
+rules. (ADR-004's *central first-push-wins branch transport* is **not** reusable for
+verdict intake — see §7.3.)
 
 **Must be built (mapped to ADRs):**
-1. **Sybil-resistant identity + reputation** — ADR-054 (Proposed, unbuilt). *Hard
-   prerequisite.* Without it, nothing here is safe.
+1. **Sybil-resistant identity + verifier-specific reputation** — ADR-054 (Proposed,
+   unbuilt), extended with a **verifier ledger** (audit-agreement, false-accept,
+   false-reject, independence, revocation — §7.6) kept *separate* from solver
+   provenance. *Hard prerequisite.* Without it, nothing here is safe.
 2. **Signed verdicts** — extend ADR-052 evidence with verifier identity, context
    hashes, and a signature; key management (GitHub-account-bound or PAT-signed, or
    minimal PKI).
 3. **Decentralised verifier worker** — ADR-049 (Accepted, Phase 1 not pursued):
    the volunteer "Gate A on your machine" honouring §5.
-4. **Audit + challenge + slashing** — *new*: random re-verification sampler,
-   counter-verdict/challenge handling, reputation penalties. This is the integrity
-   core and the main novel work.
-5. **`verdicts/` coordination branch** — small, reuses ADR-003/004.
+4. **Risk-tiered audit + challenge + rollback** — *new*: per-tier/per-impact audit
+   policy, random sampler, counter-verdict/challenge handling, auto-revert/freeze,
+   slashing with an appeal/repro path. This is the integrity core and the main novel
+   work.
+5. **Scalable verdict intake** — an ADR-053-style pluggable substrate or API/queue
+   intake (§7.3), *not* a central first-push-wins branch (which would re-create the
+   contention this study is trying to escape, and excludes write-less peers/forks).
 
 ## 10. Phased rollout
 
-1. **Phase 0 — Advisory (Option A).** Peers run the full check and publish *signed
-   verdicts* on `verdicts/`, but the central kernel still gates every merge. Zero
-   soundness risk; builds the verdict schema, signing, and a corpus of
-   peer-vs-central agreement data to *measure* honesty before trusting it.
-2. **Phase 1 — Audited trusted-tier.** Promote verifiers to `trusted` from
-   audited-correct history (ADR-054). A `trusted` verdict admits a proof *without*
-   central re-check, with random audit rate *f*. Capacity starts scaling. Requires
-   ADR-054 + audit/slashing.
+1. **Phase 0 — Advisory (Option A), under today's policy.** Peers run the full check
+   and publish *signed verdicts* into the verdict substrate (§7.3), but the central
+   kernel still gates every merge. **Soundness unchanged** (current ADR-049 rule
+   holds). Builds the verdict schema, signing, the verifier ledger, and a corpus of
+   peer-vs-central agreement data to *measure* honesty before trusting it. No new
+   ADR needed.
+2. **Phase 1 — Audited trusted-tier (REQUIRES A SUPERSEDING ADR).** This is the
+   regime that *changes* the soundness policy (§1): a `trusted` verdict admits a
+   proof *without* central re-check, under the §7.4 risk-tiered audit (trial = 100%
+   audit; high-impact = 100% central; trusted/ordinary = provisional at rate *f*
+   with a revert SLA). Must be gated behind an explicit ADR that supersedes
+   ADR-049/052's merge-admission rule and accepts the absolute→probabilistic trade.
+   Requires ADR-054 (incl. the verifier ledger) + the audit/rollback core.
 3. **Phase 2 — Corroboration for trial tier (Option C).** New/low-rep verifiers'
-   verdicts admit only with an independent second verdict; widens the verifier pool
-   safely.
+   verdicts admit only with an independent *(distinct-owner)* second verdict; widens
+   the verifier pool safely.
 4. **Phase 3 — Tune.** Lower *f*, raise tiers, as measured honesty justifies; keep
    the scheduled full re-replay and challenge path as permanent backstops.
 
@@ -211,17 +271,23 @@ evidence schema (centralised form); ADR-049 decentralised-runner soundness rules
   kernel is ground truth; a vote can only weaken it. Do not build Option D.
 - **For capacity (the actual problem), peer verification is viable** — but *only* as
   Option B/C: reproducible re-verification, audited, Sybil-gated. It is essentially
-  **ADR-049 (decentralised runner) + ADR-054 (Sybil-resistant reputation) + a new
-  audit/slashing layer + signed ADR-052 evidence.** That is a substantial,
-  multi-ADR build, and it trades *absolute* soundness for *absolute-by-
-  reproducibility + probabilistic-by-audit* (a defensible trade, since the kernel
-  backstop and challenge path keep any error detectable and reversible).
-- **Cheaper near-term alternative worth weighing first:** the central verifier is
-  already sharded and embarrassingly parallel (ADR-063). Much of the desired
-  capacity win is obtainable by running *that* across more (even volunteer)
-  machines with **spot-audit** — i.e. Option A→B *without* full peer autonomy. If
-  the goal is purely throughput, "audited decentralised runners" may deliver most
-  of the benefit at a fraction of the trust-machinery cost.
+  **ADR-049 (decentralised runner) + ADR-054 (Sybil-resistant identity + verifier
+  ledger) + a new risk-tiered audit/rollback layer + signed ADR-052 evidence.** That
+  is a substantial, multi-ADR build, and it trades *absolute* soundness for
+  *absolute-by-reproducibility + probabilistic-by-audit* — a **conscious
+  supersession** of ADR-049/052's current merge-admission rule (§1), to be made in an
+  explicit ADR, not a silent extension. The trade is defensible (the kernel backstop
+  and challenge path keep any error detectable and reversible), but it *is* a change
+  to the soundness policy.
+- **Cheaper near-term alternative worth weighing first:** the central verifier's
+  kernel replay is sharded and embarrassingly parallel *by design* (ADR-063 — the
+  tooling has landed but it is still **Proposed/pilot**: behind the non-required
+  `gate-a-shard-pilot` workflow, not yet promoted into the required gate). Once
+  promoted, much of the desired capacity win is obtainable by running *that* across
+  more (even volunteer) machines with **spot-audit** — i.e. Option A→B *without*
+  full peer autonomy. If the goal is purely throughput, "audited decentralised
+  runners" may deliver most of the benefit at a fraction of the trust-machinery
+  cost.
 - **Prerequisite gate:** none of B/C is safe until **ADR-054 (identity / Sybil /
   reputation)** is built. That should be the first concrete step regardless of how
   far toward peer verification we go.
