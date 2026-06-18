@@ -1,4 +1,5 @@
 # unsorry - Key Points
+[Home](/) | [Executive Summary](docs/collatoral/summary.md)
 
 ## Summary
 This project explores the development of autonomous, agentic systems capable of executing complex, multi-step engineering and research tasks through iterative, self-correcting loops. Unsorry is a crowdsourced, distributed platform that leverages LLMs and GitHub-based infrastructure to solve formal mathematical proofs in Lean. By utilizing a "loop" methodology—where agents create, verify, and refine artifacts—the project demonstrates how decentralized AI swarms can achieve high-volume productivity and collaborative research, effectively creating a modern, AI-driven equivalent to the SETI@home distributed computing model.
