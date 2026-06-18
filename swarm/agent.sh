@@ -176,7 +176,7 @@ Environment:
                     already exist (default: 40; set -1 to disable this limit)
   UNSORRY_MAX_GATE_A_IN_FLIGHT
                     Pause coordinated --prove when queued + in-progress Gate A
-                    workflow runs reach this count (default: 20; set -1 to
+                    workflow runs reach this count (default: 8; set -1 to
                     disable this limit)
   UNSORRY_GOVERNOR_SCAN_LIMIT
                     Max PR/runs rows fetched per governor query (default: 200)
@@ -5518,7 +5518,7 @@ main() {
     UNSORRY_SUBMISSION_GOVERNOR="${UNSORRY_SUBMISSION_GOVERNOR:-1}"
     UNSORRY_SUBMISSION_FREEZE="${UNSORRY_SUBMISSION_FREEZE:-0}"
     UNSORRY_MAX_OPEN_PROVE_PRS="${UNSORRY_MAX_OPEN_PROVE_PRS:-40}"
-    UNSORRY_MAX_GATE_A_IN_FLIGHT="${UNSORRY_MAX_GATE_A_IN_FLIGHT:-20}"
+    UNSORRY_MAX_GATE_A_IN_FLIGHT="${UNSORRY_MAX_GATE_A_IN_FLIGHT:-8}"
     UNSORRY_GOVERNOR_SCAN_LIMIT="${UNSORRY_GOVERNOR_SCAN_LIMIT:-200}"
     UNSORRY_DISPATCH_LIMIT="${UNSORRY_DISPATCH_LIMIT:-1}"
     UNSORRY_GOVERNOR_WAIT="${UNSORRY_GOVERNOR_WAIT:-300}"
@@ -5672,7 +5672,7 @@ main() {
   UNSORRY_SUBMISSION_FREEZE="${UNSORRY_SUBMISSION_FREEZE:-0}"
   UNSORRY_SUBMIT_MODE="${UNSORRY_SUBMIT_MODE:-queue}"
   UNSORRY_MAX_OPEN_PROVE_PRS="${UNSORRY_MAX_OPEN_PROVE_PRS:-40}"
-  UNSORRY_MAX_GATE_A_IN_FLIGHT="${UNSORRY_MAX_GATE_A_IN_FLIGHT:-20}"
+  UNSORRY_MAX_GATE_A_IN_FLIGHT="${UNSORRY_MAX_GATE_A_IN_FLIGHT:-8}"
   UNSORRY_GOVERNOR_SCAN_LIMIT="${UNSORRY_GOVERNOR_SCAN_LIMIT:-200}"
   UNSORRY_GOVERNOR_WAIT="${UNSORRY_GOVERNOR_WAIT:-300}"
   case "$UNSORRY_SUBMISSION_GOVERNOR" in
