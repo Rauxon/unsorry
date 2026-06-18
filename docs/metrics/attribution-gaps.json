@@ -2482,6 +2482,21 @@
     },
     {
       "alias_mapped": true,
+      "date": "2026-06-17",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "6bfb9e08348b4bd28b6d6624c5729137cccd8135",
+      "git_add_date": "2026-06-18",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-cubes-sq-le-three-sum-sixth",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/de56eb0dac771d8607508c5e7bc7f14dd22ac2e62ec3d6296375dcc4b7a1bd28.aisp",
+      "review_status": "candidate",
+      "sha": "de56eb0dac771d8607508c5e7bc7f14dd22ac2e62ec3d6296375dcc4b7a1bd28"
+    },
+    {
+      "alias_mapped": true,
       "date": "2026-06-16",
       "difficulty": 3,
       "display_name": "chat-bit-01",
@@ -2824,6 +2839,21 @@
       "path": "library/index/f9ba13f815dd066a6117269945869375d550f70050bd09decf1e287dfd1f6b2d.aisp",
       "review_status": "candidate",
       "sha": "f9ba13f815dd066a6117269945869375d550f70050bd09decf1e287dfd1f6b2d"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-17",
+      "difficulty": 3,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "3622974defff807aa1b2276e8c43dfbfb57a85d9",
+      "git_add_date": "2026-06-18",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-nonagonal-closed-form",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/fb7c8318cd42ce44586fe8c4dfebfd4c8b220d78f4156fe763fc6e9bf1177834.aisp",
+      "review_status": "candidate",
+      "sha": "fb7c8318cd42ce44586fe8c4dfebfd4c8b220d78f4156fe763fc6e9bf1177834"
     },
     {
       "alias_mapped": true,
@@ -4449,9 +4479,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 296,
-    "mapped_missing_solver": 296,
-    "missing_solver_provenance": 296,
+    "git_attributed_missing_solver": 298,
+    "mapped_missing_solver": 298,
+    "missing_solver_provenance": 298,
     "unmapped_missing_solver": 0
   }
 }
