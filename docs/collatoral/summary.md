@@ -1,5 +1,5 @@
 # unsorry - Executive Summary
-[Home](/) | [Key Points](/docs/collatoral/key-points.md)
+[Home](/) | [Key Points](/docs/collatoral/key-points.html)
 
 The future of autonomous work is being rewritten not by monolithic super-intelligences, but by swarms of specialized agents working in iterative cycles. Agentics NZ has introduced a framework that treats complex engineering and research tasks as a series of recurring "loops." In this model, progress is defined strictly by the production of tangible artifacts, such as code commits or verified research files. If an agent completes a cycle without producing a verifiable result, the system considers it a failure. By organizing tasks into "goal ladders" of increasing difficulty and using an "LLM as a judge" to filter out suboptimal suggestions, these systems ensure that AI agents remain focused on high-value outcomes rather than getting lost in technical noise.
 
