@@ -1632,6 +1632,22 @@ queued_branch_refs() {
   git for-each-ref --format='%(refname:short)' refs/remotes/origin/queued/prove
 }
 
+# ADR-071: a final fresh "is this goal already taken?" check, run immediately
+# before opening a PR. ADR-064's pass-start checks (goal_already_proved /
+# open_pr_goals) go stale during a long pass and in the gap before gh pr create:
+# a sibling proof of the same goal can MERGE, or a concurrent dispatcher can OPEN
+# a PR, leaving this branch a dead "already proved" duplicate (the #2059/#2179
+# class, all created after ADR-064 landed). Re-fetch origin/main and re-list open
+# PRs for the handful actually being dispatched — cheap (git grep + one core-API
+# list, no 30/min search API). Best-effort: any infra error degrades to "not
+# taken" so dispatch still proceeds.
+goal_taken_fresh() {
+  local goal="$1"
+  fetch_main_ref || true
+  goal_already_proved "$goal" && return 0
+  dispatch_open_pr_goals | grep -qxF "$goal"
+}
+
 # ADR-064: goals that already have an OPEN prove PR, collected in ONE list-API
 # call (core quota, 5000/h). The dispatch loop checks membership in this set
 # rather than a per-branch open_prove_pr_exists, whose `gh ... --search` hits the
@@ -1688,6 +1704,14 @@ dispatch_queue() {
     if ! submission_governor_allows; then
       [ "$dispatched" -gt 0 ] && return "$failures"
       return 0
+    fi
+    # ADR-071: re-check against current state right before creating the PR — a
+    # sibling proof may have merged, or another dispatcher opened a PR, since the
+    # pass-start checks. This is where the post-ADR-064 duplicates leaked.
+    if goal_taken_fresh "$goal"; then
+      log "queue dispatcher skipped $branch — goal $goal was taken during this pass (merged or already PR'd)"
+      seen_goals="$seen_goals$goal "
+      continue
     fi
     if dispatch_queued_proof_branch "$branch"; then
       dispatched=$((dispatched + 1))
@@ -5078,6 +5102,31 @@ test_dispatch_goal_dedup() {
     || { log "  expected one dispatch total (g2 proved, g3 has open PR), got '$sent'"; return 1; }
 }
 
+test_dispatch_skips_taken_midpass() {
+  # ADR-071: a goal that passes the pass-start checks (not proved, no open PR)
+  # but is taken — merged or PR'd by a sibling/concurrent dispatcher — by the
+  # time the pre-create fresh check runs must NOT be dispatched. This is the
+  # post-ADR-064 duplicate leak.
+  local ONCE=0 DRY_RUN=0 UNSORRY_DISPATCH_LIMIT=10 sent="" rc
+  fetch_queued_prove_branches() { return 0; }
+  fetch_main_ref() { return 0; }
+  queued_branch_refs() { printf 'origin/queued/prove/g1/agent-a-1111\n'; }
+  goal_already_proved() { return 1; }      # not proved at pass start
+  dispatch_open_pr_goals() { return 0; }   # no open PRs at pass start
+  queued_branch_has_pr() { return 1; }
+  submission_governor_allows() { return 0; }
+  goal_taken_fresh() { [ "$1" = g1 ]; }    # but taken by the time we re-check
+  dispatch_queued_proof_branch() { printf -v sent '%s%s\n' "$sent" "$1"; return 0; }
+  dispatch_queue
+  rc=$?
+  unset -f fetch_queued_prove_branches fetch_main_ref queued_branch_refs \
+    goal_already_proved dispatch_open_pr_goals queued_branch_has_pr \
+    submission_governor_allows goal_taken_fresh dispatch_queued_proof_branch
+  [ "$rc" -eq 0 ] || { log "  dispatch_queue returned $rc"; return 1; }
+  [ "$(printf '%s' "$sent" | grep -cv '^$')" -eq 0 ] \
+    || { log "  expected 0 dispatches (g1 taken mid-pass), got '$sent'"; return 1; }
+}
+
 run_self_tests() {
   local tests=(
     test_agent_id_generation
@@ -5153,6 +5202,7 @@ run_self_tests() {
     test_submission_governor_allows_with_stubbed_gh
     test_queued_branch_claim_guard
     test_dispatch_goal_dedup
+    test_dispatch_skips_taken_midpass
     test_demote_open_prove_records_telemetry_only
     test_floored_recompose_noop_records_telemetry_only
     test_render_decomp_gateb
