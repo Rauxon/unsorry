@@ -4,8 +4,8 @@
   "pr_status_known": true,
   "summary": {
     "queued_submissions": 324,
-    "waiting": 263,
-    "in_flight": 61,
+    "waiting": 259,
+    "in_flight": 65,
     "distinct_goals": 295,
     "solvers": 6
   },
@@ -16,8 +16,8 @@
       "display_name": "@ohdearquant",
       "profile_url": "https://github.com/ohdearquant",
       "submissions": 158,
-      "waiting": 116,
-      "in_flight": 42,
+      "waiting": 112,
+      "in_flight": 46,
       "distinct_goals": 130,
       "queued": [
         {
@@ -914,7 +914,7 @@
           "sha": "b336dabe",
           "model": "template-sum-induction",
           "date": "2026-06-16",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "sum-range-id-mul-three-pow",
@@ -922,7 +922,7 @@
           "sha": "6a64205a",
           "model": "template-sum-induction",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "sum-range-sq-mul-four-pow-closed",
@@ -930,7 +930,7 @@
           "sha": "5434b3b9",
           "model": "template-sum-induction",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "sum-range-sq-mul-four-pow-closed",
@@ -938,7 +938,7 @@
           "sha": "69d7ab3a",
           "model": "template-sum-induction",
           "date": "2026-06-16",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "sum-range-sq-mul-three-pow",
