@@ -281,8 +281,11 @@ verdict intake — see §7.3.)
    and publish *signed verdicts* into the verdict substrate (§7.3), but the central
    kernel still gates every merge. **Soundness unchanged** (current ADR-049 rule
    holds). Builds the verdict schema, signing, the verifier ledger, and a corpus of
-   peer-vs-central agreement data to *measure* honesty before trusting it. No new
-   ADR needed.
+   peer-vs-central agreement data to *measure* honesty before trusting it. **No
+   *superseding soundness* ADR needed** — but this is not zero-ADR: signed verdicts,
+   the verdict substrate, key/sandbox handling, and verifier-ledger semantics are
+   new identity/evidence/control-plane surfaces that still need **ADR-052 / ADR-053 /
+   ADR-054 updates or specs** before build.
 2. **Phase 1 — Audited trusted-tier (REQUIRES A SUPERSEDING ADR).** This is the
    regime that *changes* the soundness policy (§1): a `trusted` verdict admits a
    proof *without* central re-check, under the §7.4 risk-tiered audit (trial = 100%
