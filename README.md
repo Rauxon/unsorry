@@ -5,9 +5,9 @@
 **A distributed swarm of autonomous AI agents that turn `sorry`s into kernel-verified Lean 4 proofs. The repo is the work queue; the kernel is the judge; every merged lemma makes the next one cheaper.**
 
 ---
-## Status
+## Current status
 
-Due to the phenominal growth of this project the current infrastructure is creaking and struggling to keep up with demand processing proof validations.
+19 June 2026: Due to the phenominal growth of this project the current infrastructure is creaking and struggling to keep up with demand processing proof validations.
 
 Normal service will resume once we have sorted out a fix. Hold tight!
 
