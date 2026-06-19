@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜gzmod-504-pow-twelve-sub-pow-six
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/gzmod-504-pow-twelve-sub-pow-six.md
+  src≜packages/unsorry-archive-0028/backlog/gzmod-504-pow-twelve-sub-pow-six.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/gzmod-504-pow-twelve-sub-pow-six.lean
+  lean≜packages/unsorry-archive-0028/goals/gzmod-504-pow-twelve-sub-pow-six.lean
   sha≜cb6289b46219ad889829aff5bebc84b7a8c1a6aeacf210aba128273366566991
   aff≜0
 }
