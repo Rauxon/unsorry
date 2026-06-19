@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**154 open · 1237 proved · 1394 total prove-goals.**
+**154 open · 1238 proved · 1395 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -681,6 +681,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gpow-diff-three-pow-fifteen` — n minus 3 divides n to the 15 minus 3 to the 15. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 3 divides n to the 15 minus 3 to the 15. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-three-pow-five` — n minus 3 divides n to the 5 minus 3 to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 3 divides n to the 5 minus 3 to the 5. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-three-pow-four` — n minus 3 divides n to the 4 minus 3 to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 3 divides n to the 4 minus 3 to the 4. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-diff-three-pow-fourteen` — n minus 3 divides n to the 14 minus 3 to the 14. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 3 divides n to the 14 minus 3 to the 14. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-three-pow-nine` — n minus 3 divides n to the 9 minus 3 to the 9. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 3 divides n to the 9 minus 3 to the 9. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-three-pow-seven` — n minus 3 divides n to the 7 minus 3 to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 3 divides n to the 7 minus 3 to the 7. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-three-pow-six` — n minus 3 divides n to the 6 minus 3 to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 3 divides n to the 6 minus 3 to the 6. Provable by exhibiting the cofactor and `ring`. |
