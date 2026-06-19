@@ -34,8 +34,8 @@
       "attempt_yield": null,
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
       "badges": {
-        "difficulty": 567,
-        "proofs": 245,
+        "difficulty": 573,
+        "proofs": 247,
         "success_rate_percent": null
       },
       "credit_source_summary": "explicit + inferred",
@@ -43,10 +43,10 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 245,
-      "difficulty_points": 567,
+      "credited_proofs": 247,
+      "difficulty_points": 573,
       "display_name": "@chat-bit-01",
-      "explicit_solver_proofs": 1,
+      "explicit_solver_proofs": 3,
       "failed_attempts": 0,
       "github": "chat-bit-01",
       "inferred_git_proofs": 244,
@@ -55,10 +55,10 @@
       "rank": 2,
       "run_success_rate": null,
       "runs": 0,
-      "score": 62825,
+      "score": 63475,
       "solver": "chat-bit-01",
       "successes": 0,
-      "verified_proofs": 245
+      "verified_proofs": 247
     },
     {
       "attempt_yield": 0.1599,
@@ -243,15 +243,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
-      "difficulty_points": 567,
+      "difficulty_points": 573,
       "display_name": "chat-bit-01",
       "github": "chat-bit-01",
-      "index_files_added": 245,
+      "index_files_added": 247,
       "missing_solver_provenance": 244,
       "profile_url": "https://github.com/chat-bit-01",
       "rank": 1,
       "solver_credit": false,
-      "solver_provenance_proofs": 1
+      "solver_provenance_proofs": 3
     },
     {
       "attribution_source": "git-add-author",
@@ -374,7 +374,7 @@
       "provider_model": "claude / template-zmod-decide",
       "run_success_rate": 1.0,
       "runs": 31,
-      "verified_proofs": 32
+      "verified_proofs": 34
     },
     {
       "provider_model": "codex / unknown",
@@ -482,19 +482,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 389,
+    "attributed_proofs": 391,
     "attribution_gap_count": 305,
     "credited_contributors": 8,
-    "credited_proofs": 694,
-    "explicit_solver_proofs": 389,
-    "git_attributed_index_files": 694,
+    "credited_proofs": 696,
+    "explicit_solver_proofs": 391,
+    "git_attributed_index_files": 696,
     "historical_contributors": 8,
     "historical_unknown_proofs": 305,
     "inferred_git_proofs": 305,
-    "proof_run_coverage": 0.4669,
+    "proof_run_coverage": 0.4655,
     "terminal_runs": 646,
     "uncredited_proofs": 0,
-    "verified_proofs": 694
+    "verified_proofs": 696
   },
   "timeline": [
     {
@@ -538,12 +538,12 @@
       "proofs": 165
     },
     {
-      "cumulative_proofs": 677,
+      "cumulative_proofs": 679,
       "date": "2026-06-18",
-      "proofs": 4
+      "proofs": 6
     },
     {
-      "cumulative_proofs": 694,
+      "cumulative_proofs": 696,
       "date": "2026-06-19",
       "proofs": 17
     }
