@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 258,
-    "waiting": 189,
-    "in_flight": 69,
-    "distinct_goals": 254,
+    "queued_submissions": 221,
+    "waiting": 155,
+    "in_flight": 66,
+    "distinct_goals": 219,
     "solvers": 5
   },
   "solvers": [
@@ -15,23 +15,15 @@
       "github": "ruvnet",
       "display_name": "@ruvnet",
       "profile_url": "https://github.com/ruvnet",
-      "submissions": 139,
+      "submissions": 138,
       "waiting": 135,
-      "in_flight": 4,
-      "distinct_goals": 139,
+      "in_flight": 3,
+      "distinct_goals": 138,
       "queued": [
         {
           "goal": "dvd-thirtytwo-odd-pow-eight-sub-one",
           "branch": "queued/prove/dvd-thirtytwo-odd-pow-eight-sub-one/reroute-4aabc3",
           "sha": "69bcdf06",
-          "model": null,
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "fib-prod-cross-shift-nat-int",
-          "branch": "queued/prove/fib-prod-cross-shift-nat-int/reroute-3af324",
-          "sha": "3acdf849",
           "model": null,
           "date": "2026-06-18",
           "state": "in-flight"
@@ -1139,10 +1131,10 @@
       "github": "ohdearquant",
       "display_name": "@ohdearquant",
       "profile_url": "https://github.com/ohdearquant",
-      "submissions": 98,
-      "waiting": 44,
-      "in_flight": 54,
-      "distinct_goals": 95,
+      "submissions": 69,
+      "waiting": 11,
+      "in_flight": 58,
+      "distinct_goals": 67,
       "queued": [
         {
           "goal": "dvd-210-pow-fifteen-sub-pow-three",
@@ -1157,22 +1149,6 @@
           "branch": "queued/prove/dvd-210-pow-fifteen-sub-pow-three/mac-158f-5d67b6",
           "sha": "ae5d66ba",
           "model": "template-zmod-crt",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gfac-d0-c1",
-          "branch": "queued/prove/gfac-d0-c1/mac-158f-3cf649",
-          "sha": "2e485986",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gfac-d0-c3",
-          "branch": "queued/prove/gfac-d0-c3/mac-158f-0364f5",
-          "sha": "80b9f793",
-          "model": "template-ring-cofactor",
           "date": "2026-06-18",
           "state": "in-flight"
         },
@@ -1201,25 +1177,9 @@
           "state": "in-flight"
         },
         {
-          "goal": "gfac-d1-c1",
-          "branch": "queued/prove/gfac-d1-c1/mac-158f-7a4604",
-          "sha": "b5ee90d6",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
           "goal": "gfac-d1-c2",
           "branch": "queued/prove/gfac-d1-c2/mac-158f-2ee8ec",
           "sha": "c71850da",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gfac-d1-c4",
-          "branch": "queued/prove/gfac-d1-c4/mac-158f-5f8b15",
-          "sha": "6b8fe18b",
           "model": "template-ring-cofactor",
           "date": "2026-06-18",
           "state": "in-flight"
@@ -1257,14 +1217,6 @@
           "state": "in-flight"
         },
         {
-          "goal": "gfac-d2-c3",
-          "branch": "queued/prove/gfac-d2-c3/mac-158f-3de66f",
-          "sha": "28cf7d76",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
           "goal": "gfac-d2-c5",
           "branch": "queued/prove/gfac-d2-c5/mac-158f-60741a",
           "sha": "0af6690b",
@@ -1273,41 +1225,9 @@
           "state": "in-flight"
         },
         {
-          "goal": "gfac-d2-c6",
-          "branch": "queued/prove/gfac-d2-c6/mac-158f-849a21",
-          "sha": "11c09471",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
           "goal": "gfac-d3-c0",
           "branch": "queued/prove/gfac-d3-c0/mac-158f-c87c29",
           "sha": "4401f303",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gfac-d3-c1",
-          "branch": "queued/prove/gfac-d3-c1/mac-158f-5605ba",
-          "sha": "e3c7f61d",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gfac-d3-c2",
-          "branch": "queued/prove/gfac-d3-c2/mac-158f-ce6295",
-          "sha": "7660991f",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gfac-d3-c3",
-          "branch": "queued/prove/gfac-d3-c3/mac-158f-04dfa8",
-          "sha": "cff2037e",
           "model": "template-ring-cofactor",
           "date": "2026-06-18",
           "state": "in-flight"
@@ -1361,30 +1281,6 @@
           "state": "in-flight"
         },
         {
-          "goal": "ggeom-pred-pow-seven-sub-one",
-          "branch": "queued/prove/ggeom-pred-pow-seven-sub-one/mac-158f-c26f06",
-          "sha": "af4d5bc8",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "ggeom-pred-pow-six-sub-one",
-          "branch": "queued/prove/ggeom-pred-pow-six-sub-one/mac-158f-d89980",
-          "sha": "e79f02c9",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "ggeom-pred-pow-ten-sub-one",
-          "branch": "queued/prove/ggeom-pred-pow-ten-sub-one/mac-158f-6343ed",
-          "sha": "c1fd2e70",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
           "goal": "ggeom-pred-pow-three-sub-one",
           "branch": "queued/prove/ggeom-pred-pow-three-sub-one/mac-158f-8812d8",
           "sha": "52b27bbf",
@@ -1393,81 +1289,9 @@
           "state": "in-flight"
         },
         {
-          "goal": "ggeom-pred-pow-twelve-sub-one",
-          "branch": "queued/prove/ggeom-pred-pow-twelve-sub-one/mac-158f-260563",
-          "sha": "e40e261d",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "ggeom-pred-pow-two-sub-one",
-          "branch": "queued/prove/ggeom-pred-pow-two-sub-one/mac-158f-2e384a",
-          "sha": "8e4ba061",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
           "goal": "gself-pow-five-add-pow-four",
           "branch": "queued/prove/gself-pow-five-add-pow-four/mac-158f-c5d081",
           "sha": "3616cffe",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-five-add-pow-one",
-          "branch": "queued/prove/gself-pow-five-add-pow-one/mac-158f-3281eb",
-          "sha": "7fb6f88d",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-five-add-pow-three",
-          "branch": "queued/prove/gself-pow-five-add-pow-three/mac-158f-52a6e1",
-          "sha": "7bb6e5e1",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-five-add-pow-two",
-          "branch": "queued/prove/gself-pow-five-add-pow-two/mac-158f-195a3f",
-          "sha": "ae8f0409",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-four-add-pow-one",
-          "branch": "queued/prove/gself-pow-four-add-pow-one/mac-158f-51bca6",
-          "sha": "b8978cc6",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-four-add-pow-three",
-          "branch": "queued/prove/gself-pow-four-add-pow-three/mac-158f-f32237",
-          "sha": "95406cb1",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-four-add-pow-two",
-          "branch": "queued/prove/gself-pow-four-add-pow-two/mac-158f-ed0e06",
-          "sha": "8fb71f28",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-six-add-pow-five",
-          "branch": "queued/prove/gself-pow-six-add-pow-five/mac-158f-044850",
-          "sha": "a9a2b45a",
           "model": "template-ring-cofactor",
           "date": "2026-06-18",
           "state": "in-flight"
@@ -1489,33 +1313,9 @@
           "state": "in-flight"
         },
         {
-          "goal": "gself-pow-six-add-pow-three",
-          "branch": "queued/prove/gself-pow-six-add-pow-three/mac-158f-ec5958",
-          "sha": "fc5aeec8",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
           "goal": "gself-pow-six-add-pow-two",
           "branch": "queued/prove/gself-pow-six-add-pow-two/mac-158f-1fa270",
           "sha": "3ad8ae6f",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-three-add-pow-one",
-          "branch": "queued/prove/gself-pow-three-add-pow-one/mac-158f-ebfa90",
-          "sha": "c1c933b4",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-three-add-pow-two",
-          "branch": "queued/prove/gself-pow-three-add-pow-two/mac-158f-705653",
-          "sha": "0a2a07fd",
           "model": "template-ring-cofactor",
           "date": "2026-06-18",
           "state": "in-flight"
@@ -1550,7 +1350,7 @@
           "sha": "d4ab76e4",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-three-pow-six-add-pow-four",
@@ -1558,7 +1358,7 @@
           "sha": "107bd465",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-three-pow-six-add-pow-three",
@@ -1566,7 +1366,7 @@
           "sha": "dba872e5",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-add-pow-one",
@@ -1574,15 +1374,7 @@
           "sha": "ecde42c5",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-five-add-pow-four",
-          "branch": "queued/prove/gself-pow-two-pow-five-add-pow-four/mac-158f-abb172",
-          "sha": "0b090521",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-five-add-pow-three",
@@ -1590,7 +1382,7 @@
           "sha": "3fb907ab",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-five-add-pow-two",
@@ -1598,7 +1390,7 @@
           "sha": "440741b0",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-four-add-pow-three",
@@ -1606,7 +1398,7 @@
           "sha": "1f775a59",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-four-add-pow-two",
@@ -1614,7 +1406,7 @@
           "sha": "b4a52ff1",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-six-add-pow-five",
@@ -1622,7 +1414,7 @@
           "sha": "50ed8fa6",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-six-add-pow-four",
@@ -1630,7 +1422,7 @@
           "sha": "c8e30844",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-six-add-pow-three",
@@ -1638,7 +1430,7 @@
           "sha": "38fc42a4",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-six-add-pow-two",
@@ -1646,7 +1438,7 @@
           "sha": "54d8f35d",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-three-add-pow-two",
@@ -1654,7 +1446,7 @@
           "sha": "b90574e9",
           "model": "template-ring-cofactor",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-12-pow-four-sub-pow-two",
@@ -1662,7 +1454,7 @@
           "sha": "aa27b51a",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-132-pow-twelve-sub-pow-two",
@@ -1670,7 +1462,7 @@
           "sha": "8c08e760",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-24-pow-eight-sub-pow-six",
@@ -1678,7 +1470,7 @@
           "sha": "745abf7b",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-24-pow-eleven-sub-pow-nine",
@@ -1686,7 +1478,7 @@
           "sha": "ac9f64f0",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-24-pow-fourteen-sub-pow-twelve",
@@ -1694,7 +1486,7 @@
           "sha": "44aff44c",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-24-pow-nine-sub-pow-seven",
@@ -1702,7 +1494,7 @@
           "sha": "ac6d4d98",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-24-pow-ten-sub-pow-eight",
@@ -1710,7 +1502,7 @@
           "sha": "6f876445",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-24-pow-thirteen-sub-pow-eleven",
@@ -1718,7 +1510,7 @@
           "sha": "889051e8",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-24-pow-twelve-sub-pow-ten",
@@ -1726,7 +1518,7 @@
           "sha": "fd6b6327",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-240-pow-eleven-sub-pow-seven",
@@ -1734,7 +1526,7 @@
           "sha": "6feaf86b",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-240-pow-fourteen-sub-pow-ten",
@@ -1742,7 +1534,7 @@
           "sha": "766ddf45",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-240-pow-ten-sub-pow-six",
@@ -1750,7 +1542,7 @@
           "sha": "ef89cd9e",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-240-pow-thirteen-sub-pow-nine",
@@ -1758,7 +1550,7 @@
           "sha": "52900402",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-240-pow-twelve-sub-pow-eight",
@@ -1766,7 +1558,7 @@
           "sha": "84868635",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-240-pow-twelve-sub-pow-four",
@@ -1774,7 +1566,7 @@
           "sha": "9f073d45",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-264-pow-fourteen-sub-pow-four",
@@ -1782,7 +1574,7 @@
           "sha": "058484f4",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-30-pow-five-sub-pow-one",
@@ -1790,7 +1582,7 @@
           "sha": "b4071d60",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-42-pow-seven-sub-pow-one",
@@ -1798,7 +1590,7 @@
           "sha": "d2bea56d",
           "model": "template-zmod-decide",
           "date": "2026-06-17",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "n4-plus-one-factor-over-sqrt-shift",
@@ -1807,14 +1599,6 @@
           "model": "swarm-sonnet",
           "date": "2026-06-17",
           "state": "waiting"
-        },
-        {
-          "goal": "pred-dvd-square-sub-one",
-          "branch": "queued/prove/pred-dvd-square-sub-one/mac-158f-f1c8b6",
-          "sha": "396c6613",
-          "model": "template-dvd-cofactor",
-          "date": "2026-06-18",
-          "state": "in-flight"
         },
         {
           "goal": "quartic-x4-plus-x2-plus-one-dvd-by-minus-factor",
@@ -1831,22 +1615,6 @@
           "model": "swarm-sonnet",
           "date": "2026-06-17",
           "state": "waiting"
-        },
-        {
-          "goal": "sum-sixth-ge-mixed-fourth-second",
-          "branch": "queued/prove/sum-sixth-ge-mixed-fourth-second/mac-158f-4aa2f5",
-          "sha": "5f2e677f",
-          "model": "template-nlinarith",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-sixth-ge-mixed-fourth-second",
-          "branch": "queued/prove/sum-sixth-ge-mixed-fourth-second/mac-158f-76571f",
-          "sha": "4b2a54cb",
-          "model": "template-nlinarith",
-          "date": "2026-06-18",
-          "state": "in-flight"
         },
         {
           "goal": "sum-squares-eq-square-pyramidal",
@@ -1889,14 +1657,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sum-two-k-add-one-mul-two-pow",
-          "branch": "queued/prove/sum-two-k-add-one-mul-two-pow/mac-158f-404f43",
-          "sha": "9c49ccb4",
-          "model": "template-sum-closedform",
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
           "goal": "sum-two-k-sub-one-mul-two-pow",
           "branch": "queued/prove/sum-two-k-sub-one-mul-two-pow/mac-158f-e78d55",
           "sha": "7de5e155",
@@ -1935,10 +1695,10 @@
       "github": "adam91holt",
       "display_name": "@adam91holt",
       "profile_url": "https://github.com/adam91holt",
-      "submissions": 11,
-      "waiting": 8,
-      "in_flight": 3,
-      "distinct_goals": 11,
+      "submissions": 9,
+      "waiting": 7,
+      "in_flight": 2,
+      "distinct_goals": 9,
       "queued": [
         {
           "goal": "alt-sum-range-choose-sq-eq-zero-odd",
@@ -1957,14 +1717,6 @@
           "state": "in-flight"
         },
         {
-          "goal": "catalan-r2-shift-nat-fib-int",
-          "branch": "queued/prove/catalan-r2-shift-nat-fib-int/thebeast-ace7-bc662e",
-          "sha": "a0b671d1",
-          "model": null,
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
           "goal": "sum-icc-four-div-four-k-sub-one-four-k-add-three-telescope",
           "branch": "queued/prove/sum-icc-four-div-four-k-sub-one-four-k-add-three-telescope/codex-0001-f76056",
           "sha": "b19caeac",
@@ -1976,14 +1728,6 @@
           "goal": "sum-icc-id-mul-two-pow-pred",
           "branch": "queued/prove/sum-icc-id-mul-two-pow-pred/thebeast-ace7-5aa9bd",
           "sha": "54aca49a",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-icc-k-mul-three-k-sub-one-eq",
-          "branch": "queued/prove/sum-icc-k-mul-three-k-sub-one-eq/thebeast-ace7-b581ef",
-          "sha": "0c447f1e",
           "model": null,
           "date": "2026-06-17",
           "state": "waiting"
@@ -2035,47 +1779,15 @@
       "github": "perttu",
       "display_name": "@perttu",
       "profile_url": "https://github.com/perttu",
-      "submissions": 9,
+      "submissions": 4,
       "waiting": 1,
-      "in_flight": 8,
-      "distinct_goals": 9,
+      "in_flight": 3,
+      "distinct_goals": 4,
       "queued": [
-        {
-          "goal": "pairsum-sq-le-three-sum-sq-products",
-          "branch": "queued/prove/pairsum-sq-le-three-sum-sq-products/claude-web-16e384",
-          "sha": "3cebbdc6",
-          "model": null,
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
         {
           "goal": "quartic-four-var-ge-four-prod",
           "branch": "queued/prove/quartic-four-var-ge-four-prod/claude-web-2ec475",
           "sha": "84f6466f",
-          "model": null,
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "ravi-product-le-abc",
-          "branch": "queued/prove/ravi-product-le-abc/claude-web-b2bfe6",
-          "sha": "5ecf103b",
-          "model": null,
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "realization-determines-counts",
-          "branch": "queued/prove/realization-determines-counts/claude-web-1b4a59",
-          "sha": "4eb00ebd",
-          "model": null,
-          "date": "2026-06-18",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-icc-k-mul-three-k-sub-one-eq",
-          "branch": "queued/prove/sum-icc-k-mul-three-k-sub-one-eq/claude-web-4f013f",
-          "sha": "db0a5e49",
           "model": null,
           "date": "2026-06-18",
           "state": "in-flight"
@@ -2087,14 +1799,6 @@
           "model": null,
           "date": "2026-06-17",
           "state": "waiting"
-        },
-        {
-          "goal": "sum-sixth-ge-cyclic-quartic-sq",
-          "branch": "queued/prove/sum-sixth-ge-cyclic-quartic-sq/claude-web-4bfa2c",
-          "sha": "5cee664c",
-          "model": null,
-          "date": "2026-06-18",
-          "state": "in-flight"
         },
         {
           "goal": "sum-sq-times-pairsum-ge-three-abc-sum",
