@@ -4,8 +4,8 @@
       "attempt_yield": 1.0,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "badges": {
-        "difficulty": 1661,
-        "proofs": 760,
+        "difficulty": 1663,
+        "proofs": 762,
         "success_rate_percent": 100.0
       },
       "credit_source_summary": "explicit + inferred",
@@ -13,10 +13,10 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 760,
-      "difficulty_points": 1661,
+      "credited_proofs": 762,
+      "difficulty_points": 1663,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 759,
+      "explicit_solver_proofs": 761,
       "failed_attempts": 0,
       "github": "ohdearquant",
       "inferred_git_proofs": 1,
@@ -24,11 +24,11 @@
       "profile_url": "https://github.com/ohdearquant",
       "rank": 1,
       "run_success_rate": 1.0,
-      "runs": 84,
-      "score": 185100,
+      "runs": 86,
+      "score": 185350,
       "solver": "ohdearquant",
-      "successes": 84,
-      "verified_proofs": 760
+      "successes": 86,
+      "verified_proofs": 762
     },
     {
       "attempt_yield": null,
@@ -282,15 +282,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/perttu.png?size=96",
-      "difficulty_points": 236,
+      "difficulty_points": 238,
       "display_name": "Perttu Isotalo",
       "github": "perttu",
-      "index_files_added": 147,
+      "index_files_added": 149,
       "missing_solver_provenance": 4,
       "profile_url": "https://github.com/perttu",
       "rank": 4,
       "solver_credit": false,
-      "solver_provenance_proofs": 143
+      "solver_provenance_proofs": 145
     },
     {
       "attribution_source": "git-add-author",
@@ -355,8 +355,8 @@
     {
       "provider_model": "claude / template-ring-cofactor",
       "run_success_rate": 1.0,
-      "runs": 84,
-      "verified_proofs": 293
+      "runs": 86,
+      "verified_proofs": 295
     },
     {
       "provider_model": "claude / opus",
@@ -482,19 +482,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 921,
+    "attributed_proofs": 923,
     "attribution_gap_count": 308,
     "credited_contributors": 8,
-    "credited_proofs": 1229,
-    "explicit_solver_proofs": 921,
-    "git_attributed_index_files": 1229,
+    "credited_proofs": 1231,
+    "explicit_solver_proofs": 923,
+    "git_attributed_index_files": 1231,
     "historical_contributors": 8,
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
-    "proof_run_coverage": 0.0797,
-    "terminal_runs": 417,
+    "proof_run_coverage": 0.0812,
+    "terminal_runs": 419,
     "uncredited_proofs": 0,
-    "verified_proofs": 1229
+    "verified_proofs": 1231
   },
   "timeline": [
     {
@@ -543,9 +543,9 @@
       "proofs": 24
     },
     {
-      "cumulative_proofs": 1229,
+      "cumulative_proofs": 1231,
       "date": "2026-06-19",
-      "proofs": 517
+      "proofs": 519
     }
   ]
 }
