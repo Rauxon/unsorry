@@ -1,7 +1,0 @@
-𝔸5.1.claim.sq-add-sq-eq-three-mul-sq-s4.beast-4444@2026-06-19
-γ≔unsorry.claim
-⟦Ω:Claim⟧{goal≜sq-add-sq-eq-three-mul-sq-s4; agent≜beast-4444}
-⟦Σ:Times⟧{ts≜2026-06-19T19:30:29Z; ttl≜7200}
-⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
-⟦Λ:Release⟧{release≜λ_.rm(self)}
-⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
