@@ -1,0 +1,9 @@
+𝔸5.1.run.sq-add-sq-eq-three-mul-sq-s4.1367ab40f0b1-e413.20260619t212848734567z-bd308245@2026-06-19
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260619t212848734567z-bd308245; goal≜sq-add-sq-eq-three-mul-sq-s4; agent≜1367ab40f0b1-e413; outcome≜failed}
+⟦Π:Provenance⟧{solver≜cgbarlow; provider≜claude; model≜opus; effort≜max}
+⟦Γ:Goal⟧{goal≜sq-add-sq-eq-three-mul-sq-s4}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜439; ended≜2026-06-19T21:28:48Z; lessons≜2}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜error: Lean exited with code 1 ✖ [8576/8581] Building Unsorry.GpowDiffNinePowTwenty (8.7s) trace: .> LEAN_PATH=/home/vscode/.unsorry/work/prove-sq-add-sq-eq-three-mul-sq-s4-1367ab40f0b1-e413/.lake/packages/Cli/.lake/build/lib/lean:/home/vscode/.unsorry/work/prove-sq-add-sq-eq-thr}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
