@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**158 open · 723 proved · 884 total prove-goals.**
+**158 open · 724 proved · 885 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -523,6 +523,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-12-pow-four-sub-pow-two` — 12 divides n to the 4 minus n to the 2, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 12 divides n to the 4 minus n to the 2, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-12-pow-sixteen-sub-pow-two` — 12 divides n to the 16 minus n to the 2, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 12 divides n to the 16 minus n to the 2, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-132-pow-twelve-sub-pow-two` — 132 divides n to the 12 minus n to the 2, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 132 divides n to the 12 minus n to the 2, for every integer n. Provable by exhibiting the cofactor and `ring`. |
+| `gzmod-24-pow-21-sub-pow-seven` — 24 divides n to the 21 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 24 divides n to the 21 minus n to the 7, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-24-pow-eight-sub-pow-six` — 24 divides n to the 8 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 24 divides n to the 8 minus n to the 6, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-24-pow-eleven-sub-pow-nine` — 24 divides n to the 11 minus n to the 9, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 24 divides n to the 11 minus n to the 9, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-24-pow-fourteen-sub-pow-twelve` — 24 divides n to the 14 minus n to the 12, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 24 divides n to the 14 minus n to the 12, for every integer n. Provable by exhibiting the cofactor and `ring`. |
