@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**809 goals — 165 open · 3 blocked · 9 translated · 374 proved · 258 archived.** 8 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**810 goals — 165 open · 3 blocked · 9 translated · 375 proved · 258 archived.** 8 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (369 of 374 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (370 of 375 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -147,7 +147,7 @@ flowchart LR
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 352"])
+  cluster_proved(["proved · 353"])
   class cluster_proved proved;
   cluster_archived(["archived · 258"])
   class cluster_archived unknown;
@@ -491,6 +491,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gself-pow-three-add-pow-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-add-pow-two.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2244](https://github.com/agenticsnz/unsorry/pull/2244) | 2026-06-19 |
 | [`gself-pow-three-pow-six-add-pow-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-six-add-pow-four.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2260](https://github.com/agenticsnz/unsorry/pull/2260) | 2026-06-19 |
 | [`gself-pow-three-pow-six-add-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-six-add-pow-three.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2261](https://github.com/agenticsnz/unsorry/pull/2261) | 2026-06-19 |
+| [`gself-pow-two-add-pow-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-two-add-pow-one.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2262](https://github.com/agenticsnz/unsorry/pull/2262) | 2026-06-19 |
 | [`gself-pow-two-pow-five-add-pow-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-two-pow-five-add-pow-four.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2263](https://github.com/agenticsnz/unsorry/pull/2263) | 2026-06-19 |
 | [`gself-pow-two-pow-four-add-pow-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-two-pow-four-add-pow-two.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2267](https://github.com/agenticsnz/unsorry/pull/2267) | 2026-06-19 |
 | [`lucas-succ-add-lucas-pred-eq-five-mul-fib`](https://github.com/agenticsnz/unsorry/blob/main/goals/lucas-succ-add-lucas-pred-eq-five-mul-fib.lean) | proved | 2 | claude-web | chat-bit-01 | [#1930](https://github.com/agenticsnz/unsorry/pull/1930) | 2026-06-17 |
