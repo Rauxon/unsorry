@@ -4,28 +4,28 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**849 verified proofs · 541 attributed · 308 historical/unknown · 450 logged terminal runs.**
+**850 verified proofs · 542 attributed · 308 historical/unknown · 451 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 131 |
+| Successful terminal runs | 132 |
 | Failed terminal runs | 319 |
 | Decomposed after failure | 18 |
 | Failed without decomposition | 301 |
-| Run success rate | 29.1% |
-| Provider attempts | 493 |
+| Run success rate | 29.3% |
+| Provider attempts | 494 |
 | Failed attempts | 362 |
-| Attempt yield | 26.6% |
+| Attempt yield | 26.7% |
 | Recorded run time | 89h 34m |
-| Median / p90 run time | 5m 2s / 31m 58s |
-| Verified successes per recorded hour | 1.46 |
-| Proofs with run telemetry | 131 (15.4%) |
+| Median / p90 run time | 5m 1s / 31m 58s |
+| Verified successes per recorded hour | 1.47 |
+| Proofs with run telemetry | 132 (15.5%) |
 
 ## Work Queue
 
-**1015 goals · 703 archived · 3 blocked · 154 open · 146 proved · 9 translated.**
+**1016 goals · 703 archived · 3 blocked · 154 open · 147 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
@@ -33,7 +33,7 @@ Verified output comes from active `library/index` records plus archived index re
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 108 | 52 | 48.1% | 71 | 3m 25s |
 | 2 | 139 | 1 | 0.7% | 157 | 7m 58s |
-| 3 | 180 | 75 | 41.7% | 114 | 3m 52s |
+| 3 | 181 | 76 | 42.0% | 114 | 3m 42s |
 | 4 | 21 | 3 | 14.3% | 18 | 6m 5s |
 | 5 | 2 | 0 | 0.0% | 2 | 31m 25s |
 
@@ -58,7 +58,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@ohdearquant](https://github.com/ohdearquant) | 380 | 379 | 1 | 117 | 100.0% | 787 | 88200 |
+| 1 | [@ohdearquant](https://github.com/ohdearquant) | 381 | 380 | 1 | 118 | 100.0% | 790 | 88525 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 268 | 21 | 247 | 0 | — | 637 | 70400 |
 | 3 | [@cgbarlow](https://github.com/cgbarlow) | 118 | 71 | 47 | 265 | 4.9% | 212 | 24150 |
 | 4 | [@perttu](https://github.com/perttu) | 38 | 34 | 4 | 13 | 7.7% | 84 | 9350 |
@@ -69,16 +69,16 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 ## Attribution Notes
 
-**541 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**542 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 849 of 849 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 850 of 850 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
 | `claude / template-ring-cofactor` | 127 | 45 | 100.0% | 0 | 1 | 0s | — |
-| `claude / template-zmod-decide` | 125 | 72 | 100.0% | 0 | 2 | 0s | — |
+| `claude / template-zmod-decide` | 126 | 73 | 100.0% | 0 | 2 | 0s | — |
 | `claude / opus` | 56 | 17 | 70.6% | 16 | 4 | 7m 58s | 3.58 |
 | `claude / template-sum-induction` | 52 | 0 | — | 0 | 1 | — | — |
 | `claude / template-zmod-crt` | 42 | 0 | — | 0 | 1 | — | — |
@@ -111,6 +111,7 @@ Git add-author attribution covers 849 of 849 proof index files. It is used only 
 | `2026-06-19T08:51:46Z` | `gzmod-24-pow-38-sub-pow-four` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T08:51:33Z` | `gzmod-24-pow-37-sub-pow-35` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T08:50:53Z` | `gzmod-24-pow-37-sub-pow-23` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
+| `2026-06-19T08:50:28Z` | `gzmod-24-pow-37-sub-pow-three` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T08:49:36Z` | `gzmod-24-pow-36-sub-pow-22` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T08:49:23Z` | `gzmod-24-pow-36-sub-pow-ten` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T08:49:11Z` | `gzmod-12-pow-36-sub-pow-two` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
@@ -123,7 +124,6 @@ Git add-author attribution covers 849 of 849 proof index files. It is used only 
 | `2026-06-19T08:46:49Z` | `gzmod-24-pow-33-sub-pow-31` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T08:45:57Z` | `gzmod-24-pow-33-sub-pow-seven` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T08:45:44Z` | `gzmod-24-pow-32-sub-pow-30` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
-| `2026-06-19T08:45:05Z` | `gzmod-24-pow-32-sub-pow-eighteen` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 
 ## Interpretation
 
