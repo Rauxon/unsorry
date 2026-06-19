@@ -4,7 +4,7 @@
 <rect width="900" height="100%" rx="18" fill="#ffffff"/>
 <rect x="0.5" y="0.5" width="899" height="485" rx="18" fill="none" stroke="#e2e8f0"/>
 <text x="32" y="44" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="#334155">Unsorry Leaderboard</text>
-<text x="32" y="72" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#64748b">605 credited proofs · 304 explicit · 301 inferred from git · 8 contributors</text>
+<text x="32" y="72" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#64748b">607 credited proofs · 306 explicit · 301 inferred from git · 8 contributors</text>
 <text x="34" y="148" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#fbbf24">1</text>
 <a href="https://github.com/chat-bit-01">
 <text x="82" y="138" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@chat-bit-01</text>
@@ -18,10 +18,10 @@
 <a href="https://github.com/ohdearquant">
 <text x="82" y="202" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@ohdearquant</text>
 </a>
-<text x="82" y="222" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">170 proofs · 392 difficulty · 169 explicit · 1 inferred · 171 runs</text>
+<text x="82" y="222" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">172 proofs · 394 difficulty · 171 explicit · 1 inferred · 173 runs</text>
 <rect x="320" y="191" width="420" height="26" rx="13" fill="#f1f5f9"/>
-<rect x="320" y="191" width="278" height="26" rx="13" fill="#e0f2fe"/>
-<text x="760" y="210" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">43450 pts</text>
+<rect x="320" y="191" width="279" height="26" rx="13" fill="#e0f2fe"/>
+<text x="760" y="210" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">43700 pts</text>
 <text x="760" y="226" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b">explicit + inferred</text>
 <text x="34" y="276" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#b45309">3</text>
 <a href="https://github.com/cgbarlow">
