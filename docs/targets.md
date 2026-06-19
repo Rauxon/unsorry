@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**154 open · 784 proved · 941 total prove-goals.**
+**154 open · 786 proved · 943 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -511,8 +511,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gpow-diff-three-pow-three` — n minus 3 divides n to the 3 minus 3 to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 3 divides n to the 3 minus 3 to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-three-pow-two` — n minus 3 divides n to the 2 minus 3 to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 3 divides n to the 2 minus 3 to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-two-pow-eight` — n minus 2 divides n to the 8 minus 2 to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 2 divides n to the 8 minus 2 to the 8. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-sum-eight-pow-eight` — n plus 8 divides n to the 8 minus 8 to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 8 divides n to the 8 minus 8 to the 8. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-eight-pow-five` — n plus 8 divides n to the 5 plus 8 to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 8 divides n to the 5 plus 8 to the 5. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-eight-pow-six` — n plus 8 divides n to the 6 minus 8 to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 8 divides n to the 6 minus 8 to the 6. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-sum-five-pow-eight` — n plus 5 divides n to the 8 minus 5 to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 5 divides n to the 8 minus 5 to the 8. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-four` — n to the 1 divides n to the 5 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-one` — n to the 1 divides n to the 5 plus n to the 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 1. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-three` — n to the 1 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
