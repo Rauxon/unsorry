@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜gpow-diff-three-pow-sixteen
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜1
 }
 ⟦Σ:Source⟧{
-  src≜backlog/gpow-diff-three-pow-sixteen.md
+  src≜packages/unsorry-archive-0031/backlog/gpow-diff-three-pow-sixteen.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/gpow-diff-three-pow-sixteen.lean
+  lean≜packages/unsorry-archive-0031/goals/gpow-diff-three-pow-sixteen.lean
   sha≜8f04d64cbc4703de424a081a5785944910f60652348ff988fe31f8c85cb42723
   aff≜0
 }
