@@ -4,8 +4,8 @@
       "attempt_yield": 1.0,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "badges": {
-        "difficulty": 1443,
-        "proofs": 608,
+        "difficulty": 1464,
+        "proofs": 615,
         "success_rate_percent": 100.0
       },
       "credit_source_summary": "explicit + inferred",
@@ -13,10 +13,10 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 608,
-      "difficulty_points": 1443,
+      "credited_proofs": 615,
+      "difficulty_points": 1464,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 607,
+      "explicit_solver_proofs": 614,
       "failed_attempts": 0,
       "github": "ohdearquant",
       "inferred_git_proofs": 1,
@@ -24,11 +24,11 @@
       "profile_url": "https://github.com/ohdearquant",
       "rank": 1,
       "run_success_rate": 1.0,
-      "runs": 52,
-      "score": 159500,
+      "runs": 19,
+      "score": 161775,
       "solver": "ohdearquant",
-      "successes": 52,
-      "verified_proofs": 608
+      "successes": 19,
+      "verified_proofs": 615
     },
     {
       "attempt_yield": null,
@@ -237,7 +237,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-19T17:16:18Z",
+  "generated_at": "2026-06-19T17:23:23Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -269,28 +269,28 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
-      "difficulty_points": 231,
+      "difficulty_points": 243,
       "display_name": "Chris Barlow",
       "github": "cgbarlow",
-      "index_files_added": 128,
+      "index_files_added": 132,
       "missing_solver_provenance": 47,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 3,
       "solver_credit": false,
-      "solver_provenance_proofs": 81
+      "solver_provenance_proofs": 85
     },
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/perttu.png?size=96",
-      "difficulty_points": 145,
+      "difficulty_points": 154,
       "display_name": "Perttu Isotalo",
       "github": "perttu",
-      "index_files_added": 72,
+      "index_files_added": 75,
       "missing_solver_provenance": 4,
       "profile_url": "https://github.com/perttu",
       "rank": 4,
       "solver_credit": false,
-      "solver_provenance_proofs": 68
+      "solver_provenance_proofs": 71
     },
     {
       "attribution_source": "git-add-author",
@@ -349,14 +349,14 @@
     {
       "provider_model": "claude / template-zmod-decide",
       "run_success_rate": 1.0,
-      "runs": 37,
+      "runs": 11,
       "verified_proofs": 338
     },
     {
       "provider_model": "claude / template-ring-cofactor",
       "run_success_rate": 1.0,
-      "runs": 15,
-      "verified_proofs": 142
+      "runs": 8,
+      "verified_proofs": 149
     },
     {
       "provider_model": "claude / opus",
@@ -482,19 +482,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 769,
+    "attributed_proofs": 776,
     "attribution_gap_count": 308,
     "credited_contributors": 8,
-    "credited_proofs": 1077,
-    "explicit_solver_proofs": 769,
-    "git_attributed_index_files": 1077,
+    "credited_proofs": 1084,
+    "explicit_solver_proofs": 776,
+    "git_attributed_index_files": 1084,
     "historical_contributors": 8,
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
-    "proof_run_coverage": 0.0613,
-    "terminal_runs": 385,
+    "proof_run_coverage": 0.0304,
+    "terminal_runs": 352,
     "uncredited_proofs": 0,
-    "verified_proofs": 1077
+    "verified_proofs": 1084
   },
   "timeline": [
     {
@@ -543,9 +543,9 @@
       "proofs": 24
     },
     {
-      "cumulative_proofs": 1077,
+      "cumulative_proofs": 1084,
       "date": "2026-06-19",
-      "proofs": 365
+      "proofs": 372
     }
   ]
 }

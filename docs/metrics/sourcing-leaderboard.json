@@ -3,7 +3,7 @@
   "sourcers": [
     {
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
-      "difficulty_points": 1724,
+      "difficulty_points": 1736,
       "display_name": "Chris Barlow",
       "earliest_sourced": "2026-06-10",
       "git_author": "Chris Barlow <cgbarlow@gmail.com>",
@@ -11,8 +11,8 @@
       "latest_sourced": "2026-06-19",
       "open": 148,
       "profile_url": "https://github.com/cgbarlow",
-      "proved": 2,
-      "sourced_goals": 721,
+      "proved": 6,
+      "sourced_goals": 725,
       "sourcer": "cgbarlow"
     },
     {
@@ -25,13 +25,13 @@
       "latest_sourced": "2026-06-19",
       "open": 0,
       "profile_url": "https://github.com/ohdearquant",
-      "proved": 43,
+      "proved": 11,
       "sourced_goals": 422,
       "sourcer": "ohdearquant"
     },
     {
       "avatar_url": "https://github.com/perttu.png?size=96",
-      "difficulty_points": 69,
+      "difficulty_points": 78,
       "display_name": "Perttu Isotalo",
       "earliest_sourced": "2026-06-12",
       "git_author": "Perttu Isotalo <pisotalo@isotalo.org>",
@@ -39,8 +39,8 @@
       "latest_sourced": "2026-06-19",
       "open": 1,
       "profile_url": "https://github.com/perttu",
-      "proved": 15,
-      "sourced_goals": 58,
+      "proved": 10,
+      "sourced_goals": 61,
       "sourcer": "perttu"
     },
     {
@@ -73,8 +73,8 @@
     }
   ],
   "totals": {
-    "difficulty_points": 2905,
-    "sourced_goals": 1243,
+    "difficulty_points": 2926,
+    "sourced_goals": 1250,
     "sourcers": 5
   }
 }

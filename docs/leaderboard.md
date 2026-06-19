@@ -4,36 +4,36 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**1077 verified proofs · 769 attributed · 308 historical/unknown · 385 logged terminal runs.**
+**1084 verified proofs · 776 attributed · 308 historical/unknown · 352 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 66 |
+| Successful terminal runs | 33 |
 | Failed terminal runs | 319 |
 | Decomposed after failure | 18 |
 | Failed without decomposition | 301 |
-| Run success rate | 17.1% |
-| Provider attempts | 428 |
+| Run success rate | 9.4% |
+| Provider attempts | 395 |
 | Failed attempts | 362 |
-| Attempt yield | 15.4% |
+| Attempt yield | 8.3% |
 | Recorded run time | 89h 34m |
-| Median / p90 run time | 7m 4s / 32m 2s |
-| Verified successes per recorded hour | 0.74 |
-| Proofs with run telemetry | 66 (6.1%) |
+| Median / p90 run time | 8m 6s / 32m 4s |
+| Verified successes per recorded hour | 0.37 |
+| Proofs with run telemetry | 33 (3.0%) |
 
 ## Work Queue
 
-**1243 goals · 1013 archived · 3 blocked · 154 open · 64 proved · 9 translated.**
+**1250 goals · 1053 archived · 3 blocked · 154 open · 31 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 77 | 21 | 27.3% | 71 | 4m 18s |
+| 1 | 63 | 7 | 11.1% | 71 | 6m 28s |
 | 2 | 139 | 1 | 0.7% | 157 | 7m 58s |
-| 3 | 146 | 41 | 28.1% | 114 | 7m 25s |
+| 3 | 127 | 22 | 17.3% | 114 | 9m 24s |
 | 4 | 21 | 3 | 14.3% | 18 | 6m 5s |
 | 5 | 2 | 0 | 0.0% | 2 | 31m 25s |
 
@@ -58,7 +58,7 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------:|
-| 1 | [@ohdearquant](https://github.com/ohdearquant) | 608 | 607 | 1 | 52 | 100.0% | 1443 | 159500 |
+| 1 | [@ohdearquant](https://github.com/ohdearquant) | 615 | 614 | 1 | 19 | 100.0% | 1464 | 161775 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 268 | 21 | 247 | 0 | — | 637 | 70400 |
 | 3 | [@cgbarlow](https://github.com/cgbarlow) | 118 | 71 | 47 | 265 | 4.9% | 212 | 24150 |
 | 4 | [@perttu](https://github.com/perttu) | 38 | 34 | 4 | 13 | 7.7% | 84 | 9350 |
@@ -69,16 +69,16 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 
 ## Attribution Notes
 
-**769 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**776 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 1077 of 1077 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 1084 of 1084 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
-| `claude / template-zmod-decide` | 338 | 37 | 100.0% | 0 | 2 | 0s | — |
-| `claude / template-ring-cofactor` | 142 | 15 | 100.0% | 0 | 1 | 0s | — |
+| `claude / template-zmod-decide` | 338 | 11 | 100.0% | 0 | 2 | 0s | — |
+| `claude / template-ring-cofactor` | 149 | 8 | 100.0% | 0 | 1 | 0s | — |
 | `claude / opus` | 56 | 17 | 70.6% | 16 | 4 | 7m 58s | 3.58 |
 | `claude / template-sum-induction` | 52 | 0 | — | 0 | 1 | — | — |
 | `claude / template-zmod-crt` | 42 | 0 | — | 0 | 1 | — | — |
@@ -104,6 +104,13 @@ Git add-author attribution covers 1077 of 1077 proof index files. It is used onl
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-19T17:23:23Z` | `gbinom-ap-k4-step3-dvd` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-ring-cofactor` | `proved` | 1 | 0 | 0s |
+| `2026-06-19T17:21:45Z` | `gbinom-falling-five-fact-dvd` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-ring-cofactor` | `proved` | 1 | 0 | 0s |
+| `2026-06-19T17:21:26Z` | `gbinom-falling-four-fact-dvd` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-ring-cofactor` | `proved` | 1 | 0 | 0s |
+| `2026-06-19T17:20:44Z` | `gbinom-consec-seven-fact-dvd` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-ring-cofactor` | `proved` | 1 | 0 | 0s |
+| `2026-06-19T17:20:01Z` | `gbinom-consec-six-fact-dvd` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-ring-cofactor` | `proved` | 1 | 0 | 0s |
+| `2026-06-19T17:19:29Z` | `gbinom-consec-four-fact-dvd` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-ring-cofactor` | `proved` | 1 | 0 | 0s |
+| `2026-06-19T17:16:45Z` | `geud-30-pow-77-sub-self` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-ring-cofactor` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T17:16:18Z` | `geud-30-pow-69-sub-self` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-ring-cofactor` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T09:24:59Z` | `gzmod-24-pow-64-sub-pow-38` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T09:24:33Z` | `gzmod-24-pow-64-sub-pow-26` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
@@ -116,14 +123,7 @@ Git add-author attribution covers 1077 of 1077 proof index files. It is used onl
 | `2026-06-19T09:00:42Z` | `gzmod-24-pow-44-sub-pow-ten` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T08:55:27Z` | `gzmod-240-pow-40-sub-pow-36` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
 | `2026-06-19T08:53:56Z` | `gzmod-240-pow-39-sub-pow-35` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
-| `2026-06-19T08:53:29Z` | `gzmod-24-pow-39-sub-pow-25` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
-| `2026-06-19T08:52:38Z` | `gzmod-240-pow-38-sub-pow-34` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
-| `2026-06-19T08:50:15Z` | `gzmod-24-pow-36-sub-pow-34` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
-| `2026-06-19T08:40:46Z` | `gzmod-24-pow-28-sub-pow-fourteen` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
-| `2026-06-19T08:38:37Z` | `gzmod-24-pow-25-sub-pow-23` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
-| `2026-06-19T08:38:11Z` | `gzmod-480-pow-25-sub-pow-seventeen` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
-| `2026-06-19T08:37:57Z` | `gzmod-264-pow-25-sub-pow-fifteen` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
-| `2026-06-19T08:36:13Z` | `gzmod-24-pow-23-sub-pow-21` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
+| `2026-06-16T22:22:57Z` | `sum-range-compositions-count-eq-two-pow` | [@cgbarlow](https://github.com/cgbarlow) | `openai / leanstral-2603` | `failed` | 1 | 1 | 3m 32s |
 
 ## Interpretation
 
