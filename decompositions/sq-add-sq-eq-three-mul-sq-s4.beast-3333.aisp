@@ -1,0 +1,12 @@
+𝔸5.1.decomp.sq-add-sq-eq-three-mul-sq-s4.beast-3333@2026-06-19
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜sq-add-sq-eq-three-mul-sq-s4; agent≜beast-3333}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜sq-add-sq-eq-three-mul-sq-s4-s1,sha≜6fe4607744208ed9972d5f13271026d737f640ad6194807c2622f947b1956e48⟩
+  sub₂≜⟨id≜sq-add-sq-eq-three-mul-sq-s4-s2,sha≜d8750f1e9e4027549a8585b619f132ef5864f5a21dbb3a6dab09f7eb4a969af6⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
