@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**170 open · 611 proved · 784 total prove-goals.**
+**170 open · 612 proved · 785 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -445,6 +445,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gcd-threen-n7-dvd-twentyone` — The gcd of 3n and n+7 always divides 21. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 3n and n+7 always divides 21. Not a named mathlib lemma in this form. |
 | `gcd-two-pow-add-one-sub-one-dvd-two` — The gcd of 2^n+1 and 2^n-1 always divides 2. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 2^n+1 and 2^n-1 always divides 2. Not a named mathlib lemma in this form. |
 | `gcd-twon-n5-dvd-ten` — The gcd of 2n and n+5 always divides 10. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 2n and n+5 always divides 10. Not a named mathlib lemma in this form. |
+| `gfac-d0-c1` — the polynomial n divides n^2 - n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n divides n^2 - n. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d1-c1` — the polynomial n - 1 divides n^2 - 2*n + 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n - 1 divides n^2 - 2*n + 1. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d1-c4` — the polynomial n - 1 divides n^3 - 2*n^2 + 2*n - 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n - 1 divides n^3 - 2*n^2 + 2*n - 1. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d2-c6` — the polynomial n + 1 divides n^2 + 3*n + 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n + 1 divides n^2 + 3*n + 2. Provable by exhibiting the cofactor and `ring`. |
