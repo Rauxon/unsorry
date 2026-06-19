@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**154 open · 1098 proved · 1255 total prove-goals.**
+**154 open · 1099 proved · 1256 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -410,6 +410,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gbinom-poly-nmulnpow2p2` — 3 divides n * (n ^ 2 + 2) for every integer n. Context: n(n^2+2): 3 \| n^3+2n = n^3-n+3n, and 3\|n^3-n, 3\|3n. Universal modulus M=3. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 3 divides n * (n ^ 2 + 2) for every integer n. Context: n(n^2+2): 3 \| n^3+2n = n^3-n+3n, and 3\|n^3-n, 3\|3n. Universal modulus M=3. Provable by exhibiting the cofactor and `ring`. |
 | `gbinom-sp-0-1-5` — 6 divides the product n * (n + 1) * (n + 5) for every integer n. Shifts: (0, 1, 5). Universal modulus M=6. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 6 divides the product n * (n + 1) * (n + 5) for every integer n. Shifts: (0, 1, 5). Universal modulus M=6. Provable by exhibiting the cofactor and `ring`. |
 | `gbinom-sp-0-2-3-5` — 8 divides the product n * (n + 2) * (n + 3) * (n + 5) for every integer n. Shifts: (0, 2, 3, 5). Universal modulus M=8. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 8 divides the product n * (n + 2) * (n + 3) * (n + 5) for every integer n. Shifts: (0, 2, 3, 5). Universal modulus M=8. Provable by exhibiting the cofactor and `ring`. |
+| `gbinom-sp-0-2-7` — 6 divides the product n * (n + 2) * (n + 7) for every integer n. Shifts: (0, 2, 7). Universal modulus M=6. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 6 divides the product n * (n + 2) * (n + 7) for every integer n. Shifts: (0, 2, 7). Universal modulus M=6. Provable by exhibiting the cofactor and `ring`. |
 | `gcd-2n1-2n5-dvd-four` — The gcd of 2n+1 and 2n+5 always divides 4. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 2n+1 and 2n+5 always divides 4. Not a named mathlib lemma in this form. |
 | `gcd-2n1-2n7-dvd-six` — The gcd of 2n+1 and 2n+7 always divides 6. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 2n+1 and 2n+7 always divides 6. Not a named mathlib lemma in this form. |
 | `gcd-2n1-3n4-dvd-five` — The gcd of 2n+1 and 3n+4 always divides 5. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 2n+1 and 3n+4 always divides 5. Not a named mathlib lemma in this form. |
