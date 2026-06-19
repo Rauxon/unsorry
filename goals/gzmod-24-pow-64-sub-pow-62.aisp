@@ -3,17 +3,17 @@
 ⟦Ω:Goal⟧{
   id≜gzmod-24-pow-64-sub-pow-62
   phase≜prove
-  status≜proved
+  status≜archived
   difficulty≜3
 }
 ⟦Σ:Source⟧{
-  src≜backlog/gzmod-24-pow-64-sub-pow-62.md
+  src≜packages/unsorry-archive-0027/backlog/gzmod-24-pow-64-sub-pow-62.md
 }
 ⟦Γ:Deps⟧{
   deps≜⟨⟩
 }
 ⟦Λ:Artifact⟧{
-  lean≜goals/gzmod-24-pow-64-sub-pow-62.lean
+  lean≜packages/unsorry-archive-0027/goals/gzmod-24-pow-64-sub-pow-62.lean
   sha≜4131f6b2b573a02d50b5fb9cc8ebcfae7acf328cc98542b6bbf1b6576d2f6cef
   aff≜0
 }
