@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**162 open · 691 proved · 856 total prove-goals.**
+**162 open · 692 proved · 857 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -474,6 +474,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gpow-diff-five-pow-four` — n minus 5 divides n to the 4 minus 5 to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 5 divides n to the 4 minus 5 to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-four-pow-eight` — n minus 4 divides n to the 8 minus 4 to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 4 divides n to the 8 minus 4 to the 8. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-four-pow-five` — n minus 4 divides n to the 5 minus 4 to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 4 divides n to the 5 minus 4 to the 5. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-diff-four-pow-seven` — n minus 4 divides n to the 7 minus 4 to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 4 divides n to the 7 minus 4 to the 7. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-seven-pow-four` — n minus 7 divides n to the 4 minus 7 to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 4 minus 7 to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-seven-pow-seven` — n minus 7 divides n to the 7 minus 7 to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 7 minus 7 to the 7. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-seven-pow-two` — n minus 7 divides n to the 2 minus 7 to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 2 minus 7 to the 2. Provable by exhibiting the cofactor and `ring`. |
