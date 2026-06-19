@@ -1022,14 +1022,35 @@ utc_today() {
 }
 
 # <short-hostname>-<4 hex> (ADR-007), sanitised to the contract Id grammar.
-generate_agent_id() {
-  local host hex
+# Normalised short hostname used as the agent-id prefix. Factored out so the
+# generator and the copied-identity self-heal (resolve_agent_id) agree exactly.
+local_host() {
+  local host
   host="$(hostname -s 2>/dev/null || hostname)"
   host="$(printf '%s' "$host" | tr '[:upper:]' '[:lower:]' \
     | tr -c 'a-z0-9-' '-' | tr -s '-' | sed -e 's/^-*//' -e 's/-*$//')"
   [ -n "$host" ] || host="agent"
+  printf '%s' "$host"
+}
+
+generate_agent_id() {
+  local hex
   hex="$(od -An -N2 -tx1 /dev/urandom | tr -d ' \n')"
-  printf '%s-%s\n' "$host" "$hex"
+  printf '%s-%s\n' "$(local_host)" "$hex"
+}
+
+# Pure: does <id> look like an auto-generated id for <host>? Used to detect a
+# COPIED ~/.unsorry/agent-id (one generated on another machine). Only ids in the
+# generated `<host>-<4 hex>` shape are judged; a custom-shaped id (suffix not
+# 4 hex) is treated as a deliberate operator choice and left alone. Returns 0
+# (local / leave it) or 1 (foreign / regenerate).
+agent_id_host_matches() {
+  local id="$1" host="$2" suffix="${1##*-}"
+  case "$suffix" in
+    [0-9a-f][0-9a-f][0-9a-f][0-9a-f]) ;;
+    *) return 0 ;;
+  esac
+  [ "${id%-*}" = "$host" ]
 }
 
 # Unique feature-branch name: feature/goal-<goal>-<kind>-<AGENT_ID>-<6 hex>.
@@ -1146,6 +1167,17 @@ resolve_agent_id() {
     id="$UNSORRY_AGENT_ID"
   elif [ -f "$id_file" ]; then
     id="$(tr -d ' \t\n' < "$id_file")"
+    # Self-heal a COPIED identity: the default id encodes this host, so a persisted
+    # id whose host-prefix is not this machine's was generated elsewhere (a cloned
+    # ~/.unsorry/agent-id from someone's setup). Sharing one swarm id mis-credits
+    # proofs and collides on claims, so regenerate a local one. An explicitly
+    # EXPORTED UNSORRY_AGENT_ID is honoured above and never auto-changed.
+    if ! agent_id_host_matches "$id" "$(local_host)"; then
+      local fresh; fresh="$(generate_agent_id)"
+      log "agent identity '$id' was generated on another machine (this host is '$(local_host)') — regenerating '$fresh' (copied ~/.unsorry/agent-id; export UNSORRY_AGENT_ID to override)"
+      id="$fresh"
+      printf '%s\n' "$id" > "$id_file"
+    fi
   else
     id="$(generate_agent_id)"
     mkdir -p "$(dirname "$id_file")"
@@ -3158,6 +3190,18 @@ test_agent_id_generation() {
   [[ "$id" =~ ^[a-z0-9][a-z0-9-]*-[0-9a-f]{4}$ ]] \
     || { log "  '$id' is not <short-hostname>-<4 hex>"; return 1; }
   py_helper is-id "$id" || { log "  '$id' violates the contract Id grammar"; return 1; }
+}
+
+test_agent_id_host_matches() {
+  # generated shape, prefix == host -> local (0)
+  agent_id_host_matches "oma-2-a3f9" "oma-2" || { log "  local id judged foreign"; return 1; }
+  agent_id_host_matches "mac-158f" "mac"     || { log "  local id judged foreign (2)"; return 1; }
+  # generated shape, prefix != host -> foreign (1): the copied-config case
+  if agent_id_host_matches "mac-158f" "oma-2"; then log "  copied id judged local"; return 1; fi
+  if agent_id_host_matches "oma-2-a3f9" "mac"; then log "  copied id judged local (2)"; return 1; fi
+  # custom-shaped id (suffix not 4 hex) -> intentional, left alone (0)
+  agent_id_host_matches "myfleet-prod" "oma-2" || { log "  custom id judged foreign"; return 1; }
+  agent_id_host_matches "myfleet" "oma-2"      || { log "  hyphenless id judged foreign"; return 1; }
 }
 
 test_agent_id_validation() {
@@ -5213,6 +5257,7 @@ test_dispatch_skips_taken_midpass() {
 run_self_tests() {
   local tests=(
     test_agent_id_generation
+    test_agent_id_host_matches
     test_agent_id_validation
     test_solver_resolution
     test_git_identity_resolution
