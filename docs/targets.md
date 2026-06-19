@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**155 open · 758 proved · 916 total prove-goals.**
+**155 open · 761 proved · 919 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -447,6 +447,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gfac-d1-c4` — the polynomial n - 1 divides n^3 - 2*n^2 + 2*n - 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n - 1 divides n^3 - 2*n^2 + 2*n - 1. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d1-c5` — the polynomial n - 1 divides n^3 - n^2 - n + 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n - 1 divides n^3 - n^2 - n + 1. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d1-c6` — the polynomial n - 1 divides n^2 + n - 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n - 1 divides n^2 + n - 2. Provable by exhibiting the cofactor and `ring`. |
+| `gfac-d2-c0` — the polynomial n + 1 divides n^2 + 2*n + 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n + 1 divides n^2 + 2*n + 1. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d2-c3` — the polynomial n + 1 divides n^3 + 2*n^2 + 2*n + 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n + 1 divides n^3 + 2*n^2 + 2*n + 1. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d2-c5` — the polynomial n + 1 divides n^3 + n^2 - n - 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n + 1 divides n^3 + n^2 - n - 1. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d2-c6` — the polynomial n + 1 divides n^2 + 3*n + 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n + 1 divides n^2 + 3*n + 2. Provable by exhibiting the cofactor and `ring`. |
@@ -485,9 +486,11 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gpow-diff-four-pow-seven` — n minus 4 divides n to the 7 minus 4 to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 4 divides n to the 7 minus 4 to the 7. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-four-pow-three` — n minus 4 divides n to the 3 minus 4 to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 4 divides n to the 3 minus 4 to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-four-pow-two` — n minus 4 divides n to the 2 minus 4 to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 4 divides n to the 2 minus 4 to the 2. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-diff-seven-pow-eight` — n minus 7 divides n to the 8 minus 7 to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 8 minus 7 to the 8. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-seven-pow-five` — n minus 7 divides n to the 5 minus 7 to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 5 minus 7 to the 5. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-seven-pow-four` — n minus 7 divides n to the 4 minus 7 to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 4 minus 7 to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-seven-pow-seven` — n minus 7 divides n to the 7 minus 7 to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 7 minus 7 to the 7. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-diff-seven-pow-six` — n minus 7 divides n to the 6 minus 7 to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 6 minus 7 to the 6. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-seven-pow-three` — n minus 7 divides n to the 3 minus 7 to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 3 minus 7 to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-seven-pow-two` — n minus 7 divides n to the 2 minus 7 to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 7 divides n to the 2 minus 7 to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-six-pow-eight` — n minus 6 divides n to the 8 minus 6 to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 6 divides n to the 8 minus 6 to the 8. Provable by exhibiting the cofactor and `ring`. |
