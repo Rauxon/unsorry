@@ -4,8 +4,8 @@
       "attempt_yield": 1.0,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "badges": {
-        "difficulty": 1693,
-        "proofs": 788,
+        "difficulty": 1694,
+        "proofs": 789,
         "success_rate_percent": 100.0
       },
       "credit_source_summary": "explicit + inferred",
@@ -13,10 +13,10 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 788,
-      "difficulty_points": 1693,
+      "credited_proofs": 789,
+      "difficulty_points": 1694,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 787,
+      "explicit_solver_proofs": 788,
       "failed_attempts": 0,
       "github": "ohdearquant",
       "inferred_git_proofs": 1,
@@ -24,11 +24,11 @@
       "profile_url": "https://github.com/ohdearquant",
       "rank": 1,
       "run_success_rate": 1.0,
-      "runs": 72,
-      "score": 189000,
+      "runs": 73,
+      "score": 189125,
       "solver": "ohdearquant",
-      "successes": 72,
-      "verified_proofs": 788
+      "successes": 73,
+      "verified_proofs": 789
     },
     {
       "attempt_yield": null,
@@ -269,15 +269,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
-      "difficulty_points": 312,
+      "difficulty_points": 313,
       "display_name": "Chris Barlow",
       "github": "cgbarlow",
-      "index_files_added": 199,
+      "index_files_added": 200,
       "missing_solver_provenance": 47,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 3,
       "solver_credit": false,
-      "solver_provenance_proofs": 152
+      "solver_provenance_proofs": 153
     },
     {
       "attribution_source": "git-add-author",
@@ -355,8 +355,8 @@
     {
       "provider_model": "claude / template-ring-cofactor",
       "run_success_rate": 1.0,
-      "runs": 72,
-      "verified_proofs": 319
+      "runs": 73,
+      "verified_proofs": 320
     },
     {
       "provider_model": "claude / opus",
@@ -482,19 +482,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 949,
+    "attributed_proofs": 950,
     "attribution_gap_count": 308,
     "credited_contributors": 8,
-    "credited_proofs": 1257,
-    "explicit_solver_proofs": 949,
-    "git_attributed_index_files": 1257,
+    "credited_proofs": 1258,
+    "explicit_solver_proofs": 950,
+    "git_attributed_index_files": 1258,
     "historical_contributors": 8,
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
-    "proof_run_coverage": 0.0684,
-    "terminal_runs": 405,
+    "proof_run_coverage": 0.0692,
+    "terminal_runs": 406,
     "uncredited_proofs": 0,
-    "verified_proofs": 1257
+    "verified_proofs": 1258
   },
   "timeline": [
     {
@@ -543,9 +543,9 @@
       "proofs": 24
     },
     {
-      "cumulative_proofs": 1257,
+      "cumulative_proofs": 1258,
       "date": "2026-06-19",
-      "proofs": 545
+      "proofs": 546
     }
   ]
 }
