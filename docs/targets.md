@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**174 open · 590 proved · 767 total prove-goals.**
+**174 open · 591 proved · 768 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -449,6 +449,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gcd-two-pow-add-one-sub-one-dvd-two` — The gcd of 2^n+1 and 2^n-1 always divides 2. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 2^n+1 and 2^n-1 always divides 2. Not a named mathlib lemma in this form. |
 | `gcd-twon-n5-dvd-ten` — The gcd of 2n and n+5 always divides 10. | proved | 3 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | The gcd of 2n and n+5 always divides 10. Not a named mathlib lemma in this form. |
 | `gfac-d2-c6` — the polynomial n + 1 divides n^2 + 3*n + 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n + 1 divides n^2 + 3*n + 2. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-five-add-pow-three` — n to the 1 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `int-add-neg` — Adding the negation of an integer yields zero. | proved | 1 | — | — | — |
 | `int-neg-neg` — Double negation of an integer is the identity. | proved | 1 | — | — | — |
 | `int-sub-eq-add-neg` — Integer subtraction equals adding the negation. | proved | 1 | — | — | — |
