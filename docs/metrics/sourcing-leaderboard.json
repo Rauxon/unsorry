@@ -17,7 +17,7 @@
     },
     {
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
-      "difficulty_points": 106,
+      "difficulty_points": 107,
       "display_name": "ohdearquant",
       "earliest_sourced": "2026-06-18",
       "git_author": "OceanLi <quantocean.li@gmail.com>",
@@ -25,13 +25,13 @@
       "latest_sourced": "2026-06-19",
       "open": 0,
       "profile_url": "https://github.com/ohdearquant",
-      "proved": 72,
-      "sourced_goals": 72,
+      "proved": 73,
+      "sourced_goals": 73,
       "sourcer": "ohdearquant"
     },
     {
       "avatar_url": "https://github.com/perttu.png?size=96",
-      "difficulty_points": 52,
+      "difficulty_points": 53,
       "display_name": "Perttu Isotalo",
       "earliest_sourced": "2026-06-12",
       "git_author": "Perttu Isotalo <pisotalo@isotalo.org>",
@@ -39,8 +39,8 @@
       "latest_sourced": "2026-06-19",
       "open": 1,
       "profile_url": "https://github.com/perttu",
-      "proved": 17,
-      "sourced_goals": 43,
+      "proved": 18,
+      "sourced_goals": 44,
       "sourcer": "perttu"
     },
     {
@@ -59,8 +59,8 @@
     }
   ],
   "totals": {
-    "difficulty_points": 1901,
-    "sourced_goals": 855,
+    "difficulty_points": 1903,
+    "sourced_goals": 857,
     "sourcers": 4
   }
 }
