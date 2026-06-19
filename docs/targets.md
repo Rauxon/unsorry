@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**154 open · 1099 proved · 1256 total prove-goals.**
+**154 open · 1100 proved · 1257 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -460,6 +460,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `geud-30-pow-69-sub-self` — 30 (= 2 * 3 * 5) divides n to the 69 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(69): the product of all primes p with (p-1) dividing 68. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 30 (= 2 * 3 * 5) divides n to the 69 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(69): the product of all primes p with (p-1) dividing 68. Provable by exhibiting the cofactor and `ring`. |
 | `geud-30-pow-77-sub-self` — 30 (= 2 * 3 * 5) divides n to the 77 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(77): the product of all primes p with (p-1) dividing 76. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 30 (= 2 * 3 * 5) divides n to the 77 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(77): the product of all primes p with (p-1) dividing 76. Provable by exhibiting the cofactor and `ring`. |
 | `geud-30-pow-five-sub-self` — 30 (= 2 * 3 * 5) divides n to the 5 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(5): the product of all primes p with (p-1) dividing 4. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 30 (= 2 * 3 * 5) divides n to the 5 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(5): the product of all primes p with (p-1) dividing 4. Provable by exhibiting the cofactor and `ring`. |
+| `geud-42-pow-seven-sub-self` — 42 (= 2 * 3 * 7) divides n to the 7 minus n, for every integer n. Here 42 is the EXACT maximal universal divisor P(7): the product of all primes p with (p-1) dividing 6. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 42 (= 2 * 3 * 7) divides n to the 7 minus n, for every integer n. Here 42 is the EXACT maximal universal divisor P(7): the product of all primes p with (p-1) dividing 6. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d0-c1` — the polynomial n divides n^2 - n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n divides n^2 - n. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d0-c3` — the polynomial n divides n^3 + n^2 + n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n divides n^3 + n^2 + n. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d0-c4` — the polynomial n divides n^3 - n^2 + n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n divides n^3 - n^2 + n. Provable by exhibiting the cofactor and `ring`. |
