@@ -67,7 +67,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 33,
+      "difficulty_points": 48,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -78,7 +78,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 11
+      "verified_proofs": 16
     },
     {
       "attempt_yield": 0.0,
@@ -114,17 +114,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 412,
+    "attributed_proofs": 417,
     "historical_unknown_proofs": 306,
-    "proof_run_coverage": 0.0195,
+    "proof_run_coverage": 0.0194,
     "successful_proofs_with_run_telemetry": 14,
     "terminal_runs": 333,
-    "verified_proofs": 718
+    "verified_proofs": 723
   },
   "credit": {
     "credited_contributors": 8,
-    "credited_proofs": 718,
-    "explicit_solver_proofs": 412,
+    "credited_proofs": 723,
+    "explicit_solver_proofs": 417,
     "inferred_git_proofs": 306,
     "uncredited_proofs": 0
   },
@@ -167,10 +167,10 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 256,
-      "difficulty_points": 601,
+      "credited_proofs": 261,
+      "difficulty_points": 616,
       "display_name": "@chat-bit-01",
-      "explicit_solver_proofs": 11,
+      "explicit_solver_proofs": 16,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -185,7 +185,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 256
+      "verified_proofs": 261
     },
     {
       "attempt_yield": 0.0464,
@@ -4363,18 +4363,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/chat-bit-01.png?size=96",
-        "difficulty_points": 601,
+        "difficulty_points": 616,
         "display_name": "chat-bit-01",
         "git_author": "chat-bit-01 <chatuser55@gmail.com>",
         "git_author_name": "chat-bit-01",
         "github": "chat-bit-01",
-        "index_files_added": 256,
+        "index_files_added": 261,
         "missing_solver_provenance": 245,
         "profile_url": "https://github.com/chat-bit-01",
-        "sample_add_commit": "07d19b6e3017bc420ae9dd3c1e461495567edb38",
+        "sample_add_commit": "28c17087c600b9b703b47710361c35caef162ee3",
         "sample_add_date": "2026-06-19",
         "solver_credit": false,
-        "solver_provenance_proofs": 11
+        "solver_provenance_proofs": 16
       },
       {
         "attribution_source": "git-add-author",
@@ -4489,8 +4489,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 718,
-    "records": 718,
+    "git_attributed_index_files": 723,
+    "records": 723,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -4558,7 +4558,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 43
+      "verified_proofs": 48
     },
     {
       "attempt_yield": null,
@@ -4872,16 +4872,16 @@
       "0": 10,
       "1": 181,
       "2": 353,
-      "3": 306,
+      "3": 311,
       "4": 37,
       "5": 1
     },
-    "goals": 888,
+    "goals": 893,
     "status_counts": {
       "archived": 703,
       "blocked": 3,
       "open": 158,
-      "proved": 15,
+      "proved": 20,
       "translated": 9
     }
   },
