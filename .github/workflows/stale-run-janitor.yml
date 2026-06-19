@@ -9,6 +9,14 @@
 name: stale-run-janitor
 
 on:
+  # Event-driven is the primary trigger: GitHub throttles `schedule` under load
+  # (cron runs land hours apart exactly when the gate-a backlog — and zombie rate
+  # — is highest), so fire on every Gate A completion instead. Completions are
+  # frequent while the swarm is active and are NOT subject to cron throttling, so
+  # zombies get mopped within minutes. The cron stays as a low-activity backstop.
+  workflow_run:
+    workflows: ["gate-a"]
+    types: [completed]
   schedule:
     - cron: "*/20 * * * *"
   workflow_dispatch:
@@ -21,8 +29,11 @@ on:
         default: "10000000"
 
 concurrency:
+  # workflow_run fires once per Gate A completion (bursty), so collapse the burst:
+  # a single recent sweep is all that's needed, not one per completion. Sweeps take
+  # seconds, far less than the gap between completions, so this never starves.
   group: stale-run-janitor
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   actions: write
