@@ -4,12 +4,11 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**157 open · 748 proved · 908 total prove-goals.**
+**156 open · 749 proved · 908 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
 | `five-var-qm-am` — The square of a five-term sum is at most five times the sum of the five squares (QM-AM, five variables). | open | 3 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The square of a five-term sum is at most five times the sum of the five squares (QM-AM, five variables). Not a named mathlib lemma in this form. |
-| `fourth-power-mod-fortyone-mem` — The fourth-power residues modulo the prime 41 are exactly {0,1,4,10,16,18,23,25,31,37,40}. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | The fourth-power residues modulo the prime 41 are exactly {0,1,4,10,16,18,23,25,31,37,40}. Not a named mathlib lemma in this form. |
 | `hexagonal-eq-triangular-odd-index` — The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. | open | 1 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. Not a named mathlib lemma in this form. |
 | `n4-plus-one-factor-over-sqrt-shift` — The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. Not a named mathlib lemma in this form. |
 | `nat-sq-lt-two-pow-s2` — nat-sq-lt-two-pow-s2 | open | 1 | — | — | — |
@@ -382,6 +381,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `fourth-power-mod-five-s1` — fourth-power-mod-five-s1 | proved | 1 | — | — | — |
 | `fourth-power-mod-five-s2` — fourth-power-mod-five-s2 | proved | 1 | — | — | — |
 | `fourth-power-mod-fortyeight-mem` — Every fourth power is congruent to only 0, 1, 16 or 33 modulo 48. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | Every fourth power is congruent to only 0, 1, 16 or 33 modulo 48. Not a named mathlib lemma in this form. |
+| `fourth-power-mod-fortyone-mem` — The fourth-power residues modulo the prime 41 are exactly {0,1,4,10,16,18,23,25,31,37,40}. | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | The fourth-power residues modulo the prime 41 are exactly {0,1,4,10,16,18,23,25,31,37,40}. Not a named mathlib lemma in this form. |
 | `fourth-power-mod-hundred-mem` — The last two decimal digits of a fourth power are always one of twelve values {00,01,16,21,25,36,41,56,61,76,81,96}. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | The last two decimal digits of a fourth power are always one of twelve values {00,01,16,21,25,36,41,56,61,76,81,96}. Not a named mathlib lemma in this form. |
 | `fourth-power-mod-nine-mem` — Every fourth power is congruent to 0, 1, 4 or 7 modulo 9. | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every fourth power is congruent to 0, 1, 4 or 7 modulo 9. Not a named mathlib lemma in this form. |
 | `fourth-power-mod-seventeen-mem` — The fourth-power residues modulo 17 are exactly {0,1,4,13,16}. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | The fourth-power residues modulo 17 are exactly {0,1,4,13,16}. Not a named mathlib lemma in this form. |
