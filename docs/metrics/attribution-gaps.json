@@ -713,6 +713,21 @@
     {
       "alias_mapped": true,
       "date": "2026-06-17",
+      "difficulty": 4,
+      "display_name": "chat-bit-01",
+      "git_add_commit": "650a90b8b39e998c7219701e6398631c7def4f6c",
+      "git_add_date": "2026-06-19",
+      "git_author": "chat-bit-01 <chatuser55@gmail.com>",
+      "git_author_name": "chat-bit-01",
+      "goal": "sum-sq-times-pairsum-ge-three-abc-sum",
+      "mapped_github": "chat-bit-01",
+      "path": "library/index/6cb86f422a0652d51ad888ba869a35e84430b6a67f372619ade6a9432d471060.aisp",
+      "review_status": "candidate",
+      "sha": "6cb86f422a0652d51ad888ba869a35e84430b6a67f372619ade6a9432d471060"
+    },
+    {
+      "alias_mapped": true,
+      "date": "2026-06-17",
       "difficulty": 2,
       "display_name": "chat-bit-01",
       "git_add_commit": "6d99bbafdb1e97d83012935b9668a3410e72c3dd",
@@ -4584,9 +4599,9 @@
   "schema_version": 1,
   "source": "git-add-author",
   "summary": {
-    "git_attributed_missing_solver": 305,
-    "mapped_missing_solver": 305,
-    "missing_solver_provenance": 305,
+    "git_attributed_missing_solver": 306,
+    "mapped_missing_solver": 306,
+    "missing_solver_provenance": 306,
     "unmapped_missing_solver": 0
   }
 }
