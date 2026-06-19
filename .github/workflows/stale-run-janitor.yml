@@ -23,7 +23,7 @@ on:
     inputs:
       in_progress_minutes:
         description: "Cancel in_progress Gate A runs older than this"
-        default: "60"
+        default: "180"
       queued_minutes:
         description: "Cancel queued Gate A runs older than this"
         default: "10000000"
@@ -54,5 +54,5 @@ jobs:
           python3 -m tools.repo.stale_runs \
             --workflow gate-a.yml \
             --repo "${{ github.repository }}" \
-            --in-progress-minutes "${{ github.event.inputs.in_progress_minutes || '60' }}" \
+            --in-progress-minutes "${{ github.event.inputs.in_progress_minutes || vars.UNSORRY_JANITOR_INPROGRESS_MIN || '180' }}" \
             --queued-minutes "${{ github.event.inputs.queued_minutes || '10000000' }}"
