@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**159 open · 710 proved · 872 total prove-goals.**
+**159 open · 711 proved · 873 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -442,6 +442,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gfac-d0-c3` — the polynomial n divides n^3 + n^2 + n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n divides n^3 + n^2 + n. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d0-c4` — the polynomial n divides n^3 - n^2 + n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n divides n^3 - n^2 + n. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d0-c5` — the polynomial n divides n^3 - n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n divides n^3 - n. Provable by exhibiting the cofactor and `ring`. |
+| `gfac-d0-c6` — the polynomial n divides n^2 + 2*n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n divides n^2 + 2*n. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d1-c1` — the polynomial n - 1 divides n^2 - 2*n + 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n - 1 divides n^2 - 2*n + 1. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d1-c4` — the polynomial n - 1 divides n^3 - 2*n^2 + 2*n - 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n - 1 divides n^3 - 2*n^2 + 2*n - 1. Provable by exhibiting the cofactor and `ring`. |
 | `gfac-d1-c5` — the polynomial n - 1 divides n^3 - n^2 - n + 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n - 1 divides n^3 - n^2 - n + 1. Provable by exhibiting the cofactor and `ring`. |
