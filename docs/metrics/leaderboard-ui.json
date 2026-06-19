@@ -178,33 +178,33 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": 0.029,
+      "attempt_yield": 0.0417,
       "avatar_url": "https://github.com/adam91holt.png?size=96",
       "badges": {
-        "difficulty": 13,
-        "proofs": 7,
-        "success_rate_percent": 3.51
+        "difficulty": 16,
+        "proofs": 8,
+        "success_rate_percent": 5.17
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 7,
-      "difficulty_points": 13,
+      "credited_proofs": 8,
+      "difficulty_points": 16,
       "display_name": "@adam91holt",
-      "explicit_solver_proofs": 7,
-      "failed_attempts": 67,
+      "explicit_solver_proofs": 8,
+      "failed_attempts": 69,
       "github": "adam91holt",
       "inferred_git_proofs": 0,
-      "median_solve_s": 459,
+      "median_solve_s": 468,
       "profile_url": "https://github.com/adam91holt",
       "rank": 7,
-      "run_success_rate": 0.0351,
-      "runs": 57,
-      "score": 1475,
+      "run_success_rate": 0.0517,
+      "runs": 58,
+      "score": 1800,
       "solver": "adam91holt",
-      "successes": 2,
-      "verified_proofs": 7
+      "successes": 3,
+      "verified_proofs": 8
     },
     {
       "attempt_yield": null,
@@ -294,15 +294,15 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 90,
+      "difficulty_points": 93,
       "display_name": "adam91holt",
       "github": null,
-      "index_files_added": 34,
+      "index_files_added": 35,
       "missing_solver_provenance": 0,
       "profile_url": null,
       "rank": 5,
       "solver_credit": false,
-      "solver_provenance_proofs": 34
+      "solver_provenance_proofs": 35
     },
     {
       "attribution_source": "git-add-author",
@@ -365,9 +365,9 @@
     },
     {
       "provider_model": "codex / unknown",
-      "run_success_rate": 0.1842,
-      "runs": 76,
-      "verified_proofs": 24
+      "run_success_rate": 0.1948,
+      "runs": 77,
+      "verified_proofs": 25
     },
     {
       "provider_model": "openai / leanstral-2603",
@@ -481,19 +481,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 292,
+    "attributed_proofs": 293,
     "attribution_gap_count": 300,
     "credited_contributors": 8,
-    "credited_proofs": 592,
-    "explicit_solver_proofs": 292,
-    "git_attributed_index_files": 592,
+    "credited_proofs": 593,
+    "explicit_solver_proofs": 293,
+    "git_attributed_index_files": 593,
     "historical_contributors": 8,
     "historical_unknown_proofs": 300,
     "inferred_git_proofs": 300,
-    "proof_run_coverage": 0.3868,
-    "terminal_runs": 551,
+    "proof_run_coverage": 0.3879,
+    "terminal_runs": 552,
     "uncredited_proofs": 0,
-    "verified_proofs": 592
+    "verified_proofs": 593
   },
   "timeline": [
     {
@@ -532,12 +532,12 @@
       "proofs": 244
     },
     {
-      "cumulative_proofs": 590,
+      "cumulative_proofs": 591,
       "date": "2026-06-17",
-      "proofs": 86
+      "proofs": 87
     },
     {
-      "cumulative_proofs": 592,
+      "cumulative_proofs": 593,
       "date": "2026-06-18",
       "proofs": 2
     }

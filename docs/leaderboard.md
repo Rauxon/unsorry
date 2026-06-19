@@ -4,28 +4,28 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**592 verified proofs · 292 attributed · 300 historical/unknown · 551 logged terminal runs.**
+**593 verified proofs · 293 attributed · 300 historical/unknown · 552 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 232 |
+| Successful terminal runs | 233 |
 | Failed terminal runs | 319 |
 | Decomposed after failure | 18 |
 | Failed without decomposition | 301 |
-| Run success rate | 42.1% |
-| Provider attempts | 600 |
-| Failed attempts | 368 |
-| Attempt yield | 38.7% |
-| Recorded run time | 96h 22m |
+| Run success rate | 42.2% |
+| Provider attempts | 603 |
+| Failed attempts | 370 |
+| Attempt yield | 38.6% |
+| Recorded run time | 96h 32m |
 | Median / p90 run time | 4m 38s / 31m 54s |
 | Verified successes per recorded hour | 2.41 |
-| Proofs with run telemetry | 229 (38.7%) |
+| Proofs with run telemetry | 230 (38.8%) |
 
 ## Work Queue
 
-**778 goals · 258 archived · 3 blocked · 174 open · 334 proved · 9 translated.**
+**778 goals · 258 archived · 3 blocked · 173 open · 335 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
@@ -33,7 +33,7 @@ Verified output comes from active `library/index` records plus archived index re
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
 | 1 | 76 | 20 | 26.3% | 71 | 4m 45s |
 | 2 | 249 | 111 | 44.6% | 158 | 4m 21s |
-| 3 | 199 | 94 | 47.2% | 119 | 4m 33s |
+| 3 | 200 | 95 | 47.5% | 121 | 4m 40s |
 | 4 | 25 | 7 | 28.0% | 18 | 5m 42s |
 | 5 | 2 | 0 | 0.0% | 2 | 31m 25s |
 
@@ -64,14 +64,14 @@ Rank uses credited verified proofs. Explicit `solver≜...` provenance wins; old
 | 4 | [@perttu](https://github.com/perttu) | 38 | 34 | 4 | 31 | 61.3% | 84 | 9350 |
 | 5 | [@ruvnet](https://github.com/ruvnet) | 21 | 21 | 0 | 0 | — | 55 | 6025 |
 | 6 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 2125 |
-| 7 | [@adam91holt](https://github.com/adam91holt) | 7 | 7 | 0 | 57 | 3.5% | 13 | 1475 |
+| 7 | [@adam91holt](https://github.com/adam91holt) | 8 | 8 | 0 | 58 | 5.2% | 16 | 1800 |
 | 8 | [@yarcles](https://github.com/yarcles) | 1 | 1 | 0 | 0 | — | 1 | 125 |
 
 ## Attribution Notes
 
-**292 explicit solver credits · 300 inferred git credits · 0 uncredited proof records.**
+**293 explicit solver credits · 300 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 592 of 592 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 593 of 593 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -80,7 +80,7 @@ Git add-author attribution covers 592 of 592 proof index files. It is used only 
 | `claude / opus` | 56 | 47 | 89.4% | 18 | 4 | 4m 47s | 6.27 |
 | `claude / template-sum-induction` | 51 | 54 | 100.0% | 0 | 1 | 0s | — |
 | `claude / template-zmod-crt` | 41 | 41 | 100.0% | 0 | 1 | 0s | — |
-| `codex / unknown` | 24 | 76 | 18.4% | 88 | 2 | 7m 38s | 1.18 |
+| `codex / unknown` | 25 | 77 | 19.5% | 90 | 2 | 7m 39s | 1.25 |
 | `openai / leanstral-2603` | 21 | 215 | 6.5% | 205 | 1 | 6m 30s | 0.27 |
 | `openrouter / unknown` | 21 | 0 | — | 0 | 1 | — | — |
 | `claude / template-decide` | 19 | 19 | 100.0% | 0 | 1 | 0s | — |
@@ -118,12 +118,12 @@ Git add-author attribution covers 592 of 592 proof index files. It is used only 
 | `2026-06-17T16:49:59Z` | `sum-hexagonal-eq` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T16:29:26Z` | `fib-two-mul-sq-diff-int` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `proved` | 3 | 2 | 9m 13s |
 | `2026-06-17T16:29:03Z` | `six-dvd-pow-three-add-five-mul` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-zmod-decide` | `proved` | 1 | 0 | 0s |
+| `2026-06-17T16:16:55Z` | `catalan-r2-shift-nat-fib-int` | [@adam91holt](https://github.com/adam91holt) | `codex / unknown` | `proved` | 3 | 2 | 10m 22s |
 | `2026-06-17T15:59:14Z` | `three-quartic-sum-ge-sumsq-sq` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-nlinarith` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T15:59:11Z` | `sym-grouped-deg-three-ge-six-abc` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-nlinarith` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T15:59:09Z` | `sym-deg-three-ge-six-mul` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-nlinarith` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T15:59:04Z` | `sumsq-ge-ab-plus-bc` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-nlinarith` | `proved` | 1 | 0 | 0s |
 | `2026-06-17T00:21:13Z` | `sum-triple-product-eq` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
-| `2026-06-17T00:21:09Z` | `sum-stella-octangula-closed-form` | [@ohdearquant](https://github.com/ohdearquant) | `claude / template-sum-induction` | `proved` | 1 | 0 | 0s |
 
 ## Interpretation
 
