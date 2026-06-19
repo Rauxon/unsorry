@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**925 goals — 156 open · 3 blocked · 9 translated · 54 proved · 703 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**926 goals — 155 open · 3 blocked · 9 translated · 56 proved · 703 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (50 of 54 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (52 of 56 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -98,11 +98,11 @@ flowchart LR
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s1
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s2
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s3
-  cluster_open(["open · 150"])
+  cluster_open(["open · 149"])
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 43"])
+  cluster_proved(["proved · 45"])
   class cluster_proved proved;
   cluster_archived(["archived · 703"])
   class cluster_archived unknown;
@@ -114,7 +114,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 
 | Goal | Status | Difficulty | Agent | Solver / model | PR | Proved |
 | --- | --- | --- | --- | --- | --- | --- |
-| [`five-var-qm-am`](https://github.com/agenticsnz/unsorry/blob/main/goals/five-var-qm-am.lean) | open | 3 | — | — | — | — |
 | [`hexagonal-eq-triangular-odd-index`](https://github.com/agenticsnz/unsorry/blob/main/goals/hexagonal-eq-triangular-odd-index.lean) | open | 1 | — | — | — | — |
 | [`n4-plus-one-factor-over-sqrt-shift`](https://github.com/agenticsnz/unsorry/blob/main/goals/n4-plus-one-factor-over-sqrt-shift.lean) | open | 2 | — | — | — | — |
 | [`nat-sq-lt-two-pow-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2.lean) | open | 1 | — | — | — | — |
@@ -282,11 +281,13 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`nat-mul-one`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-mul-one.lean) | translated | — | — | — | — | — |
 | [`nat-product-order`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-product-order.lean) | translated | — | — | — | — | — |
 | [`nat-zero-identity-add`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-zero-identity-add.lean) | translated | — | — | — | — | — |
+| [`five-var-qm-am`](https://github.com/agenticsnz/unsorry/blob/main/goals/five-var-qm-am.lean) | proved | 3 | ruvnet | ruvnet | [#2180](https://github.com/agenticsnz/unsorry/pull/2180) | 2026-06-19 |
 | [`fourth-power-mod-fortyone-mem`](https://github.com/agenticsnz/unsorry/blob/main/goals/fourth-power-mod-fortyone-mem.lean) | proved | 2 | ruvnet | ruvnet | [#2182](https://github.com/agenticsnz/unsorry/pull/2182) | 2026-06-19 |
 | [`gfac-d1-c2`](https://github.com/agenticsnz/unsorry/blob/main/goals/gfac-d1-c2.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2190](https://github.com/agenticsnz/unsorry/pull/2190) | 2026-06-19 |
 | [`gpow-diff-eight-pow-seven`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-diff-eight-pow-seven.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2296](https://github.com/agenticsnz/unsorry/pull/2296) | 2026-06-19 |
 | [`gpow-diff-five-pow-seven`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-diff-five-pow-seven.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2305](https://github.com/agenticsnz/unsorry/pull/2305) | 2026-06-19 |
 | [`gpow-diff-five-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-diff-five-pow-three.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2307](https://github.com/agenticsnz/unsorry/pull/2307) | 2026-06-19 |
+| [`gpow-diff-five-pow-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-diff-five-pow-two.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2308](https://github.com/agenticsnz/unsorry/pull/2308) | 2026-06-19 |
 | [`gpow-diff-four-pow-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-diff-four-pow-two.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2316](https://github.com/agenticsnz/unsorry/pull/2316) | 2026-06-19 |
 | [`gpow-diff-seven-pow-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-diff-seven-pow-five.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2318](https://github.com/agenticsnz/unsorry/pull/2318) | 2026-06-19 |
 | [`gpow-diff-six-pow-nine`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-diff-six-pow-nine.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | [#2328](https://github.com/agenticsnz/unsorry/pull/2328) | 2026-06-19 |
