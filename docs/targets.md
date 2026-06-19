@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**165 open · 638 proved · 806 total prove-goals.**
+**165 open · 640 proved · 808 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -454,6 +454,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gfac-d3-c3` — the polynomial n^2 + 1 divides n^4 + n^3 + 2*n^2 + n + 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | the polynomial n^2 + 1 divides n^4 + n^3 + 2*n^2 + n + 1. Provable by exhibiting the cofactor and `ring`. |
 | `ggeom-pred-pow-eight-sub-one` — n minus one divides n to the 8 minus one. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus one divides n to the 8 minus one. Provable by exhibiting the cofactor and `ring`. |
 | `ggeom-pred-pow-eleven-sub-one` — n minus one divides n to the 11 minus one. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus one divides n to the 11 minus one. Provable by exhibiting the cofactor and `ring`. |
+| `ggeom-pred-pow-five-sub-one` — n minus one divides n to the 5 minus one. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus one divides n to the 5 minus one. Provable by exhibiting the cofactor and `ring`. |
 | `ggeom-pred-pow-nine-sub-one` — n minus one divides n to the 9 minus one. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus one divides n to the 9 minus one. Provable by exhibiting the cofactor and `ring`. |
 | `ggeom-pred-pow-seven-sub-one` — n minus one divides n to the 7 minus one. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus one divides n to the 7 minus one. Provable by exhibiting the cofactor and `ring`. |
 | `ggeom-pred-pow-six-sub-one` — n minus one divides n to the 6 minus one. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus one divides n to the 6 minus one. Provable by exhibiting the cofactor and `ring`. |
@@ -477,6 +478,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-five-add-pow-two` — n to the 2 divides n to the 5 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-four-add-pow-two` — n to the 2 divides n to the 4 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 4 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-six-add-pow-five` — n to the 2 divides n to the 6 plus n to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 6 plus n to the 5. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-six-add-pow-three` — n to the 2 divides n to the 6 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 6 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-three-add-pow-two` — n to the 2 divides n to the 3 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 3 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-132-pow-twelve-sub-pow-two` — 132 divides n to the 12 minus n to the 2, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 132 divides n to the 12 minus n to the 2, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-24-pow-eleven-sub-pow-nine` — 24 divides n to the 11 minus n to the 9, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 24 divides n to the 11 minus n to the 9, for every integer n. Provable by exhibiting the cofactor and `ring`. |
