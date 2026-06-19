@@ -17,7 +17,7 @@
     },
     {
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
-      "difficulty_points": 752,
+      "difficulty_points": 758,
       "display_name": "ohdearquant",
       "earliest_sourced": "2026-06-18",
       "git_author": "OceanLi <quantocean.li@gmail.com>",
@@ -25,8 +25,8 @@
       "latest_sourced": "2026-06-19",
       "open": 0,
       "profile_url": "https://github.com/ohdearquant",
-      "proved": 237,
-      "sourced_goals": 326,
+      "proved": 239,
+      "sourced_goals": 328,
       "sourcer": "ohdearquant"
     },
     {
@@ -73,8 +73,8 @@
     }
   ],
   "totals": {
-    "difficulty_points": 2618,
-    "sourced_goals": 1138,
+    "difficulty_points": 2624,
+    "sourced_goals": 1140,
     "sourcers": 5
   }
 }
