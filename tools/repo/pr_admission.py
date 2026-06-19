@@ -20,6 +20,14 @@ DIRECT_BRANCH_PREFIXES = ("feature/goal-", "prove/")
 QUEUE_BRANCH_PREFIX = "queued/prove/"
 DIRECT_TITLE_PREFIXES = ("prove(",)
 
+# Per-contributor fairness cap on simultaneous open prove PRs (ADR-054 quota
+# layer). The shared open-PR budget (UNSORRY_MAX_OPEN_PROVE_PRS) is global, so
+# without a per-author bound one fleet can fill it and pause submissions for
+# everyone — the "CI flooding / credit gaming" ADR-054 names. Enforced only at
+# submission time (opened/reopened), so a contributor's oldest PRs keep draining
+# and only NEW over-cap submissions are turned away (FIFO fairness).
+DEFAULT_MAX_OPEN_PROVE_PRS_PER_AUTHOR = 20
+
 
 @dataclass(frozen=True)
 class Admission:
@@ -66,18 +74,44 @@ def decide(created_at: str, head_ref: str, title: str, cutover: str = DEFAULT_CU
     )
 
 
+def quota_decide(open_prove_count: int,
+                 cap: int = DEFAULT_MAX_OPEN_PROVE_PRS_PER_AUTHOR) -> Admission:
+    """Verdict for the per-contributor open-prove-PR fairness cap (ADR-054).
+
+    `open_prove_count` is the author's number of open `queued/prove/*` PRs,
+    counting the one under evaluation. At or under the cap → admitted; over it →
+    not admitted, so the author settles at exactly `cap` open prove PRs and the
+    rest of the shared budget stays available to other contributors.
+    """
+    if open_prove_count <= cap:
+        return Admission(
+            True, f"within per-contributor open-PR cap ({open_prove_count}/{cap})")
+    return Admission(
+        False,
+        f"author has {open_prove_count} open prove PRs, over the per-contributor "
+        f"cap of {cap} — newest over-cap submission turned away (ADR-054)")
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=("check", "env", "explain"))
+    parser.add_argument("command", choices=("check", "env", "explain", "quota"))
     parser.add_argument("--created-at", default="")
     parser.add_argument("--head-ref", default="")
     parser.add_argument("--title", default="")
     parser.add_argument("--cutover", default=DEFAULT_CUTOVER)
+    parser.add_argument("--open-count", type=int, default=0)
+    parser.add_argument("--cap", type=int,
+                        default=DEFAULT_MAX_OPEN_PROVE_PRS_PER_AUTHOR)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(sys.argv[1:] if argv is None else argv)
+    if args.command == "quota":
+        verdict = quota_decide(args.open_count, args.cap)
+        print(f"admitted={'true' if verdict.admitted else 'false'}")
+        print(f"reason={verdict.reason}")
+        return 0
     verdict = decide(args.created_at, args.head_ref, args.title, args.cutover)
     if args.command == "env":
         print(f"admitted={'true' if verdict.admitted else 'false'}")

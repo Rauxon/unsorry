@@ -1,4 +1,36 @@
-from tools.repo.pr_admission import DEFAULT_CUTOVER, decide
+from tools.repo.pr_admission import (
+    DEFAULT_CUTOVER,
+    DEFAULT_MAX_OPEN_PROVE_PRS_PER_AUTHOR,
+    decide,
+    quota_decide,
+)
+
+
+def test_quota_under_cap_is_admitted() -> None:
+    assert quota_decide(5, cap=20).admitted
+    assert quota_decide(0, cap=20).admitted
+
+
+def test_quota_at_cap_is_admitted() -> None:
+    # The cap is inclusive: holding exactly `cap` open PRs is allowed.
+    assert quota_decide(20, cap=20).admitted
+
+
+def test_quota_over_cap_is_rejected() -> None:
+    verdict = quota_decide(21, cap=20)
+    assert not verdict.admitted
+    assert "over the per-contributor cap" in verdict.reason
+
+
+def test_quota_far_over_cap_is_rejected() -> None:
+    # The monopolisation case: 43 open PRs from one author.
+    assert not quota_decide(43, cap=20).admitted
+
+
+def test_quota_default_cap_is_twenty() -> None:
+    assert DEFAULT_MAX_OPEN_PROVE_PRS_PER_AUTHOR == 20
+    assert quota_decide(20).admitted
+    assert not quota_decide(21).admitted
 
 
 def test_push_or_non_pr_event_is_admitted() -> None:
