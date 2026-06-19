@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**158 open · 717 proved · 878 total prove-goals.**
+**158 open · 719 proved · 880 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -549,6 +549,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-42-pow-seven-sub-pow-one` — 42 divides n to the 7 minus n to the 1, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 42 divides n to the 7 minus n to the 1, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-48-pow-eight-sub-pow-four` — 48 divides n to the 8 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 8 minus n to the 4, for every integer n. Provable by a finite `ZMod 48` case check. |
 | `gzmod-48-pow-nine-sub-pow-five` — 48 divides n to the 9 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 9 minus n to the 5, for every integer n. Provable by a finite `ZMod 48` case check. |
+| `gzmod-48-pow-ten-sub-pow-six` — 48 divides n to the 10 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 10 minus n to the 6, for every integer n. Provable by a finite `ZMod 48` case check. |
+| `gzmod-48-pow-thirteen-sub-pow-five` — 48 divides n to the 13 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 13 minus n to the 5, for every integer n. Provable by a finite `ZMod 48` case check. |
 | `int-add-neg` — Adding the negation of an integer yields zero. | proved | 1 | — | — | — |
 | `int-neg-neg` — Double negation of an integer is the identity. | proved | 1 | — | — | — |
 | `int-sub-eq-add-neg` — Integer subtraction equals adding the negation. | proved | 1 | — | — | — |
