@@ -1,0 +1,7 @@
+𝔸5.1.claim.sq-add-sq-eq-three-mul-sq-s4.oma-2-c05e@2026-06-20
+γ≔unsorry.claim
+⟦Ω:Claim⟧{goal≜sq-add-sq-eq-three-mul-sq-s4; agent≜oma-2-c05e}
+⟦Σ:Times⟧{ts≜2026-06-20T00:46:59Z; ttl≜7200}
+⟦Γ:Expiry⟧{now>ts+ttl⇒expired}
+⟦Λ:Release⟧{release≜λ_.rm(self)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
