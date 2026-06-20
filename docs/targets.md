@@ -4,14 +4,13 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**154 open · 1343 proved · 1500 total prove-goals.**
+**153 open · 1345 proved · 1501 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
 | `hexagonal-eq-triangular-odd-index` — The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. | open | 1 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. Not a named mathlib lemma in this form. |
 | `n4-plus-one-factor-over-sqrt-shift` — The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. Not a named mathlib lemma in this form. |
 | `nat-sq-lt-two-pow-s2` — nat-sq-lt-two-pow-s2 | open | 1 | — | — | — |
-| `nesbitt-inequality-s1` — nesbitt-inequality-s1 | open | 1 | — | — | — |
 | `nicomachus-sum-cubes-eq-sum-id-sq` — The sum of the first n cubes equals the square of the sum of the first n naturals (Nicomachus's theorem). | open | 3 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The sum of the first n cubes equals the square of the sum of the first n naturals (Nicomachus's theorem). Not a named mathlib lemma in this form. |
 | `platonic-pairs-realizable` — Each of the five Platonic Schläfli pairs {(3,3),(3,4),(4,3),(3,5),(5,3)} is **realizable** by an abstract regular polyhedron: there exist V, E, F (>0) satisfying the two handshakes p·F=2E, q·V=2E and Euler V+F=E+2. | open | 3 | — | The **existence (⟸) direction** of Freek #50's combinatorial classification (ADR-031, Track 1). Complements the proved classification (⟹) `abstract-regular-polyhedron-classification`; together they are the Track-1 existence-biconditional. | witnesses — tetra (3,3)→(4,6,4), octa (3,4)→(6,12,8), cube (4,3)→(8,12,6), icosa (3,5)→(12,30,20), dodeca (5,3)→(20,30,12). mathlib has no abstract-regular-polyhedron realizability lemma. |
 | `pow-five-add-pow-five-ge-quartic-mul` — For nonnegative a,b, a⁵+b⁵ ≥ a⁴b+ab⁴. | open | 3 | — | #400 Identity Engine (ADR-043) — inequalities family. | For nonnegative a,b, a⁵+b⁵ ≥ a⁴b+ab⁴. Not a named mathlib lemma in this form. |
@@ -811,6 +810,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gpow-sum-nine-pow-eight` — n plus 9 divides n to the 8 minus 9 to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 9 divides n to the 8 minus 9 to the 8. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-nine-pow-eighteen` — n plus 9 divides n to the 18 minus 9 to the 18. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 9 divides n to the 18 minus 9 to the 18. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-nine-pow-eleven` — n plus 9 divides n to the 11 plus 9 to the 11. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 9 divides n to the 11 plus 9 to the 11. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-sum-nine-pow-fifteen` — n plus 9 divides n to the 15 plus 9 to the 15. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 9 divides n to the 15 plus 9 to the 15. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-four` — n to the 1 divides n to the 5 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-one` — n to the 1 divides n to the 5 plus n to the 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 1. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-three` — n to the 1 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
@@ -1194,6 +1194,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `nat-sq-lt-two-pow-s2-s2` — nat-sq-lt-two-pow-s2-s2 | proved | 1 | — | — | — |
 | `nat-sq-lt-two-pow-s2-s3` — nat-sq-lt-two-pow-s2-s3 | proved | 1 | — | — | — |
 | `nat-zero-le` — Every natural number is at least zero. | proved | 1 | — | — | — |
+| `nesbitt-inequality-s1` — nesbitt-inequality-s1 | proved | 1 | — | — | — |
 | `nesbitt-inequality-s2` — nesbitt-inequality-s2 | proved | 1 | — | — | — |
 | `nesbitt-inequality-s3` — nesbitt-inequality-s3 | proved | 1 | — | — | — |
 | `nesbitt-inequality-s4` — nesbitt-inequality-s4 | proved | 1 | — | — | — |
