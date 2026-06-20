@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**107 open · 1441 proved · 1550 total prove-goals.**
+**109 open · 1441 proved · 1553 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -13,7 +13,9 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sextic-x6-plus-x3-plus-one-composite-shift` — The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. Not a named mathlib lemma in this form. |
 | `sq-add-sq-eq-three-mul-sq-s4-s1` — sq-add-sq-eq-three-mul-sq-s4-s1 | open | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s2` — sq-add-sq-eq-three-mul-sq-s4-s2 | open | 1 | — | — | — |
-| `sq-add-sq-eq-three-mul-sq-s4-s3` — sq-add-sq-eq-three-mul-sq-s4-s3 | open | 1 | — | — | — |
+| `sq-add-sq-eq-three-mul-sq-s4-s3-s1` — sq-add-sq-eq-three-mul-sq-s4-s3-s1 | open | 1 | — | — | — |
+| `sq-add-sq-eq-three-mul-sq-s4-s3-s2` — sq-add-sq-eq-three-mul-sq-s4-s3-s2 | open | 1 | — | — | — |
+| `sq-add-sq-eq-three-mul-sq-s4-s3-s3` — sq-add-sq-eq-three-mul-sq-s4-s3-s3 | open | 1 | — | — | — |
 | `sum-icc-choose-hockey-stick` — The hockey-stick identity: ∑_{k=r}^{n} C(k,r) = C(n+1,r+1). | open | 3 | — | Classic combinatorial / finite-sum identity (library-growth batch, #400 plan Phase 3). | The hockey-stick identity: ∑_{k=r}^{n} C(k,r) = C(n+1,r+1). Not a named mathlib lemma (Vandermonde/Pascal are present but not these specific closed forms). |
 | `sum-icc-k-sq-add-one-mul-factorial-eq-pronic-factorial` — The sum over k from 1 to n of (k^2+1)*k! telescopes to n*(n+1)!. | open | 2 | — | #400 Identity Engine (ADR-043) — closed-form sum family; promoted from candidate backlog. | The sum over k from 1 to n of (k^2+1)*k! telescopes to n*(n+1)!. Not a named mathlib lemma in this form. |
 | `sum-product-consecutive-odds-closed-form` — Three times the sum of products of consecutive odd numbers (2k-1)(2k+1) equals n(4n^2+6n-1). | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Three times the sum of products of consecutive odd numbers (2k-1)(2k+1) equals n(4n^2+6n-1). Not a named mathlib lemma in this form. |
@@ -117,6 +119,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `two-squares-zmod-sixteen-ne-three-seven-eleven` — A sum of two integer squares is never congruent to 3, 7, 11, or 15 modulo 16. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A sum of two integer squares is never congruent to 3, 7, 11, or 15 modulo 16. Not a named mathlib lemma in this form. |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | blocked | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | blocked | 1 | — | — | — |
+| `sq-add-sq-eq-three-mul-sq-s4-s3` — sq-add-sq-eq-three-mul-sq-s4-s3 | blocked | 1 | — | — | — |
 | `abc-nine-le-sum-times-pairsum` — For nonnegative reals nine times abc is at most (a+b+c)(ab+bc+ca). | proved | 3 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | For nonnegative reals nine times abc is at most (a+b+c)(ab+bc+ca). Not a named mathlib lemma in this form. |
 | `abstract-regular-polyhedron-classification` — For an abstract regular polyhedron — V vertices, E edges, F faces that are p-gons, vertices of degree q — with the two handshakes p·F = 2E and q·V = 2E and Euler's relation V + F = E + 2, the pair (p, q) is one of the five Platonic Schläfli pairs {(3,3),(3,4),(4,3),(3,5),(5,3)}. The classification (⟹) half of Freek #50 in combinatorial/Euler form. | proved | 3 | — | Freek 100 (#50), combinatorial form (ADR-031 / SPEC-031-A, Track 1) | The classification half of 'there are exactly five Platonic solids', reusing the proved `platonic_schlafli_pairs` as keystone (Euler + handshake ⟹ 1/p+1/q > 1/2 ⟹ the five pairs). Coxeter, Regular Polytopes, Ch. 1. NOT the geometric Freek #50 (that is Track 2, gated on a mathlib polytope face lattice + Euler–Poincaré). |
 | `abstract-regular-polyhedron-realizable-iff` — The Track-1 **existence-biconditional**: for p, q ≥ 3, the pair (p,q) is a Platonic Schläfli pair {(3,3),(3,4),(4,3),(3,5),(5,3)} **iff** it is realizable by an abstract regular polyhedron (∃ V E F > 0 with p·F=2E, q·V=2E, V+F=E+2). | proved | 4 | — | The capstone of Freek #50's combinatorial classification (ADR-031, Track 1) — the labelled combinatorial/Euler form, explicitly NOT the geometric #50. | ⟹ is the existence direction (`platonic-pairs-realizable`); ⟸ is the proved classification (`abstract-regular-polyhedron-classification`). Composing them gives the biconditional. mathlib has neither. |
