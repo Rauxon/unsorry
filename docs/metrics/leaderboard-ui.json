@@ -4,8 +4,8 @@
       "attempt_yield": 1.0,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "badges": {
-        "difficulty": 1716,
-        "proofs": 811,
+        "difficulty": 1718,
+        "proofs": 813,
         "success_rate_percent": 100.0
       },
       "credit_source_summary": "explicit + inferred",
@@ -13,10 +13,10 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 811,
-      "difficulty_points": 1716,
+      "credited_proofs": 813,
+      "difficulty_points": 1718,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 810,
+      "explicit_solver_proofs": 812,
       "failed_attempts": 0,
       "github": "ohdearquant",
       "inferred_git_proofs": 1,
@@ -24,11 +24,11 @@
       "profile_url": "https://github.com/ohdearquant",
       "rank": 1,
       "run_success_rate": 1.0,
-      "runs": 95,
-      "score": 191875,
+      "runs": 97,
+      "score": 192125,
       "solver": "ohdearquant",
-      "successes": 95,
-      "verified_proofs": 811
+      "successes": 97,
+      "verified_proofs": 813
     },
     {
       "attempt_yield": null,
@@ -269,28 +269,28 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
-      "difficulty_points": 324,
+      "difficulty_points": 325,
       "display_name": "Chris Barlow",
       "github": "cgbarlow",
-      "index_files_added": 211,
+      "index_files_added": 212,
       "missing_solver_provenance": 47,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 3,
       "solver_credit": false,
-      "solver_provenance_proofs": 164
+      "solver_provenance_proofs": 165
     },
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/perttu.png?size=96",
-      "difficulty_points": 259,
+      "difficulty_points": 260,
       "display_name": "Perttu Isotalo",
       "github": "perttu",
-      "index_files_added": 170,
+      "index_files_added": 171,
       "missing_solver_provenance": 4,
       "profile_url": "https://github.com/perttu",
       "rank": 4,
       "solver_credit": false,
-      "solver_provenance_proofs": 166
+      "solver_provenance_proofs": 167
     },
     {
       "attribution_source": "git-add-author",
@@ -349,8 +349,8 @@
     {
       "provider_model": "claude / template-ring-cofactor",
       "run_success_rate": 1.0,
-      "runs": 95,
-      "verified_proofs": 342
+      "runs": 97,
+      "verified_proofs": 344
     },
     {
       "provider_model": "claude / template-zmod-decide",
@@ -482,19 +482,19 @@
   "schema_version": 1,
   "score_policy": "rank by credited verified proofs desc, difficulty_points desc; score = difficulty_points * 100 + credited_proofs * 25",
   "summary": {
-    "attributed_proofs": 972,
+    "attributed_proofs": 974,
     "attribution_gap_count": 308,
     "credited_contributors": 8,
-    "credited_proofs": 1280,
-    "explicit_solver_proofs": 972,
-    "git_attributed_index_files": 1280,
+    "credited_proofs": 1282,
+    "explicit_solver_proofs": 974,
+    "git_attributed_index_files": 1282,
     "historical_contributors": 8,
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
-    "proof_run_coverage": 0.0852,
-    "terminal_runs": 428,
+    "proof_run_coverage": 0.0866,
+    "terminal_runs": 430,
     "uncredited_proofs": 0,
-    "verified_proofs": 1280
+    "verified_proofs": 1282
   },
   "timeline": [
     {
@@ -543,9 +543,9 @@
       "proofs": 24
     },
     {
-      "cumulative_proofs": 1280,
+      "cumulative_proofs": 1282,
       "date": "2026-06-19",
-      "proofs": 568
+      "proofs": 570
     }
   ]
 }
