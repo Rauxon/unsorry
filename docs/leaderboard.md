@@ -4,36 +4,36 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**1404 verified proofs · 1096 attributed · 308 historical/unknown · 476 logged terminal runs.**
+**1407 verified proofs · 1099 attributed · 308 historical/unknown · 479 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 157 |
+| Successful terminal runs | 160 |
 | Failed terminal runs | 319 |
 | Decomposed after failure | 18 |
 | Failed without decomposition | 301 |
-| Run success rate | 33.0% |
-| Provider attempts | 519 |
-| Failed attempts | 362 |
-| Attempt yield | 30.2% |
-| Recorded run time | 89h 34m |
-| Median / p90 run time | 4m 39s / 31m 57s |
-| Verified successes per recorded hour | 1.75 |
-| Proofs with run telemetry | 157 (11.2%) |
+| Run success rate | 33.4% |
+| Provider attempts | 523 |
+| Failed attempts | 363 |
+| Attempt yield | 30.6% |
+| Recorded run time | 89h 48m |
+| Median / p90 run time | 4m 40s / 31m 57s |
+| Verified successes per recorded hour | 1.78 |
+| Proofs with run telemetry | 160 (11.4%) |
 
 ## Work Queue
 
-**1534 goals · 1213 archived · 2 blocked · 119 open · 191 proved · 9 translated.**
+**1535 goals · 1213 archived · 2 blocked · 117 open · 194 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 173 | 117 | 67.6% | 71 | 0s |
-| 2 | 139 | 1 | 0.7% | 157 | 7m 58s |
-| 3 | 141 | 36 | 25.5% | 114 | 8m 6s |
+| 1 | 174 | 118 | 67.8% | 71 | 0s |
+| 2 | 140 | 2 | 1.4% | 158 | 7m 52s |
+| 3 | 142 | 37 | 26.1% | 114 | 8m 9s |
 | 4 | 21 | 3 | 14.3% | 18 | 6m 5s |
 | 5 | 2 | 0 | 0.0% | 2 | 31m 25s |
 
@@ -58,32 +58,32 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
-| 1 | [@ohdearquant](https://github.com/ohdearquant) | 899 | 898 | 1 | 143 | 100.0% | 1804 | 0.0 | 202875 |
+| 1 | [@ohdearquant](https://github.com/ohdearquant) | 900 | 899 | 1 | 144 | 100.0% | 1805 | 0.0 | 203000 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 268 | 21 | 247 | 0 | — | 637 | 0.0 | 70400 |
-| 3 | [@cgbarlow](https://github.com/cgbarlow) | 118 | 71 | 47 | 265 | 4.9% | 212 | 161.1 | 40260 |
-| 4 | [@perttu](https://github.com/perttu) | 38 | 34 | 4 | 13 | 7.7% | 84 | 153.0 | 24650 |
+| 3 | [@cgbarlow](https://github.com/cgbarlow) | 119 | 72 | 47 | 266 | 5.3% | 215 | 162.0 | 40675 |
+| 4 | [@perttu](https://github.com/perttu) | 38 | 34 | 4 | 13 | 7.7% | 84 | 153.9 | 24740 |
 | 5 | [@ruvnet](https://github.com/ruvnet) | 61 | 61 | 0 | 0 | — | 151 | 0.0 | 16625 |
-| 6 | [@adam91holt](https://github.com/adam91holt) | 10 | 10 | 0 | 55 | 0.0% | 23 | 0.0 | 2550 |
+| 6 | [@adam91holt](https://github.com/adam91holt) | 11 | 11 | 0 | 56 | 1.8% | 25 | 0.0 | 2775 |
 | 7 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 0.0 | 2125 |
 | 8 | [@yarcles](https://github.com/yarcles) | 1 | 1 | 0 | 0 | — | 1 | 0.0 | 125 |
 
 ## Attribution Notes
 
-**1096 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**1099 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 1404 of 1404 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 1407 of 1407 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
-| `claude / template-ring-cofactor` | 430 | 143 | 100.0% | 0 | 1 | 0s | — |
+| `claude / template-ring-cofactor` | 431 | 144 | 100.0% | 0 | 1 | 0s | — |
 | `claude / template-zmod-decide` | 341 | 0 | — | 0 | 2 | — | — |
 | `openrouter / unknown` | 61 | 0 | — | 0 | 1 | — | — |
-| `claude / opus` | 56 | 17 | 70.6% | 16 | 4 | 7m 58s | 3.58 |
+| `claude / opus` | 57 | 18 | 72.2% | 16 | 4 | 8m 5s | 3.73 |
 | `claude / template-sum-induction` | 52 | 0 | — | 0 | 1 | — | — |
 | `claude / template-zmod-crt` | 42 | 0 | — | 0 | 1 | — | — |
-| `codex / unknown` | 27 | 63 | 1.6% | 84 | 2 | 8m 6s | 0.10 |
+| `codex / unknown` | 28 | 64 | 3.1% | 85 | 2 | 8m 4s | 0.19 |
 | `openai / leanstral-2603` | 21 | 202 | 0.5% | 205 | 1 | 6m 29s | 0.02 |
 | `claude / template-decide` | 19 | 0 | — | 0 | 1 | — | — |
 | `claude / template-sum-closedform` | 18 | 0 | — | 0 | 1 | — | — |
