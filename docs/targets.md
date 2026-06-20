@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 1715 proved · 1731 total prove-goals.**
+**13 open · 1716 proved · 1732 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -793,6 +793,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gpow-sum-twelve-pow-seventeen` — n plus 12 divides n to the 17 plus 12 to the 17. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 12 divides n to the 17 plus 12 to the 17. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-twelve-pow-six` — n plus 12 divides n to the 6 minus 12 to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 12 divides n to the 6 minus 12 to the 6. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-twelve-pow-sixteen` — n plus 12 divides n to the 16 minus 12 to the 16. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 12 divides n to the 16 minus 12 to the 16. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-sum-twelve-pow-ten` — n plus 12 divides n to the 10 minus 12 to the 10. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 12 divides n to the 10 minus 12 to the 10. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-four` — n to the 1 divides n to the 5 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-one` — n to the 1 divides n to the 5 plus n to the 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 1. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-three` — n to the 1 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
