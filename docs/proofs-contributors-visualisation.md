@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**1780 goals — 13 open · 3 blocked · 9 translated · 304 proved · 1451 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**1782 goals — 13 open · 3 blocked · 9 translated · 306 proved · 1451 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (300 of 304 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (302 of 306 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
 
 ## Dependency lineage
 
@@ -96,7 +96,7 @@ flowchart LR
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 290"])
+  cluster_proved(["proved · 292"])
   class cluster_proved proved;
   cluster_archived(["archived · 1451"])
   class cluster_archived unknown;
@@ -361,6 +361,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gpow-sum-two-pow-seventeen`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-sum-two-pow-seventeen.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | Chris Barlow | [#3551](https://github.com/agenticsnz/unsorry/pull/3551) | 2026-06-20 |
 | [`gpow-sum-two-pow-six`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-sum-two-pow-six.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | Chris Barlow | [#3554](https://github.com/agenticsnz/unsorry/pull/3554) | 2026-06-20 |
 | [`gpow-sum-two-pow-sixteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-sum-two-pow-sixteen.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | Chris Barlow | [#3556](https://github.com/agenticsnz/unsorry/pull/3556) | 2026-06-20 |
+| [`gpow-sum-two-pow-ten`](https://github.com/agenticsnz/unsorry/blob/main/goals/gpow-sum-two-pow-ten.lean) | proved | 1 | mac-158f | ohdearquant · `template-ring-cofactor` | Chris Barlow | [#3558](https://github.com/agenticsnz/unsorry/pull/3558) | 2026-06-20 |
 | [`gzmod-160-pow-thirteen-sub-pow-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/gzmod-160-pow-thirteen-sub-pow-five.lean) | proved | 3 | claude-web | chat-bit-01 · `template-zmod-decide` | Chris Barlow | [#3401](https://github.com/agenticsnz/unsorry/pull/3401) | 2026-06-20 |
 | [`gzmod-168-pow-eighteen-sub-pow-six`](https://github.com/agenticsnz/unsorry/blob/main/goals/gzmod-168-pow-eighteen-sub-pow-six.lean) | proved | 3 | claude-web | chat-bit-01 · `template-zmod-decide` | Chris Barlow | [#3404](https://github.com/agenticsnz/unsorry/pull/3404) | 2026-06-20 |
 | [`gzmod-168-pow-eleven-sub-pow-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/gzmod-168-pow-eleven-sub-pow-five.lean) | proved | 3 | claude-web | chat-bit-01 · `template-zmod-decide` | Chris Barlow | [#3405](https://github.com/agenticsnz/unsorry/pull/3405) | 2026-06-20 |
@@ -422,6 +423,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gzmod-189-pow-twentytwo-sub-pow-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/gzmod-189-pow-twentytwo-sub-pow-four.lean) | proved | 3 | claude-web | chat-bit-01 · `template-zmod-decide` | Perttu Isotalo | [#3550](https://github.com/agenticsnz/unsorry/pull/3550) | 2026-06-20 |
 | [`gzmod-195-pow-eighteen-sub-pow-six`](https://github.com/agenticsnz/unsorry/blob/main/goals/gzmod-195-pow-eighteen-sub-pow-six.lean) | proved | 3 | claude-web | chat-bit-01 · `template-zmod-decide` | Chris Barlow | [#3552](https://github.com/agenticsnz/unsorry/pull/3552) | 2026-06-20 |
 | [`gzmod-195-pow-fifteen-sub-pow-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/gzmod-195-pow-fifteen-sub-pow-three.lean) | proved | 3 | claude-web | chat-bit-01 · `template-zmod-decide` | Chris Barlow | [#3555](https://github.com/agenticsnz/unsorry/pull/3555) | 2026-06-20 |
+| [`gzmod-195-pow-nineteen-sub-pow-seven`](https://github.com/agenticsnz/unsorry/blob/main/goals/gzmod-195-pow-nineteen-sub-pow-seven.lean) | proved | 3 | claude-web | chat-bit-01 · `template-zmod-decide` | Chris Barlow | [#3557](https://github.com/agenticsnz/unsorry/pull/3557) | 2026-06-20 |
 | [`nat-sq-lt-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow.lean) | proved | 3 | — | adam91holt · `gpt-5.5` | — | — | 2026-06-14 |
 | [`nat-sq-lt-two-pow-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s1.lean) | proved | 1 | oma-2-c50d | perttu | Perttu Isotalo | [#442](https://github.com/agenticsnz/unsorry/pull/442) | 2026-06-14 |
 | [`nat-sq-lt-two-pow-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2.lean) | proved | 1 | ruvnet | ruvnet | Chris Barlow | [#3003](https://github.com/agenticsnz/unsorry/pull/3003) | 2026-06-20 |
