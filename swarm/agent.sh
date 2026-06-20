@@ -118,6 +118,13 @@ Environment:
                     pins every attempt; else unset; dropped fail-soft when the
                     installed claude lacks --effort)
   UNSORRY_WORKDIR   Claims worktree + metrics.jsonl home (default: ~/.unsorry/work)
+  UNSORRY_GOAL_LOCK_DIR
+                    Fork-mode goal-lock dir shared by co-located provers so they
+                    don't all grind the same goal (ADR-068; default:
+                    ~/.unsorry/goal-locks). MUST be a path common to every
+                    co-located prover — if they run as different users or with
+                    isolated homes, point this at a shared path or the lock is a
+                    no-op. Ignored outside fork mode
   UNSORRY_NO_ISOLATE
                     Set to 1 to run the swarm loop in the launch dir instead of
                     relocating into a per-agent worktree (ADR-042). The launch
@@ -1516,6 +1523,112 @@ claim_agent_identity() {
     [ "$attempt" -gt 64 ] && die_config "no free agent identity under '$base' after 64 tries"
     id="$base-$(od -An -N2 -tx1 /dev/urandom | tr -d ' \n')"
   done
+}
+
+# ADR-068 follow-up (the #3140 author's flagged gap): fork mode is claimless, so
+# co-located fork provers — sharing one host but each with its own fork checkout,
+# UNSORRY_AGENT_ID and UNSORRY_WORKDIR — have no claims branch to dedup against
+# and, because _rank() is fully deterministic, every one of them independently
+# picks the SAME top goal and grinds it in parallel. A fork-local goal lock fixes
+# that: at selection an agent skips any goal a LIVE sibling already locked. The
+# lock dir MUST be shared across the co-located provers (NOT under a per-agent
+# UNSORRY_WORKDIR, which is distinct per prover), so it lives at a path common to
+# them: UNSORRY_GOAL_LOCK_DIR, default ~/.unsorry/goal-locks — shared by all
+# provers that run as the same user (the default keys off $HOME). Provers with
+# isolated homes (different Unix users / containers) must set it to a common
+# path. Same primitive as claim_agent_identity: a mkdir'd directory holding the
+# owner identity (atomic, no flock, macOS-safe); a dead owner is self-healing —
+# the next prover reclaims it, so a crashed prover needs no manual cleanup. The
+# owner is recorded as "<pid> <starttime>" (not a bare PID) so a PID reused after
+# a reboot cannot masquerade as the original holder. This is purely a fork-mode
+# coordination layer: the canonical claims path (claim_goal / release_claim,
+# ADR-004) is upstream-only and left completely untouched.
+
+# Per-machine lock dir, resolved once. Shared by all co-located provers that run
+# as the SAME user (the default keys off $HOME) — that sharing is the whole point,
+# a per-agent dir would never collide. Provers with isolated homes (different Unix
+# users / containers) MUST point UNSORRY_GOAL_LOCK_DIR at a common path or the
+# lock silently does nothing (see usage()).
+goal_lock_dir() {
+  printf '%s\n' "${UNSORRY_GOAL_LOCK_DIR:-$HOME/.unsorry/goal-locks}"
+}
+
+# A PID alone is not a stable owner identity: ~/.unsorry/goal-locks is on
+# persistent disk and survives reboots, after which the OS reuses PIDs from 1 —
+# a leftover lock whose recorded PID now belongs to an unrelated live process
+# would read as "live" and strand the goal forever (no TTL, no reaper). So the
+# lock records "<pid> <starttime>" and liveness requires BOTH kill -0 AND a
+# start-time match, which a reused PID cannot satisfy. ps -o lstart= is portable
+# (Linux + macOS, matching this primitive's flock-free macOS-safe contract);
+# empty start-time (kernel thread / race) degrades gracefully to the PID check.
+goal_lock_token() {
+  printf '%s %s\n' "$1" "$(ps -o lstart= -p "$1" 2>/dev/null | tr -s ' ')"
+}
+
+# True if the owner token "<pid> <starttime>" names a live process that is still
+# the same process that took the lock (defeats PID reuse across a reboot).
+goal_lock_owner_live() {
+  local token="$1" pid
+  pid="${token%% *}"
+  [ -n "$pid" ] || return 1
+  kill -0 "$pid" 2>/dev/null || return 1
+  # Re-derive the current token for that PID; a reused PID yields a different
+  # start-time and so fails this match. If we recorded no start-time, fall back
+  # to the bare kill -0 result above.
+  [ "$token" = "$(goal_lock_token "$pid")" ] || [ "$token" = "$pid " ] || [ "$token" = "$pid" ]
+}
+
+# Try to take the fork-local lock for <goal>. No-op success outside fork mode.
+# Returns 0 when acquired (or already held by us), 1 when a LIVE sibling holds it
+# (caller skips to the next ranked goal). A stale lock (dead owner) is reclaimed.
+acquire_goal_lock() {
+  [ "$FORK_MODE" = 1 ] || return 0
+  local goal="$1" dir lockdir owner mine
+  dir="$(goal_lock_dir)"
+  if ! mkdir -p "$dir" 2>/dev/null; then
+    # best-effort: never block proving on a lock-dir failure, but make the
+    # degraded coordination visible — siblings may now duplicate this goal.
+    log "warning: cannot create goal-lock dir '$dir' — fork dedup disabled this cycle (ADR-068)"
+    return 0
+  fi
+  lockdir="$dir/goal-$goal.lock"
+  mine="$(goal_lock_token "$$")"
+  while :; do
+    if mkdir "$lockdir" 2>/dev/null; then
+      printf '%s\n' "$mine" > "$lockdir/pid"
+      return 0
+    fi
+    owner="$(cat "$lockdir/pid" 2>/dev/null)"
+    if [ "${owner%% *}" = "$$" ]; then return 0; fi   # already ours -> idempotent
+    if [ -z "$owner" ]; then
+      # An empty pid is the brief window between a sibling's mkdir and its pid
+      # write, OR a truly stale lock. Re-read once before reclaiming so we never
+      # rm -rf a lock an in-progress acquirer is about to own (the read-after-
+      # mkdir race the claim_goal/ADR-072 recheck guards against, same reasoning).
+      owner="$(cat "$lockdir/pid" 2>/dev/null)"
+    fi
+    if [ -z "$owner" ] || ! goal_lock_owner_live "$owner"; then
+      # Stale (dead owner / reused PID). Reclaim atomically: rename the stale dir
+      # aside so two simultaneous reclaimers cannot both rm a third prover's fresh
+      # lock — only the mv winner deletes, the losers loop and re-mkdir cleanly.
+      mv "$lockdir" "$lockdir.stale.$$.$RANDOM" 2>/dev/null && rm -rf "$lockdir".stale.* 2>/dev/null
+      continue
+    fi
+    return 1   # a live sibling owns it -> skip this goal
+  done
+}
+
+# Release a fork-local goal lock we own. No-op outside fork mode or if not ours
+# (a sibling's lock is never removed). Called on every cycle-exit path, mirroring
+# release_claim; a missed release is self-healed by the next prover's PID check.
+release_goal_lock() {
+  [ "$FORK_MODE" = 1 ] || return 0
+  local goal="$1" lockdir owner
+  lockdir="$(goal_lock_dir)/goal-$goal.lock"
+  [ -d "$lockdir" ] || return 0
+  owner="$(cat "$lockdir/pid" 2>/dev/null)"
+  [ "${owner%% *}" = "$$" ] && rm -rf "$lockdir" 2>/dev/null
+  return 0
 }
 
 # ADR-042: relocate the running agent into its own worktree before any work, so
@@ -3013,6 +3126,14 @@ prove_goal() {
   git branch -q -D "$branch" >/dev/null 2>&1 || true
 
   release_claim "$goal" || true
+  # ADR-068: drop the fork-local goal lock taken at selection so the next prover
+  # (or this one) can re-surface the goal. Co-located with release_claim, this
+  # frees it on the work-path exits below (success, decompose, demote, infra/
+  # error); the EARLY `return 1` setup failures above (camel-name/branch/
+  # open_pr_worktree) are covered by the belt-and-braces release in the cycle
+  # loop (after prove_goal returns) — between them every exit is covered. No-op
+  # outside fork mode; release is idempotent and only removes a lock we own.
+  release_goal_lock "$goal"
   if [ "$ok" -eq 1 ]; then
     return 0
   fi
@@ -3356,6 +3477,82 @@ test_claim_agent_identity_multi_runner() {
   mkdir -p "$d/agent-main-host-cc33.lock"; printf '%s\n' "$dead" > "$d/agent-main-host-cc33.lock/pid"
   AGENT_ID=""; claim_agent_identity "$d" "host-cc33"
   [ "$AGENT_ID" = "host-cc33" ] || { log "  stale lock not reclaimed: '$AGENT_ID'"; return 1; }
+}
+
+test_fork_goal_lock() {
+  # ADR-068 fork-local goal lock. Hermetic: temp dirs + a real backgrounded PID
+  # for liveness, no network/lake/claude. Nest under the suite sandbox (the
+  # run_self_test EXIT trap removes it) — never rm -rf a path of our own (the
+  # #3140 agent-lint regression). FORK_MODE drives the lock on; outside it both
+  # helpers are no-ops, so the canonical claims path is untouched.
+  local FORK_MODE=1 UNSORRY_GOAL_LOCK_DIR live
+  UNSORRY_GOAL_LOCK_DIR="$(mktemp -d "$SESSION_TMP/goallock.XXXXXX")" || return 1
+
+  # The owner is recorded as "<pid> <starttime>" (PID-reuse hardening), so assert
+  # on the leading PID field, not the whole token.
+  local pidfield
+  # free goal -> acquired, owner pid recorded.
+  acquire_goal_lock g-free || { log "  free goal was not acquired"; return 1; }
+  [ -d "$UNSORRY_GOAL_LOCK_DIR/goal-g-free.lock" ] \
+    || { log "  acquire did not create the lock dir"; return 1; }
+  pidfield="$(cut -d' ' -f1 "$UNSORRY_GOAL_LOCK_DIR/goal-g-free.lock/pid" 2>/dev/null)"
+  [ "$pidfield" = "$$" ] || { log "  lock pid is not ours"; return 1; }
+  # re-acquiring our own lock is idempotent (success).
+  acquire_goal_lock g-free || { log "  re-acquire of own lock failed"; return 1; }
+
+  # a LIVE sibling holding the goal -> we must skip (rc 1) and not touch the lock.
+  # Fixture the token exactly as acquire would (pid + matching start-time).
+  sleep 30 & live=$!
+  mkdir -p "$UNSORRY_GOAL_LOCK_DIR/goal-g-busy.lock"
+  goal_lock_token "$live" > "$UNSORRY_GOAL_LOCK_DIR/goal-g-busy.lock/pid"
+  if acquire_goal_lock g-busy; then
+    kill "$live" 2>/dev/null; wait "$live" 2>/dev/null
+    log "  live-owner collision was NOT skipped"; return 1
+  fi
+  pidfield="$(cut -d' ' -f1 "$UNSORRY_GOAL_LOCK_DIR/goal-g-busy.lock/pid" 2>/dev/null)"
+  [ "$pidfield" = "$live" ] \
+    || { kill "$live" 2>/dev/null; wait "$live" 2>/dev/null
+         log "  skip clobbered a live sibling's lock"; return 1; }
+
+  # PID-reuse defense: a live PID but a MISMATCHED start-time (the reboot-then-
+  # reuse scenario) must read as STALE and be reclaimed, not honoured as live.
+  mkdir -p "$UNSORRY_GOAL_LOCK_DIR/goal-g-reused.lock"
+  printf '%s 999\n' "$live" > "$UNSORRY_GOAL_LOCK_DIR/goal-g-reused.lock/pid"
+  acquire_goal_lock g-reused \
+    || { kill "$live" 2>/dev/null; wait "$live" 2>/dev/null
+         log "  reused-pid (start-time mismatch) lock not reclaimed"; return 1; }
+  pidfield="$(cut -d' ' -f1 "$UNSORRY_GOAL_LOCK_DIR/goal-g-reused.lock/pid" 2>/dev/null)"
+  [ "$pidfield" = "$$" ] \
+    || { kill "$live" 2>/dev/null; wait "$live" 2>/dev/null
+         log "  reused-pid lock not re-owned by us"; return 1; }
+  kill "$live" 2>/dev/null; wait "$live" 2>/dev/null
+
+  # a STALE lock (dead owner) -> reclaimed (rc 0, pid becomes ours).
+  local dead; sleep 30 & dead=$!; kill "$dead" 2>/dev/null; wait "$dead" 2>/dev/null
+  mkdir -p "$UNSORRY_GOAL_LOCK_DIR/goal-g-stale.lock"
+  printf '%s\n' "$dead" > "$UNSORRY_GOAL_LOCK_DIR/goal-g-stale.lock/pid"
+  acquire_goal_lock g-stale || { log "  stale lock not reclaimed"; return 1; }
+  pidfield="$(cut -d' ' -f1 "$UNSORRY_GOAL_LOCK_DIR/goal-g-stale.lock/pid" 2>/dev/null)"
+  [ "$pidfield" = "$$" ] || { log "  reclaimed lock pid is not ours"; return 1; }
+
+  # release frees our lock; a sibling's lock is never removed by our release.
+  release_goal_lock g-free
+  [ ! -e "$UNSORRY_GOAL_LOCK_DIR/goal-g-free.lock" ] \
+    || { log "  release did not remove our lock"; return 1; }
+  mkdir -p "$UNSORRY_GOAL_LOCK_DIR/goal-g-other.lock"
+  printf '%s\n' "999999" > "$UNSORRY_GOAL_LOCK_DIR/goal-g-other.lock/pid"
+  release_goal_lock g-other
+  [ -e "$UNSORRY_GOAL_LOCK_DIR/goal-g-other.lock" ] \
+    || { log "  release removed a lock we do not own"; return 1; }
+  # releasing a goal we never locked is a safe no-op (covers the early-return /
+  # loop-level belt-and-braces release for a goal whose lock was never taken).
+  release_goal_lock g-never || { log "  release of an unheld goal errored"; return 1; }
+
+  # outside fork mode both helpers are inert (canonical claims path untouched).
+  local FORK_MODE=0
+  acquire_goal_lock g-nofork || { log "  non-fork acquire returned failure"; return 1; }
+  [ ! -e "$UNSORRY_GOAL_LOCK_DIR/goal-g-nofork.lock" ] \
+    || { log "  non-fork acquire created a lock"; return 1; }
 }
 
 test_agent_id_host_matches() {
@@ -5489,6 +5686,7 @@ run_self_tests() {
     test_agent_id_generation
     test_agent_id_host_matches
     test_claim_agent_identity_multi_runner
+    test_fork_goal_lock
     test_agent_id_validation
     test_solver_resolution
     test_git_identity_resolution
@@ -5789,10 +5987,21 @@ claim_from_pool() {
       log "skipping $cand — a queued prove branch is waiting for dispatch"
       continue
     fi
+    # ADR-068 fork-local goal lock: in fork mode claim_goal is a claimless no-op,
+    # so a mkdir-lock on a per-machine path is the only dedup between co-located
+    # provers. Skip past any goal a LIVE sibling already locked (no-op otherwise),
+    # mirroring the "in flight" skips above. Released by prove_goal on every exit.
+    if [ "$PROVE" -eq 1 ] && ! acquire_goal_lock "$cand"; then
+      log "skipping $cand — locked by a co-located fork prover (ADR-068)"
+      continue
+    fi
     if claim_goal "$cand"; then
       CLAIMED_GOAL="$cand"
       return 0
     fi
+    # Claim race lost (non-fork path only — claim_goal cannot fail in fork mode):
+    # drop the goal lock we just took so it does not strand this candidate.
+    release_goal_lock "$cand"
   done <<< "$pool"
   return 0
 }
@@ -6123,6 +6332,16 @@ main() {
     if [ "$PROVE" -eq 1 ]; then
       prc=0
       prove_goal "$goal" || prc=$?
+      # ADR-068: release the fork-local goal lock here, in the loop, so it is
+      # dropped for EVERY prove_goal return — including the early `return 1`
+      # setup failures (camel-name, branch, open_pr_worktree) that exit before
+      # prove_goal's own release_claim/release_goal_lock line. Without this a
+      # transient worktree-add failure would strand the lock for the whole life
+      # of this (still-live) prover, blocking every co-located sibling off the
+      # goal — the inverse of the dedup this fix exists to provide. Belt-and-
+      # braced with the in-prove_goal release, mirroring how the translate arm
+      # also release_claim's at loop level; release_goal_lock is idempotent.
+      release_goal_lock "$goal"
       if [ "$prc" -eq 2 ]; then
         # ADR-016: the CLI cannot run (quota, auth, network). Every further
         # cycle would fail identically and poison the queue — stop cleanly.
