@@ -1,0 +1,8 @@
+𝔸5.1.lemma.c35ea01d3838@2026-06-20
+γ≔unsorry.lemma.index
+⟦Ω:Lemma⟧{sha≜c35ea01d383826d6a4abe443136e95a50973cc355f6f1610c74f94a68915c226; goal≜nesbitt-inequality; name≜nesbitt_inequality}
+⟦Σ:Source⟧{src≜goals/nesbitt-inequality.lean}
+⟦Γ:Tags⟧{tags≜⟨⟩}
+⟦Λ:Meta⟧{use≜0; aff≜0}
+⟦Π:Provenance⟧{solver≜Rauxon; agent≜rauxon-1; provider≜claude; model≜opus; effort≜high; attempts≜1; solve_s≜1592}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
