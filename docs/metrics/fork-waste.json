@@ -1,5 +1,5 @@
 {
-  "prove_prs": 848,
+  "prove_prs": 844,
   "fork_prove_prs": 7,
   "fork_merged": 0,
   "fork_open": 2,
@@ -25,7 +25,7 @@
       "goal": "sq-add-sq-eq-three-mul-sq-s4-s2",
       "prove_prs": 2,
       "fork_prove_prs": 1,
-      "merged": 0
+      "merged": 1
     }
   ]
 }
