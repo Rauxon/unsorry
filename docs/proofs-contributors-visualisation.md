@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**1628 goals — 69 open · 3 blocked · 9 translated · 198 proved · 1349 archived.** 6 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**1628 goals — 68 open · 3 blocked · 9 translated · 199 proved · 1349 archived.** 6 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (194 of 198 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (195 of 199 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The solver shows the recorded AISP login where present, otherwise the merging GitHub user; the model comes from recorded provenance only — never guessed (ADR-023).
 
 ## Dependency lineage
 
@@ -107,11 +107,11 @@ flowchart LR
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s1
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s2
   g_sum_icc_choose_hockey_stick --> g_sum_icc_choose_hockey_stick_s3
-  cluster_open(["open · 66"])
+  cluster_open(["open · 65"])
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 182"])
+  cluster_proved(["proved · 183"])
   class cluster_proved proved;
   cluster_archived(["archived · 1349"])
   class cluster_archived unknown;
@@ -130,7 +130,6 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sq-add-sq-eq-three-mul-sq-s4-s3-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s4-s3-s2.lean) | open | 1 | — | — | — | — |
 | [`sq-add-sq-eq-three-mul-sq-s4-s3-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s4-s3-s3.lean) | open | 1 | — | — | — | — |
 | [`sum-range-fall-three-mul-choose`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-fall-three-mul-choose.lean) | open | 4 | — | — | — | — |
-| [`sum-range-lucas-shift-nat`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-lucas-shift-nat.lean) | open | 3 | — | — | — | — |
 | [`sum-range-multichoose-two-eq-choose-succ-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-multichoose-two-eq-choose-succ-two.lean) | open | 2 | — | — | — | — |
 | [`sum-range-odd-cubes`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-odd-cubes.lean) | open | 3 | — | — | — | — |
 | [`sum-range-odd-div-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-odd-div-two-pow.lean) | open | 3 | — | — | — | — |
@@ -402,6 +401,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sum-range-k-sq-mul-choose-eq`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-k-sq-mul-choose-eq.lean) | proved | 3 | ruvnet | ruvnet | [#3326](https://github.com/agenticsnz/unsorry/pull/3326) | 2026-06-20 |
 | [`sum-range-k-sub-one-div-factorial-telescope`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-k-sub-one-div-factorial-telescope.lean) | proved | 2 | ruvnet | ruvnet | [#3328](https://github.com/agenticsnz/unsorry/pull/3328) | 2026-06-20 |
 | [`sum-range-lower-triangle-choose-eq-two-pow`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-lower-triangle-choose-eq-two-pow.lean) | proved | 3 | ruvnet | ruvnet | [#3330](https://github.com/agenticsnz/unsorry/pull/3330) | 2026-06-20 |
+| [`sum-range-lucas-shift-nat`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-range-lucas-shift-nat.lean) | proved | 3 | ruvnet | ruvnet | [#3333](https://github.com/agenticsnz/unsorry/pull/3333) | 2026-06-20 |
 | [`abc-nine-le-sum-times-pairsum`](https://github.com/agenticsnz/unsorry/blob/main/goals/abc-nine-le-sum-times-pairsum.lean) | archived | 3 | claude-rmt-001 | chat-bit-01 | [#1148](https://github.com/agenticsnz/unsorry/pull/1148) | 2026-06-17 |
 | [`abstract-regular-polyhedron-classification`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-classification.lean) | archived | 3 | — | — | — | 2026-06-13 |
 | [`abstract-regular-polyhedron-realizable-iff`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-realizable-iff.lean) | archived | 4 | claude-web | chat-bit-01 | [#2171](https://github.com/agenticsnz/unsorry/pull/2171) | 2026-06-18 |
