@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**154 open · 1272 proved · 1429 total prove-goals.**
+**154 open · 1273 proved · 1430 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -725,6 +725,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gpow-diff-two-pow-seven` — n minus 2 divides n to the 7 minus 2 to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 2 divides n to the 7 minus 2 to the 7. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-two-pow-seventeen` — n minus 2 divides n to the 17 minus 2 to the 17. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 2 divides n to the 17 minus 2 to the 17. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-two-pow-six` — n minus 2 divides n to the 6 minus 2 to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 2 divides n to the 6 minus 2 to the 6. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-diff-two-pow-sixteen` — n minus 2 divides n to the 16 minus 2 to the 16. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 2 divides n to the 16 minus 2 to the 16. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-two-pow-three` — n minus 2 divides n to the 3 minus 2 to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 2 divides n to the 3 minus 2 to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-diff-two-pow-two` — n minus 2 divides n to the 2 minus 2 to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n minus 2 divides n to the 2 minus 2 to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-eight-pow-eight` — n plus 8 divides n to the 8 minus 8 to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 8 divides n to the 8 minus 8 to the 8. Provable by exhibiting the cofactor and `ring`. |
