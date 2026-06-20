@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**72 open · 1538 proved · 1613 total prove-goals.**
+**71 open · 1539 proved · 1613 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -12,7 +12,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `quartic-x4-plus-x2-plus-one-dvd-by-minus-factor` — The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. Not a named mathlib lemma in this form. |
 | `sextic-x6-plus-x3-plus-one-composite-shift` — The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. Not a named mathlib lemma in this form. |
 | `sq-add-sq-eq-three-mul-sq-s4-s1` — sq-add-sq-eq-three-mul-sq-s4-s1 | open | 1 | — | — | — |
-| `sq-add-sq-eq-three-mul-sq-s4-s2` — sq-add-sq-eq-three-mul-sq-s4-s2 | open | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` — sq-add-sq-eq-three-mul-sq-s4-s3-s2 | open | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s3-s3` — sq-add-sq-eq-three-mul-sq-s4-s3-s3 | open | 1 | — | — | — |
 | `sum-product-consecutive-odds-closed-form` — Three times the sum of products of consecutive odd numbers (2k-1)(2k+1) equals n(4n^2+6n-1). | open | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Three times the sum of products of consecutive odd numbers (2k-1)(2k+1) equals n(4n^2+6n-1). Not a named mathlib lemma in this form. |
@@ -1380,6 +1379,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sq-add-sq-eq-three-mul-sq-s1` — sq-add-sq-eq-three-mul-sq-s1 | proved | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s2` — sq-add-sq-eq-three-mul-sq-s2 | proved | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s3` — sq-add-sq-eq-three-mul-sq-s3 | proved | 1 | — | — | — |
+| `sq-add-sq-eq-three-mul-sq-s4-s2` — sq-add-sq-eq-three-mul-sq-s4-s2 | proved | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s3-s1` — sq-add-sq-eq-three-mul-sq-s4-s3-s1 | proved | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s4` — sq-add-sq-eq-three-mul-sq-s4-s4 | proved | 1 | — | — | — |
 | `sq-lt-cube-of-one-lt` — For x > 1, x² < x³. | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For x > 1, x² < x³. Not a named mathlib lemma in this concrete form. |
