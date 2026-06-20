@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**116 open · 1408 proved · 1526 total prove-goals.**
+**116 open · 1409 proved · 1527 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -794,6 +794,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gpow-sum-one-pow-fifteen` — n plus 1 divides n to the 15 plus 1 to the 15. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 1 divides n to the 15 plus 1 to the 15. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-one-pow-five` — n plus 1 divides n to the 5 plus 1 to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 1 divides n to the 5 plus 1 to the 5. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-one-pow-four` — n plus 1 divides n to the 4 minus 1 to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 1 divides n to the 4 minus 1 to the 4. Provable by exhibiting the cofactor and `ring`. |
+| `gpow-sum-one-pow-fourteen` — n plus 1 divides n to the 14 minus 1 to the 14. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 1 divides n to the 14 minus 1 to the 14. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-one-pow-nine` — n plus 1 divides n to the 9 plus 1 to the 9. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 1 divides n to the 9 plus 1 to the 9. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-one-pow-nineteen` — n plus 1 divides n to the 19 plus 1 to the 19. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 1 divides n to the 19 plus 1 to the 19. Provable by exhibiting the cofactor and `ring`. |
 | `gpow-sum-one-pow-seven` — n plus 1 divides n to the 7 plus 1 to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n plus 1 divides n to the 7 plus 1 to the 7. Provable by exhibiting the cofactor and `ring`. |
