@@ -33,6 +33,22 @@
       "verified_proofs": 144
     },
     {
+      "attempt_yield": null,
+      "attempts": 0,
+      "difficulty_points": 273,
+      "failed_attempts": 0,
+      "failures": 0,
+      "median_solve_s": null,
+      "p90_solve_s": null,
+      "run_success_rate": null,
+      "runs": 0,
+      "solver": "ruvnet",
+      "successes": 0,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0,
+      "verified_proofs": 101
+    },
+    {
       "attempt_yield": 0.6204,
       "attempts": 108,
       "difficulty_points": 161,
@@ -47,22 +63,6 @@
       "successes_per_recorded_hour": 15.098,
       "total_solve_s": 15976,
       "verified_proofs": 101
-    },
-    {
-      "attempt_yield": null,
-      "attempts": 0,
-      "difficulty_points": 270,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": null,
-      "p90_solve_s": null,
-      "run_success_rate": null,
-      "runs": 0,
-      "solver": "ruvnet",
-      "successes": 0,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 100
     },
     {
       "attempt_yield": null,
@@ -114,17 +114,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 1222,
+    "attributed_proofs": 1223,
     "historical_unknown_proofs": 308,
-    "proof_run_coverage": 0.1294,
+    "proof_run_coverage": 0.1293,
     "successful_proofs_with_run_telemetry": 198,
     "terminal_runs": 524,
-    "verified_proofs": 1530
+    "verified_proofs": 1531
   },
   "credit": {
     "credited_contributors": 8,
-    "credited_proofs": 1530,
-    "explicit_solver_proofs": 1222,
+    "credited_proofs": 1531,
+    "explicit_solver_proofs": 1223,
     "inferred_git_proofs": 308,
     "uncredited_proofs": 0
   },
@@ -233,8 +233,8 @@
       ],
       "credited_proofs": 105,
       "difficulty_points": 169,
-      "dispatch_points": 105.3,
-      "dispatch_proofs": 117,
+      "dispatch_points": 106.2,
+      "dispatch_proofs": 118,
       "display_name": "@perttu",
       "explicit_solver_proofs": 101,
       "failed_attempts": 41,
@@ -261,12 +261,12 @@
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 100,
-      "difficulty_points": 270,
+      "credited_proofs": 101,
+      "difficulty_points": 273,
       "dispatch_points": 0.0,
       "dispatch_proofs": 0,
       "display_name": "@ruvnet",
-      "explicit_solver_proofs": 100,
+      "explicit_solver_proofs": 101,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": null,
@@ -281,7 +281,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 100
+      "verified_proofs": 101
     },
     {
       "attempt_yield": 0.0,
@@ -7493,18 +7493,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/perttu.png?size=96",
-        "difficulty_points": 316,
+        "difficulty_points": 319,
         "display_name": "Perttu Isotalo",
         "git_author": "Perttu Isotalo <pisotalo@isotalo.org>",
         "git_author_name": "Perttu Isotalo",
         "github": "perttu",
-        "index_files_added": 221,
+        "index_files_added": 222,
         "missing_solver_provenance": 4,
         "profile_url": "https://github.com/perttu",
         "sample_add_commit": "93ad46b8b185c7c8c3e824344607373ed4d78812",
         "sample_add_date": "2026-06-20",
         "solver_credit": false,
-        "solver_provenance_proofs": 217
+        "solver_provenance_proofs": 218
       },
       {
         "attribution_source": "git-add-author",
@@ -7571,8 +7571,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 1530,
-    "records": 1530,
+    "git_attributed_index_files": 1531,
+    "records": 1531,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -7624,7 +7624,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 100
+      "verified_proofs": 101
     },
     {
       "attempt_yield": 0.3056,
@@ -7962,8 +7962,8 @@
     "status_counts": {
       "archived": 1315,
       "blocked": 3,
-      "open": 75,
-      "proved": 215,
+      "open": 74,
+      "proved": 216,
       "translated": 9
     }
   },
