@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**127 open · 1375 proved · 1504 total prove-goals.**
+**126 open · 1376 proved · 1504 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -14,7 +14,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `quartic-x4-plus-x2-plus-one-dvd-by-minus-factor` — The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. Not a named mathlib lemma in this form. |
 | `sextic-x6-plus-x3-plus-one-composite-shift` — The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. Not a named mathlib lemma in this form. |
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | open | 1 | — | — | — |
-| `sum-heptagonal-closed-form` — Six times the sum of the first n heptagonal-gnomon terms equals 2n(n+1)(5n-2). | open | 3 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Six times the sum of the first n heptagonal-gnomon terms equals 2n(n+1)(5n-2). Not a named mathlib lemma in this form. |
 | `sum-hexagonal-numbers-closed-form` — Six times the sum of the first n hexagonal numbers equals n(n+1)(4n-1). | open | 3 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Six times the sum of the first n hexagonal numbers equals n(n+1)(4n-1). Not a named mathlib lemma in this form. |
 | `sum-icc-choose-hockey-stick-s1` — sum-icc-choose-hockey-stick-s1 | open | 1 | — | — | — |
 | `sum-icc-choose-hockey-stick-s2` — sum-icc-choose-hockey-stick-s2 | open | 1 | — | — | — |
@@ -1383,6 +1382,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-fourth-powers-eq` — Thirty times the sum of fourth powers k^4 over range n equals the Faulhaber quartic closed form. | proved | 4 | — | #400 Identity Engine (ADR-043) — figurate family. | Thirty times the sum of fourth powers k^4 over range n equals the Faulhaber quartic closed form. Not a named mathlib lemma in this form. |
 | `sum-fourth-powers-ge-cube-times-sum` — For nonnegative reals, a^3 b + a b^3 is at most a^4 + b^4. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog. | For nonnegative reals, a^3 b + a b^3 is at most a^4 + b^4. Not a named mathlib lemma in this form. |
 | `sum-fourth-powers-three-var-ge-sym-square-products` — The sum of fourth powers of three reals dominates the symmetric sum of pairwise products of their squares. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The sum of fourth powers of three reals dominates the symmetric sum of pairwise products of their squares. Not a named mathlib lemma in this form. |
+| `sum-heptagonal-closed-form` — Six times the sum of the first n heptagonal-gnomon terms equals 2n(n+1)(5n-2). | proved | 3 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Six times the sum of the first n heptagonal-gnomon terms equals 2n(n+1)(5n-2). Not a named mathlib lemma in this form. |
 | `sum-heptagonal-numbers-closed-form` — Three times the sum of the first n heptagonal numbers (twice each, as k(5k-3)) equals n(n+1)(5n-2). | proved | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Three times the sum of the first n heptagonal numbers (twice each, as k(5k-3)) equals n(n+1)(5n-2). Not a named mathlib lemma in this form. |
 | `sum-hexagonal-eq` — Six times the sum of hexagonal-type terms k(2k-1) over range n equals (n-1)n(4n-5). | proved | 3 | — | #400 Identity Engine (ADR-043) — figurate family. | Six times the sum of hexagonal-type terms k(2k-1) over range n equals (n-1)n(4n-5). Not a named mathlib lemma in this form. |
 | `sum-icc-cube-diff-recip-telescope` — For n at least 1, the sum of (3k^2+3k+1)/(k^3(k+1)^3) for k from 1 to n equals 1 minus 1/(n+1)^3. | proved | 3 | — | #400 Identity Engine (ADR-043) — telescoping family; promoted from candidate backlog (#610). | For n at least 1, the sum of (3k^2+3k+1)/(k^3(k+1)^3) for k from 1 to n equals 1 minus 1/(n+1)^3. Not a named mathlib lemma in this form. |
