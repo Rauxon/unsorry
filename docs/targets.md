@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 1707 proved · 1723 total prove-goals.**
+**13 open · 1708 proved · 1724 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -922,6 +922,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-171-pow-twentysix-sub-pow-eight` — 171 divides n to the 26 minus n to the 8, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 171 divides n to the 26 minus n to the 8, for every integer n. Provable by a finite `ZMod 171` case check. |
 | `gzmod-171-pow-twentythree-sub-pow-five` — 171 divides n to the 23 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 171 divides n to the 23 minus n to the 5, for every integer n. Provable by a finite `ZMod 171` case check. |
 | `gzmod-171-pow-twentytwo-sub-pow-four` — 171 divides n to the 22 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 171 divides n to the 22 minus n to the 4, for every integer n. Provable by a finite `ZMod 171` case check. |
+| `gzmod-180-pow-eighteen-sub-pow-six` — 180 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 180 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 180` case check. |
 | `gzmod-180-pow-fifteen-sub-pow-three` — 180 divides n to the 15 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 180 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 180` case check. |
 | `gzmod-180-pow-nineteen-sub-pow-seven` — 180 divides n to the 19 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 180 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 180` case check. |
 | `gzmod-180-pow-seventeen-sub-pow-five` — 180 divides n to the 17 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 180 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 180` case check. |
