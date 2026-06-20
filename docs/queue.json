@@ -3,11 +3,11 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 1913,
-    "waiting": 1905,
-    "in_flight": 8,
-    "distinct_goals": 1913,
-    "solvers": 6
+    "queued_submissions": 1869,
+    "waiting": 1869,
+    "in_flight": 0,
+    "distinct_goals": 1869,
+    "solvers": 5
   },
   "solvers": [
     {
@@ -15,10 +15,10 @@
       "github": "ohdearquant",
       "display_name": "@ohdearquant",
       "profile_url": "https://github.com/ohdearquant",
-      "submissions": 1500,
-      "waiting": 1500,
+      "submissions": 1467,
+      "waiting": 1467,
       "in_flight": 0,
-      "distinct_goals": 1500,
+      "distinct_goals": 1467,
       "queued": [
         {
           "goal": "geud-42-pow-115-sub-self",
@@ -32,270 +32,6 @@
           "goal": "geud-42-pow-187-sub-self",
           "branch": "queued/prove/geud-42-pow-187-sub-self/mac-158f-6302ee",
           "sha": "8b8cfbe98",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-nine",
-          "branch": "queued/prove/gpow-sum-nine-pow-nine/mac-158f-a523e4",
-          "sha": "f7028404a",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-nineteen",
-          "branch": "queued/prove/gpow-sum-nine-pow-nineteen/mac-158f-e7bac9",
-          "sha": "0fcccc48c",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-seven",
-          "branch": "queued/prove/gpow-sum-nine-pow-seven/mac-158f-99bb25",
-          "sha": "bfc923133",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-seventeen",
-          "branch": "queued/prove/gpow-sum-nine-pow-seventeen/mac-158f-bf9368",
-          "sha": "9fa614ded",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-six",
-          "branch": "queued/prove/gpow-sum-nine-pow-six/mac-158f-42261f",
-          "sha": "438724425",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-sixteen",
-          "branch": "queued/prove/gpow-sum-nine-pow-sixteen/mac-158f-ff24fb",
-          "sha": "1f15cd7ae",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-ten",
-          "branch": "queued/prove/gpow-sum-nine-pow-ten/mac-158f-94669d",
-          "sha": "73ad98939",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-thirteen",
-          "branch": "queued/prove/gpow-sum-nine-pow-thirteen/mac-158f-61c4d5",
-          "sha": "0a02d4f3b",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-three",
-          "branch": "queued/prove/gpow-sum-nine-pow-three/mac-158f-3cdd4c",
-          "sha": "4d07d736d",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-twelve",
-          "branch": "queued/prove/gpow-sum-nine-pow-twelve/mac-158f-c154ee",
-          "sha": "889d184ce",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-twenty",
-          "branch": "queued/prove/gpow-sum-nine-pow-twenty/mac-158f-465c3e",
-          "sha": "e17ec4aaf",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-nine-pow-two",
-          "branch": "queued/prove/gpow-sum-nine-pow-two/mac-158f-cae006",
-          "sha": "a697cd4c5",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-eight",
-          "branch": "queued/prove/gpow-sum-one-pow-eight/mac-158f-7fd264",
-          "sha": "d5a3189bc",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-eighteen",
-          "branch": "queued/prove/gpow-sum-one-pow-eighteen/mac-158f-8fe852",
-          "sha": "1b6189392",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-eleven",
-          "branch": "queued/prove/gpow-sum-one-pow-eleven/mac-158f-426c0c",
-          "sha": "1fc46ee41",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-fifteen",
-          "branch": "queued/prove/gpow-sum-one-pow-fifteen/mac-158f-e88019",
-          "sha": "232e1d45c",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-five",
-          "branch": "queued/prove/gpow-sum-one-pow-five/mac-158f-15a6a2",
-          "sha": "9a9fa41a8",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-four",
-          "branch": "queued/prove/gpow-sum-one-pow-four/mac-158f-05382b",
-          "sha": "c30bb0768",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-fourteen",
-          "branch": "queued/prove/gpow-sum-one-pow-fourteen/mac-158f-75337f",
-          "sha": "881c9c98f",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-nine",
-          "branch": "queued/prove/gpow-sum-one-pow-nine/mac-158f-aab741",
-          "sha": "1f101ea7e",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-nineteen",
-          "branch": "queued/prove/gpow-sum-one-pow-nineteen/mac-158f-ffb763",
-          "sha": "8cdab7c31",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-seven",
-          "branch": "queued/prove/gpow-sum-one-pow-seven/mac-158f-81ae19",
-          "sha": "288bc8546",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-seventeen",
-          "branch": "queued/prove/gpow-sum-one-pow-seventeen/mac-158f-a25791",
-          "sha": "469d8faef",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-six",
-          "branch": "queued/prove/gpow-sum-one-pow-six/mac-158f-b0f59e",
-          "sha": "97096e863",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-sixteen",
-          "branch": "queued/prove/gpow-sum-one-pow-sixteen/mac-158f-9c808e",
-          "sha": "b53903525",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-ten",
-          "branch": "queued/prove/gpow-sum-one-pow-ten/mac-158f-7120b2",
-          "sha": "a57944a51",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-thirteen",
-          "branch": "queued/prove/gpow-sum-one-pow-thirteen/mac-158f-e2ae2d",
-          "sha": "ca37eeae6",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-three",
-          "branch": "queued/prove/gpow-sum-one-pow-three/mac-158f-54bbc3",
-          "sha": "06ece81e5",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-twelve",
-          "branch": "queued/prove/gpow-sum-one-pow-twelve/mac-158f-1655ec",
-          "sha": "a01cb28d3",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-twenty",
-          "branch": "queued/prove/gpow-sum-one-pow-twenty/mac-158f-e05dae",
-          "sha": "74df1d48d",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-one-pow-two",
-          "branch": "queued/prove/gpow-sum-one-pow-two/mac-158f-07e77a",
-          "sha": "88df492af",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-seven-pow-eight",
-          "branch": "queued/prove/gpow-sum-seven-pow-eight/mac-158f-42ca28",
-          "sha": "14649bdf9",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-18",
-          "state": "waiting"
-        },
-        {
-          "goal": "gpow-sum-seven-pow-eighteen",
-          "branch": "queued/prove/gpow-sum-seven-pow-eighteen/mac-158f-7892bc",
-          "sha": "26e4bca38",
           "model": "template-ring-cofactor",
           "date": "2026-06-19",
           "state": "waiting"
@@ -12027,19 +11763,11 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 297,
-      "waiting": 297,
+      "submissions": 296,
+      "waiting": 296,
       "in_flight": 0,
-      "distinct_goals": 297,
+      "distinct_goals": 296,
       "queued": [
-        {
-          "goal": "gzmod-104-pow-eighteen-sub-pow-six",
-          "branch": "queued/prove/gzmod-104-pow-eighteen-sub-pow-six/claude-web-64e0d9",
-          "sha": "3884b1f1d",
-          "model": "template-zmod-decide",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
         {
           "goal": "gzmod-104-pow-fifteen-sub-pow-three",
           "branch": "queued/prove/gzmod-104-pow-fifteen-sub-pow-three/claude-web-b3386f",
@@ -14415,83 +14143,11 @@
       "github": "ruvnet",
       "display_name": "@ruvnet",
       "profile_url": "https://github.com/ruvnet",
-      "submissions": 107,
-      "waiting": 99,
-      "in_flight": 8,
-      "distinct_goals": 107,
+      "submissions": 98,
+      "waiting": 98,
+      "in_flight": 0,
+      "distinct_goals": 98,
       "queued": [
-        {
-          "goal": "platonic-pairs-realizable",
-          "branch": "queued/prove/platonic-pairs-realizable/ruvnet-671743",
-          "sha": "d494b273a",
-          "model": null,
-          "date": "2026-06-16",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-heptagonal-closed-form",
-          "branch": "queued/prove/sum-heptagonal-closed-form/reroute-41b55c",
-          "sha": "4d345f4ae",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-hexagonal-numbers-closed-form",
-          "branch": "queued/prove/sum-hexagonal-numbers-closed-form/reroute-139d2e",
-          "sha": "d47b7c664",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-icc-choose-hockey-stick-s1",
-          "branch": "queued/prove/sum-icc-choose-hockey-stick-s1/reroute-89c4b3",
-          "sha": "481d02767",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-icc-choose-hockey-stick-s2",
-          "branch": "queued/prove/sum-icc-choose-hockey-stick-s2/reroute-7c350a",
-          "sha": "3d2511328",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-icc-choose-hockey-stick-s3",
-          "branch": "queued/prove/sum-icc-choose-hockey-stick-s3/reroute-381274",
-          "sha": "7c14f5cf9",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-icc-eight-k-div-odd-sq-pair-telescope",
-          "branch": "queued/prove/sum-icc-eight-k-div-odd-sq-pair-telescope/reroute-3dee5e",
-          "sha": "0e3c85ec9",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-octagonal-running-closed-form",
-          "branch": "queued/prove/sum-octagonal-running-closed-form/reroute-bde4da",
-          "sha": "eb58963cc",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-octahedral-centered-squares",
-          "branch": "queued/prove/sum-octahedral-centered-squares/reroute-e11e70",
-          "sha": "916d95f2f",
-          "model": null,
-          "date": "2026-06-17",
-          "state": "in-flight"
-        },
         {
           "goal": "sum-odd-gnomon-squares-closed-form",
           "branch": "queued/prove/sum-odd-gnomon-squares-closed-form/reroute-699c8a",
@@ -15289,19 +14945,19 @@
       "distinct_goals": 7,
       "queued": [
         {
-          "goal": "sum-icc-four-div-four-k-sub-one-four-k-add-three-telescope",
-          "branch": "queued/prove/sum-icc-four-div-four-k-sub-one-four-k-add-three-telescope/codex-0001-f76056",
-          "sha": "b19caeac1",
+          "goal": "nesbitt-inequality",
+          "branch": "queued/prove/nesbitt-inequality/thebeast-ace7-fa316d",
+          "sha": "e97dfec99",
           "model": null,
-          "date": "2026-06-17",
+          "date": "2026-06-20",
           "state": "waiting"
         },
         {
-          "goal": "sum-icc-id-mul-two-pow-pred",
-          "branch": "queued/prove/sum-icc-id-mul-two-pow-pred/thebeast-ace7-5aa9bd",
-          "sha": "54aca49a0",
+          "goal": "sum-icc-choose-hockey-stick",
+          "branch": "queued/prove/sum-icc-choose-hockey-stick/beast-bbbb-c2a140",
+          "sha": "5be533ea1",
           "model": null,
-          "date": "2026-06-17",
+          "date": "2026-06-20",
           "state": "waiting"
         },
         {
@@ -15341,26 +14997,6 @@
           "branch": "queued/prove/sum-icc-three-k-sub-one-mul-two-pow-pred-closed/codex-0005-848588",
           "sha": "c91d82ef4",
           "model": null,
-          "date": "2026-06-17",
-          "state": "waiting"
-        }
-      ]
-    },
-    {
-      "solver": "cgbarlow",
-      "github": "cgbarlow",
-      "display_name": "@cgbarlow",
-      "profile_url": "https://github.com/cgbarlow",
-      "submissions": 1,
-      "waiting": 1,
-      "in_flight": 0,
-      "distinct_goals": 1,
-      "queued": [
-        {
-          "goal": "sum-id-mul-triangular-closed-form",
-          "branch": "queued/prove/sum-id-mul-triangular-closed-form/1367ab40f0b1-e413-6fd7de",
-          "sha": "21ed3d26b",
-          "model": "opus",
           "date": "2026-06-17",
           "state": "waiting"
         }
