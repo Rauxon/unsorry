@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**105 open · 1453 proved · 1561 total prove-goals.**
+**104 open · 1454 proved · 1561 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -13,7 +13,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sextic-x6-plus-x3-plus-one-composite-shift` — The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. Not a named mathlib lemma in this form. |
 | `sq-add-sq-eq-three-mul-sq-s4-s1` — sq-add-sq-eq-three-mul-sq-s4-s1 | open | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s2` — sq-add-sq-eq-three-mul-sq-s4-s2 | open | 1 | — | — | — |
-| `sq-add-sq-eq-three-mul-sq-s4-s3-s1` — sq-add-sq-eq-three-mul-sq-s4-s3-s1 | open | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` — sq-add-sq-eq-three-mul-sq-s4-s3-s2 | open | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s3-s3` — sq-add-sq-eq-three-mul-sq-s4-s3-s3 | open | 1 | — | — | — |
 | `sum-icc-choose-hockey-stick` — The hockey-stick identity: ∑_{k=r}^{n} C(k,r) = C(n+1,r+1). | open | 3 | — | Classic combinatorial / finite-sum identity (library-growth batch, #400 plan Phase 3). | The hockey-stick identity: ∑_{k=r}^{n} C(k,r) = C(n+1,r+1). Not a named mathlib lemma (Vandermonde/Pascal are present but not these specific closed forms). |
@@ -1361,6 +1360,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sq-add-sq-eq-three-mul-sq-s1` — sq-add-sq-eq-three-mul-sq-s1 | proved | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s2` — sq-add-sq-eq-three-mul-sq-s2 | proved | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s3` — sq-add-sq-eq-three-mul-sq-s3 | proved | 1 | — | — | — |
+| `sq-add-sq-eq-three-mul-sq-s4-s3-s1` — sq-add-sq-eq-three-mul-sq-s4-s3-s1 | proved | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s4` — sq-add-sq-eq-three-mul-sq-s4-s4 | proved | 1 | — | — | — |
 | `sq-lt-cube-of-one-lt` — For x > 1, x² < x³. | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For x > 1, x² < x³. Not a named mathlib lemma in this concrete form. |
 | `sq-mod-eight-mem` — Every natural number's square leaves remainder 0, 1, or 4 when divided by 8. | proved | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every natural number's square leaves remainder 0, 1, or 4 when divided by 8. Not a named mathlib lemma in this form. |
