@@ -1,0 +1,8 @@
+𝔸5.1.run.sq-add-sq-eq-three-mul-sq-s4-s2.rauxon-3.20260620t100025446370z-3c6e912c@2026-06-20
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260620t100025446370z-3c6e912c; goal≜sq-add-sq-eq-three-mul-sq-s4-s2; agent≜rauxon-3; outcome≜proved}
+⟦Π:Provenance⟧{solver≜Rauxon; provider≜claude; model≜opus; effort≜high}
+⟦Γ:Goal⟧{goal≜sq-add-sq-eq-three-mul-sq-s4-s2}
+⟦Λ:Metrics⟧{attempts≜1; solve_s≜444; ended≜2026-06-20T10:00:25Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜c529d4acda0f3fd098c610451917c427694f8159a74fbe113ae7140c599bcceb}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
