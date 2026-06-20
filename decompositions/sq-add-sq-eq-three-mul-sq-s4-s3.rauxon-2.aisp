@@ -1,0 +1,13 @@
+𝔸5.1.decomp.sq-add-sq-eq-three-mul-sq-s4-s3.rauxon-2@2026-06-20
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜sq-add-sq-eq-three-mul-sq-s4-s3; agent≜rauxon-2}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜sq-add-sq-eq-three-mul-sq-s4-s3-s1,sha≜0a4324d588bfd8d7ef589a824247d007a6a243b6df7f3d99606746bbf85e9cc0⟩
+  sub₂≜⟨id≜sq-add-sq-eq-three-mul-sq-s4-s3-s2,sha≜ff381f51280bfbb67d6b1813b061e3e6150731cf7f43b7296bdf84632183b4d8⟩
+  sub₃≜⟨id≜sq-add-sq-eq-three-mul-sq-s4-s3-s3,sha≜af4c74a1295e68aecff43698683013e8c550832b47ed9c4abcfe6eb2b0536332⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
