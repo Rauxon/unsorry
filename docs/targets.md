@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 1859 proved · 1875 total prove-goals.**
+**13 open · 1861 proved · 1877 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -862,6 +862,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-23-add-pow-eight` — n to the 1 divides n to the 23 plus n to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 23 plus n to the 8. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-23-add-pow-eighteen` — n to the 1 divides n to the 23 plus n to the 18. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 23 plus n to the 18. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-23-add-pow-eleven` — n to the 1 divides n to the 23 plus n to the 11. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 23 plus n to the 11. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-23-add-pow-fifteen` — n to the 1 divides n to the 23 plus n to the 15. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 23 plus n to the 15. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-four` — n to the 1 divides n to the 5 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-one` — n to the 1 divides n to the 5 plus n to the 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 1. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-three` — n to the 1 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
@@ -1312,6 +1313,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-252-pow-sixteen-sub-pow-four` — 252 divides n to the 16 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 252 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 252` case check. |
 | `gzmod-252-pow-ten-sub-pow-four` — 252 divides n to the 10 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 252 divides n to the 10 minus n to the 4, for every integer n. Provable by a finite `ZMod 252` case check. |
 | `gzmod-252-pow-thirteen-sub-pow-seven` — 252 divides n to the 13 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 252 divides n to the 13 minus n to the 7, for every integer n. Provable by a finite `ZMod 252` case check. |
+| `gzmod-252-pow-twelve-sub-pow-six` — 252 divides n to the 12 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 252 divides n to the 12 minus n to the 6, for every integer n. Provable by a finite `ZMod 252` case check. |
 | `gzmod-264-pow-21-sub-pow-eleven` — 264 divides n to the 21 minus n to the 11, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 264 divides n to the 21 minus n to the 11, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-264-pow-22-sub-pow-twelve` — 264 divides n to the 22 minus n to the 12, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 264 divides n to the 22 minus n to the 12, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-264-pow-23-sub-pow-thirteen` — 264 divides n to the 23 minus n to the 13, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 264 divides n to the 23 minus n to the 13, for every integer n. Provable by exhibiting the cofactor and `ring`. |
