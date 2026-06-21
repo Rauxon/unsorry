@@ -4,34 +4,34 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**1993 verified proofs · 1685 attributed · 308 historical/unknown · 689 logged terminal runs.**
+**1997 verified proofs · 1689 attributed · 308 historical/unknown · 691 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 359 |
+| Successful terminal runs | 361 |
 | Failed terminal runs | 330 |
 | Decomposed after failure | 20 |
 | Failed without decomposition | 310 |
-| Run success rate | 52.1% |
-| Provider attempts | 755 |
+| Run success rate | 52.2% |
+| Provider attempts | 757 |
 | Failed attempts | 396 |
-| Attempt yield | 47.5% |
+| Attempt yield | 47.7% |
 | Recorded run time | 91h 21m |
-| Median / p90 run time | 1m 34s / 31m 42s |
-| Verified successes per recorded hour | 3.93 |
-| Proofs with run telemetry | 359 (18.0%) |
+| Median / p90 run time | 1m 33s / 31m 41s |
+| Verified successes per recorded hour | 3.95 |
+| Proofs with run telemetry | 361 (18.1%) |
 
 ## Work Queue
 
-**2018 goals · 1485 archived · 3 blocked · 13 open · 508 proved · 9 translated.**
+**2022 goals · 1485 archived · 3 blocked · 13 open · 512 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 386 | 319 | 82.6% | 105 | 0s |
+| 1 | 388 | 321 | 82.7% | 105 | 0s |
 | 2 | 139 | 1 | 0.7% | 157 | 7m 58s |
 | 3 | 141 | 36 | 25.5% | 114 | 8m 6s |
 | 4 | 21 | 3 | 14.3% | 18 | 6m 5s |
@@ -58,11 +58,11 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
-| 1 | [@ohdearquant](https://github.com/ohdearquant) | 994 | 993 | 1 | 224 | 100.0% | 1871 | 0.0 | 211950 |
-| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 513 | 266 | 247 | 0 | — | 1372 | 0.0 | 150025 |
-| 3 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 328 | 22.3% | 297 | 566.1 | 91085 |
+| 1 | [@ohdearquant](https://github.com/ohdearquant) | 996 | 995 | 1 | 226 | 100.0% | 1873 | 0.0 | 212200 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 515 | 268 | 247 | 0 | — | 1378 | 0.0 | 150675 |
+| 3 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 328 | 22.3% | 297 | 568.8 | 91355 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 158 | 158 | 0 | 0 | — | 422 | 0.0 | 46150 |
-| 5 | [@perttu](https://github.com/perttu) | 106 | 102 | 4 | 78 | 76.9% | 170 | 121.5 | 31800 |
+| 5 | [@perttu](https://github.com/perttu) | 106 | 102 | 4 | 78 | 76.9% | 170 | 122.4 | 31890 |
 | 6 | [@adam91holt](https://github.com/adam91holt) | 19 | 19 | 0 | 56 | 0.0% | 46 | 0.0 | 5075 |
 | 7 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 0.0 | 2125 |
 | 8 | [@Rauxon](https://github.com/Rauxon) | 2 | 2 | 0 | 3 | 66.7% | 2 | 0.0 | 250 |
@@ -70,16 +70,16 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 ## Attribution Notes
 
-**1685 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**1689 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 1993 of 1993 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 1997 of 1997 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
-| `python / sympy` | 1129 | 342 | 100.0% | 0 | 3 | 0s | — |
-| `lean / decide` | 265 | 0 | — | 0 | 1 | — | — |
+| `python / sympy` | 1131 | 344 | 100.0% | 0 | 3 | 0s | — |
+| `lean / decide` | 268 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 158 | 0 | — | 0 | 1 | — | — |
 | `claude / opus` | 59 | 23 | 56.5% | 32 | 5 | 9m 29s | 2.98 |
 | `codex / unknown` | 39 | 72 | 5.6% | 102 | 2 | 7m 36s | 0.36 |
@@ -87,7 +87,6 @@ Git add-author attribution covers 1993 of 1993 proof index files. It is used onl
 | `gemini / gemini-3.1-pro-preview` | 7 | 2 | 0.0% | 6 | 1 | 10m 59s | 0.00 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
 | `claude / sonnet` | 1 | 0 | — | 0 | 1 | — | — |
-| `claude / template-zmod-decide` | 1 | 0 | — | 0 | 1 | — | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
 | `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 47 | 0.0% | 47 | 1 | 31m 57s | 0.00 |
 | `codex / gpt-5.3-codex-spark` | 0 | 1 | 0.0% | 3 | 1 | 1m 34s | 0.00 |
