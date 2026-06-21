@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 2069 proved · 2083 total prove-goals.**
+**11 open · 2070 proved · 2084 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1602,6 +1602,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-72-pow-twelve-sub-pow-six` — 72 divides n to the 12 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 12 minus n to the 6, for every integer n. Provable by a finite `ZMod 72` case check. |
 | `gzmod-72-pow-twenty-sub-pow-eight` — 72 divides n to the 20 minus n to the 8, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 20 minus n to the 8, for every integer n. Provable by a finite `ZMod 72` case check. |
 | `gzmod-80-pow-eight-sub-pow-four` — 80 divides n to the 8 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 80 divides n to the 8 minus n to the 4, for every integer n. Provable by a finite `ZMod 80` case check. |
+| `gzmod-88-pow-fifteen-sub-pow-five` — 88 divides n to the 15 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 88 divides n to the 15 minus n to the 5, for every integer n. Provable by a finite `ZMod 88` case check. |
 | `hexagonal-eq-triangular-odd-index` — The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. | proved | 1 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. Not a named mathlib lemma in this form. |
 | `int-add-neg` — Adding the negation of an integer yields zero. | proved | 1 | — | — | — |
 | `int-neg-neg` — Double negation of an integer is the identity. | proved | 1 | — | — | — |
