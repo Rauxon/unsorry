@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 1874 proved · 1890 total prove-goals.**
+**13 open · 1875 proved · 1891 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1327,6 +1327,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-255-pow-twentyeight-sub-pow-twelve` — 255 divides n to the 28 minus n to the 12, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 255 divides n to the 28 minus n to the 12, for every integer n. Provable by a finite `ZMod 255` case check. |
 | `gzmod-255-pow-twentyfive-sub-pow-nine` — 255 divides n to the 25 minus n to the 9, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 255 divides n to the 25 minus n to the 9, for every integer n. Provable by a finite `ZMod 255` case check. |
 | `gzmod-255-pow-twentyfour-sub-pow-eight` — 255 divides n to the 24 minus n to the 8, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 255 divides n to the 24 minus n to the 8, for every integer n. Provable by a finite `ZMod 255` case check. |
+| `gzmod-255-pow-twentyone-sub-pow-five` — 255 divides n to the 21 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 255 divides n to the 21 minus n to the 5, for every integer n. Provable by a finite `ZMod 255` case check. |
 | `gzmod-264-pow-21-sub-pow-eleven` — 264 divides n to the 21 minus n to the 11, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 264 divides n to the 21 minus n to the 11, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-264-pow-22-sub-pow-twelve` — 264 divides n to the 22 minus n to the 12, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 264 divides n to the 22 minus n to the 12, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-264-pow-23-sub-pow-thirteen` — 264 divides n to the 23 minus n to the 13, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 264 divides n to the 23 minus n to the 13, for every integer n. Provable by exhibiting the cofactor and `ring`. |
