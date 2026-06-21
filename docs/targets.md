@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 1927 proved · 1943 total prove-goals.**
+**13 open · 1928 proved · 1944 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1411,6 +1411,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-273-pow-sixteen-sub-pow-four` — 273 divides n to the 16 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 273 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 273` case check. |
 | `gzmod-273-pow-twenty-sub-pow-eight` — 273 divides n to the 20 minus n to the 8, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 273 divides n to the 20 minus n to the 8, for every integer n. Provable by a finite `ZMod 273` case check. |
 | `gzmod-273-pow-twentyfour-sub-pow-twelve` — 273 divides n to the 24 minus n to the 12, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 273 divides n to the 24 minus n to the 12, for every integer n. Provable by a finite `ZMod 273` case check. |
+| `gzmod-273-pow-twentyone-sub-pow-nine` — 273 divides n to the 21 minus n to the 9, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 273 divides n to the 21 minus n to the 9, for every integer n. Provable by a finite `ZMod 273` case check. |
 | `gzmod-273-pow-twentythree-sub-pow-eleven` — 273 divides n to the 23 minus n to the 11, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 273 divides n to the 23 minus n to the 11, for every integer n. Provable by a finite `ZMod 273` case check. |
 | `gzmod-276-pow-24-sub-pow-two` — 276 divides n to the 24 minus n to the 2, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 276 divides n to the 24 minus n to the 2, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-30-pow-five-sub-pow-one` — 30 divides n to the 5 minus n to the 1, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 30 divides n to the 5 minus n to the 1, for every integer n. Provable by exhibiting the cofactor and `ring`. |
