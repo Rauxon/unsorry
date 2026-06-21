@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 2031 proved · 2047 total prove-goals.**
+**13 open · 2032 proved · 2048 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1026,6 +1026,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-144-pow-eighteen-sub-pow-six` — 144 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 144 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 144` case check. |
 | `gzmod-144-pow-nineteen-sub-pow-seven` — 144 divides n to the 19 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 144 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 144` case check. |
 | `gzmod-144-pow-seventeen-sub-pow-five` — 144 divides n to the 17 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 144 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 144` case check. |
+| `gzmod-144-pow-sixteen-sub-pow-four` — 144 divides n to the 16 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 144 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 144` case check. |
 | `gzmod-144-pow-twenty-sub-pow-eight` — 144 divides n to the 20 minus n to the 8, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 144 divides n to the 20 minus n to the 8, for every integer n. Provable by a finite `ZMod 144` case check. |
 | `gzmod-152-pow-thirty-sub-pow-twelve` — 152 divides n to the 30 minus n to the 12, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 152 divides n to the 30 minus n to the 12, for every integer n. Provable by a finite `ZMod 152` case check. |
 | `gzmod-152-pow-twentyeight-sub-pow-ten` — 152 divides n to the 28 minus n to the 10, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 152 divides n to the 28 minus n to the 10, for every integer n. Provable by a finite `ZMod 152` case check. |
