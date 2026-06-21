@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 2043 proved · 2059 total prove-goals.**
+**13 open · 2045 proved · 2061 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -952,6 +952,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-27-add-pow-22` — n to the 1 divides n to the 27 plus n to the 22. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 27 plus n to the 22. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-27-add-pow-23` — n to the 1 divides n to the 27 plus n to the 23. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 27 plus n to the 23. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-27-add-pow-24` — n to the 1 divides n to the 27 plus n to the 24. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 27 plus n to the 24. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-27-add-pow-25` — n to the 1 divides n to the 27 plus n to the 25. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 27 plus n to the 25. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-four` — n to the 1 divides n to the 5 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-one` — n to the 1 divides n to the 5 plus n to the 1. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 1. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-five-add-pow-three` — n to the 1 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 1 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
@@ -1580,6 +1581,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-66-pow-51-sub-pow-one` — 66 divides n to the 51 minus n to the 1, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 66 divides n to the 51 minus n to the 1, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-72-pow-eighteen-sub-pow-six` — 72 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 72` case check. |
 | `gzmod-72-pow-eleven-sub-pow-five` — 72 divides n to the 11 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 11 minus n to the 5, for every integer n. Provable by a finite `ZMod 72` case check. |
+| `gzmod-72-pow-fifteen-sub-pow-three` — 72 divides n to the 15 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 72` case check. |
 | `hexagonal-eq-triangular-odd-index` — The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. | proved | 1 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. Not a named mathlib lemma in this form. |
 | `int-add-neg` — Adding the negation of an integer yields zero. | proved | 1 | — | — | — |
 | `int-neg-neg` — Double negation of an integer is the identity. | proved | 1 | — | — | — |
