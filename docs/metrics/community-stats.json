@@ -2,19 +2,19 @@
   "contributors": [
     {
       "attempt_yield": 1.0,
-      "attempts": 482,
-      "difficulty_points": 2126,
+      "attempts": 486,
+      "difficulty_points": 2130,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": 0,
       "p90_solve_s": 0,
       "run_success_rate": 1.0,
-      "runs": 482,
+      "runs": 486,
       "solver": "ohdearquant",
-      "successes": 482,
+      "successes": 486,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1251
+      "verified_proofs": 1255
     },
     {
       "attempt_yield": null,
@@ -130,36 +130,36 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 1996,
+    "attributed_proofs": 2000,
     "historical_unknown_proofs": 308,
-    "proof_run_coverage": 0.2678,
-    "successful_proofs_with_run_telemetry": 617,
-    "terminal_runs": 953,
-    "verified_proofs": 2304
+    "proof_run_coverage": 0.2691,
+    "successful_proofs_with_run_telemetry": 621,
+    "terminal_runs": 957,
+    "verified_proofs": 2308
   },
   "credit": {
     "credited_contributors": 9,
-    "credited_proofs": 2304,
-    "explicit_solver_proofs": 1996,
+    "credited_proofs": 2308,
+    "explicit_solver_proofs": 2000,
     "inferred_git_proofs": 308,
     "uncredited_proofs": 0
   },
   "credited_contributors": [
     {
       "attempt_yield": 1.0,
-      "attempts": 482,
+      "attempts": 486,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "credit_source_summary": "explicit + inferred",
       "credit_sources": [
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 1252,
-      "difficulty_points": 2129,
+      "credited_proofs": 1256,
+      "difficulty_points": 2133,
       "dispatch_points": 0.0,
       "dispatch_proofs": 0,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 1251,
+      "explicit_solver_proofs": 1255,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": "OceanLi <quantocean.li@gmail.com>",
@@ -169,12 +169,12 @@
       "p90_solve_s": 0,
       "profile_url": "https://github.com/ohdearquant",
       "run_success_rate": 1.0,
-      "runs": 482,
+      "runs": 486,
       "solver": "ohdearquant",
-      "successes": 482,
+      "successes": 486,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1252
+      "verified_proofs": 1256
     },
     {
       "attempt_yield": null,
@@ -218,8 +218,8 @@
       ],
       "credited_proofs": 191,
       "difficulty_points": 297,
-      "dispatch_points": 820.8,
-      "dispatch_proofs": 912,
+      "dispatch_points": 824.4,
+      "dispatch_proofs": 916,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 144,
       "failed_attempts": 282,
@@ -479,15 +479,15 @@
     },
     {
       "attempt_yield": 1.0,
-      "attempts": 600,
+      "attempts": 604,
       "date": "2026-06-19",
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": 0,
       "p90_solve_s": 0,
       "run_success_rate": 1.0,
-      "runs": 600,
-      "successes": 600,
+      "runs": 604,
+      "successes": 604,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0
     },
@@ -522,17 +522,17 @@
   ],
   "difficulty": [
     {
-      "attempt_yield": 0.8243,
-      "attempts": 700,
+      "attempt_yield": 0.8253,
+      "attempts": 704,
       "difficulty": 1,
       "failed_attempts": 123,
       "failures": 73,
       "median_solve_s": 0,
       "p90_solve_s": 234,
-      "run_success_rate": 0.8877,
-      "runs": 650,
-      "successes": 577,
-      "successes_per_recorded_hour": 34.967,
+      "run_success_rate": 0.8884,
+      "runs": 654,
+      "successes": 581,
+      "successes_per_recorded_hour": 35.21,
       "total_solve_s": 59404
     },
     {
@@ -637,15 +637,15 @@
     },
     {
       "attempt_yield": 1.0,
-      "attempts": 600,
+      "attempts": 604,
       "effort": "unknown",
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": 0,
       "p90_solve_s": 0,
       "run_success_rate": 1.0,
-      "runs": 600,
-      "successes": 600,
+      "runs": 604,
+      "successes": 604,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0
     },
@@ -14063,6 +14063,22 @@
       "difficulty": 1,
       "failed_attempts": 0,
       "failures": 0,
+      "goal": "gself-pow-four-pow-fourteen-add-pow-eleven",
+      "median_solve_s": 0,
+      "p90_solve_s": 0,
+      "run_success_rate": 1.0,
+      "runs": 1,
+      "status": "proved",
+      "successes": 1,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0
+    },
+    {
+      "attempt_yield": 1.0,
+      "attempts": 1,
+      "difficulty": 1,
+      "failed_attempts": 0,
+      "failures": 0,
       "goal": "gself-pow-four-pow-fourteen-add-pow-five",
       "median_solve_s": 0,
       "p90_solve_s": 0,
@@ -14184,6 +14200,54 @@
       "successes": 1,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0
+    },
+    {
+      "attempt_yield": 1.0,
+      "attempts": 1,
+      "difficulty": 1,
+      "failed_attempts": 0,
+      "failures": 0,
+      "goal": "gself-pow-four-pow-nine-add-pow-eight",
+      "median_solve_s": 0,
+      "p90_solve_s": 0,
+      "run_success_rate": 1.0,
+      "runs": 1,
+      "status": "proved",
+      "successes": 1,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0
+    },
+    {
+      "attempt_yield": 1.0,
+      "attempts": 1,
+      "difficulty": 1,
+      "failed_attempts": 0,
+      "failures": 0,
+      "goal": "gself-pow-four-pow-nine-add-pow-five",
+      "median_solve_s": 0,
+      "p90_solve_s": 0,
+      "run_success_rate": 1.0,
+      "runs": 1,
+      "status": "proved",
+      "successes": 1,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0
+    },
+    {
+      "attempt_yield": 1.0,
+      "attempts": 1,
+      "difficulty": 1,
+      "failed_attempts": 0,
+      "failures": 0,
+      "goal": "gself-pow-four-pow-nine-add-pow-six",
+      "median_solve_s": 0,
+      "p90_solve_s": 0,
+      "run_success_rate": 1.0,
+      "runs": 1,
+      "status": "proved",
+      "successes": 1,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0
     }
   ],
   "historical_attribution": {
@@ -14193,18 +14257,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/cgbarlow.png?size=96",
-        "difficulty_points": 1971,
+        "difficulty_points": 1975,
         "display_name": "Chris Barlow",
         "git_author": "Chris Barlow <cgbarlow@gmail.com>",
         "git_author_name": "Chris Barlow",
         "github": "cgbarlow",
-        "index_files_added": 1103,
+        "index_files_added": 1107,
         "missing_solver_provenance": 47,
         "profile_url": "https://github.com/cgbarlow",
         "sample_add_commit": "62f1b36fc68304a2f73054815a73e3a6998f6fb4",
         "sample_add_date": "2026-06-20",
         "solver_credit": false,
-        "solver_provenance_proofs": 1056
+        "solver_provenance_proofs": 1060
       },
       {
         "attribution_source": "git-add-author",
@@ -14335,8 +14399,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 2304,
-    "records": 2304,
+    "git_attributed_index_files": 2308,
+    "records": 2308,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -14344,19 +14408,19 @@
   "models": [
     {
       "attempt_yield": 1.0,
-      "attempts": 599,
+      "attempts": 604,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": 0,
       "p90_solve_s": 0,
       "provider_model": "python / sympy",
       "run_success_rate": 1.0,
-      "runs": 599,
+      "runs": 604,
       "solvers": 3,
-      "successes": 599,
+      "successes": 604,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1386
+      "verified_proofs": 1391
     },
     {
       "attempt_yield": null,
@@ -14471,22 +14535,6 @@
       "verified_proofs": 4
     },
     {
-      "attempt_yield": 1.0,
-      "attempts": 1,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": 0,
-      "p90_solve_s": 0,
-      "provider_model": "claude / template-ring-cofactor",
-      "run_success_rate": 1.0,
-      "runs": 1,
-      "solvers": 1,
-      "successes": 1,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 1
-    },
-    {
       "attempt_yield": null,
       "attempts": 0,
       "failed_attempts": 0,
@@ -14570,36 +14618,36 @@
   "outcome_counts": {
     "decomposed": 20,
     "failed": 316,
-    "proved": 617
+    "proved": 621
   },
   "outcomes": {
-    "attempt_yield": 0.5984,
-    "attempts": 1031,
+    "attempt_yield": 0.6,
+    "attempts": 1035,
     "failed_attempts": 414,
     "failures": 336,
     "median_solve_s": 0,
     "p90_solve_s": 1883,
-    "run_success_rate": 0.6474,
-    "runs": 953,
-    "successes": 617,
-    "successes_per_recorded_hour": 6.675,
+    "run_success_rate": 0.6489,
+    "runs": 957,
+    "successes": 621,
+    "successes_per_recorded_hour": 6.718,
     "total_solve_s": 332772
   },
   "queue": {
     "difficulty_counts": {
       "0": 10,
-      "1": 993,
+      "1": 997,
       "2": 353,
       "3": 933,
       "4": 37,
       "5": 1
     },
-    "goals": 2327,
+    "goals": 2331,
     "status_counts": {
       "archived": 1587,
       "blocked": 3,
       "open": 11,
-      "proved": 717,
+      "proved": 721,
       "translated": 9
     }
   },
