@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 2046 proved · 2062 total prove-goals.**
+**13 open · 2048 proved · 2064 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1583,6 +1583,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-72-pow-eighteen-sub-pow-six` — 72 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 72` case check. |
 | `gzmod-72-pow-eleven-sub-pow-five` — 72 divides n to the 11 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 11 minus n to the 5, for every integer n. Provable by a finite `ZMod 72` case check. |
 | `gzmod-72-pow-fifteen-sub-pow-three` — 72 divides n to the 15 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 72` case check. |
+| `gzmod-72-pow-fourteen-sub-pow-eight` — 72 divides n to the 14 minus n to the 8, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 14 minus n to the 8, for every integer n. Provable by a finite `ZMod 72` case check. |
+| `gzmod-72-pow-nine-sub-pow-three` — 72 divides n to the 9 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 72 divides n to the 9 minus n to the 3, for every integer n. Provable by a finite `ZMod 72` case check. |
 | `hexagonal-eq-triangular-odd-index` — The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. | proved | 1 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The n-th hexagonal number n(2n-1) equals the (2n-1)-th triangular number. Not a named mathlib lemma in this form. |
 | `int-add-neg` — Adding the negation of an integer yields zero. | proved | 1 | — | — | — |
 | `int-neg-neg` — Double negation of an integer is the identity. | proved | 1 | — | — | — |
