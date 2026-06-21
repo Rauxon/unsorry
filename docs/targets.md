@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 2375 proved · 2389 total prove-goals.**
+**11 open · 2376 proved · 2390 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1253,6 +1253,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-four-pow-twelve-add-pow-seven` — n to the 4 divides n to the 12 plus n to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 4 divides n to the 12 plus n to the 7. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-four-pow-twelve-add-pow-six` — n to the 4 divides n to the 12 plus n to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 4 divides n to the 12 plus n to the 6. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-four-pow-twelve-add-pow-ten` — n to the 4 divides n to the 12 plus n to the 10. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 4 divides n to the 12 plus n to the 10. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-four-pow-twenty-add-pow-eight` — n to the 4 divides n to the 20 plus n to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 4 divides n to the 20 plus n to the 8. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-four-pow-twenty-add-pow-eighteen` — n to the 4 divides n to the 20 plus n to the 18. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 4 divides n to the 20 plus n to the 18. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-four-pow-twenty-add-pow-five` — n to the 4 divides n to the 20 plus n to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 4 divides n to the 20 plus n to the 5. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-four-pow-twenty-add-pow-fourteen` — n to the 4 divides n to the 20 plus n to the 14. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 4 divides n to the 20 plus n to the 14. Provable by exhibiting the cofactor and `ring`. |
