@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 1969 proved · 1985 total prove-goals.**
+**13 open · 1970 proved · 1986 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1453,6 +1453,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-315-pow-fifteen-sub-pow-three` — 315 divides n to the 15 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 315 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 315` case check. |
 | `gzmod-315-pow-nineteen-sub-pow-seven` — 315 divides n to the 19 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 315 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 315` case check. |
 | `gzmod-315-pow-seventeen-sub-pow-five` — 315 divides n to the 17 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 315 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 315` case check. |
+| `gzmod-315-pow-sixteen-sub-pow-four` — 315 divides n to the 16 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 315 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 315` case check. |
 | `gzmod-315-pow-twenty-sub-pow-eight` — 315 divides n to the 20 minus n to the 8, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 315 divides n to the 20 minus n to the 8, for every integer n. Provable by a finite `ZMod 315` case check. |
 | `gzmod-315-pow-twentyfour-sub-pow-twelve` — 315 divides n to the 24 minus n to the 12, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 315 divides n to the 24 minus n to the 12, for every integer n. Provable by a finite `ZMod 315` case check. |
 | `gzmod-315-pow-twentyone-sub-pow-nine` — 315 divides n to the 21 minus n to the 9, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 315 divides n to the 21 minus n to the 9, for every integer n. Provable by a finite `ZMod 315` case check. |
