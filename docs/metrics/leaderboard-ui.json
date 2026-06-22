@@ -222,12 +222,12 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": 0.3333,
+      "attempt_yield": 0.2222,
       "avatar_url": "https://github.com/Rauxon.png?size=96",
       "badges": {
         "difficulty": 2,
         "proofs": 2,
-        "success_rate_percent": 66.67
+        "success_rate_percent": 50.0
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
@@ -239,14 +239,14 @@
       "dispatch_proofs": 0,
       "display_name": "@Rauxon",
       "explicit_solver_proofs": 2,
-      "failed_attempts": 4,
+      "failed_attempts": 7,
       "github": "Rauxon",
       "inferred_git_proofs": 0,
-      "median_solve_s": 445,
+      "median_solve_s": 437,
       "profile_url": "https://github.com/Rauxon",
       "rank": 8,
-      "run_success_rate": 0.6667,
-      "runs": 3,
+      "run_success_rate": 0.5,
+      "runs": 4,
       "score": 250,
       "solver": "Rauxon",
       "successes": 2,
@@ -284,7 +284,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-22T04:52:57Z",
+  "generated_at": "2026-06-22T05:46:15Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -426,8 +426,8 @@
     },
     {
       "provider_model": "claude / opus",
-      "run_success_rate": 0.4815,
-      "runs": 27,
+      "run_success_rate": 0.4643,
+      "runs": 28,
       "verified_proofs": 59
     },
     {
@@ -498,7 +498,7 @@
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
     "proof_run_coverage": 0.3242,
-    "terminal_runs": 1179,
+    "terminal_runs": 1180,
     "uncredited_proofs": 0,
     "verified_proofs": 2597
   },
