@@ -45,7 +45,7 @@
     },
     {
       "avatar_url": null,
-      "difficulty_points": 126,
+      "difficulty_points": 127,
       "display_name": "adam91holt",
       "earliest_sourced": "2026-06-14",
       "git_author": "adam91holt <mail@adamholt.co.nz>",
@@ -53,8 +53,8 @@
       "latest_sourced": "2026-06-22",
       "open": 0,
       "profile_url": null,
-      "proved": 43,
-      "sourced_goals": 86,
+      "proved": 44,
+      "sourced_goals": 87,
       "sourcer": null
     },
     {
@@ -73,8 +73,8 @@
     }
   ],
   "totals": {
-    "difficulty_points": 4962,
-    "sourced_goals": 2638,
+    "difficulty_points": 4963,
+    "sourced_goals": 2639,
     "sourcers": 5
   }
 }
