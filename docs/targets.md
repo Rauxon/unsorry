@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 2533 proved · 2547 total prove-goals.**
+**11 open · 2534 proved · 2548 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1426,6 +1426,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-three-pow-24-add-pow-twelve` — n to the 3 divides n to the 24 plus n to the 12. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 24 plus n to the 12. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-24-add-pow-twenty` — n to the 3 divides n to the 24 plus n to the 20. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 24 plus n to the 20. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-25-add-pow-21` — n to the 3 divides n to the 25 plus n to the 21. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 25 plus n to the 21. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-three-pow-25-add-pow-22` — n to the 3 divides n to the 25 plus n to the 22. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 25 plus n to the 22. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-five-add-pow-four` — n to the 3 divides n to the 5 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 5 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-five-add-pow-three` — n to the 3 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-four-add-pow-three` — n to the 3 divides n to the 4 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 4 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
