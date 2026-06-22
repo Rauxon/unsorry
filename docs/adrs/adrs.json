@@ -1,6 +1,6 @@
 {
   "generated_by": "python3 -m tools.adr_index --write",
-  "count": 82,
+  "count": 83,
   "adrs": [
     {
       "id": "ADR-001",
@@ -657,6 +657,14 @@
       "status": "Accepted",
       "date": "2026-06-22",
       "file": "ADR-083-Model-Pokemon-Registry-And-Operational-Tasks.md"
+    },
+    {
+      "id": "ADR-084",
+      "number": 84,
+      "title": "Demand-Driven Sourcing Dedup — Skip When a Sourcing PR Is In Flight",
+      "status": "Accepted",
+      "date": "2026-06-22",
+      "file": "ADR-084-Demand-Driven-Sourcing-Dedup.md"
     }
   ]
 }
