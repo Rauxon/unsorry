@@ -4,8 +4,8 @@
       "attempt_yield": 1.0,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "badges": {
-        "difficulty": 2444,
-        "proofs": 1567,
+        "difficulty": 2445,
+        "proofs": 1568,
         "success_rate_percent": 100.0
       },
       "credit_source_summary": "explicit + inferred",
@@ -13,12 +13,12 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 1567,
-      "difficulty_points": 2444,
+      "credited_proofs": 1568,
+      "difficulty_points": 2445,
       "dispatch_points": 0.0,
       "dispatch_proofs": 0,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 1566,
+      "explicit_solver_proofs": 1567,
       "failed_attempts": 0,
       "github": "ohdearquant",
       "inferred_git_proofs": 1,
@@ -26,18 +26,18 @@
       "profile_url": "https://github.com/ohdearquant",
       "rank": 1,
       "run_success_rate": 1.0,
-      "runs": 662,
-      "score": 283575,
+      "runs": 663,
+      "score": 283700,
       "solver": "ohdearquant",
-      "successes": 662,
-      "verified_proofs": 1567
+      "successes": 663,
+      "verified_proofs": 1568
     },
     {
       "attempt_yield": null,
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
       "badges": {
-        "difficulty": 1525,
-        "proofs": 564,
+        "difficulty": 1528,
+        "proofs": 565,
         "success_rate_percent": null
       },
       "credit_source_summary": "explicit + inferred",
@@ -45,12 +45,12 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 564,
-      "difficulty_points": 1525,
+      "credited_proofs": 565,
+      "difficulty_points": 1528,
       "dispatch_points": 0.0,
       "dispatch_proofs": 0,
       "display_name": "@chat-bit-01",
-      "explicit_solver_proofs": 317,
+      "explicit_solver_proofs": 318,
       "failed_attempts": 0,
       "github": "chat-bit-01",
       "inferred_git_proofs": 247,
@@ -59,10 +59,10 @@
       "rank": 2,
       "run_success_rate": null,
       "runs": 0,
-      "score": 166600,
+      "score": 166925,
       "solver": "chat-bit-01",
       "successes": 0,
-      "verified_proofs": 564
+      "verified_proofs": 565
     },
     {
       "attempt_yield": 0.2039,
@@ -79,8 +79,8 @@
       ],
       "credited_proofs": 191,
       "difficulty_points": 297,
-      "dispatch_points": 1071.9,
-      "dispatch_proofs": 1191,
+      "dispatch_points": 1073.7,
+      "dispatch_proofs": 1193,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 144,
       "failed_attempts": 285,
@@ -91,7 +91,7 @@
       "rank": 3,
       "run_success_rate": 0.2205,
       "runs": 331,
-      "score": 141665,
+      "score": 141845,
       "solver": "cgbarlow",
       "successes": 73,
       "verified_proofs": 191
@@ -284,21 +284,21 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-22T14:33:35Z",
+  "generated_at": "2026-06-22T15:58:24Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
-      "difficulty_points": 2250,
+      "difficulty_points": 2254,
       "display_name": "Chris Barlow",
       "github": "cgbarlow",
-      "index_files_added": 1382,
+      "index_files_added": 1384,
       "missing_solver_provenance": 47,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 1,
       "solver_credit": false,
-      "solver_provenance_proofs": 1335
+      "solver_provenance_proofs": 1337
     },
     {
       "attribution_source": "git-add-author",
@@ -409,8 +409,8 @@
     {
       "provider_model": "python / sympy",
       "run_success_rate": 1.0,
-      "runs": 778,
-      "verified_proofs": 1701
+      "runs": 779,
+      "verified_proofs": 1702
     },
     {
       "provider_model": "lean / decide",
@@ -467,6 +467,12 @@
       "verified_proofs": 1
     },
     {
+      "provider_model": "claude / template-zmod-decide",
+      "run_success_rate": null,
+      "runs": 0,
+      "verified_proofs": 1
+    },
+    {
       "provider_model": "claude / unknown",
       "run_success_rate": null,
       "runs": 0,
@@ -494,19 +500,19 @@
   "schema_version": 1,
   "score_policy": "rank by score desc; score = difficulty_points * 100 + credited_proofs * 25 + dispatch_points * 100 (dispatch_points = 0.9 flat for each proof PR you opened/landed for another contributor; self-dispatch excluded — the system does not run without dispatchers)",
   "summary": {
-    "attributed_proofs": 2311,
+    "attributed_proofs": 2313,
     "attribution_gap_count": 308,
     "credited_contributors": 9,
-    "credited_proofs": 2619,
-    "explicit_solver_proofs": 2311,
-    "git_attributed_index_files": 2619,
+    "credited_proofs": 2621,
+    "explicit_solver_proofs": 2313,
+    "git_attributed_index_files": 2621,
     "historical_contributors": 9,
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
-    "proof_run_coverage": 0.3039,
-    "terminal_runs": 1137,
+    "proof_run_coverage": 0.3041,
+    "terminal_runs": 1138,
     "uncredited_proofs": 0,
-    "verified_proofs": 2619
+    "verified_proofs": 2621
   },
   "timelines": {
     "default": "merge",
@@ -1490,6 +1496,11 @@
         "cumulative_proofs": 2617,
         "proofs": 1,
         "t": "2026-06-22T14:00:00Z"
+      },
+      {
+        "cumulative_proofs": 2619,
+        "proofs": 2,
+        "t": "2026-06-22T15:00:00Z"
       }
     ],
     "solve": [
@@ -1534,17 +1545,17 @@
         "t": "2026-06-17"
       },
       {
-        "cumulative_proofs": 1151,
-        "proofs": 320,
+        "cumulative_proofs": 1152,
+        "proofs": 321,
         "t": "2026-06-18"
       },
       {
-        "cumulative_proofs": 2612,
-        "proofs": 1461,
+        "cumulative_proofs": 2614,
+        "proofs": 1462,
         "t": "2026-06-19"
       },
       {
-        "cumulative_proofs": 2619,
+        "cumulative_proofs": 2621,
         "proofs": 7,
         "t": "2026-06-20"
       }
