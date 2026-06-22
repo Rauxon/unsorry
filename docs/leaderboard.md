@@ -4,34 +4,34 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**2637 verified proofs · 2329 attributed · 308 historical/unknown · 1154 logged terminal runs.**
+**2648 verified proofs · 2340 attributed · 308 historical/unknown · 1165 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 813 |
+| Successful terminal runs | 824 |
 | Failed terminal runs | 341 |
 | Decomposed after failure | 20 |
 | Failed without decomposition | 321 |
-| Run success rate | 70.5% |
-| Provider attempts | 1240 |
+| Run success rate | 70.7% |
+| Provider attempts | 1251 |
 | Failed attempts | 427 |
-| Attempt yield | 65.6% |
+| Attempt yield | 65.9% |
 | Recorded run time | 92h 55m |
 | Median / p90 run time | 0s / 31m 18s |
-| Verified successes per recorded hour | 8.75 |
-| Proofs with run telemetry | 813 (30.8%) |
+| Verified successes per recorded hour | 8.87 |
+| Proofs with run telemetry | 824 (31.1%) |
 
 ## Work Queue
 
-**2660 goals · 1825 archived · 3 blocked · 11 open · 812 proved · 9 translated.**
+**2671 goals · 1825 archived · 3 blocked · 11 open · 823 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 851 | 773 | 90.8% | 136 | 0s |
+| 1 | 862 | 784 | 91.0% | 136 | 0s |
 | 2 | 139 | 1 | 0.7% | 157 | 7m 58s |
 | 3 | 141 | 36 | 25.5% | 114 | 8m 6s |
 | 4 | 21 | 3 | 14.3% | 18 | 6m 5s |
@@ -58,9 +58,9 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
-| 1 | [@ohdearquant](https://github.com/ohdearquant) | 1584 | 1583 | 1 | 679 | 100.0% | 2461 | 0.0 | 285700 |
+| 1 | [@ohdearquant](https://github.com/ohdearquant) | 1595 | 1594 | 1 | 690 | 100.0% | 2472 | 0.0 | 287075 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 565 | 318 | 247 | 0 | — | 1528 | 0.0 | 166925 |
-| 3 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 331 | 22.1% | 297 | 1086.3 | 143105 |
+| 3 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 331 | 22.1% | 297 | 1095.3 | 144005 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 106 | 102 | 4 | 82 | 72.0% | 170 | 144.0 | 34050 |
 | 6 | [@adam91holt](https://github.com/adam91holt) | 19 | 19 | 0 | 56 | 0.0% | 46 | 0.0 | 5075 |
@@ -70,15 +70,15 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 ## Attribution Notes
 
-**2329 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**2340 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 2637 of 2637 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 2648 of 2648 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
-| `python / sympy` | 1719 | 796 | 100.0% | 0 | 3 | 0s | — |
+| `python / sympy` | 1730 | 807 | 100.0% | 0 | 3 | 0s | — |
 | `lean / decide` | 318 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
 | `claude / opus` | 59 | 31 | 41.9% | 54 | 5 | 8m 34s | 2.33 |
