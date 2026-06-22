@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 2609 proved · 2623 total prove-goals.**
+**11 open · 2610 proved · 2624 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1405,6 +1405,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-three-pow-23-add-pow-five` — n to the 3 divides n to the 23 plus n to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 23 plus n to the 5. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-23-add-pow-four` — n to the 3 divides n to the 23 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 23 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-23-add-pow-fourteen` — n to the 3 divides n to the 23 plus n to the 14. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 23 plus n to the 14. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-three-pow-23-add-pow-nine` — n to the 3 divides n to the 23 plus n to the 9. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 23 plus n to the 9. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-23-add-pow-nineteen` — n to the 3 divides n to the 23 plus n to the 19. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 23 plus n to the 19. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-23-add-pow-seven` — n to the 3 divides n to the 23 plus n to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 23 plus n to the 7. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-23-add-pow-seventeen` — n to the 3 divides n to the 23 plus n to the 17. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 23 plus n to the 17. Provable by exhibiting the cofactor and `ring`. |
