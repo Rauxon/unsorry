@@ -1,6 +1,6 @@
 {
   "generated_by": "python3 -m tools.adr_index --write",
-  "count": 87,
+  "count": 88,
   "adrs": [
     {
       "id": "ADR-001",
@@ -697,6 +697,14 @@
       "status": "Accepted",
       "date": "2026-06-23",
       "file": "ADR-088-Extend-Difficulty-Backfill-To-Mac158f.md"
+    },
+    {
+      "id": "ADR-089",
+      "number": 89,
+      "title": "Deploy GitHub Pages on a Schedule via Actions, Decoupled from the Push Firehose",
+      "status": "Accepted",
+      "date": "2026-06-23",
+      "file": "ADR-089-Pages-Scheduled-Actions-Deploy.md"
     }
   ]
 }
