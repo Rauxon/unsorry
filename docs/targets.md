@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3383 proved · 3397 total prove-goals.**
+**11 open · 3384 proved · 3398 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -195,6 +195,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `arith-series-sum-coeff-twelve` — An arithmetic-series closed form (offset 12): twice the sum over k in range n of (k + 12) equals n·(n−1) + 2·12·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-twenty` — An arithmetic-series closed form (offset 20): twice the sum over k in range n of (k + 20) equals n·(n−1) + 2·20·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-twentyeight` — An arithmetic-series closed form (offset 28): twice the sum over k in range n of (k + 28) equals n·(n−1) + 2·28·n. | proved | 3 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
+| `arith-series-sum-coeff-twentyfive` — An arithmetic-series closed form (offset 25): twice the sum over k in range n of (k + 25) equals n·(n−1) + 2·25·n. | proved | 3 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-twentyfour` — An arithmetic-series closed form (offset 24): twice the sum over k in range n of (k + 24) equals n·(n−1) + 2·24·n. | proved | 3 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-twentynine` — An arithmetic-series closed form (offset 29): twice the sum over k in range n of (k + 29) equals n·(n−1) + 2·29·n. | proved | 3 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `aurifeuillian-quartic-dvd` — The quadratic a²+a+1 always divides a⁴+a²+1. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic family. | The quadratic a²+a+1 always divides a⁴+a²+1. Not a named mathlib lemma in this form. |
