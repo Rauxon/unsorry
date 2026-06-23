@@ -4,8 +4,8 @@
       "attempt_yield": 1.0,
       "avatar_url": "https://github.com/ohdearquant.png?size=96",
       "badges": {
-        "difficulty": 2692,
-        "proofs": 1815,
+        "difficulty": 2707,
+        "proofs": 1830,
         "success_rate_percent": 100.0
       },
       "credit_source_summary": "explicit + inferred",
@@ -13,12 +13,12 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 1815,
-      "difficulty_points": 2692,
+      "credited_proofs": 1830,
+      "difficulty_points": 2707,
       "dispatch_points": 0.0,
       "dispatch_proofs": 0,
       "display_name": "@ohdearquant",
-      "explicit_solver_proofs": 1814,
+      "explicit_solver_proofs": 1829,
       "failed_attempts": 0,
       "github": "ohdearquant",
       "inferred_git_proofs": 1,
@@ -26,11 +26,11 @@
       "profile_url": "https://github.com/ohdearquant",
       "rank": 1,
       "run_success_rate": 1.0,
-      "runs": 809,
-      "score": 314575,
+      "runs": 824,
+      "score": 316450,
       "solver": "ohdearquant",
-      "successes": 809,
-      "verified_proofs": 1815
+      "successes": 824,
+      "verified_proofs": 1830
     },
     {
       "attempt_yield": null,
@@ -79,8 +79,8 @@
       ],
       "credited_proofs": 191,
       "difficulty_points": 297,
-      "dispatch_points": 1265.4,
-      "dispatch_proofs": 1406,
+      "dispatch_points": 1278.9,
+      "dispatch_proofs": 1421,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 144,
       "failed_attempts": 285,
@@ -91,7 +91,7 @@
       "rank": 3,
       "run_success_rate": 0.2205,
       "runs": 331,
-      "score": 161015,
+      "score": 162365,
       "solver": "cgbarlow",
       "successes": 73,
       "verified_proofs": 191
@@ -284,21 +284,21 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-22T23:14:31Z",
+  "generated_at": "2026-06-22T23:39:37Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
-      "difficulty_points": 2467,
+      "difficulty_points": 2482,
       "display_name": "Chris Barlow",
       "github": "cgbarlow",
-      "index_files_added": 1597,
+      "index_files_added": 1612,
       "missing_solver_provenance": 47,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 1,
       "solver_credit": false,
-      "solver_provenance_proofs": 1550
+      "solver_provenance_proofs": 1565
     },
     {
       "attribution_source": "git-add-author",
@@ -409,8 +409,8 @@
     {
       "provider_model": "python / sympy",
       "run_success_rate": 1.0,
-      "runs": 926,
-      "verified_proofs": 1950
+      "runs": 939,
+      "verified_proofs": 1963
     },
     {
       "provider_model": "lean / decide",
@@ -455,6 +455,12 @@
       "verified_proofs": 4
     },
     {
+      "provider_model": "claude / template-ring-cofactor",
+      "run_success_rate": 1.0,
+      "runs": 2,
+      "verified_proofs": 2
+    },
+    {
       "provider_model": "claude / sonnet",
       "run_success_rate": null,
       "runs": 0,
@@ -488,19 +494,19 @@
   "schema_version": 1,
   "score_policy": "rank by score desc; score = difficulty_points * 100 + credited_proofs * 25 + dispatch_points * 100 (dispatch_points = 0.9 flat for each proof PR you opened/landed for another contributor; self-dispatch excluded — the system does not run without dispatchers)",
   "summary": {
-    "attributed_proofs": 2560,
+    "attributed_proofs": 2575,
     "attribution_gap_count": 308,
     "credited_contributors": 9,
-    "credited_proofs": 2868,
-    "explicit_solver_proofs": 2560,
-    "git_attributed_index_files": 2868,
+    "credited_proofs": 2883,
+    "explicit_solver_proofs": 2575,
+    "git_attributed_index_files": 2883,
     "historical_contributors": 9,
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
-    "proof_run_coverage": 0.3288,
-    "terminal_runs": 1284,
+    "proof_run_coverage": 0.3323,
+    "terminal_runs": 1299,
     "uncredited_proofs": 0,
-    "verified_proofs": 2868
+    "verified_proofs": 2883
   },
   "timelines": {
     "default": "merge",
@@ -1526,8 +1532,8 @@
         "t": "2026-06-22T22:00:00Z"
       },
       {
-        "cumulative_proofs": 2866,
-        "proofs": 6,
+        "cumulative_proofs": 2881,
+        "proofs": 21,
         "t": "2026-06-22T23:00:00Z"
       }
     ],
@@ -1578,12 +1584,12 @@
         "t": "2026-06-18"
       },
       {
-        "cumulative_proofs": 2861,
-        "proofs": 1709,
+        "cumulative_proofs": 2876,
+        "proofs": 1724,
         "t": "2026-06-19"
       },
       {
-        "cumulative_proofs": 2868,
+        "cumulative_proofs": 2883,
         "proofs": 7,
         "t": "2026-06-20"
       }
