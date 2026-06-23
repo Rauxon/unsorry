@@ -4,7 +4,7 @@
   id≜factorial-dvd-consec-two
   phase≜prove
   status≜proved
-  difficulty≜3
+  difficulty≜1
 }
 ⟦Σ:Source⟧{
   src≜backlog/factorial-dvd-consec-two.md
