@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3471 proved · 3485 total prove-goals.**
+**11 open · 3473 proved · 3487 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -633,7 +633,9 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `faulhaber-square-sum-coeff-sixty` — A Faulhaber power sum (degree 2, coefficient 60) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-sixtyeight` — A Faulhaber power sum (degree 2, coefficient 68) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-sixtyfive` — A Faulhaber power sum (degree 2, coefficient 65) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-square-sum-coeff-sixtyfour` — A Faulhaber power sum (degree 2, coefficient 64) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-sixtynine` — A Faulhaber power sum (degree 2, coefficient 69) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-square-sum-coeff-sixtyseven` — A Faulhaber power sum (degree 2, coefficient 67) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-ten` — A Faulhaber power sum (degree 2, coefficient 10) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-thirteen` — A Faulhaber power sum (degree 2, coefficient 13) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-thirty` — A Faulhaber power sum (degree 2, coefficient 30) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
