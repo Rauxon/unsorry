@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 1223,
-    "waiting": 1215,
-    "in_flight": 8,
-    "distinct_goals": 1200,
+    "queued_submissions": 1182,
+    "waiting": 1173,
+    "in_flight": 9,
+    "distinct_goals": 1159,
     "solvers": 3
   },
   "solvers": [
@@ -15,346 +15,18 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 857,
-      "waiting": 850,
-      "in_flight": 7,
-      "distinct_goals": 834,
+      "submissions": 816,
+      "waiting": 808,
+      "in_flight": 8,
+      "distinct_goals": 793,
       "queued": [
-        {
-          "goal": "arith-series-sum-coeff-thirtyfour",
-          "branch": "queued/prove/arith-series-sum-coeff-thirtyfour/claude-web-0688fc",
-          "sha": "e132fcb26",
-          "model": "ring",
-          "date": "2026-06-24",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-seventyone",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-seventyone/claude-web-d3cdf5",
-          "sha": "f75eb9cb8",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixty",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixty/claude-web-6b323d",
-          "sha": "37db14c76",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixtyeight",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixtyeight/claude-web-93ce5f",
-          "sha": "4b8870560",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixtyfive",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixtyfive/claude-web-4cd883",
-          "sha": "8cae4c9c2",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixtyfour",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixtyfour/claude-web-827ed7",
-          "sha": "49293f532",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixtynine",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixtynine/claude-web-9169c0",
-          "sha": "71d929d5e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixtyone",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixtyone/claude-web-818165",
-          "sha": "1a343e3de",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixtyseven",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixtyseven/claude-web-6b8831",
-          "sha": "127e0a906",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixtysix",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixtysix/claude-web-136ea2",
-          "sha": "d3a0553b3",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixtythree",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixtythree/claude-web-5151fd",
-          "sha": "ba8bfea43",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-cube-sum-coeff-sixtytwo",
-          "branch": "queued/prove/faulhaber-cube-sum-coeff-sixtytwo/claude-web-8d8ae3",
-          "sha": "2c4cc9768",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-fiftyeight",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-fiftyeight/claude-web-536876",
-          "sha": "3a6465158",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-fiftynine",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-fiftynine/claude-web-b4b287",
-          "sha": "5dd7a5705",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-fiftyseven",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-fiftyseven/claude-web-f3a5b9",
-          "sha": "f72913e29",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-fiftysix",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-fiftysix/claude-web-aeb816",
-          "sha": "637808773",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-seventy",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-seventy/claude-web-d36c2f",
-          "sha": "64056a976",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-seventyfive",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-seventyfive/claude-web-01d5c7",
-          "sha": "3883f0586",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
         {
           "goal": "faulhaber-quartic-sum-coeff-seventyfour",
           "branch": "queued/prove/faulhaber-quartic-sum-coeff-seventyfour/claude-web-ba7289",
           "sha": "2371e12ba",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-seventyone",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-seventyone/claude-web-60da04",
-          "sha": "7ff941165",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-seventythree",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-seventythree/claude-web-7cf94b",
-          "sha": "101526d39",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-seventytwo",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-seventytwo/claude-web-ec9479",
-          "sha": "2f20342dd",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixty",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixty/claude-web-ef4f21",
-          "sha": "67f5ffe22",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixtyeight",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixtyeight/claude-web-8094b8",
-          "sha": "963cad72e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixtyfive",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixtyfive/claude-web-a25d5f",
-          "sha": "e3a989ded",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixtyfour",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixtyfour/claude-web-81c6d9",
-          "sha": "a2bbdb105",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixtynine",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixtynine/claude-web-cb9cd3",
-          "sha": "5d2f1bf0f",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixtyone",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixtyone/claude-web-87be46",
-          "sha": "e26acda12",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixtyseven",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixtyseven/claude-web-9c1784",
-          "sha": "6e10a5a86",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixtysix",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixtysix/claude-web-dc7f06",
-          "sha": "9bb48605b",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixtythree",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixtythree/claude-web-be8510",
-          "sha": "a3b08056f",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quartic-sum-coeff-sixtytwo",
-          "branch": "queued/prove/faulhaber-quartic-sum-coeff-sixtytwo/claude-web-808080",
-          "sha": "6f74a9d6e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-fiftyeight",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-fiftyeight/claude-web-7b62cb",
-          "sha": "d2fe43f8d",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-fiftynine",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-fiftynine/claude-web-27bd54",
-          "sha": "a24085e28",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-fiftyseven",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-fiftyseven/claude-web-2cda1e",
-          "sha": "1edbf165a",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-fiftysix",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-fiftysix/claude-web-378647",
-          "sha": "6755da211",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-seventy",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-seventy/claude-web-9e896c",
-          "sha": "f61e04fa5",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-seventyfive",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-seventyfive/claude-web-7e1a4e",
-          "sha": "e615dd9e1",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-seventyfour",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-seventyfour/claude-web-574ba8",
-          "sha": "8cf64eb4f",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-seventyone",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-seventyone/claude-web-17396e",
-          "sha": "a7f658d36",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-seventythree",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-seventythree/claude-web-37ab45",
-          "sha": "fe4b95da3",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-quintic-sum-coeff-seventytwo",
-          "branch": "queued/prove/faulhaber-quintic-sum-coeff-seventytwo/claude-web-b8839f",
-          "sha": "b33b2eff4",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "faulhaber-quintic-sum-coeff-sixty",
@@ -362,7 +34,7 @@
           "sha": "dcba68107",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "faulhaber-quintic-sum-coeff-sixtyeight",
@@ -370,7 +42,7 @@
           "sha": "54c2069af",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "faulhaber-quintic-sum-coeff-sixtyfive",
@@ -378,7 +50,7 @@
           "sha": "441735041",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "faulhaber-quintic-sum-coeff-sixtyfour",
@@ -386,7 +58,7 @@
           "sha": "f27748e2d",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "faulhaber-quintic-sum-coeff-sixtynine",
@@ -394,7 +66,7 @@
           "sha": "62c79ad4f",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "faulhaber-quintic-sum-coeff-sixtyone",
@@ -402,7 +74,7 @@
           "sha": "c27b8def1",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "faulhaber-quintic-sum-coeff-sixtyseven",
