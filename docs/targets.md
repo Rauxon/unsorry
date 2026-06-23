@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3272 proved · 3286 total prove-goals.**
+**11 open · 3273 proved · 3287 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -54,7 +54,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `alt-geometric-ratio-four` — An alternating geometric series closed form (ratio -4): (4+1) times the sum over k in range n of (-4)^k equals 1 - (-4)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-fourteen` — An alternating geometric series closed form (ratio -14): (14+1) times the sum over k in range n of (-14)^k equals 1 - (-14)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-nine` — An alternating geometric series closed form (ratio -9): (9+1) times the sum over k in range n of (-9)^k equals 1 - (-9)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
-| `alt-geometric-ratio-seven` — An alternating geometric series closed form (ratio -7): (7+1) times the sum over k in range n of (-7)^k equals 1 - (-7)^n. | proved | 5 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
+| `alt-geometric-ratio-nineteen` — An alternating geometric series closed form (ratio -19): (19+1) times the sum over k in range n of (-19)^k equals 1 - (-19)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
+| `alt-geometric-ratio-seven` — An alternating geometric series closed form (ratio -7): (7+1) times the sum over k in range n of (-7)^k equals 1 - (-7)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-sum-range-choose-sq-eq-zero-odd` — For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes. | proved | 3 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes. Not a named mathlib lemma in this form. |
 | `alt-sum-range-sq-eq-signed-pronic` — Twice the alternating sum of the first n+1 squares equals (-1)^n times the n-th pronic number n(n+1). | proved | 1 | — | #400 Identity Engine (ADR-043) — closed-form sum family; promoted from candidate backlog. | Twice the alternating sum of the first n+1 squares equals (-1)^n times the n-th pronic number n(n+1). Not a named mathlib lemma in this form. |
 | `alt-sum-range-two-k-add-one-eq-signed-n` — The alternating sum of the odd numbers (2k+1) over k below n equals (-1)^(n+1) times n. | proved | 2 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | The alternating sum of the odd numbers (2k+1) over k below n equals (-1)^(n+1) times n. Not a named mathlib lemma in this form. |
