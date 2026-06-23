@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3501 proved · 3515 total prove-goals.**
+**11 open · 3504 proved · 3518 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -797,7 +797,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `geometric-series-ratio-fiftythree` — A geometric series with ratio 53 closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `geometric-series-ratio-fiftytwo` — A geometric series with ratio 52 closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `geometric-series-ratio-five` — A geometric series with ratio 5 closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `geometric-series-ratio-forty` — A geometric series with ratio 40 closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `geometric-series-ratio-fortyeight` — A geometric series with ratio 48 closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `geometric-series-ratio-fortyfive` — A geometric series with ratio 45 closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `geometric-series-ratio-fortynine` — A geometric series with ratio 49 closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `geud-30-pow-69-sub-self` — 30 (= 2 * 3 * 5) divides n to the 69 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(69): the product of all primes p with (p-1) dividing 68. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 30 (= 2 * 3 * 5) divides n to the 69 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(69): the product of all primes p with (p-1) dividing 68. Provable by exhibiting the cofactor and `ring`. |
 | `geud-30-pow-77-sub-self` — 30 (= 2 * 3 * 5) divides n to the 77 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(77): the product of all primes p with (p-1) dividing 76. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 30 (= 2 * 3 * 5) divides n to the 77 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(77): the product of all primes p with (p-1) dividing 76. Provable by exhibiting the cofactor and `ring`. |
 | `geud-30-pow-five-sub-self` — 30 (= 2 * 3 * 5) divides n to the 5 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(5): the product of all primes p with (p-1) dividing 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 30 (= 2 * 3 * 5) divides n to the 5 minus n, for every integer n. Here 30 is the EXACT maximal universal divisor P(5): the product of all primes p with (p-1) dividing 4. Provable by exhibiting the cofactor and `ring`. |
