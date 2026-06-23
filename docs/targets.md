@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3370 proved · 3384 total prove-goals.**
+**11 open · 3371 proved · 3385 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -183,6 +183,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `arith-series-sum-coeff-ten` — An arithmetic-series closed form (offset 10): twice the sum over k in range n of (k + 10) equals n·(n−1) + 2·10·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-thirteen` — An arithmetic-series closed form (offset 13): twice the sum over k in range n of (k + 13) equals n·(n−1) + 2·13·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-thirty` — An arithmetic-series closed form (offset 30): twice the sum over k in range n of (k + 30) equals n·(n−1) + 2·30·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
+| `arith-series-sum-coeff-thirtyeight` — An arithmetic-series closed form (offset 38): twice the sum over k in range n of (k + 38) equals n·(n−1) + 2·38·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-thirtyfive` — An arithmetic-series closed form (offset 35): twice the sum over k in range n of (k + 35) equals n·(n−1) + 2·35·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `aurifeuillian-quartic-dvd` — The quadratic a²+a+1 always divides a⁴+a²+1. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic family. | The quadratic a²+a+1 always divides a⁴+a²+1. Not a named mathlib lemma in this form. |
 | `bezout-eleven-thirteen-eq-one` — There exist integers x, y with 11x + 13y = 1. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | There exist integers x, y with 11x + 13y = 1. Not a named mathlib lemma in this form. |
