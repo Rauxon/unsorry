@@ -4,7 +4,7 @@
   id≜arith-series-sum-coeff-seventy
   phase≜prove
   status≜proved
-  difficulty≜3
+  difficulty≜1
 }
 ⟦Σ:Source⟧{
   src≜backlog/arith-series-sum-coeff-seventy.md
