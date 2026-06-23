@@ -1,31 +1,55 @@
-# seedkit — batch generator for kernel-verified divisibility theorems
+# seedkit — batch generator for kernel-verified theorem families
 
 `tools/seedkit/` generates, validates, and queues batches of net-new,
-kernel-verified Lean 4 theorems for the swarm. The default engine produces
-divisibility identities `M ∣ nᵃ − nᵇ` over `ℤ`, true for all integers `n`,
-proved by a finite case check over `ZMod M` lifted through
-`ZMod.intCast_zmod_eq_zero_iff_dvd`. The proof uses kernel `decide` (no
-`native_decide`), so the axiom profile stays `[propext, Classical.choice,
-Quot.sound]`.
+kernel-verified Lean 4 theorems for the swarm. Every goal is proven true
+*before* any file is written and is run through the full local gate pipeline;
+only goals that pass are pushed, one `queued/prove/<id>/*` branch per goal, for
+the scheduled dispatcher to open and auto-merge. All proofs use kernel tactics
+(`decide`, `induction … ; ring` — no `native_decide`), so the axiom profile
+stays `[propext, Classical.choice, Quot.sound]`.
 
-Every goal is proven true *before* any file is written and is run through the
-full local gate pipeline; only goals that pass are pushed, one
-`queued/prove/<id>/*` branch per goal, for the scheduled dispatcher to open and
-auto-merge.
+## Families
+
+Each family is a `(generator, writer)` pair plus a one-line batch wrapper. The
+generator enumerates and *proves-true* candidates; the writer materialises the
+[5-file artifact](#the-5-file-artifact). All families share the same gate
+pipeline, push step, and record shapes (`_artifact.py`, `_words.py`).
+
+| Family | Statement (∀ over the free variables) | Proof | Difficulty |
+|---|---|---|---|
+| **divisibility** (`gzmod`) | `M ∣ nᵃ − nᵇ` over `ℤ` | finite `ZMod M` `decide`, lifted via `ZMod.intCast_zmod_eq_zero_iff_dvd` | 3 |
+| **residue** | `((Σ vᵢᵈ : ℤ) : ZMod m) ≠ r` (two squares, three squares, two cubes) | `push_cast`/`ring` cast, `generalize`, finite `decide` | 2 |
+| **telescoping** | `∑ k∈range n, a·((k+1)ᵖ−kᵖ) = a·nᵖ` (p = 2…6) | induction on `n`; `sum_range_succ`; `push_cast`; `ring` | 4 |
+| **faulhaber / geometric** | `(v−1)·∑ vᵏ = vⁿ−1`; `c·∑ kᵖ = v·poly(n)` (p = 2…5) | induction on `n`; `sum_range_succ`; `ring` | 5 |
+
+Residue and divisibility candidates are filtered by an exhaustive check (a
+residue `r` is emitted only when it is genuinely unreachable; a `(M,a,b)` only
+when `M ∣ nᵃ−nᵇ` for every residue), so a false statement is never produced.
+Telescoping and Faulhaber/geometric identities are true by construction.
 
 ## Files
 
 | File | Purpose |
 |---|---|
-| `gen_gzmod.py` | enumerate valid `(M,a,b)`, prove-true, skip existing ids, print `M\|a\|b\|id\|name\|Module\|sha` (gap ≤ 12, exponents ≤ 20) |
-| `gen_gzmod_wide.py` | widened generator (gap ≤ 18, exponents ≤ 30) |
-| `mkfiles.py` | write the 5-file artifact for one `(M,a,b)` |
-| `mkfiles_wide.py` | same, extended number-words (exponents ≤ 30) |
+| `_words.py` | shared `int → English-word` table (1…30); the single DRY source for goal-id spelling |
+| `_artifact.py` | shared writer of the 5-file artifact + AISP records; validates `difficulty ∈ 0..5` (Gate B GB003) |
+| `gen_gzmod.py` / `gen_gzmod_wide.py` | enumerate valid divisibility `(M,a,b)` (gap ≤ 12 / ≤ 18) |
+| `mkfiles.py` / `mkfiles_wide.py` | write the artifact for one `(M,a,b)` |
+| `gen_residue.py` / `mkfiles_residue.py` | residue family (`--family sum-two-squares\|sum-three-squares\|sum-two-cubes`) |
+| `gen_telescoping.py` / `mkfiles_telescoping.py` | telescoping power sums (`--shape square…sextic`) |
+| `gen_faulhaber.py` / `mkfiles_faulhaber.py` | geometric & Faulhaber closed forms (`--family geometric\|faulhaber-square…quintic`) |
 | `split_push.sh` | one `queued/prove/<id>` branch per goal, off `origin/main`, with push retry |
-| `run_batch.sh` | one fully-gated batch for a moduli list (narrow) |
-| `run_batch_wide.sh` | one fully-gated batch for a moduli list (widened) |
-| `run_pool.sh` | drive batches over a moduli pool to a target count |
-| `topup.sh` | top up with the widened generator to a target count |
+| `run_batch_family.sh` | generic per-family driver: gen → write → Gate A → **per-module** build → Gate B → push |
+| `run_batch.sh` / `run_batch_wide.sh` | divisibility batch wrappers (a moduli list) |
+| `run_batch_residue.sh` / `run_batch_telescoping.sh` / `run_batch_faulhaber.sh` | one-line per-family batch wrappers |
+| `run_pool.sh` | drive divisibility batches over a moduli pool to a target count |
+| `topup.sh` | top up with the widened divisibility generator to a target count |
+| `tests/` | import-safety + generator/writer statement-agreement regression tests |
+
+Each generator prints one pipe-delimited line per goal; the leading fields are
+exactly the positional arguments its writer takes, followed by
+`id\|name\|Module\|sha`. `run_batch_family.sh` slices off those leading fields
+(count = `SEEDKIT_ARGC`) to call the writer.
 
 ## The 5-file artifact
 
@@ -53,20 +77,35 @@ is generated transiently for the build and is **not** committed.
 ## Usage
 
 ```bash
-# one validated batch on chosen moduli (narrow generator)
+# divisibility (narrow / widened generator)
 bash tools/seedkit/run_batch.sh "156"
-
-# widened generator (more candidates per modulus)
 bash tools/seedkit/run_batch_wide.sh "152"
 
-# drive many productive batches to a target count
-bash tools/seedkit/run_pool.sh 25       # narrow pool
-bash tools/seedkit/topup.sh 12          # add 12 more (widened)
+# the other families
+bash tools/seedkit/run_batch_residue.sh sum-two-squares 8
+bash tools/seedkit/run_batch_telescoping.sh cube           # default coeff range
+bash tools/seedkit/run_batch_faulhaber.sh faulhaber-cube
+bash tools/seedkit/run_batch_faulhaber.sh geometric 2,3,5,7
+
+# drive many productive divisibility batches to a target count
+bash tools/seedkit/run_pool.sh 25
+bash tools/seedkit/topup.sh 12
 ```
 
-Each batch prints `RESULT mods=… build=… gateb=… pushed=…`. A batch with zero
-valid candidates is skipped; nothing is pushed unless `build=0` and `gateb=0`.
-The working tree is reset to `origin/main` between batches.
+Each batch prints `RESULT <label> candidates=… build=… gateb=… pushed=…`. A
+batch with zero valid candidates is skipped; nothing is pushed unless `build=0`
+and `gateb=0`. The working tree is reset to `origin/main` between batches.
+
+### Per-module build
+
+`run_batch_family.sh` validates with `lake build Unsorry.<Mod>
+Unsorry.<Mod>Binding --wfail` over **only the batch's new modules**, not the
+whole `UnsorryLibrary`. A fresh runner has no library oleans, so a whole-library
+build recompiles ~1k modules and times out; the new modules import only Mathlib
+(binary-cached) and their own statement, so a per-module build is seconds at the
+same `--wfail` strictness. CI's Gate A still builds the entire library on each
+`queued/prove/*` branch — this is the local pre-push gate over the changed
+surface only.
 
 ### Environment
 
@@ -76,8 +115,12 @@ The working tree is reset to `origin/main` between batches.
 | `SEEDKIT_AGENT` | `seedkit` | `agent` id in provenance and in branch/commit names |
 | `SEEDKIT_BRANCH` | current branch | working branch the drivers return to |
 | `SEEDKIT_BUILD_TIMEOUT` | `540` | seconds bounding each `lake build` |
+| `SEEDKIT_GEN` / `SEEDKIT_MK` | per wrapper | generator / writer scripts (for `run_batch_family.sh`) |
+| `SEEDKIT_GEN_ARGS` | per wrapper | args passed verbatim to the generator |
+| `SEEDKIT_ARGC` | per wrapper | number of leading generator-line fields that are writer args |
+| `SEEDKIT_LABEL` | per wrapper | token identifying the batch in the `RESULT` line |
 
-## Choosing productive moduli
+## Choosing productive divisibility moduli
 
 A modulus `M` admits a valid `(a, b)` only when its Carmichael function `λ(M)`
 divides the exponent gap `a − b`, so the gap cap bounds which moduli are
@@ -97,21 +140,29 @@ def yield_count(M, bmax=12, dmax=18, amax=30):
 # keep M with yield_count(M) >= 3 and M small enough for a CI-tractable decide
 ```
 
-## Extending beyond this family
+## Adding a family
 
-The pipeline — prove-true-first → non-trivial → Gate A (`--wfail`) → Gate B →
-one branch per goal → push-only — is family-agnostic. Other families that fit
-the same 5-file contract (telescoping finite-sum identities, modular
-congruences, small bounded Diophantine goals closed by
-`interval_cases … <;> first | decide | (exfalso; omega)`, …) can reuse
-`split_push.sh` and the gate steps directly; only the generator and the proof
-template change.
+The pipeline — prove-true-first → Gate A (`--wfail`) → Gate B → one branch per
+goal → push-only — is family-agnostic. A new family needs only:
+
+1. a **generator** (`gen_<fam>.py`) that, given args, prints
+   `<writer-args…>|id|name|Module|sha` per goal, having proven each true and
+   skipped existing ids;
+2. a **writer** (`mkfiles_<fam>.py`) whose `write_goal(...)` builds the Lean
+   statement + proof and calls `_artifact.write_artifacts(...)`;
+3. a **wrapper** (`run_batch_<fam>.sh`) that sets `SEEDKIT_GEN/MK/GEN_ARGS/ARGC/
+   LABEL` and execs `run_batch_family.sh`.
+
+Reuse `_words.WORDS` for id spelling and `_artifact` for the records. Keep the
+CLI behind `if __name__ == "__main__":` so a writer can import its generator's
+tables without firing the enumeration — `tests/test_import_safe.py` enforces this
+(and that the generator's published `sha` matches the writer's statement).
 
 ## Invariants
 
 - Statements are proven true before any file is written — a false statement is
   never produced.
-- Every goal is non-trivial and passes Gate A (`--wfail`) and Gate B locally.
+- Every goal passes Gate A (`--wfail`) and Gate B locally before it is pushed.
 - One logical change per branch; branches are pushed to `queued/prove/*`, never
   directly to `main`; PRs are not opened by the kit.
 - The working tree is cleaned (`git reset --hard origin/main`) between batches.
