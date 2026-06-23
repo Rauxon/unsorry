@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3213 proved · 3227 total prove-goals.**
+**11 open · 3214 proved · 3228 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -45,6 +45,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `amgm-four-cross-three-var` — The sum of fourth powers dominates the sum of squared pairwise products. | proved | 3 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The sum of fourth powers dominates the sum of squared pairwise products. Not a named mathlib lemma in this form. |
 | `amgm-prod-half-sum-le-cubes` — Twice ab(a+b) is at most twice the sum of cubes for nonnegative reals. | proved | 3 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | Twice ab(a+b) is at most twice the sum of cubes for nonnegative reals. Not a named mathlib lemma in this form. |
 | `and-comm-imp` — Conjunction commutes. | proved | 1 | — | — | — |
+| `arith-series-sum-coeff-eight` — An arithmetic-series closed form (offset 8): twice the sum over k in range n of (k + 8) equals n·(n−1) + 2·8·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `aurifeuillian-quartic-dvd` — The quadratic a²+a+1 always divides a⁴+a²+1. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic family. | The quadratic a²+a+1 always divides a⁴+a²+1. Not a named mathlib lemma in this form. |
 | `bezout-eleven-thirteen-eq-one` — There exist integers x, y with 11x + 13y = 1. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | There exist integers x, y with 11x + 13y = 1. Not a named mathlib lemma in this form. |
 | `bezout-five-seven-eq-one` — There exist integers x, y with 5x + 7y = 1. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | There exist integers x, y with 5x + 7y = 1. Not a named mathlib lemma in this form. |
