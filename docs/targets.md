@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3411 proved · 3425 total prove-goals.**
+**11 open · 3413 proved · 3427 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -413,6 +413,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `faulhaber-cube-sum-coeff-sixtyfive` — A Faulhaber power sum (degree 3, coefficient 65) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-sixtyfour` — A Faulhaber power sum (degree 3, coefficient 64) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-sixtynine` — A Faulhaber power sum (degree 3, coefficient 69) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-cube-sum-coeff-sixtyseven` — A Faulhaber power sum (degree 3, coefficient 67) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-ten` — A Faulhaber power sum (degree 3, coefficient 10) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-thirteen` — A Faulhaber power sum (degree 3, coefficient 13) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-thirty` — A Faulhaber power sum (degree 3, coefficient 30) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
@@ -443,6 +444,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `faulhaber-quartic-sum-coeff-eleven` — A Faulhaber power sum (degree 4, coefficient 11) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quartic-sum-coeff-fifteen` — A Faulhaber power sum (degree 4, coefficient 15) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quartic-sum-coeff-fifty` — A Faulhaber power sum (degree 4, coefficient 50) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-quartic-sum-coeff-fiftyeight` — A Faulhaber power sum (degree 4, coefficient 58) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quartic-sum-coeff-fiftyfive` — A Faulhaber power sum (degree 4, coefficient 55) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quartic-sum-coeff-fiftyfour` — A Faulhaber power sum (degree 4, coefficient 54) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quartic-sum-coeff-fiftyone` — A Faulhaber power sum (degree 4, coefficient 51) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
