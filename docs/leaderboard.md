@@ -4,7 +4,7 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**3475 verified proofs · 3167 attributed · 308 historical/unknown · 1194 logged terminal runs.**
+**3489 verified proofs · 3181 attributed · 308 historical/unknown · 1194 logged terminal runs.**
 
 ## Efficiency Baseline
 
@@ -21,11 +21,11 @@ Verified output comes from active `library/index` records plus archived index re
 | Recorded run time | 93h 0m |
 | Median / p90 run time | 0s / 31m 17s |
 | Verified successes per recorded hour | 9.16 |
-| Proofs with run telemetry | 852 (24.5%) |
+| Proofs with run telemetry | 852 (24.4%) |
 
 ## Work Queue
 
-**3498 goals · 2165 archived · 3 blocked · 11 open · 1310 proved · 9 translated.**
+**3512 goals · 2165 archived · 3 blocked · 11 open · 1324 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
@@ -59,8 +59,8 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
 | 1 | [@ohdearquant](https://github.com/ohdearquant) | 1877 | 1876 | 1 | 718 | 100.0% | 1880 | 0.0 | 234925 |
-| 2 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 332 | 22.0% | 287 | 1750.5 | 208525 |
-| 3 | [@chat-bit-01](https://github.com/chat-bit-01) | 1110 | 863 | 247 | 0 | — | 1437 | 0.0 | 171450 |
+| 2 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 332 | 22.0% | 287 | 1763.1 | 209785 |
+| 3 | [@chat-bit-01](https://github.com/chat-bit-01) | 1124 | 877 | 247 | 0 | — | 1451 | 0.0 | 173200 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 106 | 102 | 4 | 82 | 72.0% | 152 | 144.0 | 32250 |
 | 6 | [@adam91holt](https://github.com/adam91holt) | 19 | 19 | 0 | 56 | 0.0% | 46 | 0.0 | 5075 |
@@ -70,16 +70,16 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 ## Attribution Notes
 
-**3167 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**3181 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 3475 of 3475 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 3489 of 3489 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
 | `python / sympy` | 2012 | 835 | 100.0% | 0 | 3 | 0s | — |
-| `lean / ring` | 448 | 0 | — | 0 | 1 | — | — |
+| `lean / ring` | 462 | 0 | — | 0 | 1 | — | — |
 | `lean / decide` | 415 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
 | `claude / opus` | 59 | 32 | 40.6% | 57 | 5 | 8m 27s | 2.30 |
