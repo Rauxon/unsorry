@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 2945 proved · 2959 total prove-goals.**
+**11 open · 2949 proved · 2963 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1823,6 +1823,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-29-add-pow-seventeen` — n to the 2 divides n to the 29 plus n to the 17. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 17. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-29-add-pow-six` — n to the 2 divides n to the 29 plus n to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 6. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-29-add-pow-sixteen` — n to the 2 divides n to the 29 plus n to the 16. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 16. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-29-add-pow-ten` — n to the 2 divides n to the 29 plus n to the 10. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 10. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-29-add-pow-thirteen` — n to the 2 divides n to the 29 plus n to the 13. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 13. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-five-add-pow-four` — n to the 2 divides n to the 5 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-five-add-pow-three` — n to the 2 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-five-add-pow-two` — n to the 2 divides n to the 5 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
@@ -2394,6 +2396,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-44-pow-sixteen-sub-pow-six` — 44 divides n to the 16 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 44 divides n to the 16 minus n to the 6, for every integer n. Provable by a finite `ZMod 44` case check. |
 | `gzmod-44-pow-thirteen-sub-pow-three` — 44 divides n to the 13 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 44 divides n to the 13 minus n to the 3, for every integer n. Provable by a finite `ZMod 44` case check. |
 | `gzmod-45-pow-eighteen-sub-pow-six` — 45 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 45 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 45` case check. |
+| `gzmod-45-pow-fifteen-sub-pow-three` — 45 divides n to the 15 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 45 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 45` case check. |
+| `gzmod-45-pow-seventeen-sub-pow-five` — 45 divides n to the 17 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 45 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 45` case check. |
 | `gzmod-48-pow-eight-sub-pow-four` — 48 divides n to the 8 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 8 minus n to the 4, for every integer n. Provable by a finite `ZMod 48` case check. |
 | `gzmod-48-pow-eighteen-sub-pow-six` — 48 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 48` case check. |
 | `gzmod-48-pow-eleven-sub-pow-seven` — 48 divides n to the 11 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 11 minus n to the 7, for every integer n. Provable by a finite `ZMod 48` case check. |
