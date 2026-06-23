@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3320 proved · 3334 total prove-goals.**
+**11 open · 3322 proved · 3336 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -97,6 +97,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `alt-geometric-ratio-twenty` — An alternating geometric series closed form (ratio -20): (20+1) times the sum over k in range n of (-20)^k equals 1 - (-20)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-twentyeight` — An alternating geometric series closed form (ratio -28): (28+1) times the sum over k in range n of (-28)^k equals 1 - (-28)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-twentyfive` — An alternating geometric series closed form (ratio -25): (25+1) times the sum over k in range n of (-25)^k equals 1 - (-25)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
+| `alt-geometric-ratio-twentyseven` — An alternating geometric series closed form (ratio -27): (27+1) times the sum over k in range n of (-27)^k equals 1 - (-27)^n. | proved | 5 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-sum-range-choose-sq-eq-zero-odd` — For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes. | proved | 3 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes. Not a named mathlib lemma in this form. |
 | `alt-sum-range-sq-eq-signed-pronic` — Twice the alternating sum of the first n+1 squares equals (-1)^n times the n-th pronic number n(n+1). | proved | 1 | — | #400 Identity Engine (ADR-043) — closed-form sum family; promoted from candidate backlog. | Twice the alternating sum of the first n+1 squares equals (-1)^n times the n-th pronic number n(n+1). Not a named mathlib lemma in this form. |
 | `alt-sum-range-two-k-add-one-eq-signed-n` — The alternating sum of the odd numbers (2k+1) over k below n equals (-1)^(n+1) times n. | proved | 2 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | The alternating sum of the odd numbers (2k+1) over k below n equals (-1)^(n+1) times n. Not a named mathlib lemma in this form. |
@@ -2280,6 +2281,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-195-pow-twentyone-sub-pow-nine` — 195 divides n to the 21 minus n to the 9, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 195 divides n to the 21 minus n to the 9, for every integer n. Provable by a finite `ZMod 195` case check. |
 | `gzmod-195-pow-twentythree-sub-pow-eleven` — 195 divides n to the 23 minus n to the 11, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 195 divides n to the 23 minus n to the 11, for every integer n. Provable by a finite `ZMod 195` case check. |
 | `gzmod-195-pow-twentytwo-sub-pow-ten` — 195 divides n to the 22 minus n to the 10, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 195 divides n to the 22 minus n to the 10, for every integer n. Provable by a finite `ZMod 195` case check. |
+| `gzmod-204-pow-nineteen-sub-pow-three` — 204 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twenty-sub-pow-four` — 204 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twentyone-sub-pow-five` — 204 divides n to the 21 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-208-pow-eighteen-sub-pow-six` — 208 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 208 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 208` case check. |
