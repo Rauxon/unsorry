@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**3076 goals — 11 open · 3 blocked · 9 translated · 1092 proved · 1961 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**3078 goals — 11 open · 3 blocked · 9 translated · 1094 proved · 1961 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1088 of 1092 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1090 of 1094 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
 
 ## Dependency lineage
 
@@ -96,7 +96,7 @@ flowchart LR
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 1078"])
+  cluster_proved(["proved · 1080"])
   class cluster_proved proved;
   cluster_archived(["archived · 1961"])
   class cluster_archived unknown;
@@ -175,6 +175,8 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`faulhaber-quartic-sum-coeff-three`](https://github.com/agenticsnz/unsorry/blob/main/goals/faulhaber-quartic-sum-coeff-three.lean) | proved | 5 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#5110](https://github.com/agenticsnz/unsorry/pull/5110) | 2026-06-23 |
 | [`faulhaber-quartic-sum-coeff-twelve`](https://github.com/agenticsnz/unsorry/blob/main/goals/faulhaber-quartic-sum-coeff-twelve.lean) | proved | 5 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#5112](https://github.com/agenticsnz/unsorry/pull/5112) | 2026-06-23 |
 | [`faulhaber-quartic-sum-coeff-twenty`](https://github.com/agenticsnz/unsorry/blob/main/goals/faulhaber-quartic-sum-coeff-twenty.lean) | proved | 5 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#5118](https://github.com/agenticsnz/unsorry/pull/5118) | 2026-06-23 |
+| [`faulhaber-quartic-sum-coeff-twentyfive`](https://github.com/agenticsnz/unsorry/blob/main/goals/faulhaber-quartic-sum-coeff-twentyfive.lean) | proved | 5 | claude-web | chat-bit-01 · `template-induction-ring` | adam91holt | [#5121](https://github.com/agenticsnz/unsorry/pull/5121) | 2026-06-23 |
+| [`faulhaber-quartic-sum-coeff-twentythree`](https://github.com/agenticsnz/unsorry/blob/main/goals/faulhaber-quartic-sum-coeff-twentythree.lean) | proved | 5 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#5124](https://github.com/agenticsnz/unsorry/pull/5124) | 2026-06-23 |
 | [`faulhaber-square-sum-coeff-eight`](https://github.com/agenticsnz/unsorry/blob/main/goals/faulhaber-square-sum-coeff-eight.lean) | proved | 5 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#5033](https://github.com/agenticsnz/unsorry/pull/5033) | 2026-06-23 |
 | [`faulhaber-square-sum-coeff-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/faulhaber-square-sum-coeff-five.lean) | proved | 5 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#5034](https://github.com/agenticsnz/unsorry/pull/5034) | 2026-06-23 |
 | [`faulhaber-square-sum-coeff-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/faulhaber-square-sum-coeff-four.lean) | proved | 5 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#5035](https://github.com/agenticsnz/unsorry/pull/5035) | 2026-06-23 |
