@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3170 proved · 3184 total prove-goals.**
+**11 open · 3171 proved · 3185 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -359,6 +359,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `faulhaber-square-sum-coeff-three` — A Faulhaber power sum (degree 2, coefficient 3) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-twelve` — A Faulhaber power sum (degree 2, coefficient 12) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-twenty` — A Faulhaber power sum (degree 2, coefficient 20) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-square-sum-coeff-twentyfive` — A Faulhaber power sum (degree 2, coefficient 25) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `fib-add-five-eq-five-mul-fib-succ-add-three-mul-fib` — fib(n+5) equals five times fib(n+1) plus three times fib n. | proved | 2 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog (#610). | fib(n+5) equals five times fib(n+1) plus three times fib n. Not a named mathlib lemma in this form. |
 | `fib-add-four-eq-three-mul-fib-add-two-sub-fib` — fib(n+4) equals three times fib(n+2) minus fib n. | proved | 2 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog (#610). | fib(n+4) equals three times fib(n+2) minus fib n. Not a named mathlib lemma in this form. |
 | `fib-add-four-recurrence-nat` — fib(n+4) + fib(n) = 3·fib(n+2), the second-order Fibonacci recurrence. | proved | 2 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog (#610). | fib(n+4) + fib(n) = 3·fib(n+2), the second-order Fibonacci recurrence. Not a named mathlib lemma in this form. |
