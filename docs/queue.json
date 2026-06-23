@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 1352,
-    "waiting": 1346,
-    "in_flight": 6,
-    "distinct_goals": 1340,
+    "queued_submissions": 1317,
+    "waiting": 1308,
+    "in_flight": 9,
+    "distinct_goals": 1291,
     "solvers": 3
   },
   "solvers": [
@@ -15,330 +15,18 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 986,
-      "waiting": 980,
-      "in_flight": 6,
-      "distinct_goals": 974,
+      "submissions": 951,
+      "waiting": 942,
+      "in_flight": 9,
+      "distinct_goals": 925,
       "queued": [
-        {
-          "goal": "alt-geometric-ratio-fortysix",
-          "branch": "queued/prove/alt-geometric-ratio-fortysix/claude-web-3ac7d2",
-          "sha": "859210a79",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "alt-geometric-ratio-fortythree",
-          "branch": "queued/prove/alt-geometric-ratio-fortythree/claude-web-ac2a17",
-          "sha": "459211915",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-fortytwo",
-          "branch": "queued/prove/alt-geometric-ratio-fortytwo/claude-web-e5b639",
-          "sha": "8a78db6ae",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-fourteen",
-          "branch": "queued/prove/alt-geometric-ratio-fourteen/claude-web-71058a",
-          "sha": "23490c60a",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-nine",
-          "branch": "queued/prove/alt-geometric-ratio-nine/claude-web-204736",
-          "sha": "45c51a41f",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-nineteen",
-          "branch": "queued/prove/alt-geometric-ratio-nineteen/claude-web-9e3de2",
-          "sha": "f4025f7c9",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-one",
-          "branch": "queued/prove/alt-geometric-ratio-one/claude-web-e41d7b",
-          "sha": "86e73e6b6",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-seven",
-          "branch": "queued/prove/alt-geometric-ratio-seven/claude-web-1a6bbe",
-          "sha": "94382def2",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-seventeen",
-          "branch": "queued/prove/alt-geometric-ratio-seventeen/claude-web-b62000",
-          "sha": "6c176959e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-seventy",
-          "branch": "queued/prove/alt-geometric-ratio-seventy/claude-web-184d43",
-          "sha": "41525e793",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-seventyfive",
-          "branch": "queued/prove/alt-geometric-ratio-seventyfive/claude-web-d50180",
-          "sha": "5ab4e097a",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-seventyfour",
-          "branch": "queued/prove/alt-geometric-ratio-seventyfour/claude-web-5ecb91",
-          "sha": "21f3a41aa",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-seventyone",
-          "branch": "queued/prove/alt-geometric-ratio-seventyone/claude-web-c6fec3",
-          "sha": "052fca58d",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-seventythree",
-          "branch": "queued/prove/alt-geometric-ratio-seventythree/claude-web-d9b3fb",
-          "sha": "35a347c6d",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-seventytwo",
-          "branch": "queued/prove/alt-geometric-ratio-seventytwo/claude-web-c97e66",
-          "sha": "4d882f3ca",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-six",
-          "branch": "queued/prove/alt-geometric-ratio-six/claude-web-9e139c",
-          "sha": "21249350b",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixteen",
-          "branch": "queued/prove/alt-geometric-ratio-sixteen/claude-web-d2a4bb",
-          "sha": "9da384220",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixty",
-          "branch": "queued/prove/alt-geometric-ratio-sixty/claude-web-2d9327",
-          "sha": "5c4e1c1e3",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixtyeight",
-          "branch": "queued/prove/alt-geometric-ratio-sixtyeight/claude-web-7f3d8d",
-          "sha": "742088d73",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixtyfive",
-          "branch": "queued/prove/alt-geometric-ratio-sixtyfive/claude-web-abfb37",
-          "sha": "454cf090a",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixtyfour",
-          "branch": "queued/prove/alt-geometric-ratio-sixtyfour/claude-web-e338d8",
-          "sha": "d2c268dbc",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixtynine",
-          "branch": "queued/prove/alt-geometric-ratio-sixtynine/claude-web-075295",
-          "sha": "283525b03",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixtyone",
-          "branch": "queued/prove/alt-geometric-ratio-sixtyone/claude-web-e91e28",
-          "sha": "3e2cae244",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixtyseven",
-          "branch": "queued/prove/alt-geometric-ratio-sixtyseven/claude-web-1d879c",
-          "sha": "58fd62854",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixtysix",
-          "branch": "queued/prove/alt-geometric-ratio-sixtysix/claude-web-0191ed",
-          "sha": "33ca49175",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixtythree",
-          "branch": "queued/prove/alt-geometric-ratio-sixtythree/claude-web-50ad5a",
-          "sha": "b9cb61c5e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-sixtytwo",
-          "branch": "queued/prove/alt-geometric-ratio-sixtytwo/claude-web-68dab6",
-          "sha": "f74bafb00",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-ten",
-          "branch": "queued/prove/alt-geometric-ratio-ten/claude-web-de7de7",
-          "sha": "03840fb36",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirteen",
-          "branch": "queued/prove/alt-geometric-ratio-thirteen/claude-web-389aea",
-          "sha": "03f5f7f99",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirty",
-          "branch": "queued/prove/alt-geometric-ratio-thirty/claude-web-10e73b",
-          "sha": "b5bc2efd4",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirtyeight",
-          "branch": "queued/prove/alt-geometric-ratio-thirtyeight/claude-web-6f027a",
-          "sha": "4fa1ff9bc",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirtyfive",
-          "branch": "queued/prove/alt-geometric-ratio-thirtyfive/claude-web-2802e5",
-          "sha": "f5c481930",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirtyfour",
-          "branch": "queued/prove/alt-geometric-ratio-thirtyfour/claude-web-2f5055",
-          "sha": "3fee5e35d",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirtynine",
-          "branch": "queued/prove/alt-geometric-ratio-thirtynine/claude-web-b9e0ab",
-          "sha": "18406c648",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirtyone",
-          "branch": "queued/prove/alt-geometric-ratio-thirtyone/claude-web-38c1de",
-          "sha": "7d6339b07",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirtyseven",
-          "branch": "queued/prove/alt-geometric-ratio-thirtyseven/claude-web-29baff",
-          "sha": "a831f8ae8",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirtysix",
-          "branch": "queued/prove/alt-geometric-ratio-thirtysix/claude-web-a14673",
-          "sha": "ba6de03a2",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirtythree",
-          "branch": "queued/prove/alt-geometric-ratio-thirtythree/claude-web-b0dce6",
-          "sha": "78b564362",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "alt-geometric-ratio-thirtytwo",
-          "branch": "queued/prove/alt-geometric-ratio-thirtytwo/claude-web-370bbf",
-          "sha": "8d0f06b44",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
         {
           "goal": "alt-geometric-ratio-three",
           "branch": "queued/prove/alt-geometric-ratio-three/claude-web-2ae6f5",
           "sha": "f07bf4108",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "alt-geometric-ratio-twelve",
@@ -346,7 +34,7 @@
           "sha": "8309aff6a",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "alt-geometric-ratio-twenty",
@@ -354,7 +42,7 @@
           "sha": "9ce8ebccd",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "alt-geometric-ratio-twentyeight",
@@ -362,7 +50,7 @@
           "sha": "3fc3e6fd5",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "alt-geometric-ratio-twentyfive",
@@ -370,7 +58,7 @@
           "sha": "610798e88",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "alt-geometric-ratio-twentyfour",
@@ -1481,54 +1169,6 @@
           "branch": "queued/prove/faulhaber-square-sum-coeff-fiftysix/claude-web-543642",
           "sha": "537c7439a",
           "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-forty",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-forty/claude-web-709485",
-          "sha": "c5b6d0e86",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-fortyeight",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-fortyeight/claude-web-ee867e",
-          "sha": "71b099334",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-fortyfive",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-fortyfive/claude-web-021426",
-          "sha": "c5c370d6e",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-fortyfour",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-fortyfour/claude-web-328adb",
-          "sha": "2beb6a5a9",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-fortynine",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-fortynine/claude-web-a2a1ab",
-          "sha": "359ea3b04",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-fortyone",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-fortyone/claude-web-4281e1",
-          "sha": "1bb98791c",
-          "model": "template-induction-ring",
           "date": "2026-06-23",
           "state": "waiting"
         },
@@ -2749,44 +2389,28 @@
           "state": "waiting"
         },
         {
-          "goal": "gzmod-192-pow-twentyfive-sub-pow-nine",
-          "branch": "queued/prove/gzmod-192-pow-twentyfive-sub-pow-nine/claude-web-755595",
-          "sha": "8a2a4e166",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "gzmod-192-pow-twentyfour-sub-pow-eight",
-          "branch": "queued/prove/gzmod-192-pow-twentyfour-sub-pow-eight/claude-web-98d7d2",
-          "sha": "d5cdd5a9d",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "gzmod-192-pow-twentythree-sub-pow-seven",
-          "branch": "queued/prove/gzmod-192-pow-twentythree-sub-pow-seven/claude-web-3a3946",
-          "sha": "64a79b4e4",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "gzmod-192-pow-twentytwo-sub-pow-six",
-          "branch": "queued/prove/gzmod-192-pow-twentytwo-sub-pow-six/claude-web-e452d4",
-          "sha": "db1fc79a9",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
           "goal": "gzmod-204-pow-nineteen-sub-pow-three",
           "branch": "queued/prove/gzmod-204-pow-nineteen-sub-pow-three/claude-web-105c90",
           "sha": "defd4f837",
           "model": "template-zmod-decide",
           "date": "2026-06-23",
           "state": "waiting"
+        },
+        {
+          "goal": "gzmod-204-pow-nineteen-sub-pow-three",
+          "branch": "queued/prove/gzmod-204-pow-nineteen-sub-pow-three/claude-web-f17f61",
+          "sha": "3adf22465",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "in-flight"
+        },
+        {
+          "goal": "gzmod-204-pow-twenty-sub-pow-four",
+          "branch": "queued/prove/gzmod-204-pow-twenty-sub-pow-four/claude-web-f024fc",
+          "sha": "fec01ee80",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "in-flight"
         },
         {
           "goal": "gzmod-204-pow-twenty-sub-pow-four",
@@ -2798,9 +2422,25 @@
         },
         {
           "goal": "gzmod-204-pow-twentyone-sub-pow-five",
+          "branch": "queued/prove/gzmod-204-pow-twentyone-sub-pow-five/claude-web-0518d8",
+          "sha": "5360ae3f7",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "in-flight"
+        },
+        {
+          "goal": "gzmod-204-pow-twentyone-sub-pow-five",
           "branch": "queued/prove/gzmod-204-pow-twentyone-sub-pow-five/claude-web-bd2e44",
           "sha": "dde5b78c0",
           "model": "template-zmod-decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "gzmod-204-pow-twentytwo-sub-pow-six",
+          "branch": "queued/prove/gzmod-204-pow-twentytwo-sub-pow-six/claude-web-236a1e",
+          "sha": "16d5de0ba",
+          "model": "decide",
           "date": "2026-06-23",
           "state": "waiting"
         },
@@ -4533,6 +4173,14 @@
           "state": "waiting"
         },
         {
+          "goal": "sum-three-squares-zmod-sixteen-ne-seven",
+          "branch": "queued/prove/sum-three-squares-zmod-sixteen-ne-seven/claude-web-fe9053",
+          "sha": "45487b8f2",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
           "goal": "sum-two-cubes-zmod-fourteen-ne-four",
           "branch": "queued/prove/sum-two-cubes-zmod-fourteen-ne-four/claude-web-0715ad",
           "sha": "0e216556f",
@@ -4545,6 +4193,14 @@
           "branch": "queued/prove/sum-two-cubes-zmod-fourteen-ne-three/claude-web-a75ec1",
           "sha": "a226545c5",
           "model": "template-zmod-decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-two-cubes-zmod-nine-ne-five",
+          "branch": "queued/prove/sum-two-cubes-zmod-nine-ne-five/claude-web-117d1b",
+          "sha": "50d971cad",
+          "model": "decide",
           "date": "2026-06-23",
           "state": "waiting"
         },
@@ -4573,6 +4229,22 @@
           "state": "waiting"
         },
         {
+          "goal": "sum-two-cubes-zmod-nine-ne-three",
+          "branch": "queued/prove/sum-two-cubes-zmod-nine-ne-three/claude-web-a7abce",
+          "sha": "2c815d3fb",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-two-cubes-zmod-seven-ne-four",
+          "branch": "queued/prove/sum-two-cubes-zmod-seven-ne-four/claude-web-ce05ab",
+          "sha": "d9199efdd",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
           "goal": "sum-two-cubes-zmod-seven-ne-four",
           "branch": "queued/prove/sum-two-cubes-zmod-seven-ne-four/claude-web-f8bc1f",
           "sha": "2076166d1",
@@ -4589,6 +4261,22 @@
           "state": "waiting"
         },
         {
+          "goal": "sum-two-cubes-zmod-seven-ne-three",
+          "branch": "queued/prove/sum-two-cubes-zmod-seven-ne-three/claude-web-1c855b",
+          "sha": "62528e5c9",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-two-squares-zmod-eight-ne-seven",
+          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-seven/claude-web-45af9c",
+          "sha": "731a60679",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
           "goal": "sum-two-squares-zmod-eight-ne-seven",
           "branch": "queued/prove/sum-two-squares-zmod-eight-ne-seven/claude-web-a3132c",
           "sha": "6627970a7",
@@ -4601,6 +4289,14 @@
           "branch": "queued/prove/sum-two-squares-zmod-eight-ne-seven/claude-web-b1935d",
           "sha": "d75dc0c1a",
           "model": "template-zmod-decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-two-squares-zmod-eight-ne-three",
+          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-three/claude-web-d2d1dd",
+          "sha": "349d4cfbf",
+          "model": "decide",
           "date": "2026-06-23",
           "state": "waiting"
         },
@@ -4637,6 +4333,14 @@
           "state": "waiting"
         },
         {
+          "goal": "sum-two-squares-zmod-nine-ne-six",
+          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-six/claude-web-d3eac3",
+          "sha": "4155d214f",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
           "goal": "sum-two-squares-zmod-nine-ne-three",
           "branch": "queued/prove/sum-two-squares-zmod-nine-ne-three/claude-web-5420be",
           "sha": "28ea30513",
@@ -4648,6 +4352,14 @@
           "goal": "sum-two-squares-zmod-nine-ne-three",
           "branch": "queued/prove/sum-two-squares-zmod-nine-ne-three/claude-web-a250ea",
           "sha": "def2aafd8",
+          "model": "decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-two-squares-zmod-nine-ne-three",
+          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-three/claude-web-ac3d1a",
+          "sha": "27e7c2431",
           "model": "decide",
           "date": "2026-06-23",
           "state": "waiting"
@@ -4705,6 +4417,14 @@
           "branch": "queued/prove/sum-two-squares-zmod-twelve-ne-three/claude-web-a6a644",
           "sha": "d724bf1ea",
           "model": "template-zmod-decide",
+          "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "sum-two-squares-zmod-twelve-ne-three",
+          "branch": "queued/prove/sum-two-squares-zmod-twelve-ne-three/claude-web-b72089",
+          "sha": "61c8ee16e",
+          "model": "decide",
           "date": "2026-06-23",
           "state": "waiting"
         },
