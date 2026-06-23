@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 2954 proved · 2968 total prove-goals.**
+**11 open · 2956 proved · 2970 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2403,6 +2403,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-455-pow-eighteen-sub-pow-six` — 455 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 455 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 455` case check. |
 | `gzmod-455-pow-fifteen-sub-pow-three` — 455 divides n to the 15 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 455 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 455` case check. |
 | `gzmod-455-pow-nineteen-sub-pow-seven` — 455 divides n to the 19 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 455 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 455` case check. |
+| `gzmod-455-pow-sixteen-sub-pow-four` — 455 divides n to the 16 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 455 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 455` case check. |
+| `gzmod-468-pow-eighteen-sub-pow-six` — 468 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 468 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 468` case check. |
 | `gzmod-48-pow-eight-sub-pow-four` — 48 divides n to the 8 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 8 minus n to the 4, for every integer n. Provable by a finite `ZMod 48` case check. |
 | `gzmod-48-pow-eighteen-sub-pow-six` — 48 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 48` case check. |
 | `gzmod-48-pow-eleven-sub-pow-seven` — 48 divides n to the 11 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 11 minus n to the 7, for every integer n. Provable by a finite `ZMod 48` case check. |
