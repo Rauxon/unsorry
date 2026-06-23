@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3049 proved · 3063 total prove-goals.**
+**11 open · 3051 proved · 3065 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2550,6 +2550,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-57-pow-twentyfive-sub-pow-seven` — 57 divides n to the 25 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 57 divides n to the 25 minus n to the 7, for every integer n. Provable by a finite `ZMod 57` case check. |
 | `gzmod-57-pow-twentyfour-sub-pow-six` — 57 divides n to the 24 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 57 divides n to the 24 minus n to the 6, for every integer n. Provable by a finite `ZMod 57` case check. |
 | `gzmod-57-pow-twentythree-sub-pow-five` — 57 divides n to the 23 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 57 divides n to the 23 minus n to the 5, for every integer n. Provable by a finite `ZMod 57` case check. |
+| `gzmod-57-pow-twentytwo-sub-pow-four` — 57 divides n to the 22 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 57 divides n to the 22 minus n to the 4, for every integer n. Provable by a finite `ZMod 57` case check. |
+| `gzmod-585-pow-eighteen-sub-pow-six` — 585 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 585 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 585` case check. |
 | `gzmod-6-pow-fifteen-sub-pow-one` — 6 divides n to the 15 minus n to the 1, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 6 divides n to the 15 minus n to the 1, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-60-pow-eleven-sub-pow-three` — 60 divides n to the 11 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 60 divides n to the 11 minus n to the 3, for every integer n. Provable by a finite `ZMod 60` case check. |
 | `gzmod-60-pow-seven-sub-pow-three` — 60 divides n to the 7 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 60 divides n to the 7 minus n to the 3, for every integer n. Provable by a finite `ZMod 60` case check. |
