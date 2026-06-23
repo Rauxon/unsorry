@@ -686,7 +686,7 @@
       "id": "ADR-087",
       "number": 87,
       "title": "Backfill Historical seedkit Records to Honest Provenance & Difficulty",
-      "status": "Proposed",
+      "status": "Accepted",
       "date": "2026-06-23",
       "file": "ADR-087-Backfill-Historical-Seedkit-Records.md"
     }

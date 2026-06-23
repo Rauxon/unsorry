@@ -91,4 +91,4 @@ Index of the 86 ADRs in this directory, generated from the `ADR-*.md` headers an
 | [ADR-084](ADR-084-Demand-Driven-Sourcing-Dedup.md) | Demand-Driven Sourcing Dedup — Skip When a Sourcing PR Is In Flight | Accepted | 2026-06-22 |
 | [ADR-085](ADR-085-Sourcer-Worktree-Isolation.md) | Isolate the Sourcer in a Per-Sourcer Worktree (ADR-042 parity) | Proposed | 2026-06-22 |
 | [ADR-086](ADR-086-Seedkit-Fixture-Generation-Path.md) | seedkit as a Documented Fixture-Generation Path Aligned to the Sourcing Paradigm | Accepted | 2026-06-23 |
-| [ADR-087](ADR-087-Backfill-Historical-Seedkit-Records.md) | Backfill Historical seedkit Records to Honest Provenance & Difficulty | Proposed | 2026-06-23 |
+| [ADR-087](ADR-087-Backfill-Historical-Seedkit-Records.md) | Backfill Historical seedkit Records to Honest Provenance & Difficulty | Accepted | 2026-06-23 |
