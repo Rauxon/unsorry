@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3305 proved · 3319 total prove-goals.**
+**11 open · 3306 proved · 3320 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -85,6 +85,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `alt-geometric-ratio-thirty` — An alternating geometric series closed form (ratio -30): (30+1) times the sum over k in range n of (-30)^k equals 1 - (-30)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-thirtyeight` — An alternating geometric series closed form (ratio -38): (38+1) times the sum over k in range n of (-38)^k equals 1 - (-38)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-thirtyfive` — An alternating geometric series closed form (ratio -35): (35+1) times the sum over k in range n of (-35)^k equals 1 - (-35)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
+| `alt-geometric-ratio-thirtyfour` — An alternating geometric series closed form (ratio -34): (34+1) times the sum over k in range n of (-34)^k equals 1 - (-34)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-thirtynine` — An alternating geometric series closed form (ratio -39): (39+1) times the sum over k in range n of (-39)^k equals 1 - (-39)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-thirtyone` — An alternating geometric series closed form (ratio -31): (31+1) times the sum over k in range n of (-31)^k equals 1 - (-31)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-sum-range-choose-sq-eq-zero-odd` — For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes. | proved | 3 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes. Not a named mathlib lemma in this form. |
