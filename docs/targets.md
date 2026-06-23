@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 2906 proved · 2920 total prove-goals.**
+**11 open · 2909 proved · 2923 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -1804,7 +1804,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-28-add-pow-two` — n to the 2 divides n to the 28 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 28 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-29-add-pow-21` — n to the 2 divides n to the 29 plus n to the 21. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 21. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-29-add-pow-22` — n to the 2 divides n to the 29 plus n to the 22. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 22. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-29-add-pow-23` — n to the 2 divides n to the 29 plus n to the 23. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 23. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-29-add-pow-24` — n to the 2 divides n to the 29 plus n to the 24. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 24. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-29-add-pow-25` — n to the 2 divides n to the 29 plus n to the 25. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 25. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-29-add-pow-28` — n to the 2 divides n to the 29 plus n to the 28. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 29 plus n to the 28. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-five-add-pow-four` — n to the 2 divides n to the 5 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-five-add-pow-three` — n to the 2 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-five-add-pow-two` — n to the 2 divides n to the 5 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
