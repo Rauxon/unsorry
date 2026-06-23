@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3243 proved · 3257 total prove-goals.**
+**11 open · 3245 proved · 3259 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -34,6 +34,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `alt-geometric-ratio-fiftyfive` — An alternating geometric series closed form (ratio -55): (55+1) times the sum over k in range n of (-55)^k equals 1 - (-55)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-fiftyfour` — An alternating geometric series closed form (ratio -54): (54+1) times the sum over k in range n of (-54)^k equals 1 - (-54)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-fiftynine` — An alternating geometric series closed form (ratio -59): (59+1) times the sum over k in range n of (-59)^k equals 1 - (-59)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
+| `alt-geometric-ratio-fiftyone` — An alternating geometric series closed form (ratio -51): (51+1) times the sum over k in range n of (-51)^k equals 1 - (-51)^n. | proved | 5 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
+| `alt-geometric-ratio-fiftyseven` — An alternating geometric series closed form (ratio -57): (57+1) times the sum over k in range n of (-57)^k equals 1 - (-57)^n. | proved | 5 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-fiftysix` — An alternating geometric series closed form (ratio -56): (56+1) times the sum over k in range n of (-56)^k equals 1 - (-56)^n. | proved | 5 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-five` — An alternating geometric series closed form (ratio -5): (5+1) times the sum over k in range n of (-5)^k equals 1 - (-5)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-four` — An alternating geometric series closed form (ratio -4): (4+1) times the sum over k in range n of (-4)^k equals 1 - (-4)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
