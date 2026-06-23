@@ -2,7 +2,7 @@
 
 # Architecture Decision Records
 
-Index of the 84 ADRs in this directory, generated from the `ADR-*.md` headers and kept in sync by the `adr-index` workflow. See [ADR-001](ADR-001-Adopt-Development-Protocols.md) and [the development protocols](../protocols.md) for the WH(Y) format and process.
+Index of the 85 ADRs in this directory, generated from the `ADR-*.md` headers and kept in sync by the `adr-index` workflow. See [ADR-001](ADR-001-Adopt-Development-Protocols.md) and [the development protocols](../protocols.md) for the WH(Y) format and process.
 
 | ADR | Title | Status | Date |
 |-----|-------|--------|------|
@@ -90,3 +90,4 @@ Index of the 84 ADRs in this directory, generated from the `ADR-*.md` headers an
 | [ADR-083](ADR-083-Model-Pokemon-Registry-And-Operational-Tasks.md) | The Model → Pokémon Registry and Swarm Operational Tasks | Accepted | 2026-06-22 |
 | [ADR-084](ADR-084-Demand-Driven-Sourcing-Dedup.md) | Demand-Driven Sourcing Dedup — Skip When a Sourcing PR Is In Flight | Accepted | 2026-06-22 |
 | [ADR-085](ADR-085-Sourcer-Worktree-Isolation.md) | Isolate the Sourcer in a Per-Sourcer Worktree (ADR-042 parity) | Proposed | 2026-06-22 |
+| [ADR-086](ADR-086-Seedkit-Fixture-Generation-Path.md) | seedkit as a Documented Fixture-Generation Path Aligned to the Sourcing Paradigm | Accepted | 2026-06-23 |

@@ -1,6 +1,6 @@
 {
   "generated_by": "python3 -m tools.adr_index --write",
-  "count": 84,
+  "count": 85,
   "adrs": [
     {
       "id": "ADR-001",
@@ -673,6 +673,14 @@
       "status": "Proposed",
       "date": "2026-06-22",
       "file": "ADR-085-Sourcer-Worktree-Isolation.md"
+    },
+    {
+      "id": "ADR-086",
+      "number": 86,
+      "title": "seedkit as a Documented Fixture-Generation Path Aligned to the Sourcing Paradigm",
+      "status": "Accepted",
+      "date": "2026-06-23",
+      "file": "ADR-086-Seedkit-Fixture-Generation-Path.md"
     }
   ]
 }
