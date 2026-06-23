@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 2965 proved · 2979 total prove-goals.**
+**11 open · 2967 proved · 2981 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -203,6 +203,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `euclid-perfect-numbers-s5` — euclid-perfect-numbers-s5 | proved | 1 | — | — | — |
 | `euclid-perfect-numbers-s6` — euclid-perfect-numbers-s6 | proved | 1 | — | — | — |
 | `factorial-telescope-sum` — For every natural n, the sum over i in 0..n of i * (i!) equals (n+1)! - 1. | proved | 2 | [packet-ready](upstream/factorial-telescope-sum.md) | classic identities | Classic telescoping identity from i·i! = (i+1)! - i!; exercise in Graham, Knuth & Patashnik, Concrete Mathematics, 2nd ed., Ch. 2 (perturbation/telescoping). |
+| `faulhaber-square-sum-coeff-four` — A Faulhaber power sum (degree 2, coefficient 4) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-nine` — A Faulhaber power sum (degree 2, coefficient 9) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `fib-add-five-eq-five-mul-fib-succ-add-three-mul-fib` — fib(n+5) equals five times fib(n+1) plus three times fib n. | proved | 2 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog (#610). | fib(n+5) equals five times fib(n+1) plus three times fib n. Not a named mathlib lemma in this form. |
 | `fib-add-four-eq-three-mul-fib-add-two-sub-fib` — fib(n+4) equals three times fib(n+2) minus fib n. | proved | 2 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog (#610). | fib(n+4) equals three times fib(n+2) minus fib n. Not a named mathlib lemma in this form. |
@@ -2413,6 +2414,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-468-pow-fifteen-sub-pow-three` — 468 divides n to the 15 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 468 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 468` case check. |
 | `gzmod-468-pow-nineteen-sub-pow-seven` — 468 divides n to the 19 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 468 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 468` case check. |
 | `gzmod-468-pow-seventeen-sub-pow-five` — 468 divides n to the 17 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 468 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 468` case check. |
+| `gzmod-468-pow-sixteen-sub-pow-four` — 468 divides n to the 16 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 468 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 468` case check. |
 | `gzmod-48-pow-eight-sub-pow-four` — 48 divides n to the 8 minus n to the 4, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 8 minus n to the 4, for every integer n. Provable by a finite `ZMod 48` case check. |
 | `gzmod-48-pow-eighteen-sub-pow-six` — 48 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 48` case check. |
 | `gzmod-48-pow-eleven-sub-pow-seven` — 48 divides n to the 11 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 48 divides n to the 11 minus n to the 7, for every integer n. Provable by a finite `ZMod 48` case check. |
