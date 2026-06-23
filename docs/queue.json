@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 1151,
-    "waiting": 1140,
-    "in_flight": 11,
-    "distinct_goals": 1128,
+    "queued_submissions": 1125,
+    "waiting": 1113,
+    "in_flight": 12,
+    "distinct_goals": 1102,
     "solvers": 3
   },
   "solvers": [
@@ -15,10 +15,10 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 785,
-      "waiting": 776,
-      "in_flight": 9,
-      "distinct_goals": 762,
+      "submissions": 759,
+      "waiting": 749,
+      "in_flight": 10,
+      "distinct_goals": 736,
       "queued": [
         {
           "goal": "faulhaber-quartic-sum-coeff-seventyfour",
@@ -37,220 +37,12 @@
           "state": "in-flight"
         },
         {
-          "goal": "faulhaber-square-sum-coeff-sixtythree",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-sixtythree/claude-web-4407b0",
-          "sha": "a6bfdd338",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-sixtytwo",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-sixtytwo/claude-web-bfe91d",
-          "sha": "38f6014a6",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-thirtyeight",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-thirtyeight/claude-web-6ff9fd",
-          "sha": "a32449e11",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-thirtyfive",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-thirtyfive/claude-web-e63e93",
-          "sha": "13dc42685",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-thirtyfour",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-thirtyfour/claude-web-88133a",
-          "sha": "df55d3f29",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-thirtynine",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-thirtynine/claude-web-b8dd11",
-          "sha": "a6eb71e20",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-thirtyone",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-thirtyone/claude-web-c12209",
-          "sha": "7fbf8883c",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-thirtyseven",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-thirtyseven/claude-web-90f24a",
-          "sha": "3efa9a0f5",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-thirtysix",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-thirtysix/claude-web-081773",
-          "sha": "867276209",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-thirtythree",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-thirtythree/claude-web-3c5fe2",
-          "sha": "db2d82291",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "faulhaber-square-sum-coeff-thirtytwo",
-          "branch": "queued/prove/faulhaber-square-sum-coeff-thirtytwo/claude-web-555014",
-          "sha": "db7d842d3",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-eighty",
-          "branch": "queued/prove/geometric-series-ratio-eighty/claude-web-487bba",
-          "sha": "d5989fb9e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fifteen",
-          "branch": "queued/prove/geometric-series-ratio-fifteen/claude-web-c6731e",
-          "sha": "67171160f",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fifty",
-          "branch": "queued/prove/geometric-series-ratio-fifty/claude-web-7d5969",
-          "sha": "4f4f3537c",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fiftyeight",
-          "branch": "queued/prove/geometric-series-ratio-fiftyeight/claude-web-4c1332",
-          "sha": "657ce03ac",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fiftyfive",
-          "branch": "queued/prove/geometric-series-ratio-fiftyfive/claude-web-208cb1",
-          "sha": "ce77db247",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fiftyfour",
-          "branch": "queued/prove/geometric-series-ratio-fiftyfour/claude-web-ea0998",
-          "sha": "73d8089b5",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fiftynine",
-          "branch": "queued/prove/geometric-series-ratio-fiftynine/claude-web-718543",
-          "sha": "ff78c2c84",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fiftyone",
-          "branch": "queued/prove/geometric-series-ratio-fiftyone/claude-web-411c69",
-          "sha": "1fc8d7eec",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fiftyseven",
-          "branch": "queued/prove/geometric-series-ratio-fiftyseven/claude-web-d4bb2c",
-          "sha": "7a3bf12be",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fiftysix",
-          "branch": "queued/prove/geometric-series-ratio-fiftysix/claude-web-f231d1",
-          "sha": "c5d7c80d2",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fiftythree",
-          "branch": "queued/prove/geometric-series-ratio-fiftythree/claude-web-7ae80b",
-          "sha": "ffa7c1319",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fiftytwo",
-          "branch": "queued/prove/geometric-series-ratio-fiftytwo/claude-web-341f75",
-          "sha": "8d89ccf08",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-five",
-          "branch": "queued/prove/geometric-series-ratio-five/claude-web-0a696f",
-          "sha": "ce9429d21",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-forty",
-          "branch": "queued/prove/geometric-series-ratio-forty/claude-web-f8f648",
-          "sha": "258212230",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fortyeight",
-          "branch": "queued/prove/geometric-series-ratio-fortyeight/claude-web-3780d8",
-          "sha": "70aaa2ddb",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
           "goal": "geometric-series-ratio-fortyfive",
           "branch": "queued/prove/geometric-series-ratio-fortyfive/claude-web-1b54a9",
           "sha": "491378db8",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-fortyfour",
@@ -258,7 +50,7 @@
           "sha": "4e63c1472",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-fortynine",
@@ -266,7 +58,7 @@
           "sha": "b81e7de7b",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-fortyone",
@@ -274,7 +66,7 @@
           "sha": "600c5aa15",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-fortyseven",
@@ -282,7 +74,7 @@
           "sha": "b49b107cc",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-fortysix",
@@ -290,7 +82,7 @@
           "sha": "3df0b271e",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-fortythree",
@@ -298,7 +90,7 @@
           "sha": "a60915eef",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-fortytwo",
