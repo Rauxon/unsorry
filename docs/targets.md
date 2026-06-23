@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3339 proved · 3353 total prove-goals.**
+**11 open · 3341 proved · 3355 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -148,11 +148,13 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `arith-series-sum-coeff-fortynine` — An arithmetic-series closed form (offset 49): twice the sum over k in range n of (k + 49) equals n·(n−1) + 2·49·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-fortyone` — An arithmetic-series closed form (offset 41): twice the sum over k in range n of (k + 41) equals n·(n−1) + 2·41·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-fortyseven` — An arithmetic-series closed form (offset 47): twice the sum over k in range n of (k + 47) equals n·(n−1) + 2·47·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
-| `arith-series-sum-coeff-fortysix` — An arithmetic-series closed form (offset 46): twice the sum over k in range n of (k + 46) equals n·(n−1) + 2·46·n. | proved | 3 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
+| `arith-series-sum-coeff-fortysix` — An arithmetic-series closed form (offset 46): twice the sum over k in range n of (k + 46) equals n·(n−1) + 2·46·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-fortythree` — An arithmetic-series closed form (offset 43): twice the sum over k in range n of (k + 43) equals n·(n−1) + 2·43·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-fortytwo` — An arithmetic-series closed form (offset 42): twice the sum over k in range n of (k + 42) equals n·(n−1) + 2·42·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
-| `arith-series-sum-coeff-four` — An arithmetic-series closed form (offset 4): twice the sum over k in range n of (k + 4) equals n·(n−1) + 2·4·n. | proved | 3 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
+| `arith-series-sum-coeff-four` — An arithmetic-series closed form (offset 4): twice the sum over k in range n of (k + 4) equals n·(n−1) + 2·4·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-fourteen` — An arithmetic-series closed form (offset 14): twice the sum over k in range n of (k + 14) equals n·(n−1) + 2·14·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
+| `arith-series-sum-coeff-nine` — An arithmetic-series closed form (offset 9): twice the sum over k in range n of (k + 9) equals n·(n−1) + 2·9·n. | proved | 3 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
+| `arith-series-sum-coeff-one` — An arithmetic-series closed form (offset 1): twice the sum over k in range n of (k + 1) equals n·(n−1) + 2·1·n. | proved | 3 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `aurifeuillian-quartic-dvd` — The quadratic a²+a+1 always divides a⁴+a²+1. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic family. | The quadratic a²+a+1 always divides a⁴+a²+1. Not a named mathlib lemma in this form. |
 | `bezout-eleven-thirteen-eq-one` — There exist integers x, y with 11x + 13y = 1. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | There exist integers x, y with 11x + 13y = 1. Not a named mathlib lemma in this form. |
 | `bezout-five-seven-eq-one` — There exist integers x, y with 5x + 7y = 1. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | There exist integers x, y with 5x + 7y = 1. Not a named mathlib lemma in this form. |
