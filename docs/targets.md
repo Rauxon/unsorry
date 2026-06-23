@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3464 proved · 3478 total prove-goals.**
+**11 open · 3468 proved · 3482 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -624,9 +624,13 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `faulhaber-square-sum-coeff-seventeen` — A Faulhaber power sum (degree 2, coefficient 17) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-seventy` — A Faulhaber power sum (degree 2, coefficient 70) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-seventyfive` — A Faulhaber power sum (degree 2, coefficient 75) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-square-sum-coeff-seventyfour` — A Faulhaber power sum (degree 2, coefficient 74) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-seventyone` — A Faulhaber power sum (degree 2, coefficient 71) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-square-sum-coeff-seventythree` — A Faulhaber power sum (degree 2, coefficient 73) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-square-sum-coeff-seventytwo` — A Faulhaber power sum (degree 2, coefficient 72) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-six` — A Faulhaber power sum (degree 2, coefficient 6) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-sixteen` — A Faulhaber power sum (degree 2, coefficient 16) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-square-sum-coeff-sixtyeight` — A Faulhaber power sum (degree 2, coefficient 68) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-ten` — A Faulhaber power sum (degree 2, coefficient 10) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-thirteen` — A Faulhaber power sum (degree 2, coefficient 13) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-thirty` — A Faulhaber power sum (degree 2, coefficient 30) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
