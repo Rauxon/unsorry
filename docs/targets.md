@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3062 proved · 3076 total prove-goals.**
+**11 open · 3064 proved · 3078 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -251,6 +251,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `faulhaber-quartic-sum-coeff-twentyfour` — A Faulhaber power sum (degree 4, coefficient 24) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quartic-sum-coeff-twentyone` — A Faulhaber power sum (degree 4, coefficient 21) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quartic-sum-coeff-twentythree` — A Faulhaber power sum (degree 4, coefficient 23) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-quartic-sum-coeff-twentytwo` — A Faulhaber power sum (degree 4, coefficient 22) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quartic-sum-coeff-two` — A Faulhaber power sum (degree 4, coefficient 2) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quintic-sum-coeff-eight` — A Faulhaber power sum (degree 5, coefficient 8) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-quintic-sum-coeff-eighteen` — A Faulhaber power sum (degree 5, coefficient 18) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
@@ -2563,6 +2564,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-585-pow-eighteen-sub-pow-six` — 585 divides n to the 18 minus n to the 6, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 585 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 585` case check. |
 | `gzmod-585-pow-fifteen-sub-pow-three` — 585 divides n to the 15 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 585 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 585` case check. |
 | `gzmod-585-pow-nineteen-sub-pow-seven` — 585 divides n to the 19 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 585 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 585` case check. |
+| `gzmod-585-pow-seventeen-sub-pow-five` — 585 divides n to the 17 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 585 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 585` case check. |
 | `gzmod-6-pow-fifteen-sub-pow-one` — 6 divides n to the 15 minus n to the 1, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 6 divides n to the 15 minus n to the 1, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-60-pow-eleven-sub-pow-three` — 60 divides n to the 11 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 60 divides n to the 11 minus n to the 3, for every integer n. Provable by a finite `ZMod 60` case check. |
 | `gzmod-60-pow-seven-sub-pow-three` — 60 divides n to the 7 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 60 divides n to the 7 minus n to the 3, for every integer n. Provable by a finite `ZMod 60` case check. |
