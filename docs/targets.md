@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 2976 proved · 2990 total prove-goals.**
+**11 open · 2980 proved · 2994 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -207,6 +207,9 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `faulhaber-cube-sum-coeff-eighteen` — A Faulhaber power sum (degree 3, coefficient 18) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-eleven` — A Faulhaber power sum (degree 3, coefficient 11) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-fifteen` — A Faulhaber power sum (degree 3, coefficient 15) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-cube-sum-coeff-five` — A Faulhaber power sum (degree 3, coefficient 5) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-cube-sum-coeff-four` — A Faulhaber power sum (degree 3, coefficient 4) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-cube-sum-coeff-fourteen` — A Faulhaber power sum (degree 3, coefficient 14) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-nine` — A Faulhaber power sum (degree 3, coefficient 9) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-one` — A Faulhaber power sum (degree 3, coefficient 1) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-square-sum-coeff-eight` — A Faulhaber power sum (degree 2, coefficient 8) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
@@ -2458,6 +2461,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-504-pow-eleven-sub-pow-five` — 504 divides n to the 11 minus n to the 5, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 11 minus n to the 5, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-504-pow-fifteen-sub-pow-nine` — 504 divides n to the 15 minus n to the 9, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 15 minus n to the 9, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-504-pow-fourteen-sub-pow-eight` — 504 divides n to the 14 minus n to the 8, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 14 minus n to the 8, for every integer n. Provable by exhibiting the cofactor and `ring`. |
+| `gzmod-504-pow-nine-sub-pow-three` — 504 divides n to the 9 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 9 minus n to the 3, for every integer n. Provable by a finite `ZMod 504` case check. |
 | `gzmod-504-pow-nineteen-sub-pow-thirteen` — 504 divides n to the 19 minus n to the 13, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 19 minus n to the 13, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-504-pow-seventeen-sub-pow-eleven` — 504 divides n to the 17 minus n to the 11, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 17 minus n to the 11, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-504-pow-sixteen-sub-pow-ten` — 504 divides n to the 16 minus n to the 10, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 16 minus n to the 10, for every integer n. Provable by exhibiting the cofactor and `ring`. |
