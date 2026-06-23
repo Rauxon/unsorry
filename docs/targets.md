@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3251 proved · 3265 total prove-goals.**
+**11 open · 3253 proved · 3267 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -44,6 +44,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `alt-geometric-ratio-fortyeight` — An alternating geometric series closed form (ratio -48): (48+1) times the sum over k in range n of (-48)^k equals 1 - (-48)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-fortyfive` — An alternating geometric series closed form (ratio -45): (45+1) times the sum over k in range n of (-45)^k equals 1 - (-45)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-fortyfour` — An alternating geometric series closed form (ratio -44): (44+1) times the sum over k in range n of (-44)^k equals 1 - (-44)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
+| `alt-geometric-ratio-fortynine` — An alternating geometric series closed form (ratio -49): (49+1) times the sum over k in range n of (-49)^k equals 1 - (-49)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
+| `alt-geometric-ratio-fortyone` — An alternating geometric series closed form (ratio -41): (41+1) times the sum over k in range n of (-41)^k equals 1 - (-41)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-geometric-ratio-four` — An alternating geometric series closed form (ratio -4): (4+1) times the sum over k in range n of (-4)^k equals 1 - (-4)^n. | proved | 1 | — | self-seeded alternating-geometric identity family. | geometric telescoping with ratio -r; proved by induction on n. |
 | `alt-sum-range-choose-sq-eq-zero-odd` — For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes. | proved | 3 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | For odd n, the alternating sum of (-1)^k times the square of n-choose-k vanishes. Not a named mathlib lemma in this form. |
 | `alt-sum-range-sq-eq-signed-pronic` — Twice the alternating sum of the first n+1 squares equals (-1)^n times the n-th pronic number n(n+1). | proved | 1 | — | #400 Identity Engine (ADR-043) — closed-form sum family; promoted from candidate backlog. | Twice the alternating sum of the first n+1 squares equals (-1)^n times the n-th pronic number n(n+1). Not a named mathlib lemma in this form. |
