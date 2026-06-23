@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3393 proved · 3407 total prove-goals.**
+**11 open · 3394 proved · 3408 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -361,15 +361,16 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `euclid-perfect-numbers-s4` — euclid-perfect-numbers-s4 | proved | 1 | — | — | — |
 | `euclid-perfect-numbers-s5` — euclid-perfect-numbers-s5 | proved | 1 | — | — | — |
 | `euclid-perfect-numbers-s6` — euclid-perfect-numbers-s6 | proved | 1 | — | — | — |
-| `factorial-dvd-consec-five` — The product of 5 consecutive integers starting at n is divisible by 5! = 120, for every integer n. | proved | 3 | — | self-seeded consecutive-product divisibility family. | provable by a finite `ZMod 120` case check. |
-| `factorial-dvd-consec-four` — The product of 4 consecutive integers starting at n is divisible by 4! = 24, for every integer n. | proved | 3 | — | self-seeded consecutive-product divisibility family. | provable by a finite `ZMod 24` case check. |
-| `factorial-dvd-consec-six` — The product of 6 consecutive integers starting at n is divisible by 6! = 720, for every integer n. | proved | 3 | — | self-seeded consecutive-product divisibility family. | provable by a finite `ZMod 720` case check. |
+| `factorial-dvd-consec-five` — The product of 5 consecutive integers starting at n is divisible by 5! = 120, for every integer n. | proved | 1 | — | self-seeded consecutive-product divisibility family. | provable by a finite `ZMod 120` case check. |
+| `factorial-dvd-consec-four` — The product of 4 consecutive integers starting at n is divisible by 4! = 24, for every integer n. | proved | 1 | — | self-seeded consecutive-product divisibility family. | provable by a finite `ZMod 24` case check. |
+| `factorial-dvd-consec-six` — The product of 6 consecutive integers starting at n is divisible by 6! = 720, for every integer n. | proved | 1 | — | self-seeded consecutive-product divisibility family. | provable by a finite `ZMod 720` case check. |
 | `factorial-telescope-sum` — For every natural n, the sum over i in 0..n of i * (i!) equals (n+1)! - 1. | proved | 2 | [packet-ready](upstream/factorial-telescope-sum.md) | classic identities | Classic telescoping identity from i·i! = (i+1)! - i!; exercise in Graham, Knuth & Patashnik, Concrete Mathematics, 2nd ed., Ch. 2 (perturbation/telescoping). |
 | `faulhaber-cube-sum-coeff-eight` — A Faulhaber power sum (degree 3, coefficient 8) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-eighteen` — A Faulhaber power sum (degree 3, coefficient 18) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-eleven` — A Faulhaber power sum (degree 3, coefficient 11) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-fifteen` — A Faulhaber power sum (degree 3, coefficient 15) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-fifty` — A Faulhaber power sum (degree 3, coefficient 50) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
+| `faulhaber-cube-sum-coeff-fiftyeight` — A Faulhaber power sum (degree 3, coefficient 58) closed form: the finite sum over k in range n has the stated closed form. | proved | 5 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-fiftyfive` — A Faulhaber power sum (degree 3, coefficient 55) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-fiftyfour` — A Faulhaber power sum (degree 3, coefficient 54) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
 | `faulhaber-cube-sum-coeff-fiftyone` — A Faulhaber power sum (degree 3, coefficient 51) closed form: the finite sum over k in range n has the stated closed form. | proved | 1 | — | self-seeded finite-sum closed-form family. | proved by induction on n with `ring`. |
