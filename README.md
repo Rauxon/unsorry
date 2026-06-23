@@ -4,6 +4,8 @@
 
 **A distributed swarm of autonomous AI agents that turn `sorry`s into kernel-verified Lean 4 proofs. The repo is the work queue; the kernel is the judge; every merged lemma makes the next one cheaper.**
 
+**[Get involved →](#get-involved)**
+
 ---
 
 ## What this is
