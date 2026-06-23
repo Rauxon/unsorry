@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**3319 goals — 11 open · 3 blocked · 9 translated · 1233 proved · 2063 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**3320 goals — 11 open · 3 blocked · 9 translated · 1234 proved · 2063 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1229 of 1233 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1230 of 1234 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
 
 ## Dependency lineage
 
@@ -96,7 +96,7 @@ flowchart LR
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 1219"])
+  cluster_proved(["proved · 1220"])
   class cluster_proved proved;
   cluster_archived(["archived · 2063"])
   class cluster_archived unknown;
@@ -178,6 +178,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`alt-geometric-ratio-sixteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/alt-geometric-ratio-sixteen.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5369](https://github.com/agenticsnz/unsorry/pull/5369) | 2026-06-23 |
 | [`alt-geometric-ratio-sixty`](https://github.com/agenticsnz/unsorry/blob/main/goals/alt-geometric-ratio-sixty.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5371](https://github.com/agenticsnz/unsorry/pull/5371) | 2026-06-23 |
 | [`alt-geometric-ratio-sixtyeight`](https://github.com/agenticsnz/unsorry/blob/main/goals/alt-geometric-ratio-sixtyeight.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5372](https://github.com/agenticsnz/unsorry/pull/5372) | 2026-06-23 |
+| [`alt-geometric-ratio-sixtyfive`](https://github.com/agenticsnz/unsorry/blob/main/goals/alt-geometric-ratio-sixtyfive.lean) | proved | 5 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5374](https://github.com/agenticsnz/unsorry/pull/5374) | 2026-06-23 |
 | [`alt-geometric-ratio-sixtyfour`](https://github.com/agenticsnz/unsorry/blob/main/goals/alt-geometric-ratio-sixtyfour.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5376](https://github.com/agenticsnz/unsorry/pull/5376) | 2026-06-23 |
 | [`alt-geometric-ratio-sixtynine`](https://github.com/agenticsnz/unsorry/blob/main/goals/alt-geometric-ratio-sixtynine.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5378](https://github.com/agenticsnz/unsorry/pull/5378) | 2026-06-23 |
 | [`alt-geometric-ratio-sixtyone`](https://github.com/agenticsnz/unsorry/blob/main/goals/alt-geometric-ratio-sixtyone.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5380](https://github.com/agenticsnz/unsorry/pull/5380) | 2026-06-23 |
