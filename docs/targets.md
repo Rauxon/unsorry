@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3360 proved · 3374 total prove-goals.**
+**11 open · 3363 proved · 3377 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -172,8 +172,11 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `arith-series-sum-coeff-sixteen` — An arithmetic-series closed form (offset 16): twice the sum over k in range n of (k + 16) equals n·(n−1) + 2·16·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-sixty` — An arithmetic-series closed form (offset 60): twice the sum over k in range n of (k + 60) equals n·(n−1) + 2·60·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-sixtyeight` — An arithmetic-series closed form (offset 68): twice the sum over k in range n of (k + 68) equals n·(n−1) + 2·68·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
+| `arith-series-sum-coeff-sixtyfive` — An arithmetic-series closed form (offset 65): twice the sum over k in range n of (k + 65) equals n·(n−1) + 2·65·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-sixtyfour` — An arithmetic-series closed form (offset 64): twice the sum over k in range n of (k + 64) equals n·(n−1) + 2·64·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `arith-series-sum-coeff-sixtynine` — An arithmetic-series closed form (offset 69): twice the sum over k in range n of (k + 69) equals n·(n−1) + 2·69·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
+| `arith-series-sum-coeff-sixtyone` — An arithmetic-series closed form (offset 61): twice the sum over k in range n of (k + 61) equals n·(n−1) + 2·61·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
+| `arith-series-sum-coeff-sixtyseven` — An arithmetic-series closed form (offset 67): twice the sum over k in range n of (k + 67) equals n·(n−1) + 2·67·n. | proved | 1 | — | self-seeded arithmetic-series identity family. | Gauss summation; proved by induction on n. |
 | `aurifeuillian-quartic-dvd` — The quadratic a²+a+1 always divides a⁴+a²+1. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic family. | The quadratic a²+a+1 always divides a⁴+a²+1. Not a named mathlib lemma in this form. |
 | `bezout-eleven-thirteen-eq-one` — There exist integers x, y with 11x + 13y = 1. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | There exist integers x, y with 11x + 13y = 1. Not a named mathlib lemma in this form. |
 | `bezout-five-seven-eq-one` — There exist integers x, y with 5x + 7y = 1. | proved | 2 | — | #400 Identity Engine (ADR-043) — gcd/coprimality family; promoted from candidate backlog (#610). | There exist integers x, y with 5x + 7y = 1. Not a named mathlib lemma in this form. |
