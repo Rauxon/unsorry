@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3725 proved · 3739 total prove-goals.**
+**11 open · 3727 proved · 3741 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2471,6 +2471,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-120-pow-ten-sub-pow-six` — 120 divides n to the 10 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 120 divides n to the 10 minus n to the 6, for every integer n. Provable by a finite `ZMod 120` case check. |
 | `gzmod-120-pow-thirteen-sub-pow-five` — 120 divides n to the 13 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 120 divides n to the 13 minus n to the 5, for every integer n. Provable by a finite `ZMod 120` case check. |
 | `gzmod-120-pow-twelve-sub-pow-four` — 120 divides n to the 12 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 120 divides n to the 12 minus n to the 4, for every integer n. Provable by a finite `ZMod 120` case check. |
+| `gzmod-126-pow-eleven-sub-pow-five` — 126 divides n to the 11 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 126` case check. |
 | `gzmod-126-pow-fifteen-sub-pow-three` — 126 divides n to the 15 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 126` case check. |
 | `gzmod-126-pow-nine-sub-pow-three` — 126 divides n to the 9 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 126` case check. |
 | `gzmod-126-pow-seventeen-sub-pow-five` — 126 divides n to the 17 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 126` case check. |
@@ -2504,6 +2505,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-133-pow-twentytwo-sub-pow-four` — 133 divides n to the 22 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 133` case check. |
 | `gzmod-136-pow-nineteen-sub-pow-three` — 136 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
 | `gzmod-136-pow-twenty-sub-pow-four` — 136 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
+| `gzmod-136-pow-twentyfive-sub-pow-nine` — 136 divides n to the 25 minus n to the 9, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
 | `gzmod-136-pow-twentyone-sub-pow-five` — 136 divides n to the 21 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
 | `gzmod-136-pow-twentytwo-sub-pow-six` — 136 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
 | `gzmod-140-pow-eighteen-sub-pow-six` — 140 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 140 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 140` case check. |
