@@ -4,11 +4,10 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**15 open · 3764 proved · 3782 total prove-goals.**
+**14 open · 3767 proved · 3784 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
-| `demo-add-comm` — demo-v1 benchmark obligation demo_add_comm | open | 1 | — | demo-v1 benchmark suite | unsorry #5643 demo |
 | `demo-le-refl` — demo-v1 benchmark obligation demo_le_refl | open | 1 | — | demo-v1 benchmark suite | unsorry #5643 demo |
 | `demo-mul-comm` — demo-v1 benchmark obligation demo_mul_comm | open | 1 | — | demo-v1 benchmark suite | unsorry #5643 demo |
 | `demo-two-add-two` — demo-v1 benchmark obligation demo_two_add_two | open | 1 | — | demo-v1 benchmark suite | unsorry #5643 demo |
@@ -271,6 +270,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `cyclic-quartic-ge-asym-cubic-cross` — For nonnegative reals the sum of fourth powers dominates the cyclic sum a^3 b + b^3 c + c^3 a. | proved | 2 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog. | For nonnegative reals the sum of fourth powers dominates the cyclic sum a^3 b + b^3 c + c^3 a. Not a named mathlib lemma in this form. |
 | `cyclotomic-five-divides-pow-five-sub-one` — The 5th cyclotomic polynomial n⁴+n³+n²+n+1 divides n⁵-1. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The 5th cyclotomic polynomial n⁴+n³+n²+n+1 divides n⁵-1. Not a named mathlib lemma in this form. |
 | `cyclotomic-three-divides-pow-six-sub-one` — The polynomial n²+n+1 divides n⁶-1. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The polynomial n²+n+1 divides n⁶-1. Not a named mathlib lemma in this form. |
+| `demo-add-comm` — demo-v1 benchmark obligation demo_add_comm | proved | 1 | — | demo-v1 benchmark suite | unsorry #5643 demo |
 | `descartes-total-angular-defect` — Descartes' theorem: the total angular defect of an abstract regular {p,q} polyhedron is 4π — V(2π − q·(p−2)/p·π) = 4π. | proved | 4 | — | Freek #50 combinatorial classification, Track-1 completion (ADR-031; #400 plan Phase 1). | Descartes' theorem: the total angular defect of an abstract regular {p,q} polyhedron is 4π — V(2π − q·(p−2)/p·π) = 4π. Not in mathlib (no abstract-regular-polyhedron theory). |
 | `diff-sixth-power-dvd-by-sum` — The sum of two integers divides the difference of their sixth powers. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The sum of two integers divides the difference of their sixth powers. Not a named mathlib lemma in this form. |
 | `diff-tetrahedral-eq-triangular` — The difference of two consecutive tetrahedral numbers equals the intervening triangular number. | proved | 2 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | The difference of two consecutive tetrahedral numbers equals the intervening triangular number. Not a named mathlib lemma in this form. |
@@ -3068,6 +3068,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-390-pow-nineteen-sub-pow-seven` — 390 divides n to the 19 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 390 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 390` case check. |
 | `gzmod-390-pow-seventeen-sub-pow-five` — 390 divides n to the 17 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 390 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 390` case check. |
 | `gzmod-390-pow-sixteen-sub-pow-four` — 390 divides n to the 16 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 390 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 390` case check. |
+| `gzmod-399-pow-twentyfour-sub-pow-six` — 399 divides n to the 24 minus n to the 6, for every integer n. | proved | 5 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 399` case check. |
+| `gzmod-399-pow-twentythree-sub-pow-five` — 399 divides n to the 23 minus n to the 5, for every integer n. | proved | 5 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 399` case check. |
 | `gzmod-40-pow-eleven-sub-pow-three` — 40 divides n to the 11 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 40 divides n to the 11 minus n to the 3, for every integer n. Provable by a finite `ZMod 40` case check. |
 | `gzmod-40-pow-seven-sub-pow-three` — 40 divides n to the 7 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 40 divides n to the 7 minus n to the 3, for every integer n. Provable by a finite `ZMod 40` case check. |
 | `gzmod-42-pow-seven-sub-pow-one` — 42 divides n to the 7 minus n to the 1, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 42 divides n to the 7 minus n to the 1, for every integer n. Provable by exhibiting the cofactor and `ring`. |
