@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3892 proved · 3906 total prove-goals.**
+**11 open · 3893 proved · 3907 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3583,6 +3583,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `shift-square-sum-coeff-seven` — A shifted-square-sum closed form (offset 7): six times the sum over k in range n of (k + 7)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
 | `shift-square-sum-coeff-seventeen` — A shifted-square-sum closed form (offset 17): six times the sum over k in range n of (k + 17)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
 | `shift-square-sum-coeff-seventy` — A shifted-square-sum closed form (offset 70): six times the sum over k in range n of (k + 70)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
+| `shift-square-sum-coeff-seventyeight` — A shifted-square-sum closed form (offset 78): six times the sum over k in range n of (k + 78)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
 | `shift-square-sum-coeff-seventyfive` — A shifted-square-sum closed form (offset 75): six times the sum over k in range n of (k + 75)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
 | `shift-square-sum-coeff-seventyfour` — A shifted-square-sum closed form (offset 74): six times the sum over k in range n of (k + 74)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
 | `shift-square-sum-coeff-seventynine` — A shifted-square-sum closed form (offset 79): six times the sum over k in range n of (k + 79)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
