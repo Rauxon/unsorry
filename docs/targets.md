@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**15 open · 3759 proved · 3777 total prove-goals.**
+**15 open · 3760 proved · 3778 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3034,6 +3034,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-340-pow-twenty-sub-pow-four` — 340 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 340` case check. |
 | `gzmod-340-pow-twentyone-sub-pow-five` — 340 divides n to the 21 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 340` case check. |
 | `gzmod-340-pow-twentytwo-sub-pow-six` — 340 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 340` case check. |
+| `gzmod-342-pow-twentyfour-sub-pow-six` — 342 divides n to the 24 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 342` case check. |
 | `gzmod-342-pow-twentyone-sub-pow-three` — 342 divides n to the 21 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 342` case check. |
 | `gzmod-36-pow-eighteen-sub-pow-six` — 36 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 36 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 36` case check. |
 | `gzmod-36-pow-eleven-sub-pow-five` — 36 divides n to the 11 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 36 divides n to the 11 minus n to the 5, for every integer n. Provable by a finite `ZMod 36` case check. |
