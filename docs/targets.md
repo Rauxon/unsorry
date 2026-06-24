@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3827 proved · 3841 total prove-goals.**
+**11 open · 3828 proved · 3842 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3406,6 +3406,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `odd-square-sum-coeff-sixtyseven` — A scaled odd-square-sum closed form (coefficient 67): three times the sum over k in range n of 67·(2k+1)² equals 67·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `odd-square-sum-coeff-sixtysix` — A scaled odd-square-sum closed form (coefficient 66): three times the sum over k in range n of 66·(2k+1)² equals 66·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `odd-square-sum-coeff-sixtythree` — A scaled odd-square-sum closed form (coefficient 63): three times the sum over k in range n of 63·(2k+1)² equals 63·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
+| `odd-square-sum-coeff-sixtytwo` — A scaled odd-square-sum closed form (coefficient 62): three times the sum over k in range n of 62·(2k+1)² equals 62·n·(2n−1)·(2n+1). | proved | 4 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `one-add-four-b-fourth-not-prime` — For every natural b > 1, 1 + 4b⁴ is not prime; by the Sophie Germain factorization 1 + 4b⁴ = (2b²+2b+1)(2b²−2b+1), with both factors exceeding 1. | proved | 3 | — | classic identities (compositeness-via-factorization — the Sophie Germain a=1 corollary) | The a=1 case of Sophie Germain's identity a⁴+4b⁴ = (a²−2ab+2b²)(a²+2ab+2b²); a companion to the proved `not-prime-pow-four-add-four` (which is the b=1 case n⁴+4). Sierpiński, Elementary Theory of Numbers. |
 | `one-add-three-x-le-cube` — For x ≥ 0, 1+3x ≤ (1+x)³ (a Bernoulli instance, n=3). | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For x ≥ 0, 1+3x ≤ (1+x)³ (a Bernoulli instance, n=3). Not a named mathlib lemma in this concrete form. |
 | `one-add-two-x-le-sq` — For all real x, 1+2x ≤ (1+x)² (the Bernoulli n=2 instance, unconstrained). | proved | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For all real x, 1+2x ≤ (1+x)² (the Bernoulli n=2 instance, unconstrained). Not a named mathlib lemma in this concrete polynomial/abs form. |
