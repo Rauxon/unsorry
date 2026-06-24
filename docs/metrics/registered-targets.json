@@ -19,7 +19,7 @@
           "difficulty": 1,
           "id": "demo-le-refl",
           "run_snippet": "./swarm/run.sh --goal demo-le-refl",
-          "status": "open"
+          "status": "proved"
         },
         {
           "credit": "credited",
@@ -33,14 +33,14 @@
           "difficulty": 1,
           "id": "demo-two-add-two",
           "run_snippet": "./swarm/run.sh --goal demo-two-add-two",
-          "status": "open"
+          "status": "proved"
         }
       ],
       "id": "demo-v1",
       "license": "MIT",
       "mathlib_pin": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
       "pass_at": {},
-      "proved": 2,
+      "proved": 4,
       "supplier": "agenticsnz"
     }
   ]
