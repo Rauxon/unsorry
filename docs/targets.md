@@ -4,11 +4,56 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3938 proved · 3952 total prove-goals.**
+**56 open · 3939 proved · 3998 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
 | `n4-plus-one-factor-over-sqrt-shift` — The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. Not a named mathlib lemma in this form. |
+| `putnam-1962-a1` — putnam-v1 benchmark obligation putnam_1962_a1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-a2` — putnam-v1 benchmark obligation putnam_1962_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-a3` — putnam-v1 benchmark obligation putnam_1962_a3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-a4` — putnam-v1 benchmark obligation putnam_1962_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-a6` — putnam-v1 benchmark obligation putnam_1962_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-b1` — putnam-v1 benchmark obligation putnam_1962_b1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-b2` — putnam-v1 benchmark obligation putnam_1962_b2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-b3` — putnam-v1 benchmark obligation putnam_1962_b3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-b5` — putnam-v1 benchmark obligation putnam_1962_b5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-b6` — putnam-v1 benchmark obligation putnam_1962_b6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1963-a2` — putnam-v1 benchmark obligation putnam_1963_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1963-a4` — putnam-v1 benchmark obligation putnam_1963_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1963-a6` — putnam-v1 benchmark obligation putnam_1963_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1963-b1` — putnam-v1 benchmark obligation putnam_1963_b1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1963-b2` — putnam-v1 benchmark obligation putnam_1963_b2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1963-b3` — putnam-v1 benchmark obligation putnam_1963_b3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1963-b5` — putnam-v1 benchmark obligation putnam_1963_b5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1963-b6` — putnam-v1 benchmark obligation putnam_1963_b6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-a1` — putnam-v1 benchmark obligation putnam_1964_a1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-a3` — putnam-v1 benchmark obligation putnam_1964_a3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-a4` — putnam-v1 benchmark obligation putnam_1964_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-a5` — putnam-v1 benchmark obligation putnam_1964_a5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-a6` — putnam-v1 benchmark obligation putnam_1964_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-b1` — putnam-v1 benchmark obligation putnam_1964_b1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-b2` — putnam-v1 benchmark obligation putnam_1964_b2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-b3` — putnam-v1 benchmark obligation putnam_1964_b3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-b5` — putnam-v1 benchmark obligation putnam_1964_b5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-b6` — putnam-v1 benchmark obligation putnam_1964_b6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-a1` — putnam-v1 benchmark obligation putnam_1965_a1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-a2` — putnam-v1 benchmark obligation putnam_1965_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-a3` — putnam-v1 benchmark obligation putnam_1965_a3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-a4` — putnam-v1 benchmark obligation putnam_1965_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-a6` — putnam-v1 benchmark obligation putnam_1965_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-b1` — putnam-v1 benchmark obligation putnam_1965_b1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-b2` — putnam-v1 benchmark obligation putnam_1965_b2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-b3` — putnam-v1 benchmark obligation putnam_1965_b3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-b4` — putnam-v1 benchmark obligation putnam_1965_b4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-b5` — putnam-v1 benchmark obligation putnam_1965_b5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-b6` — putnam-v1 benchmark obligation putnam_1965_b6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1966-a1` — putnam-v1 benchmark obligation putnam_1966_a1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1966-a2` — putnam-v1 benchmark obligation putnam_1966_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1966-a3` — putnam-v1 benchmark obligation putnam_1966_a3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1966-a4` — putnam-v1 benchmark obligation putnam_1966_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1966-a5` — putnam-v1 benchmark obligation putnam_1966_a5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1966-a6` — putnam-v1 benchmark obligation putnam_1966_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `quartic-x4-plus-x2-plus-one-dvd-by-minus-factor` — The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. Not a named mathlib lemma in this form. |
 | `sextic-x6-plus-x3-plus-one-composite-shift` — The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. Not a named mathlib lemma in this form. |
 | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` — sq-add-sq-eq-three-mul-sq-s4-s3-s2 | open | 1 | — | — | — |
@@ -3925,6 +3970,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-cubes-zmod-eighteen-ne-five` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 5 modulo 18. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 5 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
 | `sum-two-cubes-zmod-eighteen-ne-four` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 4 modulo 18. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 4 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
 | `sum-two-cubes-zmod-eighteen-ne-six` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 6 modulo 18. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 6 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
+| `sum-two-cubes-zmod-eighteen-ne-thirteen` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 13 modulo 18. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 13 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
 | `sum-two-cubes-zmod-nine-ne-four` — A sum of two integer cubes is never congruent to 4 modulo 9 (cubes mod 9 are 0,1,8). | proved | 3 | — | #400 Identity Engine (ADR-043) — modular-arith family. | A sum of two integer cubes is never congruent to 4 modulo 9 (cubes mod 9 are 0,1,8). Not a named mathlib lemma in this form. |
 | `sum-two-fourth-powers-zmod-sixteen-mem` — A sum of two integer fourth powers is congruent to 0, 1, or 2 modulo 16. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | A sum of two integer fourth powers is congruent to 0, 1, or 2 modulo 16. Not a named mathlib lemma in this form. |
 | `sum-two-k-add-one-mul-two-pow` — The sum over k<n of (2k+1)·2^k equals (2n−3)·2^n + 3. | proved | 1 | — | #400 Identity Engine (ADR-043) — closed-form-sums family. | The sum over k<n of (2k+1)·2^k equals (2n−3)·2^n + 3. Not a named mathlib lemma in this form. |
