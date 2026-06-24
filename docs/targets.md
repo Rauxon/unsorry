@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3658 proved · 3672 total prove-goals.**
+**11 open · 3659 proved · 3673 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3177,6 +3177,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-84-pow-fifteen-sub-pow-three` — 84 divides n to the 15 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 84 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 84` case check. |
 | `gzmod-84-pow-nine-sub-pow-three` — 84 divides n to the 9 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 84 divides n to the 9 minus n to the 3, for every integer n. Provable by a finite `ZMod 84` case check. |
 | `gzmod-84-pow-sixteen-sub-pow-four` — 84 divides n to the 16 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 84 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 84` case check. |
+| `gzmod-84-pow-ten-sub-pow-four` — 84 divides n to the 10 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 84 divides n to the 10 minus n to the 4, for every integer n. Provable by a finite `ZMod 84` case check. |
 | `gzmod-88-pow-eighteen-sub-pow-eight` — 88 divides n to the 18 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 88 divides n to the 18 minus n to the 8, for every integer n. Provable by a finite `ZMod 88` case check. |
 | `gzmod-88-pow-fifteen-sub-pow-five` — 88 divides n to the 15 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 88 divides n to the 15 minus n to the 5, for every integer n. Provable by a finite `ZMod 88` case check. |
 | `gzmod-88-pow-fourteen-sub-pow-four` — 88 divides n to the 14 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 88 divides n to the 14 minus n to the 4, for every integer n. Provable by a finite `ZMod 88` case check. |
