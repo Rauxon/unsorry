@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3654 proved · 3668 total prove-goals.**
+**11 open · 3655 proved · 3669 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2381,6 +2381,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-three-add-pow-two` — n to the 2 divides n to the 3 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 3 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-102-pow-nineteen-sub-pow-three` — 102 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-102-pow-twenty-sub-pow-four` — 102 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
+| `gzmod-102-pow-twentyfive-sub-pow-nine` — 102 divides n to the 25 minus n to the 9, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-102-pow-twentyfour-sub-pow-eight` — 102 divides n to the 24 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-102-pow-twentyone-sub-pow-five` — 102 divides n to the 21 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-102-pow-twentytwo-sub-pow-six` — 102 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
