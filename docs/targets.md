@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**15 open · 3734 proved · 3752 total prove-goals.**
+**15 open · 3737 proved · 3755 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2608,9 +2608,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-189-pow-twentysix-sub-pow-eight` — 189 divides n to the 26 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 189 divides n to the 26 minus n to the 8, for every integer n. Provable by a finite `ZMod 189` case check. |
 | `gzmod-189-pow-twentythree-sub-pow-five` — 189 divides n to the 23 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 189 divides n to the 23 minus n to the 5, for every integer n. Provable by a finite `ZMod 189` case check. |
 | `gzmod-189-pow-twentytwo-sub-pow-four` — 189 divides n to the 22 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 189 divides n to the 22 minus n to the 4, for every integer n. Provable by a finite `ZMod 189` case check. |
-| `gzmod-192-pow-twentyeight-sub-pow-twelve` — 192 divides n to the 28 minus n to the 12, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
+| `gzmod-192-pow-twentyeight-sub-pow-twelve` — 192 divides n to the 28 minus n to the 12, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-192-pow-twentyfive-sub-pow-nine` — 192 divides n to the 25 minus n to the 9, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-192-pow-twentyfour-sub-pow-eight` — 192 divides n to the 24 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
+| `gzmod-192-pow-twentyseven-sub-pow-eleven` — 192 divides n to the 27 minus n to the 11, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-192-pow-twentysix-sub-pow-ten` — 192 divides n to the 26 minus n to the 10, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-192-pow-twentythree-sub-pow-seven` — 192 divides n to the 23 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-192-pow-twentytwo-sub-pow-six` — 192 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
@@ -2626,8 +2627,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-195-pow-twentytwo-sub-pow-ten` — 195 divides n to the 22 minus n to the 10, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 195 divides n to the 22 minus n to the 10, for every integer n. Provable by a finite `ZMod 195` case check. |
 | `gzmod-204-pow-nineteen-sub-pow-three` — 204 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twenty-sub-pow-four` — 204 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
+| `gzmod-204-pow-twentyfive-sub-pow-nine` — 204 divides n to the 25 minus n to the 9, for every integer n. | proved | 5 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
+| `gzmod-204-pow-twentyfour-sub-pow-eight` — 204 divides n to the 24 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twentyone-sub-pow-five` — 204 divides n to the 21 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
-| `gzmod-204-pow-twentysix-sub-pow-ten` — 204 divides n to the 26 minus n to the 10, for every integer n. | proved | 5 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
+| `gzmod-204-pow-twentysix-sub-pow-ten` — 204 divides n to the 26 minus n to the 10, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twentytwo-sub-pow-six` — 204 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-208-pow-eighteen-sub-pow-six` — 208 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 208 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 208` case check. |
 | `gzmod-208-pow-nineteen-sub-pow-seven` — 208 divides n to the 19 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 208 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 208` case check. |
