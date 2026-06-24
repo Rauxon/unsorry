@@ -4,10 +4,14 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3732 proved · 3746 total prove-goals.**
+**15 open · 3734 proved · 3752 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
+| `demo-add-comm` — demo-v1 benchmark obligation demo_add_comm | open | 1 | — | demo-v1 benchmark suite | unsorry #5643 demo |
+| `demo-le-refl` — demo-v1 benchmark obligation demo_le_refl | open | 1 | — | demo-v1 benchmark suite | unsorry #5643 demo |
+| `demo-mul-comm` — demo-v1 benchmark obligation demo_mul_comm | open | 1 | — | demo-v1 benchmark suite | unsorry #5643 demo |
+| `demo-two-add-two` — demo-v1 benchmark obligation demo_two_add_two | open | 1 | — | demo-v1 benchmark suite | unsorry #5643 demo |
 | `n4-plus-one-factor-over-sqrt-shift` — The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. Not a named mathlib lemma in this form. |
 | `quartic-x4-plus-x2-plus-one-dvd-by-minus-factor` — The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. Not a named mathlib lemma in this form. |
 | `sextic-x6-plus-x3-plus-one-composite-shift` — The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. Not a named mathlib lemma in this form. |
@@ -2604,9 +2608,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-189-pow-twentysix-sub-pow-eight` — 189 divides n to the 26 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 189 divides n to the 26 minus n to the 8, for every integer n. Provable by a finite `ZMod 189` case check. |
 | `gzmod-189-pow-twentythree-sub-pow-five` — 189 divides n to the 23 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 189 divides n to the 23 minus n to the 5, for every integer n. Provable by a finite `ZMod 189` case check. |
 | `gzmod-189-pow-twentytwo-sub-pow-four` — 189 divides n to the 22 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 189 divides n to the 22 minus n to the 4, for every integer n. Provable by a finite `ZMod 189` case check. |
+| `gzmod-192-pow-twentyeight-sub-pow-twelve` — 192 divides n to the 28 minus n to the 12, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-192-pow-twentyfive-sub-pow-nine` — 192 divides n to the 25 minus n to the 9, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-192-pow-twentyfour-sub-pow-eight` — 192 divides n to the 24 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
-| `gzmod-192-pow-twentysix-sub-pow-ten` — 192 divides n to the 26 minus n to the 10, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
+| `gzmod-192-pow-twentysix-sub-pow-ten` — 192 divides n to the 26 minus n to the 10, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-192-pow-twentythree-sub-pow-seven` — 192 divides n to the 23 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-192-pow-twentytwo-sub-pow-six` — 192 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 192` case check. |
 | `gzmod-195-pow-eighteen-sub-pow-six` — 195 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 195 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 195` case check. |
@@ -2622,6 +2627,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-204-pow-nineteen-sub-pow-three` — 204 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twenty-sub-pow-four` — 204 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twentyone-sub-pow-five` — 204 divides n to the 21 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
+| `gzmod-204-pow-twentysix-sub-pow-ten` — 204 divides n to the 26 minus n to the 10, for every integer n. | proved | 5 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twentytwo-sub-pow-six` — 204 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-208-pow-eighteen-sub-pow-six` — 208 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 208 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 208` case check. |
 | `gzmod-208-pow-nineteen-sub-pow-seven` — 208 divides n to the 19 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 208 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 208` case check. |
