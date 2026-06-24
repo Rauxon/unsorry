@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**14 open · 3767 proved · 3784 total prove-goals.**
+**14 open · 3768 proved · 3785 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3062,14 +3062,15 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-364-pow-seventeen-sub-pow-five` — 364 divides n to the 17 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 364 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 364` case check. |
 | `gzmod-364-pow-sixteen-sub-pow-four` — 364 divides n to the 16 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 364 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 364` case check. |
 | `gzmod-378-pow-twentyone-sub-pow-three` — 378 divides n to the 21 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 378` case check. |
+| `gzmod-378-pow-twentythree-sub-pow-five` — 378 divides n to the 23 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 378` case check. |
 | `gzmod-378-pow-twentytwo-sub-pow-four` — 378 divides n to the 22 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 378` case check. |
 | `gzmod-390-pow-eighteen-sub-pow-six` — 390 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 390 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 390` case check. |
 | `gzmod-390-pow-fifteen-sub-pow-three` — 390 divides n to the 15 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 390 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 390` case check. |
 | `gzmod-390-pow-nineteen-sub-pow-seven` — 390 divides n to the 19 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 390 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 390` case check. |
 | `gzmod-390-pow-seventeen-sub-pow-five` — 390 divides n to the 17 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 390 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 390` case check. |
 | `gzmod-390-pow-sixteen-sub-pow-four` — 390 divides n to the 16 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 390 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 390` case check. |
-| `gzmod-399-pow-twentyfour-sub-pow-six` — 399 divides n to the 24 minus n to the 6, for every integer n. | proved | 5 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 399` case check. |
-| `gzmod-399-pow-twentythree-sub-pow-five` — 399 divides n to the 23 minus n to the 5, for every integer n. | proved | 5 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 399` case check. |
+| `gzmod-399-pow-twentyfour-sub-pow-six` — 399 divides n to the 24 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 399` case check. |
+| `gzmod-399-pow-twentythree-sub-pow-five` — 399 divides n to the 23 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 399` case check. |
 | `gzmod-40-pow-eleven-sub-pow-three` — 40 divides n to the 11 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 40 divides n to the 11 minus n to the 3, for every integer n. Provable by a finite `ZMod 40` case check. |
 | `gzmod-40-pow-seven-sub-pow-three` — 40 divides n to the 7 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 40 divides n to the 7 minus n to the 3, for every integer n. Provable by a finite `ZMod 40` case check. |
 | `gzmod-42-pow-seven-sub-pow-one` — 42 divides n to the 7 minus n to the 1, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 42 divides n to the 7 minus n to the 1, for every integer n. Provable by exhibiting the cofactor and `ring`. |
