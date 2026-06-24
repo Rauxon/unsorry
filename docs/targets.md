@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3721 proved · 3735 total prove-goals.**
+**11 open · 3722 proved · 3736 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2494,6 +2494,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-132-pow-sixteen-sub-pow-six` — 132 divides n to the 16 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 132 divides n to the 16 minus n to the 6, for every integer n. Provable by a finite `ZMod 132` case check. |
 | `gzmod-132-pow-thirteen-sub-pow-three` — 132 divides n to the 13 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 132 divides n to the 13 minus n to the 3, for every integer n. Provable by a finite `ZMod 132` case check. |
 | `gzmod-132-pow-twelve-sub-pow-two` — 132 divides n to the 12 minus n to the 2, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 132 divides n to the 12 minus n to the 2, for every integer n. Provable by exhibiting the cofactor and `ring`. |
+| `gzmod-133-pow-twentyeight-sub-pow-ten` — 133 divides n to the 28 minus n to the 10, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 133` case check. |
 | `gzmod-133-pow-twentyfour-sub-pow-six` — 133 divides n to the 24 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 133` case check. |
 | `gzmod-133-pow-twentyone-sub-pow-three` — 133 divides n to the 21 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 133` case check. |
 | `gzmod-133-pow-twentythree-sub-pow-five` — 133 divides n to the 23 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 133` case check. |
