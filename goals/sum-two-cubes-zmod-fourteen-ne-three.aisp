@@ -4,7 +4,7 @@
   id≜sum-two-cubes-zmod-fourteen-ne-three
   phase≜prove
   status≜proved
-  difficulty≜2
+  difficulty≜1
 }
 ⟦Σ:Source⟧{
   src≜backlog/sum-two-cubes-zmod-fourteen-ne-three.md
