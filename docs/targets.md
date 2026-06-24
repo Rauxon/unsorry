@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**56 open · 3953 proved · 4012 total prove-goals.**
+**56 open · 3955 proved · 4014 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3984,8 +3984,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-cubes-zmod-nine-ne-three` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 3 modulo 9. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 3 is not a sum of two cubes modulo 9; provable by a finite `ZMod 9` case check. |
 | `sum-two-cubes-zmod-seven-ne-four` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 4 modulo 7. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 4 is not a sum of two cubes modulo 7; provable by a finite `ZMod 7` case check. |
 | `sum-two-cubes-zmod-twentyone-ne-eighteen` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 18 modulo 21. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 18 is not a sum of two cubes modulo 21; provable by a finite `ZMod 21` case check. |
-| `sum-two-cubes-zmod-twentyone-ne-eleven` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 11 modulo 21. | proved | 3 | — | self-seeded power-residue identity family (two cubes). | 11 is not a sum of two cubes modulo 21; provable by a finite `ZMod 21` case check. |
-| `sum-two-cubes-zmod-twentyone-ne-four` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 4 modulo 21. | proved | 3 | — | self-seeded power-residue identity family (two cubes). | 4 is not a sum of two cubes modulo 21; provable by a finite `ZMod 21` case check. |
+| `sum-two-cubes-zmod-twentyone-ne-eleven` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 11 modulo 21. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 11 is not a sum of two cubes modulo 21; provable by a finite `ZMod 21` case check. |
+| `sum-two-cubes-zmod-twentyone-ne-four` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 4 modulo 21. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 4 is not a sum of two cubes modulo 21; provable by a finite `ZMod 21` case check. |
+| `sum-two-cubes-zmod-twentyone-ne-seventeen` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 17 modulo 21. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 17 is not a sum of two cubes modulo 21; provable by a finite `ZMod 21` case check. |
+| `sum-two-cubes-zmod-twentyone-ne-ten` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 10 modulo 21. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 10 is not a sum of two cubes modulo 21; provable by a finite `ZMod 21` case check. |
 | `sum-two-fourth-powers-zmod-sixteen-mem` — A sum of two integer fourth powers is congruent to 0, 1, or 2 modulo 16. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | A sum of two integer fourth powers is congruent to 0, 1, or 2 modulo 16. Not a named mathlib lemma in this form. |
 | `sum-two-k-add-one-mul-two-pow` — The sum over k<n of (2k+1)·2^k equals (2n−3)·2^n + 3. | proved | 1 | — | #400 Identity Engine (ADR-043) — closed-form-sums family. | The sum over k<n of (2k+1)·2^k equals (2n−3)·2^n + 3. Not a named mathlib lemma in this form. |
 | `sum-two-k-plus-one-div-sq-succ-sq-telescope` — The sum over k<n of (2(k+1)+1)/((k+1)²(k+2)²) equals 1 − 1/(n+1)². | proved | 3 | — | #400 Identity Engine (ADR-043) — telescoping family. | The sum over k<n of (2(k+1)+1)/((k+1)²(k+2)²) equals 1 − 1/(n+1)². Not a named mathlib lemma in this form. |
