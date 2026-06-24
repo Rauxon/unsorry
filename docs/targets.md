@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**56 open · 3957 proved · 4016 total prove-goals.**
+**56 open · 3958 proved · 4017 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3993,7 +3993,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-k-add-one-mul-two-pow` — The sum over k<n of (2k+1)·2^k equals (2n−3)·2^n + 3. | proved | 1 | — | #400 Identity Engine (ADR-043) — closed-form-sums family. | The sum over k<n of (2k+1)·2^k equals (2n−3)·2^n + 3. Not a named mathlib lemma in this form. |
 | `sum-two-k-plus-one-div-sq-succ-sq-telescope` — The sum over k<n of (2(k+1)+1)/((k+1)²(k+2)²) equals 1 − 1/(n+1)². | proved | 3 | — | #400 Identity Engine (ADR-043) — telescoping family. | The sum over k<n of (2(k+1)+1)/((k+1)²(k+2)²) equals 1 − 1/(n+1)². Not a named mathlib lemma in this form. |
 | `sum-two-k-sub-one-mul-two-pow` — The sum over k<n of (2k−1)·2^k equals (2n−5)·2^n + 5. | proved | 1 | — | #400 Identity Engine (ADR-043) — closed-form-sums family. | The sum over k<n of (2k−1)·2^k equals (2n−5)·2^n + 5. Not a named mathlib lemma in this form. |
-| `sum-two-squares-zmod-eighteen-ne-fifteen` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 15 modulo 18. | proved | 3 | — | self-seeded power-residue identity family (two squares). | 15 is not a sum of two squares modulo 18; provable by a finite `ZMod 18` case check. |
+| `sum-two-squares-zmod-eight-ne-seven` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 7 modulo 8. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 7 is not a sum of two squares modulo 8; provable by a finite `ZMod 8` case check. |
+| `sum-two-squares-zmod-eighteen-ne-fifteen` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 15 modulo 18. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 15 is not a sum of two squares modulo 18; provable by a finite `ZMod 18` case check. |
 | `sum-vandermonde-diagonal-eq-choose` — The diagonal Vandermonde convolution, summing C(n,k) times C(m,k) over k, equals C(n+m,n). | proved | 3 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | The diagonal Vandermonde convolution, summing C(n,k) times C(m,k) over k, equals C(n+m,n). Not a named mathlib lemma in this form. |
 | `sumsq-ge-ab-plus-bc` — The sum of three squares dominates the two adjacent cross terms ab+bc. | proved | 1 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The sum of three squares dominates the two adjacent cross terms ab+bc. Not a named mathlib lemma in this form. |
 | `sumsq-products-ge-abc-times-sum` — The sum of squared pairwise products of three reals is at least the product abc times their sum. | proved | 1 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog. | The sum of squared pairwise products of three reals is at least the product abc times their sum. Not a named mathlib lemma in this form. |
