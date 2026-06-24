@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**13 open · 3786 proved · 3802 total prove-goals.**
+**13 open · 3787 proved · 3803 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2089,6 +2089,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-three-pow-29-add-pow-21` — n to the 3 divides n to the 29 plus n to the 21. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 29 plus n to the 21. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-29-add-pow-22` — n to the 3 divides n to the 29 plus n to the 22. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 29 plus n to the 22. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-29-add-pow-23` — n to the 3 divides n to the 29 plus n to the 23. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 29 plus n to the 23. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-three-pow-29-add-pow-24` — n to the 3 divides n to the 29 plus n to the 24. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 29 plus n to the 24. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-29-add-pow-25` — n to the 3 divides n to the 29 plus n to the 25. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 29 plus n to the 25. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-29-add-pow-26` — n to the 3 divides n to the 29 plus n to the 26. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 29 plus n to the 26. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-three-pow-29-add-pow-27` — n to the 3 divides n to the 29 plus n to the 27. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 3 divides n to the 29 plus n to the 27. Provable by exhibiting the cofactor and `ring`. |
