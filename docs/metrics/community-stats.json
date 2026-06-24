@@ -19,7 +19,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 939,
+      "difficulty_points": 948,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -30,7 +30,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 927
+      "verified_proofs": 944
     },
     {
       "attempt_yield": null,
@@ -130,17 +130,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 3231,
+    "attributed_proofs": 3248,
     "historical_unknown_proofs": 308,
-    "proof_run_coverage": 0.2311,
+    "proof_run_coverage": 0.23,
     "successful_proofs_with_run_telemetry": 818,
     "terminal_runs": 1160,
-    "verified_proofs": 3539
+    "verified_proofs": 3556
   },
   "credit": {
     "credited_contributors": 9,
-    "credited_proofs": 3539,
-    "explicit_solver_proofs": 3231,
+    "credited_proofs": 3556,
+    "explicit_solver_proofs": 3248,
     "inferred_git_proofs": 308,
     "uncredited_proofs": 0
   },
@@ -185,12 +185,12 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 1174,
-      "difficulty_points": 1513,
+      "credited_proofs": 1191,
+      "difficulty_points": 1522,
       "dispatch_points": 0.0,
       "dispatch_proofs": 0,
       "display_name": "@chat-bit-01",
-      "explicit_solver_proofs": 927,
+      "explicit_solver_proofs": 944,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -205,7 +205,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1174
+      "verified_proofs": 1191
     },
     {
       "attempt_yield": 0.2022,
@@ -218,8 +218,8 @@
       ],
       "credited_proofs": 191,
       "difficulty_points": 287,
-      "dispatch_points": 1808.1,
-      "dispatch_proofs": 2009,
+      "dispatch_points": 1823.4,
+      "dispatch_proofs": 2026,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 144,
       "failed_attempts": 288,
@@ -17437,18 +17437,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/cgbarlow.png?size=96",
-        "difficulty_points": 2534,
+        "difficulty_points": 2543,
         "display_name": "Chris Barlow",
         "git_author": "Chris Barlow <cgbarlow@gmail.com>",
         "git_author_name": "Chris Barlow",
         "github": "cgbarlow",
-        "index_files_added": 2200,
+        "index_files_added": 2217,
         "missing_solver_provenance": 47,
         "profile_url": "https://github.com/cgbarlow",
         "sample_add_commit": "d611b71faefc5535b868c5e071261469d62d6cf4",
         "sample_add_date": "2026-06-22",
         "solver_credit": false,
-        "solver_provenance_proofs": 2153
+        "solver_provenance_proofs": 2170
       },
       {
         "attribution_source": "git-add-author",
@@ -17579,8 +17579,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 3539,
-    "records": 3539,
+    "git_attributed_index_files": 3556,
+    "records": 3556,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -17616,7 +17616,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 509
+      "verified_proofs": 528
     },
     {
       "attempt_yield": null,
@@ -17737,22 +17737,6 @@
       "failures": 0,
       "median_solve_s": null,
       "p90_solve_s": null,
-      "provider_model": "claude / template-induction-ring",
-      "run_success_rate": null,
-      "runs": 0,
-      "solvers": 1,
-      "successes": 0,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 2
-    },
-    {
-      "attempt_yield": null,
-      "attempts": 0,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": null,
-      "p90_solve_s": null,
       "provider_model": "claude / sonnet",
       "run_success_rate": null,
       "runs": 0,
@@ -17864,18 +17848,18 @@
   "queue": {
     "difficulty_counts": {
       "0": 10,
-      "1": 3035,
+      "1": 3054,
       "2": 266,
       "3": 213,
       "4": 34,
-      "5": 4
+      "5": 2
     },
-    "goals": 3562,
+    "goals": 3579,
     "status_counts": {
       "archived": 2199,
       "blocked": 3,
       "open": 11,
-      "proved": 1340,
+      "proved": 1357,
       "translated": 9
     }
   },
