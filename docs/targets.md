@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**56 open · 3942 proved · 4001 total prove-goals.**
+**56 open · 3943 proved · 4002 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3973,6 +3973,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-cubes-zmod-eighteen-ne-thirteen` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 13 modulo 18. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 13 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
 | `sum-two-cubes-zmod-eighteen-ne-three` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 3 modulo 18. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 3 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
 | `sum-two-cubes-zmod-eighteen-ne-twelve` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 12 modulo 18. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 12 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
+| `sum-two-cubes-zmod-fourteen-ne-eleven` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 11 modulo 14. | proved | 3 | — | self-seeded power-residue identity family (two cubes). | 11 is not a sum of two cubes modulo 14; provable by a finite `ZMod 14` case check. |
 | `sum-two-cubes-zmod-fourteen-ne-three` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 3 modulo 14. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 3 is not a sum of two cubes modulo 14; provable by a finite `ZMod 14` case check. |
 | `sum-two-cubes-zmod-nine-ne-four` — A sum of two integer cubes is never congruent to 4 modulo 9 (cubes mod 9 are 0,1,8). | proved | 3 | — | #400 Identity Engine (ADR-043) — modular-arith family. | A sum of two integer cubes is never congruent to 4 modulo 9 (cubes mod 9 are 0,1,8). Not a named mathlib lemma in this form. |
 | `sum-two-fourth-powers-zmod-sixteen-mem` — A sum of two integer fourth powers is congruent to 0, 1, or 2 modulo 16. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | A sum of two integer fourth powers is congruent to 0, 1, or 2 modulo 16. Not a named mathlib lemma in this form. |
