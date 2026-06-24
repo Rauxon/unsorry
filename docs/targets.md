@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**15 open · 3749 proved · 3767 total prove-goals.**
+**15 open · 3750 proved · 3768 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2983,6 +2983,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-266-pow-twentythree-sub-pow-five` — 266 divides n to the 23 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 266 divides n to the 23 minus n to the 5, for every integer n. Provable by a finite `ZMod 266` case check. |
 | `gzmod-266-pow-twentytwo-sub-pow-four` — 266 divides n to the 22 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 266 divides n to the 22 minus n to the 4, for every integer n. Provable by a finite `ZMod 266` case check. |
 | `gzmod-272-pow-twenty-sub-pow-four` — 272 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 272` case check. |
+| `gzmod-272-pow-twentyone-sub-pow-five` — 272 divides n to the 21 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 272` case check. |
 | `gzmod-272-pow-twentythree-sub-pow-seven` — 272 divides n to the 23 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 272` case check. |
 | `gzmod-272-pow-twentytwo-sub-pow-six` — 272 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 272` case check. |
 | `gzmod-273-pow-eighteen-sub-pow-six` — 273 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 273 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 273` case check. |
