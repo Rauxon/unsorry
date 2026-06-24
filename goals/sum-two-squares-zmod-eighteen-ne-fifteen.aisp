@@ -4,7 +4,7 @@
   id≜sum-two-squares-zmod-eighteen-ne-fifteen
   phase≜prove
   status≜proved
-  difficulty≜3
+  difficulty≜1
 }
 ⟦Σ:Source⟧{
   src≜backlog/sum-two-squares-zmod-eighteen-ne-fifteen.md
