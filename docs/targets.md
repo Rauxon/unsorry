@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3569 proved · 3583 total prove-goals.**
+**11 open · 3571 proved · 3585 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2382,6 +2382,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-102-pow-nineteen-sub-pow-three` — 102 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-102-pow-twenty-sub-pow-four` — 102 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-102-pow-twentyone-sub-pow-five` — 102 divides n to the 21 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
+| `gzmod-102-pow-twentytwo-sub-pow-six` — 102 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-104-pow-eighteen-sub-pow-six` — 104 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 104 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 104` case check. |
 | `gzmod-104-pow-fifteen-sub-pow-three` — 104 divides n to the 15 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 104 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 104` case check. |
 | `gzmod-104-pow-nineteen-sub-pow-seven` — 104 divides n to the 19 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 104 divides n to the 19 minus n to the 7, for every integer n. Provable by a finite `ZMod 104` case check. |
@@ -2389,7 +2390,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-104-pow-sixteen-sub-pow-four` — 104 divides n to the 16 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 104 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 104` case check. |
 | `gzmod-104-pow-twenty-sub-pow-eight` — 104 divides n to the 20 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 104 divides n to the 20 minus n to the 8, for every integer n. Provable by a finite `ZMod 104` case check. |
 | `gzmod-105-pow-eighteen-sub-pow-six` — 105 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
-| `gzmod-105-pow-fifteen-sub-pow-three` — 105 divides n to the 15 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
+| `gzmod-105-pow-fifteen-sub-pow-three` — 105 divides n to the 15 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
+| `gzmod-105-pow-seventeen-sub-pow-five` — 105 divides n to the 17 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
 | `gzmod-105-pow-sixteen-sub-pow-four` — 105 divides n to the 16 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
 | `gzmod-108-pow-twentyfour-sub-pow-six` — 108 divides n to the 24 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 108` case check. |
 | `gzmod-112-pow-eighteen-sub-pow-six` — 112 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 112 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 112` case check. |
