@@ -4,34 +4,34 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**3757 verified proofs · 3449 attributed · 308 historical/unknown · 1163 logged terminal runs.**
+**3768 verified proofs · 3460 attributed · 308 historical/unknown · 1164 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 821 |
+| Successful terminal runs | 822 |
 | Failed terminal runs | 342 |
 | Decomposed after failure | 20 |
 | Failed without decomposition | 322 |
 | Run success rate | 70.6% |
-| Provider attempts | 1251 |
+| Provider attempts | 1252 |
 | Failed attempts | 430 |
 | Attempt yield | 65.6% |
-| Recorded run time | 93h 0m |
+| Recorded run time | 93h 3m |
 | Median / p90 run time | 0s / 31m 18s |
 | Verified successes per recorded hour | 8.83 |
-| Proofs with run telemetry | 821 (21.9%) |
+| Proofs with run telemetry | 822 (21.8%) |
 
 ## Work Queue
 
-**3784 goals · 2199 archived · 3 blocked · 15 open · 1558 proved · 9 translated.**
+**3795 goals · 2199 archived · 3 blocked · 14 open · 1570 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 966 | 814 | 84.3% | 214 | 0s |
+| 1 | 967 | 815 | 84.3% | 214 | 0s |
 | 2 | 109 | 1 | 0.9% | 125 | 6m 54s |
 | 3 | 67 | 3 | 4.5% | 73 | 9m 24s |
 | 4 | 19 | 3 | 15.8% | 16 | 5m 42s |
@@ -59,30 +59,30 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
 | 1 | [@ohdearquant](https://github.com/ohdearquant) | 1880 | 1879 | 1 | 687 | 100.0% | 1883 | 0.0 | 235300 |
-| 2 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 332 | 22.0% | 287 | 2001.6 | 233635 |
-| 3 | [@chat-bit-01](https://github.com/chat-bit-01) | 1389 | 1142 | 247 | 0 | — | 1716 | 2.7 | 206595 |
+| 2 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 332 | 22.0% | 287 | 2011.5 | 234625 |
+| 3 | [@chat-bit-01](https://github.com/chat-bit-01) | 1400 | 1153 | 247 | 0 | — | 1727 | 2.7 | 207970 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 106 | 102 | 4 | 82 | 72.0% | 152 | 144.0 | 32250 |
 | 6 | [@adam91holt](https://github.com/adam91holt) | 19 | 19 | 0 | 56 | 0.0% | 46 | 0.0 | 5075 |
 | 7 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 0.0 | 2125 |
-| 8 | [@Rauxon](https://github.com/Rauxon) | 2 | 2 | 0 | 6 | 33.3% | 2 | 0.0 | 250 |
+| 8 | [@Rauxon](https://github.com/Rauxon) | 2 | 2 | 0 | 7 | 42.9% | 2 | 0.0 | 250 |
 | 9 | [@yarcles](https://github.com/yarcles) | 1 | 1 | 0 | 0 | — | 1 | 0.0 | 125 |
 
 ## Attribution Notes
 
-**3449 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**3460 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 3757 of 3757 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 3768 of 3768 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
 | `python / sympy` | 2015 | 804 | 100.0% | 0 | 3 | 0s | — |
+| `lean / decide` | 579 | 0 | — | 0 | 1 | — | — |
 | `lean / ring` | 574 | 0 | — | 0 | 1 | — | — |
-| `lean / decide` | 568 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
-| `claude / opus` | 59 | 32 | 40.6% | 57 | 5 | 8m 27s | 2.30 |
+| `claude / opus` | 59 | 33 | 42.4% | 57 | 5 | 8m 21s | 2.45 |
 | `codex / unknown` | 39 | 75 | 5.3% | 111 | 2 | 7m 35s | 0.35 |
 | `openai / leanstral-2603` | 21 | 201 | 0.0% | 205 | 1 | 6m 30s | 0.00 |
 | `gemini / gemini-3.1-pro-preview` | 7 | 2 | 0.0% | 6 | 1 | 10m 59s | 0.00 |
@@ -97,6 +97,7 @@ Git add-author attribution covers 3757 of 3757 proof index files. It is used onl
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-24T11:56:37Z` | `demo-add-comm` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `proved` | 1 | 0 | 3m 53s |
 | `2026-06-23T21:41:39Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `failed` | 3 | 3 | 4m 33s |
 | `2026-06-22T11:49:09Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `failed` | 3 | 3 | 7m 53s |
 | `2026-06-22T04:31:09Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `failed` | 1 | 1 | 5m 44s |
@@ -116,7 +117,6 @@ Git add-author attribution covers 3757 of 3757 proof index files. It is used onl
 | `2026-06-20T12:49:11Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `failed` | 3 | 3 | 14m 9s |
 | `2026-06-20T12:16:50Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@perttu](https://github.com/perttu) | `codex / unknown` | `failed` | 3 | 3 | 5m 36s |
 | `2026-06-20T11:54:49Z` | `sq-add-sq-eq-three-mul-sq-s4-s1` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `proved` | 1 | 0 | 5m 33s |
-| `2026-06-20T11:54:27Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@perttu](https://github.com/perttu) | `codex / unknown` | `failed` | 3 | 3 | 4m 49s |
 
 ## Interpretation
 
