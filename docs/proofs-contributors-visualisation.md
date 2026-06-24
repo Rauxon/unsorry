@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**3732 goals — 11 open · 3 blocked · 9 translated · 1510 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**3733 goals — 11 open · 3 blocked · 9 translated · 1511 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1506 of 1510 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1507 of 1511 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
 
 ## Dependency lineage
 
@@ -96,7 +96,7 @@ flowchart LR
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 1496"])
+  cluster_proved(["proved · 1497"])
   class cluster_proved proved;
   cluster_archived(["archived · 2199"])
   class cluster_archived unknown;
@@ -1633,6 +1633,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`odd-square-sum-coeff-fiftytwo`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-square-sum-coeff-fiftytwo.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5846](https://github.com/agenticsnz/unsorry/pull/5846) | 2026-06-24 |
 | [`odd-square-sum-coeff-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-square-sum-coeff-five.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5848](https://github.com/agenticsnz/unsorry/pull/5848) | 2026-06-24 |
 | [`odd-square-sum-coeff-forty`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-square-sum-coeff-forty.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5849](https://github.com/agenticsnz/unsorry/pull/5849) | 2026-06-24 |
+| [`odd-square-sum-coeff-fortyeight`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-square-sum-coeff-fortyeight.lean) | proved | 4 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5855](https://github.com/agenticsnz/unsorry/pull/5855) | 2026-06-24 |
 | [`sq-add-sq-eq-three-mul-sq-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s1.lean) | proved | 1 | p3-b1 | cgbarlow · `opus` | Chris Barlow | [#323](https://github.com/agenticsnz/unsorry/pull/323) | 2026-06-13 |
 | [`sq-add-sq-eq-three-mul-sq-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s2.lean) | proved | 1 | p3-b1 | cgbarlow · `opus` | Chris Barlow | [#332](https://github.com/agenticsnz/unsorry/pull/332) | 2026-06-13 |
 | [`sq-add-sq-eq-three-mul-sq-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s3.lean) | proved | 1 | p3-a1 | cgbarlow · `opus` | Chris Barlow | [#330](https://github.com/agenticsnz/unsorry/pull/330) | 2026-06-13 |
