@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3686 proved · 3700 total prove-goals.**
+**11 open · 3688 proved · 3702 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2415,6 +2415,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-104-pow-twenty-sub-pow-eight` — 104 divides n to the 20 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 104 divides n to the 20 minus n to the 8, for every integer n. Provable by a finite `ZMod 104` case check. |
 | `gzmod-105-pow-eighteen-sub-pow-six` — 105 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
 | `gzmod-105-pow-fifteen-sub-pow-three` — 105 divides n to the 15 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
+| `gzmod-105-pow-nineteen-sub-pow-seven` — 105 divides n to the 19 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
 | `gzmod-105-pow-seventeen-sub-pow-five` — 105 divides n to the 17 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
 | `gzmod-105-pow-sixteen-sub-pow-four` — 105 divides n to the 16 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 105` case check. |
 | `gzmod-108-pow-twentyfour-sub-pow-six` — 108 divides n to the 24 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 108` case check. |
@@ -3264,7 +3265,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `odd-square-sum-coeff-eighty` — A scaled odd-square-sum closed form (coefficient 80): three times the sum over k in range n of 80·(2k+1)² equals 80·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `odd-square-sum-coeff-eleven` — A scaled odd-square-sum closed form (coefficient 11): three times the sum over k in range n of 11·(2k+1)² equals 11·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `odd-square-sum-coeff-fifteen` — A scaled odd-square-sum closed form (coefficient 15): three times the sum over k in range n of 15·(2k+1)² equals 15·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
-| `odd-square-sum-coeff-fiftyeight` — A scaled odd-square-sum closed form (coefficient 58): three times the sum over k in range n of 58·(2k+1)² equals 58·n·(2n−1)·(2n+1). | proved | 4 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
+| `odd-square-sum-coeff-fifty` — A scaled odd-square-sum closed form (coefficient 50): three times the sum over k in range n of 50·(2k+1)² equals 50·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
+| `odd-square-sum-coeff-fiftyeight` — A scaled odd-square-sum closed form (coefficient 58): three times the sum over k in range n of 58·(2k+1)² equals 58·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `one-add-four-b-fourth-not-prime` — For every natural b > 1, 1 + 4b⁴ is not prime; by the Sophie Germain factorization 1 + 4b⁴ = (2b²+2b+1)(2b²−2b+1), with both factors exceeding 1. | proved | 3 | — | classic identities (compositeness-via-factorization — the Sophie Germain a=1 corollary) | The a=1 case of Sophie Germain's identity a⁴+4b⁴ = (a²−2ab+2b²)(a²+2ab+2b²); a companion to the proved `not-prime-pow-four-add-four` (which is the b=1 case n⁴+4). Sierpiński, Elementary Theory of Numbers. |
 | `one-add-three-x-le-cube` — For x ≥ 0, 1+3x ≤ (1+x)³ (a Bernoulli instance, n=3). | proved | 2 | — | Classic elementary inequality / number-theory fact (#400 plan Phase 3 — library growth). | For x ≥ 0, 1+3x ≤ (1+x)³ (a Bernoulli instance, n=3). Not a named mathlib lemma in this concrete form. |
 | `one-add-two-x-le-sq` — For all real x, 1+2x ≤ (1+x)² (the Bernoulli n=2 instance, unconstrained). | proved | 2 | — | Classic elementary real inequality (#400 plan Phase 3 — library growth). | For all real x, 1+2x ≤ (1+x)² (the Bernoulli n=2 instance, unconstrained). Not a named mathlib lemma in this concrete polynomial/abs form. |
