@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 917,
-    "waiting": 901,
-    "in_flight": 16,
-    "distinct_goals": 893,
+    "queued_submissions": 887,
+    "waiting": 872,
+    "in_flight": 15,
+    "distinct_goals": 863,
     "solvers": 3
   },
   "solvers": [
@@ -15,10 +15,10 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 571,
-      "waiting": 560,
-      "in_flight": 11,
-      "distinct_goals": 547,
+      "submissions": 541,
+      "waiting": 531,
+      "in_flight": 10,
+      "distinct_goals": 517,
       "queued": [
         {
           "goal": "faulhaber-quartic-sum-coeff-seventyfour",
@@ -53,252 +53,12 @@
           "state": "in-flight"
         },
         {
-          "goal": "odd-square-sum-coeff-twentyfour",
-          "branch": "queued/prove/odd-square-sum-coeff-twentyfour/claude-web-d304cb",
-          "sha": "c4cc91a22",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "odd-square-sum-coeff-twentyone",
-          "branch": "queued/prove/odd-square-sum-coeff-twentyone/claude-web-340b1b",
-          "sha": "e67e0b139",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "odd-square-sum-coeff-twentyseven",
-          "branch": "queued/prove/odd-square-sum-coeff-twentyseven/claude-web-cb46ca",
-          "sha": "e5c27bb16",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "odd-square-sum-coeff-twentysix",
-          "branch": "queued/prove/odd-square-sum-coeff-twentysix/claude-web-ea8c65",
-          "sha": "f9e8ca12d",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "odd-square-sum-coeff-twentythree",
-          "branch": "queued/prove/odd-square-sum-coeff-twentythree/claude-web-f71ff3",
-          "sha": "5a6507df7",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "odd-square-sum-coeff-twentytwo",
-          "branch": "queued/prove/odd-square-sum-coeff-twentytwo/claude-web-1cca03",
-          "sha": "b75a8f7e8",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "odd-square-sum-coeff-two",
-          "branch": "queued/prove/odd-square-sum-coeff-two/claude-web-497158",
-          "sha": "6a1024157",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "shift-square-sum-coeff-eight",
-          "branch": "queued/prove/shift-square-sum-coeff-eight/claude-web-ca3475",
-          "sha": "8edb36d70",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-eighteen",
-          "branch": "queued/prove/shift-square-sum-coeff-eighteen/claude-web-0aa4dd",
-          "sha": "0bdc4c51e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-eighty",
-          "branch": "queued/prove/shift-square-sum-coeff-eighty/claude-web-ef7fd4",
-          "sha": "92935e4c9",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-eleven",
-          "branch": "queued/prove/shift-square-sum-coeff-eleven/claude-web-258450",
-          "sha": "e037be9ba",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fifteen",
-          "branch": "queued/prove/shift-square-sum-coeff-fifteen/claude-web-2dbc8b",
-          "sha": "9f0568a53",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fifty",
-          "branch": "queued/prove/shift-square-sum-coeff-fifty/claude-web-3962f1",
-          "sha": "4a4d6c2aa",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fiftyeight",
-          "branch": "queued/prove/shift-square-sum-coeff-fiftyeight/claude-web-ddc37a",
-          "sha": "636334db4",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fiftyfive",
-          "branch": "queued/prove/shift-square-sum-coeff-fiftyfive/claude-web-21a634",
-          "sha": "66db7b9f5",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fiftyfour",
-          "branch": "queued/prove/shift-square-sum-coeff-fiftyfour/claude-web-02f18e",
-          "sha": "59f673376",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fiftynine",
-          "branch": "queued/prove/shift-square-sum-coeff-fiftynine/claude-web-e71292",
-          "sha": "e5c4c90a7",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fiftyone",
-          "branch": "queued/prove/shift-square-sum-coeff-fiftyone/claude-web-b45e0d",
-          "sha": "da10c23a3",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fiftyseven",
-          "branch": "queued/prove/shift-square-sum-coeff-fiftyseven/claude-web-3f35c8",
-          "sha": "92db7236b",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fiftysix",
-          "branch": "queued/prove/shift-square-sum-coeff-fiftysix/claude-web-069ae6",
-          "sha": "a6d81b108",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fiftythree",
-          "branch": "queued/prove/shift-square-sum-coeff-fiftythree/claude-web-a5eff5",
-          "sha": "f280e9f55",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fiftytwo",
-          "branch": "queued/prove/shift-square-sum-coeff-fiftytwo/claude-web-0fbb21",
-          "sha": "ef642548b",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-five",
-          "branch": "queued/prove/shift-square-sum-coeff-five/claude-web-6a0318",
-          "sha": "af684441e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-forty",
-          "branch": "queued/prove/shift-square-sum-coeff-forty/claude-web-aebfcb",
-          "sha": "816172c55",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fortyeight",
-          "branch": "queued/prove/shift-square-sum-coeff-fortyeight/claude-web-a51b9d",
-          "sha": "525c9c54a",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fortyfive",
-          "branch": "queued/prove/shift-square-sum-coeff-fortyfive/claude-web-2ace24",
-          "sha": "a3f0c9116",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fortyfour",
-          "branch": "queued/prove/shift-square-sum-coeff-fortyfour/claude-web-5d2dbc",
-          "sha": "50cf43dcd",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fortynine",
-          "branch": "queued/prove/shift-square-sum-coeff-fortynine/claude-web-5c66eb",
-          "sha": "b3e2e8c3f",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fortyone",
-          "branch": "queued/prove/shift-square-sum-coeff-fortyone/claude-web-64a441",
-          "sha": "2ff969208",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
           "goal": "shift-square-sum-coeff-fortyseven",
           "branch": "queued/prove/shift-square-sum-coeff-fortyseven/claude-web-ac581a",
           "sha": "24962ee0f",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "shift-square-sum-coeff-fortysix",
-          "branch": "queued/prove/shift-square-sum-coeff-fortysix/claude-web-6d6a10",
-          "sha": "446f26fd2",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "shift-square-sum-coeff-fortythree",
@@ -306,7 +66,7 @@
           "sha": "d0978b5fd",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "shift-square-sum-coeff-fortytwo",
@@ -314,7 +74,7 @@
           "sha": "5249ad7ff",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "shift-square-sum-coeff-four",
@@ -322,7 +82,7 @@
           "sha": "3ef9e97b3",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "shift-square-sum-coeff-fourteen",
@@ -330,7 +90,7 @@
           "sha": "61bfc0e88",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "shift-square-sum-coeff-nine",
@@ -338,7 +98,7 @@
           "sha": "955e399f9",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "shift-square-sum-coeff-nineteen",
