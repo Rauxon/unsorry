@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3730 proved · 3744 total prove-goals.**
+**11 open · 3731 proved · 3745 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2509,6 +2509,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-136-pow-twentyfour-sub-pow-eight` — 136 divides n to the 24 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
 | `gzmod-136-pow-twentyone-sub-pow-five` — 136 divides n to the 21 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
 | `gzmod-136-pow-twentysix-sub-pow-ten` — 136 divides n to the 26 minus n to the 10, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
+| `gzmod-136-pow-twentythree-sub-pow-seven` — 136 divides n to the 23 minus n to the 7, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
 | `gzmod-136-pow-twentytwo-sub-pow-six` — 136 divides n to the 22 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 136` case check. |
 | `gzmod-140-pow-eighteen-sub-pow-six` — 140 divides n to the 18 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 140 divides n to the 18 minus n to the 6, for every integer n. Provable by a finite `ZMod 140` case check. |
 | `gzmod-140-pow-fifteen-sub-pow-three` — 140 divides n to the 15 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 140 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 140` case check. |
