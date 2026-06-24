@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3876 proved · 3890 total prove-goals.**
+**11 open · 3877 proved · 3891 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3571,6 +3571,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `shift-square-sum-coeff-fortyfour` — A shifted-square-sum closed form (offset 44): six times the sum over k in range n of (k + 44)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
 | `shift-square-sum-coeff-fortynine` — A shifted-square-sum closed form (offset 49): six times the sum over k in range n of (k + 49)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
 | `shift-square-sum-coeff-fortyone` — A shifted-square-sum closed form (offset 41): six times the sum over k in range n of (k + 41)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
+| `shift-square-sum-coeff-fortyseven` — A shifted-square-sum closed form (offset 47): six times the sum over k in range n of (k + 47)² has the stated cubic closed form. | proved | 4 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
 | `shift-square-sum-coeff-fortysix` — A shifted-square-sum closed form (offset 46): six times the sum over k in range n of (k + 46)² has the stated cubic closed form. | proved | 1 | — | self-seeded shifted-square-sum identity family. | follows from the square-pyramidal sum; proved by induction on n. |
 | `shifted-sophie-germain-x4-plus-4-dvd-by-x2-plus-2x-plus-2` — The quadratic x^2+2x+2 divides x^4+4 (one Sophie-Germain factor at b=1). | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The quadratic x^2+2x+2 divides x^4+4 (one Sophie-Germain factor at b=1). Not a named mathlib lemma in this form. |
 | `shifted-sum-sq-ge-twice-sum-three-var` — Each variable's square plus one dominates twice the variable, summed over three variables. | proved | 2 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | Each variable's square plus one dominates twice the variable, summed over three variables. Not a named mathlib lemma in this form. |
