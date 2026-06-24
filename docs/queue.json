@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 1125,
-    "waiting": 1113,
-    "in_flight": 12,
-    "distinct_goals": 1102,
+    "queued_submissions": 1082,
+    "waiting": 1068,
+    "in_flight": 14,
+    "distinct_goals": 1059,
     "solvers": 3
   },
   "solvers": [
@@ -15,10 +15,10 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 759,
-      "waiting": 749,
-      "in_flight": 10,
-      "distinct_goals": 736,
+      "submissions": 716,
+      "waiting": 704,
+      "in_flight": 12,
+      "distinct_goals": 693,
       "queued": [
         {
           "goal": "faulhaber-quartic-sum-coeff-seventyfour",
@@ -37,252 +37,12 @@
           "state": "in-flight"
         },
         {
-          "goal": "geometric-series-ratio-fortyfive",
-          "branch": "queued/prove/geometric-series-ratio-fortyfive/claude-web-1b54a9",
-          "sha": "491378db8",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "geometric-series-ratio-fortyfour",
-          "branch": "queued/prove/geometric-series-ratio-fortyfour/claude-web-80a8c2",
-          "sha": "4e63c1472",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "geometric-series-ratio-fortynine",
-          "branch": "queued/prove/geometric-series-ratio-fortynine/claude-web-a2b89f",
-          "sha": "b81e7de7b",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "geometric-series-ratio-fortyone",
-          "branch": "queued/prove/geometric-series-ratio-fortyone/claude-web-d81f85",
-          "sha": "600c5aa15",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "geometric-series-ratio-fortyseven",
-          "branch": "queued/prove/geometric-series-ratio-fortyseven/claude-web-423ff6",
-          "sha": "b49b107cc",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "geometric-series-ratio-fortysix",
-          "branch": "queued/prove/geometric-series-ratio-fortysix/claude-web-ae9fc2",
-          "sha": "3df0b271e",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "geometric-series-ratio-fortythree",
-          "branch": "queued/prove/geometric-series-ratio-fortythree/claude-web-f1776f",
-          "sha": "a60915eef",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "geometric-series-ratio-fortytwo",
-          "branch": "queued/prove/geometric-series-ratio-fortytwo/claude-web-fd7713",
-          "sha": "e12c59d94",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-four",
-          "branch": "queued/prove/geometric-series-ratio-four/claude-web-3eed2e",
-          "sha": "c296e8b97",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-fourteen",
-          "branch": "queued/prove/geometric-series-ratio-fourteen/claude-web-26bf71",
-          "sha": "f269d2b4f",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-nine",
-          "branch": "queued/prove/geometric-series-ratio-nine/claude-web-74c3bc",
-          "sha": "4de5ef108",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-nineteen",
-          "branch": "queued/prove/geometric-series-ratio-nineteen/claude-web-fc62ff",
-          "sha": "762687e0e",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seven",
-          "branch": "queued/prove/geometric-series-ratio-seven/claude-web-b3178f",
-          "sha": "5c044b772",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventeen",
-          "branch": "queued/prove/geometric-series-ratio-seventeen/claude-web-fdfe37",
-          "sha": "b74b27dd5",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventy",
-          "branch": "queued/prove/geometric-series-ratio-seventy/claude-web-04808d",
-          "sha": "db4b51da7",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventyeight",
-          "branch": "queued/prove/geometric-series-ratio-seventyeight/claude-web-de40c4",
-          "sha": "2b96a81d3",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventyfive",
-          "branch": "queued/prove/geometric-series-ratio-seventyfive/claude-web-046d03",
-          "sha": "4ae44dce1",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventyfour",
-          "branch": "queued/prove/geometric-series-ratio-seventyfour/claude-web-a3bb18",
-          "sha": "ad9ca8417",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventynine",
-          "branch": "queued/prove/geometric-series-ratio-seventynine/claude-web-843bcb",
-          "sha": "8a23698bc",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventyone",
-          "branch": "queued/prove/geometric-series-ratio-seventyone/claude-web-769daf",
-          "sha": "7fd724578",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventyseven",
-          "branch": "queued/prove/geometric-series-ratio-seventyseven/claude-web-0b4fd3",
-          "sha": "d22bcea0c",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventysix",
-          "branch": "queued/prove/geometric-series-ratio-seventysix/claude-web-ec3eaf",
-          "sha": "16dad8d14",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventythree",
-          "branch": "queued/prove/geometric-series-ratio-seventythree/claude-web-99a612",
-          "sha": "255a25fc6",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-seventytwo",
-          "branch": "queued/prove/geometric-series-ratio-seventytwo/claude-web-b005b2",
-          "sha": "192b1b752",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-six",
-          "branch": "queued/prove/geometric-series-ratio-six/claude-web-93133f",
-          "sha": "4ea40f19a",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-sixteen",
-          "branch": "queued/prove/geometric-series-ratio-sixteen/claude-web-a389e8",
-          "sha": "04fda5b06",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
           "goal": "geometric-series-ratio-sixty",
           "branch": "queued/prove/geometric-series-ratio-sixty/claude-web-508494",
-          "sha": "d1f3b5c2c",
+          "sha": "7f824e079",
           "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-sixtyeight",
-          "branch": "queued/prove/geometric-series-ratio-sixtyeight/claude-web-7d307f",
-          "sha": "8c03cbaf2",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-sixtyfive",
-          "branch": "queued/prove/geometric-series-ratio-sixtyfive/claude-web-b4e5a6",
-          "sha": "b4593bdf9",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-sixtyfour",
-          "branch": "queued/prove/geometric-series-ratio-sixtyfour/claude-web-a0e447",
-          "sha": "bc84e989e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-sixtynine",
-          "branch": "queued/prove/geometric-series-ratio-sixtynine/claude-web-d7a655",
-          "sha": "c3d72748b",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
+          "date": "2026-06-24",
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-sixtyone",
@@ -290,111 +50,7 @@
           "sha": "90707d9b4",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-sixtyseven",
-          "branch": "queued/prove/geometric-series-ratio-sixtyseven/claude-web-67cef1",
-          "sha": "ecb3a535c",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-sixtysix",
-          "branch": "queued/prove/geometric-series-ratio-sixtysix/claude-web-b7abe1",
-          "sha": "12467ee10",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-sixtythree",
-          "branch": "queued/prove/geometric-series-ratio-sixtythree/claude-web-610bb1",
-          "sha": "868b6d0c8",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-sixtytwo",
-          "branch": "queued/prove/geometric-series-ratio-sixtytwo/claude-web-124bf1",
-          "sha": "60dfe86bc",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-ten",
-          "branch": "queued/prove/geometric-series-ratio-ten/claude-web-0fab3e",
-          "sha": "87067ef26",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-thirteen",
-          "branch": "queued/prove/geometric-series-ratio-thirteen/claude-web-e47842",
-          "sha": "e96305141",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-thirty",
-          "branch": "queued/prove/geometric-series-ratio-thirty/claude-web-cda25b",
-          "sha": "79d8e646a",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-thirtyeight",
-          "branch": "queued/prove/geometric-series-ratio-thirtyeight/claude-web-f69a66",
-          "sha": "016b9fd1d",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-thirtyfive",
-          "branch": "queued/prove/geometric-series-ratio-thirtyfive/claude-web-8efd54",
-          "sha": "0f59803bf",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-thirtyfour",
-          "branch": "queued/prove/geometric-series-ratio-thirtyfour/claude-web-c74283",
-          "sha": "86c51b6b8",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-thirtynine",
-          "branch": "queued/prove/geometric-series-ratio-thirtynine/claude-web-2edfb0",
-          "sha": "6971be1d7",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-thirtyone",
-          "branch": "queued/prove/geometric-series-ratio-thirtyone/claude-web-f9b52c",
-          "sha": "300f484bd",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "geometric-series-ratio-thirtyseven",
-          "branch": "queued/prove/geometric-series-ratio-thirtyseven/claude-web-04224e",
-          "sha": "287ff20fc",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-thirtysix",
@@ -402,7 +58,7 @@
           "sha": "4707f61cb",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-thirtythree",
@@ -410,7 +66,7 @@
           "sha": "0282eb5ce",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-thirtytwo",
@@ -418,7 +74,7 @@
           "sha": "fbbd485a1",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-three",
@@ -426,7 +82,7 @@
           "sha": "c95702f80",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-twelve",
@@ -434,7 +90,7 @@
           "sha": "2e5b004eb",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-twenty",
@@ -442,7 +98,7 @@
           "sha": "7bd29ba68",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-twentyeight",
@@ -450,7 +106,7 @@
           "sha": "52c2687ab",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "geometric-series-ratio-twentyfive",
