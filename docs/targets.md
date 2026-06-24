@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3934 proved · 3948 total prove-goals.**
+**11 open · 3937 proved · 3951 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3921,6 +3921,9 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-three-squares-zmod-sixteen-ne-seven` — For all integers a, b, c, the sum a ^ 2 + b ^ 2 + c ^ 2 is never congruent to 7 modulo 16. | proved | 1 | — | self-seeded power-residue identity family (three squares). | 7 is not a sum of three squares modulo 16; provable by a finite `ZMod 16` case check. |
 | `sum-triangular-squared-closed-form` — Fifteen times the sum of squares of consecutive products k^2(k+1)^2 equals n(n+1)(n+2)(3n^2+6n+1). | proved | 1 | — | #400 Identity Engine (ADR-043) — figurate-number family; promoted from candidate backlog (#610). | Fifteen times the sum of squares of consecutive products k^2(k+1)^2 equals n(n+1)(n+2)(3n^2+6n+1). Not a named mathlib lemma in this form. |
 | `sum-triple-product-eq` — Four times the sum of products of three consecutive integers k(k+1)(k+2) equals (n-1)n(n+1)(n+2). | proved | 1 | — | #400 Identity Engine (ADR-043) — figurate family. | Four times the sum of products of three consecutive integers k(k+1)(k+2) equals (n-1)n(n+1)(n+2). Not a named mathlib lemma in this form. |
+| `sum-two-cubes-zmod-eighteen-ne-fifteen` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 15 modulo 18. | proved | 1 | — | self-seeded power-residue identity family (two cubes). | 15 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
+| `sum-two-cubes-zmod-eighteen-ne-five` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 5 modulo 18. | proved | 3 | — | self-seeded power-residue identity family (two cubes). | 5 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
+| `sum-two-cubes-zmod-eighteen-ne-six` — For all integers a, b, the sum a ^ 3 + b ^ 3 is never congruent to 6 modulo 18. | proved | 3 | — | self-seeded power-residue identity family (two cubes). | 6 is not a sum of two cubes modulo 18; provable by a finite `ZMod 18` case check. |
 | `sum-two-cubes-zmod-nine-ne-four` — A sum of two integer cubes is never congruent to 4 modulo 9 (cubes mod 9 are 0,1,8). | proved | 3 | — | #400 Identity Engine (ADR-043) — modular-arith family. | A sum of two integer cubes is never congruent to 4 modulo 9 (cubes mod 9 are 0,1,8). Not a named mathlib lemma in this form. |
 | `sum-two-fourth-powers-zmod-sixteen-mem` — A sum of two integer fourth powers is congruent to 0, 1, or 2 modulo 16. | proved | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | A sum of two integer fourth powers is congruent to 0, 1, or 2 modulo 16. Not a named mathlib lemma in this form. |
 | `sum-two-k-add-one-mul-two-pow` — The sum over k<n of (2k+1)·2^k equals (2n−3)·2^n + 3. | proved | 1 | — | #400 Identity Engine (ADR-043) — closed-form-sums family. | The sum over k<n of (2k+1)·2^k equals (2n−3)·2^n + 3. Not a named mathlib lemma in this form. |
