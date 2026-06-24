@@ -1,6 +1,6 @@
 {
   "generated_by": "python3 -m tools.adr_index --write",
-  "count": 90,
+  "count": 91,
   "adrs": [
     {
       "id": "ADR-001",
@@ -721,6 +721,14 @@
       "status": "Proposed",
       "date": "2026-06-23",
       "file": "ADR-090-Periodic-Housekeeping.md"
+    },
+    {
+      "id": "ADR-091",
+      "number": 91,
+      "title": "Sharded Gate A Axiom Audit",
+      "status": "Proposed",
+      "date": "2026-06-24",
+      "file": "ADR-091-Sharded-Gate-A-Axiom-Audit.md"
     }
   ]
 }
