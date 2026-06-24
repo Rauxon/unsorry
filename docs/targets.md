@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3641 proved · 3655 total prove-goals.**
+**11 open · 3643 proved · 3657 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3158,6 +3158,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-720-pow-seventeen-sub-pow-five` — 720 divides n to the 17 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 720 divides n to the 17 minus n to the 5, for every integer n. Provable by a finite `ZMod 720` case check. |
 | `gzmod-720-pow-sixteen-sub-pow-four` — 720 divides n to the 16 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 720 divides n to the 16 minus n to the 4, for every integer n. Provable by a finite `ZMod 720` case check. |
 | `gzmod-720-pow-twenty-sub-pow-eight` — 720 divides n to the 20 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 720 divides n to the 20 minus n to the 8, for every integer n. Provable by a finite `ZMod 720` case check. |
+| `gzmod-76-pow-twentyone-sub-pow-three` — 76 divides n to the 21 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 76 divides n to the 21 minus n to the 3, for every integer n. Provable by a finite `ZMod 76` case check. |
+| `gzmod-76-pow-twentythree-sub-pow-five` — 76 divides n to the 23 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 76 divides n to the 23 minus n to the 5, for every integer n. Provable by a finite `ZMod 76` case check. |
 | `gzmod-80-pow-eight-sub-pow-four` — 80 divides n to the 8 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 80 divides n to the 8 minus n to the 4, for every integer n. Provable by a finite `ZMod 80` case check. |
 | `gzmod-80-pow-twelve-sub-pow-four` — 80 divides n to the 12 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 80 divides n to the 12 minus n to the 4, for every integer n. Provable by a finite `ZMod 80` case check. |
 | `gzmod-88-pow-eighteen-sub-pow-eight` — 88 divides n to the 18 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 88 divides n to the 18 minus n to the 8, for every integer n. Provable by a finite `ZMod 88` case check. |
