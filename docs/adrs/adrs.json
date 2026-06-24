@@ -1,6 +1,6 @@
 {
   "generated_by": "python3 -m tools.adr_index --write",
-  "count": 89,
+  "count": 90,
   "adrs": [
     {
       "id": "ADR-001",
@@ -681,6 +681,14 @@
       "status": "Accepted",
       "date": "2026-06-23",
       "file": "ADR-086-Seedkit-Fixture-Generation-Path.md"
+    },
+    {
+      "id": "ADR-086",
+      "number": 86,
+      "title": "Validator Role — Creditable, Distributed, Reproducible Verification",
+      "status": "Proposed",
+      "date": "2026-06-22",
+      "file": "ADR-086-Validator-Role-Creditable-Distributed-Verification.md"
     },
     {
       "id": "ADR-087",

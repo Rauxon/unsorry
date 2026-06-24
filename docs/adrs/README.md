@@ -2,7 +2,7 @@
 
 # Architecture Decision Records
 
-Index of the 89 ADRs in this directory, generated from the `ADR-*.md` headers and kept in sync by the `adr-index` workflow. See [ADR-001](ADR-001-Adopt-Development-Protocols.md) and [the development protocols](../protocols.md) for the WH(Y) format and process.
+Index of the 90 ADRs in this directory, generated from the `ADR-*.md` headers and kept in sync by the `adr-index` workflow. See [ADR-001](ADR-001-Adopt-Development-Protocols.md) and [the development protocols](../protocols.md) for the WH(Y) format and process.
 
 | ADR | Title | Status | Date |
 |-----|-------|--------|------|
@@ -91,6 +91,7 @@ Index of the 89 ADRs in this directory, generated from the `ADR-*.md` headers an
 | [ADR-084](ADR-084-Demand-Driven-Sourcing-Dedup.md) | Demand-Driven Sourcing Dedup — Skip When a Sourcing PR Is In Flight | Accepted | 2026-06-22 |
 | [ADR-085](ADR-085-Sourcer-Worktree-Isolation.md) | Isolate the Sourcer in a Per-Sourcer Worktree (ADR-042 parity) | Proposed | 2026-06-22 |
 | [ADR-086](ADR-086-Seedkit-Fixture-Generation-Path.md) | seedkit as a Documented Fixture-Generation Path Aligned to the Sourcing Paradigm | Accepted | 2026-06-23 |
+| [ADR-086](ADR-086-Validator-Role-Creditable-Distributed-Verification.md) | Validator Role — Creditable, Distributed, Reproducible Verification | Proposed | 2026-06-22 |
 | [ADR-087](ADR-087-Backfill-Historical-Seedkit-Records.md) | Backfill Historical seedkit Records to Honest Provenance & Difficulty | Accepted | 2026-06-23 |
 | [ADR-088](ADR-088-Extend-Difficulty-Backfill-To-Mac158f.md) | Extend the Honest-Difficulty Backfill to mac-158f Template Goals | Accepted | 2026-06-23 |
 | [ADR-089](ADR-089-Pages-Scheduled-Actions-Deploy.md) | Deploy GitHub Pages on a Schedule via Actions, Decoupled from the Push Firehose | Accepted | 2026-06-23 |
