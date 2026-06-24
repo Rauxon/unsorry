@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3718 proved · 3732 total prove-goals.**
+**11 open · 3719 proved · 3733 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2483,6 +2483,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-130-pow-nineteen-sub-pow-seven` — 130 divides n to the 19 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 130` case check. |
 | `gzmod-130-pow-seventeen-sub-pow-five` — 130 divides n to the 17 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 130` case check. |
 | `gzmod-130-pow-sixteen-sub-pow-four` — 130 divides n to the 16 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 130` case check. |
+| `gzmod-130-pow-twenty-sub-pow-eight` — 130 divides n to the 20 minus n to the 8, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 130` case check. |
 | `gzmod-132-pow-52-sub-pow-two` — 132 divides n to the 52 minus n to the 2, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 132 divides n to the 52 minus n to the 2, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-132-pow-eighteen-sub-pow-eight` — 132 divides n to the 18 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 132 divides n to the 18 minus n to the 8, for every integer n. Provable by a finite `ZMod 132` case check. |
 | `gzmod-132-pow-fifteen-sub-pow-five` — 132 divides n to the 15 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 132 divides n to the 15 minus n to the 5, for every integer n. Provable by a finite `ZMod 132` case check. |
