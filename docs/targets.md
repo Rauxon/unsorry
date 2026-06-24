@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**15 open · 3750 proved · 3768 total prove-goals.**
+**15 open · 3751 proved · 3769 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2923,6 +2923,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-252-pow-thirteen-sub-pow-seven` — 252 divides n to the 13 minus n to the 7, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 252 divides n to the 13 minus n to the 7, for every integer n. Provable by a finite `ZMod 252` case check. |
 | `gzmod-252-pow-twelve-sub-pow-six` — 252 divides n to the 12 minus n to the 6, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 252 divides n to the 12 minus n to the 6, for every integer n. Provable by a finite `ZMod 252` case check. |
 | `gzmod-252-pow-twenty-sub-pow-eight` — 252 divides n to the 20 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 252 divides n to the 20 minus n to the 8, for every integer n. Provable by a finite `ZMod 252` case check. |
+| `gzmod-252-pow-twentyone-sub-pow-three` — 252 divides n to the 21 minus n to the 3, for every integer n. | proved | 3 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 252` case check. |
 | `gzmod-255-pow-nineteen-sub-pow-three` — 255 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 255 divides n to the 19 minus n to the 3, for every integer n. Provable by a finite `ZMod 255` case check. |
 | `gzmod-255-pow-twenty-sub-pow-four` — 255 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 255 divides n to the 20 minus n to the 4, for every integer n. Provable by a finite `ZMod 255` case check. |
 | `gzmod-255-pow-twentyeight-sub-pow-twelve` — 255 divides n to the 28 minus n to the 12, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 255 divides n to the 28 minus n to the 12, for every integer n. Provable by a finite `ZMod 255` case check. |
