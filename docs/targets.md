@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**11 open · 3819 proved · 3833 total prove-goals.**
+**11 open · 3820 proved · 3834 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3387,6 +3387,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `odd-square-sum-coeff-seventeen` — A scaled odd-square-sum closed form (coefficient 17): three times the sum over k in range n of 17·(2k+1)² equals 17·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `odd-square-sum-coeff-seventy` — A scaled odd-square-sum closed form (coefficient 70): three times the sum over k in range n of 70·(2k+1)² equals 70·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `odd-square-sum-coeff-seventyeight` — A scaled odd-square-sum closed form (coefficient 78): three times the sum over k in range n of 78·(2k+1)² equals 78·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
+| `odd-square-sum-coeff-seventyfive` — A scaled odd-square-sum closed form (coefficient 75): three times the sum over k in range n of 75·(2k+1)² equals 75·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `odd-square-sum-coeff-seventyfour` — A scaled odd-square-sum closed form (coefficient 74): three times the sum over k in range n of 74·(2k+1)² equals 74·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `odd-square-sum-coeff-seventynine` — A scaled odd-square-sum closed form (coefficient 79): three times the sum over k in range n of 79·(2k+1)² equals 79·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
 | `odd-square-sum-coeff-seventyone` — A scaled odd-square-sum closed form (coefficient 71): three times the sum over k in range n of 71·(2k+1)² equals 71·n·(2n−1)·(2n+1). | proved | 1 | — | self-seeded odd-square-sum identity family. | sum of the first n odd squares; proved by induction on n. |
