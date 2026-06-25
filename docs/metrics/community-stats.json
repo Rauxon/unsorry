@@ -19,7 +19,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 1475,
+      "difficulty_points": 1479,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -30,7 +30,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1475
+      "verified_proofs": 1476
     },
     {
       "attempt_yield": null,
@@ -130,17 +130,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 3799,
+    "attributed_proofs": 3800,
     "historical_unknown_proofs": 308,
     "proof_run_coverage": 0.2062,
     "successful_proofs_with_run_telemetry": 847,
     "terminal_runs": 1189,
-    "verified_proofs": 4107
+    "verified_proofs": 4108
   },
   "credit": {
     "credited_contributors": 9,
-    "credited_proofs": 4107,
-    "explicit_solver_proofs": 3799,
+    "credited_proofs": 4108,
+    "explicit_solver_proofs": 3800,
     "inferred_git_proofs": 308,
     "uncredited_proofs": 0
   },
@@ -185,12 +185,12 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 1722,
-      "difficulty_points": 2049,
+      "credited_proofs": 1723,
+      "difficulty_points": 2053,
       "dispatch_points": 18.0,
       "dispatch_proofs": 20,
       "display_name": "@chat-bit-01",
-      "explicit_solver_proofs": 1475,
+      "explicit_solver_proofs": 1476,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -205,7 +205,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1722
+      "verified_proofs": 1723
     },
     {
       "attempt_yield": 0.2022,
@@ -218,8 +218,8 @@
       ],
       "credited_proofs": 191,
       "difficulty_points": 287,
-      "dispatch_points": 2301.3,
-      "dispatch_proofs": 2557,
+      "dispatch_points": 2302.2,
+      "dispatch_proofs": 2558,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 144,
       "failed_attempts": 288,
@@ -17929,18 +17929,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/cgbarlow.png?size=96",
-        "difficulty_points": 3070,
+        "difficulty_points": 3074,
         "display_name": "Chris Barlow",
         "git_author": "Chris Barlow <cgbarlow@gmail.com>",
         "git_author_name": "Chris Barlow",
         "github": "cgbarlow",
-        "index_files_added": 2748,
+        "index_files_added": 2749,
         "missing_solver_provenance": 47,
         "profile_url": "https://github.com/cgbarlow",
         "sample_add_commit": "d611b71faefc5535b868c5e071261469d62d6cf4",
         "sample_add_date": "2026-06-22",
         "solver_credit": false,
-        "solver_provenance_proofs": 2701
+        "solver_provenance_proofs": 2702
       },
       {
         "attribution_source": "git-add-author",
@@ -18071,8 +18071,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 4107,
-    "records": 4107,
+    "git_attributed_index_files": 4108,
+    "records": 4108,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -18245,6 +18245,22 @@
       "failures": 0,
       "median_solve_s": null,
       "p90_solve_s": null,
+      "provider_model": "claude / template-induction-ring",
+      "run_success_rate": null,
+      "runs": 0,
+      "solvers": 1,
+      "successes": 0,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0,
+      "verified_proofs": 1
+    },
+    {
+      "attempt_yield": null,
+      "attempts": 0,
+      "failed_attempts": 0,
+      "failures": 0,
+      "median_solve_s": null,
+      "p90_solve_s": null,
       "provider_model": "claude / unknown",
       "run_success_rate": null,
       "runs": 0,
@@ -18327,15 +18343,15 @@
       "1": 3610,
       "2": 266,
       "3": 213,
-      "4": 79,
+      "4": 80,
       "5": 1
     },
-    "goals": 4179,
+    "goals": 4180,
     "status_counts": {
       "archived": 2199,
       "blocked": 3,
       "open": 51,
-      "proved": 1917,
+      "proved": 1918,
       "translated": 9
     }
   },
