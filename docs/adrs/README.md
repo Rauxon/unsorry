@@ -2,7 +2,7 @@
 
 # Architecture Decision Records
 
-Index of the 98 ADRs in this directory, generated from the `ADR-*.md` headers and kept in sync by the `adr-index` workflow. See [ADR-001](ADR-001-Adopt-Development-Protocols.md) and [the development protocols](../protocols.md) for the WH(Y) format and process.
+Index of the 99 ADRs in this directory, generated from the `ADR-*.md` headers and kept in sync by the `adr-index` workflow. See [ADR-001](ADR-001-Adopt-Development-Protocols.md) and [the development protocols](../protocols.md) for the WH(Y) format and process.
 
 | ADR | Title | Status | Date |
 |-----|-------|--------|------|
@@ -103,4 +103,5 @@ Index of the 98 ADRs in this directory, generated from the `ADR-*.md` headers an
 | [ADR-095](ADR-095-Widen-Difficulty-Band-To-0-9.md) | Widen the goal `difficulty` band from 0–5 to 0–9 | Accepted | 2026-06-24 |
 | [ADR-096](ADR-096-Phase3-Scoped-Export-Independent-Checker.md) | Phase 3 — Declaration-Scoped Export + Independent Checker as a Kernel-Diverse Anchor | Proposed | 2026-06-25 |
 | [ADR-097](ADR-097-Auto-Install-Lake-Toolchain.md) | Client-Side Swarm Scripts Auto-Install the Lean Build Tool (`lake`) | Proposed | 2026-06-25 |
+| [ADR-097](ADR-097-Incremental-Leaderboard-Regen.md) | Per-Generation Leaderboard Regen (directory-scoped attribution + memoised loaders) | Accepted | 2026-06-25 |
 | [ADR-097](ADR-097-Phase3b-Nanoda-Replaces-Gate-A-Axiom-Audit.md) | Phase 3b — Replace the Gate A Axiom Audit with the nanoda Scoped-Export Check (p=1 preserved) | Proposed | 2026-06-25 |
