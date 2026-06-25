@@ -4,7 +4,7 @@
   id≜telescoping-sextic-sum-coeff-thirtyeight
   phase≜prove
   status≜proved
-  difficulty≜4
+  difficulty≜1
 }
 ⟦Σ:Source⟧{
   src≜backlog/telescoping-sextic-sum-coeff-thirtyeight.md
