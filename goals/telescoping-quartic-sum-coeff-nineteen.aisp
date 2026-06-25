@@ -4,7 +4,7 @@
   id≜telescoping-quartic-sum-coeff-nineteen
   phase≜prove
   status≜proved
-  difficulty≜4
+  difficulty≜1
 }
 ⟦Σ:Source⟧{
   src≜backlog/telescoping-quartic-sum-coeff-nineteen.md
