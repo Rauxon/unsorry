@@ -1,6 +1,6 @@
 {
   "generated_by": "python3 -m tools.adr_index --write",
-  "count": 97,
+  "count": 98,
   "adrs": [
     {
       "id": "ADR-001",
@@ -769,6 +769,14 @@
       "status": "Proposed",
       "date": "2026-06-25",
       "file": "ADR-096-Phase3-Scoped-Export-Independent-Checker.md"
+    },
+    {
+      "id": "ADR-097",
+      "number": 97,
+      "title": "Client-Side Swarm Scripts Auto-Install the Lean Build Tool (`lake`)",
+      "status": "Proposed",
+      "date": "2026-06-25",
+      "file": "ADR-097-Auto-Install-Lake-Toolchain.md"
     },
     {
       "id": "ADR-097",
