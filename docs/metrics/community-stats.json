@@ -19,7 +19,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 1506,
+      "difficulty_points": 1501,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -30,7 +30,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1500
+      "verified_proofs": 1501
     },
     {
       "attempt_yield": null,
@@ -130,17 +130,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 3824,
+    "attributed_proofs": 3825,
     "historical_unknown_proofs": 308,
-    "proof_run_coverage": 0.205,
+    "proof_run_coverage": 0.2049,
     "successful_proofs_with_run_telemetry": 847,
     "terminal_runs": 1189,
-    "verified_proofs": 4132
+    "verified_proofs": 4133
   },
   "credit": {
     "credited_contributors": 9,
-    "credited_proofs": 4132,
-    "explicit_solver_proofs": 3824,
+    "credited_proofs": 4133,
+    "explicit_solver_proofs": 3825,
     "inferred_git_proofs": 308,
     "uncredited_proofs": 0
   },
@@ -185,12 +185,12 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 1747,
-      "difficulty_points": 2080,
+      "credited_proofs": 1748,
+      "difficulty_points": 2075,
       "dispatch_points": 18.0,
       "dispatch_proofs": 20,
       "display_name": "@chat-bit-01",
-      "explicit_solver_proofs": 1500,
+      "explicit_solver_proofs": 1501,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -205,7 +205,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1747
+      "verified_proofs": 1748
     },
     {
       "attempt_yield": 0.2022,
@@ -218,8 +218,8 @@
       ],
       "credited_proofs": 191,
       "difficulty_points": 287,
-      "dispatch_points": 2323.8,
-      "dispatch_proofs": 2582,
+      "dispatch_points": 2324.7,
+      "dispatch_proofs": 2583,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 144,
       "failed_attempts": 288,
@@ -17929,18 +17929,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/cgbarlow.png?size=96",
-        "difficulty_points": 3101,
+        "difficulty_points": 3096,
         "display_name": "Chris Barlow",
         "git_author": "Chris Barlow <cgbarlow@gmail.com>",
         "git_author_name": "Chris Barlow",
         "github": "cgbarlow",
-        "index_files_added": 2773,
+        "index_files_added": 2774,
         "missing_solver_provenance": 47,
         "profile_url": "https://github.com/cgbarlow",
         "sample_add_commit": "d611b71faefc5535b868c5e071261469d62d6cf4",
         "sample_add_date": "2026-06-22",
         "solver_credit": false,
-        "solver_provenance_proofs": 2726
+        "solver_provenance_proofs": 2727
       },
       {
         "attribution_source": "git-add-author",
@@ -18071,8 +18071,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 4132,
-    "records": 4132,
+    "git_attributed_index_files": 4133,
+    "records": 4133,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -18108,7 +18108,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 860
+      "verified_proofs": 863
     },
     {
       "attempt_yield": null,
@@ -18245,39 +18245,7 @@
       "failures": 0,
       "median_solve_s": null,
       "p90_solve_s": null,
-      "provider_model": "claude / template-induction-ring",
-      "run_success_rate": null,
-      "runs": 0,
-      "solvers": 1,
-      "successes": 0,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 1
-    },
-    {
-      "attempt_yield": null,
-      "attempts": 0,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": null,
-      "p90_solve_s": null,
       "provider_model": "claude / unknown",
-      "run_success_rate": null,
-      "runs": 0,
-      "solvers": 1,
-      "successes": 0,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 1
-    },
-    {
-      "attempt_yield": null,
-      "attempts": 0,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": null,
-      "p90_solve_s": null,
-      "provider_model": "seedkit / template-induction-ring",
       "run_success_rate": null,
       "runs": 0,
       "solvers": 1,
@@ -18356,18 +18324,18 @@
   "queue": {
     "difficulty_counts": {
       "0": 10,
-      "1": 3633,
+      "1": 3636,
       "2": 266,
       "3": 213,
-      "4": 244,
+      "4": 242,
       "5": 1
     },
-    "goals": 4367,
+    "goals": 4368,
     "status_counts": {
       "archived": 2199,
       "blocked": 3,
       "open": 214,
-      "proved": 1942,
+      "proved": 1943,
       "translated": 9
     }
   },
