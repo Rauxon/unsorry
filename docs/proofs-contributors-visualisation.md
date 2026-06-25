@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**4075 goals — 56 open · 3 blocked · 9 translated · 1808 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**4077 goals — 56 open · 3 blocked · 9 translated · 1810 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1804 of 1808 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1806 of 1810 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
 
 ## Dependency lineage
 
@@ -96,7 +96,7 @@ flowchart LR
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 1794"])
+  cluster_proved(["proved · 1796"])
   class cluster_proved proved;
   cluster_archived(["archived · 2199"])
   class cluster_archived unknown;
@@ -1984,6 +1984,8 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`telescoping-cube-sum-coeff-fiftytwo`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-fiftytwo.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6221](https://github.com/agenticsnz/unsorry/pull/6221) | 2026-06-25 |
 | [`telescoping-cube-sum-coeff-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-five.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6222](https://github.com/agenticsnz/unsorry/pull/6222) | 2026-06-25 |
 | [`telescoping-cube-sum-coeff-forty`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-forty.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6223](https://github.com/agenticsnz/unsorry/pull/6223) | 2026-06-25 |
+| [`telescoping-cube-sum-coeff-fortyeight`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-fortyeight.lean) | proved | 4 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#6224](https://github.com/agenticsnz/unsorry/pull/6224) | 2026-06-25 |
+| [`telescoping-cube-sum-coeff-fortyfour`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-fortyfour.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6226](https://github.com/agenticsnz/unsorry/pull/6226) | 2026-06-25 |
 | [`abc-nine-le-sum-times-pairsum`](https://github.com/agenticsnz/unsorry/blob/main/goals/abc-nine-le-sum-times-pairsum.lean) | archived | 3 | claude-rmt-001 | — | chat-bit-01 | [#1148](https://github.com/agenticsnz/unsorry/pull/1148) | 2026-06-17 |
 | [`abstract-regular-polyhedron-classification`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-classification.lean) | archived | 3 | — | — | — | — | 2026-06-13 |
 | [`abstract-regular-polyhedron-realizable-iff`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-realizable-iff.lean) | archived | 4 | claude-web | — | chat-bit-01 | [#2171](https://github.com/agenticsnz/unsorry/pull/2171) | 2026-06-18 |
