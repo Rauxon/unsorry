@@ -12,6 +12,23 @@ swarm prover. It reuses the archive-package machinery (`tools/archive/apply.py::
 human code-owner review; §1 (`tools/intake/`) auto-merges on green gates. Delivered as
 separate feature branches (one logical change each, protocols §4).
 
+**Toolchain provisioning — no manual install (relied on by §1–§3).** The per-suite pin
+works because [elan](https://github.com/leanprover/elan) selects and **auto-installs the
+Lean toolchain per-directory from that directory's `lean-toolchain` on first `lake`/`lean`
+use** (ADR-002). The swarm guarantees elan itself is present via `ensure_lake`
+(`swarm/lib/ensure_lake.sh`, ADR-097 / SPEC-097-A) — installed non-interactively with
+`--default-toolchain none`, so no toolchain is pulled until a build runs. Consequently a
+suite `_verify/lean-toolchain` pinned to an *older* toolchain (e.g. `v4.24`) is installed
+on demand the first time any build runs in `_verify` — by ingestion (§1 `warm_cache`), by
+Gate A's `gate-a-benchmark` leg (§2), or by the swarm prover (§3) — coexisting with the
+repo's `v4.30` (elan keeps every pinned toolchain side by side). Two caveats: (a) elan
+auto-installs only the **toolchain** (the `lean`/`lake` binaries); the pin's **mathlib
+oleans** are a *separate* fetch via `lake exe cache get` (the FRO binary cache — the
+"N mathlib caches" cost in ADR-099). (b) `ensure_lake` needs `curl` to bootstrap elan if
+absent, and `ELAN_INIT_URL` overrides the *elan* installer for a mirror — but toolchain
+downloads still hit the Lean release server, so a fully air-gapped runner must have the
+suite pins pre-installed.
+
 ---
 
 ## 1. Ingestion under the suite pin — `tools/intake/`
