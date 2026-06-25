@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**212 open · 4223 proved · 4438 total prove-goals.**
+**212 open · 4224 proved · 4439 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4418,6 +4418,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-quintic-sum-coeff-thirtyfour` — A telescoping power-sum closed form (coefficient 34, exponent 5): the finite sum over k in range n equals 34·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `telescoping-quintic-sum-coeff-thirtynine` — A telescoping power-sum closed form (coefficient 39, exponent 5): the finite sum over k in range n equals 39·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `telescoping-quintic-sum-coeff-thirtyone` — A telescoping power-sum closed form (coefficient 31, exponent 5): the finite sum over k in range n equals 31·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
+| `telescoping-quintic-sum-coeff-thirtyseven` — A telescoping power-sum closed form (coefficient 37, exponent 5): the finite sum over k in range n equals 37·n^5. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `telescoping-quintic-sum-coeff-thirtysix` — A telescoping power-sum closed form (coefficient 36, exponent 5): the finite sum over k in range n equals 36·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `telescoping-quintic-sum-coeff-thirtythree` — A telescoping power-sum closed form (coefficient 33, exponent 5): the finite sum over k in range n equals 33·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `telescoping-quintic-sum-coeff-thirtytwo` — A telescoping power-sum closed form (coefficient 32, exponent 5): the finite sum over k in range n equals 32·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
