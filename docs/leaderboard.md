@@ -4,28 +4,28 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**4166 verified proofs · 3858 attributed · 308 historical/unknown · 1190 logged terminal runs.**
+**4168 verified proofs · 3860 attributed · 308 historical/unknown · 1191 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 848 |
+| Successful terminal runs | 849 |
 | Failed terminal runs | 342 |
 | Decomposed after failure | 20 |
 | Failed without decomposition | 322 |
 | Run success rate | 71.3% |
-| Provider attempts | 1280 |
+| Provider attempts | 1281 |
 | Failed attempts | 432 |
-| Attempt yield | 66.2% |
-| Recorded run time | 97h 10m |
+| Attempt yield | 66.3% |
+| Recorded run time | 97h 24m |
 | Median / p90 run time | 0s / 31m 18s |
-| Verified successes per recorded hour | 8.73 |
-| Proofs with run telemetry | 848 (20.4%) |
+| Verified successes per recorded hour | 8.72 |
+| Proofs with run telemetry | 849 (20.4%) |
 
 ## Work Queue
 
-**4401 goals · 2199 archived · 3 blocked · 213 open · 1977 proved · 9 translated.**
+**4403 goals · 2199 archived · 3 blocked · 212 open · 1980 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
@@ -34,7 +34,7 @@ Verified output comes from active `library/index` records plus archived index re
 | 1 | 987 | 835 | 84.6% | 214 | 0s |
 | 2 | 109 | 1 | 0.9% | 125 | 6m 54s |
 | 3 | 67 | 3 | 4.5% | 73 | 9m 24s |
-| 4 | 25 | 9 | 36.0% | 18 | 9m 29s |
+| 4 | 26 | 10 | 38.5% | 18 | 11m 45s |
 | 5 | 2 | 0 | 0.0% | 2 | 31m 25s |
 
 ## Unresolved Effort
@@ -58,8 +58,8 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 333 | 22.2% | 287 | 2354.4 | 268915 |
-| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 1781 | 1534 | 247 | 0 | — | 2108 | 18.0 | 257125 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 334 | 22.5% | 287 | 2356.2 | 269095 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 1783 | 1536 | 247 | 0 | — | 2116 | 18.0 | 257975 |
 | 3 | [@ohdearquant](https://github.com/ohdearquant) | 1897 | 1896 | 1 | 704 | 100.0% | 1900 | 0.0 | 237425 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 106 | 102 | 4 | 82 | 72.0% | 152 | 144.0 | 32250 |
@@ -70,9 +70,9 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 ## Attribution Notes
 
-**3858 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**3860 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 4166 of 4166 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 4168 of 4168 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -82,11 +82,12 @@ Git add-author attribution covers 4166 of 4166 proof index files. It is used onl
 | `lean / ring` | 896 | 0 | — | 0 | 1 | — | — |
 | `lean / decide` | 638 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
-| `claude / opus` | 59 | 42 | 54.8% | 59 | 5 | 9m 1s | 2.34 |
+| `claude / opus` | 59 | 43 | 55.8% | 59 | 5 | 9m 29s | 2.38 |
 | `codex / unknown` | 39 | 75 | 5.3% | 111 | 2 | 7m 35s | 0.35 |
 | `openai / leanstral-2603` | 21 | 201 | 0.0% | 205 | 1 | 6m 30s | 0.00 |
 | `gemini / gemini-3.1-pro-preview` | 7 | 2 | 0.0% | 6 | 1 | 10m 59s | 0.00 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
+| `seedkit / template-induction-ring` | 2 | 0 | — | 0 | 1 | — | — |
 | `claude / sonnet` | 1 | 0 | — | 0 | 1 | — | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
 | `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 47 | 0.0% | 47 | 1 | 31m 57s | 0.00 |
@@ -98,6 +99,7 @@ Git add-author attribution covers 4166 of 4166 proof index files. It is used onl
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
 | `2026-06-25T11:52:56Z` | `putnam-1962-b3` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 21m 39s |
+| `2026-06-25T11:30:14Z` | `putnam-1962-b2` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `proved` | 1 | 0 | 14m 29s |
 | `2026-06-25T06:19:26Z` | `putnam-1966-a3` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `proved` | 1 | 0 | 23m 39s |
 | `2026-06-25T05:45:54Z` | `putnam-1965-b5` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `proved` | 2 | 1 | 1h 7m |
 | `2026-06-25T04:31:58Z` | `putnam-1965-a1` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `proved` | 2 | 1 | 57m 9s |
@@ -116,7 +118,6 @@ Git add-author attribution covers 4166 of 4166 proof index files. It is used onl
 | `2026-06-21T10:04:27Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@perttu](https://github.com/perttu) | `codex / unknown` | `failed` | 3 | 3 | 6m 11s |
 | `2026-06-21T09:30:44Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@perttu](https://github.com/perttu) | `codex / unknown` | `failed` | 3 | 3 | 11m 1s |
 | `2026-06-21T09:13:06Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@perttu](https://github.com/perttu) | `claude / opus` | `failed` | 3 | 3 | 8m 34s |
-| `2026-06-21T09:02:39Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@perttu](https://github.com/perttu) | `claude / opus` | `failed` | 3 | 3 | 10m 48s |
 
 ## Interpretation
 

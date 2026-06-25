@@ -59,6 +59,17 @@
       },
       {
         "contributor": "cgbarlow",
+        "ended": "2026-06-25T11:30:14Z",
+        "goal": "putnam-1962-b2",
+        "model": "claude/opus",
+        "outcome": "proved",
+        "passed": true,
+        "run_id": "20260625t113014387527z-80dffdf1",
+        "solve_s": 869,
+        "verification": "kernel"
+      },
+      {
+        "contributor": "cgbarlow",
         "ended": "2026-06-25T11:52:56Z",
         "goal": "putnam-1962-b3",
         "model": "claude/opus",
