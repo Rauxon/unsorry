@@ -4,15 +4,130 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**51 open · 4138 proved · 4192 total prove-goals.**
+**214 open · 4138 proved · 4355 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
+| `aime-1983-p9` — minif2f-v1 benchmark obligation aime_1983_p9 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1984-p15` — minif2f-v1 benchmark obligation aime_1984_p15 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1984-p5` — minif2f-v1 benchmark obligation aime_1984_p5 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1987-p8` — minif2f-v1 benchmark obligation aime_1987_p8 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1988-p3` — minif2f-v1 benchmark obligation aime_1988_p3 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1988-p4` — minif2f-v1 benchmark obligation aime_1988_p4 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1990-p2` — minif2f-v1 benchmark obligation aime_1990_p2 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1991-p1` — minif2f-v1 benchmark obligation aime_1991_p1 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1991-p6` — minif2f-v1 benchmark obligation aime_1991_p6 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1994-p4` — minif2f-v1 benchmark obligation aime_1994_p4 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1996-p5` — minif2f-v1 benchmark obligation aime_1996_p5 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aime-1997-p11` — minif2f-v1 benchmark obligation aime_1997_p11 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aimei-2000-p7` — minif2f-v1 benchmark obligation aimeI_2000_p7 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aimeii-2001-p3` — minif2f-v1 benchmark obligation aimeII_2001_p3 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `aimeii-2020-p6` — minif2f-v1 benchmark obligation aimeII_2020_p6 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-2complexrootspoly-xsqp49eqxp7itxpn7i` — minif2f-v1 benchmark obligation algebra_2complexrootspoly_xsqp49eqxp7itxpn7i | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-2rootsintpoly-am10tap11eqasqpam110` — minif2f-v1 benchmark obligation algebra_2rootsintpoly_am10tap11eqasqpam110 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-2rootspoly-apatapbeq2asqp2ab` — minif2f-v1 benchmark obligation algebra_2rootspoly_apatapbeq2asqp2ab | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-2varlineareq-xpeeq7-2xpeeq3-eeq11-xeqn4` — minif2f-v1 benchmark obligation algebra_2varlineareq_xpeeq7_2xpeeq3_eeq11_xeqn4 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-3rootspoly-amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta` — minif2f-v1 benchmark obligation algebra_3rootspoly_amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-amgm-faxinrrp2msqrt2geq2mxm1div2x` — minif2f-v1 benchmark obligation algebra_amgm_faxinrrp2msqrt2geq2mxm1div2x | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-amgm-prod1toneq1-sum1tongeqn` — minif2f-v1 benchmark obligation algebra_amgm_prod1toneq1_sum1tongeqn | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-amgm-sqrtxymulxmyeqxpy-xpygeq4` — minif2f-v1 benchmark obligation algebra_amgm_sqrtxymulxmyeqxpy_xpygeq4 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-amgm-sumasqdivbsqgeqsumbdiva` — minif2f-v1 benchmark obligation algebra_amgm_sumasqdivbsqgeqsumbdiva | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-apb4leq8ta4pb4` — minif2f-v1 benchmark obligation algebra_apb4leq8ta4pb4 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-binomnegdiscrineq-10alt28asqp1` — minif2f-v1 benchmark obligation algebra_binomnegdiscrineq_10alt28asqp1 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-manipexpr-2erprsqpesqeqnrpnesq` — minif2f-v1 benchmark obligation algebra_manipexpr_2erprsqpesqeqnrpnesq | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-manipexpr-apbeq2cceqiacpbceqm2` — minif2f-v1 benchmark obligation algebra_manipexpr_apbeq2cceqiacpbceqm2 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-sqineq-2at2pclta2c2p41pc` — minif2f-v1 benchmark obligation algebra_sqineq_2at2pclta2c2p41pc | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-sqineq-2unitcircatblt1` — minif2f-v1 benchmark obligation algebra_sqineq_2unitcircatblt1 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-sqineq-36azm9asqle36zsq` — minif2f-v1 benchmark obligation algebra_sqineq_36azm9asqle36zsq | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-sqineq-4bap1lt4bsqpap1sq` — minif2f-v1 benchmark obligation algebra_sqineq_4bap1lt4bsqpap1sq | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `algebra-xmysqpymzsqpzmxsqeqxyz-xpypzp6dvdx3y3z3` — minif2f-v1 benchmark obligation algebra_xmysqpymzsqpzmxsqeqxyz_xpypzp6dvdx3y3z3 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12-2000-p11` — minif2f-v1 benchmark obligation amc12_2000_p11 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12-2000-p15` — minif2f-v1 benchmark obligation amc12_2000_p15 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12-2000-p5` — minif2f-v1 benchmark obligation amc12_2000_p5 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12-2001-p2` — minif2f-v1 benchmark obligation amc12_2001_p2 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12-2001-p9` — minif2f-v1 benchmark obligation amc12_2001_p9 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2002-p1` — minif2f-v1 benchmark obligation amc12a_2002_p1 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2002-p12` — minif2f-v1 benchmark obligation amc12a_2002_p12 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2002-p21` — minif2f-v1 benchmark obligation amc12a_2002_p21 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2003-p1` — minif2f-v1 benchmark obligation amc12a_2003_p1 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2003-p24` — minif2f-v1 benchmark obligation amc12a_2003_p24 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2003-p25` — minif2f-v1 benchmark obligation amc12a_2003_p25 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2008-p15` — minif2f-v1 benchmark obligation amc12a_2008_p15 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2008-p2` — minif2f-v1 benchmark obligation amc12a_2008_p2 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2008-p4` — minif2f-v1 benchmark obligation amc12a_2008_p4 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2008-p8` — minif2f-v1 benchmark obligation amc12a_2008_p8 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2009-p15` — minif2f-v1 benchmark obligation amc12a_2009_p15 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `amc12a-2009-p2` — minif2f-v1 benchmark obligation amc12a_2009_p2 | open | 4 | — | minif2f-v1 benchmark suite | github.com/yangky11/miniF2F-lean4 |
+| `apmo-2023-p1` — combibench-v1 benchmark obligation apmo_2023_p1 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `balticway-2015-p7` — combibench-v1 benchmark obligation balticway_2015_p7 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch1-10` — combibench-v1 benchmark obligation brualdi_ch1_10 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch1-16` — combibench-v1 benchmark obligation brualdi_ch1_16 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch1-5` — combibench-v1 benchmark obligation brualdi_ch1_5 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch10-31` — combibench-v1 benchmark obligation brualdi_ch10_31 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch10-34` — combibench-v1 benchmark obligation brualdi_ch10_34 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch10-60` — combibench-v1 benchmark obligation brualdi_ch10_60 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch11-20` — combibench-v1 benchmark obligation brualdi_ch11_20 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch11-5` — combibench-v1 benchmark obligation brualdi_ch11_5 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch11-59` — combibench-v1 benchmark obligation brualdi_ch11_59 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch12-34` — combibench-v1 benchmark obligation brualdi_ch12_34 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch12-62` — combibench-v1 benchmark obligation brualdi_ch12_62 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch13-10` — combibench-v1 benchmark obligation brualdi_ch13_10 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch13-6` — combibench-v1 benchmark obligation brualdi_ch13_6 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch13-9` — combibench-v1 benchmark obligation brualdi_ch13_9 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch14-26` — combibench-v1 benchmark obligation brualdi_ch14_26 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch14-33` — combibench-v1 benchmark obligation brualdi_ch14_33 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch14-45` — combibench-v1 benchmark obligation brualdi_ch14_45 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch2-11` — combibench-v1 benchmark obligation brualdi_ch2_11 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch2-36` — combibench-v1 benchmark obligation brualdi_ch2_36 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch2-6` — combibench-v1 benchmark obligation brualdi_ch2_6 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch3-18` — combibench-v1 benchmark obligation brualdi_ch3_18 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch3-27` — combibench-v1 benchmark obligation brualdi_ch3_27 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch3-4` — combibench-v1 benchmark obligation brualdi_ch3_4 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch4-59` — combibench-v1 benchmark obligation brualdi_ch4_59 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch4-9` — combibench-v1 benchmark obligation brualdi_ch4_9 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch5-26` — combibench-v1 benchmark obligation brualdi_ch5_26 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch5-51` — combibench-v1 benchmark obligation brualdi_ch5_51 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch5-9` — combibench-v1 benchmark obligation brualdi_ch5_9 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch6-11` — combibench-v1 benchmark obligation brualdi_ch6_11 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch6-21` — combibench-v1 benchmark obligation brualdi_ch6_21 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch6-9` — combibench-v1 benchmark obligation brualdi_ch6_9 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch7-15` — combibench-v1 benchmark obligation brualdi_ch7_15 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch7-27` — combibench-v1 benchmark obligation brualdi_ch7_27 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch7-7` — combibench-v1 benchmark obligation brualdi_ch7_7 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch8-30` — combibench-v1 benchmark obligation brualdi_ch8_30 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch8-6` — combibench-v1 benchmark obligation brualdi_ch8_6 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch8-9` — combibench-v1 benchmark obligation brualdi_ch8_9 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch9-11` — combibench-v1 benchmark obligation brualdi_ch9_11 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch9-13` — combibench-v1 benchmark obligation brualdi_ch9_13 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `brualdi-ch9-8` — combibench-v1 benchmark obligation brualdi_ch9_8 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `bxmo-2017-p2` — combibench-v1 benchmark obligation bxmo_2017_p2 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `egmo-2022-p5` — combibench-v1 benchmark obligation egmo_2022_p5 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `hackmath-1` — combibench-v1 benchmark obligation hackmath_1 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `hackmath-10` — combibench-v1 benchmark obligation hackmath_10 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `hackmath-2` — combibench-v1 benchmark obligation hackmath_2 | open | 4 | — | combibench-v1 benchmark suite | github.com/MoonshotAI/CombiBench |
+| `imo2020p2` — imo-v1 benchmark obligation IMO2020P2 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2020p3` — imo-v1 benchmark obligation IMO2020P3 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2020p5` — imo-v1 benchmark obligation IMO2020P5 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2021p1` — imo-v1 benchmark obligation IMO2021P1 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2021p2` — imo-v1 benchmark obligation IMO2021P2 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2021p5` — imo-v1 benchmark obligation IMO2021P5 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2021p6` — imo-v1 benchmark obligation IMO2021P6 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2022p5` — imo-v1 benchmark obligation IMO2022P5 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2023p3` — imo-v1 benchmark obligation IMO2023P3 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2023p6` — imo-v1 benchmark obligation IMO2023P6 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2024p1` — imo-v1 benchmark obligation IMO2024P1 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2024p2` — imo-v1 benchmark obligation IMO2024P2 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2025p1` — imo-v1 benchmark obligation IMO2025P1 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2025p3` — imo-v1 benchmark obligation IMO2025P3 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2025p4` — imo-v1 benchmark obligation IMO2025P4 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2025p5` — imo-v1 benchmark obligation IMO2025P5 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
+| `imo2025p6` — imo-v1 benchmark obligation IMO2025P6 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
 | `n4-plus-one-factor-over-sqrt-shift` — The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Sophie-Germain-type factorisation gives that 2n²-2n+1 divides 4n⁴+1. Not a named mathlib lemma in this form. |
 | `putnam-1962-a1` — putnam-v1 benchmark obligation putnam_1962_a1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1962-a2` — putnam-v1 benchmark obligation putnam_1962_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1962-a3` — putnam-v1 benchmark obligation putnam_1962_a3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1962-a4` — putnam-v1 benchmark obligation putnam_1962_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-a5` — putnam-v1 benchmark obligation putnam_1962_a5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1962-a6` — putnam-v1 benchmark obligation putnam_1962_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1962-b1` — putnam-v1 benchmark obligation putnam_1962_b1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1962-b2` — putnam-v1 benchmark obligation putnam_1962_b2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
@@ -20,6 +135,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1962-b5` — putnam-v1 benchmark obligation putnam_1962_b5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1962-b6` — putnam-v1 benchmark obligation putnam_1962_b6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1963-a2` — putnam-v1 benchmark obligation putnam_1963_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1963-a3` — putnam-v1 benchmark obligation putnam_1963_a3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1963-a4` — putnam-v1 benchmark obligation putnam_1963_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1963-a6` — putnam-v1 benchmark obligation putnam_1963_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1963-b2` — putnam-v1 benchmark obligation putnam_1963_b2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
@@ -27,17 +143,20 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1963-b5` — putnam-v1 benchmark obligation putnam_1963_b5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1963-b6` — putnam-v1 benchmark obligation putnam_1963_b6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1964-a1` — putnam-v1 benchmark obligation putnam_1964_a1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-a2` — putnam-v1 benchmark obligation putnam_1964_a2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1964-a3` — putnam-v1 benchmark obligation putnam_1964_a3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1964-a5` — putnam-v1 benchmark obligation putnam_1964_a5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1964-a6` — putnam-v1 benchmark obligation putnam_1964_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1964-b1` — putnam-v1 benchmark obligation putnam_1964_b1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1964-b2` — putnam-v1 benchmark obligation putnam_1964_b2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1964-b3` — putnam-v1 benchmark obligation putnam_1964_b3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1964-b4` — putnam-v1 benchmark obligation putnam_1964_b4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1964-b5` — putnam-v1 benchmark obligation putnam_1964_b5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1964-b6` — putnam-v1 benchmark obligation putnam_1964_b6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-a2` — putnam-v1 benchmark obligation putnam_1965_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-a3` — putnam-v1 benchmark obligation putnam_1965_a3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-a4` — putnam-v1 benchmark obligation putnam_1965_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-a5` — putnam-v1 benchmark obligation putnam_1965_a5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1965-a6` — putnam-v1 benchmark obligation putnam_1965_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-b1` — putnam-v1 benchmark obligation putnam_1965_b1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-b2` — putnam-v1 benchmark obligation putnam_1965_b2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
@@ -49,6 +168,50 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1966-a4` — putnam-v1 benchmark obligation putnam_1966_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a5` — putnam-v1 benchmark obligation putnam_1966_a5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a6` — putnam-v1 benchmark obligation putnam_1966_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1966-b1` — putnam-v1 benchmark obligation putnam_1966_b1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1966-b2` — putnam-v1 benchmark obligation putnam_1966_b2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1966-b3` — putnam-v1 benchmark obligation putnam_1966_b3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1966-b4` — putnam-v1 benchmark obligation putnam_1966_b4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1966-b6` — putnam-v1 benchmark obligation putnam_1966_b6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-a1` — putnam-v1 benchmark obligation putnam_1967_a1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-a2` — putnam-v1 benchmark obligation putnam_1967_a2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-a3` — putnam-v1 benchmark obligation putnam_1967_a3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-a4` — putnam-v1 benchmark obligation putnam_1967_a4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-a5` — putnam-v1 benchmark obligation putnam_1967_a5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-a6` — putnam-v1 benchmark obligation putnam_1967_a6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-b1` — putnam-v1 benchmark obligation putnam_1967_b1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-b2` — putnam-v1 benchmark obligation putnam_1967_b2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-b3` — putnam-v1 benchmark obligation putnam_1967_b3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-b4` — putnam-v1 benchmark obligation putnam_1967_b4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-b5` — putnam-v1 benchmark obligation putnam_1967_b5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-b6` — putnam-v1 benchmark obligation putnam_1967_b6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-a1` — putnam-v1 benchmark obligation putnam_1968_a1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-a2` — putnam-v1 benchmark obligation putnam_1968_a2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-a3` — putnam-v1 benchmark obligation putnam_1968_a3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-a4` — putnam-v1 benchmark obligation putnam_1968_a4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-a5` — putnam-v1 benchmark obligation putnam_1968_a5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-a6` — putnam-v1 benchmark obligation putnam_1968_a6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-b1` — putnam-v1 benchmark obligation putnam_1968_b1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-b2` — putnam-v1 benchmark obligation putnam_1968_b2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-b4` — putnam-v1 benchmark obligation putnam_1968_b4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-b5` — putnam-v1 benchmark obligation putnam_1968_b5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1968-b6` — putnam-v1 benchmark obligation putnam_1968_b6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-a1` — putnam-v1 benchmark obligation putnam_1969_a1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-a2` — putnam-v1 benchmark obligation putnam_1969_a2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-a4` — putnam-v1 benchmark obligation putnam_1969_a4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-a5` — putnam-v1 benchmark obligation putnam_1969_a5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-a6` — putnam-v1 benchmark obligation putnam_1969_a6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-b1` — putnam-v1 benchmark obligation putnam_1969_b1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-b2` — putnam-v1 benchmark obligation putnam_1969_b2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-b3` — putnam-v1 benchmark obligation putnam_1969_b3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-b4` — putnam-v1 benchmark obligation putnam_1969_b4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-b5` — putnam-v1 benchmark obligation putnam_1969_b5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-b6` — putnam-v1 benchmark obligation putnam_1969_b6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1970-a1` — putnam-v1 benchmark obligation putnam_1970_a1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1970-a2` — putnam-v1 benchmark obligation putnam_1970_a2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1970-a3` — putnam-v1 benchmark obligation putnam_1970_a3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1970-a4` — putnam-v1 benchmark obligation putnam_1970_a4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1970-b1` — putnam-v1 benchmark obligation putnam_1970_b1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `quartic-x4-plus-x2-plus-one-dvd-by-minus-factor` — The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The Aurifeuillian quartic x^4+x^2+1 is divisible by the quadratic factor x^2-x+1. Not a named mathlib lemma in this form. |
 | `sextic-x6-plus-x3-plus-one-composite-shift` — The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. | open | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The ninth cyclotomic polynomial n⁶+n³+1 divides n⁹-1. Not a named mathlib lemma in this form. |
 | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` — sq-add-sq-eq-three-mul-sq-s4-s3-s2 | open | 1 | — | — | — |
@@ -4176,7 +4339,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-quartic-sum-coeff-thirtyfour` — A telescoping power-sum closed form (coefficient 34, exponent 4): the finite sum over k in range n equals 34·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `telescoping-quartic-sum-coeff-thirtyone` — A telescoping power-sum closed form (coefficient 31, exponent 4): the finite sum over k in range n equals 31·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `telescoping-quartic-sum-coeff-thirtythree` — A telescoping power-sum closed form (coefficient 33, exponent 4): the finite sum over k in range n equals 33·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
-| `telescoping-quartic-sum-coeff-thirtytwo` — A telescoping power-sum closed form (coefficient 32, exponent 4): the finite sum over k in range n equals 32·n^4. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
+| `telescoping-quartic-sum-coeff-thirtytwo` — A telescoping power-sum closed form (coefficient 32, exponent 4): the finite sum over k in range n equals 32·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
 | `thirty-dvd-pow-five-sub-self` — For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `three-cubes-div-nine` — For every natural n, 9 divides n^3 + (n+1)^3 + (n+2)^3; the sum of any three consecutive cubes is divisible by 9. | proved | 2 | — | classic identities | Classic introductory number-theory / olympiad exercise; Engel, Problem-Solving Strategies (divisibility chapter); Sierpiński, Elementary Theory of Numbers (PWN/North-Holland, 1988). |
