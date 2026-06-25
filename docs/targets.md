@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**214 open · 4340 proved · 4559 total prove-goals.**
+**217 open · 4342 proved · 4565 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -159,7 +159,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1965-b2` — putnam-v1 benchmark obligation putnam_1965_b2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-b3` — putnam-v1 benchmark obligation putnam_1965_b3 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-b4` — putnam-v1 benchmark obligation putnam_1965_b4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
-| `putnam-1965-b6` — putnam-v1 benchmark obligation putnam_1965_b6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1965-b6-s1` — putnam-1965-b6-s1 | open | 1 | — | — | — |
+| `putnam-1965-b6-s2` — putnam-1965-b6-s2 | open | 1 | — | — | — |
+| `putnam-1965-b6-s3` — putnam-1965-b6-s3 | open | 1 | — | — | — |
+| `putnam-1965-b6-s4` — putnam-1965-b6-s4 | open | 1 | — | — | — |
 | `putnam-1966-a1` — putnam-v1 benchmark obligation putnam_1966_a1 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a2` — putnam-v1 benchmark obligation putnam_1966_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a4` — putnam-v1 benchmark obligation putnam_1966_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
@@ -222,6 +225,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-squares-zmod-eight-ne-six` — A sum of two integer squares is never congruent to 6 modulo 8. | open | 3 | — | #400 Identity Engine (ADR-043) — modular-arith family. | A sum of two integer squares is never congruent to 6 modulo 8. Not a named mathlib lemma in this form. |
 | `sum-two-squares-zmod-four-ne-three` — A sum of two integer squares is never congruent to 3 modulo 4. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | A sum of two integer squares is never congruent to 3 modulo 4. Not a named mathlib lemma in this form. |
 | `three-fourth-powers-zmod-sixteen-mem` — A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. Not a named mathlib lemma in this form. |
+| `putnam-1965-b6` — putnam-v1 benchmark obligation putnam_1965_b6 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-b1` — putnam-v1 benchmark obligation putnam_1966_b1 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1967-a5` — putnam-v1 benchmark obligation putnam_1967_a5 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | blocked | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
@@ -2861,7 +2865,9 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-2-pow-seven-sub-pow-three` — 2 divides n to the 7 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-six-sub-pow-four` — 2 divides n to the 6 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-six-sub-pow-three` — 2 divides n to the 6 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
+| `gzmod-2-pow-ten-sub-pow-three` — 2 divides n to the 10 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-thirteen-sub-pow-three` — 2 divides n to the 13 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
+| `gzmod-2-pow-twelve-sub-pow-three` — 2 divides n to the 12 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-204-pow-nineteen-sub-pow-three` — 204 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twenty-sub-pow-four` — 204 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
 | `gzmod-204-pow-twentyfive-sub-pow-nine` — 204 divides n to the 25 minus n to the 9, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
