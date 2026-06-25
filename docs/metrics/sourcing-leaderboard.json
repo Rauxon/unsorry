@@ -11,8 +11,8 @@
       "latest_sourced": "2026-06-25",
       "open": 213,
       "profile_url": "https://github.com/cgbarlow",
-      "proved": 1898,
-      "sourced_goals": 3620,
+      "proved": 1901,
+      "sourced_goals": 3623,
       "sourcer": "cgbarlow"
     },
     {
@@ -88,7 +88,7 @@
   ],
   "totals": {
     "difficulty_points": 5962,
-    "sourced_goals": 4547,
+    "sourced_goals": 4550,
     "sourcers": 6
   }
 }
