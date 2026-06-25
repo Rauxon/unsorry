@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**212 open · 4239 proved · 4454 total prove-goals.**
+**215 open · 4241 proved · 4460 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -166,7 +166,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1966-a4` — putnam-v1 benchmark obligation putnam_1966_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a5` — putnam-v1 benchmark obligation putnam_1966_a5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a6` — putnam-v1 benchmark obligation putnam_1966_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
-| `putnam-1966-b1` — putnam-v1 benchmark obligation putnam_1966_b1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1966-b1-s1` — putnam-1966-b1-s1 | open | 1 | — | — | — |
+| `putnam-1966-b1-s2` — putnam-1966-b1-s2 | open | 1 | — | — | — |
+| `putnam-1966-b1-s3` — putnam-1966-b1-s3 | open | 1 | — | — | — |
+| `putnam-1966-b1-s4` — putnam-1966-b1-s4 | open | 1 | — | — | — |
 | `putnam-1966-b2` — putnam-v1 benchmark obligation putnam_1966_b2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1966-b3` — putnam-v1 benchmark obligation putnam_1966_b3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1966-b4` — putnam-v1 benchmark obligation putnam_1966_b4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
@@ -220,6 +223,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-squares-zmod-eight-ne-six` — A sum of two integer squares is never congruent to 6 modulo 8. | open | 3 | — | #400 Identity Engine (ADR-043) — modular-arith family. | A sum of two integer squares is never congruent to 6 modulo 8. Not a named mathlib lemma in this form. |
 | `sum-two-squares-zmod-four-ne-three` — A sum of two integer squares is never congruent to 3 modulo 4. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | A sum of two integer squares is never congruent to 3 modulo 4. Not a named mathlib lemma in this form. |
 | `three-fourth-powers-zmod-sixteen-mem` — A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. Not a named mathlib lemma in this form. |
+| `putnam-1966-b1` — putnam-v1 benchmark obligation putnam_1966_b1 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | blocked | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | blocked | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s3` — sq-add-sq-eq-three-mul-sq-s4-s3 | blocked | 1 | — | — | — |
@@ -4438,7 +4442,9 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-quintic-sum-coeff-two` — A telescoping power-sum closed form (coefficient 2, exponent 5): the finite sum over k in range n equals 2·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-eight` — A telescoping power-sum closed form (coefficient 8, exponent 6): the finite sum over k in range n equals 8·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-eighteen` — A telescoping power-sum closed form (coefficient 18, exponent 6): the finite sum over k in range n equals 18·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
+| `telescoping-sextic-sum-coeff-eighty` — A telescoping power-sum closed form (coefficient 80, exponent 6): the finite sum over k in range n equals 80·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-eleven` — A telescoping power-sum closed form (coefficient 11, exponent 6): the finite sum over k in range n equals 11·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
+| `telescoping-sextic-sum-coeff-fiftyeight` — A telescoping power-sum closed form (coefficient 58, exponent 6): the finite sum over k in range n equals 58·n^6. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
 | `thirty-dvd-pow-five-sub-self` — For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `three-cubes-div-nine` — For every natural n, 9 divides n^3 + (n+1)^3 + (n+2)^3; the sum of any three consecutive cubes is divisible by 9. | proved | 2 | — | classic identities | Classic introductory number-theory / olympiad exercise; Engel, Problem-Solving Strategies (divisibility chapter); Sierpiński, Elementary Theory of Numbers (PWN/North-Holland, 1988). |
