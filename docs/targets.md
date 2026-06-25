@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**214 open · 4349 proved · 4569 total prove-goals.**
+**214 open · 4351 proved · 4571 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4554,6 +4554,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-square-sum-coeff-fiftynine` — A telescoping power-sum closed form (coefficient 59, exponent 2): the finite sum over k in range n equals 59·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-fiftyone` — A telescoping power-sum closed form (coefficient 51, exponent 2): the finite sum over k in range n equals 51·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-fiftyseven` — A telescoping power-sum closed form (coefficient 57, exponent 2): the finite sum over k in range n equals 57·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
+| `telescoping-square-sum-coeff-fiftysix` — A telescoping power-sum closed form (coefficient 56, exponent 2): the finite sum over k in range n equals 56·n^2. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
+| `telescoping-square-sum-coeff-fiftythree` — A telescoping power-sum closed form (coefficient 53, exponent 2): the finite sum over k in range n equals 53·n^2. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
 | `thirty-dvd-pow-five-sub-self` — For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `three-cubes-div-nine` — For every natural n, 9 divides n^3 + (n+1)^3 + (n+2)^3; the sum of any three consecutive cubes is divisible by 9. | proved | 2 | — | classic identities | Classic introductory number-theory / olympiad exercise; Engel, Problem-Solving Strategies (divisibility chapter); Sierpiński, Elementary Theory of Numbers (PWN/North-Holland, 1988). |
