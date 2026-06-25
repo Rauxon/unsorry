@@ -4,7 +4,7 @@
   id≜telescoping-quintic-sum-coeff-twenty
   phase≜prove
   status≜proved
-  difficulty≜4
+  difficulty≜1
 }
 ⟦Σ:Source⟧{
   src≜backlog/telescoping-quintic-sum-coeff-twenty.md
