@@ -1,0 +1,14 @@
+𝔸5.1.decomp.putnam-1962-b5.rauxon-3@2026-06-25
+γ≔unsorry.decomposition
+⟦Ω:Decomp⟧{parent≜putnam-1962-b5; agent≜rauxon-3}
+⟦Σ:Subs⟧{
+  sub₁≜⟨id≜putnam-1962-b5-s1,sha≜d9be1ce9c3489364c00a95e5246f0a139496f984e33e9ce44c486583a4d4740d⟩
+  sub₂≜⟨id≜putnam-1962-b5-s2,sha≜371c78807fb07eaf492c3525a3307a189b37139acde223cbe2d4da8e1e42aadd⟩
+  sub₃≜⟨id≜putnam-1962-b5-s3,sha≜8fdd490a488b1235f82af2fd950f94cee45df3b6457458c807be7bd0ce91249b⟩
+  sub₄≜⟨id≜putnam-1962-b5-s4,sha≜cbfc8dee96e7ae5fc761679eceb0ac1ffa477ef4e91ed5d4cae6839a64287d1c⟩
+}
+⟦Γ:Edges⟧{
+  Post(sub₁)⊆Pre(parent); Post(sub₂)⊆Pre(parent); Post(sub₃)⊆Pre(parent); Post(sub₄)⊆Pre(parent)
+}
+⟦Λ:Requeue⟧{∀s∈subs:goal(s)≫status≔open}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
