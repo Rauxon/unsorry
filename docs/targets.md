@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**214 open · 4332 proved · 4551 total prove-goals.**
+**214 open · 4333 proved · 4552 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2851,6 +2851,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-195-pow-twentythree-sub-pow-eleven` — 195 divides n to the 23 minus n to the 11, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 195 divides n to the 23 minus n to the 11, for every integer n. Provable by a finite `ZMod 195` case check. |
 | `gzmod-195-pow-twentytwo-sub-pow-ten` — 195 divides n to the 22 minus n to the 10, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 195 divides n to the 22 minus n to the 10, for every integer n. Provable by a finite `ZMod 195` case check. |
 | `gzmod-2-pow-eight-sub-pow-four` — 2 divides n to the 8 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
+| `gzmod-2-pow-eight-sub-pow-three` — 2 divides n to the 8 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-eleven-sub-pow-three` — 2 divides n to the 11 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-fifteen-sub-pow-three` — 2 divides n to the 15 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-five-sub-pow-three` — 2 divides n to the 5 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
