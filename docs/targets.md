@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**218 open · 4273 proved · 4496 total prove-goals.**
+**218 open · 4274 proved · 4497 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4479,6 +4479,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-sextic-sum-coeff-seventeen` — A telescoping power-sum closed form (coefficient 17, exponent 6): the finite sum over k in range n equals 17·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-seventy` — A telescoping power-sum closed form (coefficient 70, exponent 6): the finite sum over k in range n equals 70·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-seventyeight` — A telescoping power-sum closed form (coefficient 78, exponent 6): the finite sum over k in range n equals 78·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
+| `telescoping-sextic-sum-coeff-seventyfour` — A telescoping power-sum closed form (coefficient 74, exponent 6): the finite sum over k in range n equals 74·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-seventynine` — A telescoping power-sum closed form (coefficient 79, exponent 6): the finite sum over k in range n equals 79·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-seventyone` — A telescoping power-sum closed form (coefficient 71, exponent 6): the finite sum over k in range n equals 71·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
