@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**51 open · 4119 proved · 4173 total prove-goals.**
+**51 open · 4123 proved · 4177 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4158,6 +4158,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-quartic-sum-coeff-seventytwo` — A telescoping power-sum closed form (coefficient 72, exponent 4): the finite sum over k in range n equals 72·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `telescoping-quartic-sum-coeff-six` — A telescoping power-sum closed form (coefficient 6, exponent 4): the finite sum over k in range n equals 6·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `telescoping-quartic-sum-coeff-sixteen` — A telescoping power-sum closed form (coefficient 16, exponent 4): the finite sum over k in range n equals 16·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
+| `telescoping-quartic-sum-coeff-sixty` — A telescoping power-sum closed form (coefficient 60, exponent 4): the finite sum over k in range n equals 60·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
+| `telescoping-quartic-sum-coeff-sixtyeight` — A telescoping power-sum closed form (coefficient 68, exponent 4): the finite sum over k in range n equals 68·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
+| `telescoping-quartic-sum-coeff-sixtyfive` — A telescoping power-sum closed form (coefficient 65, exponent 4): the finite sum over k in range n equals 65·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
+| `telescoping-quartic-sum-coeff-sixtyfour` — A telescoping power-sum closed form (coefficient 64, exponent 4): the finite sum over k in range n equals 64·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
 | `thirty-dvd-pow-five-sub-self` — For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `three-cubes-div-nine` — For every natural n, 9 divides n^3 + (n+1)^3 + (n+2)^3; the sum of any three consecutive cubes is divisible by 9. | proved | 2 | — | classic identities | Classic introductory number-theory / olympiad exercise; Engel, Problem-Solving Strategies (divisibility chapter); Sierpiński, Elementary Theory of Numbers (PWN/North-Holland, 1988). |
