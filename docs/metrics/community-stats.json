@@ -19,7 +19,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 1487,
+      "difficulty_points": 1491,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -30,7 +30,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1487
+      "verified_proofs": 1488
     },
     {
       "attempt_yield": null,
@@ -130,17 +130,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 3811,
+    "attributed_proofs": 3812,
     "historical_unknown_proofs": 308,
     "proof_run_coverage": 0.2056,
     "successful_proofs_with_run_telemetry": 847,
     "terminal_runs": 1189,
-    "verified_proofs": 4119
+    "verified_proofs": 4120
   },
   "credit": {
     "credited_contributors": 9,
-    "credited_proofs": 4119,
-    "explicit_solver_proofs": 3811,
+    "credited_proofs": 4120,
+    "explicit_solver_proofs": 3812,
     "inferred_git_proofs": 308,
     "uncredited_proofs": 0
   },
@@ -185,12 +185,12 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 1734,
-      "difficulty_points": 2061,
+      "credited_proofs": 1735,
+      "difficulty_points": 2065,
       "dispatch_points": 18.0,
       "dispatch_proofs": 20,
       "display_name": "@chat-bit-01",
-      "explicit_solver_proofs": 1487,
+      "explicit_solver_proofs": 1488,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -205,7 +205,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1734
+      "verified_proofs": 1735
     },
     {
       "attempt_yield": 0.2022,
@@ -218,8 +218,8 @@
       ],
       "credited_proofs": 191,
       "difficulty_points": 287,
-      "dispatch_points": 2312.1,
-      "dispatch_proofs": 2569,
+      "dispatch_points": 2313.0,
+      "dispatch_proofs": 2570,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 144,
       "failed_attempts": 288,
@@ -17929,18 +17929,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/cgbarlow.png?size=96",
-        "difficulty_points": 3082,
+        "difficulty_points": 3086,
         "display_name": "Chris Barlow",
         "git_author": "Chris Barlow <cgbarlow@gmail.com>",
         "git_author_name": "Chris Barlow",
         "github": "cgbarlow",
-        "index_files_added": 2760,
+        "index_files_added": 2761,
         "missing_solver_provenance": 47,
         "profile_url": "https://github.com/cgbarlow",
         "sample_add_commit": "d611b71faefc5535b868c5e071261469d62d6cf4",
         "sample_add_date": "2026-06-22",
         "solver_credit": false,
-        "solver_provenance_proofs": 2713
+        "solver_provenance_proofs": 2714
       },
       {
         "attribution_source": "git-add-author",
@@ -18071,8 +18071,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 4119,
-    "records": 4119,
+    "git_attributed_index_files": 4120,
+    "records": 4120,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -18255,6 +18255,22 @@
       "verified_proofs": 1
     },
     {
+      "attempt_yield": null,
+      "attempts": 0,
+      "failed_attempts": 0,
+      "failures": 0,
+      "median_solve_s": null,
+      "p90_solve_s": null,
+      "provider_model": "seedkit / template-induction-ring",
+      "run_success_rate": null,
+      "runs": 0,
+      "solvers": 1,
+      "successes": 0,
+      "successes_per_recorded_hour": null,
+      "total_solve_s": 0,
+      "verified_proofs": 1
+    },
+    {
       "attempt_yield": 0.0,
       "attempts": 47,
       "failed_attempts": 47,
@@ -18327,15 +18343,15 @@
       "1": 3622,
       "2": 266,
       "3": 213,
-      "4": 79,
+      "4": 80,
       "5": 1
     },
-    "goals": 4191,
+    "goals": 4192,
     "status_counts": {
       "archived": 2199,
       "blocked": 3,
       "open": 51,
-      "proved": 1929,
+      "proved": 1930,
       "translated": 9
     }
   },
