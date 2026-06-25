@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 799,
-    "waiting": 782,
-    "in_flight": 17,
-    "distinct_goals": 782,
+    "queued_submissions": 745,
+    "waiting": 730,
+    "in_flight": 15,
+    "distinct_goals": 745,
     "solvers": 3
   },
   "solvers": [
@@ -15,10 +15,10 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 453,
-      "waiting": 441,
-      "in_flight": 12,
-      "distinct_goals": 436,
+      "submissions": 399,
+      "waiting": 389,
+      "in_flight": 10,
+      "distinct_goals": 399,
       "queued": [
         {
           "goal": "faulhaber-quartic-sum-coeff-seventyfour",
@@ -53,444 +53,12 @@
           "state": "in-flight"
         },
         {
-          "goal": "sum-two-cubes-zmod-seven-ne-three",
-          "branch": "queued/prove/sum-two-cubes-zmod-seven-ne-three/claude-web-12d416",
-          "sha": "77032e45a",
-          "model": "template-zmod-decide",
-          "date": "2026-06-25",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-two-cubes-zmod-seven-ne-three",
-          "branch": "queued/prove/sum-two-cubes-zmod-seven-ne-three/claude-web-1931a7",
-          "sha": "5b7c4c89c",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-cubes-zmod-seven-ne-three",
-          "branch": "queued/prove/sum-two-cubes-zmod-seven-ne-three/claude-web-1c855b",
-          "sha": "62528e5c9",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-seven",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-seven/claude-web-073322",
-          "sha": "e0f66ed60",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-seven",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-seven/claude-web-45af9c",
-          "sha": "731a60679",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-seven",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-seven/claude-web-a3132c",
-          "sha": "6627970a7",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-seven",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-seven/claude-web-b1935d",
-          "sha": "d75dc0c1a",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-three/claude-web-5a980d",
-          "sha": "e8a989706",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-three/claude-web-d2d1dd",
-          "sha": "349d4cfbf",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-three/claude-web-d8c869",
-          "sha": "75425d161",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eight-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-eight-ne-three/claude-web-ed8c5c",
-          "sha": "2cdaaa4b7",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eighteen-ne-six",
-          "branch": "queued/prove/sum-two-squares-zmod-eighteen-ne-six/claude-web-06764b",
-          "sha": "d9c39e3ba",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eighteen-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-eighteen-ne-three/claude-web-9e225e",
-          "sha": "93d8659bf",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-two-squares-zmod-eighteen-ne-twelve",
-          "branch": "queued/prove/sum-two-squares-zmod-eighteen-ne-twelve/claude-web-ab1c3a",
-          "sha": "928b41244",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-two-squares-zmod-nine-ne-six",
-          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-six/claude-web-3ca0e9",
-          "sha": "eff268532",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-two-squares-zmod-nine-ne-six",
-          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-six/claude-web-82808e",
-          "sha": "3c5cbd42b",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-nine-ne-six",
-          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-six/claude-web-d3eac3",
-          "sha": "4155d214f",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-nine-ne-six",
-          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-six/claude-web-f0f0b5",
-          "sha": "2d6469734",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-nine-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-three/claude-web-494206",
-          "sha": "7873ba358",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-two-squares-zmod-nine-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-three/claude-web-5420be",
-          "sha": "28ea30513",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-nine-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-three/claude-web-a250ea",
-          "sha": "def2aafd8",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-nine-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-nine-ne-three/claude-web-ac3d1a",
-          "sha": "27e7c2431",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-sixteen-ne-eleven",
-          "branch": "queued/prove/sum-two-squares-zmod-sixteen-ne-eleven/claude-web-a49fcf",
-          "sha": "3d55e6779",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-sixteen-ne-fifteen",
-          "branch": "queued/prove/sum-two-squares-zmod-sixteen-ne-fifteen/claude-web-eb0118",
-          "sha": "a4f75a4f7",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-sixteen-ne-fourteen",
-          "branch": "queued/prove/sum-two-squares-zmod-sixteen-ne-fourteen/claude-web-686d30",
-          "sha": "1d5f8689e",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-sixteen-ne-seven",
-          "branch": "queued/prove/sum-two-squares-zmod-sixteen-ne-seven/claude-web-f900cc",
-          "sha": "c13c48671",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-sixteen-ne-six",
-          "branch": "queued/prove/sum-two-squares-zmod-sixteen-ne-six/claude-web-6e032f",
-          "sha": "2d8da841c",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-sixteen-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-sixteen-ne-three/claude-web-83b4fc",
-          "sha": "4e81edfa4",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-sixteen-ne-twelve",
-          "branch": "queued/prove/sum-two-squares-zmod-sixteen-ne-twelve/claude-web-f07857",
-          "sha": "58aaca4dc",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twelve-ne-eleven",
-          "branch": "queued/prove/sum-two-squares-zmod-twelve-ne-eleven/claude-web-c2ae4f",
-          "sha": "01526e90f",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twelve-ne-seven",
-          "branch": "queued/prove/sum-two-squares-zmod-twelve-ne-seven/claude-web-ddbaf9",
-          "sha": "b2878115f",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twelve-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-twelve-ne-three/claude-web-2bb123",
-          "sha": "c72e023bf",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twelve-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-twelve-ne-three/claude-web-7053c6",
-          "sha": "ddd82c075",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twelve-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-twelve-ne-three/claude-web-a6a644",
-          "sha": "d724bf1ea",
-          "model": "template-zmod-decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twelve-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-twelve-ne-three/claude-web-b72089",
-          "sha": "61c8ee16e",
-          "model": "decide",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twenty-ne-eleven",
-          "branch": "queued/prove/sum-two-squares-zmod-twenty-ne-eleven/claude-web-84ea1f",
-          "sha": "fb255636e",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twenty-ne-fifteen",
-          "branch": "queued/prove/sum-two-squares-zmod-twenty-ne-fifteen/claude-web-253571",
-          "sha": "7ca269b7c",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twenty-ne-nineteen",
-          "branch": "queued/prove/sum-two-squares-zmod-twenty-ne-nineteen/claude-web-333a7c",
-          "sha": "ba52d9058",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twenty-ne-seven",
-          "branch": "queued/prove/sum-two-squares-zmod-twenty-ne-seven/claude-web-16e936",
-          "sha": "7e882eeea",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twenty-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-twenty-ne-three/claude-web-2f5e15",
-          "sha": "00d02e3c2",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twentyfour-ne-eleven",
-          "branch": "queued/prove/sum-two-squares-zmod-twentyfour-ne-eleven/claude-web-46ed07",
-          "sha": "c661b88e9",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twentyfour-ne-fifteen",
-          "branch": "queued/prove/sum-two-squares-zmod-twentyfour-ne-fifteen/claude-web-c0a5a0",
-          "sha": "45cb32048",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twentyfour-ne-fourteen",
-          "branch": "queued/prove/sum-two-squares-zmod-twentyfour-ne-fourteen/claude-web-2add0f",
-          "sha": "84796a0ac",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twentyfour-ne-nineteen",
-          "branch": "queued/prove/sum-two-squares-zmod-twentyfour-ne-nineteen/claude-web-07d2dc",
-          "sha": "abbcdaba1",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twentyfour-ne-seven",
-          "branch": "queued/prove/sum-two-squares-zmod-twentyfour-ne-seven/claude-web-609729",
-          "sha": "16f9b8555",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twentyfour-ne-six",
-          "branch": "queued/prove/sum-two-squares-zmod-twentyfour-ne-six/claude-web-5dc375",
-          "sha": "34fd335ef",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twentyfour-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-twentyfour-ne-three/claude-web-133208",
-          "sha": "70fa1fd0b",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twentyfour-ne-twentythree",
-          "branch": "queued/prove/sum-two-squares-zmod-twentyfour-ne-twentythree/claude-web-923d97",
-          "sha": "3aef56342",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "sum-two-squares-zmod-twentyfour-ne-twentytwo",
-          "branch": "queued/prove/sum-two-squares-zmod-twentyfour-ne-twentytwo/claude-web-7be23e",
-          "sha": "29d2206c3",
-          "model": "decide",
-          "date": "2026-06-24",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-cube-sum-coeff-eight",
-          "branch": "queued/prove/telescoping-cube-sum-coeff-eight/claude-web-25082d",
-          "sha": "1e2ff5a69",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-cube-sum-coeff-eighteen",
-          "branch": "queued/prove/telescoping-cube-sum-coeff-eighteen/claude-web-f9c016",
-          "sha": "91ac560c6",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-cube-sum-coeff-eighty",
-          "branch": "queued/prove/telescoping-cube-sum-coeff-eighty/claude-web-c6b3d6",
-          "sha": "d405b5d9a",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-cube-sum-coeff-eleven",
-          "branch": "queued/prove/telescoping-cube-sum-coeff-eleven/claude-web-f286c3",
-          "sha": "41b386b19",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-cube-sum-coeff-fifteen",
-          "branch": "queued/prove/telescoping-cube-sum-coeff-fifteen/claude-web-12c3dd",
-          "sha": "231ed82b4",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
           "goal": "telescoping-cube-sum-coeff-fifty",
           "branch": "queued/prove/telescoping-cube-sum-coeff-fifty/claude-web-f53ea1",
           "sha": "6e13817b6",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-cube-sum-coeff-fiftyeight",
@@ -498,7 +66,7 @@
           "sha": "cfe2f8b04",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-cube-sum-coeff-fiftyfive",
@@ -506,7 +74,7 @@
           "sha": "f5baffc5c",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-cube-sum-coeff-fiftyfour",
@@ -514,7 +82,7 @@
           "sha": "9af99c476",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-cube-sum-coeff-fiftynine",
@@ -522,7 +90,7 @@
           "sha": "52d6dbb4e",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-cube-sum-coeff-fiftyone",
@@ -530,7 +98,7 @@
           "sha": "708d77b1f",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-cube-sum-coeff-fiftyseven",
