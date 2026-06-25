@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**214 open · 4338 proved · 4557 total prove-goals.**
+**214 open · 4339 proved · 4558 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2858,6 +2858,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-2-pow-fourteen-sub-pow-three` — 2 divides n to the 14 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-nine-sub-pow-three` — 2 divides n to the 9 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-seven-sub-pow-four` — 2 divides n to the 7 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
+| `gzmod-2-pow-six-sub-pow-four` — 2 divides n to the 6 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-six-sub-pow-three` — 2 divides n to the 6 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-2-pow-thirteen-sub-pow-three` — 2 divides n to the 13 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 2` case check. |
 | `gzmod-204-pow-nineteen-sub-pow-three` — 204 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 204` case check. |
