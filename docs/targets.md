@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**215 open · 4257 proved · 4476 total prove-goals.**
+**218 open · 4259 proved · 4482 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -178,7 +178,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1967-a2` — putnam-v1 benchmark obligation putnam_1967_a2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1967-a3` — putnam-v1 benchmark obligation putnam_1967_a3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1967-a4` — putnam-v1 benchmark obligation putnam_1967_a4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
-| `putnam-1967-a5` — putnam-v1 benchmark obligation putnam_1967_a5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-a5-s1` — putnam-1967-a5-s1 | open | 1 | — | — | — |
+| `putnam-1967-a5-s2` — putnam-1967-a5-s2 | open | 1 | — | — | — |
+| `putnam-1967-a5-s3` — putnam-1967-a5-s3 | open | 1 | — | — | — |
+| `putnam-1967-a5-s4` — putnam-1967-a5-s4 | open | 1 | — | — | — |
 | `putnam-1967-a6` — putnam-v1 benchmark obligation putnam_1967_a6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1967-b1` — putnam-v1 benchmark obligation putnam_1967_b1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1967-b2` — putnam-v1 benchmark obligation putnam_1967_b2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
@@ -224,6 +227,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-squares-zmod-four-ne-three` — A sum of two integer squares is never congruent to 3 modulo 4. | open | 2 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | A sum of two integer squares is never congruent to 3 modulo 4. Not a named mathlib lemma in this form. |
 | `three-fourth-powers-zmod-sixteen-mem` — A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. Not a named mathlib lemma in this form. |
 | `putnam-1966-b1` — putnam-v1 benchmark obligation putnam_1966_b1 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1967-a5` — putnam-v1 benchmark obligation putnam_1967_a5 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | blocked | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | blocked | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s3` — sq-add-sq-eq-three-mul-sq-s4-s3 | blocked | 1 | — | — | — |
@@ -4445,11 +4449,12 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-sextic-sum-coeff-eighty` — A telescoping power-sum closed form (coefficient 80, exponent 6): the finite sum over k in range n equals 80·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-eleven` — A telescoping power-sum closed form (coefficient 11, exponent 6): the finite sum over k in range n equals 11·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fifteen` — A telescoping power-sum closed form (coefficient 15, exponent 6): the finite sum over k in range n equals 15·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
+| `telescoping-sextic-sum-coeff-fifty` — A telescoping power-sum closed form (coefficient 50, exponent 6): the finite sum over k in range n equals 50·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fiftyeight` — A telescoping power-sum closed form (coefficient 58, exponent 6): the finite sum over k in range n equals 58·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fiftyfive` — A telescoping power-sum closed form (coefficient 55, exponent 6): the finite sum over k in range n equals 55·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fiftyfour` — A telescoping power-sum closed form (coefficient 54, exponent 6): the finite sum over k in range n equals 54·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fiftynine` — A telescoping power-sum closed form (coefficient 59, exponent 6): the finite sum over k in range n equals 59·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
-| `telescoping-sextic-sum-coeff-fiftyone` — A telescoping power-sum closed form (coefficient 51, exponent 6): the finite sum over k in range n equals 51·n^6. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
+| `telescoping-sextic-sum-coeff-fiftyone` — A telescoping power-sum closed form (coefficient 51, exponent 6): the finite sum over k in range n equals 51·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fiftyseven` — A telescoping power-sum closed form (coefficient 57, exponent 6): the finite sum over k in range n equals 57·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fiftysix` — A telescoping power-sum closed form (coefficient 56, exponent 6): the finite sum over k in range n equals 56·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fiftythree` — A telescoping power-sum closed form (coefficient 53, exponent 6): the finite sum over k in range n equals 53·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
@@ -4459,7 +4464,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-sextic-sum-coeff-fortyeight` — A telescoping power-sum closed form (coefficient 48, exponent 6): the finite sum over k in range n equals 48·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fortyfive` — A telescoping power-sum closed form (coefficient 45, exponent 6): the finite sum over k in range n equals 45·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fortyfour` — A telescoping power-sum closed form (coefficient 44, exponent 6): the finite sum over k in range n equals 44·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
-| `telescoping-sextic-sum-coeff-fortynine` — A telescoping power-sum closed form (coefficient 49, exponent 6): the finite sum over k in range n equals 49·n^6. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
+| `telescoping-sextic-sum-coeff-fortynine` — A telescoping power-sum closed form (coefficient 49, exponent 6): the finite sum over k in range n equals 49·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
+| `telescoping-sextic-sum-coeff-fortyseven` — A telescoping power-sum closed form (coefficient 47, exponent 6): the finite sum over k in range n equals 47·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-fortythree` — A telescoping power-sum closed form (coefficient 43, exponent 6): the finite sum over k in range n equals 43·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
 | `thirty-dvd-pow-five-sub-self` — For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
