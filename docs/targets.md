@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**56 open · 3979 proved · 4038 total prove-goals.**
+**56 open · 3980 proved · 4039 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4015,6 +4015,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-squares-zmod-twenty-ne-eleven` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 11 modulo 20. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 11 is not a sum of two squares modulo 20; provable by a finite `ZMod 20` case check. |
 | `sum-two-squares-zmod-twenty-ne-fifteen` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 15 modulo 20. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 15 is not a sum of two squares modulo 20; provable by a finite `ZMod 20` case check. |
 | `sum-two-squares-zmod-twenty-ne-nineteen` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 19 modulo 20. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 19 is not a sum of two squares modulo 20; provable by a finite `ZMod 20` case check. |
+| `sum-two-squares-zmod-twenty-ne-three` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 3 modulo 20. | proved | 3 | — | self-seeded power-residue identity family (two squares). | 3 is not a sum of two squares modulo 20; provable by a finite `ZMod 20` case check. |
 | `sum-two-squares-zmod-twentyfour-ne-eleven` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 11 modulo 24. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 11 is not a sum of two squares modulo 24; provable by a finite `ZMod 24` case check. |
 | `sum-vandermonde-diagonal-eq-choose` — The diagonal Vandermonde convolution, summing C(n,k) times C(m,k) over k, equals C(n+m,n). | proved | 3 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | The diagonal Vandermonde convolution, summing C(n,k) times C(m,k) over k, equals C(n+m,n). Not a named mathlib lemma in this form. |
 | `sumsq-ge-ab-plus-bc` — The sum of three squares dominates the two adjacent cross terms ab+bc. | proved | 1 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The sum of three squares dominates the two adjacent cross terms ab+bc. Not a named mathlib lemma in this form. |
