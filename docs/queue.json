@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 486,
-    "waiting": 470,
-    "in_flight": 16,
-    "distinct_goals": 486,
+    "queued_submissions": 453,
+    "waiting": 439,
+    "in_flight": 14,
+    "distinct_goals": 453,
     "solvers": 3
   },
   "solvers": [
@@ -2787,10 +2787,10 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 140,
-      "waiting": 129,
-      "in_flight": 11,
-      "distinct_goals": 140,
+      "submissions": 107,
+      "waiting": 98,
+      "in_flight": 9,
+      "distinct_goals": 107,
       "queued": [
         {
           "goal": "faulhaber-quartic-sum-coeff-seventyfour",
@@ -2825,276 +2825,12 @@
           "state": "in-flight"
         },
         {
-          "goal": "telescoping-sextic-sum-coeff-fortysix",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-fortysix/claude-web-e21da8",
-          "sha": "2e1123da1",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-fortytwo",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-fortytwo/claude-web-da2efc",
-          "sha": "92b475994",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-four",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-four/claude-web-e4cc29",
-          "sha": "37b2dd1c6",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-fourteen",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-fourteen/claude-web-230fdb",
-          "sha": "21dbe7f63",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-nine",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-nine/claude-web-910978",
-          "sha": "be2c18202",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-nineteen",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-nineteen/claude-web-6e92b7",
-          "sha": "bb6a761e9",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-one",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-one/claude-web-e153a0",
-          "sha": "af622a94e",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seven",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seven/claude-web-7b50b5",
-          "sha": "ae34589d2",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventeen",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventeen/claude-web-6e8856",
-          "sha": "01047456b",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventy",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventy/claude-web-fe963a",
-          "sha": "48bba9254",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventyeight",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventyeight/claude-web-e89c5d",
-          "sha": "ed9386b5f",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventyfive",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventyfive/claude-web-a72daa",
-          "sha": "542bae0d3",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventyfour",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventyfour/claude-web-0b4a68",
-          "sha": "09fda1091",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventynine",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventynine/claude-web-ed9da1",
-          "sha": "2a277678c",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventyone",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventyone/claude-web-03f035",
-          "sha": "7d0c406f3",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventyseven",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventyseven/claude-web-7bb3bb",
-          "sha": "a2ffbf60b",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventysix",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventysix/claude-web-174938",
-          "sha": "6f47cb032",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventythree",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventythree/claude-web-d8bbde",
-          "sha": "07206c260",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-seventytwo",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-seventytwo/claude-web-08df59",
-          "sha": "92ab251f4",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-six",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-six/claude-web-def407",
-          "sha": "08b68ab34",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixteen",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixteen/claude-web-3ed3c9",
-          "sha": "21bfc990b",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixty",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixty/claude-web-ca1fb6",
-          "sha": "2634f620b",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixtyeight",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixtyeight/claude-web-1eb936",
-          "sha": "42f3a02be",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixtyfive",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixtyfive/claude-web-bd79db",
-          "sha": "2020a5586",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixtyfour",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixtyfour/claude-web-a366f5",
-          "sha": "73b8035e8",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixtynine",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixtynine/claude-web-5a2b19",
-          "sha": "4d417e34a",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixtyone",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixtyone/claude-web-f62427",
-          "sha": "60d339637",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixtyseven",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixtyseven/claude-web-6cf55a",
-          "sha": "a8f54e091",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixtysix",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixtysix/claude-web-ef7eff",
-          "sha": "21c3e43b1",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixtythree",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixtythree/claude-web-b1a5f9",
-          "sha": "1be471faa",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-sixtytwo",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-sixtytwo/claude-web-41e3bf",
-          "sha": "6c3d66217",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-ten",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-ten/claude-web-cb4b30",
-          "sha": "eae22b330",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-sextic-sum-coeff-thirteen",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-thirteen/claude-web-4c8e69",
-          "sha": "870711ba7",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
           "goal": "telescoping-sextic-sum-coeff-thirty",
           "branch": "queued/prove/telescoping-sextic-sum-coeff-thirty/claude-web-ee4e8f",
           "sha": "c992e44b8",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-sextic-sum-coeff-thirtyeight",
@@ -3102,7 +2838,7 @@
           "sha": "8166fc9e4",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-sextic-sum-coeff-thirtyfive",
@@ -3110,7 +2846,7 @@
           "sha": "1889ba807",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-sextic-sum-coeff-thirtyfour",
@@ -3118,7 +2854,7 @@
           "sha": "b9c6cd6e0",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-sextic-sum-coeff-thirtynine",
@@ -3126,7 +2862,7 @@
           "sha": "e1c41f623",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-sextic-sum-coeff-thirtyone",
