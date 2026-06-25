@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**56 open · 3969 proved · 4028 total prove-goals.**
+**56 open · 3971 proved · 4030 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4003,9 +4003,11 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-squares-zmod-nine-ne-six` — For all integers a, b, the sum a² + b² is never congruent to 6 modulo 9. | proved | 1 | — | self-seeded quadratic-residue identity family. | 6 is not a sum of two squares modulo 9; provable by a finite `ZMod 9` case check. |
 | `sum-two-squares-zmod-nine-ne-three` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 3 modulo 9. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 3 is not a sum of two squares modulo 9; provable by a finite `ZMod 9` case check. |
 | `sum-two-squares-zmod-sixteen-ne-eleven` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 11 modulo 16. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 11 is not a sum of two squares modulo 16; provable by a finite `ZMod 16` case check. |
-| `sum-two-squares-zmod-sixteen-ne-fifteen` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 15 modulo 16. | proved | 3 | — | self-seeded power-residue identity family (two squares). | 15 is not a sum of two squares modulo 16; provable by a finite `ZMod 16` case check. |
+| `sum-two-squares-zmod-sixteen-ne-fifteen` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 15 modulo 16. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 15 is not a sum of two squares modulo 16; provable by a finite `ZMod 16` case check. |
 | `sum-two-squares-zmod-sixteen-ne-fourteen` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 14 modulo 16. | proved | 1 | — | self-seeded power-residue identity family (two squares). | 14 is not a sum of two squares modulo 16; provable by a finite `ZMod 16` case check. |
-| `sum-two-squares-zmod-sixteen-ne-seven` — For all integers a, b, the sum a² + b² is never congruent to 7 modulo 16. | proved | 2 | — | self-seeded quadratic-residue identity family. | 7 is not a sum of two squares modulo 16; provable by a finite `ZMod 16` case check. |
+| `sum-two-squares-zmod-sixteen-ne-seven` — For all integers a, b, the sum a² + b² is never congruent to 7 modulo 16. | proved | 1 | — | self-seeded quadratic-residue identity family. | 7 is not a sum of two squares modulo 16; provable by a finite `ZMod 16` case check. |
+| `sum-two-squares-zmod-sixteen-ne-three` — For all integers a, b, the sum a² + b² is never congruent to 3 modulo 16. | proved | 1 | — | self-seeded quadratic-residue identity family. | 3 is not a sum of two squares modulo 16; provable by a finite `ZMod 16` case check. |
+| `sum-two-squares-zmod-sixteen-ne-twelve` — For all integers a, b, the sum a ^ 2 + b ^ 2 is never congruent to 12 modulo 16. | proved | 3 | — | self-seeded power-residue identity family (two squares). | 12 is not a sum of two squares modulo 16; provable by a finite `ZMod 16` case check. |
 | `sum-vandermonde-diagonal-eq-choose` — The diagonal Vandermonde convolution, summing C(n,k) times C(m,k) over k, equals C(n+m,n). | proved | 3 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | The diagonal Vandermonde convolution, summing C(n,k) times C(m,k) over k, equals C(n+m,n). Not a named mathlib lemma in this form. |
 | `sumsq-ge-ab-plus-bc` — The sum of three squares dominates the two adjacent cross terms ab+bc. | proved | 1 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | The sum of three squares dominates the two adjacent cross terms ab+bc. Not a named mathlib lemma in this form. |
 | `sumsq-products-ge-abc-times-sum` — The sum of squared pairwise products of three reals is at least the product abc times their sum. | proved | 1 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog. | The sum of squared pairwise products of three reals is at least the product abc times their sum. Not a named mathlib lemma in this form. |
