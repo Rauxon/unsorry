@@ -4,34 +4,34 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**4295 verified proofs · 3987 attributed · 308 historical/unknown · 1195 logged terminal runs.**
+**4296 verified proofs · 3988 attributed · 308 historical/unknown · 1196 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 851 |
+| Successful terminal runs | 852 |
 | Failed terminal runs | 344 |
 | Decomposed after failure | 22 |
 | Failed without decomposition | 322 |
 | Run success rate | 71.2% |
-| Provider attempts | 1289 |
+| Provider attempts | 1290 |
 | Failed attempts | 438 |
 | Attempt yield | 66.0% |
-| Recorded run time | 99h 29m |
+| Recorded run time | 99h 40m |
 | Median / p90 run time | 0s / 31m 19s |
 | Verified successes per recorded hour | 8.55 |
-| Proofs with run telemetry | 851 (19.8%) |
+| Proofs with run telemetry | 852 (19.8%) |
 
 ## Work Queue
 
-**4536 goals · 2199 archived · 5 blocked · 216 open · 2107 proved · 9 translated.**
+**4536 goals · 2199 archived · 5 blocked · 215 open · 2108 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 989 | 837 | 84.6% | 214 | 0s |
+| 1 | 990 | 838 | 84.7% | 214 | 0s |
 | 2 | 109 | 1 | 0.9% | 125 | 6m 54s |
 | 3 | 67 | 3 | 4.5% | 73 | 9m 24s |
 | 4 | 28 | 10 | 35.7% | 24 | 14m 15s |
@@ -65,14 +65,14 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 | 5 | [@perttu](https://github.com/perttu) | 106 | 102 | 4 | 82 | 72.0% | 152 | 144.0 | 32250 |
 | 6 | [@adam91holt](https://github.com/adam91holt) | 19 | 19 | 0 | 56 | 0.0% | 46 | 0.0 | 5075 |
 | 7 | [@binto](https://github.com/binto) | 9 | 0 | 9 | 0 | — | 19 | 0.0 | 2125 |
-| 8 | [@Rauxon](https://github.com/Rauxon) | 4 | 4 | 0 | 17 | 76.5% | 4 | 0.0 | 500 |
+| 8 | [@Rauxon](https://github.com/Rauxon) | 5 | 5 | 0 | 18 | 77.8% | 5 | 0.0 | 625 |
 | 9 | [@yarcles](https://github.com/yarcles) | 1 | 1 | 0 | 0 | — | 1 | 0.0 | 125 |
 
 ## Attribution Notes
 
-**3987 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**3988 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 4295 of 4295 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 4296 of 4296 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -82,7 +82,7 @@ Git add-author attribution covers 4295 of 4295 proof index files. It is used onl
 | `lean / ring` | 1023 | 0 | — | 0 | 1 | — | — |
 | `lean / decide` | 638 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
-| `claude / opus` | 61 | 47 | 55.3% | 65 | 5 | 9m 38s | 2.14 |
+| `claude / opus` | 62 | 48 | 56.2% | 65 | 5 | 9m 38s | 2.19 |
 | `codex / unknown` | 39 | 75 | 5.3% | 111 | 2 | 7m 35s | 0.35 |
 | `openai / leanstral-2603` | 21 | 201 | 0.0% | 205 | 1 | 6m 30s | 0.00 |
 | `gemini / gemini-3.1-pro-preview` | 7 | 2 | 0.0% | 6 | 1 | 10m 59s | 0.00 |
@@ -97,6 +97,7 @@ Git add-author attribution covers 4295 of 4295 proof index files. It is used onl
 
 | Ended (UTC) | Goal | Solver | Provider / model | Outcome | Attempts | Failed attempts | Time |
 |-------------|------|--------|------------------|---------|---------:|----------------:|-----:|
+| `2026-06-25T19:13:54Z` | `putnam-1967-a5-s4` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `proved` | 1 | 0 | 10m 39s |
 | `2026-06-25T16:59:33Z` | `putnam-1967-a5` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `decomposed` | 3 | 3 | 52m 3s |
 | `2026-06-25T16:42:32Z` | `putnam-1966-b1-s2` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `proved` | 1 | 0 | 7m 2s |
 | `2026-06-25T16:23:49Z` | `putnam-1966-b1-s1` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `proved` | 1 | 0 | 10m 49s |
@@ -116,7 +117,6 @@ Git add-author attribution covers 4295 of 4295 proof index files. It is used onl
 | `2026-06-22T11:49:09Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@cgbarlow](https://github.com/cgbarlow) | `claude / opus` | `failed` | 3 | 3 | 7m 53s |
 | `2026-06-22T04:31:09Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `failed` | 1 | 1 | 5m 44s |
 | `2026-06-22T04:00:23Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `failed` | 3 | 3 | 5m 1s |
-| `2026-06-22T03:51:06Z` | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` | [@Rauxon](https://github.com/Rauxon) | `claude / opus` | `failed` | 3 | 3 | 7m 9s |
 
 ## Interpretation
 

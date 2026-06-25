@@ -222,35 +222,35 @@
       "verified_proofs": 9
     },
     {
-      "attempt_yield": 0.5,
+      "attempt_yield": 0.5185,
       "avatar_url": "https://github.com/Rauxon.png?size=96",
       "badges": {
-        "difficulty": 4,
-        "proofs": 4,
-        "success_rate_percent": 76.47
+        "difficulty": 5,
+        "proofs": 5,
+        "success_rate_percent": 77.78
       },
       "credit_source_summary": "explicit",
       "credit_sources": [
         "explicit-solver"
       ],
-      "credited_proofs": 4,
-      "difficulty_points": 4,
+      "credited_proofs": 5,
+      "difficulty_points": 5,
       "dispatch_points": 0.0,
       "dispatch_proofs": 0,
       "display_name": "@Rauxon",
-      "explicit_solver_proofs": 4,
+      "explicit_solver_proofs": 5,
       "failed_attempts": 13,
       "github": "Rauxon",
       "inferred_git_proofs": 0,
-      "median_solve_s": 429,
+      "median_solve_s": 437,
       "profile_url": "https://github.com/Rauxon",
       "rank": 8,
-      "run_success_rate": 0.7647,
-      "runs": 17,
-      "score": 500,
+      "run_success_rate": 0.7778,
+      "runs": 18,
+      "score": 625,
       "solver": "Rauxon",
-      "successes": 13,
-      "verified_proofs": 4
+      "successes": 14,
+      "verified_proofs": 5
     },
     {
       "attempt_yield": null,
@@ -284,7 +284,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-25T20:27:01Z",
+  "generated_at": "2026-06-25T20:30:24Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -368,21 +368,21 @@
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 6,
-      "display_name": "Adam Holt",
+      "difficulty_points": 5,
+      "display_name": "Rauxon",
       "github": null,
-      "index_files_added": 4,
+      "index_files_added": 5,
       "missing_solver_provenance": 0,
       "profile_url": null,
       "rank": 7,
       "solver_credit": false,
-      "solver_provenance_proofs": 4
+      "solver_provenance_proofs": 5
     },
     {
       "attribution_source": "git-add-author",
       "avatar_url": null,
-      "difficulty_points": 4,
-      "display_name": "Rauxon",
+      "difficulty_points": 6,
+      "display_name": "Adam Holt",
       "github": null,
       "index_files_added": 4,
       "missing_solver_provenance": 0,
@@ -432,9 +432,9 @@
     },
     {
       "provider_model": "claude / opus",
-      "run_success_rate": 0.5532,
-      "runs": 47,
-      "verified_proofs": 61
+      "run_success_rate": 0.5625,
+      "runs": 48,
+      "verified_proofs": 62
     },
     {
       "provider_model": "codex / unknown",
@@ -494,19 +494,19 @@
   "schema_version": 1,
   "score_policy": "rank by score desc; score = difficulty_points * 100 + credited_proofs * 25 + dispatch_points * 100 (dispatch_points = 0.9 flat for each proof PR you opened/landed for another contributor; self-dispatch excluded — the system does not run without dispatchers)",
   "summary": {
-    "attributed_proofs": 3987,
+    "attributed_proofs": 3988,
     "attribution_gap_count": 308,
     "credited_contributors": 9,
-    "credited_proofs": 4295,
-    "explicit_solver_proofs": 3987,
-    "git_attributed_index_files": 4295,
+    "credited_proofs": 4296,
+    "explicit_solver_proofs": 3988,
+    "git_attributed_index_files": 4296,
     "historical_contributors": 9,
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
-    "proof_run_coverage": 0.1981,
-    "terminal_runs": 1195,
+    "proof_run_coverage": 0.1983,
+    "terminal_runs": 1196,
     "uncredited_proofs": 0,
-    "verified_proofs": 4295
+    "verified_proofs": 4296
   },
   "timelines": {
     "default": "merge",
@@ -1877,8 +1877,8 @@
         "t": "2026-06-25T19:00:00Z"
       },
       {
-        "cumulative_proofs": 4304,
-        "proofs": 2,
+        "cumulative_proofs": 4305,
+        "proofs": 3,
         "t": "2026-06-25T20:00:00Z"
       }
     ],
@@ -1949,8 +1949,8 @@
         "t": "2026-06-24"
       },
       {
-        "cumulative_proofs": 4306,
-        "proofs": 9,
+        "cumulative_proofs": 4307,
+        "proofs": 10,
         "t": "2026-06-25"
       }
     ]
