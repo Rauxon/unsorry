@@ -1,0 +1,9 @@
+𝔸5.1.run.putnam-1966-b1-s4.rauxon-1.20260625t203943634503z-f84de7ff@2026-06-25
+γ≔unsorry.proof.run
+⟦Ω:Run⟧{id≜20260625t203943634503z-f84de7ff; goal≜putnam-1966-b1-s4; agent≜rauxon-1; outcome≜decomposed}
+⟦Π:Provenance⟧{solver≜Rauxon; provider≜claude; model≜opus; effort≜max}
+⟦Γ:Goal⟧{goal≜putnam-1966-b1-s4}
+⟦Λ:Metrics⟧{attempts≜3; solve_s≜2984; ended≜2026-06-25T20:39:43Z; lessons≜0}
+⟦Σ:Artifact⟧{sha≜∅}
+⟦Δ:Lesson⟧{sig≜(claude call failed or timed out)}
+⟦Ε⟧⟨δ≜0.60;τ≜◊⁺⟩
