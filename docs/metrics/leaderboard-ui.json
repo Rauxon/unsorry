@@ -36,7 +36,7 @@
       "attempt_yield": null,
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
       "badges": {
-        "difficulty": 2099,
+        "difficulty": 2096,
         "proofs": 1769,
         "success_rate_percent": null
       },
@@ -46,7 +46,7 @@
         "inferred-git-add-author"
       ],
       "credited_proofs": 1769,
-      "difficulty_points": 2099,
+      "difficulty_points": 2096,
       "dispatch_points": 18.0,
       "dispatch_proofs": 20,
       "display_name": "@chat-bit-01",
@@ -59,7 +59,7 @@
       "rank": 2,
       "run_success_rate": null,
       "runs": 0,
-      "score": 255925,
+      "score": 255625,
       "solver": "chat-bit-01",
       "successes": 0,
       "verified_proofs": 1769
@@ -284,13 +284,13 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-25T11:47:45Z",
+  "generated_at": "2026-06-25T11:51:14Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
-      "difficulty_points": 3120,
+      "difficulty_points": 3117,
       "display_name": "Chris Barlow",
       "github": "cgbarlow",
       "index_files_added": 2795,
@@ -416,7 +416,7 @@
       "provider_model": "lean / ring",
       "run_success_rate": null,
       "runs": 0,
-      "verified_proofs": 883
+      "verified_proofs": 884
     },
     {
       "provider_model": "lean / decide",
@@ -468,12 +468,6 @@
     },
     {
       "provider_model": "claude / unknown",
-      "run_success_rate": null,
-      "runs": 0,
-      "verified_proofs": 1
-    },
-    {
-      "provider_model": "seedkit / template-induction-ring",
       "run_success_rate": null,
       "runs": 0,
       "verified_proofs": 1
