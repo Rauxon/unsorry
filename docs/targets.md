@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**53 open · 4064 proved · 4120 total prove-goals.**
+**53 open · 4065 proved · 4121 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4102,6 +4102,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-cube-sum-coeff-thirtytwo` — A telescoping power-sum closed form (coefficient 32, exponent 3): the finite sum over k in range n equals 32·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
 | `telescoping-cube-sum-coeff-three` — A telescoping power-sum closed form (coefficient 3, exponent 3): the finite sum over k in range n equals 3·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
 | `telescoping-cube-sum-coeff-twelve` — A telescoping power-sum closed form (coefficient 12, exponent 3): the finite sum over k in range n equals 12·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
+| `telescoping-cube-sum-coeff-twenty` — A telescoping power-sum closed form (coefficient 20, exponent 3): the finite sum over k in range n equals 20·n^3. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
 | `telescoping-cube-sum-coeff-twentyeight` — A telescoping power-sum closed form (coefficient 28, exponent 3): the finite sum over k in range n equals 28·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
 | `telescoping-cube-sum-coeff-twentyfive` — A telescoping power-sum closed form (coefficient 25, exponent 3): the finite sum over k in range n equals 25·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
 | `telescoping-cube-sum-coeff-twentyfour` — A telescoping power-sum closed form (coefficient 24, exponent 3): the finite sum over k in range n equals 24·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
