@@ -100,6 +100,17 @@
         "run_id": "20260625t165933222620z-c7e206b1",
         "solve_s": 3123,
         "verification": "—"
+      },
+      {
+        "contributor": "cgbarlow",
+        "ended": "2026-06-25T19:53:59Z",
+        "goal": "putnam-1962-a5",
+        "model": "claude/opus",
+        "outcome": "proved",
+        "passed": true,
+        "run_id": "20260625t195359812575z-8a06bf49",
+        "solve_s": 1471,
+        "verification": "kernel"
       }
     ]
   }

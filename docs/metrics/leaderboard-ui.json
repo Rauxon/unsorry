@@ -65,12 +65,12 @@
       "verified_proofs": 1897
     },
     {
-      "attempt_yield": 0.2033,
+      "attempt_yield": 0.2054,
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
       "badges": {
         "difficulty": 287,
         "proofs": 191,
-        "success_rate_percent": 22.32
+        "success_rate_percent": 22.55
       },
       "credit_source_summary": "explicit + inferred",
       "credit_sources": [
@@ -89,11 +89,11 @@
       "median_solve_s": 386,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 3,
-      "run_success_rate": 0.2232,
-      "runs": 336,
+      "run_success_rate": 0.2255,
+      "runs": 337,
       "score": 280345,
       "solver": "cgbarlow",
-      "successes": 75,
+      "successes": 76,
       "verified_proofs": 191
     },
     {
@@ -284,7 +284,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-25T20:30:24Z",
+  "generated_at": "2026-06-25T20:45:55Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -432,8 +432,8 @@
     },
     {
       "provider_model": "claude / opus",
-      "run_success_rate": 0.5625,
-      "runs": 48,
+      "run_success_rate": 0.5714,
+      "runs": 49,
       "verified_proofs": 62
     },
     {
@@ -503,8 +503,8 @@
     "historical_contributors": 9,
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
-    "proof_run_coverage": 0.1983,
-    "terminal_runs": 1196,
+    "proof_run_coverage": 0.1986,
+    "terminal_runs": 1197,
     "uncredited_proofs": 0,
     "verified_proofs": 4296
   },
@@ -1877,8 +1877,8 @@
         "t": "2026-06-25T19:00:00Z"
       },
       {
-        "cumulative_proofs": 4305,
-        "proofs": 3,
+        "cumulative_proofs": 4306,
+        "proofs": 4,
         "t": "2026-06-25T20:00:00Z"
       }
     ],
@@ -1949,8 +1949,8 @@
         "t": "2026-06-24"
       },
       {
-        "cumulative_proofs": 4307,
-        "proofs": 10,
+        "cumulative_proofs": 4308,
+        "proofs": 11,
         "t": "2026-06-25"
       }
     ]
