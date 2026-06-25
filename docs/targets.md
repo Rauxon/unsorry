@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**212 open · 4190 proved · 4405 total prove-goals.**
+**212 open · 4191 proved · 4406 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4389,6 +4389,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-quintic-sum-coeff-one` — A telescoping power-sum closed form (coefficient 1, exponent 5): the finite sum over k in range n equals 1·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `telescoping-quintic-sum-coeff-seven` — A telescoping power-sum closed form (coefficient 7, exponent 5): the finite sum over k in range n equals 7·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `telescoping-quintic-sum-coeff-seventyeight` — A telescoping power-sum closed form (coefficient 78, exponent 5): the finite sum over k in range n equals 78·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
+| `telescoping-quintic-sum-coeff-seventyfive` — A telescoping power-sum closed form (coefficient 75, exponent 5): the finite sum over k in range n equals 75·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `telescoping-quintic-sum-coeff-seventyone` — A telescoping power-sum closed form (coefficient 71, exponent 5): the finite sum over k in range n equals 71·n^5. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^5 − k^5 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
 | `thirty-dvd-pow-five-sub-self` — For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
