@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**214 open · 4143 proved · 4360 total prove-goals.**
+**214 open · 4145 proved · 4362 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4339,6 +4339,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-quartic-sum-coeff-thirtyfour` — A telescoping power-sum closed form (coefficient 34, exponent 4): the finite sum over k in range n equals 34·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `telescoping-quartic-sum-coeff-thirtynine` — A telescoping power-sum closed form (coefficient 39, exponent 4): the finite sum over k in range n equals 39·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `telescoping-quartic-sum-coeff-thirtyone` — A telescoping power-sum closed form (coefficient 31, exponent 4): the finite sum over k in range n equals 31·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
+| `telescoping-quartic-sum-coeff-thirtyseven` — A telescoping power-sum closed form (coefficient 37, exponent 4): the finite sum over k in range n equals 37·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
+| `telescoping-quartic-sum-coeff-thirtysix` — A telescoping power-sum closed form (coefficient 36, exponent 4): the finite sum over k in range n equals 36·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `telescoping-quartic-sum-coeff-thirtythree` — A telescoping power-sum closed form (coefficient 33, exponent 4): the finite sum over k in range n equals 33·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `telescoping-quartic-sum-coeff-thirtytwo` — A telescoping power-sum closed form (coefficient 32, exponent 4): the finite sum over k in range n equals 32·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
 | `telescoping-quartic-sum-coeff-twelve` — A telescoping power-sum closed form (coefficient 12, exponent 4): the finite sum over k in range n equals 12·n^4. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^4 − k^4 telescoping; proved by induction on n. |
