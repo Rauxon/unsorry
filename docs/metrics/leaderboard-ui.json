@@ -36,7 +36,7 @@
       "attempt_yield": null,
       "avatar_url": "https://github.com/chat-bit-01.png?size=96",
       "badges": {
-        "difficulty": 2176,
+        "difficulty": 2173,
         "proofs": 1846,
         "success_rate_percent": null
       },
@@ -46,7 +46,7 @@
         "inferred-git-add-author"
       ],
       "credited_proofs": 1846,
-      "difficulty_points": 2176,
+      "difficulty_points": 2173,
       "dispatch_points": 18.0,
       "dispatch_proofs": 20,
       "display_name": "@chat-bit-01",
@@ -59,18 +59,18 @@
       "rank": 2,
       "run_success_rate": null,
       "runs": 0,
-      "score": 265550,
+      "score": 265250,
       "solver": "chat-bit-01",
       "successes": 0,
       "verified_proofs": 1846
     },
     {
-      "attempt_yield": 0.2066,
+      "attempt_yield": 0.2049,
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
       "badges": {
         "difficulty": 287,
         "proofs": 191,
-        "success_rate_percent": 22.46
+        "success_rate_percent": 22.39
       },
       "credit_source_summary": "explicit + inferred",
       "credit_sources": [
@@ -83,14 +83,14 @@
       "dispatch_proofs": 2681,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 144,
-      "failed_attempts": 288,
+      "failed_attempts": 291,
       "github": "cgbarlow",
       "inferred_git_proofs": 47,
-      "median_solve_s": 378,
+      "median_solve_s": 386,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 3,
-      "run_success_rate": 0.2246,
-      "runs": 334,
+      "run_success_rate": 0.2239,
+      "runs": 335,
       "score": 274765,
       "solver": "cgbarlow",
       "successes": 75,
@@ -284,13 +284,13 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-25T16:07:15Z",
+  "generated_at": "2026-06-25T16:08:34Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
       "attribution_source": "git-add-author",
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
-      "difficulty_points": 3197,
+      "difficulty_points": 3194,
       "display_name": "Chris Barlow",
       "github": "cgbarlow",
       "index_files_added": 2872,
@@ -432,8 +432,8 @@
     },
     {
       "provider_model": "claude / opus",
-      "run_success_rate": 0.5581,
-      "runs": 43,
+      "run_success_rate": 0.5455,
+      "runs": 44,
       "verified_proofs": 59
     },
     {
@@ -504,7 +504,7 @@
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
     "proof_run_coverage": 0.2007,
-    "terminal_runs": 1191,
+    "terminal_runs": 1192,
     "uncredited_proofs": 0,
     "verified_proofs": 4231
   },

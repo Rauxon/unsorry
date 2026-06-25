@@ -18,16 +18,16 @@
 <a href="https://github.com/chat-bit-01">
 <text x="82" y="202" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@chat-bit-01</text>
 </a>
-<text x="82" y="222" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">1846 proofs · 2176 difficulty · 1599 explicit · 247 inferred · 0 runs</text>
+<text x="82" y="222" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">1846 proofs · 2173 difficulty · 1599 explicit · 247 inferred · 0 runs</text>
 <rect x="320" y="191" width="420" height="26" rx="13" fill="#f1f5f9"/>
 <rect x="320" y="191" width="376" height="26" rx="13" fill="#e0f2fe"/>
-<text x="760" y="210" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">265550 pts</text>
+<text x="760" y="210" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">265250 pts</text>
 <text x="760" y="226" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b">explicit + inferred</text>
 <text x="34" y="276" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#b45309">3</text>
 <a href="https://github.com/cgbarlow">
 <text x="82" y="266" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@cgbarlow</text>
 </a>
-<text x="82" y="286" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">191 proofs · 287 difficulty · 144 explicit · 47 inferred · 334 runs</text>
+<text x="82" y="286" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">191 proofs · 287 difficulty · 144 explicit · 47 inferred · 335 runs</text>
 <rect x="320" y="255" width="420" height="26" rx="13" fill="#f1f5f9"/>
 <rect x="320" y="255" width="390" height="26" rx="13" fill="#e0f2fe"/>
 <text x="760" y="274" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">274765 pts</text>
