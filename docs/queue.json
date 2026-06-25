@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 433,
-    "waiting": 417,
-    "in_flight": 16,
-    "distinct_goals": 433,
+    "queued_submissions": 432,
+    "waiting": 418,
+    "in_flight": 14,
+    "distinct_goals": 420,
     "solvers": 3
   },
   "solvers": [
@@ -2787,11 +2787,19 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 87,
-      "waiting": 76,
-      "in_flight": 11,
-      "distinct_goals": 87,
+      "submissions": 86,
+      "waiting": 77,
+      "in_flight": 9,
+      "distinct_goals": 78,
       "queued": [
+        {
+          "goal": "faulhaber-quartic-sum-coeff-seventyfour",
+          "branch": "queued/prove/faulhaber-quartic-sum-coeff-seventyfour/claude-web-0ad678",
+          "sha": "a4bfc2fc0",
+          "model": "ring",
+          "date": "2026-06-25",
+          "state": "waiting"
+        },
         {
           "goal": "faulhaber-quartic-sum-coeff-seventyfour",
           "branch": "queued/prove/faulhaber-quartic-sum-coeff-seventyfour/claude-web-ba7289",
@@ -2799,6 +2807,14 @@
           "model": "ring",
           "date": "2026-06-23",
           "state": "in-flight"
+        },
+        {
+          "goal": "faulhaber-quintic-sum-coeff-sixtyone",
+          "branch": "queued/prove/faulhaber-quintic-sum-coeff-sixtyone/claude-web-07d413",
+          "sha": "b34428597",
+          "model": "ring",
+          "date": "2026-06-25",
+          "state": "waiting"
         },
         {
           "goal": "faulhaber-quintic-sum-coeff-sixtyone",
@@ -2817,6 +2833,14 @@
           "state": "in-flight"
         },
         {
+          "goal": "geometric-series-ratio-sixtyone",
+          "branch": "queued/prove/geometric-series-ratio-sixtyone/claude-web-f61251",
+          "sha": "dfc1bffd2",
+          "model": "ring",
+          "date": "2026-06-25",
+          "state": "waiting"
+        },
+        {
           "goal": "gzmod-504-pow-fifteen-sub-pow-three",
           "branch": "queued/prove/gzmod-504-pow-fifteen-sub-pow-three/claude-web-195ae7",
           "sha": "0d9cf4bc2",
@@ -2825,107 +2849,35 @@
           "state": "in-flight"
         },
         {
-          "goal": "telescoping-sextic-sum-coeff-twentyseven",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-twentyseven/claude-web-f5a6b2",
-          "sha": "2bec66c05",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
+          "goal": "n4-plus-one-factor-over-sqrt-shift",
+          "branch": "queued/prove/n4-plus-one-factor-over-sqrt-shift/claude-web-76c606",
+          "sha": "8ad84f5b8",
+          "model": "opus",
+          "date": "2026-06-25",
           "state": "in-flight"
         },
         {
-          "goal": "telescoping-sextic-sum-coeff-twentytwo",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-twentytwo/claude-web-36ce17",
-          "sha": "070d3b9ac",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
+          "goal": "quartic-x4-plus-x2-plus-one-dvd-by-minus-factor",
+          "branch": "queued/prove/quartic-x4-plus-x2-plus-one-dvd-by-minus-factor/claude-web-8946ac",
+          "sha": "1cfff954c",
+          "model": "opus",
+          "date": "2026-06-25",
           "state": "in-flight"
         },
         {
-          "goal": "telescoping-sextic-sum-coeff-two",
-          "branch": "queued/prove/telescoping-sextic-sum-coeff-two/claude-web-850439",
-          "sha": "f20aa2508",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
+          "goal": "sextic-x6-plus-x3-plus-one-composite-shift",
+          "branch": "queued/prove/sextic-x6-plus-x3-plus-one-composite-shift/claude-web-46e683",
+          "sha": "bbb325d8a",
+          "model": "opus",
+          "date": "2026-06-25",
           "state": "in-flight"
         },
         {
-          "goal": "telescoping-square-sum-coeff-eight",
-          "branch": "queued/prove/telescoping-square-sum-coeff-eight/claude-web-3f5144",
-          "sha": "6d27a0cb7",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-eighteen",
-          "branch": "queued/prove/telescoping-square-sum-coeff-eighteen/claude-web-071f7c",
-          "sha": "5ebcebdd3",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-eighty",
-          "branch": "queued/prove/telescoping-square-sum-coeff-eighty/claude-web-dade99",
-          "sha": "a360d8411",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-eleven",
-          "branch": "queued/prove/telescoping-square-sum-coeff-eleven/claude-web-129a29",
-          "sha": "5b6885eae",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fifteen",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fifteen/claude-web-c248fc",
-          "sha": "284bd4865",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fifty",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fifty/claude-web-7ecb7e",
-          "sha": "fee90e9a9",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fiftyeight",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fiftyeight/claude-web-2374ff",
-          "sha": "170ee3dd9",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fiftyfive",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fiftyfive/claude-web-f75e7e",
-          "sha": "0da84e1d3",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fiftyfour",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fiftyfour/claude-web-b17598",
-          "sha": "0af625a04",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fiftynine",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fiftynine/claude-web-791bb1",
-          "sha": "e9822120d",
-          "model": "ring",
-          "date": "2026-06-23",
+          "goal": "sum-two-squares-zmod-four-ne-three",
+          "branch": "queued/prove/sum-two-squares-zmod-four-ne-three/claude-web-578146",
+          "sha": "acd4f0d05",
+          "model": "opus",
+          "date": "2026-06-25",
           "state": "waiting"
         },
         {
@@ -2934,7 +2886,7 @@
           "sha": "696b846b4",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-square-sum-coeff-fiftyseven",
@@ -2942,7 +2894,7 @@
           "sha": "eac4777cb",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-square-sum-coeff-fiftysix",
@@ -2966,6 +2918,14 @@
           "sha": "52d7bf750",
           "model": "template-induction-ring",
           "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "telescoping-square-sum-coeff-five",
+          "branch": "queued/prove/telescoping-square-sum-coeff-five/claude-web-c98722",
+          "sha": "3d93940ce",
+          "model": "ring",
+          "date": "2026-06-25",
           "state": "waiting"
         },
         {
@@ -3065,6 +3025,14 @@
           "state": "waiting"
         },
         {
+          "goal": "telescoping-square-sum-coeff-four",
+          "branch": "queued/prove/telescoping-square-sum-coeff-four/claude-web-e1ecaf",
+          "sha": "c999b0f25",
+          "model": "ring",
+          "date": "2026-06-25",
+          "state": "waiting"
+        },
+        {
           "goal": "telescoping-square-sum-coeff-fourteen",
           "branch": "queued/prove/telescoping-square-sum-coeff-fourteen/claude-web-8e5f57",
           "sha": "790fca8ed",
@@ -3094,6 +3062,14 @@
           "sha": "b508bd12d",
           "model": "template-induction-ring",
           "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "telescoping-square-sum-coeff-one",
+          "branch": "queued/prove/telescoping-square-sum-coeff-one/claude-web-e3976f",
+          "sha": "604c95380",
+          "model": "ring",
+          "date": "2026-06-25",
           "state": "waiting"
         },
         {
@@ -3386,6 +3362,14 @@
         },
         {
           "goal": "telescoping-square-sum-coeff-three",
+          "branch": "queued/prove/telescoping-square-sum-coeff-three/claude-web-116bae",
+          "sha": "efec95c5c",
+          "model": "ring",
+          "date": "2026-06-25",
+          "state": "waiting"
+        },
+        {
+          "goal": "telescoping-square-sum-coeff-three",
           "branch": "queued/prove/telescoping-square-sum-coeff-three/claude-web-ed7a87",
           "sha": "5d8ee442f",
           "model": "template-induction-ring",
@@ -3486,6 +3470,14 @@
           "sha": "d13f32c21",
           "model": "template-induction-ring",
           "date": "2026-06-23",
+          "state": "waiting"
+        },
+        {
+          "goal": "telescoping-square-sum-coeff-two",
+          "branch": "queued/prove/telescoping-square-sum-coeff-two/claude-web-f2d01f",
+          "sha": "a07b69501",
+          "model": "ring",
+          "date": "2026-06-25",
           "state": "waiting"
         }
       ]
