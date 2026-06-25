@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**4199 goals — 51 open · 3 blocked · 9 translated · 1937 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**4200 goals — 51 open · 3 blocked · 9 translated · 1938 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1933 of 1937 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1934 of 1938 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
 
 ## Dependency lineage
 
@@ -96,7 +96,7 @@ flowchart LR
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 1923"])
+  cluster_proved(["proved · 1924"])
   class cluster_proved proved;
   cluster_archived(["archived · 2199"])
   class cluster_archived unknown;
@@ -2101,6 +2101,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`telescoping-quartic-sum-coeff-sixtyseven`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-sixtyseven.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6366](https://github.com/agenticsnz/unsorry/pull/6366) | 2026-06-25 |
 | [`telescoping-quartic-sum-coeff-sixtysix`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-sixtysix.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6367](https://github.com/agenticsnz/unsorry/pull/6367) | 2026-06-25 |
 | [`telescoping-quartic-sum-coeff-sixtythree`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-sixtythree.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6368](https://github.com/agenticsnz/unsorry/pull/6368) | 2026-06-25 |
+| [`telescoping-quartic-sum-coeff-sixtytwo`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-sixtytwo.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6369](https://github.com/agenticsnz/unsorry/pull/6369) | 2026-06-25 |
 | [`telescoping-quartic-sum-coeff-ten`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-ten.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6370](https://github.com/agenticsnz/unsorry/pull/6370) | 2026-06-25 |
 | [`telescoping-quartic-sum-coeff-thirteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-thirteen.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6372](https://github.com/agenticsnz/unsorry/pull/6372) | 2026-06-25 |
 | [`telescoping-quartic-sum-coeff-thirty`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-thirty.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6373](https://github.com/agenticsnz/unsorry/pull/6373) | 2026-06-25 |
