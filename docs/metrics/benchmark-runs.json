@@ -89,6 +89,17 @@
         "run_id": "20260625t153806561756z-e4113ef5",
         "solve_s": 3308,
         "verification": "—"
+      },
+      {
+        "contributor": "cgbarlow",
+        "ended": "2026-06-25T16:59:33Z",
+        "goal": "putnam-1967-a5",
+        "model": "claude/opus",
+        "outcome": "decomposed",
+        "passed": false,
+        "run_id": "20260625t165933222620z-c7e206b1",
+        "solve_s": 3123,
+        "verification": "—"
       }
     ]
   }
