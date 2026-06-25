@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**4111 goals — 56 open · 3 blocked · 9 translated · 1844 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**4112 goals — 54 open · 3 blocked · 9 translated · 1847 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1840 of 1844 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1843 of 1847 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
 
 ## Dependency lineage
 
@@ -92,11 +92,11 @@ flowchart LR
   g_sq_add_sq_eq_three_mul_sq_s4_s3 --> g_sq_add_sq_eq_three_mul_sq_s4_s3_s1
   g_sq_add_sq_eq_three_mul_sq_s4_s3 --> g_sq_add_sq_eq_three_mul_sq_s4_s3_s2
   g_sq_add_sq_eq_three_mul_sq_s4_s3 --> g_sq_add_sq_eq_three_mul_sq_s4_s3_s3
-  cluster_open(["open · 55"])
+  cluster_open(["open · 53"])
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 1830"])
+  cluster_proved(["proved · 1833"])
   class cluster_proved proved;
   cluster_archived(["archived · 2199"])
   class cluster_archived unknown;
@@ -122,14 +122,12 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`putnam-1963-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-a2.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-a4.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-a6.lean) | open | 4 | — | — | — | — | — |
-| [`putnam-1963-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-b1.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-b2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-b2.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-b3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-b3.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-b5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-b5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-b6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a1.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a3.lean) | open | 4 | — | — | — | — | — |
-| [`putnam-1964-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a4.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-b1.lean) | open | 4 | — | — | — | — | — |
@@ -1823,6 +1821,8 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`odd-square-sum-coeff-twentythree`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-square-sum-coeff-twentythree.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6048](https://github.com/agenticsnz/unsorry/pull/6048) | 2026-06-24 |
 | [`odd-square-sum-coeff-twentytwo`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-square-sum-coeff-twentytwo.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6049](https://github.com/agenticsnz/unsorry/pull/6049) | 2026-06-24 |
 | [`odd-square-sum-coeff-two`](https://github.com/agenticsnz/unsorry/blob/main/goals/odd-square-sum-coeff-two.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6050](https://github.com/agenticsnz/unsorry/pull/6050) | 2026-06-24 |
+| [`putnam-1963-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-b1.lean) | proved | 4 | rauxon-2 | Rauxon · `opus` | Rauxon | [#6230](https://github.com/agenticsnz/unsorry/pull/6230) | 2026-06-25 |
+| [`putnam-1964-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a4.lean) | proved | 4 | rauxon-2 | Rauxon · `opus` | Rauxon | [#6244](https://github.com/agenticsnz/unsorry/pull/6244) | 2026-06-25 |
 | [`shift-square-sum-coeff-eight`](https://github.com/agenticsnz/unsorry/blob/main/goals/shift-square-sum-coeff-eight.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6051](https://github.com/agenticsnz/unsorry/pull/6051) | 2026-06-24 |
 | [`shift-square-sum-coeff-eighteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/shift-square-sum-coeff-eighteen.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6052](https://github.com/agenticsnz/unsorry/pull/6052) | 2026-06-24 |
 | [`shift-square-sum-coeff-eighty`](https://github.com/agenticsnz/unsorry/blob/main/goals/shift-square-sum-coeff-eighty.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6054](https://github.com/agenticsnz/unsorry/pull/6054) | 2026-06-24 |
@@ -2019,6 +2019,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`telescoping-cube-sum-coeff-sixtynine`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-sixtynine.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6261](https://github.com/agenticsnz/unsorry/pull/6261) | 2026-06-25 |
 | [`telescoping-cube-sum-coeff-sixtyone`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-sixtyone.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6262](https://github.com/agenticsnz/unsorry/pull/6262) | 2026-06-25 |
 | [`telescoping-cube-sum-coeff-sixtyseven`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-sixtyseven.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6263](https://github.com/agenticsnz/unsorry/pull/6263) | 2026-06-25 |
+| [`telescoping-cube-sum-coeff-sixtythree`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-sixtythree.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6265](https://github.com/agenticsnz/unsorry/pull/6265) | 2026-06-25 |
 | [`telescoping-cube-sum-coeff-sixtytwo`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-cube-sum-coeff-sixtytwo.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6266](https://github.com/agenticsnz/unsorry/pull/6266) | 2026-06-25 |
 | [`abc-nine-le-sum-times-pairsum`](https://github.com/agenticsnz/unsorry/blob/main/goals/abc-nine-le-sum-times-pairsum.lean) | archived | 3 | claude-rmt-001 | — | chat-bit-01 | [#1148](https://github.com/agenticsnz/unsorry/pull/1148) | 2026-06-17 |
 | [`abstract-regular-polyhedron-classification`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-classification.lean) | archived | 3 | — | — | — | — | 2026-06-13 |
