@@ -323,3 +323,180 @@ def test_batch_cap_enforced(tmp_path):
             tmp_path, "putnam-v1", problems,
             supplier="trishul", domain="lean-math", mathlib="m", toolchain="t", license="L",
         )
+
+
+# ---------------------------------------------- per-suite pin (ADR-099, #6381)
+
+import json
+import subprocess
+
+from tools.intake.tests._fakerunner import FakeRunner
+
+V424 = "leanprover/lean4:v4.24.0"
+REV24 = "c5ea00351c28e24afc9f0f84379aa41082b1188f"
+
+
+def _native_manifest(tmp_path, rev=REV24):
+    src = tmp_path / "native-manifest.json"
+    src.write_text(
+        json.dumps({"version": "1.1.0", "packagesDir": ".lake/packages",
+                    "packages": [{"type": "git", "name": "mathlib", "rev": rev}]}),
+        "utf-8",
+    )
+    return src
+
+
+def _is_probe(path: str) -> bool:
+    return path.endswith("TrivialityProbe.lean")
+
+
+def test_build_verdict_runs_real_build_in_suite_context(tmp_path):
+    """Keystone: the real build runs `lake env lean` with cwd = the suite _verify dir,
+    NOT the repo root — the core ADR-099 fix."""
+    from tools.intake.import_benchmark import _build_verdict
+
+    vctx = tmp_path / "targets" / "minif2f-v1" / "_verify"
+    vctx.mkdir(parents=True)
+    runner = FakeRunner(default_rc=0)
+    assert _build_verdict("theorem t : True := by sorry\n", vctx, runner=runner) == "build-ok"
+    call = runner.lean_calls()[0]
+    assert call.argv[:3] == ("lake", "env", "lean")
+    assert call.cwd == str(vctx)
+
+
+def test_build_error_quarantines(tmp_path):
+    """A statement that does not build under the suite pin (the putnam-1966-b5
+    `Finset.toSet` evidence case) is quarantined, with the suite-pin reason."""
+    from tools.intake.import_benchmark import build_verdict_of, classify_problems
+
+    vctx = tmp_path / "_verify"
+    vctx.mkdir()
+    # real build fails for the bad statement; never reaches the probe
+    runner = FakeRunner(rc_for_lean=lambda contents, path: 1 if not _is_probe(path) else 0)
+    problems = [Problem("putnam_1966_b5", ": Finset.toSet s = s", "P")]
+    kept, credit, quarantined = classify_problems(
+        problems, verdict_of=build_verdict_of(vctx, runner=runner)
+    )
+    assert kept == []
+    assert quarantined == [("putnam_1966_b5", "does not build under the suite pin")]
+    assert runner.lean_calls()[0].cwd == str(vctx)
+    # the build gated it BEFORE the foralltype proxy ran (no probe call)
+    assert not any(_is_probe(c.argv[-1]) for c in runner.lean_calls())
+
+
+def test_build_ok_then_battery_classifies_glue_vs_credited(tmp_path):
+    from tools.intake.import_benchmark import build_verdict_of, classify_problems
+
+    vctx = tmp_path / "_verify"
+    vctx.mkdir()
+
+    def rc_for_lean(contents, path):
+        if not _is_probe(path):
+            return 0                      # real build always elaborates
+        return 0 if "True" in contents else 1   # battery closes `True` (glue), not the rest
+
+    runner = FakeRunner(rc_for_lean=rc_for_lean)
+    problems = [Problem("putnam_easy", ": True", "P"), Problem("putnam_hard", ": 1 ≤ 2", "P")]
+    kept, credit, quarantined = classify_problems(
+        problems, verdict_of=build_verdict_of(vctx, runner=runner)
+    )
+    assert [p.name for p in kept] == ["putnam_easy", "putnam_hard"]
+    assert credit == {"putnam-easy": "glue", "putnam-hard": "credited"}
+    assert quarantined == []
+
+
+def test_real_build_gap_closed(tmp_path):
+    """A statement the `foralltype` battery proxy would PASS (its type elaborates) but
+    whose real build FAILS is now quarantined — the probe-vs-build gap (#6371)."""
+    from tools.intake.import_benchmark import build_verdict_of, classify_problems
+
+    vctx = tmp_path / "_verify"
+    vctx.mkdir()
+    # real statement fails (rc 1); the proxy probe WOULD pass (rc 0) but is never reached
+    runner = FakeRunner(rc_for_lean=lambda contents, path: 0 if _is_probe(path) else 1)
+    problems = [Problem("putnam_gap", ": SomeAbbrevThatDoesNotElaborate = 0", "P")]
+    kept, credit, quarantined = classify_problems(
+        problems, verdict_of=build_verdict_of(vctx, runner=runner)
+    )
+    assert kept == [] and quarantined[0][1] == "does not build under the suite pin"
+    assert runner.lean_calls() and not any(_is_probe(c.argv[-1]) for c in runner.lean_calls())
+
+
+def test_build_verdict_deterministic(tmp_path):
+    from tools.intake.import_benchmark import build_verdict_of
+
+    vctx = tmp_path / "_verify"
+    vctx.mkdir()
+    verdict_of = build_verdict_of(
+        vctx, runner=FakeRunner(rc_for_lean=lambda c, p: 0 if _is_probe(p) else 0)
+    )
+    text = "theorem t : True := by sorry\n"
+    assert verdict_of(text) == verdict_of(text) == "trivial"
+
+
+def test_quarantine_reason_distinguishes_build_vs_elaborate():
+    """The build-fail and probe-error quarantine reasons differ, so an operator can tell
+    genuine pin drift from a tooling/elaboration gap."""
+    from tools.intake.import_benchmark import classify_problems
+
+    problems = [Problem("putnam_build", ": A", "P"), Problem("putnam_elab", ": B", "P")]
+
+    def verdict_of(text):
+        return "build-error" if "putnam_build" in text else "probe-error"
+
+    _, _, quarantined = classify_problems(problems, verdict_of=verdict_of)
+    reasons = dict((name, reason) for name, reason in quarantined)
+    assert reasons["putnam_build"] == "does not build under the suite pin"
+    assert reasons["putnam_elab"] == "does not elaborate under the pinned mathlib"
+    assert reasons["putnam_build"] != reasons["putnam_elab"]
+
+
+def test_native_pin_recorded_in_both_aisp_files(tmp_path):
+    """The suite's NATIVE pin (v4.24) lands in skeleton.aisp + target.aisp — not the
+    repo pin. (The importer records --mathlib/--toolchain verbatim; the main() guard
+    keeps them equal to the verifier-context pin.)"""
+    assemble_package(
+        tmp_path, "minif2f-v1", [Problem("minif2f_x", ": 1 = 1", "miniF2F")],
+        supplier="yangky11", domain="lean-math", mathlib=REV24, toolchain=V424,
+        license="MIT",
+    )
+    pkg = tmp_path / "targets" / "minif2f-v1"
+    skeleton = (pkg / "skeleton.aisp").read_text("utf-8")
+    assert f"toolchain≜{V424};mathlib≜{REV24}" in skeleton
+    assert f"mathlib≜{REV24}" in (pkg / "target.aisp").read_text("utf-8")
+
+
+def _build_argv(tmp_path, src, *, mathlib=REV24, manifest=None):
+    return ["minif2f-v1", str(src), "--supplier", "yangky11", "--license", "MIT",
+            "--mathlib", mathlib, "--toolchain", V424, "--root", str(tmp_path),
+            "--manifest", str(manifest), "--build"]
+
+
+def test_main_build_guards_pin_mismatch(tmp_path, monkeypatch):
+    """--build aborts (exit 2) and writes NO goals when the --manifest records a mathlib
+    rev different from --mathlib — metadata can never diverge from the verifier context."""
+    monkeypatch.setattr(subprocess, "run", FakeRunner(cache_rc=0))
+    src = tmp_path / "s.lean"
+    src.write_text("import Mathlib\n\ntheorem minif2f_a : 1 = 1 := by sorry\n", "utf-8")
+    manifest = _native_manifest(tmp_path, rev="DIFFERENT_REV")
+    rc = main(_build_argv(tmp_path, src, mathlib=REV24, manifest=manifest))
+    assert rc == 2
+    assert not (tmp_path / "goals").exists()  # aborted before assemble_package
+
+
+def test_main_build_uses_suite_context_not_repo_root(tmp_path, monkeypatch):
+    """End-to-end --build: every lake call (cache get + env lean) runs in the suite
+    _verify dir, never the repo root; the statement imports; a re-run is a no-op."""
+    runner = FakeRunner(rc_for_lean=lambda c, p: 1 if _is_probe(p) else 0)  # non-trivial→credited
+    monkeypatch.setattr(subprocess, "run", runner)
+    src = tmp_path / "s.lean"
+    src.write_text("import Mathlib\n\ntheorem minif2f_a : 1 ≤ 2 := by sorry\n", "utf-8")
+    manifest = _native_manifest(tmp_path, rev=REV24)
+
+    assert main(_build_argv(tmp_path, src, manifest=manifest)) == 0
+    assert (tmp_path / "goals" / "minif2f-a.lean").is_file()
+    vctx = str(tmp_path / "targets" / "minif2f-v1" / "_verify")
+    assert runner.calls and all(c.cwd == vctx for c in runner.calls)  # never the repo root
+
+    # idempotent re-run: already imported, nothing new
+    assert main(_build_argv(tmp_path, src, manifest=manifest)) == 0

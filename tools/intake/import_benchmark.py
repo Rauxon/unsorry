@@ -19,9 +19,12 @@ fully tested without Lean.
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import shutil
+import subprocess
 import sys
+import tempfile
 from collections.abc import Callable, Iterator
 from dataclasses import dataclass
 from pathlib import Path
@@ -304,15 +307,14 @@ def assemble_package(
     }
 
 
-def _probe_verdict(lean_text: str, root: Path) -> str:  # pragma: no cover - needs Lean
-    """Full-battery probe verdict for one candidate statement (the real ``--build``
-    classifier; needs Lean). ``probe-error`` ⇒ does not elaborate under the pin ⇒
-    quarantine; ``trivial`` ⇒ the ADR-078 full battery closes it ⇒ glue; anything else
-    ⇒ credited. Reuses ``tools.sourcing.check_triviality.probe``, which reads the .lean,
-    builds a probe module in a tempdir, and runs ``lake env lean`` under ``root``."""
-    import os
-    import tempfile
-
+def _probe_verdict(lean_text: str, root: Path, *, runner: Callable | None = None) -> str:
+    """Full-battery probe verdict for one candidate statement — the ADR-078 ``glue`` vs
+    ``credited`` classifier. ``trivial`` ⇒ the full battery closes it ⇒ glue; anything
+    else ⇒ credited; ``probe-error`` ⇒ the statement did not even elaborate. Reuses
+    ``tools.sourcing.check_triviality.probe``, which reads the .lean, builds a probe module
+    in a tempdir, and runs ``lake env lean`` under ``root`` — so pointing ``root`` at the
+    suite-scoped ``_verify`` project elaborates under the *suite* pin. ``runner`` is the
+    injectable subprocess seam (tests pass a double; a real run uses ``subprocess.run``)."""
     from tools.intake.skeleton_validate import EXTRA_BATTERY
     from tools.sourcing.check_triviality import TACTIC_BATTERY, probe
 
@@ -321,11 +323,62 @@ def _probe_verdict(lean_text: str, root: Path) -> str:  # pragma: no cover - nee
     path = Path(name)
     try:
         path.write_text(lean_text, encoding="utf-8")
-        return probe(path, battery=TACTIC_BATTERY + EXTRA_BATTERY, root=root).get(
-            "verdict", "probe-error"
-        )
+        return probe(
+            path, battery=TACTIC_BATTERY + EXTRA_BATTERY, root=root, runner=runner
+        ).get("verdict", "probe-error")
     finally:
         path.unlink(missing_ok=True)
+
+
+def _build_verdict(
+    lean_text: str, vctx: Path, *, runner: Callable | None = None, timeout: float = 300.0
+) -> str:
+    """Real-build verdict: does the **actual statement** elaborate under the suite pin?
+
+    Runs ``lake env lean`` on the statement itself (which ends in ``sorry`` — a *warning*,
+    not an error, so no ``--wfail``) with ``cwd=vctx``. Returns ``build-ok`` (rc 0) or
+    ``build-error``. This is stronger than the ``foralltype`` battery probe, which only
+    elaborates the goal's *type*: it closes the probe-vs-build gap that passed 4
+    non-building goals in #6371."""
+    runner = runner or subprocess.run
+    fd, name = tempfile.mkstemp(suffix=".lean")
+    os.close(fd)
+    path = Path(name)
+    try:
+        path.write_text(lean_text, encoding="utf-8")
+        try:
+            result = runner(
+                ("lake", "env", "lean", str(path)),
+                cwd=str(vctx), capture_output=True, text=True, timeout=timeout,
+            )
+        except subprocess.TimeoutExpired:
+            return "build-error"
+        return "build-ok" if result.returncode == 0 else "build-error"
+    finally:
+        path.unlink(missing_ok=True)
+
+
+def build_verdict_of(vctx: Path, *, runner: Callable | None = None) -> Callable[[str], str]:
+    """The ``verdict_of`` closure :func:`classify_problems` consumes, under the suite pin.
+
+    The **real build** gates first (``build-error`` ⇒ quarantine); survivors go to the
+    ``foralltype`` full-battery probe, which classifies ``trivial`` (glue) vs the rest
+    (credited). Both run with ``root=vctx`` so everything is judged at the suite's pin."""
+    def verdict_of(lean_text: str) -> str:
+        if _build_verdict(lean_text, vctx, runner=runner) == "build-error":
+            return "build-error"
+        return _probe_verdict(lean_text, vctx, runner=runner)
+
+    return verdict_of
+
+
+#: A verdict that quarantines (statement reported, never imported) → its reason. The two
+#: are distinguished so an operator can tell genuine pin drift (the real build fails) from
+#: a probe/elaboration gap. ``build-error`` is emitted by :func:`build_verdict_of`.
+_QUARANTINE_REASON = {
+    "probe-error": "does not elaborate under the pinned mathlib",
+    "build-error": "does not build under the suite pin",
+}
 
 
 def classify_problems(
@@ -345,8 +398,9 @@ def classify_problems(
     for problem in problems:
         slug = slugify(problem.name)
         verdict = verdict_of(render_lean(slug, problem.signature, problem.preamble))
-        if verdict == "probe-error":
-            quarantined.append((problem.name, "does not elaborate under the pinned mathlib"))
+        reason = _QUARANTINE_REASON.get(verdict)
+        if reason is not None:
+            quarantined.append((problem.name, reason))
         else:
             kept.append(problem)
             credit[slug] = "glue" if verdict == "trivial" else "credited"
@@ -381,8 +435,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--build",
         action="store_true",
-        help="elaborate each statement under the pinned mathlib: quarantine the ones "
-        "that don't, and classify credited/glue via the ADR-078 full battery (needs Lean)",
+        help="elaborate each statement in a suite-scoped lake project at the suite's pin: "
+        "quarantine the ones that don't build, and classify credited/glue via the ADR-078 "
+        "full battery (needs Lean; requires --manifest)",
+    )
+    parser.add_argument(
+        "--manifest",
+        help="the suite's native lake-manifest.json (required with --build; ADR-099 "
+        "decision A — operator-supplied, obtained via `lake update` at the native toolchain)",
+    )
+    parser.add_argument(
+        "--no-warm-cache",
+        action="store_true",
+        help="skip `lake exe cache get` (offline re-run where _verify/.lake is populated)",
     )
     args = parser.parse_args(argv)
 
@@ -417,8 +482,36 @@ def main(argv: list[str] | None = None) -> int:
     quarantined: list[tuple[str, str]] = []
     credit_map: dict[str, str] = {}
     if args.build:
+        from tools.intake.verifier_context import (
+            VerifierContextError,
+            ensure_verifier_context,
+        )
+        from tools.sourcing.check_absence import manifest_rev
+
+        if not args.manifest:
+            print("--build requires --manifest (the suite's native lake-manifest.json)",
+                  file=sys.stderr)
+            return 2
+        try:
+            vctx = ensure_verifier_context(
+                root_path, args.suite_id,
+                toolchain=args.toolchain, mathlib=args.mathlib,
+                manifest_src=Path(args.manifest),
+                runner=subprocess.run, warm=not args.no_warm_cache,
+            )
+        except VerifierContextError as exc:
+            print(f"verifier context error: {exc}", file=sys.stderr)
+            return 2
+        # Pin guard: the rev the suite is verified under MUST equal the rev recorded in
+        # its metadata, so the .aisp pin can never diverge from the context that judged it.
+        ctx_rev = manifest_rev(vctx)
+        if ctx_rev != args.mathlib:
+            print(f"pin mismatch: --mathlib {args.mathlib!r} != verifier-context rev "
+                  f"{ctx_rev!r} (the --manifest records a different mathlib pin)",
+                  file=sys.stderr)
+            return 2
         problems, credit_map, quarantined = classify_problems(
-            problems, verdict_of=lambda text: _probe_verdict(text, Path(args.root))
+            problems, verdict_of=build_verdict_of(vctx, runner=subprocess.run)
         )
         for name, reason in quarantined:
             print(f"  quarantined {name}: {reason}", file=sys.stderr)
