@@ -4,7 +4,7 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**4328 verified proofs · 4020 attributed · 308 historical/unknown · 1197 logged terminal runs.**
+**4329 verified proofs · 4021 attributed · 308 historical/unknown · 1197 logged terminal runs.**
 
 ## Efficiency Baseline
 
@@ -25,7 +25,7 @@ Verified output comes from active `library/index` records plus archived index re
 
 ## Work Queue
 
-**4568 goals · 2199 archived · 5 blocked · 214 open · 2141 proved · 9 translated.**
+**4569 goals · 2199 archived · 5 blocked · 214 open · 2142 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
@@ -58,8 +58,8 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 337 | 22.6% | 287 | 2497.5 | 283225 |
-| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 1940 | 1693 | 247 | 0 | — | 2267 | 18.0 | 277000 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 337 | 22.6% | 287 | 2498.4 | 283315 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 1941 | 1694 | 247 | 0 | — | 2268 | 18.0 | 277125 |
 | 3 | [@ohdearquant](https://github.com/ohdearquant) | 1897 | 1896 | 1 | 704 | 100.0% | 1900 | 0.0 | 237425 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 106 | 102 | 4 | 82 | 72.0% | 152 | 144.0 | 32250 |
@@ -70,9 +70,9 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 ## Attribution Notes
 
-**4020 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**4021 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 4328 of 4328 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 4329 of 4329 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
@@ -80,7 +80,7 @@ Git add-author attribution covers 4328 of 4328 proof index files. It is used onl
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
 | `python / sympy` | 2032 | 821 | 100.0% | 0 | 3 | 0s | — |
 | `lean / ring` | 1044 | 0 | — | 0 | 1 | — | — |
-| `lean / decide` | 649 | 0 | — | 0 | 1 | — | — |
+| `lean / decide` | 650 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
 | `claude / opus` | 62 | 49 | 57.1% | 65 | 5 | 9m 38s | 2.20 |
 | `codex / unknown` | 39 | 75 | 5.3% | 111 | 2 | 7m 35s | 0.35 |
