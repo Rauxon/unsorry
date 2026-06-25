@@ -6,7 +6,7 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**4202 goals — 51 open · 3 blocked · 9 translated · 1940 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**4365 goals — 214 open · 3 blocked · 9 translated · 1940 proved · 2199 archived.** 5 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
 Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (1936 of 1940 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
 
@@ -92,7 +92,7 @@ flowchart LR
   g_sq_add_sq_eq_three_mul_sq_s4_s3 --> g_sq_add_sq_eq_three_mul_sq_s4_s3_s1
   g_sq_add_sq_eq_three_mul_sq_s4_s3 --> g_sq_add_sq_eq_three_mul_sq_s4_s3_s2
   g_sq_add_sq_eq_three_mul_sq_s4_s3 --> g_sq_add_sq_eq_three_mul_sq_s4_s3_s3
-  cluster_open(["open · 50"])
+  cluster_open(["open · 213"])
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
@@ -108,11 +108,126 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 
 | Goal | Status | Difficulty | Agent | Solver / model | Merged by | PR | Proved |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| [`aime-1983-p9`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1983-p9.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1984-p15`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1984-p15.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1984-p5`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1984-p5.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1987-p8`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1987-p8.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1988-p3`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1988-p3.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1988-p4`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1988-p4.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1990-p2`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1990-p2.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1991-p1`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1991-p1.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1991-p6`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1991-p6.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1994-p4`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1994-p4.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1996-p5`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1996-p5.lean) | open | 4 | — | — | — | — | — |
+| [`aime-1997-p11`](https://github.com/agenticsnz/unsorry/blob/main/goals/aime-1997-p11.lean) | open | 4 | — | — | — | — | — |
+| [`aimei-2000-p7`](https://github.com/agenticsnz/unsorry/blob/main/goals/aimei-2000-p7.lean) | open | 4 | — | — | — | — | — |
+| [`aimeii-2001-p3`](https://github.com/agenticsnz/unsorry/blob/main/goals/aimeii-2001-p3.lean) | open | 4 | — | — | — | — | — |
+| [`aimeii-2020-p6`](https://github.com/agenticsnz/unsorry/blob/main/goals/aimeii-2020-p6.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-2complexrootspoly-xsqp49eqxp7itxpn7i`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-2complexrootspoly-xsqp49eqxp7itxpn7i.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-2rootsintpoly-am10tap11eqasqpam110`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-2rootsintpoly-am10tap11eqasqpam110.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-2rootspoly-apatapbeq2asqp2ab`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-2rootspoly-apatapbeq2asqp2ab.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-2varlineareq-xpeeq7-2xpeeq3-eeq11-xeqn4`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-2varlineareq-xpeeq7-2xpeeq3-eeq11-xeqn4.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-3rootspoly-amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-3rootspoly-amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-amgm-faxinrrp2msqrt2geq2mxm1div2x`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-amgm-faxinrrp2msqrt2geq2mxm1div2x.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-amgm-prod1toneq1-sum1tongeqn`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-amgm-prod1toneq1-sum1tongeqn.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-amgm-sqrtxymulxmyeqxpy-xpygeq4`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-amgm-sqrtxymulxmyeqxpy-xpygeq4.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-amgm-sumasqdivbsqgeqsumbdiva`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-amgm-sumasqdivbsqgeqsumbdiva.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-apb4leq8ta4pb4`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-apb4leq8ta4pb4.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-binomnegdiscrineq-10alt28asqp1`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-binomnegdiscrineq-10alt28asqp1.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-manipexpr-2erprsqpesqeqnrpnesq`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-manipexpr-2erprsqpesqeqnrpnesq.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-manipexpr-apbeq2cceqiacpbceqm2`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-manipexpr-apbeq2cceqiacpbceqm2.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-sqineq-2at2pclta2c2p41pc`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-sqineq-2at2pclta2c2p41pc.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-sqineq-2unitcircatblt1`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-sqineq-2unitcircatblt1.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-sqineq-36azm9asqle36zsq`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-sqineq-36azm9asqle36zsq.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-sqineq-4bap1lt4bsqpap1sq`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-sqineq-4bap1lt4bsqpap1sq.lean) | open | 4 | — | — | — | — | — |
+| [`algebra-xmysqpymzsqpzmxsqeqxyz-xpypzp6dvdx3y3z3`](https://github.com/agenticsnz/unsorry/blob/main/goals/algebra-xmysqpymzsqpzmxsqeqxyz-xpypzp6dvdx3y3z3.lean) | open | 4 | — | — | — | — | — |
+| [`amc12-2000-p11`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12-2000-p11.lean) | open | 4 | — | — | — | — | — |
+| [`amc12-2000-p15`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12-2000-p15.lean) | open | 4 | — | — | — | — | — |
+| [`amc12-2000-p5`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12-2000-p5.lean) | open | 4 | — | — | — | — | — |
+| [`amc12-2001-p2`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12-2001-p2.lean) | open | 4 | — | — | — | — | — |
+| [`amc12-2001-p9`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12-2001-p9.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2002-p1`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2002-p1.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2002-p12`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2002-p12.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2002-p21`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2002-p21.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2003-p1`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2003-p1.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2003-p24`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2003-p24.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2003-p25`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2003-p25.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2008-p15`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2008-p15.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2008-p2`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2008-p2.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2008-p4`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2008-p4.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2008-p8`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2008-p8.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2009-p15`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2009-p15.lean) | open | 4 | — | — | — | — | — |
+| [`amc12a-2009-p2`](https://github.com/agenticsnz/unsorry/blob/main/goals/amc12a-2009-p2.lean) | open | 4 | — | — | — | — | — |
+| [`apmo-2023-p1`](https://github.com/agenticsnz/unsorry/blob/main/goals/apmo-2023-p1.lean) | open | 4 | — | — | — | — | — |
+| [`balticway-2015-p7`](https://github.com/agenticsnz/unsorry/blob/main/goals/balticway-2015-p7.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch1-10`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch1-10.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch1-16`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch1-16.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch1-5`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch1-5.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch10-31`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch10-31.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch10-34`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch10-34.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch10-60`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch10-60.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch11-20`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch11-20.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch11-5`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch11-5.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch11-59`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch11-59.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch12-34`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch12-34.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch12-62`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch12-62.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch13-10`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch13-10.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch13-6`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch13-6.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch13-9`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch13-9.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch14-26`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch14-26.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch14-33`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch14-33.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch14-45`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch14-45.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch2-11`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch2-11.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch2-36`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch2-36.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch2-6`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch2-6.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch3-18`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch3-18.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch3-27`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch3-27.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch3-4`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch3-4.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch4-59`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch4-59.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch4-9`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch4-9.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch5-26`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch5-26.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch5-51`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch5-51.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch5-9`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch5-9.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch6-11`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch6-11.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch6-21`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch6-21.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch6-9`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch6-9.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch7-15`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch7-15.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch7-27`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch7-27.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch7-7`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch7-7.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch8-30`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch8-30.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch8-6`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch8-6.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch8-9`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch8-9.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch9-11`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch9-11.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch9-13`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch9-13.lean) | open | 4 | — | — | — | — | — |
+| [`brualdi-ch9-8`](https://github.com/agenticsnz/unsorry/blob/main/goals/brualdi-ch9-8.lean) | open | 4 | — | — | — | — | — |
+| [`bxmo-2017-p2`](https://github.com/agenticsnz/unsorry/blob/main/goals/bxmo-2017-p2.lean) | open | 4 | — | — | — | — | — |
+| [`egmo-2022-p5`](https://github.com/agenticsnz/unsorry/blob/main/goals/egmo-2022-p5.lean) | open | 4 | — | — | — | — | — |
+| [`hackmath-1`](https://github.com/agenticsnz/unsorry/blob/main/goals/hackmath-1.lean) | open | 4 | — | — | — | — | — |
+| [`hackmath-10`](https://github.com/agenticsnz/unsorry/blob/main/goals/hackmath-10.lean) | open | 4 | — | — | — | — | — |
+| [`hackmath-2`](https://github.com/agenticsnz/unsorry/blob/main/goals/hackmath-2.lean) | open | 4 | — | — | — | — | — |
+| [`imo2020p2`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2020p2.lean) | open | 4 | — | — | — | — | — |
+| [`imo2020p3`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2020p3.lean) | open | 4 | — | — | — | — | — |
+| [`imo2020p5`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2020p5.lean) | open | 4 | — | — | — | — | — |
+| [`imo2021p1`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2021p1.lean) | open | 4 | — | — | — | — | — |
+| [`imo2021p2`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2021p2.lean) | open | 4 | — | — | — | — | — |
+| [`imo2021p5`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2021p5.lean) | open | 4 | — | — | — | — | — |
+| [`imo2021p6`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2021p6.lean) | open | 4 | — | — | — | — | — |
+| [`imo2022p5`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2022p5.lean) | open | 4 | — | — | — | — | — |
+| [`imo2023p3`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2023p3.lean) | open | 4 | — | — | — | — | — |
+| [`imo2023p6`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2023p6.lean) | open | 4 | — | — | — | — | — |
+| [`imo2024p1`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2024p1.lean) | open | 4 | — | — | — | — | — |
+| [`imo2024p2`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2024p2.lean) | open | 4 | — | — | — | — | — |
+| [`imo2025p1`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2025p1.lean) | open | 4 | — | — | — | — | — |
+| [`imo2025p3`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2025p3.lean) | open | 4 | — | — | — | — | — |
+| [`imo2025p4`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2025p4.lean) | open | 4 | — | — | — | — | — |
+| [`imo2025p5`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2025p5.lean) | open | 4 | — | — | — | — | — |
+| [`imo2025p6`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2025p6.lean) | open | 4 | — | — | — | — | — |
 | [`n4-plus-one-factor-over-sqrt-shift`](https://github.com/agenticsnz/unsorry/blob/main/goals/n4-plus-one-factor-over-sqrt-shift.lean) | open | 2 | — | — | — | — | — |
 | [`putnam-1962-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a2.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a3.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1962-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b1.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-b2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b2.lean) | open | 4 | — | — | — | — | — |
@@ -120,6 +235,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`putnam-1962-b5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-a2.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1963-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-a3.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-a4.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-a6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-b2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-b2.lean) | open | 4 | — | — | — | — | — |
@@ -127,17 +243,20 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`putnam-1963-b5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-b5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-b6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1964-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a2.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a3.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-a6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-b1.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-b2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-b2.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-b3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-b3.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1964-b4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-b4.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-b5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-b5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1964-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1964-b6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1965-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1965-a2.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1965-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1965-a3.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1965-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1965-a4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1965-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1965-a5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1965-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1965-a6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1965-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1965-b1.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1965-b2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1965-b2.lean) | open | 4 | — | — | — | — | — |
@@ -149,6 +268,50 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`putnam-1966-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-a4.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1966-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-a5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1966-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-a6.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1966-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1966-b2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b2.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1966-b3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b3.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1966-b4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1966-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b6.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-a1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-a2.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-a3.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-a4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-a5.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-a6.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-b1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-b2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-b2.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-b3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-b3.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-b4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-b4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-b5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-b5.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1967-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-b6.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-a1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-a2.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-a3.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-a4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-a5.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-a6.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-b1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-b2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-b2.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-b4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-b4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-b5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-b5.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1968-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1968-b6.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-a1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-a2.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-a4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-a5.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-a6.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-b1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-b2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-b2.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-b3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-b3.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-b4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-b4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-b5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-b5.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1969-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1969-b6.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1970-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1970-a1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1970-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1970-a2.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1970-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1970-a3.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1970-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1970-a4.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1970-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1970-b1.lean) | open | 4 | — | — | — | — | — |
 | [`quartic-x4-plus-x2-plus-one-dvd-by-minus-factor`](https://github.com/agenticsnz/unsorry/blob/main/goals/quartic-x4-plus-x2-plus-one-dvd-by-minus-factor.lean) | open | 2 | — | — | — | — | — |
 | [`sextic-x6-plus-x3-plus-one-composite-shift`](https://github.com/agenticsnz/unsorry/blob/main/goals/sextic-x6-plus-x3-plus-one-composite-shift.lean) | open | 2 | — | — | — | — | — |
 | [`sq-add-sq-eq-three-mul-sq-s4-s3-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/sq-add-sq-eq-three-mul-sq-s4-s3-s2.lean) | open | 1 | — | — | — | — | — |
@@ -2110,7 +2273,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`telescoping-quartic-sum-coeff-thirtyfour`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-thirtyfour.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6378](https://github.com/agenticsnz/unsorry/pull/6378) | 2026-06-25 |
 | [`telescoping-quartic-sum-coeff-thirtyone`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-thirtyone.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6380](https://github.com/agenticsnz/unsorry/pull/6380) | 2026-06-25 |
 | [`telescoping-quartic-sum-coeff-thirtythree`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-thirtythree.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6384](https://github.com/agenticsnz/unsorry/pull/6384) | 2026-06-25 |
-| [`telescoping-quartic-sum-coeff-thirtytwo`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-thirtytwo.lean) | proved | 4 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#6385](https://github.com/agenticsnz/unsorry/pull/6385) | 2026-06-25 |
+| [`telescoping-quartic-sum-coeff-thirtytwo`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-quartic-sum-coeff-thirtytwo.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6385](https://github.com/agenticsnz/unsorry/pull/6385) | 2026-06-25 |
 | [`abc-nine-le-sum-times-pairsum`](https://github.com/agenticsnz/unsorry/blob/main/goals/abc-nine-le-sum-times-pairsum.lean) | archived | 3 | claude-rmt-001 | — | chat-bit-01 | [#1148](https://github.com/agenticsnz/unsorry/pull/1148) | 2026-06-17 |
 | [`abstract-regular-polyhedron-classification`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-classification.lean) | archived | 3 | — | — | — | — | 2026-06-13 |
 | [`abstract-regular-polyhedron-realizable-iff`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-realizable-iff.lean) | archived | 4 | claude-web | — | chat-bit-01 | [#2171](https://github.com/agenticsnz/unsorry/pull/2171) | 2026-06-18 |
