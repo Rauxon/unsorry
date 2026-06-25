@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**214 open · 4328 proved · 4547 total prove-goals.**
+**214 open · 4329 proved · 4548 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4520,6 +4520,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-sextic-sum-coeff-twentyfour` — A telescoping power-sum closed form (coefficient 24, exponent 6): the finite sum over k in range n equals 24·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-twentynine` — A telescoping power-sum closed form (coefficient 29, exponent 6): the finite sum over k in range n equals 29·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-twentyone` — A telescoping power-sum closed form (coefficient 21, exponent 6): the finite sum over k in range n equals 21·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
+| `telescoping-sextic-sum-coeff-twentyseven` — A telescoping power-sum closed form (coefficient 27, exponent 6): the finite sum over k in range n equals 27·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-twentysix` — A telescoping power-sum closed form (coefficient 26, exponent 6): the finite sum over k in range n equals 26·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-twentythree` — A telescoping power-sum closed form (coefficient 23, exponent 6): the finite sum over k in range n equals 23·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
 | `telescoping-sextic-sum-coeff-twentytwo` — A telescoping power-sum closed form (coefficient 22, exponent 6): the finite sum over k in range n equals 22·n^6. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^6 − k^6 telescoping; proved by induction on n. |
