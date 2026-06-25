@@ -59,7 +59,7 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
 | 1 | [@cgbarlow](https://github.com/cgbarlow) | 191 | 144 | 47 | 335 | 22.4% | 287 | 2418.3 | 275305 |
-| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 1852 | 1605 | 247 | 0 | — | 2185 | 18.0 | 266600 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 1852 | 1605 | 247 | 0 | — | 2179 | 18.0 | 266000 |
 | 3 | [@ohdearquant](https://github.com/ohdearquant) | 1897 | 1896 | 1 | 704 | 100.0% | 1900 | 0.0 | 237425 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 106 | 102 | 4 | 82 | 72.0% | 152 | 144.0 | 32250 |
@@ -79,7 +79,7 @@ Git add-author attribution covers 4237 of 4237 proof index files. It is used onl
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
 | `python / sympy` | 2032 | 821 | 100.0% | 0 | 3 | 0s | — |
-| `lean / ring` | 966 | 0 | — | 0 | 1 | — | — |
+| `lean / ring` | 967 | 0 | — | 0 | 1 | — | — |
 | `lean / decide` | 638 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
 | `claude / opus` | 59 | 44 | 54.5% | 62 | 5 | 9m 33s | 2.19 |
@@ -89,7 +89,6 @@ Git add-author attribution covers 4237 of 4237 proof index files. It is used onl
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
 | `claude / sonnet` | 1 | 0 | — | 0 | 1 | — | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
-| `seedkit / template-induction-ring` | 1 | 0 | — | 0 | 1 | — | — |
 | `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 47 | 0.0% | 47 | 1 | 31m 57s | 0.00 |
 | `codex / gpt-5.3-codex-spark` | 0 | 1 | 0.0% | 3 | 1 | 1m 34s | 0.00 |
 | `openai / leanstral-2603-sovereign` | 0 | 1 | 0.0% | 1 | 1 | 1m 22s | 0.00 |
