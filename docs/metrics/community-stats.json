@@ -19,7 +19,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 1647,
+      "difficulty_points": 1648,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -30,7 +30,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1647
+      "verified_proofs": 1648
     },
     {
       "attempt_yield": null,
@@ -130,17 +130,17 @@
     }
   ],
   "coverage": {
-    "attributed_proofs": 3973,
+    "attributed_proofs": 3974,
     "historical_unknown_proofs": 308,
-    "proof_run_coverage": 0.1988,
+    "proof_run_coverage": 0.1987,
     "successful_proofs_with_run_telemetry": 851,
     "terminal_runs": 1195,
-    "verified_proofs": 4281
+    "verified_proofs": 4282
   },
   "credit": {
     "credited_contributors": 9,
-    "credited_proofs": 4281,
-    "explicit_solver_proofs": 3973,
+    "credited_proofs": 4282,
+    "explicit_solver_proofs": 3974,
     "inferred_git_proofs": 308,
     "uncredited_proofs": 0
   },
@@ -185,12 +185,12 @@
         "explicit-solver",
         "inferred-git-add-author"
       ],
-      "credited_proofs": 1894,
-      "difficulty_points": 2221,
+      "credited_proofs": 1895,
+      "difficulty_points": 2222,
       "dispatch_points": 18.0,
       "dispatch_proofs": 20,
       "display_name": "@chat-bit-01",
-      "explicit_solver_proofs": 1647,
+      "explicit_solver_proofs": 1648,
       "failed_attempts": 0,
       "failures": 0,
       "git_author": "chat-bit-01 <chatuser55@gmail.com>",
@@ -205,7 +205,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1894
+      "verified_proofs": 1895
     },
     {
       "attempt_yield": 0.2033,
@@ -218,8 +218,8 @@
       ],
       "credited_proofs": 191,
       "difficulty_points": 287,
-      "dispatch_points": 2456.1,
-      "dispatch_proofs": 2729,
+      "dispatch_points": 2457.0,
+      "dispatch_proofs": 2730,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 144,
       "failed_attempts": 294,
@@ -18025,18 +18025,18 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/cgbarlow.png?size=96",
-        "difficulty_points": 3242,
+        "difficulty_points": 3243,
         "display_name": "Chris Barlow",
         "git_author": "Chris Barlow <cgbarlow@gmail.com>",
         "git_author_name": "Chris Barlow",
         "github": "cgbarlow",
-        "index_files_added": 2920,
+        "index_files_added": 2921,
         "missing_solver_provenance": 47,
         "profile_url": "https://github.com/cgbarlow",
         "sample_add_commit": "d611b71faefc5535b868c5e071261469d62d6cf4",
         "sample_add_date": "2026-06-22",
         "solver_credit": false,
-        "solver_provenance_proofs": 2873
+        "solver_provenance_proofs": 2874
       },
       {
         "attribution_source": "git-add-author",
@@ -18167,8 +18167,8 @@
         "solver_provenance_proofs": 1
       }
     ],
-    "git_attributed_index_files": 4281,
-    "records": 4281,
+    "git_attributed_index_files": 4282,
+    "records": 4282,
     "scope": "library/index/*.aisp",
     "source": "git-add-author",
     "unattributed_index_files": 0
@@ -18204,7 +18204,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 1009
+      "verified_proofs": 1010
     },
     {
       "attempt_yield": null,
@@ -18420,18 +18420,18 @@
   "queue": {
     "difficulty_counts": {
       "0": 10,
-      "1": 3790,
+      "1": 3791,
       "2": 266,
       "3": 213,
       "4": 242,
       "5": 1
     },
-    "goals": 4522,
+    "goals": 4523,
     "status_counts": {
       "archived": 2199,
       "blocked": 5,
       "open": 216,
-      "proved": 2093,
+      "proved": 2094,
       "translated": 9
     }
   },
