@@ -1,6 +1,6 @@
 {
   "generated_by": "python3 -m tools.adr_index --write",
-  "count": 100,
+  "count": 101,
   "adrs": [
     {
       "id": "ADR-001",
@@ -769,6 +769,14 @@
       "status": "Accepted",
       "date": "2026-06-25",
       "file": "ADR-098-Leaderboard-Freshness-Alarm.md"
+    },
+    {
+      "id": "ADR-099",
+      "number": 99,
+      "title": "Per-Suite Mathlib Pin for Benchmark Suite Ingestion & Verification",
+      "status": "Proposed",
+      "date": "2026-06-25",
+      "file": "ADR-099-Per-Suite-Mathlib-Pin-For-Benchmark-Ingestion.md"
     },
     {
       "id": "ADR-100",
