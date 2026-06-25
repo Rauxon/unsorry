@@ -19,7 +19,7 @@
     {
       "attempt_yield": null,
       "attempts": 0,
-      "difficulty_points": 1513,
+      "difficulty_points": 1510,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": null,
@@ -186,7 +186,7 @@
         "inferred-git-add-author"
       ],
       "credited_proofs": 1757,
-      "difficulty_points": 2087,
+      "difficulty_points": 2084,
       "dispatch_points": 18.0,
       "dispatch_proofs": 20,
       "display_name": "@chat-bit-01",
@@ -17929,7 +17929,7 @@
       {
         "attribution_source": "git-add-author",
         "avatar_url": "https://github.com/cgbarlow.png?size=96",
-        "difficulty_points": 3108,
+        "difficulty_points": 3105,
         "display_name": "Chris Barlow",
         "git_author": "Chris Barlow <cgbarlow@gmail.com>",
         "git_author_name": "Chris Barlow",
@@ -18108,7 +18108,7 @@
       "successes": 0,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 871
+      "verified_proofs": 872
     },
     {
       "attempt_yield": null,
@@ -18245,22 +18245,6 @@
       "failures": 0,
       "median_solve_s": null,
       "p90_solve_s": null,
-      "provider_model": "claude / template-induction-ring",
-      "run_success_rate": null,
-      "runs": 0,
-      "solvers": 1,
-      "successes": 0,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 1
-    },
-    {
-      "attempt_yield": null,
-      "attempts": 0,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": null,
-      "p90_solve_s": null,
       "provider_model": "claude / unknown",
       "run_success_rate": null,
       "runs": 0,
@@ -18340,10 +18324,10 @@
   "queue": {
     "difficulty_counts": {
       "0": 10,
-      "1": 3644,
+      "1": 3645,
       "2": 266,
       "3": 213,
-      "4": 243,
+      "4": 242,
       "5": 1
     },
     "goals": 4377,
