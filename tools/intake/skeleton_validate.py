@@ -332,10 +332,18 @@ def _check_build(pkg: Path, top: str, goals: set[str], result: Result) -> None:
         return
     battery = TACTIC_BATTERY + EXTRA_BATTERY
 
+    # Elaborate under the suite-scoped verifier context (ADR-099 / SPEC-099-A §1) when it
+    # has been prepared: its lake project pins the suite's *native* mathlib, so a suite
+    # authored against an older mathlib is judged at its own pin instead of the repo's.
+    # Fall back to the package dir (which resolves to the repo pin) only when no context
+    # is present — correct just for repo-pinned suites.
+    vctx = pkg / "_verify"
+    probe_root = vctx if (vctx / "lakefile.toml").is_file() else pkg
+
     leaves = [g for g in sorted(goals) if g != top]
     for goal_id in [top, *leaves]:
         lean = pkg / "goals" / f"{goal_id}.lean"
-        verdict = probe(lean, battery=battery, root=pkg).get("verdict")
+        verdict = probe(lean, battery=battery, root=probe_root).get("verdict")
         if verdict == "probe-error":
             if goal_id == top:
                 result.fail("6-build", f"top '{top}' statement does not elaborate")
