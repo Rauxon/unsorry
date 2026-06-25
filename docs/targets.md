@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**56 open · 4013 proved · 4072 total prove-goals.**
+**56 open · 4015 proved · 4074 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -4056,6 +4056,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-cube-sum-coeff-fortynine` — A telescoping power-sum closed form (coefficient 49, exponent 3): the finite sum over k in range n equals 49·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
 | `telescoping-cube-sum-coeff-fortyone` — A telescoping power-sum closed form (coefficient 41, exponent 3): the finite sum over k in range n equals 41·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
 | `telescoping-cube-sum-coeff-fortyseven` — A telescoping power-sum closed form (coefficient 47, exponent 3): the finite sum over k in range n equals 47·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
+| `telescoping-cube-sum-coeff-fortysix` — A telescoping power-sum closed form (coefficient 46, exponent 3): the finite sum over k in range n equals 46·n^3. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
+| `telescoping-cube-sum-coeff-fortythree` — A telescoping power-sum closed form (coefficient 43, exponent 3): the finite sum over k in range n equals 43·n^3. | proved | 4 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
 | `telescoping-cube-sum-coeff-fortytwo` — A telescoping power-sum closed form (coefficient 42, exponent 3): the finite sum over k in range n equals 42·n^3. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^3 − k^3 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
 | `thirty-dvd-pow-five-sub-self` — For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
