@@ -818,7 +818,7 @@
     },
     {
       "cohort": "benchmark",
-      "credited": 50,
+      "credited": 100,
       "domain": "lean-math",
       "glue": 0,
       "goals": [
@@ -1171,11 +1171,361 @@
           "id": "amc12a-2009-p2",
           "run_snippet": "./swarm/run.sh --goal amc12a-2009-p2",
           "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2009-p25",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2009-p25",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2009-p5",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2009-p5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2009-p9",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2009-p9",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2010-p10",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2010-p10",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2010-p11",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2010-p11",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2010-p22",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2010-p22",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2011-p18",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2011-p18",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2013-p7",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2013-p7",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2013-p8",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2013-p8",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2015-p10",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2015-p10",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2016-p2",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2016-p2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2016-p3",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2016-p3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2017-p2",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2017-p2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2017-p7",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2017-p7",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2019-p21",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2019-p21",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2019-p9",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2019-p9",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2020-p13",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2020-p13",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2020-p21",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2020-p21",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12a-2021-p7",
+          "run_snippet": "./swarm/run.sh --goal amc12a-2021-p7",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12b-2002-p11",
+          "run_snippet": "./swarm/run.sh --goal amc12b-2002-p11",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12b-2002-p3",
+          "run_snippet": "./swarm/run.sh --goal amc12b-2002-p3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12b-2002-p6",
+          "run_snippet": "./swarm/run.sh --goal amc12b-2002-p6",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12b-2003-p17",
+          "run_snippet": "./swarm/run.sh --goal amc12b-2003-p17",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12b-2003-p6",
+          "run_snippet": "./swarm/run.sh --goal amc12b-2003-p6",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12b-2003-p9",
+          "run_snippet": "./swarm/run.sh --goal amc12b-2003-p9",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12b-2004-p3",
+          "run_snippet": "./swarm/run.sh --goal amc12b-2004-p3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12b-2020-p5",
+          "run_snippet": "./swarm/run.sh --goal amc12b-2020-p5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "amc12b-2021-p21",
+          "run_snippet": "./swarm/run.sh --goal amc12b-2021-p21",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1961-p1",
+          "run_snippet": "./swarm/run.sh --goal imo-1961-p1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1962-p4",
+          "run_snippet": "./swarm/run.sh --goal imo-1962-p4",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1964-p1-1",
+          "run_snippet": "./swarm/run.sh --goal imo-1964-p1-1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1964-p1-2",
+          "run_snippet": "./swarm/run.sh --goal imo-1964-p1-2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1965-p1",
+          "run_snippet": "./swarm/run.sh --goal imo-1965-p1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1966-p4",
+          "run_snippet": "./swarm/run.sh --goal imo-1966-p4",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1966-p5",
+          "run_snippet": "./swarm/run.sh --goal imo-1966-p5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1967-p3",
+          "run_snippet": "./swarm/run.sh --goal imo-1967-p3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1973-p3",
+          "run_snippet": "./swarm/run.sh --goal imo-1973-p3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1974-p5",
+          "run_snippet": "./swarm/run.sh --goal imo-1974-p5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1977-p5",
+          "run_snippet": "./swarm/run.sh --goal imo-1977-p5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1978-p5",
+          "run_snippet": "./swarm/run.sh --goal imo-1978-p5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1979-p1",
+          "run_snippet": "./swarm/run.sh --goal imo-1979-p1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1984-p2",
+          "run_snippet": "./swarm/run.sh --goal imo-1984-p2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1987-p4",
+          "run_snippet": "./swarm/run.sh --goal imo-1987-p4",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1987-p6",
+          "run_snippet": "./swarm/run.sh --goal imo-1987-p6",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1988-p6",
+          "run_snippet": "./swarm/run.sh --goal imo-1988-p6",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1990-p3",
+          "run_snippet": "./swarm/run.sh --goal imo-1990-p3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-1993-p5",
+          "run_snippet": "./swarm/run.sh --goal imo-1993-p5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "imo-2006-p3",
+          "run_snippet": "./swarm/run.sh --goal imo-2006-p3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "induction-divisibility-3div2tooddnp1",
+          "run_snippet": "./swarm/run.sh --goal induction-divisibility-3div2tooddnp1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "induction-divisibility-3divnto3m2n",
+          "run_snippet": "./swarm/run.sh --goal induction-divisibility-3divnto3m2n",
+          "status": "open"
         }
       ],
       "id": "minif2f-v1",
       "license": "MIT",
-      "mathlib_pin": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "mathlib_pin": "f897ebcf72cd16f89ab4577d0c826cd14afaafc7",
       "pass_at": {},
       "proved": 0,
       "run_snippet": "./swarm/run.sh --goal minif2f-v1-suite",
