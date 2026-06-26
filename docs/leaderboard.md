@@ -4,7 +4,7 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**4410 verified proofs · 4102 attributed · 308 historical/unknown · 1221 logged terminal runs.**
+**4413 verified proofs · 4105 attributed · 308 historical/unknown · 1221 logged terminal runs.**
 
 ## Efficiency Baseline
 
@@ -25,7 +25,7 @@ Verified output comes from active `library/index` records plus archived index re
 
 ## Work Queue
 
-**4667 goals · 2199 archived · 12 blocked · 224 open · 2223 proved · 9 translated.**
+**4670 goals · 2199 archived · 12 blocked · 224 open · 2226 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
@@ -58,8 +58,8 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 120 | 73 | 47 | 280 | 5.4% | 216 | 2630.7 | 287670 |
-| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 2015 | 1768 | 247 | 4 | 100.0% | 2346 | 18.9 | 286865 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 120 | 73 | 47 | 280 | 5.4% | 216 | 2633.4 | 287940 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 2018 | 1771 | 247 | 4 | 100.0% | 2352 | 18.9 | 287540 |
 | 3 | [@ohdearquant](https://github.com/ohdearquant) | 2037 | 2036 | 1 | 824 | 100.0% | 2040 | 0.0 | 254925 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 41 | 37 | 4 | 27 | 14.8% | 87 | 202.5 | 29975 |
@@ -70,16 +70,16 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 ## Attribution Notes
 
-**4102 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**4105 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 4410 of 4410 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 4413 of 4413 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
 | `python / sympy` | 2035 | 824 | 100.0% | 0 | 1 | 0s | — |
-| `lean / ring` | 1111 | 0 | — | 0 | 1 | — | — |
+| `lean / ring` | 1113 | 0 | — | 0 | 1 | — | — |
 | `lean / decide` | 653 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
 | `claude / opus` | 70 | 70 | 51.4% | 101 | 6 | 10m 18s | 1.31 |
@@ -89,6 +89,7 @@ Git add-author attribution covers 4410 of 4410 proof index files. It is used onl
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
 | `claude / sonnet` | 1 | 0 | — | 0 | 1 | — | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
+| `seedkit / template-induction-ring` | 1 | 0 | — | 0 | 1 | — | — |
 | `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 47 | 0.0% | 47 | 1 | 31m 57s | 0.00 |
 | `codex / gpt-5.3-codex-spark` | 0 | 1 | 0.0% | 3 | 1 | 1m 34s | 0.00 |
 | `openai / leanstral-2603-sovereign` | 0 | 1 | 0.0% | 1 | 1 | 1m 22s | 0.00 |
