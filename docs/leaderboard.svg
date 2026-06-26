@@ -18,10 +18,10 @@
 <a href="https://github.com/chat-bit-01">
 <text x="82" y="202" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="650" fill="#334155">@chat-bit-01</text>
 </a>
-<text x="82" y="222" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">1996 proofs · 2330 difficulty · 1749 explicit · 247 inferred · 4 runs</text>
+<text x="82" y="222" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#64748b">1996 proofs · 2327 difficulty · 1749 explicit · 247 inferred · 4 runs</text>
 <rect x="320" y="191" width="420" height="26" rx="13" fill="#f1f5f9"/>
-<rect x="320" y="191" width="388" height="26" rx="13" fill="#e0f2fe"/>
-<text x="760" y="210" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">284700 pts</text>
+<rect x="320" y="191" width="387" height="26" rx="13" fill="#e0f2fe"/>
+<text x="760" y="210" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#334155">284400 pts</text>
 <text x="760" y="226" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#64748b">explicit + inferred</text>
 <text x="34" y="276" font-family="Georgia, serif" font-size="24" font-style="italic" font-weight="700" fill="#b45309">3</text>
 <a href="https://github.com/ruvnet">
