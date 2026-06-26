@@ -1,6 +1,6 @@
 {
   "generated_by": "python3 -m tools.adr_index --write",
-  "count": 102,
+  "count": 103,
   "adrs": [
     {
       "id": "ADR-001",
@@ -777,6 +777,14 @@
       "status": "Proposed",
       "date": "2026-06-25",
       "file": "ADR-099-Per-Suite-Mathlib-Pin-For-Benchmark-Ingestion.md"
+    },
+    {
+      "id": "ADR-099",
+      "number": 99,
+      "title": "Re-attribute Agent-Owned Pipeline Solver to the Pipeline Owner",
+      "status": "Accepted",
+      "date": "2026-06-26",
+      "file": "ADR-099-Reattribute-Agent-Owned-Pipeline-Solver.md"
     },
     {
       "id": "ADR-100",
