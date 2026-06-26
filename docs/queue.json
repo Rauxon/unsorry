@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 432,
-    "waiting": 418,
-    "in_flight": 14,
-    "distinct_goals": 420,
+    "queued_submissions": 405,
+    "waiting": 389,
+    "in_flight": 16,
+    "distinct_goals": 399,
     "solvers": 3
   },
   "solvers": [
@@ -15,10 +15,10 @@
       "github": "ohdearquant",
       "display_name": "@ohdearquant",
       "profile_url": "https://github.com/ohdearquant",
-      "submissions": 345,
-      "waiting": 340,
+      "submissions": 341,
+      "waiting": 336,
       "in_flight": 5,
-      "distinct_goals": 345,
+      "distinct_goals": 341,
       "queued": [
         {
           "goal": "gself-pow-four-pow-twelve-add-pow-five",
@@ -2709,30 +2709,6 @@
           "state": "waiting"
         },
         {
-          "goal": "n4-plus-one-factor-over-sqrt-shift",
-          "branch": "queued/prove/n4-plus-one-factor-over-sqrt-shift/reroute-3ab8a0",
-          "sha": "b8dd19805",
-          "model": "swarm-sonnet",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "quartic-x4-plus-x2-plus-one-dvd-by-minus-factor",
-          "branch": "queued/prove/quartic-x4-plus-x2-plus-one-dvd-by-minus-factor/reroute-19dc76",
-          "sha": "bc34f4f5d",
-          "model": "swarm-sonnet",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
-          "goal": "sextic-x6-plus-x3-plus-one-composite-shift",
-          "branch": "queued/prove/sextic-x6-plus-x3-plus-one-composite-shift/reroute-e031e2",
-          "sha": "5be5a0193",
-          "model": "swarm-sonnet",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "sum-three-squares-zmod-eight-ne-seven",
           "branch": "queued/prove/sum-three-squares-zmod-eight-ne-seven/reroute-1de2ac",
           "sha": "3448e75b7",
@@ -2765,14 +2741,6 @@
           "state": "waiting"
         },
         {
-          "goal": "sum-two-squares-zmod-four-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-four-ne-three/reroute-fb3b8c",
-          "sha": "a59c211cb",
-          "model": "template-zmod-decide",
-          "date": "2026-06-17",
-          "state": "waiting"
-        },
-        {
           "goal": "three-fourth-powers-zmod-sixteen-mem",
           "branch": "queued/prove/three-fourth-powers-zmod-sixteen-mem/reroute-387a25",
           "sha": "d56ae920a",
@@ -2787,10 +2755,10 @@
       "github": "chat-bit-01",
       "display_name": "@chat-bit-01",
       "profile_url": "https://github.com/chat-bit-01",
-      "submissions": 86,
-      "waiting": 77,
-      "in_flight": 9,
-      "distinct_goals": 78,
+      "submissions": 63,
+      "waiting": 52,
+      "in_flight": 11,
+      "distinct_goals": 57,
       "queued": [
         {
           "goal": "faulhaber-quartic-sum-coeff-seventyfour",
@@ -2849,196 +2817,12 @@
           "state": "in-flight"
         },
         {
-          "goal": "n4-plus-one-factor-over-sqrt-shift",
-          "branch": "queued/prove/n4-plus-one-factor-over-sqrt-shift/claude-web-76c606",
-          "sha": "8ad84f5b8",
-          "model": "opus",
-          "date": "2026-06-25",
-          "state": "in-flight"
-        },
-        {
-          "goal": "quartic-x4-plus-x2-plus-one-dvd-by-minus-factor",
-          "branch": "queued/prove/quartic-x4-plus-x2-plus-one-dvd-by-minus-factor/claude-web-8946ac",
-          "sha": "1cfff954c",
-          "model": "opus",
-          "date": "2026-06-25",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sextic-x6-plus-x3-plus-one-composite-shift",
-          "branch": "queued/prove/sextic-x6-plus-x3-plus-one-composite-shift/claude-web-46e683",
-          "sha": "bbb325d8a",
-          "model": "opus",
-          "date": "2026-06-25",
-          "state": "in-flight"
-        },
-        {
-          "goal": "sum-two-squares-zmod-four-ne-three",
-          "branch": "queued/prove/sum-two-squares-zmod-four-ne-three/claude-web-578146",
-          "sha": "acd4f0d05",
-          "model": "opus",
-          "date": "2026-06-25",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fiftyone",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fiftyone/claude-web-950bb6",
-          "sha": "696b846b4",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fiftyseven",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fiftyseven/claude-web-051669",
-          "sha": "eac4777cb",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "in-flight"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fiftysix",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fiftysix/claude-web-9ea363",
-          "sha": "d5909b35e",
-          "model": "ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fiftythree",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fiftythree/claude-web-b22a85",
-          "sha": "5d7ea9e90",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fiftytwo",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fiftytwo/claude-web-fca452",
-          "sha": "52d7bf750",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-five",
-          "branch": "queued/prove/telescoping-square-sum-coeff-five/claude-web-c98722",
-          "sha": "3d93940ce",
-          "model": "ring",
-          "date": "2026-06-25",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-five",
-          "branch": "queued/prove/telescoping-square-sum-coeff-five/claude-web-cde206",
-          "sha": "078dc754f",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-forty",
-          "branch": "queued/prove/telescoping-square-sum-coeff-forty/claude-web-b9cbee",
-          "sha": "ade5e6bb1",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fortyeight",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fortyeight/claude-web-512345",
-          "sha": "a60cd5113",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fortyfive",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fortyfive/claude-web-9ffc45",
-          "sha": "4ba4fcdd0",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fortyfour",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fortyfour/claude-web-56c9e1",
-          "sha": "8791668f6",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fortynine",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fortynine/claude-web-19f1dc",
-          "sha": "a5bb895b5",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fortyone",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fortyone/claude-web-ac28ec",
-          "sha": "3c483694a",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fortyseven",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fortyseven/claude-web-239729",
-          "sha": "19785f32f",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fortysix",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fortysix/claude-web-e5366e",
-          "sha": "32284e1bd",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fortythree",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fortythree/claude-web-ce054d",
-          "sha": "d2239b309",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-fortytwo",
-          "branch": "queued/prove/telescoping-square-sum-coeff-fortytwo/claude-web-076891",
-          "sha": "4d0c83bd4",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-four",
-          "branch": "queued/prove/telescoping-square-sum-coeff-four/claude-web-794925",
-          "sha": "8a1a79223",
-          "model": "template-induction-ring",
-          "date": "2026-06-23",
-          "state": "waiting"
-        },
-        {
-          "goal": "telescoping-square-sum-coeff-four",
-          "branch": "queued/prove/telescoping-square-sum-coeff-four/claude-web-e1ecaf",
-          "sha": "c999b0f25",
-          "model": "ring",
-          "date": "2026-06-25",
-          "state": "waiting"
-        },
-        {
           "goal": "telescoping-square-sum-coeff-fourteen",
           "branch": "queued/prove/telescoping-square-sum-coeff-fourteen/claude-web-8e5f57",
           "sha": "790fca8ed",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-square-sum-coeff-nine",
@@ -3046,7 +2830,7 @@
           "sha": "40e6cd1b8",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-square-sum-coeff-nineteen",
@@ -3054,7 +2838,7 @@
           "sha": "9f21212a5",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-square-sum-coeff-one",
@@ -3062,7 +2846,7 @@
           "sha": "b508bd12d",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-square-sum-coeff-one",
@@ -3078,7 +2862,7 @@
           "sha": "22e6af98f",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-square-sum-coeff-seventeen",
@@ -3086,7 +2870,7 @@
           "sha": "f48711a79",
           "model": "template-induction-ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-square-sum-coeff-seventy",
@@ -3094,7 +2878,7 @@
           "sha": "78b58a49e",
           "model": "ring",
           "date": "2026-06-23",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "telescoping-square-sum-coeff-seventyeight",
