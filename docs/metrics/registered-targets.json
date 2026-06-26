@@ -2552,7 +2552,7 @@
     },
     {
       "cohort": "benchmark",
-      "credited": 270,
+      "credited": 294,
       "domain": "lean-math",
       "glue": 0,
       "goals": [
@@ -4444,6 +4444,174 @@
           "difficulty": 4,
           "id": "putnam-1990-a2",
           "run_snippet": "./swarm/run.sh --goal putnam-1990-a2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1990-a4",
+          "run_snippet": "./swarm/run.sh --goal putnam-1990-a4",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1990-a5",
+          "run_snippet": "./swarm/run.sh --goal putnam-1990-a5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1990-a6",
+          "run_snippet": "./swarm/run.sh --goal putnam-1990-a6",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1990-b1",
+          "run_snippet": "./swarm/run.sh --goal putnam-1990-b1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1990-b2",
+          "run_snippet": "./swarm/run.sh --goal putnam-1990-b2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1990-b3",
+          "run_snippet": "./swarm/run.sh --goal putnam-1990-b3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1990-b4",
+          "run_snippet": "./swarm/run.sh --goal putnam-1990-b4",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1990-b5",
+          "run_snippet": "./swarm/run.sh --goal putnam-1990-b5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1991-a2",
+          "run_snippet": "./swarm/run.sh --goal putnam-1991-a2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1991-a3",
+          "run_snippet": "./swarm/run.sh --goal putnam-1991-a3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1991-a4",
+          "run_snippet": "./swarm/run.sh --goal putnam-1991-a4",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1991-a5",
+          "run_snippet": "./swarm/run.sh --goal putnam-1991-a5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1991-a6",
+          "run_snippet": "./swarm/run.sh --goal putnam-1991-a6",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1991-b1",
+          "run_snippet": "./swarm/run.sh --goal putnam-1991-b1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1991-b2",
+          "run_snippet": "./swarm/run.sh --goal putnam-1991-b2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1991-b4",
+          "run_snippet": "./swarm/run.sh --goal putnam-1991-b4",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1992-a1",
+          "run_snippet": "./swarm/run.sh --goal putnam-1992-a1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1992-a2",
+          "run_snippet": "./swarm/run.sh --goal putnam-1992-a2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1992-a5",
+          "run_snippet": "./swarm/run.sh --goal putnam-1992-a5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1992-b2",
+          "run_snippet": "./swarm/run.sh --goal putnam-1992-b2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1992-b3",
+          "run_snippet": "./swarm/run.sh --goal putnam-1992-b3",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1992-b4",
+          "run_snippet": "./swarm/run.sh --goal putnam-1992-b4",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1992-b5",
+          "run_snippet": "./swarm/run.sh --goal putnam-1992-b5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-1992-b6",
+          "run_snippet": "./swarm/run.sh --goal putnam-1992-b6",
           "status": "open"
         }
       ],
