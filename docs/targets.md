@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**225 open · 4545 proved · 4783 total prove-goals.**
+**225 open · 4549 proved · 4787 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2761,7 +2761,11 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-seven-add-pow-four` — n to the 2 divides n to the 7 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 7 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-seven-add-pow-six` — n to the 2 divides n to the 7 plus n to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 7 plus n to the 6. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-seven-add-pow-two` — n to the 2 divides n to the 7 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 7 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-seventeen-add-pow-eight` — n to the 2 divides n to the 17 plus n to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 17 plus n to the 8. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-seventeen-add-pow-eleven` — n to the 2 divides n to the 17 plus n to the 11. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 17 plus n to the 11. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-seventeen-add-pow-five` — n to the 2 divides n to the 17 plus n to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 17 plus n to the 5. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-seventeen-add-pow-fourteen` — n to the 2 divides n to the 17 plus n to the 14. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 17 plus n to the 14. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-seventeen-add-pow-nine` — n to the 2 divides n to the 17 plus n to the 9. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 17 plus n to the 9. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-six-add-pow-five` — n to the 2 divides n to the 6 plus n to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 6 plus n to the 5. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-six-add-pow-four` — n to the 2 divides n to the 6 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 6 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-six-add-pow-three` — n to the 2 divides n to the 6 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 6 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
