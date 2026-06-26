@@ -18670,19 +18670,19 @@
   "models": [
     {
       "attempt_yield": 1.0,
-      "attempts": 834,
+      "attempts": 836,
       "failed_attempts": 0,
       "failures": 0,
       "median_solve_s": 0,
       "p90_solve_s": 0,
       "provider_model": "python / sympy",
       "run_success_rate": 1.0,
-      "runs": 834,
+      "runs": 836,
       "solvers": 1,
-      "successes": 834,
+      "successes": 836,
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
-      "verified_proofs": 2045
+      "verified_proofs": 2047
     },
     {
       "attempt_yield": null,
@@ -18811,22 +18811,6 @@
       "successes_per_recorded_hour": null,
       "total_solve_s": 0,
       "verified_proofs": 4
-    },
-    {
-      "attempt_yield": 1.0,
-      "attempts": 2,
-      "failed_attempts": 0,
-      "failures": 0,
-      "median_solve_s": 0,
-      "p90_solve_s": 0,
-      "provider_model": "claude / template-ring-cofactor",
-      "run_success_rate": 1.0,
-      "runs": 2,
-      "solvers": 1,
-      "successes": 2,
-      "successes_per_recorded_hour": null,
-      "total_solve_s": 0,
-      "verified_proofs": 2
     },
     {
       "attempt_yield": null,

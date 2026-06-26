@@ -284,7 +284,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-26T04:23:42Z",
+  "generated_at": "2026-06-26T04:27:27Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -409,8 +409,8 @@
     {
       "provider_model": "python / sympy",
       "run_success_rate": 1.0,
-      "runs": 834,
-      "verified_proofs": 2045
+      "runs": 836,
+      "verified_proofs": 2047
     },
     {
       "provider_model": "lean / ring",
@@ -459,12 +459,6 @@
       "run_success_rate": null,
       "runs": 0,
       "verified_proofs": 4
-    },
-    {
-      "provider_model": "claude / template-ring-cofactor",
-      "run_success_rate": 1.0,
-      "runs": 2,
-      "verified_proofs": 2
     },
     {
       "provider_model": "claude / sonnet",
