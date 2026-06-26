@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**224 open · 4511 proved · 4747 total prove-goals.**
+**227 open · 4514 proved · 4754 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -170,7 +170,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1966-a2` — putnam-v1 benchmark obligation putnam_1966_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a4` — putnam-v1 benchmark obligation putnam_1966_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a5` — putnam-v1 benchmark obligation putnam_1966_a5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
-| `putnam-1966-a6` — putnam-v1 benchmark obligation putnam_1966_a6 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1966-a6-s1` — putnam-1966-a6-s1 | open | 1 | — | — | — |
+| `putnam-1966-a6-s2` — putnam-1966-a6-s2 | open | 1 | — | — | — |
+| `putnam-1966-a6-s3` — putnam-1966-a6-s3 | open | 1 | — | — | — |
+| `putnam-1966-a6-s4` — putnam-1966-a6-s4 | open | 1 | — | — | — |
 | `putnam-1966-b1-s3-s1` — putnam-1966-b1-s3-s1 | open | 1 | — | — | — |
 | `putnam-1966-b1-s3-s2` — putnam-1966-b1-s3-s2 | open | 1 | — | — | — |
 | `putnam-1966-b1-s3-s3` — putnam-1966-b1-s3-s3 | open | 1 | — | — | — |
@@ -236,6 +239,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1962-b5` — putnam-v1 benchmark obligation putnam_1962_b5 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-b6` — putnam-v1 benchmark obligation putnam_1965_b6 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a1` — putnam-v1 benchmark obligation putnam_1966_a1 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1966-a6` — putnam-v1 benchmark obligation putnam_1966_a6 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-b1` — putnam-v1 benchmark obligation putnam_1966_b1 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1966-b1-s3` — putnam-1966-b1-s3 | blocked | 1 | — | — | — |
 | `putnam-1966-b1-s4` — putnam-1966-b1-s4 | blocked | 1 | — | — | — |
@@ -2724,10 +2728,13 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-fourteen-add-pow-five` — n to the 2 divides n to the 14 plus n to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 5. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-fourteen-add-pow-four` — n to the 2 divides n to the 14 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-fourteen-add-pow-nine` — n to the 2 divides n to the 14 plus n to the 9. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 9. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-fourteen-add-pow-seven` — n to the 2 divides n to the 14 plus n to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 7. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-fourteen-add-pow-six` — n to the 2 divides n to the 14 plus n to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 6. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-fourteen-add-pow-ten` — n to the 2 divides n to the 14 plus n to the 10. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 10. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-fourteen-add-pow-thirteen` — n to the 2 divides n to the 14 plus n to the 13. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 13. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-fourteen-add-pow-three` — n to the 2 divides n to the 14 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-fourteen-add-pow-twelve` — n to the 2 divides n to the 14 plus n to the 12. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 12. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-fourteen-add-pow-two` — n to the 2 divides n to the 14 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 14 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-six-add-pow-five` — n to the 2 divides n to the 6 plus n to the 5. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 6 plus n to the 5. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-six-add-pow-four` — n to the 2 divides n to the 6 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 6 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-six-add-pow-three` — n to the 2 divides n to the 6 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 6 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
