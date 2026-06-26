@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**225 open · 4620 proved · 4860 total prove-goals.**
+**224 open · 4621 proved · 4860 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -232,7 +232,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1970-b1` — putnam-v1 benchmark obligation putnam_1970_b1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `sq-add-sq-eq-three-mul-sq-s4-s3-s2` — sq-add-sq-eq-three-mul-sq-s4-s3-s2 | open | 1 | — | — | — |
 | `sum-range-succ-k-mul-choose-mul-two-pow-closed` — Three times the sum of (k+1) times n-choose-k times two-to-the-k equals (2n+3) times three-to-the-n. | open | 3 | — | #400 Identity Engine (ADR-043) — binomial family; promoted from candidate backlog (#610). | Three times the sum of (k+1) times n-choose-k times two-to-the-k equals (2n+3) times three-to-the-n. Not a named mathlib lemma in this form. |
-| `three-fourth-powers-zmod-sixteen-mem` — A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. Not a named mathlib lemma in this form. |
 | `putnam-1962-a1` — putnam-v1 benchmark obligation putnam_1962_a1 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1962-a1-s2` — putnam-1962-a1-s2 | blocked | 1 | — | — | — |
 | `putnam-1962-b5` — putnam-v1 benchmark obligation putnam_1962_b5 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
@@ -4851,6 +4850,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `three-cubes-minus-three-prod-dvd-sum` — The sum a+b+c divides the symmetric expression a cubed plus b cubed plus c cubed minus three times abc. | proved | 2 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | The sum a+b+c divides the symmetric expression a cubed plus b cubed plus c cubed minus three times abc. Not a named mathlib lemma in this form. |
 | `three-cubes-zmod-nine-ne-four-five` — A sum of three integer cubes is never congruent to 4 or 5 modulo 9. | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A sum of three integer cubes is never congruent to 4 or 5 modulo 9. Not a named mathlib lemma in this form. |
 | `three-dvd-n-cubed-add-two-n` — Three always divides n cubed plus twice n. | proved | 1 | — | #400 Identity Engine (ADR-043) — algebraic identity family; promoted from candidate backlog (#610). | Three always divides n cubed plus twice n. Not a named mathlib lemma in this form. |
+| `three-fourth-powers-zmod-sixteen-mem` — A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. Not a named mathlib lemma in this form. |
 | `three-mul-fib-eq-fib-add-two-add-fib-sub-two` — Three times fib(n+2) equals fib(n+4) plus fib n. | proved | 2 | — | #400 Identity Engine (ADR-043) — Fibonacci/Lucas family; promoted from candidate backlog (#610). | Three times fib(n+2) equals fib(n+4) plus fib n. Not a named mathlib lemma in this form. |
 | `three-quartic-ge-sum-times-cubes` — Chebyshev's sum inequality (degree four): for nonnegative reals, (a+b+c)(a³+b³+c³) ≤ 3(a⁴+b⁴+c⁴). | proved | 3 | [packet-ready](upstream/three-quartic-ge-sum-times-cubes.md) | #400 Identity Engine (ADR-043/ADR-060) — classical 2–3 variable SOS / competition inequalities; promoted from backlog/candidates/sos-inequalities.md. | Chebyshev sum inequality, degree-four instance. Not a named mathlib lemma in this form. |
 | `three-quartic-sum-ge-sumsq-sq` — Three times the sum of fourth powers dominates the square of the sum of squares (QM-AM on squares). | proved | 1 | — | #400 Identity Engine (ADR-043) — inequality (SOS) family; promoted from candidate backlog (#610). | Three times the sum of fourth powers dominates the square of the sum of squares (QM-AM on squares). Not a named mathlib lemma in this form. |
