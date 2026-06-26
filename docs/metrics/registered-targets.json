@@ -4253,11 +4253,11 @@
       "stats": {
         "best_solve_s": 869,
         "contributors": 2,
-        "failed_runs": 14,
+        "failed_runs": 15,
         "median_solve_s": 1595,
-        "success_rate": 0.3636,
+        "success_rate": 0.3478,
         "successful_runs": 8,
-        "total_runs": 22,
+        "total_runs": 23,
         "worst_solve_s": 4056
       },
       "supplier": "trishullab",

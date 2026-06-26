@@ -96,12 +96,12 @@
       "verified_proofs": 160
     },
     {
-      "attempt_yield": 0.046,
+      "attempt_yield": 0.0459,
       "avatar_url": "https://github.com/cgbarlow.png?size=96",
       "badges": {
         "difficulty": 216,
         "proofs": 120,
-        "success_rate_percent": 5.28
+        "success_rate_percent": 5.26
       },
       "credit_source_summary": "explicit + inferred",
       "credit_sources": [
@@ -114,14 +114,14 @@
       "dispatch_proofs": 3121,
       "display_name": "@cgbarlow",
       "explicit_solver_proofs": 73,
-      "failed_attempts": 311,
+      "failed_attempts": 312,
       "github": "cgbarlow",
       "inferred_git_proofs": 47,
-      "median_solve_s": 882,
+      "median_solve_s": 886,
       "profile_url": "https://github.com/cgbarlow",
       "rank": 4,
-      "run_success_rate": 0.0528,
-      "runs": 284,
+      "run_success_rate": 0.0526,
+      "runs": 285,
       "score": 305490,
       "solver": "cgbarlow",
       "successes": 15,
@@ -284,7 +284,7 @@
       "verified_proofs": 1
     }
   ],
-  "generated_at": "2026-06-26T15:52:03Z",
+  "generated_at": "2026-06-26T16:05:11Z",
   "generated_from": "docs/metrics/community-stats.json",
   "historical_contributors": [
     {
@@ -432,8 +432,8 @@
     },
     {
       "provider_model": "claude / opus",
-      "run_success_rate": 0.5,
-      "runs": 76,
+      "run_success_rate": 0.4935,
+      "runs": 77,
       "verified_proofs": 72
     },
     {
@@ -504,7 +504,7 @@
     "historical_unknown_proofs": 308,
     "inferred_git_proofs": 308,
     "proof_run_coverage": 0.2187,
-    "terminal_runs": 1369,
+    "terminal_runs": 1370,
     "uncredited_proofs": 0,
     "verified_proofs": 4610
   },
