@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**213 open · 4393 proved · 4613 total prove-goals.**
+**215 open · 4394 proved · 4617 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -171,7 +171,9 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1966-b1-s4` — putnam-1966-b1-s4 | open | 1 | — | — | — |
 | `putnam-1966-b2` — putnam-v1 benchmark obligation putnam_1966_b2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1966-b3` — putnam-v1 benchmark obligation putnam_1966_b3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
-| `putnam-1966-b4` — putnam-v1 benchmark obligation putnam_1966_b4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1966-b4-s1` — putnam-1966-b4-s1 | open | 1 | — | — | — |
+| `putnam-1966-b4-s2` — putnam-1966-b4-s2 | open | 1 | — | — | — |
+| `putnam-1966-b4-s3` — putnam-1966-b4-s3 | open | 1 | — | — | — |
 | `putnam-1966-b6` — putnam-v1 benchmark obligation putnam_1966_b6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1967-a1` — putnam-v1 benchmark obligation putnam_1967_a1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1967-a2` — putnam-v1 benchmark obligation putnam_1967_a2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
@@ -224,6 +226,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1965-b6` — putnam-v1 benchmark obligation putnam_1965_b6 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a1` — putnam-v1 benchmark obligation putnam_1966_a1 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-b1` — putnam-v1 benchmark obligation putnam_1966_b1 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1966-b4` — putnam-v1 benchmark obligation putnam_1966_b4 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1967-a5` — putnam-v1 benchmark obligation putnam_1967_a5 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | blocked | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | blocked | 1 | — | — | — |
@@ -4598,6 +4601,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-square-sum-coeff-sixtyone` — A telescoping power-sum closed form (coefficient 61, exponent 2): the finite sum over k in range n equals 61·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-sixtyseven` — A telescoping power-sum closed form (coefficient 67, exponent 2): the finite sum over k in range n equals 67·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-sixtysix` — A telescoping power-sum closed form (coefficient 66, exponent 2): the finite sum over k in range n equals 66·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
+| `telescoping-square-sum-coeff-sixtythree` — A telescoping power-sum closed form (coefficient 63, exponent 2): the finite sum over k in range n equals 63·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
 | `thirty-dvd-pow-five-sub-self` — For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `three-cubes-div-nine` — For every natural n, 9 divides n^3 + (n+1)^3 + (n+2)^3; the sum of any three consecutive cubes is divisible by 9. | proved | 2 | — | classic identities | Classic introductory number-theory / olympiad exercise; Engel, Problem-Solving Strategies (divisibility chapter); Sierpiński, Elementary Theory of Numbers (PWN/North-Holland, 1988). |
