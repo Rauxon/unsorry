@@ -4,34 +4,34 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**4555 verified proofs · 4247 attributed · 308 historical/unknown · 1346 logged terminal runs.**
+**4556 verified proofs · 4248 attributed · 308 historical/unknown · 1347 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 987 |
+| Successful terminal runs | 988 |
 | Failed terminal runs | 359 |
 | Decomposed after failure | 30 |
 | Failed without decomposition | 329 |
-| Run success rate | 73.3% |
-| Provider attempts | 1466 |
+| Run success rate | 73.4% |
+| Provider attempts | 1467 |
 | Failed attempts | 479 |
 | Attempt yield | 67.3% |
 | Recorded run time | 117h 17m |
 | Median / p90 run time | 0s / 31m 18s |
-| Verified successes per recorded hour | 8.41 |
-| Proofs with run telemetry | 987 (21.7%) |
+| Verified successes per recorded hour | 8.42 |
+| Proofs with run telemetry | 988 (21.7%) |
 
 ## Work Queue
 
-**4814 goals · 2267 archived · 13 blocked · 225 open · 2300 proved · 9 translated.**
+**4815 goals · 2267 archived · 13 blocked · 225 open · 2301 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 1124 | 968 | 86.1% | 227 | 0s |
+| 1 | 1125 | 969 | 86.1% | 227 | 0s |
 | 2 | 113 | 5 | 4.4% | 125 | 6m 48s |
 | 3 | 67 | 3 | 4.5% | 73 | 9m 24s |
 | 4 | 40 | 11 | 27.5% | 52 | 26m 35s |
@@ -58,9 +58,9 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 120 | 73 | 47 | 282 | 5.3% | 216 | 2759.4 | 300540 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 120 | 73 | 47 | 282 | 5.3% | 216 | 2760.3 | 300630 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 2023 | 1776 | 247 | 4 | 100.0% | 2354 | 18.9 | 287865 |
-| 3 | [@ohdearquant](https://github.com/ohdearquant) | 2172 | 2171 | 1 | 945 | 100.0% | 2175 | 0.0 | 271800 |
+| 3 | [@ohdearquant](https://github.com/ohdearquant) | 2173 | 2172 | 1 | 946 | 100.0% | 2176 | 0.0 | 271925 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 41 | 37 | 4 | 27 | 14.8% | 87 | 202.5 | 29975 |
 | 6 | [@adam91holt](https://github.com/adam91holt) | 19 | 19 | 0 | 56 | 0.0% | 46 | 0.0 | 5075 |
@@ -70,15 +70,15 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 ## Attribution Notes
 
-**4247 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**4248 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 4555 of 4555 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 4556 of 4556 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
-| `python / sympy` | 2170 | 945 | 100.0% | 0 | 1 | 0s | — |
+| `python / sympy` | 2171 | 946 | 100.0% | 0 | 1 | 0s | — |
 | `lean / ring` | 1119 | 0 | — | 0 | 1 | — | — |
 | `lean / decide` | 653 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
