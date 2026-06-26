@@ -59,7 +59,7 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
 | 1 | [@cgbarlow](https://github.com/cgbarlow) | 120 | 73 | 47 | 280 | 5.4% | 216 | 2642.4 | 288840 |
-| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 2023 | 1776 | 247 | 4 | 100.0% | 2357 | 18.9 | 288165 |
+| 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 2023 | 1776 | 247 | 4 | 100.0% | 2354 | 18.9 | 287865 |
 | 3 | [@ohdearquant](https://github.com/ohdearquant) | 2042 | 2041 | 1 | 829 | 100.0% | 2045 | 0.0 | 255550 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 41 | 37 | 4 | 27 | 14.8% | 87 | 202.5 | 29975 |
@@ -78,8 +78,8 @@ Git add-author attribution covers 4423 of 4423 proof index files. It is used onl
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
-| `python / sympy` | 2039 | 828 | 100.0% | 0 | 1 | 0s | — |
-| `lean / ring` | 1118 | 0 | — | 0 | 1 | — | — |
+| `python / sympy` | 2040 | 829 | 100.0% | 0 | 1 | 0s | — |
+| `lean / ring` | 1119 | 0 | — | 0 | 1 | — | — |
 | `lean / decide` | 653 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
 | `claude / opus` | 70 | 70 | 51.4% | 101 | 6 | 10m 18s | 1.31 |
@@ -87,9 +87,7 @@ Git add-author attribution covers 4423 of 4423 proof index files. It is used onl
 | `openai / leanstral-2603` | 21 | 201 | 0.0% | 205 | 1 | 6m 30s | 0.00 |
 | `gemini / gemini-3.1-pro-preview` | 7 | 2 | 0.0% | 6 | 1 | 10m 59s | 0.00 |
 | `manual / gpt-5.5` | 4 | 0 | — | 0 | 1 | — | — |
-| `claude / template-ring-cofactor` | 1 | 1 | 100.0% | 0 | 1 | 0s | — |
 | `claude / sonnet` | 1 | 0 | — | 0 | 1 | — | — |
-| `claude / template-induction-ring` | 1 | 0 | — | 0 | 1 | — | — |
 | `claude / unknown` | 1 | 0 | — | 0 | 1 | — | — |
 | `openai / jackcloudman/Leanstral-2603-GGUF` | 0 | 47 | 0.0% | 47 | 1 | 31m 57s | 0.00 |
 | `codex / gpt-5.3-codex-spark` | 0 | 1 | 0.0% | 3 | 1 | 1m 34s | 0.00 |
