@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**228 open · 4583 proved · 4825 total prove-goals.**
+**229 open · 4585 proved · 4829 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -219,7 +219,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1969-a5` — putnam-v1 benchmark obligation putnam_1969_a5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1969-a6` — putnam-v1 benchmark obligation putnam_1969_a6 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1969-b1` — putnam-v1 benchmark obligation putnam_1969_b1 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
-| `putnam-1969-b2` — putnam-v1 benchmark obligation putnam_1969_b2 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-b2-s1` — putnam-1969-b2-s1 | open | 1 | — | — | — |
+| `putnam-1969-b2-s2` — putnam-1969-b2-s2 | open | 1 | — | — | — |
 | `putnam-1969-b3` — putnam-v1 benchmark obligation putnam_1969_b3 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1969-b4` — putnam-v1 benchmark obligation putnam_1969_b4 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1969-b5` — putnam-v1 benchmark obligation putnam_1969_b5 | open | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
@@ -247,6 +248,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1966-b1-s4` — putnam-1966-b1-s4 | blocked | 1 | — | — | — |
 | `putnam-1966-b4` — putnam-v1 benchmark obligation putnam_1966_b4 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `putnam-1967-a5` — putnam-v1 benchmark obligation putnam_1967_a5 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
+| `putnam-1969-b2` — putnam-v1 benchmark obligation putnam_1969_b2 | blocked | 4 | — | putnam-v1 benchmark suite | github.com/trishullab/PutnamBench |
 | `sq-add-sq-eq-three-mul-sq` — The Diophantine equation $x^2 + y^2 = 3z^2$ has only the trivial solution $x=y=z=0$ in integers. | blocked | 4 | — | elementary number theory | Classic infinite descent argument modulo 3 showing that $3 \mid x$ and $3 \mid y$, which leads to infinite descent. |
 | `sq-add-sq-eq-three-mul-sq-s4` — sq-add-sq-eq-three-mul-sq-s4 | blocked | 1 | — | — | — |
 | `sq-add-sq-eq-three-mul-sq-s4-s3` — sq-add-sq-eq-three-mul-sq-s4-s3 | blocked | 1 | — | — | — |
@@ -2803,6 +2805,8 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-ten-add-pow-four` — n to the 2 divides n to the 10 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 10 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-ten-add-pow-nine` — n to the 2 divides n to the 10 plus n to the 9. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 10 plus n to the 9. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-ten-add-pow-seven` — n to the 2 divides n to the 10 plus n to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 10 plus n to the 7. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-ten-add-pow-three` — n to the 2 divides n to the 10 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 10 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-thirteen-add-pow-eight` — n to the 2 divides n to the 13 plus n to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 13 plus n to the 8. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-thirteen-add-pow-nine` — n to the 2 divides n to the 13 plus n to the 9. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 13 plus n to the 9. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-thirteen-add-pow-seven` — n to the 2 divides n to the 13 plus n to the 7. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 13 plus n to the 7. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-thirteen-add-pow-six` — n to the 2 divides n to the 13 plus n to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 13 plus n to the 6. Provable by exhibiting the cofactor and `ring`. |
