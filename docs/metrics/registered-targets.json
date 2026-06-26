@@ -818,9 +818,9 @@
     },
     {
       "cohort": "benchmark",
-      "credited": 100,
+      "credited": 148,
       "domain": "lean-math",
-      "glue": 0,
+      "glue": 2,
       "goals": [
         {
           "credit": "credited",
@@ -1520,6 +1520,356 @@
           "difficulty": 4,
           "id": "induction-divisibility-3divnto3m2n",
           "run_snippet": "./swarm/run.sh --goal induction-divisibility-3divnto3m2n",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "induction-divisibility-9div10tonm1",
+          "run_snippet": "./swarm/run.sh --goal induction-divisibility-9div10tonm1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "induction-ineq-nsqlefactn",
+          "run_snippet": "./swarm/run.sh --goal induction-ineq-nsqlefactn",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "induction-seq-mul2pnp1",
+          "run_snippet": "./swarm/run.sh --goal induction-seq-mul2pnp1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "induction-sum-1oktkp1",
+          "run_snippet": "./swarm/run.sh --goal induction-sum-1oktkp1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "induction-sum-odd",
+          "run_snippet": "./swarm/run.sh --goal induction-sum-odd",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "induction-sum2kp1npqsqm1",
+          "run_snippet": "./swarm/run.sh --goal induction-sum2kp1npqsqm1",
+          "status": "open"
+        },
+        {
+          "credit": "glue",
+          "difficulty": 4,
+          "id": "mathd-algebra-10",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-10",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-101",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-101",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-104",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-104",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-109",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-109",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-11",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-11",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-110",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-110",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-116",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-116",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-119",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-119",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-123",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-123",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-126",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-126",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-13",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-13",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-131",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-131",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-132",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-132",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-140",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-140",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-144",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-144",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-149",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-149",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-15",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-15",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-151",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-151",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-159",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-159",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-181",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-181",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-182",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-182",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-185",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-185",
+          "status": "open"
+        },
+        {
+          "credit": "glue",
+          "difficulty": 4,
+          "id": "mathd-algebra-190",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-190",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-192",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-192",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-206",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-206",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-214",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-214",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-22",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-22",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-224",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-224",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-234",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-234",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-245",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-245",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-247",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-247",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-251",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-251",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-267",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-267",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-28",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-28",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-282",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-282",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-31",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-31",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-323",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-323",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-327",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-327",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-35",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-35",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-37",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-37",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-393",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-393",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-405",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-405",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-410",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-410",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "mathd-algebra-421",
+          "run_snippet": "./swarm/run.sh --goal mathd-algebra-421",
           "status": "open"
         }
       ],
