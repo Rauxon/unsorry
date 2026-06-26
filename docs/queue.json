@@ -3,10 +3,10 @@
   "source": "queued/prove/* refs + library/index provenance",
   "pr_status_known": true,
   "summary": {
-    "queued_submissions": 288,
-    "waiting": 280,
-    "in_flight": 8,
-    "distinct_goals": 288,
+    "queued_submissions": 235,
+    "waiting": 225,
+    "in_flight": 10,
+    "distinct_goals": 235,
     "solvers": 2
   },
   "solvers": [
@@ -15,10 +15,10 @@
       "github": "ohdearquant",
       "display_name": "@ohdearquant",
       "profile_url": "https://github.com/ohdearquant",
-      "submissions": 287,
-      "waiting": 279,
-      "in_flight": 8,
-      "distinct_goals": 287,
+      "submissions": 234,
+      "waiting": 224,
+      "in_flight": 10,
+      "distinct_goals": 234,
       "queued": [
         {
           "goal": "gself-pow-four-pow-twenty-add-pow-six",
@@ -1165,436 +1165,12 @@
           "state": "waiting"
         },
         {
-          "goal": "gself-pow-two-pow-eleven-add-pow-eight",
-          "branch": "queued/prove/gself-pow-two-pow-eleven-add-pow-eight/mac-158f-f6e6a3",
-          "sha": "de1f9bff0",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-two-pow-eleven-add-pow-five",
-          "branch": "queued/prove/gself-pow-two-pow-eleven-add-pow-five/mac-158f-a76d7a",
-          "sha": "20994bbcb",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-two-pow-eleven-add-pow-four",
-          "branch": "queued/prove/gself-pow-two-pow-eleven-add-pow-four/mac-158f-0ef47d",
-          "sha": "27a770b33",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-two-pow-eleven-add-pow-nine",
-          "branch": "queued/prove/gself-pow-two-pow-eleven-add-pow-nine/mac-158f-fb3e60",
-          "sha": "7d59c8a58",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-two-pow-eleven-add-pow-seven",
-          "branch": "queued/prove/gself-pow-two-pow-eleven-add-pow-seven/mac-158f-2bd130",
-          "sha": "4e48d05f7",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-two-pow-eleven-add-pow-six",
-          "branch": "queued/prove/gself-pow-two-pow-eleven-add-pow-six/mac-158f-6a4f66",
-          "sha": "599be7e37",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "in-flight"
-        },
-        {
-          "goal": "gself-pow-two-pow-eleven-add-pow-ten",
-          "branch": "queued/prove/gself-pow-two-pow-eleven-add-pow-ten/mac-158f-93172e",
-          "sha": "a14b51b42",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-eleven-add-pow-three",
-          "branch": "queued/prove/gself-pow-two-pow-eleven-add-pow-three/mac-158f-e26f7c",
-          "sha": "5dcba01dc",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-eleven-add-pow-two",
-          "branch": "queued/prove/gself-pow-two-pow-eleven-add-pow-two/mac-158f-722f9a",
-          "sha": "bf84bf03f",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-eight",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-eight/mac-158f-f69149",
-          "sha": "ef8c4e099",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-eleven",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-eleven/mac-158f-dfec3d",
-          "sha": "0ccf9a791",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-five",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-five/mac-158f-e78adc",
-          "sha": "b27dd5854",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-four",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-four/mac-158f-ca7971",
-          "sha": "74ec926e0",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-fourteen",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-fourteen/mac-158f-475a4d",
-          "sha": "ab362f53c",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-nine",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-nine/mac-158f-5fcca9",
-          "sha": "3f3390f0a",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-seven",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-seven/mac-158f-330fd4",
-          "sha": "5d41ddebd",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-six",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-six/mac-158f-98f6dc",
-          "sha": "84ea1a449",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-ten",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-ten/mac-158f-81aed7",
-          "sha": "3a649f550",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-thirteen",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-thirteen/mac-158f-52f620",
-          "sha": "8eea318b2",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-three",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-three/mac-158f-1bd738",
-          "sha": "0f6be9aa8",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-twelve",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-twelve/mac-158f-76f46b",
-          "sha": "6c177fa86",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fifteen-add-pow-two",
-          "branch": "queued/prove/gself-pow-two-pow-fifteen-add-pow-two/mac-158f-8f9675",
-          "sha": "f312f5618",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-eight",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-eight/mac-158f-792863",
-          "sha": "7a0adfd10",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-eleven",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-eleven/mac-158f-1e1019",
-          "sha": "834aae5bd",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-five",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-five/mac-158f-41cedd",
-          "sha": "aab5d153f",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-four",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-four/mac-158f-711167",
-          "sha": "979ba70d3",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-nine",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-nine/mac-158f-8afd6d",
-          "sha": "c996c6db4",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-seven",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-seven/mac-158f-e36e92",
-          "sha": "cf9202f37",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-six",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-six/mac-158f-0a89bb",
-          "sha": "0c94cd1dc",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-ten",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-ten/mac-158f-3e6e02",
-          "sha": "ddfca03b0",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-thirteen",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-thirteen/mac-158f-6d1c5d",
-          "sha": "2b50fa021",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-three",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-three/mac-158f-8deb46",
-          "sha": "595c26462",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-twelve",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-twelve/mac-158f-bed4bb",
-          "sha": "b76f8b2f3",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-fourteen-add-pow-two",
-          "branch": "queued/prove/gself-pow-two-pow-fourteen-add-pow-two/mac-158f-9ac347",
-          "sha": "e6d4f7433",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nine-add-pow-eight",
-          "branch": "queued/prove/gself-pow-two-pow-nine-add-pow-eight/mac-158f-01d209",
-          "sha": "db31a6967",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nine-add-pow-five",
-          "branch": "queued/prove/gself-pow-two-pow-nine-add-pow-five/mac-158f-9ba77a",
-          "sha": "65d70a409",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nine-add-pow-four",
-          "branch": "queued/prove/gself-pow-two-pow-nine-add-pow-four/mac-158f-214299",
-          "sha": "82e83de29",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nine-add-pow-seven",
-          "branch": "queued/prove/gself-pow-two-pow-nine-add-pow-seven/mac-158f-70eab4",
-          "sha": "fb3356d9b",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nine-add-pow-six",
-          "branch": "queued/prove/gself-pow-two-pow-nine-add-pow-six/mac-158f-c35d89",
-          "sha": "0e963ba14",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nine-add-pow-three",
-          "branch": "queued/prove/gself-pow-two-pow-nine-add-pow-three/mac-158f-217851",
-          "sha": "1f338264a",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nine-add-pow-two",
-          "branch": "queued/prove/gself-pow-two-pow-nine-add-pow-two/mac-158f-dfdeb0",
-          "sha": "3224325e4",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-eight",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-eight/mac-158f-346215",
-          "sha": "1953e2e8f",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-eighteen",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-eighteen/mac-158f-2581c9",
-          "sha": "4af968471",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-eleven",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-eleven/mac-158f-c4c968",
-          "sha": "d6d6b74d4",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-fifteen",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-fifteen/mac-158f-55bd99",
-          "sha": "2303ecc25",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-five",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-five/mac-158f-9a22bd",
-          "sha": "0577cc8dd",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-four",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-four/mac-158f-941bcc",
-          "sha": "bc76cb649",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-fourteen",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-fourteen/mac-158f-4817e1",
-          "sha": "80dd6ddc0",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-nine",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-nine/mac-158f-79e828",
-          "sha": "156b61830",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-seven",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-seven/mac-158f-41c55f",
-          "sha": "ea6e596d1",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-seventeen",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-seventeen/mac-158f-4aa31e",
-          "sha": "46c7d1f4d",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-six",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-six/mac-158f-9b31d2",
-          "sha": "6651334cc",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
-          "goal": "gself-pow-two-pow-nineteen-add-pow-sixteen",
-          "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-sixteen/mac-158f-9fbc98",
-          "sha": "0a009966d",
-          "model": "template-ring-cofactor",
-          "date": "2026-06-19",
-          "state": "waiting"
-        },
-        {
           "goal": "gself-pow-two-pow-nineteen-add-pow-ten",
           "branch": "queued/prove/gself-pow-two-pow-nineteen-add-pow-ten/mac-158f-09256f",
           "sha": "f3baab801",
           "model": "template-ring-cofactor",
           "date": "2026-06-19",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-nineteen-add-pow-thirteen",
@@ -1602,7 +1178,7 @@
           "sha": "d31423f64",
           "model": "template-ring-cofactor",
           "date": "2026-06-19",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-nineteen-add-pow-three",
@@ -1610,7 +1186,7 @@
           "sha": "d408c1393",
           "model": "template-ring-cofactor",
           "date": "2026-06-19",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-nineteen-add-pow-twelve",
@@ -1618,7 +1194,7 @@
           "sha": "c39bcf46d",
           "model": "template-ring-cofactor",
           "date": "2026-06-19",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-nineteen-add-pow-two",
@@ -1626,7 +1202,7 @@
           "sha": "87628f80f",
           "model": "template-ring-cofactor",
           "date": "2026-06-19",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-seven-add-pow-five",
@@ -1634,7 +1210,7 @@
           "sha": "04776b56e",
           "model": "template-ring-cofactor",
           "date": "2026-06-19",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-seven-add-pow-four",
@@ -1642,7 +1218,7 @@
           "sha": "c7310d8fd",
           "model": "template-ring-cofactor",
           "date": "2026-06-19",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-seven-add-pow-six",
@@ -1650,7 +1226,7 @@
           "sha": "08d16eb1f",
           "model": "template-ring-cofactor",
           "date": "2026-06-19",
-          "state": "waiting"
+          "state": "in-flight"
         },
         {
           "goal": "gself-pow-two-pow-seven-add-pow-three",
