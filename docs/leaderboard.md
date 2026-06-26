@@ -4,34 +4,34 @@
 
 Verified output comes from active `library/index` records plus archived index records only after their active copy has been retired; append-only terminal-run telemetry comes from `proof-runs/`. Rates cover only logged runs and never guess historical failures from Git history. Timing is contributor-reported local proof plus verification time.
 
-**4588 verified proofs · 4280 attributed · 308 historical/unknown · 1347 logged terminal runs.**
+**4589 verified proofs · 4281 attributed · 308 historical/unknown · 1348 logged terminal runs.**
 
 ## Efficiency Baseline
 
 | Metric | Value |
 |--------|------:|
-| Successful terminal runs | 986 |
+| Successful terminal runs | 987 |
 | Failed terminal runs | 361 |
 | Decomposed after failure | 32 |
 | Failed without decomposition | 329 |
 | Run success rate | 73.2% |
-| Provider attempts | 1469 |
+| Provider attempts | 1470 |
 | Failed attempts | 483 |
 | Attempt yield | 67.1% |
 | Recorded run time | 119h 11m |
 | Median / p90 run time | 0s / 31m 18s |
-| Verified successes per recorded hour | 8.27 |
-| Proofs with run telemetry | 986 (21.5%) |
+| Verified successes per recorded hour | 8.28 |
+| Proofs with run telemetry | 987 (21.5%) |
 
 ## Work Queue
 
-**4853 goals · 2301 archived · 15 blocked · 229 open · 2299 proved · 9 translated.**
+**4854 goals · 2301 archived · 15 blocked · 229 open · 2300 proved · 9 translated.**
 
 ## Efficiency by Difficulty
 
 | Difficulty | Runs | Successes | Run success | Failed attempts | Median time |
 |-----------:|-----:|----------:|------------:|----------------:|------------:|
-| 1 | 1124 | 967 | 86.0% | 230 | 0s |
+| 1 | 1125 | 968 | 86.0% | 230 | 0s |
 | 2 | 113 | 5 | 4.4% | 125 | 6m 48s |
 | 3 | 67 | 3 | 4.5% | 73 | 9m 24s |
 | 4 | 41 | 11 | 26.8% | 53 | 24m 31s |
@@ -58,9 +58,9 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 | Rank | Contributor | Proof credit | Explicit | Inferred | Runs | Run success | Difficulty points | Dispatch (0.9 ea) | Score |
 |-----:|-------------|-------------:|---------:|---------:|-----:|------------:|------------------:|------------------:|------:|
-| 1 | [@cgbarlow](https://github.com/cgbarlow) | 120 | 73 | 47 | 284 | 5.3% | 216 | 2789.1 | 303510 |
+| 1 | [@cgbarlow](https://github.com/cgbarlow) | 120 | 73 | 47 | 284 | 5.3% | 216 | 2790.0 | 303600 |
 | 2 | [@chat-bit-01](https://github.com/chat-bit-01) | 2023 | 1776 | 247 | 4 | 100.0% | 2354 | 18.9 | 287865 |
-| 3 | [@ohdearquant](https://github.com/ohdearquant) | 2205 | 2204 | 1 | 944 | 100.0% | 2208 | 0.0 | 275925 |
+| 3 | [@ohdearquant](https://github.com/ohdearquant) | 2206 | 2205 | 1 | 945 | 100.0% | 2209 | 0.0 | 276050 |
 | 4 | [@ruvnet](https://github.com/ruvnet) | 160 | 160 | 0 | 0 | — | 429 | 0.0 | 46900 |
 | 5 | [@perttu](https://github.com/perttu) | 41 | 37 | 4 | 27 | 14.8% | 87 | 202.5 | 29975 |
 | 6 | [@adam91holt](https://github.com/adam91holt) | 19 | 19 | 0 | 56 | 0.0% | 46 | 0.0 | 5075 |
@@ -70,15 +70,15 @@ Rank uses Score (difficulty points + dispatch credit). Explicit `solver≜...` p
 
 ## Attribution Notes
 
-**4280 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
+**4281 explicit solver credits · 308 inferred git credits · 0 uncredited proof records.**
 
-Git add-author attribution covers 4588 of 4588 proof index files. It is used only where explicit `solver≜` provenance is missing.
+Git add-author attribution covers 4589 of 4589 proof index files. It is used only where explicit `solver≜` provenance is missing.
 
 ## Providers and Models
 
 | Provider / model | Verified proofs | Runs | Run success | Failed attempts | Solvers | Median time | Successes / recorded hour |
 |------------------|----------------:|-----:|------------:|----------------:|--------:|------------:|-------------------------:|
-| `python / sympy` | 2203 | 944 | 100.0% | 0 | 1 | 0s | — |
+| `python / sympy` | 2204 | 945 | 100.0% | 0 | 1 | 0s | — |
 | `lean / ring` | 1119 | 0 | — | 0 | 1 | — | — |
 | `lean / decide` | 653 | 0 | — | 0 | 1 | — | — |
 | `openrouter / unknown` | 160 | 0 | — | 0 | 1 | — | — |
