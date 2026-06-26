@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**225 open · 4572 proved · 4810 total prove-goals.**
+**228 open · 4575 proved · 4817 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -122,7 +122,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `imo2025p4` — imo-v1 benchmark obligation IMO2025P4 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
 | `imo2025p5` — imo-v1 benchmark obligation IMO2025P5 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
 | `imo2025p6` — imo-v1 benchmark obligation IMO2025P6 | open | 4 | — | imo-v1 benchmark suite | github.com/jsm28/IMOLean |
-| `putnam-1962-a1-s2` — putnam-1962-a1-s2 | open | 1 | — | — | — |
+| `putnam-1962-a1-s2-s1` — putnam-1962-a1-s2-s1 | open | 1 | — | — | — |
+| `putnam-1962-a1-s2-s2` — putnam-1962-a1-s2-s2 | open | 1 | — | — | — |
+| `putnam-1962-a1-s2-s3` — putnam-1962-a1-s2-s3 | open | 1 | — | — | — |
+| `putnam-1962-a1-s2-s4` — putnam-1962-a1-s2-s4 | open | 1 | — | — | — |
 | `putnam-1962-a1-s3` — putnam-1962-a1-s3 | open | 1 | — | — | — |
 | `putnam-1962-a1-s4` — putnam-1962-a1-s4 | open | 1 | — | — | — |
 | `putnam-1962-a2` — putnam-v1 benchmark obligation putnam_1962_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
@@ -234,6 +237,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `sum-two-squares-zmod-eight-ne-six` — A sum of two integer squares is never congruent to 6 modulo 8. | open | 3 | — | #400 Identity Engine (ADR-043) — modular-arith family. | A sum of two integer squares is never congruent to 6 modulo 8. Not a named mathlib lemma in this form. |
 | `three-fourth-powers-zmod-sixteen-mem` — A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. | open | 3 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog. | A sum of three integer fourth powers is always congruent to 0, 1, 2, or 3 modulo 16. Not a named mathlib lemma in this form. |
 | `putnam-1962-a1` — putnam-v1 benchmark obligation putnam_1962_a1 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
+| `putnam-1962-a1-s2` — putnam-1962-a1-s2 | blocked | 1 | — | — | — |
 | `putnam-1962-b5` — putnam-v1 benchmark obligation putnam_1962_b5 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-b6` — putnam-v1 benchmark obligation putnam_1965_b6 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a1` — putnam-v1 benchmark obligation putnam_1966_a1 | blocked | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
@@ -2792,7 +2796,10 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-sixteen-add-pow-ten` — n to the 2 divides n to the 16 plus n to the 10. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 16 plus n to the 10. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-sixteen-add-pow-thirteen` — n to the 2 divides n to the 16 plus n to the 13. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 16 plus n to the 13. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-sixteen-add-pow-three` — n to the 2 divides n to the 16 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 16 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-sixteen-add-pow-twelve` — n to the 2 divides n to the 16 plus n to the 12. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 16 plus n to the 12. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-sixteen-add-pow-two` — n to the 2 divides n to the 16 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 16 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-ten-add-pow-eight` — n to the 2 divides n to the 10 plus n to the 8. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 10 plus n to the 8. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-ten-add-pow-nine` — n to the 2 divides n to the 10 plus n to the 9. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 10 plus n to the 9. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-three-add-pow-two` — n to the 2 divides n to the 3 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 3 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-102-pow-nineteen-sub-pow-three` — 102 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-102-pow-twenty-sub-pow-four` — 102 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
