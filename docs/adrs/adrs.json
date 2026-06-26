@@ -1,6 +1,6 @@
 {
   "generated_by": "python3 -m tools.adr_index --write",
-  "count": 107,
+  "count": 108,
   "adrs": [
     {
       "id": "ADR-001",
@@ -849,6 +849,14 @@
       "status": "Proposed",
       "date": "2026-06-26",
       "file": "ADR-106-Difficulty-Aware-Dispatch.md"
+    },
+    {
+      "id": "ADR-107",
+      "number": 107,
+      "title": "Batch verification — amortise the per-PR Gate A env-load across K proofs",
+      "status": "Proposed",
+      "date": "2026-06-26",
+      "file": "ADR-107-Batch-Verification.md"
     },
     {
       "id": "ADR-110",
