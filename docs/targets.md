@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**224 open · 4409 proved · 4645 total prove-goals.**
+**224 open · 4410 proved · 4646 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -3394,6 +3394,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gzmod-504-pow-eighteen-sub-pow-twelve` — 504 divides n to the 18 minus n to the 12, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 18 minus n to the 12, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-504-pow-eleven-sub-pow-five` — 504 divides n to the 11 minus n to the 5, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 11 minus n to the 5, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-504-pow-fifteen-sub-pow-nine` — 504 divides n to the 15 minus n to the 9, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 15 minus n to the 9, for every integer n. Provable by exhibiting the cofactor and `ring`. |
+| `gzmod-504-pow-fifteen-sub-pow-three` — 504 divides n to the 15 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 15 minus n to the 3, for every integer n. Provable by a finite `ZMod 504` case check. |
 | `gzmod-504-pow-fourteen-sub-pow-eight` — 504 divides n to the 14 minus n to the 8, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 14 minus n to the 8, for every integer n. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-504-pow-nine-sub-pow-three` — 504 divides n to the 9 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 9 minus n to the 3, for every integer n. Provable by a finite `ZMod 504` case check. |
 | `gzmod-504-pow-nineteen-sub-pow-thirteen` — 504 divides n to the 19 minus n to the 13, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | 504 divides n to the 19 minus n to the 13, for every integer n. Provable by exhibiting the cofactor and `ring`. |
