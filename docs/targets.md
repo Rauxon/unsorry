@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**229 open · 4585 proved · 4829 total prove-goals.**
+**229 open · 4587 proved · 4831 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2812,7 +2812,9 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-thirteen-add-pow-six` — n to the 2 divides n to the 13 plus n to the 6. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 13 plus n to the 6. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-thirteen-add-pow-ten` — n to the 2 divides n to the 13 plus n to the 10. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 13 plus n to the 10. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-thirteen-add-pow-three` — n to the 2 divides n to the 13 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 13 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-thirteen-add-pow-two` — n to the 2 divides n to the 13 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 13 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-three-add-pow-two` — n to the 2 divides n to the 3 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 3 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-twelve-add-pow-four` — n to the 2 divides n to the 12 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 12 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gzmod-102-pow-nineteen-sub-pow-three` — 102 divides n to the 19 minus n to the 3, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-102-pow-twenty-sub-pow-four` — 102 divides n to the 20 minus n to the 4, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
 | `gzmod-102-pow-twentyfive-sub-pow-nine` — 102 divides n to the 25 minus n to the 9, for every integer n. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | provable by a finite `ZMod 102` case check. |
