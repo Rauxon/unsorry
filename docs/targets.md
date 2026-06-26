@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**214 open · 4380 proved · 4601 total prove-goals.**
+**213 open · 4382 proved · 4602 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -163,7 +163,6 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1965-b6-s4` — putnam-1965-b6-s4 | open | 1 | — | — | — |
 | `putnam-1966-a1-s1` — putnam-1966-a1-s1 | open | 1 | — | — | — |
 | `putnam-1966-a1-s2` — putnam-1966-a1-s2 | open | 1 | — | — | — |
-| `putnam-1966-a1-s3` — putnam-1966-a1-s3 | open | 1 | — | — | — |
 | `putnam-1966-a2` — putnam-v1 benchmark obligation putnam_1966_a2 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a4` — putnam-v1 benchmark obligation putnam_1966_a4 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-a5` — putnam-v1 benchmark obligation putnam_1966_a5 | open | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
@@ -3759,6 +3758,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `putnam-1965-a1` — putnam-v1 benchmark obligation putnam_1965_a1 | proved | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-b5` — putnam-v1 benchmark obligation putnam_1965_b5 | proved | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1965-b6-s1` — putnam-1965-b6-s1 | proved | 1 | — | — | — |
+| `putnam-1966-a1-s3` — putnam-1966-a1-s3 | proved | 1 | — | — | — |
 | `putnam-1966-a3` — putnam-v1 benchmark obligation putnam_1966_a3 | proved | 4 | — | putnam-v1 benchmark suite | - **Absence:** imported benchmark statement (absent from the library) |
 | `putnam-1966-b1-s1` — putnam-1966-b1-s1 | proved | 1 | — | — | — |
 | `putnam-1966-b1-s2` — putnam-1966-b1-s2 | proved | 1 | — | — | — |
@@ -4586,6 +4586,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-square-sum-coeff-seventyone` — A telescoping power-sum closed form (coefficient 71, exponent 2): the finite sum over k in range n equals 71·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-seventyseven` — A telescoping power-sum closed form (coefficient 77, exponent 2): the finite sum over k in range n equals 77·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-seventysix` — A telescoping power-sum closed form (coefficient 76, exponent 2): the finite sum over k in range n equals 76·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
+| `telescoping-square-sum-coeff-seventythree` — A telescoping power-sum closed form (coefficient 73, exponent 2): the finite sum over k in range n equals 73·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `tenth-power-mod-eleven-mem` — Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). | proved | 1 | — | #400 Identity Engine (ADR-043) — power-residue family; promoted from candidate backlog (#610). | Every tenth power is congruent to only 0 or 1 modulo the prime 11 (Fermat's little theorem boundary case). Not a named mathlib lemma in this form. |
 | `thirty-dvd-pow-five-sub-self` — For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). | proved | 2 | — | Classic elementary number theory (library-growth batch, #400 plan Phase 3). | For every integer n, 30 ∣ n⁵ − n (Fermat: 2,3,5 each divide n⁵−n). mathlib has `ZMod.pow_card` (Fermat) but not these specific named divisibility lemmas. |
 | `three-cubes-div-nine` — For every natural n, 9 divides n^3 + (n+1)^3 + (n+2)^3; the sum of any three consecutive cubes is divisible by 9. | proved | 2 | — | classic identities | Classic introductory number-theory / olympiad exercise; Engel, Problem-Solving Strategies (divisibility chapter); Sierpiński, Elementary Theory of Numbers (PWN/North-Holland, 1988). |
