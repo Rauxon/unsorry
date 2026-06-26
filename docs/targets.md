@@ -4,7 +4,7 @@
 
 The unsorry worklist: theorems that are **already proven but not yet in mathlib**, vetted for absence and stated in Lean, waiting for an agent or a human to prove them. Claim one, open a PR, let the gates decide (see [Running an agent](../README.md#running-an-agent) and [ADR-012](adrs/ADR-012-Backlog-Sourcing.md)).
 
-**224 open · 4432 proved · 4668 total prove-goals.**
+**224 open · 4434 proved · 4670 total prove-goals.**
 
 | Goal | Status | Diff | Upstream | Source | Reference |
 |------|--------|:----:|----------|--------|-----------|
@@ -2645,6 +2645,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `gself-pow-two-pow-30-add-pow-21` — n to the 2 divides n to the 30 plus n to the 21. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 30 plus n to the 21. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-30-add-pow-22` — n to the 2 divides n to the 30 plus n to the 22. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 30 plus n to the 22. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-30-add-pow-23` — n to the 2 divides n to the 30 plus n to the 23. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 30 plus n to the 23. Provable by exhibiting the cofactor and `ring`. |
+| `gself-pow-two-pow-30-add-pow-24` — n to the 2 divides n to the 30 plus n to the 24. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 30 plus n to the 24. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-five-add-pow-four` — n to the 2 divides n to the 5 plus n to the 4. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 4. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-five-add-pow-three` — n to the 2 divides n to the 5 plus n to the 3. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 3. Provable by exhibiting the cofactor and `ring`. |
 | `gself-pow-two-pow-five-add-pow-two` — n to the 2 divides n to the 5 plus n to the 2. | proved | 1 | — | self-seeded polynomial-divisibility identity family. | n to the 2 divides n to the 5 plus n to the 2. Provable by exhibiting the cofactor and `ring`. |
@@ -4645,6 +4646,7 @@ The unsorry worklist: theorems that are **already proven but not yet in mathlib*
 | `telescoping-square-sum-coeff-twelve` — A telescoping power-sum closed form (coefficient 12, exponent 2): the finite sum over k in range n equals 12·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-twenty` — A telescoping power-sum closed form (coefficient 20, exponent 2): the finite sum over k in range n equals 20·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-twentyeight` — A telescoping power-sum closed form (coefficient 28, exponent 2): the finite sum over k in range n equals 28·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
+| `telescoping-square-sum-coeff-twentyfive` — A telescoping power-sum closed form (coefficient 25, exponent 2): the finite sum over k in range n equals 25·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-twentyfour` — A telescoping power-sum closed form (coefficient 24, exponent 2): the finite sum over k in range n equals 24·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-twentynine` — A telescoping power-sum closed form (coefficient 29, exponent 2): the finite sum over k in range n equals 29·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
 | `telescoping-square-sum-coeff-twentyone` — A telescoping power-sum closed form (coefficient 21, exponent 2): the finite sum over k in range n equals 21·n^2. | proved | 1 | — | self-seeded telescoping finite-sum identity family. | follows from (k+1)^2 − k^2 telescoping; proved by induction on n. |
