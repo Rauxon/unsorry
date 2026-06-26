@@ -221,6 +221,17 @@
         "run_id": "20260626t071924018179z-0ed999c7",
         "solve_s": 5450,
         "verification": "—"
+      },
+      {
+        "contributor": "cgbarlow",
+        "ended": "2026-06-26T08:36:18Z",
+        "goal": "putnam-1966-a6",
+        "model": "claude/opus",
+        "outcome": "decomposed",
+        "passed": false,
+        "run_id": "20260626t083618809150z-32e37b6d",
+        "solve_s": 2778,
+        "verification": "—"
       }
     ]
   }

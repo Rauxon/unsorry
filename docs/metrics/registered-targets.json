@@ -2566,11 +2566,11 @@
       "stats": {
         "best_solve_s": 869,
         "contributors": 2,
-        "failed_runs": 12,
+        "failed_runs": 13,
         "median_solve_s": 1595,
-        "success_rate": 0.4,
+        "success_rate": 0.381,
         "successful_runs": 8,
-        "total_runs": 20,
+        "total_runs": 21,
         "worst_solve_s": 4056
       },
       "supplier": "trishullab",
