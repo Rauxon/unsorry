@@ -6,9 +6,9 @@ A visualiser for the swarm's proof graph (issue #371): every prove-goal, its sta
 
 > An **interactive** version — pan/zoom, click-to-detail panel, filterable table — is generated alongside this file at [`docs/proofs-contributors-visualisation.html`](proofs-contributors-visualisation.html) (open it locally or via GitHub Pages; the browser renders it, GitHub shows the source).
 
-**4633 goals — 216 open · 9 blocked · 9 translated · 2200 proved · 2199 archived.** 11 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
+**4647 goals — 224 open · 12 blocked · 9 translated · 2203 proved · 2199 archived.** 14 decomposition families shown below; standalone goals (no lineage) are folded into one summary cluster per status — the interactive page expands a cluster into its goals on click, and every goal is listed individually in the table.
 
-Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (2196 of 2200 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
+Solving agent, PR and the GitHub user who merged it are resolved from the `prove(…)` merge commits (2199 of 2203 proved goals carry a per-goal prove-PR; the rest predate that convention and are left blank). The **solver** shows the recorded AISP login only — never guessed (ADR-023), so a goal with no recorded solver shows “—”; **merged by** is the GitHub user who landed the PR (who merged it, not who solved it), shown in its own column so the two are never conflated. The model comes from recorded provenance only.
 
 ## Dependency lineage
 
@@ -40,6 +40,36 @@ flowchart LR
   g_nat_sq_lt_two_pow_s2_s3["nat-sq-lt-two-pow-s2-s3"]
   class g_nat_sq_lt_two_pow_s2_s3 proved;
   click g_nat_sq_lt_two_pow_s2_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/nat-sq-lt-two-pow-s2-s3.lean" "nat-sq-lt-two-pow-s2-s3 — proved"
+  g_putnam_1962_a1["putnam-1962-a1"]
+  class g_putnam_1962_a1 blocked;
+  click g_putnam_1962_a1 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1.lean" "putnam-1962-a1 — blocked"
+  g_putnam_1962_a1_s1["putnam-1962-a1-s1"]
+  class g_putnam_1962_a1_s1 open;
+  click g_putnam_1962_a1_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1-s1.lean" "putnam-1962-a1-s1 — open"
+  g_putnam_1962_a1_s2["putnam-1962-a1-s2"]
+  class g_putnam_1962_a1_s2 open;
+  click g_putnam_1962_a1_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1-s2.lean" "putnam-1962-a1-s2 — open"
+  g_putnam_1962_a1_s3["putnam-1962-a1-s3"]
+  class g_putnam_1962_a1_s3 open;
+  click g_putnam_1962_a1_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1-s3.lean" "putnam-1962-a1-s3 — open"
+  g_putnam_1962_a1_s4["putnam-1962-a1-s4"]
+  class g_putnam_1962_a1_s4 open;
+  click g_putnam_1962_a1_s4 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1-s4.lean" "putnam-1962-a1-s4 — open"
+  g_putnam_1962_b5["putnam-1962-b5"]
+  class g_putnam_1962_b5 blocked;
+  click g_putnam_1962_b5 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5.lean" "putnam-1962-b5 — blocked"
+  g_putnam_1962_b5_s1["putnam-1962-b5-s1"]
+  class g_putnam_1962_b5_s1 open;
+  click g_putnam_1962_b5_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5-s1.lean" "putnam-1962-b5-s1 — open"
+  g_putnam_1962_b5_s2["putnam-1962-b5-s2"]
+  class g_putnam_1962_b5_s2 open;
+  click g_putnam_1962_b5_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5-s2.lean" "putnam-1962-b5-s2 — open"
+  g_putnam_1962_b5_s3["putnam-1962-b5-s3"]
+  class g_putnam_1962_b5_s3 open;
+  click g_putnam_1962_b5_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5-s3.lean" "putnam-1962-b5-s3 — open"
+  g_putnam_1962_b5_s4["putnam-1962-b5-s4"]
+  class g_putnam_1962_b5_s4 open;
+  click g_putnam_1962_b5_s4 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5-s4.lean" "putnam-1962-b5-s4 — open"
   g_putnam_1965_b6["putnam-1965-b6"]
   class g_putnam_1965_b6 blocked;
   click g_putnam_1965_b6 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1965-b6.lean" "putnam-1965-b6 — blocked"
@@ -77,8 +107,17 @@ flowchart LR
   class g_putnam_1966_b1_s2 proved;
   click g_putnam_1966_b1_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s2.lean" "putnam-1966-b1-s2 — proved"
   g_putnam_1966_b1_s3["putnam-1966-b1-s3"]
-  class g_putnam_1966_b1_s3 open;
-  click g_putnam_1966_b1_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3.lean" "putnam-1966-b1-s3 — open"
+  class g_putnam_1966_b1_s3 blocked;
+  click g_putnam_1966_b1_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3.lean" "putnam-1966-b1-s3 — blocked"
+  g_putnam_1966_b1_s3_s1["putnam-1966-b1-s3-s1"]
+  class g_putnam_1966_b1_s3_s1 open;
+  click g_putnam_1966_b1_s3_s1 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3-s1.lean" "putnam-1966-b1-s3-s1 — open"
+  g_putnam_1966_b1_s3_s2["putnam-1966-b1-s3-s2"]
+  class g_putnam_1966_b1_s3_s2 open;
+  click g_putnam_1966_b1_s3_s2 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3-s2.lean" "putnam-1966-b1-s3-s2 — open"
+  g_putnam_1966_b1_s3_s3["putnam-1966-b1-s3-s3"]
+  class g_putnam_1966_b1_s3_s3 open;
+  click g_putnam_1966_b1_s3_s3 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3-s3.lean" "putnam-1966-b1-s3-s3 — open"
   g_putnam_1966_b1_s4["putnam-1966-b1-s4"]
   class g_putnam_1966_b1_s4 blocked;
   click g_putnam_1966_b1_s4 "https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s4.lean" "putnam-1966-b1-s4 — blocked"
@@ -162,6 +201,14 @@ flowchart LR
   g_nat_sq_lt_two_pow_s2 --> g_nat_sq_lt_two_pow_s2_s1
   g_nat_sq_lt_two_pow_s2 --> g_nat_sq_lt_two_pow_s2_s2
   g_nat_sq_lt_two_pow_s2 --> g_nat_sq_lt_two_pow_s2_s3
+  g_putnam_1962_a1 --> g_putnam_1962_a1_s1
+  g_putnam_1962_a1 --> g_putnam_1962_a1_s2
+  g_putnam_1962_a1 --> g_putnam_1962_a1_s3
+  g_putnam_1962_a1 --> g_putnam_1962_a1_s4
+  g_putnam_1962_b5 --> g_putnam_1962_b5_s1
+  g_putnam_1962_b5 --> g_putnam_1962_b5_s2
+  g_putnam_1962_b5 --> g_putnam_1962_b5_s3
+  g_putnam_1962_b5 --> g_putnam_1962_b5_s4
   g_putnam_1965_b6 --> g_putnam_1965_b6_s1
   g_putnam_1965_b6 --> g_putnam_1965_b6_s2
   g_putnam_1965_b6 --> g_putnam_1965_b6_s3
@@ -173,6 +220,9 @@ flowchart LR
   g_putnam_1966_b1 --> g_putnam_1966_b1_s2
   g_putnam_1966_b1 --> g_putnam_1966_b1_s3
   g_putnam_1966_b1 --> g_putnam_1966_b1_s4
+  g_putnam_1966_b1_s3 --> g_putnam_1966_b1_s3_s1
+  g_putnam_1966_b1_s3 --> g_putnam_1966_b1_s3_s2
+  g_putnam_1966_b1_s3 --> g_putnam_1966_b1_s3_s3
   g_putnam_1966_b1_s4 --> g_putnam_1966_b1_s4_s1
   g_putnam_1966_b1_s4 --> g_putnam_1966_b1_s4_s2
   g_putnam_1966_b1_s4 --> g_putnam_1966_b1_s4_s3
@@ -195,11 +245,11 @@ flowchart LR
   g_sq_add_sq_eq_three_mul_sq_s4_s3 --> g_sq_add_sq_eq_three_mul_sq_s4_s3_s1
   g_sq_add_sq_eq_three_mul_sq_s4_s3 --> g_sq_add_sq_eq_three_mul_sq_s4_s3_s2
   g_sq_add_sq_eq_three_mul_sq_s4_s3 --> g_sq_add_sq_eq_three_mul_sq_s4_s3_s3
-  cluster_open(["open · 201"])
+  cluster_open(["open · 199"])
   class cluster_open open;
   cluster_translated(["translated · 9"])
   class cluster_translated translated;
-  cluster_proved(["proved · 2179"])
+  cluster_proved(["proved · 2182"])
   class cluster_proved proved;
   cluster_archived(["archived · 2199"])
   class cluster_archived unknown;
@@ -325,13 +375,19 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`imo2025p4`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2025p4.lean) | open | 4 | — | — | — | — | — |
 | [`imo2025p5`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2025p5.lean) | open | 4 | — | — | — | — | — |
 | [`imo2025p6`](https://github.com/agenticsnz/unsorry/blob/main/goals/imo2025p6.lean) | open | 4 | — | — | — | — | — |
-| [`putnam-1962-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1962-a1-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1-s1.lean) | open | 1 | — | — | — | — | — |
+| [`putnam-1962-a1-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1-s2.lean) | open | 1 | — | — | — | — | — |
+| [`putnam-1962-a1-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1-s3.lean) | open | 1 | — | — | — | — | — |
+| [`putnam-1962-a1-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1-s4.lean) | open | 1 | — | — | — | — | — |
 | [`putnam-1962-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a2.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a3.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a4.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1962-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b1.lean) | open | 4 | — | — | — | — | — |
-| [`putnam-1962-b5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5.lean) | open | 4 | — | — | — | — | — |
+| [`putnam-1962-b5-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5-s1.lean) | open | 1 | — | — | — | — | — |
+| [`putnam-1962-b5-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5-s2.lean) | open | 1 | — | — | — | — | — |
+| [`putnam-1962-b5-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5-s3.lean) | open | 1 | — | — | — | — | — |
+| [`putnam-1962-b5-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5-s4.lean) | open | 1 | — | — | — | — | — |
 | [`putnam-1962-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b6.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-a2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-a2.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1963-a3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1963-a3.lean) | open | 4 | — | — | — | — | — |
@@ -368,7 +424,9 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`putnam-1966-a4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-a4.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1966-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-a5.lean) | open | 4 | — | — | — | — | — |
 | [`putnam-1966-a6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-a6.lean) | open | 4 | — | — | — | — | — |
-| [`putnam-1966-b1-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3.lean) | open | 1 | — | — | — | — | — |
+| [`putnam-1966-b1-s3-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3-s1.lean) | open | 1 | — | — | — | — | — |
+| [`putnam-1966-b1-s3-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3-s2.lean) | open | 1 | — | — | — | — | — |
+| [`putnam-1966-b1-s3-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3-s3.lean) | open | 1 | — | — | — | — | — |
 | [`putnam-1966-b1-s4-s1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s4-s1.lean) | open | 1 | — | — | — | — | — |
 | [`putnam-1966-b1-s4-s2`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s4-s2.lean) | open | 1 | — | — | — | — | — |
 | [`putnam-1966-b1-s4-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s4-s3.lean) | open | 1 | — | — | — | — | — |
@@ -427,9 +485,12 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`sum-two-cubes-zmod-seven-mem`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-two-cubes-zmod-seven-mem.lean) | open | 3 | — | — | — | — | — |
 | [`sum-two-squares-zmod-eight-ne-six`](https://github.com/agenticsnz/unsorry/blob/main/goals/sum-two-squares-zmod-eight-ne-six.lean) | open | 3 | — | — | — | — | — |
 | [`three-fourth-powers-zmod-sixteen-mem`](https://github.com/agenticsnz/unsorry/blob/main/goals/three-fourth-powers-zmod-sixteen-mem.lean) | open | 3 | — | — | — | — | — |
+| [`putnam-1962-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-a1.lean) | blocked | 4 | — | — | — | — | — |
+| [`putnam-1962-b5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1962-b5.lean) | blocked | 4 | — | — | — | — | — |
 | [`putnam-1965-b6`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1965-b6.lean) | blocked | 4 | — | — | — | — | — |
 | [`putnam-1966-a1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-a1.lean) | blocked | 4 | — | — | — | — | — |
 | [`putnam-1966-b1`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1.lean) | blocked | 4 | — | — | — | — | — |
+| [`putnam-1966-b1-s3`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s3.lean) | blocked | 1 | — | — | — | — | — |
 | [`putnam-1966-b1-s4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b1-s4.lean) | blocked | 1 | — | — | — | — | — |
 | [`putnam-1966-b4`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1966-b4.lean) | blocked | 4 | — | — | — | — | — |
 | [`putnam-1967-a5`](https://github.com/agenticsnz/unsorry/blob/main/goals/putnam-1967-a5.lean) | blocked | 4 | — | — | — | — | — |
@@ -1006,6 +1067,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`geometric-series-ratio-sixtyfive`](https://github.com/agenticsnz/unsorry/blob/main/goals/geometric-series-ratio-sixtyfive.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5645](https://github.com/agenticsnz/unsorry/pull/5645) | 2026-06-24 |
 | [`geometric-series-ratio-sixtyfour`](https://github.com/agenticsnz/unsorry/blob/main/goals/geometric-series-ratio-sixtyfour.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5646](https://github.com/agenticsnz/unsorry/pull/5646) | 2026-06-24 |
 | [`geometric-series-ratio-sixtynine`](https://github.com/agenticsnz/unsorry/blob/main/goals/geometric-series-ratio-sixtynine.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5647](https://github.com/agenticsnz/unsorry/pull/5647) | 2026-06-24 |
+| [`geometric-series-ratio-sixtyone`](https://github.com/agenticsnz/unsorry/blob/main/goals/geometric-series-ratio-sixtyone.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5648](https://github.com/agenticsnz/unsorry/pull/5648) | 2026-06-26 |
 | [`geometric-series-ratio-sixtyseven`](https://github.com/agenticsnz/unsorry/blob/main/goals/geometric-series-ratio-sixtyseven.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5649](https://github.com/agenticsnz/unsorry/pull/5649) | 2026-06-24 |
 | [`geometric-series-ratio-sixtysix`](https://github.com/agenticsnz/unsorry/blob/main/goals/geometric-series-ratio-sixtysix.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5650](https://github.com/agenticsnz/unsorry/pull/5650) | 2026-06-24 |
 | [`geometric-series-ratio-sixtythree`](https://github.com/agenticsnz/unsorry/blob/main/goals/geometric-series-ratio-sixtythree.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#5651](https://github.com/agenticsnz/unsorry/pull/5651) | 2026-06-24 |
@@ -1408,10 +1470,12 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`gself-pow-four-pow-twenty-add-pow-thirteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-four-pow-twenty-add-pow-thirteen.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#4222](https://github.com/agenticsnz/unsorry/pull/4222) | 2026-06-21 |
 | [`gself-pow-four-pow-twenty-add-pow-twelve`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-four-pow-twenty-add-pow-twelve.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#4223](https://github.com/agenticsnz/unsorry/pull/4223) | 2026-06-21 |
 | [`gself-pow-fourteen-add-pow-eleven`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-fourteen-add-pow-eleven.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | chat-bit-01 | [#5936](https://github.com/agenticsnz/unsorry/pull/5936) | 2026-06-24 |
+| [`gself-pow-seventeen-add-pow-fourteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-seventeen-add-pow-fourteen.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#5561](https://github.com/agenticsnz/unsorry/pull/5561) | 2026-06-26 |
 | [`gself-pow-three-pow-21-add-pow-eight`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-21-add-pow-eight.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#4318](https://github.com/agenticsnz/unsorry/pull/4318) | 2026-06-21 |
 | [`gself-pow-three-pow-21-add-pow-eighteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-21-add-pow-eighteen.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#4319](https://github.com/agenticsnz/unsorry/pull/4319) | 2026-06-21 |
 | [`gself-pow-three-pow-21-add-pow-eleven`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-21-add-pow-eleven.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#4320](https://github.com/agenticsnz/unsorry/pull/4320) | 2026-06-21 |
 | [`gself-pow-three-pow-21-add-pow-fifteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-21-add-pow-fifteen.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#4322](https://github.com/agenticsnz/unsorry/pull/4322) | 2026-06-21 |
+| [`gself-pow-three-pow-21-add-pow-five`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-21-add-pow-five.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#5450](https://github.com/agenticsnz/unsorry/pull/5450) | 2026-06-26 |
 | [`gself-pow-three-pow-21-add-pow-four`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-21-add-pow-four.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#4324](https://github.com/agenticsnz/unsorry/pull/4324) | 2026-06-21 |
 | [`gself-pow-three-pow-21-add-pow-fourteen`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-21-add-pow-fourteen.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Chris Barlow | [#4325](https://github.com/agenticsnz/unsorry/pull/4325) | 2026-06-21 |
 | [`gself-pow-three-pow-21-add-pow-nine`](https://github.com/agenticsnz/unsorry/blob/main/goals/gself-pow-three-pow-21-add-pow-nine.lean) | proved | 1 | mac-158f | ohdearquant · `sympy` | Perttu Isotalo | [#4326](https://github.com/agenticsnz/unsorry/pull/4326) | 2026-06-21 |
@@ -2644,7 +2708,7 @@ Legend: proved #c6f6d5 · open #e2e8f0 · blocked #feebc8 · flagged #fed7d7 · 
 | [`telescoping-square-sum-coeff-sixtysix`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-square-sum-coeff-sixtysix.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6658](https://github.com/agenticsnz/unsorry/pull/6658) | 2026-06-26 |
 | [`telescoping-square-sum-coeff-sixtythree`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-square-sum-coeff-sixtythree.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6659](https://github.com/agenticsnz/unsorry/pull/6659) | 2026-06-26 |
 | [`telescoping-square-sum-coeff-sixtytwo`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-square-sum-coeff-sixtytwo.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6663](https://github.com/agenticsnz/unsorry/pull/6663) | 2026-06-26 |
-| [`telescoping-square-sum-coeff-ten`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-square-sum-coeff-ten.lean) | proved | 4 | claude-web | chat-bit-01 · `template-induction-ring` | Chris Barlow | [#6664](https://github.com/agenticsnz/unsorry/pull/6664) | 2026-06-26 |
+| [`telescoping-square-sum-coeff-ten`](https://github.com/agenticsnz/unsorry/blob/main/goals/telescoping-square-sum-coeff-ten.lean) | proved | 1 | claude-web | chat-bit-01 · `ring` | Chris Barlow | [#6664](https://github.com/agenticsnz/unsorry/pull/6664) | 2026-06-26 |
 | [`abc-nine-le-sum-times-pairsum`](https://github.com/agenticsnz/unsorry/blob/main/goals/abc-nine-le-sum-times-pairsum.lean) | archived | 3 | claude-rmt-001 | — | chat-bit-01 | [#1148](https://github.com/agenticsnz/unsorry/pull/1148) | 2026-06-17 |
 | [`abstract-regular-polyhedron-classification`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-classification.lean) | archived | 3 | — | — | — | — | 2026-06-13 |
 | [`abstract-regular-polyhedron-realizable-iff`](https://github.com/agenticsnz/unsorry/blob/main/goals/abstract-regular-polyhedron-realizable-iff.lean) | archived | 4 | claude-web | — | chat-bit-01 | [#2171](https://github.com/agenticsnz/unsorry/pull/2171) | 2026-06-18 |
