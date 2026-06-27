@@ -259,6 +259,8 @@ Contributors: [chat-bit-01](https://github.com/chat-bit-01) · [SimonMcCallum](h
 
 ## Current status
 
+27 June 2026: Pipeline blocked. In the midst of implementing a batched approach to proof processing, a buf is introduced to the CI process and I hit my weekly rate limit. Leaderboard will be stuck until this is resolved.
+
 25 June 2026: **v2.0.0.** Two milestones land together — **four hard competition benchmark suites** (PutnamBench, IMOLean, miniF2F, CombiBench, segregated as `cohort:benchmark`) and the **verification-throughput cutover**: the `lean4export` + independent-kernel (`nanoda`) cross-checker now replaces the Gate A axiom audit on the common leaf-proof path, re-checking a proof in seconds on one runner instead of an 8-shard audit and ~halving the per-PR runner footprint — while the `leanchecker` `p = 1` re-check stays the sole truth oracle, unchanged.
 
 21 June 2026: Pipeline unblocked. Ocean takes the lead. Proof validation running smoothly with 4x16GB runners, however large queue. Roadmap to move to decentralsed runner architecture.
