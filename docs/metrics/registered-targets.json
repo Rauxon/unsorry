@@ -2552,7 +2552,7 @@
     },
     {
       "cohort": "benchmark",
-      "credited": 414,
+      "credited": 417,
       "domain": "lean-math",
       "glue": 0,
       "goals": [
@@ -5452,6 +5452,27 @@
           "difficulty": 4,
           "id": "putnam-2006-b5",
           "run_snippet": "./swarm/run.sh --goal putnam-2006-b5",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-2007-a1",
+          "run_snippet": "./swarm/run.sh --goal putnam-2007-a1",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-2007-a2",
+          "run_snippet": "./swarm/run.sh --goal putnam-2007-a2",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-2007-a4",
+          "run_snippet": "./swarm/run.sh --goal putnam-2007-a4",
           "status": "open"
         }
       ],
