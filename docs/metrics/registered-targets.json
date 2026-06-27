@@ -2552,7 +2552,7 @@
     },
     {
       "cohort": "benchmark",
-      "credited": 417,
+      "credited": 418,
       "domain": "lean-math",
       "glue": 0,
       "goals": [
@@ -5473,6 +5473,13 @@
           "difficulty": 4,
           "id": "putnam-2007-a4",
           "run_snippet": "./swarm/run.sh --goal putnam-2007-a4",
+          "status": "open"
+        },
+        {
+          "credit": "credited",
+          "difficulty": 4,
+          "id": "putnam-2007-a5",
+          "run_snippet": "./swarm/run.sh --goal putnam-2007-a5",
           "status": "open"
         }
       ],
